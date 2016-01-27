@@ -1,14 +1,14 @@
 % Master Thesis Report
 % Created by: Claes Arvidson and Emelie Karlsson 
-% Linköping University Spring 2016
+% LinkÃ¶ping University Spring 2016
 % First version: 2016-01-27
 
 %            the super-template for a thesis at LiTH v 1.002
 %            ===============================================
 %
-% This is a template for writing a thesis at Linköpings Universitet
+% This is a template for writing a thesis at LinkÃ¶pings Universitet
 %
-%   1 If you use the template to produce a final thesís (or some
+%   1 If you use the template to produce a final thesÃ­s (or some
 %     other document) consider the template to be in the public domain.
 %     This means that you can use and exploit it in any way. Otherwise
 %     read 2 below.
@@ -145,15 +145,17 @@
 \pagestyle{headings}
 
 % some of the packages used are
+%\usepackage[utf8]{inputenc}
 \usepackage{latexsym}
 \usepackage{eepic}
 \usepackage{makeidx}
 \usepackage[dvips]{graphicx}
-\usepackage[latin1]{inputenc}  %för ä ö å ?
+\usepackage[utf8]{inputenc}  %fÃ¶r Ã¤ Ã¶ Ã¥ ?
 \usepackage[english]{babel}
 %\usepackage{times}
 \usepackage{amssymb}
 \usepackage{fancybox} 
+\usepackage{textcomp}
 
 % the fancy header/footer
 % consult http://research.cmis.csiro.au/gjw/tex/docs/fancyhdr.pdf
@@ -173,7 +175,6 @@
   \fancyfoot[RE,LO]{\nouppercase{\small{\putegotext}}}
   \fancyfoot[LE,RO]{\small{\thepage}}
   \renewcommand{\headrulewidth}{0pt}  \renewcommand{\footrulewidth}{0.2pt} }
-
 
 % ------------------------------------------------------------------------
 % BEGINNING of abstract, author, examiner, etc
@@ -196,8 +197,8 @@ But still, they will have to read your abstract. After all, the
 abstract is what everyone reads\ldots}
 
 \newcommand{\putkeywords}[0]{%
-Keyword One, Chemostat, Another Key-Word, Key, Clé, Mot de cle,
-Nyckelhål, XBOX, Dagens viktigaste nyckelord, and Keywords.}
+Keyword One, Chemostat, Another Key-Word, Key, ClÃ©, Mot de cle,
+NyckelhÃ¥l, XBOX, Dagens viktigaste nyckelord, and Keywords.}
 
 
 \newcommand{\putthemonth}[0]{June }%please keep the space after the month
@@ -223,14 +224,12 @@ Nyckelhål, XBOX, Dagens viktigaste nyckelord, and Keywords.}
 \newcommand{\putegotext}[0]{Arvidson, Karlsson, 2016.}
 
 
-\newcommand{\puttitle}[0]{Mathematical models of everything you ever
-  wanted to have a model of, or some other very long title that is
-  hard to say in one breath.}
+\newcommand{\puttitle}[0]{Scheduling of library staff with respect to demands and staff competence.}
 
 % some kind of administrator will give you this number
 \newcommand{\putregnumber}[0]{LiTH - MAT - EX - - 04 / 04 - - SE}
 
-\newcommand{\putexaminer}[0]{E. Rönnberg}
+\newcommand{\putexaminer}[0]{E. RÃ¶nnberg}
 
 \newcommand{\putsupervisor}[0]{T. Larsson}
 
@@ -241,9 +240,9 @@ Nyckelhål, XBOX, Dagens viktigaste nyckelord, and Keywords.}
 % this number is the one I had
 \newcommand{\putmyurl}[0]{http://www.ep.liu.se/exjobb/mai/2004/tm/004/}
 
-% Please do not change into University of Linköping or something, the
-% international name of Liu is Linköpings Universitet
-\newcommand{\putliu}[0]{Linköpings Universitet}
+% Please do not change into University of LinkÃ¶ping or something, the
+% international name of Liu is LinkÃ¶pings Universitet
+\newcommand{\putliu}[0]{LinkÃ¶pings Universitet}
 
 %
 % END of abstract, author, examiner, etc
@@ -266,7 +265,7 @@ Nyckelhål, XBOX, Dagens viktigaste nyckelord, and Keywords.}
 \newcommand{\mmu}[0]{{\mu}_{max} }
 \newcommand{\KMAX}[0]{\mmu}
 \newcommand{\AAA}[0]{\mathbf{A} }
-\newcommand{\XC}[0]{{X}_{C} }
+\newcommand{\enc}[0]{utf8}
 % stop erasing here
 
 % don't mind these
@@ -324,7 +323,7 @@ Nyckelhål, XBOX, Dagens viktigaste nyckelord, and Keywords.}
                   \textbf{\putexaminer}, \\\putdepartment, \putliu
                 \end{minipage} \\ \vspace*{4mm}
                 
-                Linköping:
+                LinkÃ¶ping:
                 \begin{minipage}[t]{70mm}
                   \textbf{\putmydate}
                 \end{minipage} \\ \vspace*{4mm}
@@ -379,7 +378,7 @@ http://urn.kb.se/resolve?urn=urn:nbn:se:liu:diva-77777
 
 % here or on the next page you put an abstract in swedish
 %\section*{Abstract in Swedish: Sammanfattning}
-%Det finns många typer av bioreaktorer som tillämpas\ldots
+%Det finns mÃ¥nga typer av bioreaktorer som tillÃ¤mpas\ldots
 
 \chapter*{Acknowledgements\index{Acknowledgements}}
 
@@ -392,6 +391,8 @@ would like to thank my supervisor\ldots
 
 My opponent NN also deserves my thanks, I would like to thank my
 supervisor, I would like to thank my supervisor, I would like to thank my supervisor\ldots
+
+
 
 
 
@@ -440,7 +441,7 @@ MMI      & Michaelis-Menten Inhibition (or Inhibited)\index{MMI}
 This text is written as a master of science final
 thesis\footnote{No it is not- it is a LaTeX-template for people
   writing them.}
-at Linköpings universitet
+at LinkÃ¶pings universitet
 by Per Erik Strandberg
 % sometimes you need ~ to force space
 with \putsupervisor~as supervisor and \putexaminer~as examiner,
@@ -506,19 +507,13 @@ and two appendixes. Main topics dealt with are:
     analysis of linearized stability in steady states.}
 \end{description}
 
-
-\section{Background} 
-
-\section{Problem description}
-
 % -------------------------------------------------------------------------
 \fi
 % ----------------------------------From here ------------------------------
 
-
+\inputencoding{\enc}
 \input{Chapters/Introduction}
-
-
+\inputencoding{\enc}
 
 % ..................chapter ...............................................
 
@@ -588,15 +583,15 @@ growth-chamber, reactor, in which the bacteria reproduces.
 
 
 % the not so good structure of how a formula might look:
-\begin{displaymath}
-\mathbf{A}=
-\left( \begin{array}{cc}
-\ala \frac{S}{1+S} \frac{1}{(1+\frac{X}{\XC})^2} -1 
-& \ala \frac{1}{(1+S)^2} \frac{X}{1+\frac{X}{\XC}}   \\
-- \frac{S}{1+S} \frac{1}{(1+\frac{X}{\XC})^2} \phantom{+11} 
-& - \frac{1}{(1+S)^2} \frac{X}{1+\frac{X}{\XC}}-1  \rule{0pt}{3ex}   \\
-\end{array}\right).
-\end{displaymath}
+%\begin{displaymath}
+%\mathbf{A}=
+%\left( \begin{array}{cc}
+%\ala \frac{S}{1+S} \frac{1}{(1+\frac{X}{\XC})^2} -1 
+%& \ala \frac{1}{(1+S)^2} \frac{X}{1+\frac{X}{\XC}}   \\
+%- \frac{S}{1+S} \frac{1}{(1+\frac{X}{\XC})^2} \phantom{+11} 
+%& - \frac{1}{(1+S)^2} \frac{X}{1+\frac{X}{\XC}}-1  \rule{0pt}{3ex}   \\
+%\end{array}\right).
+%\end{displaymath}
 
 
 % a big, bad table
@@ -667,7 +662,7 @@ bibiography, according to \cite{beta}, we have\ldots And according to
 \begin{thebibliography}{99}
 
 \bibitem{beta} % this beta is what you 'call' when you refer to beta
-Lennart Råde, Bertil Westergren, 
+Lennart RÃ¥de, Bertil Westergren, 
 (2001), 
 \emph{Mathematics Handbook for Science and Engineering},
 Studentlitteratur, 
@@ -676,7 +671,7 @@ Lund.
 \bibitem{Glad} % and glag is the handle of Glad.
 Torkel Glad, Lennart Ljung,
 (1989), 
-\emph{Reglerteknik grundläggande teori},
+\emph{Reglerteknik grundlÃ¤ggande teori},
 Studentlitteratur, 
 Lund.
 
@@ -779,16 +774,16 @@ Copyright
 The publishers will keep this document online on the Internet - or its possible replacement - for a period of 25 years from the date of publication barring exceptional circumstances.
 The online availability of the document implies a permanent permission for anyone to read, to download, to print out single copies for your own use and to use it unchanged for any non-commercial research and educational purpose. Subsequent transfers of copyright cannot revoke this permission. All other uses of the document are conditional on the consent of the copyright owner. The publisher has taken technical and administrative measures to assure authenticity, security and accessibility.
 According to intellectual property law the author has the right to be mentioned when his/her work is accessed as described above and to be protected against infringement.
-For additional information about the Linköping University Electronic Press and its procedures for publication and for assurance of document integrity, please refer to its WWW home page: http://www.ep.liu.se/
+For additional information about the LinkÃ¶ping University Electronic Press and its procedures for publication and for assurance of document integrity, please refer to its WWW home page: http://www.ep.liu.se/
 \bigskip
 
 Upphovsr\"att
 \medskip
 
-Detta dokument hålls tillgängligt på Internet - eller dess framtida ersättare - under 25 år från publiceringsdatum under förutsättning att inga extraordi\-nära omständigheter uppstår.
-Tillgång till dokumentet innebär tillstånd för var och en att läsa, ladda ner, skriva ut enstaka kopior för enskilt bruk och att använda det oförändrat för ickekommersiell forskning och för undervisning. Överföring av upphovsrätten vid en senare tidpunkt kan inte upphäva detta tillstånd. All annan användning av dokumentet kräver upphovsmannens medgivande. För att garantera äktheten, säkerheten och tillgängligheten finns det lösningar av teknisk och administrativ art.
-Upphovsmannens ideella rätt innefattar rätt att bli nämnd som upphovsman i den omfattning som god sed kräver vid användning av dokumentet på ovan beskrivna sätt samt skydd mot att dokumentet ändras eller presenteras i sådan form eller i sådant sammanhang som är kränkande för upphovsmannens litterära eller konstnärliga anseende eller egenart.
-För ytterligare information om Linköping University Electronic Press se förlagets hemsida http://www.ep.liu.se/
+Detta dokument hÃ¥lls tillgÃ¤ngligt pÃ¥ Internet - eller dess framtida ersÃ¤ttare - under 25 Ã¥r frÃ¥n publiceringsdatum under fÃ¶rutsÃ¤ttning att inga extraordi\-nÃ¤ra omstÃ¤ndigheter uppstÃ¥r.
+TillgÃ¥ng till dokumentet innebÃ¤r tillstÃ¥nd fÃ¶r var och en att lÃ¤sa, ladda ner, skriva ut enstaka kopior fÃ¶r enskilt bruk och att anvÃ¤nda det ofÃ¶rÃ¤ndrat fÃ¶r ickekommersiell forskning och fÃ¶r undervisning. Ã–verfÃ¶ring av upphovsrÃ¤tten vid en senare tidpunkt kan inte upphÃ¤va detta tillstÃ¥nd. All annan anvÃ¤ndning av dokumentet krÃ¤ver upphovsmannens medgivande. FÃ¶r att garantera Ã¤ktheten, sÃ¤kerheten och tillgÃ¤ngligheten finns det lÃ¶sningar av teknisk och administrativ art.
+Upphovsmannens ideella rÃ¤tt innefattar rÃ¤tt att bli nÃ¤mnd som upphovsman i den omfattning som god sed krÃ¤ver vid anvÃ¤ndning av dokumentet pÃ¥ ovan beskrivna sÃ¤tt samt skydd mot att dokumentet Ã¤ndras eller presenteras i sÃ¥dan form eller i sÃ¥dant sammanhang som Ã¤r krÃ¤nkande fÃ¶r upphovsmannens litterÃ¤ra eller konstnÃ¤rliga anseende eller egenart.
+FÃ¶r ytterligare information om LinkÃ¶ping University Electronic Press se fÃ¶rlagets hemsida http://www.ep.liu.se/
 
 \medskip
 
