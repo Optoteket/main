@@ -1,0 +1,804 @@
+% Master Thesis Report
+% Created by: Claes Arvidson and Emelie Karlsson 
+% Linköping University Spring 2016
+% First version: 2016-01-27
+
+%            the super-template for a thesis at LiTH v 1.002
+%            ===============================================
+%
+% This is a template for writing a thesis at Linköpings Universitet
+%
+%   1 If you use the template to produce a final thesís (or some
+%     other document) consider the template to be in the public domain.
+%     This means that you can use and exploit it in any way. Otherwise
+%     read 2 below.
+%
+%   2 This template is licenced under a Creative Commons Attribution, 
+%     ShareAlike 2.5 license meaning that: 
+%
+%     You are free to:
+%       1. Share: to copy, distribute, display, and perform the work.
+%       2. Remix: to make derivative works.
+%
+%     Under the following conditions:
+%       1. Attribution. You must attribute the work in the manner
+%          specified by the author or licensor (see 11 below).
+%       2. Share Alike. If you alter, transform, or build upon this
+%          work, you may distribute the resulting work only under
+%          a license identical to this one.  t
+%       3. For any reuse or distribution, you must make clear to
+%          others the license terms of this work.
+%       4. Any of these conditions can be waived if you get permission
+%          from the copyright holder (see 1 above).
+%
+%     (See also http://creativecommons.org/licenses/by-sa/2.5/ )
+%
+%   3 Example: if you use this template to produce another template
+%     you must license it under the above license. And leave the 
+%     changelog intact (you may or may not add your name to it).
+%    
+%     Example: if you use this template to produce a final thesis
+%     you do not need to license your final thesis in any particular
+%     way - but if you find significant improvements to this template
+%     you may or may not share them.
+%
+%   4 if you find it useful - use it
+%
+%   5 if you do not find it useful - only use it for inspiration :)
+%
+%   6 if you find obvious errors: mail me or change them your self.
+%
+%   7 The text here are comments, when compiling this document
+%     lines starting with % will be ignored. 
+%
+%   8 You can read the comments then erase them and save the file as
+%     my_favourite_filename.tex to save the comments for a rainy day.
+%
+%   9 I have tried to make the strange pages automatic so that you do 
+%     not have to edit them by hand.
+%
+%  10 I have tried to explain tables, figures etc "on the fly" so that
+%     it will be easy for you to consult this template 
+%
+%  11 This template was compiled by me Per Erik Strandberg,
+%     www.pererikstrandberg.se while I wrote my D-uppsats in applied
+%     mathematics 2003/2004 at LiTH (accually it was finished after I
+%     had finished it), since I felt the need of a simple template. 
+%
+%  12 If you make contributions to this template and redistribute it
+%     feel free to add your name to the changelog below, but leave 
+%     all previous authors (this is required by the license).
+%
+%
+% Changelog (Authorname, email, date, contribution) 
+% -----------------------------------------------------
+%   * Per Erik Strandberg, per9000@gmail.com, 2004 apr 03: 
+%     From different sources added 2 frontpages, the library page,
+%     contents and the copyrightpage into one simple overviewable file.
+%     Added comments and (semi-)automatic commands for boring stuff to
+%     fill in manually (after having erased errorous automatic commands)
+%
+%   * Per Erik Strandberg, per9000@gmail.com, 2004 apr 30:
+%     Some spelling problems were fixed.
+%
+%   * Per Erik Strandberg, per9000@gmail.com, 2007 jan 23: released to
+%     the public domain for use only, redistribution of the template 
+%     licensed under Creative Commons Attribution-ShareAlike 2.5.
+%
+%
+% Stuff included are:
+% -------------------
+%   * Frontpage (fully automatic)
+%   * another frontpage (fully automatic)
+%   * library page (semiautomatic)
+%   * contents (preface, chapters, bibliography, appendix)
+%   * copyrightpage
+%   * my walkthrough, and a checklist :)
+%   * how to make an index (not that detailed)
+%
+% Files needed for this template:
+% -------------------------------
+%   * this file: template.tex
+%   * some LaTeX (and TeX?)-packages provided by administrator or downloaded
+%     to install them ask an administrator or use Miktex for windows.
+%   * some pictures in eps-format 
+%        - univlogo.eps   202 kb
+%        - epresslogo.eps 190 kb
+%
+% Recommended guides:
+% -------------------
+%   * the not so short introduction to LaTeX available at:
+%     http://www.ctan.org/tex-archive/info/lshort/english/lshort.pdf
+%     or google for "the not so short introduction to LaTeX"
+%   * your favourite local guide to LaTeX
+%
+% CHECKLIST - what MUST be done
+% -----------------------------
+%   * Fill in the newcommands starting on line ~ 80: author, abstract etc
+%   * If you are not writing a thesis on D level for 20 credits 
+%     you must change them to C and 10 or whatever on line ~ 200
+%   * The library page is automatic except for
+%        - department adress, line ~ 248
+%        - language, and report category (well marked)
+%        - and ISSN (0348-2960), line ~ 433 (just put nothing there if
+%          you do not know what it is or if you are not wrinting a
+%          thesis at MAI)
+%
+% KNOWN PROBLEMS AND SOLUTIONS:
+% ------------------------------
+%   P When in 12 pt mode the word licentiatavhandling is too large for
+%     the library page, it looks nice in 10 pt mode however.  
+%   S I just ignored this and hoped no one would mind.
+% 
+%   P Are the titlepages really centered in a good way?
+%   S I don't know- you tell me.
+
+% comments will be added in "realtime" like this:
+
+% in documentclass tag you could write 10pt for a more printerfriendly format,
+% or, if it is 10pt already, you could write 12pt for a more printer-
+% -unfriendly format working better in S5-size (the bookletsize).
+% But do not change a4paper to something else, the printing people
+% will just rescale your document to the appropriate size.
+% openright will force new chapter to start on the right
+\documentclass[a4paper, 10pt, twoside, openright]{book}
+\pagestyle{headings}
+
+% some of the packages used are
+\usepackage{latexsym}
+\usepackage{eepic}
+\usepackage{makeidx}
+\usepackage[dvips]{graphicx}
+\usepackage[latin1]{inputenc}  %för ä ö å ?
+\usepackage[english]{babel}
+%\usepackage{times}
+\usepackage{amssymb}
+\usepackage{fancybox} 
+
+% the fancy header/footer
+% consult http://research.cmis.csiro.au/gjw/tex/docs/fancyhdr.pdf
+% or some other fancy header documenatation for more info
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{\nouppercase{\rightmark}}
+\rfoot{\nouppercase{\leftmark}}
+\fancyfoot{} 
+\fancyhead[LO]{\nouppercase{\small{\rightmark}}}
+\fancyhead[RE]{\nouppercase{\small{\leftmark}}}
+\fancyhead[LE,RO]{\small{\thepage}}
+\fancyhead[C]{}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headrulewidth}{0.2pt}
+\fancypagestyle{plain}{ \fancyhf{}  
+  \fancyfoot[RE,LO]{\nouppercase{\small{\putegotext}}}
+  \fancyfoot[LE,RO]{\small{\thepage}}
+  \renewcommand{\headrulewidth}{0pt}  \renewcommand{\footrulewidth}{0.2pt} }
+
+
+% ------------------------------------------------------------------------
+% BEGINNING of abstract, author, examiner, etc
+% here you must fill in your own text. Remember to respect the { and the }.
+%
+% the *-marked % in 
+%                                   *
+%      \newcommand{\putabstract}[0]{% 
+%      some text}
+%
+% is made to avoid a blank space in the beginning of the abstract,
+% author, date etc.
+%
+\newcommand{\putabstract}[0]{%
+Here is where you can write your abstract. It may be very long, or it
+may be very short, the reason you have an abstract is for people not
+to be forced to read lots of crap.
+
+But still, they will have to read your abstract. After all, the
+abstract is what everyone reads\ldots}
+
+\newcommand{\putkeywords}[0]{%
+Keyword One, Chemostat, Another Key-Word, Key, Clé, Mot de cle,
+Nyckelhål, XBOX, Dagens viktigaste nyckelord, and Keywords.}
+
+
+\newcommand{\putthemonth}[0]{June }%please keep the space after the month
+
+\newcommand{\putshortdate}[0]{2016}
+
+% you don't have to change this
+\newcommand{\putmydate}[0]{\putthemonth \putshortdate}
+
+% this construction might be bad if you are multiple authors, 
+% then comment the 4 lines below and
+% uncomment the 2 lines below them 
+%\newcommand{\putfirstname}[0]{Per Erik } % please keep the space
+%
+%\newcommand{\putlastname}[0]{Strandberg}
+%
+%\newcommand{\putauthor}[0]{\putfirstname \putlastname}
+%
+%\newcommand{\putegotext}[0]{\putlastname, \putshortdate.}
+
+\newcommand{\putauthor}[0]{Claes Arvidson, Emelie Karlsson}
+
+\newcommand{\putegotext}[0]{Arvidson, Karlsson, 2016.}
+
+
+\newcommand{\puttitle}[0]{Mathematical models of everything you ever
+  wanted to have a model of, or some other very long title that is
+  hard to say in one breath.}
+
+% some kind of administrator will give you this number
+\newcommand{\putregnumber}[0]{LiTH - MAT - EX - - 04 / 04 - - SE}
+
+\newcommand{\putexaminer}[0]{E. Rönnberg}
+
+\newcommand{\putsupervisor}[0]{T. Larsson}
+
+% for example Applied Mathematics
+\newcommand{\putdepartment}[0]{Very Applied Mathematics}
+
+% send an email to ep.liu.se to make sure it is correct before you print
+% this number is the one I had
+\newcommand{\putmyurl}[0]{http://www.ep.liu.se/exjobb/mai/2004/tm/004/}
+
+% Please do not change into University of Linköping or something, the
+% international name of Liu is Linköpings Universitet
+\newcommand{\putliu}[0]{Linköpings Universitet}
+
+%
+% END of abstract, author, examiner, etc
+% ------------------------------------------------------------------------
+
+\begin{document} 
+
+\frontmatter
+
+% some new commands I used, you won't need them I guess- just erase it
+\newcommand{\ala}[0]{{\alpha}_{1}}
+\newcommand{\alb}[0]{{\alpha}_{2}}
+\newcommand{\nc}[0]{{N}_{C}}
+\newcommand{\tCh}[0]{the Chemostat }
+\newcommand{\Ch}[0]{Chemostat }
+\newcommand{\ch}[0]{chemostat }
+\newcommand{\MMk}[0]{Michaelis-Menten kinetics }
+\newcommand{\KI}[0]{{K}_{I} }
+\newcommand{\KN}[0]{{K}_{N} }
+\newcommand{\mmu}[0]{{\mu}_{max} }
+\newcommand{\KMAX}[0]{\mmu}
+\newcommand{\AAA}[0]{\mathbf{A} }
+\newcommand{\XC}[0]{{X}_{C} }
+% stop erasing here
+
+% don't mind these
+\title{\puttitle}
+\author{\putauthor}
+
+% this command makes the first page, and the second page, handle with care
+% You really don't have to change anything here I guess.
+\renewcommand{\maketitle}{%
+              \newpage%
+              \pagestyle{empty}
+              \null%
+              \hfil\hspace*{-3mm}
+              \begin{minipage}{150mm}
+                \center 
+                {\Large{Examensarbete}} \\\vspace*{4mm}
+                {\vbox to 22mm{\vfil\Large\textbf{\puttitle}}}
+                \vspace*{5mm}
+                 {\Large{\putauthor}}       \\ \vspace*{4mm}
+                  \putregnumber\\
+                \end{minipage}\hfil
+              \clearpage%\hspace*{0mm}\thispagestyle{empty}
+              \clearpage%\thispagestyle{empty}
+              \null%
+              \hfil\hspace*{-3mm}
+              \begin{minipage}{150mm}
+                \center
+                {\vbox to 48mm{\vfil\Large\textbf{\puttitle}}}
+                \vspace*{5mm}
+                  \putdepartment, \putliu \\ \vspace*{4mm}
+                  \textbf{\putauthor}       \\ \vspace*{4mm}
+                  \putregnumber
+                  \vspace*{100mm}\\
+                \flushleft
+                
+                Examensarbete:\hspace*{3pt}
+                \begin{minipage}[t]{70mm}
+% but you might want to change this 30
+                  \textbf{30 hp}
+                \end{minipage} \\ \vspace*{4mm}
+                
+                Level:\hspace*{3pt}
+                \begin{minipage}[t]{70mm}
+% and you might want to change this A 
+                  \textbf{A} 
+                \end{minipage} \\ \vspace*{4mm}
+                
+                Supervisor:\hspace*{3pt}
+                \begin{minipage}[t]{120mm}
+                  \textbf{\putsupervisor}, \\\putdepartment, \putliu
+                \end{minipage} \\ \vspace*{4mm}
+                
+                Examiner:\hspace*{3pt}
+                \begin{minipage}[t]{120mm}
+                  \textbf{\putexaminer}, \\\putdepartment, \putliu
+                \end{minipage} \\ \vspace*{4mm}
+                
+                Linköping:
+                \begin{minipage}[t]{70mm}
+                  \textbf{\putmydate}
+                \end{minipage} \\ \vspace*{4mm}
+              \end{minipage} \\ \hfill
+}
+
+% now the \maketitle command is changed and we use the new one
+\maketitle
+
+% I'm not sure this phantom is needed, but I leave to make sure
+% a phantom leaves empty space corresponding to the size of what is in it.
+\phantom{crap}
+\thispagestyle{empty}
+\pagestyle{empty}
+
+% theese are old stuff made by the old library page, not needed I guess
+%\setlength{\parindent}{0pt}
+%\setlength{\textwidth}{210mm}
+%\setlength{\textheight}{297mm}
+%\setlength{\topmargin}{-1.0in}
+%\setlength{\oddsidemargin}{-1.2in}
+\setlength{\unitlength}{1mm}
+%\begin{picture}(210,297)(40,-40)
+
+
+
+\setlength{\unitlength}{1pt}
+
+% now turn on fancy headers
+\pagestyle{fancy}
+
+% ..................chapter ...............................................
+\chapter*{Abstract\index{Abstract}}
+% your abstract
+\putabstract
+
+% enters keywords
+\begin{description}
+\item[Keywords:]{%
+\putkeywords
+}
+\item[URL for electronic version: ]{\hfill%\quad\\%
+%\phantom{\qquad} http://urn.kb.se/resolve?urn=urn:nbn:se:liu:diva-77777\\
+%where 77777 should be replacd by an appropriate number.
+\begin{center}
+http://urn.kb.se/resolve?urn=urn:nbn:se:liu:diva-77777
+\end{center}
+%where 77777 should be replaced by an appropriate number.
+}
+\end{description}
+
+
+% here or on the next page you put an abstract in swedish
+%\section*{Abstract in Swedish: Sammanfattning}
+%Det finns många typer av bioreaktorer som tillämpas\ldots
+
+\chapter*{Acknowledgements\index{Acknowledgements}}
+
+I would like to thank my supervisor, I would like to thank my
+supervisor, I would like to thank my supervisor, I would like to thank my supervisor\ldots
+
+I also have to thank, I would like to thank my supervisor, I would
+like to thank my supervisor, I would like to thank my supervisor, I
+would like to thank my supervisor\ldots
+
+My opponent NN also deserves my thanks, I would like to thank my
+supervisor, I would like to thank my supervisor, I would like to thank my supervisor\ldots
+
+
+
+% optional I guess
+\chapter*{Nomenclature\index{Nomenclature}}
+
+Most of the reoccurring abbreviations and symbols are described here.
+
+%----------------NEW_SECTION--------------------------------------------------
+
+\section*{Symbols\index{Symbols}}
+
+\begin{tabular}{ll}
+$Y_0$      & The amount of the variable $Y$ inserted into a system.\\
+$\hat Y$& The unit-dimension of the variable $Y$, for example $\hat t=1s$ .\\
+$\bar Y_i$ & A steady state (number $i$) value of Y.\\
+\phantom{a}& \phantom{b} \\
+$K_i$ & Constants used in kinetic expressions, for example $K_I$.\\
+\phantom{a}& \phantom{b} \\
+$\AAA$     & The system matrix. \\
+\end{tabular}
+
+\section*{Abbreviations\index{Abbreviations}}
+
+\begin{tabular}{ll}
+CPI      & Competitive Product Inhibition (or Inhibited)\index{CPI}\\
+CSI      & Competitive Substrate Inhibition (or Inhibited)\index{CSI}\\
+CSTR     & Continuous Stirred Tank (bio)Reactor\index{CSTR}\\
+MMI      & Michaelis-Menten Inhibition (or Inhibited)\index{MMI}
+\end{tabular}
+
+
+\tableofcontents 
+
+\mainmatter
+
+
+% ..................chapter ...............................................
+\chapter{Introduction}
+
+\iffalse
+
+% I wanted sans serif in the ingress of every chapter, some people say
+% this is possible with the command \ingress or something, I don't know...
+\textsf{%
+This text is written as a master of science final
+thesis\footnote{No it is not- it is a LaTeX-template for people
+  writing them.}
+at Linköpings universitet
+by Per Erik Strandberg
+% sometimes you need ~ to force space
+with \putsupervisor~as supervisor and \putexaminer~as examiner,
+with Emacs in \LaTeX{}
+in 2003/2004.}
+
+\textsf{%
+This first chapter will define what is a Continuous stirred tank bioreactor
+and a chemostat. We give some background and formulate some main
+questions we wish to answer, and describe what topics are covered.  
+}
+
+
+\section{Background} 
+
+Modeling of biological growth in reactors\ldots
+by dynamical systems started in the 1950's,
+when Monod, and Novick and Szilard developed the concept of
+\emph{Continuous Stirred Tank (bio)Reactors}(CSTRs\index{CSTR}) that
+differed from traditional batchreactors.
+
+% this is one example of how to make a picture
+\begin{figure}[h]
+\begin{center}
+\begin{tabular}{|p{75mm}|}
+\hline \\
+\begin{picture}(130,090)
+\put(080,020){\line(1,0){050}}
+\put(080,020){\line(0,1){030}}
+\put(130,020){\line(0,1){030}}
+\multiput(080,045)(002,000){25}{\line(1,0){001}}
+\put(090,085){\vector(0,-1){35}}
+\put(123,025){\vector(1,0){25}}
+\put(082,025){$X$, $S$, $\mu$}
+\put(140,012){$F$, $X$, $S$}
+\put(092,065){$S_0$, $F$}
+\end{picture}\\
+\hline
+\end{tabular}
+\end{center}
+\caption{The ideal CSTR: the chemostat\ldots}
+\end{figure}
+
+A chemostat is typically made of a reactor\ldots 
+
+\section{Another section}
+
+This report provides a summary of already
+existing knowledge of bioreactors and a detailed analysis\ldots
+
+
+\section{Topics covered}
+There are five chapters (and this introduction)
+and two appendixes. Main topics dealt with are: 
+
+% this is my favourite command: description...
+\begin{description} 
+\item[Chapter 2:]{We explain the chemostat equations with the standard
+    Michaelis-Menten kinetics by starting with two simple models of
+    biological growth. We also present some tools useful for studying
+    dynamical systems in two dimensions.}   
+\item[Appendix A:]{An appendix dealing with tools used to simplify the
+    analysis of linearized stability in steady states.}
+\end{description}
+
+
+\section{Background} 
+
+\section{Problem description}
+
+% -------------------------------------------------------------------------
+\fi
+% ----------------------------------From here ------------------------------
+
+
+\input{Chapters/Introduction}
+
+
+
+% ..................chapter ...............................................
+
+\chapter{The ideal CSTR: the chemostat\index{Chemostat}}
+
+\textsf{%
+In this chapter we study exponential growth, the logistic\ldots .}
+
+\section{Some simple models of biological growth}
+
+\subsection{Exponential growth\index{Exponential growth}}
+
+% the command mbox forces things to be placed together
+If \mbox{$\mu =$ constant $>0$,} we get $X(t)={X}_0
+{e}^{\mu t}$.
+
+\subsection{The logistic equation\index{Logistic equation}}
+
+Let us assume that $\frac{dX}{dt}=\mu \cdot X,$ with
+$\mu=\mu(S)=k\cdot S$ \ldots 
+
+% one way of displaying maths: 
+\begin{displaymath}
+\left\{ \begin{array}{ll}
+\frac{dX}{dt}=kSX                            & (a) \\
+\frac{dS}{dt}=- \alpha kSX \rule{0pt}{3ex}   & (b) 
+\end{array}\right.
+\end{displaymath}
+
+% another way to display math with a number:
+\begin{equation} \label{logistic}
+\frac{dX}{dt}= r(1- \frac{X}{B})X  
+\end{equation}
+
+An explicit solution to (\ref{logistic}) is: 
+$X(t)=\frac{{X}_{0}B}{{X}_{0}+(B-{X}_{0}){e}^{-rt}},$ if $0<{X}_{0}<B$. 
+It can be found by separating variables in equation (\ref{logistic})
+
+
+\section{The chemostat\index{Chemostat|textbf}} 
+
+A chemostat is made of two main parts; a nutrient reservoir, and a
+growth-chamber, reactor, in which the bacteria reproduces. 
+
+% here is how to display text upright in formula \textrm{your text}
+\begin{equation} \label{chemo_basic}
+\left\{ \begin{array}{l}
+\frac{dX}{dt}= \mu(S)X \overbrace{-X\frac{F}{V}}^{\textrm{new}}  \\
+\frac{dS}{dt}=- \alpha \mu(S) X
+\underbrace{-S\frac{F}{V}+ {S}_{0}\frac{F}{V}}_{\textrm{new}} 
+\end{array}\right.
+\end{equation}
+
+% yet another way of displaying maths and a way of using a matrix
+\begin{displaymath}
+\mathbf{A} =
+\left( \begin{array}{cc}
+0 &  \sigma {\alpha}_{1}  \\
+ - \frac{1}{{\alpha}_{1}} & -\sigma - 1 \\
+\end{array}\right)
+\end{displaymath}
+
+% this subsubsection will not be numbered because we use the *
+\subsubsection*{The invariant line: conclusions}
+
+
+
+
+% the not so good structure of how a formula might look:
+\begin{displaymath}
+\mathbf{A}=
+\left( \begin{array}{cc}
+\ala \frac{S}{1+S} \frac{1}{(1+\frac{X}{\XC})^2} -1 
+& \ala \frac{1}{(1+S)^2} \frac{X}{1+\frac{X}{\XC}}   \\
+- \frac{S}{1+S} \frac{1}{(1+\frac{X}{\XC})^2} \phantom{+11} 
+& - \frac{1}{(1+S)^2} \frac{X}{1+\frac{X}{\XC}}-1  \rule{0pt}{3ex}   \\
+\end{array}\right).
+\end{displaymath}
+
+
+% a big, bad table
+\begin{tabular}{|c|c|c|} \hline %\hline
+%-------------------------------------------------------------------
+$\phantom{\Bigg(}$Model$\phantom{\Bigg(}$ & Monods Chemostat & CSI-CSTR \\ 
+\hline %\hline 
+%-------------------------------------------------------------------
+$\mu\phantom{\Bigg(}$
+& $\frac{ S} {1+S}$
+& $\frac{ S} {1+S+\frac{{S}^{2}}{\KI}}$ \\ %\hline
+%-------------------------------------------------------------------
+$\frac{dX}{dt} \phantom{\Bigg(}$ 
+& $\phantom{-}\ala\frac{ S}{1+S}X-X$        
+& $\phantom{-}\ala\frac{ S}{1+S+\frac{{S}^{2}}{\KI}}X-X $  \\
+$\frac{dS}{dt} \phantom{\Bigg)}$ 
+& $-\frac{S} {1+S}X-S+\alb $        
+& $-\frac{S} {1+S+\frac{{S}^{2}}{\KI}}X-S+\alb$        \\ %\hline
+%------------------------------------------------------------------
+XNC%
+& $S=\frac{1}{\ala - 1} \phantom{\Bigg(}$
+& $S=\frac{\KI(\ala-1)}{2}\pm\sqrt{{(\frac{\KI(\ala-1)}{2})}^{2}-\KI}$ \\
+SNC% 
+& $ X= \frac{ (\alb-S)(1+S) }  { S }$ 
+& $ X=
+\frac{({\alpha}_{2}-S)(1+S+\frac{{S}^{2}}{\KI})}{S}\phantom{\Bigg(} $\\ 
+%-------------------------------------------------------------------
+limit% 
+& $-$
+& $ K_I \rightarrow \infty\phantom{\Bigg(}$  \\ \hline 
+\end{tabular}
+
+
+% No matter how many empty lines you put here, it will be compact in
+% your outfile. Hint: solve with some kind of phantom or so.
+
+
+The other three models, the chemostat, the MMI-CSTR and the CPI-CSTR
+are quite similar in comparison to the CSI-CSTR. 
+
+% one way of using ``feel'' instead of "feel"
+Monods chemostat does not ``feel'' this inhibition and does not care\ldots 
+
+
+% this is a way of using the index subgroups
+% \section{Chemostats in series\index{Chemostat!In series} 
+
+
+% ..................chapter ...............................................
+
+% you really should have some kind of summary and conclusion
+% \chapter{Summary and conclusion}
+% In this report several mathematical models of bacteria population
+% growth in bioreactors were analyzed.
+
+
+% .................. bibliography...................................
+% the number 99 is some kind of maximum for LaTeX to know an upper limit
+% this is one of the ways of dealing with references, when you refer
+% to something here you will get: "...according to [1] we have..." or
+% "...another observation made by [3,6,60] suggests that..."
+%
+Here is an example of how to cite books in your bibliography. This
+text will be displayed at the end of chapter two. This is some kind of
+bibiography, according to \cite{beta}, we have\ldots And according to
+\cite{beta,Glad} we have something else.
+
+\begin{thebibliography}{99}
+
+\bibitem{beta} % this beta is what you 'call' when you refer to beta
+Lennart Råde, Bertil Westergren, 
+(2001), 
+\emph{Mathematics Handbook for Science and Engineering},
+Studentlitteratur, 
+Lund.
+
+\bibitem{Glad} % and glag is the handle of Glad.
+Torkel Glad, Lennart Ljung,
+(1989), 
+\emph{Reglerteknik grundläggande teori},
+Studentlitteratur, 
+Lund.
+
+\end{thebibliography}
+
+% .................. appendix ...................................
+
+\appendix
+
+\chapter{The Linearized stability\index{Stability}}
+
+\section{The Linearization\index{Linearization}}
+
+$F(x)$, a one-variable function of $x$ can be Taylor-expanded
+around a fix $X$. We get $F(X+x)=F(X) + F'(X) x + O({x}^{2})$.
+For small perturbations of $x$ around $X$ we get the linearization:
+$F(X+x) \approx F(X) + F'(X) x$, containing only the
+constant and the linear terms.
+
+For functions of two variables $F(X+x,S+s)$ and $G(X+x,S+s)$:
+\begin{displaymath} 
+\left\{ \begin{array}{l}
+F(X+x,S+s)= F(X,S) + {F}_{X}'(X,S)x + {F}_{S}'(X,S)s + O({(x+s)}^{2})\\
+G(X+x,S+s)= G(X,S) + {G}_{X}'(X,S)x + {G}_{S}'(X,S)s + O({(x+s)}^{2})
+\rule{0pt}{3ex} 
+\end{array}\right. 
+\end{displaymath}
+
+% I had some matlab code, insert it like this if you feel like it:
+% scriptsize lowers fontsize
+% verbatim forces LaTeX to write all symbols and in your way
+\begin{scriptsize}
+\begin{verbatim}
+function chemostat_inhibited(alpha1, alpha2, xp0, sp0, xc)
+%
+%chemostat_inhibited Displays a phaseportrait, nullclines 
+%   and an Euler-path of an inhibited Chemostat.
+%   chemostat_inhibited(alfa1, alfa2, np0, cp0, nc) will run if 
+%   alpha1 > 1/xc, thus there is a reproduction.
+%   alpha2 > 1/(xc*alpha1-1), thus there is sufficient stock-nutrition. 
+%   xp0 > 0 , you can not have a nonpositive population.
+%   sp0 > 0 , you can not have a nonpositive concentration.
+%   xc  > 0
+%
+%   The blue arrows represent the vectorfield.
+%   The black lines are two of the three nullclines.
+%   The black dotted line is the invariant line (no solution crosses it).
+%   The red line is an Eulerpath, starting in + and ending in *.
+%
+%   Try the following:
+%   chemostat_inhibited(5, 3, 0.2, 0.3, 6)
+%
+%   by Per Erik Strandberg, 2003-2004.
+%
+
+% Start-condition:
+%------------------
+if ((alpha1>1) & (alpha2>0) & (sp0>0) & (xp0>0) & xc>0),
+
+    if (alpha2<1/(alpha1-1)),
+        disp(' ')
+        disp (' (HINT: Only the trivial steady state, alpha2 is too small...)')
+    else 
+        disp(' ')
+        disp (' (HINT: Two steady states, alpha2 is quite large...)')
+    end
+        
+    
+% The illegal indata case:
+%---------------------------
+else
+    disp('   chemostat_inhibited.m by Per Erik Strandberg, 2003-2004.')
+    disp('   Did not Finish OK. (You used illegal indata.)')
+    disp(' ')
+    disp('   For syntax help type: help chemostat_inhibited .')    
+    disp(' ')
+end
+\end{verbatim}
+\end{scriptsize}
+
+
+
+% this is the copyright page, I did not touch it much.
+
+\cleardoublepage
+
+\thispagestyle{plain}
+
+\begin{picture}(20,20)(0,0)
+% \put(0,10){\includegraphics[width=3.5cm]{epresslogo}}
+\put(280,0){\includegraphics[width=2.5cm]{univlogo.eps}}
+\end{picture}
+ 
+\null
+\vspace{0cm} 
+
+Copyright
+\medskip
+
+The publishers will keep this document online on the Internet - or its possible replacement - for a period of 25 years from the date of publication barring exceptional circumstances.
+The online availability of the document implies a permanent permission for anyone to read, to download, to print out single copies for your own use and to use it unchanged for any non-commercial research and educational purpose. Subsequent transfers of copyright cannot revoke this permission. All other uses of the document are conditional on the consent of the copyright owner. The publisher has taken technical and administrative measures to assure authenticity, security and accessibility.
+According to intellectual property law the author has the right to be mentioned when his/her work is accessed as described above and to be protected against infringement.
+For additional information about the Linköping University Electronic Press and its procedures for publication and for assurance of document integrity, please refer to its WWW home page: http://www.ep.liu.se/
+\bigskip
+
+Upphovsr\"att
+\medskip
+
+Detta dokument hålls tillgängligt på Internet - eller dess framtida ersättare - under 25 år från publiceringsdatum under förutsättning att inga extraordi\-nära omständigheter uppstår.
+Tillgång till dokumentet innebär tillstånd för var och en att läsa, ladda ner, skriva ut enstaka kopior för enskilt bruk och att använda det oförändrat för ickekommersiell forskning och för undervisning. Överföring av upphovsrätten vid en senare tidpunkt kan inte upphäva detta tillstånd. All annan användning av dokumentet kräver upphovsmannens medgivande. För att garantera äktheten, säkerheten och tillgängligheten finns det lösningar av teknisk och administrativ art.
+Upphovsmannens ideella rätt innefattar rätt att bli nämnd som upphovsman i den omfattning som god sed kräver vid användning av dokumentet på ovan beskrivna sätt samt skydd mot att dokumentet ändras eller presenteras i sådan form eller i sådant sammanhang som är kränkande för upphovsmannens litterära eller konstnärliga anseende eller egenart.
+För ytterligare information om Linköping University Electronic Press se förlagets hemsida http://www.ep.liu.se/
+
+\medskip
+
+\copyright\phantom{.} \putshortdate, \putauthor
+
+
+
+
+%----------------END OF DOCUMENT----------------------------------------------
+%----------------END OF DOCUMENT----------------------------------------------
+
+\end{document}
+ 

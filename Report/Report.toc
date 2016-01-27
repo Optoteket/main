@@ -1,0 +1,11 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}Introduction}{1}
+\contentsline {section}{\numberline {1.1}Background}{1}
+\contentsline {section}{\numberline {1.2}Problem description}{1}
+\contentsline {chapter}{\numberline {2}The ideal CSTR: the chemostat}{3}
+\contentsline {section}{\numberline {2.1}Some simple models of biological growth}{3}
+\contentsline {subsection}{\numberline {2.1.1}Exponential growth}{3}
+\contentsline {subsection}{\numberline {2.1.2}The logistic equation}{3}
+\contentsline {section}{\numberline {2.2}The chemostat}{3}
+\contentsline {chapter}{\numberline {A}The Linearized stability}{7}
+\contentsline {section}{\numberline {A.1}The Linearization}{7}

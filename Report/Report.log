@@ -1,0 +1,312 @@
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  27 JAN 2016 13:01
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**Report.tex
+(./Report.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman-x-2009-06-19, ngerman-x-2009-06-19, afrikaans, ancientgreek, ibycus, arabi
+c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
+h, dutch, ukenglish, usenglishmax, esperanto, estonian, ethiopic, farsi, finnis
+h, french, galician, german, ngerman, swissgerman, monogreek, greek, hungarian,
+ icelandic, assamese, bengali, gujarati, hindi, kannada, malayalam, marathi, or
+iya, panjabi, tamil, telugu, indonesian, interlingua, irish, italian, kurmanji,
+ lao, latin, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk, pol
+ish, portuguese, romanian, russian, sanskrit, serbian, serbianc, slovak, sloven
+ian, spanish, swedish, turkish, turkmen, ukrainian, uppersorbian, welsh, loaded
+.
+(/sw/texlive/2011/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2007/10/19 v1.4h Standard LaTeX document class
+(/sw/texlive/2011/texmf-dist/tex/latex/base/bk10.clo
+File: bk10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/sw/texlive/2011/texmf-dist/tex/latex/base/latexsym.sty
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 47.
+)
+(/sw/texlive/2011/texmf-dist/tex/latex/eepic/eepic.sty
+Extension to Epic and LaTeX. Version 1.1e - Released Dec 21, 1999
+\@gphlinewidth=\count88
+\@eepictcnt=\count89
+\@tempdimc=\dimen103
+\maxovaldiam=\dimen104
+\@filltype=\box26
+) (/sw/texlive/2011/texmf-dist/tex/latex/base/makeidx.sty
+Package: makeidx 2000/03/29 v1.0m Standard LaTeX package
+)
+(/sw/texlive/2011/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/sw/texlive/2011/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/sw/texlive/2011/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/sw/texlive/2011/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/sw/texlive/2011/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: dvips.def on input line 91.
+
+(/sw/texlive/2011/texmf-dist/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+\Gin@req@height=\dimen105
+\Gin@req@width=\dimen106
+)
+(/sw/texlive/2011/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2008/03/30 v1.1d Input encoding file
+\inpenc@prehook=\toks15
+\inpenc@posthook=\toks16
+
+(/sw/texlive/2011/texmf-dist/tex/latex/base/latin1.def
+File: latin1.def 2008/03/30 v1.1d Input encoding file
+))
+(/sw/texlive/2011/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2008/07/06 v3.8l The Babel package
+
+(/sw/texlive/2011/texmf-dist/tex/generic/babel/english.ldf
+Language: english 2005/03/30 v3.3o English support from the babel system
+
+(/sw/texlive/2011/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2008/07/06 v3.8l Babel common definitions
+\babel@savecnt=\count90
+\U@D=\dimen107
+)
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
+))
+(/sw/texlive/2011/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2009/06/22 v3.00
+
+(/sw/texlive/2011/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
+\@emptytoks=\toks17
+\symAMSa=\mathgroup5
+\symAMSb=\mathgroup6
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
+))
+(/sw/texlive/2011/texmf-dist/tex/latex/fancybox/fancybox.sty
+Package: fancybox 2010/05/15 1.4
+
+Style option: `fancybox' v1.4 <2010/05/15> (tvz)
+\@fancybox=\box27
+\shadowsize=\dimen108
+\@Sbox=\box28
+\do@VerbBox=\toks18
+\the@fancyput=\toks19
+\this@fancyput=\toks20
+\EndVerbatimTokens=\toks21
+\Verbatim@Outfile=\write3
+\Verbatim@Infile=\read1
+) (/sw/texlive/2011/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+\fancy@headwidth=\skip43
+\f@ncyO@elh=\skip44
+\f@ncyO@erh=\skip45
+\f@ncyO@olh=\skip46
+\f@ncyO@orh=\skip47
+\f@ncyO@elf=\skip48
+\f@ncyO@erf=\skip49
+\f@ncyO@olf=\skip50
+\f@ncyO@orf=\skip51
+) (./Report.aux)
+\openout1 = `Report.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 252.
+LaTeX Font Info:    ... okay on input line 252.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 252.
+LaTeX Font Info:    ... okay on input line 252.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 252.
+LaTeX Font Info:    ... okay on input line 252.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 252.
+LaTeX Font Info:    ... okay on input line 252.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 252.
+LaTeX Font Info:    ... okay on input line 252.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 252.
+LaTeX Font Info:    ... okay on input line 252.
+
+(/sw/texlive/2011/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/04/22 v0.16 Utilities of pdfTeX for LuaTeX (HO)
+
+(/sw/texlive/2011/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
+)
+(/sw/texlive/2011/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/sw/texlive/2011/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
+)
+(/sw/texlive/2011/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/sw/texlive/2011/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/sw/texlive/2011/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Managing graphics extensions (HO)
+
+(/sw/texlive/2011/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Defining keys (HO)
+))
+(/sw/texlive/2011/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2010/12/23 v3.10 Keyval support for LaTeX options (HO)
+
+(/sw/texlive/2011/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2011/04/07 v1.13 Key value parser (HO)
+
+(/sw/texlive/2011/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Prefix for e-TeX command names (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+
+Package epstopdf Warning: Drivers other than `pdftex.def' are not supported.
+
+)
+LaTeX Font Info:    Try loading font information for U+lasy on input line 335.
+ (/sw/texlive/2011/texmf-dist/tex/latex/base/ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
+LaTeX Font Info:    Try loading font information for U+msa on input line 335.
+
+(/sw/texlive/2011/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 335.
+
+(/sw/texlive/2011/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+)
+Overfull \hbox (90.47774pt too wide) in paragraph at lines 335--335
+[] |  $[]$ 
+ []
+
+[1
+
+
+{/sw/texlive/2011/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (90.47774pt too wide) in paragraph at lines 335--336
+[] |  $[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 335--336
+
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [2
+
+
+]
+Overfull \vbox (39.71698pt too high) has occurred while \output is active []
+
+
+[3] [4] [5
+
+] [6
+
+] [7] [8
+
+] [9] [10
+
+] (./Report.toc)
+\tf@toc=\write4
+\openout4 = `Report.toc'.
+
+ [11] [12
+
+]
+Chapter 1.
+(./Chapters/Introduction.tex) [1
+
+] [2
+
+]
+Chapter 2.
+[3] [4] [5
+
+] [6
+
+]
+Appendix A.
+[7] [8]
+File: univlogo.eps Graphic file (type eps)
+ <univlogo.eps>
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 795.
+
+ (/sw/texlive/2011/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 795.
+
+[9
+
+
+Non-PDF special ignored!] (./Report.aux) ) 
+Here is how much of TeX's memory you used:
+ 2089 strings out of 493633
+ 27139 string characters out of 3146323
+ 86210 words of memory out of 3000000
+ 5339 multiletter control sequences out of 15000+200000
+ 10124 words of font info for 40 fonts, out of 3000000 for 9000
+ 831 hyphenation exceptions out of 8191
+ 38i,16n,43p,506b,472s stack positions out of 5000i,500n,10000p,200000b,50000s
+</sw/texlive/2011/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmbx10.pfb></sw/texlive/2011/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmbx12.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmex10.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmi10.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb
+></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></sw/tex
+live/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></sw/texlive/2011
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></sw/texlive/2011/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr5.pfb></sw/texlive/2011/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr7.pfb></sw/texlive/2011/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr9.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmss10.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></
+sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></sw/texliv
+e/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></sw/texlive/2011/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
+Output written on Report.pdf (21 pages, 213751 bytes).
+PDF statistics:
+ 140 PDF objects out of 1000 (max. 8388607)
+ 99 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+
