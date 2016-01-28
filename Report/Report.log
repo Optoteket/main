@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  27 JAN 2016 17:49
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  28 JAN 2016 16:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -614,25 +614,25 @@ Chapter 1.
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
 )
 (./Chapters/Introduction.tex
-Overfull \hbox (12.83403pt too wide) in paragraph at lines 8--9
+Overfull \hbox (15.8896pt too wide) in paragraph at lines 8--9
 \OT1/cmr/m/n/10 Examensarbetet g^^War ut p^^Wa att l^^?agga ett ar-betss-chema 
-f^^?or per-son-alen p^^Wa Norrk^^?opings
+f^^?or per-son-alen vid Norrk^^?opings
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 14--15
+Underfull \hbox (badness 10000) in paragraph at lines 12--13
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 51--52
+Underfull \hbox (badness 10000) in paragraph at lines 49--50
 
  []
 
 [1
 
 ]
-Overfull \hbox (76.18219pt too wide) in paragraph at lines 99--138
+Overfull \hbox (76.18219pt too wide) in paragraph at lines 97--136
 [][] 
  []
 
@@ -657,11 +657,11 @@ Non-PDF special ignored!] (./Report.aux) )
 Here is how much of TeX's memory you used:
  2746 strings out of 493633
  35549 string characters out of 3146323
- 91430 words of memory out of 3000000
+ 92430 words of memory out of 3000000
  5974 multiletter control sequences out of 15000+200000
  10459 words of font info for 41 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 38i,16n,43p,516b,472s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,16n,43p,695b,472s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/sw/texlive/2011/texmf-dist/fonts/en
 c/dvips/cm-super/cm-super-ts1.enc}</sw/texlive/2011/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmbx10.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfo
@@ -680,7 +680,7 @@ ve/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></sw/texlive/2011/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></sw/texlive/2011/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmtt8.pfb></sw/texlive/2011/texmf-dist/fonts/t
 ype1/public/cm-super/sfrm1000.pfb>
-Output written on Report.pdf (23 pages, 221400 bytes).
+Output written on Report.pdf (23 pages, 221798 bytes).
 PDF statistics:
  152 PDF objects out of 1000 (max. 8388607)
  107 compressed objects within 2 object streams
