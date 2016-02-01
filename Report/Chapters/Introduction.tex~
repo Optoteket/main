@@ -1,3 +1,181 @@
 % Introduction to Master Thesis
 
 
+%\section{Background} 
+%Schemaläggning av personal vid Norrköpings bibliotek.
+
+\section{Problembeskrivning}
+Examensarbetet går ut på att lägga ett arbetsschema för personalen vid Norrköpings bibliotek. Problemet går i grund och botten ut på att fylla alla uppgifter på de stationer som tillhör bibliotekets utåtriktade verksamhet (så kallade yttre tjänst) med personal av rätt kompetens samtidigt som peronalen får tid över till övriga uppgifter (så kallad inre tjänst). Schemat som tas fram ska även uppfylla de regelverk och önskemål som finns kring personalens individuella scheman, till exempel de arbetstider som ingår i de olika tjänsterna. Då det även ingår helgarbete i personalens arbetsuppgifter ska lediga dagar fördelas enligt arbetsmiljölagen gällande veckovilan.
+
+Utöver detta ska schemat även medföra en robusthet så att störningar i den yttre tjänsten, i form av att personal blir sjuk eller uppbokad annonstädes, ska gå att avhjälpa med en reservlista. Denna reservlista består av de bibliotekarier och assistenter som är tillgängliga under arbetsdagen. 
+
+Personalen på biblioteket är begränsad och utgör de resurser som finns att tillgå. Varje enskild personal har en uppsättning \textit{egenskaper} och \textit{kompetenser}. Kompetenser syftar på personalens förmåga att arbeta vid någon av de yttre stationerna; Expedition, Norpan, Informationsdisk, Bokbuss och Hageby samt några av de inre stationerna; inköp, katalogisering med mera. De egenskaper som identifierats hos en personal finns beskrivna i tabell \ref{int:1}. Totala arbetskraften består av 40 stycken arbetare på biblioteket.
+
+\begin{table}[h]
+\centering
+\caption{Personal}
+\label{int:1}
+\begin{tabular}{|l|l|}
+%-------------------------------------------------------------------
+\hline 
+\textbf{Egenskap} & \textbf{Beskrivning} \\ \hline
+%-------------------------------------------------------------------
+Arbetsomfattning & 0-100 \% 
+\\ \hline 
+%-------------------------------------------------------------------
+Anställlningsform & Bibliotikarie/Assistent
+\\ \hline 
+%-------------------------------------------------------------------
+Kompetens & Inre och yttre tjänster som personalen klarar av.  
+\\ \hline 
+%-------------------------------------------------------------------
+Specialkompetens & Vilken tjänst personalen är specialicerad på.
+\\ \hline 
+%-------------------------------------------------------------------
+Veckovila & Hur personalen tar ut sin veckovila efter helgarbete.
+\\ \hline 
+%-------------------------------------------------------------------
+Övriga önskemål & Jobbar ej kväll etc
+\\ \hline 
+%-------------------------------------------------------------------
+\end{tabular}
+\end{table}
+
+
+De yttre och inre uppgifterna kan ses som behov av personal som måste täckas av de den personal som finns att tillgå. De olika yttre uppgifterna som behöver utföras inkluderar arbete vid olika stationer vid olika tidpunket och datum. Uppgifterna återkommer inom ett 10-veckorsintervall vilket gör att de tillhör en viss tid under en viss dag en viss vecka. Dessutom så har varje uppgift en bestämd längd.   
+
+Varje sådan uppgift kan, liksom personalen, karatäriseras av vissa egenskaper som finns representerade i tabell \ref{int:2}. \\
+
+\begin{table}[!h]
+\caption{Yttre och inre uppgifter}
+\label{int:2}
+\begin{tabular}{|l|l|}
+%-------------------------------------------------------------------
+\hline
+\textbf{Yttre uppgift} & \textbf{Egenskap} \\ \hline
+%-------------------------------------------------------------------
+ & Starttid, sluttid, vecka och tidsåtgång \
+\\ \hline 
+%-------------------------------------------------------------------
+ & Station
+\\ \hline 
+%-------------------------------------------------------------------
+ & Krav på antal bibliotikarier av rätt kompetens.
+\\ \hline 
+%-------------------------------------------------------------------
+ & Krav på antal assistenter av rätt kompetens.
+\\ \hline 
+%-------------------------------------------------------------------
+ & Krav på totala antalet personal.
+\\ \hline 
+%-------------------------------------------------------------------
+
+\textbf{Inre uppgift} & \textbf{Egenskap} \\ \hline
+%-------------------------------------------------------------------
+ & Vecka, Tidsåtgång \
+\\ \hline 
+%-------------------------------------------------------------------
+ & Typ
+\\ \hline 
+%-------------------------------------------------------------------
+ & Krav på antal bibliotikarier av rätt kompetens.
+\\ \hline 
+%-------------------------------------------------------------------
+ & Krav på antal assistenter av rätt kompetens.
+\\ \hline 
+%-------------------------------------------------------------------
+\end{tabular}
+\end{table}
+
+Utöver de ovan nämnda resurserna och behoven, finns ett antal krav som ställs på hur schemat får utformas. Dessa kan delas upp i arbetsvillkor, robusthetskrav samt övriga krav och finns representerade i tabell \ref{int:3}.
+
+\begin{table}[H]
+\caption{Krav}
+\label{int:3}
+\begin{tabular}{|l|l|}
+%-------------------------------------------------------------------
+\hline
+\textbf{Arbetsmiljökrav} & \textbf{Beskrivning} \\ \hline
+%-------------------------------------------------------------------
+& En person ska arbeta med en yttre eller inre uppgift under sin arbetstid.
+\\ \hline 
+%-------------------------------------------------------------------
+ & Helgarbete ska fördelas rättvist mellan personalen. 
+\\ \hline 
+%-------------------------------------------------------------------
+ & Helgarbete innefattar arbete under lördag och påföljande söndag.
+\\ \hline 
+%-------------------------------------------------------------------
+ & Minst 36 timmar sammanhängande ledighet per 7 dagars arbete.
+\\ \hline 
+%-------------------------------------------------------------------
+ & Högst ett kvällspass per personal i veckan.
+\\ \hline 
+%-------------------------------------------------------------------
+ & Schemat ska upprepa sig var 10e vecka.
+\\ \hline 
+%-------------------------------------------------------------------
+ & Varje arbetsvecka ska ha liknande struktur i största möjliga mån..
+\\ \hline 
+%-------------------------------------------------------------------
+ & Schemat ska i möjligaste mån variera arbetsuppgifterna för personalen.
+\\ \hline 
+%-------------------------------------------------------------------
+
+\textbf{Robusthetskrav} & \textbf{Beskrivning} \\ \hline
+%-------------------------------------------------------------------
+ & För varje yttre uppgift ska det finnas minst en reserv.
+\\ \hline 
+%-------------------------------------------------------------------
+ & Reserverna ska vara av rätt kompetens för uppgiften de är reserver till.
+\\ \hline 
+%-------------------------------------------------------------------
+ & Reserverna ska vara lika fördelade över alla yttre uppgifter.
+\\ \hline 
+%-------------------------------------------------------------------
+
+\textbf{Övriga krav} & \textbf{Beskrivning} \\ \hline
+%-------------------------------------------------------------------
+ & Personalen ska ha en dag utan yttre uppgifter som tillägnas plocklistan.
+\\ \hline 
+%-------------------------------------------------------------------
+\end{tabular}
+\end{table}
+\medskip
+
+Den optimala schemat ska inte endast uppfylla kraven ovan, utan även 
+
+\textbf{Frågor:} 
+*(Går det att beskriva inre uppgifter som yttre uppgifter utan fixerad tid de måste utföras på? Eller måste de utföras inom ett visst tidsspan?) - Mallen
+
+Inre tjänst:
+Skriva upp inre uppgifter som: som sammansatt tidsåtgång eller specifik dag/tid de ska utföras på. Vi behöver veta vilka personer! Resterande blir "övrig inre tid".
+Kan vi lista inre uppgifter tillsammans?
+
+Reserver:
+Finns det inre tjänster som förhindrar personen att stå på reservlistan?
+Vilka är det som står som reserv på listan? Är det de som inte jobbar och som Kan jobba den dagen, eller de som har inre tjänst samma dag?
+
+Personliga scheman behövs. Hur bestäms kvällspass?
+
+Helg:
+* Är det ett krav att man har ett helgpass var 5e vecka? Två sammanhängade helgdagar? - Vi behöver ej ta hänsyn till detta.
+
+Veckovila: 
+Vilka alternativ har arbetarna för att ta ut sin veckovila? Är det ens alternativ eller valfritt? Kan vi få information om detta?
+Har ni/cheferna koll på vilka dagar varje arbetare vill ha ledigt?
+
+
+(Kan man identifiera vilka tider det är som är i extra behov av reserver?)
+
+Grundschemat Hageby:
+Varför är "me" röd när man tittar på Hageby? Är det ett rullande schema som ser till att alla ska vara i Hageby och jobba någon helg?
+
+Vad är extrakolumnen på helgen under vecka 9?
+
+* Är det specificerat hur många yttre tjänster varje person ska ha per vecka eller ska det bara vara jämn arbetsfördelning? - Högst ett pass om dagen.
+
+Plocklista:
+Plocklista under hela dagen eller gör man andra inre tjänster/är reserv under resten av dagen? Går man igenom hela listan i ett svep eller delar man upp dagen?
+
+
