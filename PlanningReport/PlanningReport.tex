@@ -27,7 +27,7 @@
 \usepackage{blindtext}
 \usepackage[utf8]{inputenc}
  
-\title{Scheduling of library staff with respect to demands and staff competence}
+\title{Scheduling of a Heterogeneous Library Staff Using Task Assignment}
 \author{Claes Arvidson, Emelie Karlsson}
 \date{\today}
 \begin{document}
@@ -35,8 +35,13 @@
 \maketitle
 \pagebreak
  
-\section*{Problem formulation\index{Problem formulation}}
-The problem at hand requires a solution to an integer linear tour scheduling problem with a heterogeneous work force. Papers like Loucks and Jacobs, 1991 focused on a similar problem with a slight difference; the demand for staff increased as the workload grew at different times of the day. Their approach was to, at a certain hour, assign the tasks one at the time to the workers based on their qualifications and availabilities. This, however, does not have to be considered in our case since we have more of a pure task assignment problem at hand. The reason for this is because our demand for staff each day is fix.  
+\section*{Problem formulation and approach\index{Problem formulation}}
+The problem at hand requires a solution to an integer linear tour scheduling problem with a heterogeneous work force. Papers like Loucks and Jacobs, 1991 focused on a similar problem with a slight difference; the demand for staff increased as the workload grew at different times of day. Their approach was to, at a certain hour, assign the tasks one at the time to the workers based on their qualifications and availabilities. This, however, does not have to be considered in our case since the demand of personnel is fixed for each day and hour.
+
+Our current thought process for the problem is to create a basic schedule in AMPL using only constraint programming. Further development would be to create a heuristic to solve the problem making it possible to remove the use of CPLEX. The reason for this is because it is undesirable for a library to purchase the software. The current option in mind is to use Microsoft Visual Basic.
+
+Based on inputs from the representative librarians a more robust schedule shall be produced.  
+
 
 
 Examensarbetet går ut på att lägga ett arbetsschema för personalen vid Norrköpings bibliotek. Problemet går i grund och botten ut på att fylla alla uppgifter på de stationer som tillhör bibliotekets utåtriktade verksamhet (så kallade yttre tjänst) med personal av rätt kompetens samtidigt som peronalen får tid över till övriga uppgifter (så kallad inre tjänst). Schemat som tas fram ska även uppfylla de regelverk och önskemål som finns kring personalens individuella scheman, till exempel de arbetstider som ingår i de olika tjänsterna. Då det även ingår helgarbete i personalens arbetsuppgifter ska lediga dagar fördelas enligt arbetsmiljölagen gällande veckovilan.
@@ -46,8 +51,11 @@ Utöver detta ska schemat även medföra en robusthet så att störningar i den 
 Personalen på biblioteket är begränsad och utgör de resurser som finns att tillgå. Varje enskild personal har en uppsättning \textit{egenskaper} och \textit{kompetenser}. Kompetenser syftar på personalens förmåga att arbeta vid någon av de yttre stationerna; Expedition, Norpan, Informationsdisk, Bokbuss och Hageby samt några av de inre stationerna; inköp, katalogisering med mera. De egenskaper som identifierats hos en personal finns beskrivna i tabell \ref{int:1}. Totala arbetskraften består av 40 stycken arbetare på biblioteket.
 
 \pagebreak
-\section*{Approach\index{Approach}}
-The plan for the project is to 
+\section*{References}
+Hojati and Patil, 2010; Roberts and Escudero, 1983a, 1983b; Loucks and Jacobs, 1991; 
+
+Roberts  and  Escudero,  1983a,
+1983b
 
 
 \end{document}
