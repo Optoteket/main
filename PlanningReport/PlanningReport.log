@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  2 FEB 2016 10:09
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  2 FEB 2016 11:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -511,24 +511,24 @@ Package: xspace 2006/05/08 v1.12 Space after command names (DPC,MH)
 ) (./PlanningReport.aux)
 \openout1 = `PlanningReport.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 33.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 34.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 34.
  (/sw/texlive/2011/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    ... okay on input line 34.
 
 (/sw/texlive/2011/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/04/22 v0.16 Utilities of pdfTeX for LuaTeX (HO)
@@ -578,48 +578,39 @@ Package etexcmds Info: Could not find \expanded.
 Package epstopdf Warning: Drivers other than `pdftex.def' are not supported.
 
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 35.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 36.
  (/sw/texlive/2011/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 35.
+LaTeX Font Info:    Try loading font information for U+msa on input line 36.
 
 (/sw/texlive/2011/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 35.
+LaTeX Font Info:    Try loading font information for U+msb on input line 36.
 
 (/sw/texlive/2011/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ) [1
 
-{/sw/texlive/2011/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-
-LaTeX Warning: Reference `int:1' on page 2 undefined on input line 48.
-
-[2] [3] (./PlanningReport.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+{/sw/texlive/2011/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] (./Plannin
+gReport.aux) ) 
 Here is how much of TeX's memory you used:
- 2877 strings out of 493633
- 37870 string characters out of 3146323
- 94623 words of memory out of 3000000
- 6105 multiletter control sequences out of 15000+200000
- 10514 words of font info for 41 fonts, out of 3000000 for 9000
+ 2871 strings out of 493633
+ 37813 string characters out of 3146323
+ 92707 words of memory out of 3000000
+ 6101 multiletter control sequences out of 15000+200000
+ 9860 words of font info for 39 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 38i,10n,43p,727b,217s stack positions out of 5000i,500n,10000p,200000b,50000s
-</sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></sw/t
-exlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></sw/texlive/2
-011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></sw/texlive/2011/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></sw/texlive/2011/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr17.pfb></sw/texlive/2011/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmti10.pfb>
-Output written on PlanningReport.pdf (3 pages, 78177 bytes).
+ 38i,10n,43p,718b,217s stack positions out of 5000i,500n,10000p,200000b,50000s
+</sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx1
+2.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></s
+w/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></sw/texlive
+/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
+Output written on PlanningReport.pdf (3 pages, 60135 bytes).
 PDF statistics:
- 38 PDF objects out of 1000 (max. 8388607)
- 26 compressed objects within 1 object stream
+ 30 PDF objects out of 1000 (max. 8388607)
+ 20 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
