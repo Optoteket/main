@@ -14,6 +14,16 @@
 \usepackage{fancybox} 
 \usepackage{textcomp}
 \usepackage{float}
+\usepackage{xcolor,colortbl}
+\usepackage{tabularx}
+
+\newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
+\definecolor{Gray}{gray}{0.85}
+\definecolor{Orange}{rgb}{1,0.88,0}
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+\newcolumntype{a}{>{\columncolor{Gray}}c}
+\newcolumntype{b}{>{\columncolor{white}}c}
+\newcolumntype{g}{>{\columncolor{Orange}}c}
 
 % the fancy header/footer
 % consult http://research.cmis.csiro.au/gjw/tex/docs/fancyhdr.pdf
@@ -28,7 +38,7 @@
 \usepackage[utf8]{inputenc}
  
 \title{Scheduling of a Heterogeneous Library Staff Using Task Assignment \\ OR \\
-Task Assignment for a Heterogeneous Library Staff using Optimization Methods}
+Work Distribution for a Heterogeneous Library Staff Using Optimization Methods}
 \author{Claes Arvidson, Emelie Karlsson}
 \date{\today}
 \begin{document}
@@ -57,6 +67,40 @@ Hojati and Patil, 2010; Roberts and Escudero, 1983a, 1983b; Loucks and Jacobs, 1
 
 \section*{Milestones}
 The master thesis is scheduled to continue until the end of the semester, 10/6. The oral presentation is currently set for week 23. Regarding the half-time check, our recommendation would be right after Easter, around week 14.
+
+\section*{Time plan}
+
+\begin{table}
+\centering
+\begin{tabularx}{\textwidth}{|g|X|X|X|X|}
+\hline
+\rowcolor{LightCyan}
+ Week & Study of \newline literature & Develop: Mathematical model & Develop: Heuristic & Write: Introduction \\
+\hline
+3 & \cellcolor{blue!25}a & b & c & d \\
+4 & a & b & c & d \\ 
+5 & a & b & c & d \\
+6 & a & b & c & d \\
+7 & a & b & c & d \\
+8 & a & b & c & d \\
+9 & a & b & c & d \\
+10 & a & b & c & d \\
+11 & a & b & c & d \\
+12 & a & b & c & d \\
+13 & a & b & c & d \\
+14 & a & b & c & d \\
+15 & a & b & c & d \\
+16 & a & b & c & d \\
+17 & a & b & c & d \\
+18 & a & b & c & d \\
+19 & a & b & c & d \\
+11 & a & b & c & d \\
+11 & a & b & c & d \\
+11 & a & b & c & d \\
+11 & a & b & c & d \\
+\hline
+\end{tabularx}
+\end{table}
 
 \end{document}
 
