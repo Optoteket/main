@@ -16,14 +16,24 @@
 \usepackage{float}
 \usepackage{xcolor,colortbl}
 \usepackage{tabularx}
+\usepackage{enumitem}
 
 \newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
 \definecolor{Gray}{gray}{0.85}
 \definecolor{Orange}{rgb}{1,0.88,0}
-\definecolor{LightCyan}{rgb}{0.88,1,1}
+\definecolor{LightCyan}{rgb}{0.7,0.9,0.9}
+\definecolor{bluegray}{rgb}{0.4, 0.6, 0.8}
+\definecolor{buff}{rgb}{0.94, 0.86, 0.51}
+\definecolor{corn}{rgb}{0.98, 0.93, 0.36}
+\definecolor{coralred}{rgb}{1.0, 0.25, 0.25}
+\definecolor{coral}{rgb}{1.0, 0.5, 0.31}
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
 \newcolumntype{a}{>{\columncolor{Gray}}c}
 \newcolumntype{b}{>{\columncolor{white}}c}
-\newcolumntype{g}{>{\columncolor{Orange}}c}
+\newcolumntype{g}{>{\columncolor{corn}}c}
+\newcommand{\colcell}{\cellcolor{bluegray}}
+\newcommand{\colcelltwo}{\cellcolor{coralred}}
+\newcommand{\colcellthree}{\cellcolor{applegreen}}
 
 % the fancy header/footer
 % consult http://research.cmis.csiro.au/gjw/tex/docs/fancyhdr.pdf
@@ -70,37 +80,78 @@ The master thesis is scheduled to continue until the end of the semester, 10/6. 
 
 \section*{Time plan}
 
-\begin{table}
+\begin{table}[H]
 \centering
-\begin{tabularx}{\textwidth}{|g|X|X|X|X|}
+\label{tab1}
+\caption{Time plan for activities. Half time evaluation and thesis presentation weeks in orange. Blue for work schedule, red for thesis schedule and green for presentation schedule.}
+\begin{tabularx}{\textwidth}{|g|X|X|X|X|X|X|X|X|X|X|X|X|}
 \hline
 \rowcolor{LightCyan}
- Week & Study of \newline literature & Develop: Mathematical model & Develop: Heuristic & Write: Introduction \\
+ Week/ \newline Activity &(A)&(B)&(C)&(D)&(E)&(F)&(G)&(H)&(I)&(J)&(K)&(L)\\
 \hline
-3 & \cellcolor{blue!25}a & b & c & d \\
-4 & a & b & c & d \\ 
-5 & a & b & c & d \\
-6 & a & b & c & d \\
-7 & a & b & c & d \\
-8 & a & b & c & d \\
-9 & a & b & c & d \\
-10 & a & b & c & d \\
-11 & a & b & c & d \\
-12 & a & b & c & d \\
-13 & a & b & c & d \\
-14 & a & b & c & d \\
-15 & a & b & c & d \\
-16 & a & b & c & d \\
-17 & a & b & c & d \\
-18 & a & b & c & d \\
-19 & a & b & c & d \\
-11 & a & b & c & d \\
-11 & a & b & c & d \\
-11 & a & b & c & d \\
-11 & a & b & c & d \\
+3 & \colcell & & & &  \colcelltwo & & & & & & & \\
+\hline
+4 & \colcell & & & & \colcelltwo & & & & & & & \\
+\hline
+5 & \colcell & & & & \colcelltwo & & & & & & & \\
+\hline
+6 & \colcell & \colcell & & & \colcelltwo & \colcelltwo & \colcelltwo & & & & & \\
+\hline
+7 & & \colcell & & & \colcelltwo & \colcelltwo & \colcelltwo & & & & & \\
+\hline
+8 & & \colcell & & & \colcelltwo & \colcelltwo & \colcelltwo & & & & & \\
+\hline
+9 & & \colcell & \colcell & & & \colcelltwo & \colcelltwo & \colcelltwo & & & & \\
+\hline
+10 & & \colcell & \colcell & & & & \colcelltwo & \colcelltwo & & & & \\
+\hline
+11 & & & \colcell & & & & \colcelltwo & \colcelltwo & & & & \\
+\hline
+12 & & & \colcell & & & & \colcelltwo & \colcelltwo & & & & \\
+\hline
+13 & & & \colcell & & & & & \colcelltwo & & & & \\
+\hline
+\rowcolor{coral}
+\cellcolor{corn}14 & & & & \colcell & & & & \colcelltwo & & & & \\
+\hline
+15 & & & & \colcell & & & & \colcelltwo & \colcelltwo & \colcelltwo & & \\
+\hline
+16 & & & & \colcell & & & & & \colcelltwo & \colcelltwo & & \\
+\hline
+17 & & & & \colcell & & & & & \colcelltwo & \colcelltwo & & \\
+\hline
+18 & & & & \colcell & & & & & \colcelltwo & \colcelltwo & & \\
+\hline
+19 & & & & & & & & & \colcelltwo & \colcelltwo & & \\
+\hline
+20 & & & & & & & & & & \colcelltwo & & \\
+\hline
+21 & & & & & & & & & & \colcelltwo & \colcelltwo & \\
+\hline
+22 & & & & & & & & & & & \colcelltwo & \colcellthree \\
+\hline
+\rowcolor{coral}
+\cellcolor{corn}23 & & & & & & & & & & & \colcelltwo & \colcellthree \\
 \hline
 \end{tabularx}
 \end{table}
+
+The letters represent the following activities:
+
+\begin{enumerate}[label=(\Alph*)]
+\item Study of Literature
+\item Develop: Mathematical model
+\item Develop: Heuristic
+\item Develop: Extended model
+\item Write Chapter 1: Introduction (background, method etc)
+\item Write Chapter 2: Related work
+\item Write Chapter 3: Mathematical model
+\item Write Chapter 4: Heuristic (Visual Basic)
+\item Write Chapter 5: Extended model
+\item Write Chapter 6: Computational results
+\item Write Chapter 7 and 8: Discussion/Summary and Conclusion
+\item Thesis Presentation and Preparation \\
+\end{enumerate}
 
 \end{document}
 
