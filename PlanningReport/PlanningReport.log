@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  4 FEB 2016 16:56
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  5 FEB 2016 13:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -668,67 +668,67 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ) [1
 
 {/sw/texlive/2011/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-Overfull \hbox (5.3417pt too wide) in paragraph at lines 136--136
+Overfull \hbox (5.3417pt too wide) in paragraph at lines 138--138
 []|\OT1/cmr/m/n/10 (A)| 
  []
 
 
-Overfull \hbox (4.92505pt too wide) in paragraph at lines 136--136
+Overfull \hbox (4.92505pt too wide) in paragraph at lines 138--138
 []|\OT1/cmr/m/n/10 (B)| 
  []
 
 
-Overfull \hbox (5.06392pt too wide) in paragraph at lines 136--136
+Overfull \hbox (5.06392pt too wide) in paragraph at lines 138--138
 []|\OT1/cmr/m/n/10 (C)| 
  []
 
 
-Overfull \hbox (5.48059pt too wide) in paragraph at lines 136--136
+Overfull \hbox (5.48059pt too wide) in paragraph at lines 138--138
 []|\OT1/cmr/m/n/10 (D)| 
  []
 
 
-Overfull \hbox (4.64726pt too wide) in paragraph at lines 136--136
+Overfull \hbox (4.64726pt too wide) in paragraph at lines 138--138
 []|\OT1/cmr/m/n/10 (E)| 
  []
 
 
-Overfull \hbox (4.36949pt too wide) in paragraph at lines 136--136
+Overfull \hbox (4.36949pt too wide) in paragraph at lines 138--138
 []|\OT1/cmr/m/n/10 (F)| 
  []
 
 
-Overfull \hbox (5.68892pt too wide) in paragraph at lines 136--136
+Overfull \hbox (5.68892pt too wide) in paragraph at lines 138--138
 []|\OT1/cmr/m/n/10 (G)| 
  []
 
 
-Overfull \hbox (5.3417pt too wide) in paragraph at lines 136--136
+Overfull \hbox (5.3417pt too wide) in paragraph at lines 138--138
 []|\OT1/cmr/m/n/10 (H)| 
  []
 
 
-Overfull \hbox (1.4528pt too wide) in paragraph at lines 136--136
+Overfull \hbox (1.4528pt too wide) in paragraph at lines 138--138
 []|\OT1/cmr/m/n/10 (I)| 
  []
 
 
-Overfull \hbox (2.98059pt too wide) in paragraph at lines 136--136
+Overfull \hbox (2.98059pt too wide) in paragraph at lines 138--138
 []|\OT1/cmr/m/n/10 (J)| 
  []
 
 
-Overfull \hbox (5.61949pt too wide) in paragraph at lines 136--136
+Overfull \hbox (5.61949pt too wide) in paragraph at lines 138--138
 []|\OT1/cmr/m/n/10 (K)| 
  []
 
 
-Overfull \hbox (4.0917pt too wide) in paragraph at lines 136--136
+Overfull \hbox (4.0917pt too wide) in paragraph at lines 138--138
 []|\OT1/cmr/m/n/10 (L)| 
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 153--154
+Underfull \hbox (badness 10000) in paragraph at lines 155--156
 
  []
 
@@ -745,7 +745,7 @@ Here is how much of TeX's memory you used:
 fonts/cm/cmbx12.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmr10.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pf
 b></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on PlanningReport.pdf (4 pages, 66035 bytes).
+Output written on PlanningReport.pdf (4 pages, 66929 bytes).
 PDF statistics:
  33 PDF objects out of 1000 (max. 8388607)
  22 compressed objects within 1 object stream

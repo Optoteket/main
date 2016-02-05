@@ -2,10 +2,13 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}
 \contentsline {section}{\numberline {1.1}Background}{1}
 \contentsline {section}{\numberline {1.2}Problem description}{1}
-\contentsline {chapter}{\numberline {2}The ideal CSTR: the chemostat}{5}
-\contentsline {section}{\numberline {2.1}Some simple models of biological growth}{5}
-\contentsline {subsection}{\numberline {2.1.1}Exponential growth}{5}
-\contentsline {subsection}{\numberline {2.1.2}The logistic equation}{5}
-\contentsline {section}{\numberline {2.2}The chemostat}{5}
-\contentsline {chapter}{\numberline {A}The Linearized stability}{9}
-\contentsline {section}{\numberline {A.1}The Linearization}{9}
+\contentsline {chapter}{\numberline {2}Literature review}{3}
+\contentsline {section}{\numberline {2.1}Tour scheduling}{3}
+\contentsline {chapter}{\numberline {3}Implementation insights}{5}
+\contentsline {chapter}{\numberline {4}The ideal CSTR: the chemostat}{7}
+\contentsline {section}{\numberline {4.1}Some simple models of biological growth}{7}
+\contentsline {subsection}{\numberline {4.1.1}Exponential growth}{7}
+\contentsline {subsection}{\numberline {4.1.2}The logistic equation}{7}
+\contentsline {section}{\numberline {4.2}The chemostat}{7}
+\contentsline {chapter}{\numberline {A}The Linearized stability}{11}
+\contentsline {section}{\numberline {A.1}The Linearization}{11}

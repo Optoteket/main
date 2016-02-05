@@ -59,9 +59,11 @@ Work Distribution for a Heterogeneous Library Staff Using Optimization Methods}
 \section*{Problem formulation and approach\index{Problem formulation}}
 The problem at hand requires a solution to an integer linear task assignment problem with a heterogeneous work force. Papers like Loucks and Jacobs, 1991 focused on a similar problem with a slight difference; the demand for staff increased as the workload grew at different times of day. Their approach was to, at a certain hour, assign the tasks one at the time to the workers based on their qualifications and availabilities. This, however, does not have to be considered in our case since the demand of personnel is fixed for each hour and day. Another difference is that their problem involved shift scheduling, while ours does not.
 
-Our current approach to solving the problem is to initially create a basic schedule in AMPL using only CPLEX and constraint programming. This basic schedule shall be feasible, so that all tasks have staff assigned to them, and robust, so that the assigned tasks are given as many stand-in staff as possible. After developing the mathematical model, a heuristic will be used to solve the problem again. This makes it possible to remove the use of CPLEX. The reason for this is because it is undesirable for a library to purchase the software. The current option under consideration is Microsoft Visual Basic, since the staff is already familiar with Microsoft Excel.
+Personnel task scheduling problem (PTSP) very similar to our problem and probably what it would be categorized as. Though, a difficulty is the lack of literature on the subject. However, a close relative to PTSP called Shift minimization personnel task scheduling problem (SMPTSP) is a more well-researched area which our model and information will be based on.
 
-The work flow will consist of us trying to develop a schedule, with the input of our contact persons at the library and then presenting the schedule for review. The review will then be used for developing a new schedule until the library staff is content. We might also develop a simple user interface. 
+Our current approach to solving the problem is to initially create a basic schedule in AMPL using only CPLEX and constraint programming. This basic schedule shall be feasible so that all tasks have staff assigned to them, as well as robust so that the assigned tasks are given as many stand-in staff as possible. After developing the mathematical model, a heuristic will be used to solve the problem again. This makes it possible to remove the use of CPLEX. The reason for this is because it is undesirable for a library to purchase such a software. The current option under consideration is Microsoft Visual Basic, since the staff is already familiar with Microsoft Excel.
+
+The work flow will consist of us trying to develop a schedule, with the input of our contact persons at the library and then presenting the schedule for review. The review will then be used for developing a new schedule until the library staff is content. We may also develop a simple user interface.
 
 
 \iffalse
@@ -73,7 +75,7 @@ Personalen på biblioteket är begränsad och utgör de resurser som finns att t
 \fi
 \pagebreak
 \section*{Planned references}
-Hojati and Patil, 2010; Roberts and Escudero, 1983a, 1983b; Loucks and Jacobs, 1991; Tsang and Voudouris, 1997; Duffuaa and Al-Sultan, 1999; Choi, Hwang and Park, 2009.
+Hojati and Patil, 2010; Roberts and Escudero, 1983a, 1983b; Loucks and Jacobs, 1991; Tsang and Voudouris, 1997; Duffuaa and Al-Sultan, 1999; Choi, Hwang and Park, 2009, Ernst et al., 2004,
 
 \section*{Milestones}
 The master thesis is scheduled to continue until the end of the semester, 10/6. The oral presentation is currently set for week 23. Regarding the half-time check, our recommendation would be right after Easter, around week 14.
