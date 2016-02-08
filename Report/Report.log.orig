@@ -1,4 +1,8 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  8 FEB 2016 09:48
+<<<<<<< HEAD
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  5 FEB 2016 09:45
+=======
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  5 FEB 2016 09:22
+>>>>>>> 01a1ae86471f44f18da5144521dc2e042b20f070
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -654,6 +658,7 @@ Overfull \hbox (79.29323pt too wide) in paragraph at lines 97--145
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
 ) [2]
 Chapter 2.
+<<<<<<< HEAD
 (/sw/texlive/2011/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
 )
@@ -661,16 +666,23 @@ File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
 (/sw/texlive/2011/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
 ) [3
+=======
+[3
+>>>>>>> 01a1ae86471f44f18da5144521dc2e042b20f070
 
 ] [4
 
 ]
 Chapter 3.
+<<<<<<< HEAD
 [5] [6
 
 ]
 Chapter 4.
 [7] [8] [9
+=======
+[5] [6] [7
+>>>>>>> 01a1ae86471f44f18da5144521dc2e042b20f070
 
 ] [10
 
@@ -683,9 +695,15 @@ File: univlogo.eps Graphic file (type eps)
 
 Non-PDF special ignored!] (./Report.aux) ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  2819 strings out of 493633
  36656 string characters out of 3146323
+ 91796 words of memory out of 3000000
+=======
+ 2812 strings out of 493633
+ 36376 string characters out of 3146323
  91788 words of memory out of 3000000
+>>>>>>> 01a1ae86471f44f18da5144521dc2e042b20f070
  6030 multiletter control sequences out of 15000+200000
  10459 words of font info for 41 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
@@ -708,7 +726,11 @@ ve/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></sw/texlive/2011/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></sw/texlive/2011/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmtt8.pfb></sw/texlive/2011/texmf-dist/fonts/t
 ype1/public/cm-super/sfrm1000.pfb>
-Output written on Report.pdf (27 pages, 223560 bytes).
+<<<<<<< HEAD
+Output written on Report.pdf (27 pages, 223582 bytes).
+=======
+Output written on Report.pdf (25 pages, 222268 bytes).
+>>>>>>> 01a1ae86471f44f18da5144521dc2e042b20f070
 PDF statistics:
  165 PDF objects out of 1000 (max. 8388607)
  116 compressed objects within 2 object streams

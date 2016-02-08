@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  5 FEB 2016 13:44
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  8 FEB 2016 09:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -745,7 +745,7 @@ Here is how much of TeX's memory you used:
 fonts/cm/cmbx12.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmr10.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pf
 b></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on PlanningReport.pdf (4 pages, 66929 bytes).
+Output written on PlanningReport.pdf (4 pages, 66913 bytes).
 PDF statistics:
  33 PDF objects out of 1000 (max. 8388607)
  22 compressed objects within 1 object stream

@@ -5,14 +5,12 @@ References:
 Maintenance (first article 1983):
 http://link.springer.com/article/10.1007/BF00934541
 
-Goal programming:
-Arthur and Ravindran(1981)
-
-CP - Constraint programming
+CP - Constraint programming:
 http://www.sciencedirect.com/science/article/pii/S0004370214000423
 
-A Triplet-Based Exact Method for the Shift Minimization	
+A Triplet-Based Exact Method for the Shift Minimization (2015):	
 http://download.springer.com/static/pdf/958/bok%253A978-3-662-48350-3.pdf?originUrl=http%3A%2F%2Flink.springer.com%2Fbook%2F10.1007%2F978-3-662-48350-3&token2=exp=1454599979~acl=%2Fstatic%2Fpdf%2F958%2Fbok%25253A978-3-662-48350-3.pdf%3ForiginUrl%3Dhttp%253A%252F%252Flink.springer.com%252Fbook%252F10.1007%252F978-3-662-48350-3*~hmac=0133853648b516cf9e2b40eb1c76e6127e21ab25352bc298cf738d1cd3ff0c1f
+- Solves shift minimization.
 
 A metaheuristic for the fixed job scheduling problem under spread time constraints (Greedy heuristic and grouping generic algorithm):
 http://www.sciencedirect.com/science/article/pii/S0305054809002251
