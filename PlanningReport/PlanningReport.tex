@@ -48,7 +48,7 @@
 \usepackage[utf8]{inputenc}
  
 \title{Scheduling of a Heterogeneous Library Staff Using Task Assignment \\ OR \\
-Work Distribution for a Heterogeneous Library Staff Using Optimization Methods}
+Work Distribution for a Heterogeneous Library Staff Using Optimization Methods \\ OR \\ Work Distribution of a Heterogeneous Library Staff - A Personnel Task Scheduling Problem}
 \author{Claes Arvidson, Emelie Karlsson}
 \date{\today}
 \begin{document}
@@ -57,34 +57,25 @@ Work Distribution for a Heterogeneous Library Staff Using Optimization Methods}
 \pagebreak
  
 \section*{Problem formulation and approach\index{Problem formulation}}
-The problem at hand requires a solution to an integer linear task assignment problem with a heterogeneous work force. Papers like Loucks and Jacobs, 1991 focused on a similar problem with a slight difference; the demand for staff increased as the workload grew at different times of day. Their approach was to, at a certain hour, assign the tasks one at the time to the workers based on their qualifications and availabilities. This, however, does not have to be considered in our case since the demand of personnel is fixed for each hour and day. Another difference is that their problem involved shift scheduling, while ours does not.
+The problem at hand requires a solution to an integer linear task assignment problem with a heterogeneous work force. Papers like Loucks and Jacobs, 1991 focused on a similar problem with a slight difference; the demand for staff increased as the workload grew at different times of day. Their approach was to, at a certain hour, assign tasks one at the time to workers based on their qualifications and availabilities. This, however, does not have to be considered in our case since the demand of personnel is fixed in time. Another difference is that their problem involved shift scheduling, while ours does not as they are already determined. The problem could therefore be classed as a task scheduling problem (TSP).
 
-Personnel task scheduling problem (PTSP) very similar to our problem and probably what it would be categorized as. Though, a difficulty is the lack of literature on the subject. However, a close relative to PTSP called Shift minimization personnel task scheduling problem (SMPTSP) is a more well-researched area which our model and information will be based on.
+Personnel task scheduling problem (PTSP) is very similar to our problem and probably what it would be categorized as. Though, a significant hindrance is the lack of literature on the subject. However, a close relative to PTSP called Shift minimization personnel task scheduling problem (SMPTSP) which is a more well-researched area. Our model and information will therefore be based on that specific problem.
 
-Our current approach to solving the problem is to initially create a basic schedule in AMPL using only CPLEX and constraint programming. This basic schedule shall be feasible so that all tasks have staff assigned to them, as well as robust so that the assigned tasks are given as many stand-in staff as possible. After developing the mathematical model, a heuristic will be used to solve the problem again. This makes it possible to remove the use of CPLEX. The reason for this is because it is undesirable for a library to purchase such a software. The current option under consideration is Microsoft Visual Basic, since the staff is already familiar with Microsoft Excel.
+To solve the problem, our current approach is to initially create a basic schedule in AMPL using only CPLEX and constraint programming. This basic schedule shall be feasible so that all tasks have staff assigned to them as well as robust so that there will be as many stand-in staff at each task as possible. Thereafter it will be reworked and re-optimized based on further information from the librarians. After developing the mathematical model, a heuristical method will be used to resolve the problem. This makes it possible to remove the use of CPLEX. The reason for this is because it is undesirable for a library to purchase such a software. The current option under consideration is Microsoft Visual Basic, since the staff is already familiar with Microsoft Excel.
 
-The work flow will consist of us trying to develop a schedule, with the input of our contact persons at the library and then presenting the schedule for review. The review will then be used for developing a new schedule until the library staff is content. We may also develop a simple user interface.
+The work flow will consist of us developing a schedule with the input of our contact persons at the library and then presenting the schedule for review. The review will then be used for developing a new schedule until the library staff is content. We may also develop a simple user interface depending on the time available.
 
-
-\iffalse
-Examensarbetet går ut på att lägga ett arbetsschema för personalen vid Norrköpings bibliotek. Problemet går i grund och botten ut på att fylla alla uppgifter på de stationer som tillhör bibliotekets utåtriktade verksamhet (så kallade yttre tjänst) med personal av rätt kompetens samtidigt som peronalen får tid över till övriga uppgifter (så kallad inre tjänst). Schemat som tas fram ska även uppfylla de regelverk och önskemål som finns kring personalens individuella scheman, till exempel de arbetstider som ingår i de olika tjänsterna. Då det även ingår helgarbete i personalens arbetsuppgifter ska lediga dagar fördelas enligt arbetsmiljölagen gällande veckovilan.
-
-Utöver detta ska schemat även medföra en robusthet så att störningar i den yttre tjänsten, i form av att personal blir sjuk eller uppbokad annonstädes, ska gå att avhjälpa med en reservlista. Denna reservlista består av de bibliotekarier och assistenter som är tillgängliga under arbetsdagen. 
-
-Personalen på biblioteket är begränsad och utgör de resurser som finns att tillgå. Varje enskild personal har en uppsättning \textit{egenskaper} och \textit{kompetenser}. Kompetenser syftar på personalens förmåga att arbeta vid någon av de yttre stationerna; Expedition, Norpan, Informationsdisk, Bokbuss och Hageby samt några av de inre stationerna; inköp, katalogisering med mera. De egenskaper som identifierats hos en personal finns beskrivna i tabell \ref{int:1}. Totala arbetskraften består av 40 stycken arbetare på biblioteket.
-\fi
 \pagebreak
 \section*{Planned references}
-Hojati and Patil, 2010; Roberts and Escudero, 1983a, 1983b; Loucks and Jacobs, 1991; Tsang and Voudouris, 1997; Duffuaa and Al-Sultan, 1999; Choi, Hwang and Park, 2009, Ernst et al., 2004,
+Roberts and Escudero, 1983a, 1983b; Loucks and Jacobs, 1991; Tsang and Voudouris, 1997; Duffuaa and Al-Sultan, 1999; Ernst et al., 2004; Eiselt and Marianov, 2006; Mohan, 2008; Choi, Hwang and Park, 2009; Hojati and Patil, 2010; Krishnamoorthy et al., 2011; Smet et al., 2014; Baatar et al., 2015;
 
 \section*{Milestones}
-The master thesis is scheduled to continue until the end of the semester, 10/6. The oral presentation is currently set for week 23. Regarding the half-time check, our recommendation would be right after Easter, around week 14.
+The master thesis is scheduled to continue until the end of the semester, 10/6. Completions of the report will be done during the summer and might continue into the autumn. The oral presentation is currently set for week 23. Regarding the half-time check, our recommendation would be right after Easter, around week 14.
 
 \section*{Time plan}
-
+In table \ref{tab:activites} below the planned workflow is presented with estimation of time duration for each activity. Observe that these are only preliminary and can come to vary a bit. 
 \begin{table}[H]
 \centering
-\label{tab1}
 \caption{Time plan for activities. Half time evaluation and thesis presentation weeks in orange. Blue for work schedule, red for thesis schedule and green for presentation schedule.}
 \begin{tabularx}{\textwidth}{|g|X|X|X|X|X|X|X|X|X|X|X|X|}
 \hline
@@ -136,8 +127,8 @@ The master thesis is scheduled to continue until the end of the semester, 10/6. 
 \cellcolor{corn}23 & & & & & & & & & & & \colcelltwo & \colcellthree \\
 \hline
 \end{tabularx}
+\label{tab:activites}
 \end{table}
-
 The letters represent the following activities:
 
 \begin{enumerate}[label=(\Alph*)]
