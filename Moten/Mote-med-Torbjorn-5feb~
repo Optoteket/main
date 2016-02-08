@@ -15,3 +15,8 @@ Man kan till exempel lägga in ett HÅRT krav (som ett bivillkor) att vi ska klara
 
 Vi borde titta på speciellt PTSP, men eftersom det är Väldigt begränsad litteratur är målet att i alla fall titta på SMPTSP istället. Det funkar bra i vårt syfte då det är nära relaterat.
 
+Angående modellen:
+Bra tankar för att modellera vissa delar. Kan vara så att vi behöver 5 index i alla fall, sen kan det varieras mellan 3-6 index. För att minska: Sätt ihop task, tid (och dag) till ett index, vilket ger en väldigt stor mängd. Pro: mindre index. Cons: Kan vara svårt att hålla reda på vilken tid ett element ämnar. Kan i det fallet behöva skapa submängder för att peka ut vilken tid det gäller osv. Verkar luta åt hållet att ändå ha 5 index där timmar h för tillfället är borttaget. Tanke: Kanske visar sig senare att vi behöver timmar ändå? Tror dock inte det.
+
+Angående mallarna: Pressa bibliotekarierna på information relaterat vad B/A innebär, inre tjänster samt de yttre/inre där det står min antal A och min antal B om det verkligen innebär att Bara A och B ska upptaga de posterna. Med största sannolikhet har de tolkat mallen fel. 
+

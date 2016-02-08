@@ -57,20 +57,20 @@ Work Distribution for a Heterogeneous Library Staff Using Optimization Methods \
 \pagebreak
  
 \section*{Problem formulation and approach\index{Problem formulation}}
-The problem at hand requires a solution to an integer linear task assignment problem with a heterogeneous work force. Papers like Loucks and Jacobs, 1991 focused on a similar problem with a slight difference; the demand for staff increased as the workload grew at different times of day. Their approach was to, at a certain hour, assign tasks one at the time to workers based on their qualifications and availabilities. This, however, does not have to be considered in our case since the demand of personnel is fixed in time. Another difference is that their problem involved shift scheduling, while ours does not as they are already determined. The problem could therefore be classed as a task scheduling problem (TSP).
+The problem we will be studying concerns assigning a set of tasks, occuring at fixed times throughout the work day, to a fixed work force of library staff. A feasible schedule would be a schedule where all tasks are fully staffed. The generated schedule should also be robust, so that there will be as many stand-in staff at each task as possible.
 
-Personnel task scheduling problem (PTSP) is very similar to our problem and probably what it would be categorized as. Though, a significant hindrance is the lack of literature on the subject. However, a close relative to PTSP called Shift minimization personnel task scheduling problem (SMPTSP) which is a more well-researched area. Our model and information will therefore be based on that specific problem.
+The Personnel Task Scheduling Problem (PTSP) has a definition very similar to our problem and probably what it would be categorized as. However, a significant hindrance is the lack of literature on the subject. A close relative to PTSP called Shift minimization personnel task scheduling problem (SMPTSP) is a more well-researched area. Our mathematical model and literature study will thus, to a large extent, focus on this problem.
 
-To solve the problem, our current approach is to initially create a basic schedule in AMPL using only CPLEX and constraint programming. This basic schedule shall be feasible so that all tasks have staff assigned to them as well as robust so that there will be as many stand-in staff at each task as possible. Thereafter it will be reworked and re-optimized based on further information from the librarians. After developing the mathematical model, a heuristical method will be used to resolve the problem. This makes it possible to remove the use of CPLEX. The reason for this is because it is undesirable for a library to purchase such a software. The current option under consideration is Microsoft Visual Basic, since the staff is already familiar with Microsoft Excel.
+The problem at hand requires a solution to an integer linear task assignment problem with a heterogeneous work force. Papers like Loucks and Jacobs, 1991 focused on a similar problem with a slight difference; in their problem the demand for staff increases as the workload grows at different times of the day. Their approach is to, at a certain hour, assign tasks one at the time to workers based on their qualifications and availability. This, however, does not have to be considered in our case since the demand of personnel is fixed in time. Another difference is that their problem involves shift scheduling, while ours does not as the shifts for the library staff are predetermined.
 
-The work flow will consist of us developing a schedule with the input of our contact persons at the library and then presenting the schedule for review. The review will then be used for developing a new schedule until the library staff is content. We may also develop a simple user interface depending on the time available.
+To solve the problem, our current approach is to initially create a basic schedule in AMPL using only CPLEX and constraint programming. Thereafter it will be reworked and re-optimized based on feedback from the library staff. The process will continue until a schedule which satisfies the demands of the staff is created. After generating schedules using the mathematical model, a heuristical method will be implemented and used to resolve the problem. This makes it possible to remove the use of CPLEX. The reason for this is because it is expensive for a library to purchase such a software. The current programming environment under consideration is Microsoft Visual Basic, since the staff is already familiar with Microsoft Excel. The heuristical approach will be chosen after consulting the existing literature. We may also develop a more complex model to solve the problem and a simple user interface depending on the time available.
 
 \pagebreak
 \section*{Planned references}
-Roberts and Escudero, 1983a, 1983b; Loucks and Jacobs, 1991; Tsang and Voudouris, 1997; Duffuaa and Al-Sultan, 1999; Ernst et al., 2004; Eiselt and Marianov, 2006; Mohan, 2008; Choi, Hwang and Park, 2009; Hojati and Patil, 2010; Krishnamoorthy et al., 2011; Smet et al., 2014; Baatar et al., 2015;
+Roberts and Escudero, 1983a, 1983b; Loucks and Jacobs, 1991; Tsang and Voudouris, 1997; Duffuaa and Al-Sultan, 1999; Ernst et al., 2004; Eiselt and Marianov, 2006; Mohan, 2008; Choi, Hwang and Park, 2009; Hojati and Patil, 2010; Krishnamoorthy et al., 2011; Akbari, Zandieh, Dorri, 2012; Smet et al., 2014; Baatar et al., 2015;
 
 \section*{Milestones}
-The master thesis is scheduled to continue until the end of the semester, 10/6. Completions of the report will be done during the summer and might continue into the autumn. The oral presentation is currently set for week 23. Regarding the half-time check, our recommendation would be right after Easter, around week 14.
+The master thesis is scheduled to continue until the end of the semester, whic occurs at June 6th. Completions of the report will be done during the summer and might continue into the autumn. The oral presentation is currently set for week 23. Regarding the half-time check, our recommendation would be right after Easter, around week 14.
 
 \section*{Time plan}
 In table \ref{tab:activites} below the planned workflow is presented with estimation of time duration for each activity. Observe that these are only preliminary and can come to vary a bit. 
@@ -135,12 +135,12 @@ The letters represent the following activities:
 \item Study of Literature
 \item Develop: Mathematical model
 \item Develop: Heuristic
-\item Develop: Extended model
+\item Develop: Another model/heuristic
 \item Write Chapter 1: Introduction (background, method etc)
 \item Write Chapter 2: Related work
 \item Write Chapter 3: Mathematical model
 \item Write Chapter 4: Heuristic (Visual Basic)
-\item Write Chapter 5: Extended model
+\item Write Chapter 5: Another model
 \item Write Chapter 6: Computational results
 \item Write Chapter 7 and 8: Discussion/Summary and Conclusion
 \item Thesis Presentation and Preparation \\
