@@ -1,0 +1,4 @@
+# Model file
+# Master Thesis: Work Distribution of a Heterogeneous Library Staff - A Personnel Task Scheduling Problem
+# Master Students: Claes Arvidson and Emelie Karlsson
+# First version: 2016-02-09
