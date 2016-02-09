@@ -47,8 +47,7 @@
 \usepackage{blindtext}
 \usepackage[utf8]{inputenc}
  
-\title{Scheduling of a Heterogeneous Library Staff Using Task Assignment \\ OR \\
-Work Distribution for a Heterogeneous Library Staff Using Optimization Methods \\ OR \\ Work Distribution of a Heterogeneous Library Staff - A Personnel Task Scheduling Problem}
+\title{Work Distribution of a Heterogeneous Library Staff - A Personnel Task Scheduling Problem}
 \author{Claes Arvidson, Emelie Karlsson}
 \date{\today}
 \begin{document}
@@ -57,13 +56,13 @@ Work Distribution for a Heterogeneous Library Staff Using Optimization Methods \
 \pagebreak
  
 \section*{Problem formulation and approach\index{Problem formulation}}
-The problem we will be studying concerns assigning a set of tasks, occuring at fixed times throughout the work day, to a fixed work force of library staff. A feasible schedule would be a schedule where all tasks are fully staffed. The generated schedule should also be robust, so that there will be as many stand-in staff at each task as possible.
+The problem we will be studying concerns assigning a set of tasks, occuring at fixed times throughout the work day, to a fixed work force of library staff. A feasible schedule would be a schedule where all tasks are fully staffed. The generated schedule should also be robust, so that the stand-in staff will be as evenly divided at each task as possible.
 
 The Personnel Task Scheduling Problem (PTSP) has a definition very similar to our problem and probably what it would be categorized as. However, a significant hindrance is the lack of literature on the subject. A close relative to PTSP called Shift minimization personnel task scheduling problem (SMPTSP) is a more well-researched area. Our mathematical model and literature study will thus, to a large extent, focus on this problem.
 
 The problem at hand requires a solution to an integer linear task assignment problem with a heterogeneous work force. Papers like Loucks and Jacobs, 1991 focused on a similar problem with a slight difference; in their problem the demand for staff increases as the workload grows at different times of the day. Their approach is to, at a certain hour, assign tasks one at the time to workers based on their qualifications and availability. This, however, does not have to be considered in our case since the demand of personnel is fixed in time. Another difference is that their problem involves shift scheduling, while ours does not as the shifts for the library staff are predetermined.
 
-To solve the problem, our current approach is to initially create a basic schedule in AMPL using only CPLEX and constraint programming. Thereafter it will be reworked and re-optimized based on feedback from the library staff. The process will continue until a schedule which satisfies the demands of the staff is created. After generating schedules using the mathematical model, a heuristical method will be implemented and used to resolve the problem. This makes it possible to remove the use of CPLEX. The reason for this is because it is expensive for a library to purchase such a software. The current programming environment under consideration is Microsoft Visual Basic, since the staff is already familiar with Microsoft Excel. The heuristical approach will be chosen after consulting the existing literature. We may also develop a more complex model to solve the problem and a simple user interface depending on the time available.
+Our approach for developing a model for the problem is to initially create a basic schedule in AMPL using CPLEX. Thereafter it will be iteratively improved based on feedback from the library staff. The process will continue until a schedule which satisfies the demands of the staff is created. After generating schedules using the mathematical model, a heuristic method will be implemented and used to solve the problem. This makes it possible to remove the use of CPLEX. The reason for this is because it is expensive for a library to purchase such a software. Also, it is likely that an implemented heuristic method can produce a solution of good enough quality. The current programming environment under consideration is Microsoft Visual Basic, since the staff is already familiar with Microsoft Excel. The heuristic approach will be chosen after consulting the existing literature. If it appears to be too simple to solve the mathematical problem and depending on the time available, we may complicate the problem by for example adding constraints or choose another objective function.
 
 \pagebreak
 \section*{Planned references}
