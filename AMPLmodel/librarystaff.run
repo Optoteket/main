@@ -33,5 +33,5 @@ solve;
 #Utskrift av villkor, tex slack
 #display villkorsnamn.slack;
 
-
-exit;
+### display the variables ###
+#display _varname, _var;
