@@ -2,3 +2,21 @@
 # Master Thesis: Work Distribution of a Heterogeneous Library Staff - A Personnel Task Scheduling Problem
 # Master Students: Claes Arvidson and Emelie Karlsson
 # First version: 2016-02-09
+
+set D; #Set of days in a week
+set W; #Set of weeks
+set I; #Set of staff
+set T; #Set of outer shifts in a day
+set J{T}; #Set of total outer tasks at a shift T
+set J; #Set of all outer tasks
+set V{I}; #Set of days worker i is available
+
+
+param  : 		P	:=
+	1		1	
+	2		0
+	3		1
+	4
+	5
+
+
