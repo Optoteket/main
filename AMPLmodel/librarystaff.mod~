@@ -26,8 +26,8 @@ var y{i in I, d in D, w in W} binary; #1 if worker i used day d in week w
 
 
 ### Objective function ###
-maximize stand_ins:
-	lowest_stand_in_amount;
+maximize stand_ins_and_competence:
+	A*lowest_stand_in_amount + B*sum;
 	
 
 ### Constraints ###
