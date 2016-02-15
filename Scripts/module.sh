@@ -3,7 +3,8 @@
 clear
 
 echo "Adding CPLEX module"
-echo
-module avail
+
+# Load module definitions
+. /sw/modules/init/bash.init
 module add cplex/12.5-fullampl
-echo
+echo "Module added"
