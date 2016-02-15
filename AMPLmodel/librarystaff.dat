@@ -7,17 +7,19 @@
 set D := 1 2 3 4 5 6 7; #Set of days in a week
 set W := 1 2 3 4 5; #Set of weeks
 set I := 1 2 3 4 5; #Set of staff
-set S := 1 2 3 4; #Set of outer shifts in a day
-set J{S} := 1 2 3; #Set of total outer tasks at a shift S, Exp, Info + plocklista
+set S[1] := 1 2 3 4;#Set of outer shifts in a weekday
+set S[2] := 1;#Set of outer shifts in a weekend day
+#set S2 := 1; #Set of out shifts in a weekend day
+set J{D} := Exp Info PL; #Set of total outer tasks at a shift S, Exp, Info + plocklista #ÄNDRA! per skift
 set J:= 1..420; #Set of all outer tasks 3 * 4 * 7 * 5
 
 ### Parameters ###
 #param skill{I} binary; #Staff skill competence for worker i, 0 if Assistant or 1 if Librarian
-#param avail{I,S,D,W} binary; #Worker i available for shift s day d week w
+#param avail{I,S{D},D,W} binary; #Worker i available for shift s day d week w
 #param inner{I,D,W} binary; #saying if worker i has inner service day d week w
-#param task_worker_demand{J,S,D}; #number of workers required for task type j shift s on day d
-#param qualavail{I,J,S,D,W} binary; #Worker i qualified and available for task type j shift s day d week w
-#param meeting{S,D,W} binary;
+#param task_worker_demand{J{D},S{D},D}; #number of workers required for task type j shift s on day d
+#param qualavail{I,J{D},S{D},D,W} binary; #Worker i qualified and available for task type j shift s day d week w
+#param meeting{S{D},D,W} binary;
 
 
 param	skill	:=
@@ -48,6 +50,6 @@ param avail	:=
 	
 
 param task_worker_demand	:=
-	worker shift day	worker shift day	worker shift day
-	worker shift day	worker shift day	worker shift day
-	worker shift day	worker shift day	worker shift day;
+	worker shift day demand		worker shift day demand		worker shift day demand
+	worker shift day demand		worker shift day demand		worker shift day demand
+	worker shift day demand		worker shift day demand		worker shift day demand;
