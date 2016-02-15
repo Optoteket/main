@@ -9,7 +9,7 @@ set W; #Set of weeks
 set I; #Set of staff
 set S{D}; #Set of outer shifts in a day, either weekday or weekend day
 #set S2; #Set of outer shifts in a weekend day
-set J{S}; #Set of total outer tasks at a shift S
+set J{D}; #Set of total outer tasks at a shift S
 #set J; #Set of all outer tasks types
 #set I_qualified{J}; #Set of qualified workers for task type J
 set I_weekend; #Set of workers available on week ends.

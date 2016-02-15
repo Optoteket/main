@@ -10,7 +10,7 @@ set I := 1 2 3 4 5; #Set of staff
 set S[1] := 1 2 3 4;#Set of outer shifts in a weekday
 set S[2] := 1;#Set of outer shifts in a weekend day
 #set S2 := 1; #Set of out shifts in a weekend day
-set J{S} := 1 2 3; #Set of total outer tasks at a shift S, Exp, Info + plocklista #ÄNDRA! per skift
+set J{D} := Exp Info PL; #Set of total outer tasks at a shift S, Exp, Info + plocklista #ÄNDRA! per skift
 set J:= 1..420; #Set of all outer tasks 3 * 4 * 7 * 5
 
 ### Parameters ###
