@@ -34,4 +34,4 @@ solve;
 #display villkorsnamn.slack;
 
 ### display the variables ###
-#display _varname, _var;
+display _varname, _var;
