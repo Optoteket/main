@@ -44,12 +44,34 @@ param avail	:=
 	1 1 1 3 1
 	1 1 1 4 0
 	1 1 2 1 1
-	1 1 2 2 1
+	1 1 2 2 1;
 
 
 	
 
 param task_worker_demand	:=
-	worker shift day demand		worker shift day demand		worker shift day demand
-	worker shift day demand		worker shift day demand		worker shift day demand
-	worker shift day demand		worker shift day demand		worker shift day demand;
+	day shift task demand
+	day shift task demand
+	day shift task demand;
+
+#ex task_worker_demand
+param task_worker_demand	:=
+	1 1 1 2
+	1 1 2 2
+	1 1 3 1
+	1 2 1 3
+	1 2 2 3;
+
+param qualavail		:=
+	worker week day shift task qualavail
+	worker week day shift task qualavail
+	worker week day shift task qualavail;
+
+#Example qualavail:
+param qualavail		:=
+	1 1 1 1 1 1
+	1 1 1 1 2 0
+	1 1 1 1 3 1
+	1 1 1 2 1 1;
+
+if worker I is found in sheet ass and task j = 1 or j = 2 then qualavail = 1 #as an example
