@@ -1,24 +1,22 @@
-# Data file
+﻿# Data file
+# Data file Created: 2/17/2016 1:00:57 AM
 # Master Thesis: Work Distribution of a Heterogeneous Library Staff - A Personnel Task Scheduling Problem
 # Master Students: Claes Arvidson and Emelie Karlsson
-# First version: 2016-02-09
+
 
 ### Sets ###
-set D := 1 2 3 4 5 6 7; #Set of days in a week
-set W := 1 2 3 4 5; #Set of weeks
-set I := 1 2 3 4 5; #Set of staff
-set S[1..5] := 1 2 3 4;#Set of outer shifts in a weekday
-set S[6..7] := 1;#Set of outer shifts in a weekend day
-#set S2 := 1; #Set of out shifts in a weekend day
-set J{D} := Exp Info PL; #Set of total outer tasks at a shift S, Exp, Info + plocklista #ÄNDRA! per skift
+set D := 1 2 3 4 5 ; #Set of days in a week
+set W := 1 2 3 4 ; #Set of weeks
+set I := 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 ; #Number of workers in total
+set S[1] := 1 2 3 4; #Set of out shifts in a day
+set S[2] := 1 2 3 4; #Set of out shifts in a day
+set S[3] := 1 2 3 4; #Set of out shifts in a day
+set S[4] := 1 2 3 4; #Set of out shifts in a day
+set S[5] := 1 2 3 4; #Set of out shifts in a day
+#set S[6] := 1; #Set of out shifts in a day
+#set S[7] := 1; #Set of out shifts in a day
+set J[D] := Exp Info PL; #Set of total outer tasks at a shift S, Exp, Info + plocklista
 
-### Parameters ###
-#param skill{I} binary; #Staff skill competence for worker i, 0 if Assistant or 1 if Librarian
-#param avail{I,S{D},D,W} binary; #Worker i available for shift s day d week w
-#param inner{I,D,W} binary; #saying if worker i has inner service day d week w
-#param task_worker_demand{J{D},S{D},D}; #number of workers required for task type j shift s on day d
-#param qualavail{I,J{D},S{D},D,W} binary; #Worker i qualified and available for task type j shift s day d week w
-#param meeting{S{D},D,W} binary;
 
 
 param	skill	:=
