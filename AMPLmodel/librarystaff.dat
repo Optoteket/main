@@ -1,4 +1,4 @@
-# Data file Created: 2/17/2016 10:51:09 AM
+# Data file Created: 2/17/2016 4:43:11 PM
 # Master Thesis: Work Distribution of a Heterogeneous Library Staff - A Personnel Task Scheduling Problem
 # Master Students: Claes Arvidson and Emelie Karlsson
 
@@ -12,11 +12,16 @@ set S[2] := 1 2 3 4; #Set of outer shift in day 2
 set S[3] := 1 2 3 4; #Set of outer shift in day 3
 set S[4] := 1 2 3 4; #Set of outer shift in day 4
 set S[5] := 1 2 3 4; #Set of outer shift in day 5
+#set S[6] := 1; #Set of outer shift in day 6
+#set S[7] := 1; #Set of outer shift in day 7
 set J[1] := Exp Info PL; #Set of total outer tasks at a day D, Exp, Info + plocklista
 set J[2] := Exp Info PL; #Set of total outer tasks at a day D, Exp, Info + plocklista
 set J[3] := Exp Info PL; #Set of total outer tasks at a day D, Exp, Info + plocklista
 set J[4] := Exp Info PL; #Set of total outer tasks at a day D, Exp, Info + plocklista
 set J[5] := Exp Info PL; #Set of total outer tasks at a day D, Exp, Info + plocklista
+set I_weekend_avail := 2 3 5 7 8 9 12 13 14 16 17 19 23 24 25 27 31 32 36 37 38 1 4 6 10 11 15 18 20 22 26 28 29 30 33 35 39 ;
+set I_lib := 2 3 5 7 8 9 12 13 14 16 17 19 21 23 24 25 27 31 32 36 37 38 ;
+set I_ass := 1 4 6 10 11 15 18 20 22 26 28 29 30 33 34 35 39 ;
 
 
 ### Parameters ###
@@ -121,6 +126,12 @@ param	task_worker_demand	:=
 	5 4 Exp 2
 	5 4 Info 2
 	5 4 PL 0
+	6 1 Exp 3
+	6 1 Info 3
+	6 1 HB 
+	7 1 Exp 0
+	7 1 Info 0
+	7 1 HB 0
 ;
 param	avail	:=
 	2 1 1 1 1
