@@ -14,6 +14,7 @@ set I_weekend_avail; #Set of workers available for weekend work. Subset of I
 #set I_weekend{W}; #Set of workers available on weekend w. Subset of I_weekend_avail
 set I_lib; #Set of librarians
 set I_ass; #Set of assistants
+set V; #Set of possible week rotations (shift the week by 1..5 steps)
 
 
 ### Parameters ###
@@ -29,10 +30,11 @@ var x{i in I, w in W, d in D, s in S[d], j in J[d]} binary; #1 if worker i is as
 var y{i in I, w in W, d in D} binary; #1 if worker i used day d in week w
 var lowest_stand_in_amount integer; # Lowest number of stand-in workers at any shift
 var h{i in I_weekend_avail, w in W} binary; #1 if worker i works weekend in week w
+var z{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]} binary; #1 if x = 1 and h = 1, 0 else
 
 
 ### Objective function ###
-maximize stand_ins_and_competence:
+maximize stand_ins_and_competence: #Add overstaffing as constraint?? or objective function
 	lowest_stand_in_amount;
 
 
@@ -58,13 +60,32 @@ subject to librarians_at_HB{i in I_ass, w in W, d in 6..7, s in S[d]}:
 
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
 subject to find_lowest_stand_in_amount_no_weekends{w in W, d in 1..5, s in 1..3, j in J[d]}: #RHS: number of qualified workers at work that is available (not assigned to any task). meeting = 1 if any of the divisions has a meeting.
-	lowest_stand_in_amount <= sum{i in I} qualavail[i,w,d,s,j]*(1-x[i,w,d,s,j]); 		#+ meeting[s,d,w]*M;
+	lowest_stand_in_amount <= sum{i in I} (sum {v in V} (h[i,v]*qualavail[i,(w-v mod 5)+1,d,s,j]) * (1-x[i,w,d,s,j]) ); 		#+ meeting[s,d,w]*M;
 
 #Allowing a worker to only work one weekend per five weeks
 subject to one_weekend_per_five_weeks{i in I_weekend_avail}:
 	sum{w in W} h[i,w] = 1;
 
-#subject to one_weekend_per_five_week{i in I_weekend_avail}:
-#	sum{w in W}(sum {d in 6}(sum {s in S[d]}(sum {j in J[d]} (x[i,w,d-1,4,j] + x[i,w,d,s,j] + x[i,w,d+1,s,j])*h[i,w] ))) = 3; #task type j can vary but not the week..? #problem that S[6] := 1 and not S[6] := 1 2 3 4? 
+### Assigning constraints... ###
+subject to z_constraint1{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
+	z[i,w,d,s,j] >= x[i,w,d,s,j] + h[i,w] - 1;
+
+subject to z_constraint2{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
+	z[i,w,d,s,j] <= x[i,w,d,s,j];
+
+subject to z_constraint3{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
+	z[i,w,d,s,j] <= h[i,w];
+#################################
+
+#Ensuring that if a worker i is working weekend w then they will work friday afternoon, saturday and sunday in week w
+#subject to three_days_weekends{i in I_weekend_avail}:
+#	sum{w in W}(sum {s in S[6]}(sum {j in J[6]} (z[i,w,6,s,j] + z[i,w,7,s,j] ))) = 2;
+#
+#task type j can vary but not the week..? #problem that S[6] := 1 and not S[6] := 1 2 3 4? ###j does not vary ###
+#Problem is therefore J[6] := Exp Info HB but J[5] := Exp Info PL
+
+#Ensuring the friday is consecutive to the weekend work
+#subject to friday_added_to_the_weekend{i in I_weekend_avail}:
+#	sum{w in W}(sum {s in S[5]}(sum {j in J[5]} z[i,w,5,4,j] )) = 1;
 
 
