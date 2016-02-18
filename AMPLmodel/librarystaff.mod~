@@ -10,7 +10,7 @@ set I; #Set of staff
 set S{D}; #Set of outer shifts in a day, either weekday or weekend day
 set J{D}; #Set of total outer task types at a day D
 #set I_qualified{J}; #Set of qualified workers for task type J
-#set I_weekend_avail; #Set of workers available for weekend work. Subset of I
+set I_weekend_avail; #Set of workers available for weekend work. Subset of I
 #set I_weekend{W}; #Set of workers available on weekend w. Subset of I_weekend_avail
 set I_lib; #Set of librarians
 set I_ass; #Set of assistants
@@ -41,7 +41,7 @@ maximize stand_ins_and_competence:
 subject to task_assign_amount{w in W, d in D, s in S[d], j in J[d]}:
 	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
 
-#Stating that a worker can only be assigned one (outer) task per day, weekends included
+#Stating that a worker can only be assigned one (outer) task per day (weekends included)
 subject to max_one_task_per_day{i in I, w in W, d in D}:
 	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;
 

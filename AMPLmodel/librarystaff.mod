@@ -10,7 +10,7 @@ set I; #Set of staff
 set S{D}; #Set of outer shifts in a day, either weekday or weekend day
 set J{D}; #Set of total outer task types at a day D
 #set I_qualified{J}; #Set of qualified workers for task type J
-#set I_weekend_avail; #Set of workers available for weekend work. Subset of I
+set I_weekend_avail; #Set of workers available for weekend work. Subset of I
 #set I_weekend{W}; #Set of workers available on weekend w. Subset of I_weekend_avail
 set I_lib; #Set of librarians
 set I_ass; #Set of assistants
@@ -53,7 +53,7 @@ subject to librarians_at_infodesks{i in I_ass, w in W, d in D, s in S[d]}:
 	x[i,w,d,s,'Info'] = 0;
 
 #Assigning that assistants can not be assigned to Hageby during weekends
-subject to librarians_at_infodesks{i in I_ass, w in W, d in 6..7, s in S[d]}:
+subject to librarians_at_HB{i in I_ass, w in W, d in 6..7, s in S[d]}:
 	x[i,w,d,s,'HB'] = 0;
 
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
