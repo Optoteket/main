@@ -58,9 +58,9 @@ subject to librarians_at_HB{i in I_ass, w in W, d in 6..7, s in S[d]}:
 
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
 subject to find_lowest_stand_in_amount_no_weekends{w in W, d in 1..5, s in 1..3, j in J[d]}: #RHS: number of qualified workers at work that is available (not assigned to any task). meeting = 1 if any of the divisions has a meeting.
-	lowest_stand_in_amount <= sum{i in I} (sum {v in V} (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) * (1-x[i,w,d,s,j]) ); 		#+ meeting[s,d,w]*M;
+	lowest_stand_in_amount <= sum{i in I} qualavail[i,w,d,s,j] * (1-x[i,w,d,s,j]); 		#+ meeting[s,d,w]*M; (sum {v in V} (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j])
 
-#Allowing a worker to only work one weekend per five weeks
+#Allowing a "weekend-worker" to only work one weekend per five weeks
 subject to one_weekend_per_five_weeks{i in I_weekend_avail}:
 	sum{w in W} h[i,w] = 1;
 
@@ -98,16 +98,14 @@ subject to z_constraint3{i in I_weekend_avail, w in W, d in D, s in S[d], j in J
 
 
 ### Assign only if qualified and available ###
-#subject to only_assigned_if_qualavail{i in I, w in W, d in D, s in S[d], j in J[d]}: #replaced by the three constraints below.
+
+#subject to librarians_only_assigned_if_qualavail{i in I_lib, w in W, d in D, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
 #	x[i,w,d,s,j] <= qualavail[i,w,d,s,j];
 
-subject to librarians_only_assigned_if_qualavail{i in I_lib, w in W, d in D, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
-	x[i,w,d,s,j] <= qualavail[i,w,d,s,j];
+#subject to assistants_only_assigned_if_qualavail_weekdays{i in I_ass, w in W, d in 1..5, s in S[d], j in J[d]}: #assistants not qualified for 'Info'
+#	x[i,w,d,s,j] <= qualavail[i,w,d,s,j];
 
-subject to assistants_only_assigned_if_qualavail_weekdays{i in I_ass, w in W, d in 1..5, s in S[d], j in J[d]}: #assistants not qualified for 'Info'
-	x[i,w,d,s,j] <= qualavail[i,w,d,s,j];
-
-subject to assistants_only_assigned_if_qualavail_weekends{i in I_ass, w in W, d in 6..7, s in S[d], j in J[d]}: #assistants not qualified for 'Info' or 'HB'
-	x[i,w,d,s,j] <= qualavail[i,w,d,s,j];
+#subject to assistants_only_assigned_if_qualavail_weekends{i in I_ass, w in W, d in 6..7, s in S[d], j in J[d]}: #assistants not qualified for 'Info' or 'HB'
+#	x[i,w,d,s,j] <= qualavail[i,w,d,s,j];
 ##############################################
 
