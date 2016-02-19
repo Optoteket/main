@@ -31,6 +31,7 @@ var y{i in I, w in W, d in D} binary; #1 if worker i used day d in week w
 var lowest_stand_in_amount integer; # Lowest number of stand-in workers at any shift
 var h{i in I, w in W} binary; #1 if worker i works weekend in week w
 var z{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]} binary; #1 if x = 1 and h = 1, 0 else
+var help{i in I, w in W, d in D, s in S[d], j in J[d]} binary; #1 if (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) = 1 and x[i,w,d,s,j] = 0. First term is if a worker is working a weekend
 
 
 ### Objective function ###
@@ -47,9 +48,6 @@ subject to task_assign_amount{w in W, d in D, s in S[d], j in J[d]}:
 subject to max_one_task_per_day{i in I, w in W, d in D}:
 	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;
 
-#subject to one_task_per_weekend{i in I, w in W, d in 6..7}:
-#	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;
-
 #Assigning that assistants can not be assigned to Info desks in any day
 subject to librarians_at_infodesks{i in I_ass, w in W, d in D, s in S[d]}:
 	x[i,w,d,s,'Info'] = 0;
@@ -65,6 +63,17 @@ subject to find_lowest_stand_in_amount_no_weekends{w in W, d in 1..5, s in 1..3,
 #Allowing a worker to only work one weekend per five weeks
 subject to one_weekend_per_five_weeks{i in I_weekend_avail}:
 	sum{w in W} h[i,w] = 1;
+
+### Help constraints... ###
+#subject to help_constraint1{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
+#	help[i,w,d,s,j] >= (sum {v in V} (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j])) + (1-x[i,w,d,s,j]) - 1;
+#
+#subject to help_constraint2{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
+#	help[i,w,d,s,j] <= (sum {v in V} (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
+#
+#subject to help_constraint3{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
+#	help[i,w,d,s,j] <= (1-x[i,w,d,s,j]);
+#################################
 
 ### Assigning constraints... ###
 subject to z_constraint1{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
