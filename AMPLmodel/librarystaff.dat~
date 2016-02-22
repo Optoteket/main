@@ -5,7 +5,7 @@
 
 ### Sets ###
 set D := 1 2 3 4 5 6 7 ; #Set of days in a week
-set W := 1 2 3 4 5; #Set of weeks
+set W := 1 2 3 4 ; #Set of weeks
 set I := 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 ; #Number of workers in total
 set S[1] := 1 2 3 4; #Set of outer shift in day 1
 set S[2] := 1 2 3 4; #Set of outer shift in day 2
@@ -24,7 +24,7 @@ set J[7] := Exp Info HB; #Set of total outer tasks at a day D, Exp, Info + Hageb
 set I_weekend_avail := 3 5 7 8 9 12 13 14 16 17 19 23 24 25 27 31 32 36 37 38 1 4 6 10 11 15 18 20 22 26 29 30 33 35 39 ;
 set I_lib := 2 3 5 7 8 9 12 13 14 16 17 19 21 23 24 25 27 31 32 36 37 38 ; # Set with all of the librarians
 set I_ass := 1 4 6 10 11 15 18 20 22 26 28 29 30 33 34 35 39 ; # Set with all of the assistants
-set V := 1 2 3 4 5; #Set with the number of weekphases possible |V| = |W|
+set V := 1 2 3 4; #Set with the number of weekphases possible |V| = |W|
 
 
 ### Parameters ###
