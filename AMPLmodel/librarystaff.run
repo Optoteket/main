@@ -12,19 +12,18 @@ option presolve 0;
 option omit_zero_cols 1;   # No zeros printed in columns
 option omit_zero_rows 1;   # No zeros printed in rows
 option display_1col 10000; # Only one column printed
-option cplex_options "timing 1 mipdisplay 2"; # Time measurement and printing
+option cplex_options "timing 1 mipdisplay 2 iisfind 1"; # Time measurement and printing
 
 model librarystaff.mod;   # Read model file 
 data librarystaff.dat;    # Read data file 
 
 #expand > librarystaff.res; # Writes all results to file
                    # Not necessary but good for debugging
-display skill;
 
 #display J;
 #exit;
 # Solve the problem
-solve;         
+solve;
 
 # Print in terminal of objective function value (inactive)
 #display cost;
@@ -38,3 +37,5 @@ solve;
 
 ### display the variables ###
 display _varname, _var > librarystaff.res;
+
+#display task_worker_demand;
