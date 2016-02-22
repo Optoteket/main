@@ -41,8 +41,8 @@ maximize stand_ins_and_competence: #Add overstaffing as constraint?? or objectiv
 
 ### Constraints ###
 #number of workers to be assigned to different task types at different shifts (shall work for all days 1..7)
-subject to task_assign_amount{w in W, d in D, s in S[d], j in J[d]}:
-	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
+#subject to task_assign_amount{w in W, d in D, s in S[d], j in J[d]}:
+#	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
 
 #Stating that a worker can only be assigned one (outer) task per day (weekends included) where they are available
 subject to max_one_task_per_day{i in I, w in W, d in D}:
@@ -99,8 +99,8 @@ subject to z_constraint3{i in I_weekend_avail, w in W, d in D, s in S[d], j in J
 
 ### Assign only if qualified and available ###
 
-#subject to librarians_only_assigned_if_qualavail{i in I_lib, w in W, d in D, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB' #MR PROBLEM RIGHT HERE
-#	x[i,w,d,s,j] <= qualavail[i,w,d,s,j];
+subject to librarians_only_assigned_if_qualavail{i in I_lib, w in W, d in 6..7, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB' #MR PROBLEM RIGHT HERE
+	x[i,w,d,s,j] <= qualavail[i,w,d,s,j];
 
 subject to assistants_only_assigned_if_qualavail_weekdays{i in I_ass, w in W, d in 1..5, s in S[d], j in J[d]}: #assistants not qualified for 'Info' on weekdays
 	x[i,w,d,s,j] <= qualavail[i,w,d,s,j];
