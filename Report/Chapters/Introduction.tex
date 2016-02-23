@@ -4,14 +4,24 @@
 %\section{Background} 
 %Schemaläggning av personal vid Norrköpings bibliotek.
 \section{Background}
+At a library absence can cause problems, since the qualifications required to perform tasks varies. If a worker were to be unavailable a day due to a meeting or simply being ill it would require for a stand-in to fill the vacancy. Therefore, it is of great interest to have a schedule with as many skilled stand-ins as possible to overcome such disturbances. 
 
 
 \section{Problem description}
-Examensarbetet går ut på att lägga ett arbetsschema för personalen vid Norrköpings bibliotek. Problemet går i grund och botten ut på att fylla alla uppgifter på de stationer som tillhör bibliotekets utåtriktade verksamhet (så kallade yttre tjänst) med personal av rätt kompetens samtidigt som peronalen får tid över till övriga uppgifter (så kallad inre tjänst). Schemat som tas fram ska även uppfylla de regelverk och önskemål som finns kring personalens individuella scheman, till exempel de arbetstider som ingår i de olika tjänsterna. Då det även ingår helgarbete i personalens arbetsuppgifter ska lediga dagar fördelas enligt arbetsmiljölagen gällande veckovilan.
+The goal of this thesis is to distribute given tasks to the heterogeneous workforce at the library of Norrköping. Each task is either classified as an outer or an inner task where an outer task is when a librarian needs to interact with visitors. Inner services can in some rare cases require a predetermined person to be assigned to a specified time or day.
 
-Utöver detta ska schemat även medföra en robusthet så att störningar i den yttre tjänsten, i form av att personal blir sjuk eller uppbokad annonstädes, ska gå att avhjälpa med en reservlista. Denna reservlista består av de bibliotekarier och assistenter som är tillgängliga under arbetsdagen. 
+Demands and requests are to be fulfilled to the furthest extent possible. Weekends are included in the scheduling problem, which adds more constraints regarding the number of contiguous working days. However, the librarians are permitted a few exceptions from these laws regarding days of rest.
 
-Personalen på biblioteket är begränsad och utgör de resurser som finns att tillgå. Varje enskild personal har en uppsättning \textit{egenskaper} och \textit{kompetenser}. Kompetenser syftar på personalens förmåga att arbeta vid någon av de yttre stationerna; Expedition, Norpan, Informationsdisk, Bokbuss och Hageby samt några av de inre stationerna; inköp, katalogisering med mera. De egenskaper som identifierats hos en personal finns beskrivna i tabell \ref{int:1}. Totala arbetskraften består av 40 stycken arbetare på biblioteket.
+The main purpose of the thesis is to create a schedule robust enough to withstand absence, such that outer services always are assigned to a qualified and available worker. This is visualized as having a list of available stand-ins for each shift. 
+
+There are a limited number of workers at the library and they make the resources that are to be distributed. Each individual has a set of \textit{egenskaper} and \textit{kompetenser}. Competences refer to the capability of being assigned the different outer tasks; Expedition, Norpan, Information desk, Bookbus and Hageby as well as different inner tasks. The set of skills an individual can possess are described in Table \ref{int:1}. In total there are 39 workers available. 
+
+
+%Examensarbetet går ut på att lägga ett arbetsschema för personalen vid Norrköpings bibliotek. Problemet går i grund och botten ut på att fylla alla uppgifter på de stationer som tillhör bibliotekets utåtriktade verksamhet (så kallade yttre tjänst)  med personal av rätt kompetens samt samtidigt som personalen får tid över till övriga uppgifter (så kallad inre tjänst). Schemat som tas fram ska även uppfylla de regelverk och önskemål som finns kring personalens individuella scheman, till exempel de arbetstider som ingår i de olika tjänsterna. Då det även ingår helgarbete i personalens arbetsuppgifter ska lediga dagar fördelas enligt arbetsmiljölagen och de undantag från dessa lagar gällande veckovilan.
+
+%Utöver detta ska schemat även medföra en robusthet så att störningar i den yttre tjänsten, i form av att personal blir sjuk eller uppbokad annonstädes, ska gå att avhjälpa med en reservlista. Denna reservlista består av de bibliotekarier och assistenter som inte har något pass tilldelat sig samt är tillgängliga under dagen. 
+
+%Personalen på biblioteket är begränsad och utgör de resurser som finns att tillgå. Varje enskild personal har en uppsättning \textit{egenskaper} och \textit{kompetenser}. Kompetenser syftar på personalens förmåga att arbeta vid någon av de yttre stationerna; Expedition, Norpan, Informationsdisk, Bokbuss och Hageby samt några av de inre stationerna; inköp, katalogisering med mera. De egenskaper som identifierats hos en personal finns beskrivna i tabell \ref{int:1}. Totala arbetskraften består av 39 stycken arbetare på biblioteket.
 
 \begin{table}[h]
 \centering
@@ -20,7 +30,7 @@ Personalen på biblioteket är begränsad och utgör de resurser som finns att t
 \begin{tabular}{|l|l|}
 %-------------------------------------------------------------------
 \hline 
-\textbf{Egenskap} & \textbf{Beskrivning} \\ \hline
+\textbf{skills} & \textbf{Beskrivning} \\ \hline
 %-------------------------------------------------------------------
 Arbetsomfattning & 0-100 \% 
 \\ \hline 
@@ -29,9 +39,6 @@ Anställlningsform & Bibliotikarie/Assistent
 \\ \hline 
 %-------------------------------------------------------------------
 Kompetens & Inre och yttre tjänster som personalen klarar av.  
-\\ \hline 
-%-------------------------------------------------------------------
-Specialkompetens & Vilken tjänst personalen är specialicerad på.
 \\ \hline 
 %-------------------------------------------------------------------
 Veckovila & Hur personalen tar ut sin veckovila efter helgarbete.
@@ -44,9 +51,9 @@ Veckovila & Hur personalen tar ut sin veckovila efter helgarbete.
 \end{table}
 
 
-De yttre och inre uppgifterna kan ses som behov av personal som måste täckas av de den personal som finns att tillgå. De olika yttre uppgifterna som behöver utföras inkluderar arbete vid olika stationer vid olika tidpunket och datum. Uppgifterna återkommer inom ett 10-veckorsintervall vilket gör att de tillhör en viss tid under en viss dag en viss vecka. Dessutom så har varje uppgift en bestämd längd.   
+De yttre och inre uppgifterna kan ses som behov av personal som måste täckas av den personal som finns att tillgå. De olika yttre uppgifterna som behöver utföras inkluderar arbete vid olika stationer vid olika tidpunker och datum. Varje uppgift har en bestämd längd och återkommer regelbundet inom ett 10-veckorsinterval, vilket gör att ett rullande schema kan skapas med perioden tio veckor.  
 
-Varje sådan uppgift kan, liksom personalen, karatäriseras av vissa egenskaper som finns representerade i tabell \ref{int:2}. \\
+Varje uppgift kan, liksom personalen, karatäriseras av vissa egenskaper som finns representerade i tabell \ref{int:2}. \\
 
 \begin{table}[!h]
 \caption{Yttre och inre uppgifter}
@@ -97,30 +104,27 @@ Utöver de ovan nämnda resurserna och behoven, finns ett antal krav som ställs
 \begin{tabular}{|l|l|}
 %-------------------------------------------------------------------
 \hline
-\textbf{Arbetsmiljökrav} & \textbf{Beskrivning} \\ \hline
+\textbf{Arbetskrav} & \textbf{Beskrivning} \\ \hline
 %-------------------------------------------------------------------
-& En person ska arbeta med en yttre eller inre uppgift under sin arbetstid.
+& En person ska bli tilldelad högst en yttre eller inre uppgift under sin arbetstid. 
 \\ \hline 
 %-------------------------------------------------------------------
- & Helgarbete ska fördelas rättvist mellan personalen. 
+& Övrig arbetstid distribueras självständig med uppgifter såsom exempelvis bokplock eller bokuppsättning.
+\\ \hline
+%-------------------------------------------------------------------
+ & Helgarbete ska fördelas rättvist mellan de i personalen som är tillgängliga för helgarbete. 
 \\ \hline 
 %-------------------------------------------------------------------
- & Helgarbete innefattar arbete under lördag och påföljande söndag.
+ & Helgarbete innefattar arbete under fredag kväll, påföljande lördag och söndag.
 \\ \hline 
 %-------------------------------------------------------------------
- & Minst 36 timmar sammanhängande ledighet per 7 dagars arbete.
-\\ \hline 
-%-------------------------------------------------------------------
- & Högst ett kvällspass per personal i veckan.
+ & Högst ett kvällspass per personal i veckan bortsett från den vecka helgarbete ska utföras.
 \\ \hline 
 %-------------------------------------------------------------------
  & Schemat ska upprepa sig var 10e vecka.
 \\ \hline 
 %-------------------------------------------------------------------
- & Varje arbetsvecka ska ha liknande struktur i största möjliga mån..
-\\ \hline 
-%-------------------------------------------------------------------
- & Schemat ska i möjligaste mån variera arbetsuppgifterna för personalen.
+ & Varje arbetsvecka ska ha liknande struktur i största möjliga mån.
 \\ \hline 
 %-------------------------------------------------------------------
 
@@ -132,19 +136,19 @@ Utöver de ovan nämnda resurserna och behoven, finns ett antal krav som ställs
  & Reserverna ska vara av rätt kompetens för uppgiften de är reserver till.
 \\ \hline 
 %-------------------------------------------------------------------
- & Reserverna ska vara lika fördelade över alla yttre uppgifter.
+ & Prioritet ligger i att det lägsta antalet reserver för en uppgift ska vara så hög som möjligt.
 \\ \hline 
 %-------------------------------------------------------------------
 
 \textbf{Övriga krav} & \textbf{Beskrivning} \\ \hline
 %-------------------------------------------------------------------
- & Personalen ska ha en dag utan yttre uppgifter som tillägnas plocklistan.
+ & Stormöte och avdelningsmöten ska vardera hållas en gång var femte vecka.
 \\ \hline 
 %-------------------------------------------------------------------
 \end{tabular}
 \end{table}
 \medskip
 
-Den optimala schemat ska inte endast uppfylla kraven ovan, utan även 
+%Den optimala schemat ska inte endast uppfylla kraven ovan, utan även 
 
 
