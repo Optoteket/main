@@ -32,7 +32,7 @@ var lowest_stand_in_amount integer; # Lowest number of stand-in workers at any s
 var h{i in I, w in W} binary; #1 if worker i works weekend in week w
 var z{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]} binary; #1 if x = 1 and h = 1, 0 else
 var stand_in{i in I, w in W, d in D, s in S[d], j in J[d]} binary; #1 if (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) = 1 and x[i,w,d,s,j] = 0. First term is if a worker is working a weekend
-var r{i in I, w in W} binary; #1 if it has been rotated w number of weeks
+var r{i in I} binary; #1 if person i has a weekend, 0 otherwise
 
 
 ### Objective function ###
@@ -50,8 +50,8 @@ subject to max_one_task_per_day{i in I, w in W, d in D}:
 	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;
 
 #Assigning that assistants can not be assigned to Info desks in any day
-subject to no_assistants_at_infodesks{i in I_ass, w in W, d in D, s in S[d]}:
-	x[i,w,d,s,'Info'] = 0;
+#subject to no_assistants_at_infodesks{i in I_ass, w in W, d in D, s in S[d]}:
+#	x[i,w,d,s,'Info'] = 0;
 
 #Assigning that assistants can not be assigned to Hageby during weekends
 subject to no_assistants_at_HB{i in I_ass, w in W, d in 6..7, s in S[d]}:
@@ -59,11 +59,11 @@ subject to no_assistants_at_HB{i in I_ass, w in W, d in 6..7, s in S[d]}:
 
 #Allowing a "weekend-worker" to only work one weekend per five weeks
 subject to one_weekend_per_five_weeks{i in I}:
-	sum{w in W} h[i,w] = 1;
+	sum{w in W} h[i,w] <= 1;
 
 #Allowing only one type of week rotation
-subject to one_week_rotation_available{i in I}:
-	sum{w in W} r[i,w] = 1;
+subject to work_in_weekend{i in I}:
+	r[i] = sum{w in W} h[i,w];
 
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
 subject to find_lowest_stand_in_amount_no_weekends_no_evenings{w in W, d in 1..5, s in 1..3, j in J[d]}: #RHS: number of qualified workers at work that is available & not assigned to any task.
@@ -84,16 +84,15 @@ subject to help_constraint3{i in I, w in W, d in D, s in S[d], j in J[d]}:
 
 #Ensuring that if a worker i is working weekend w then they will work friday afternoon, saturday and sunday in week w
 subject to three_days_weekends{i in I_weekend_avail}:
-	sum{w in W}(sum {s in S[6]}(sum {j in J[6]} (z[i,w,6,s,j])) + sum {s in S[7]}(sum {j in J[7]} (z[i,w,7,s,j]))) = 2;
+	sum{w in W}(sum {s in S[6]}(sum {j in J[6]} (z[i,w,6,s,j])) + sum {s in S[7]}(sum {j in J[7]} (z[i,w,7,s,j]))) = 2*r[i];
 
 #Ensuring the friday is consecutive to the weekend work
-subject to friday_added_to_the_weekend{i in I_weekend_avail}:
-	sum{w in W}(sum {j in J[5]} z[i,w,5,4,j]) = 1;
+#subject to friday_added_to_the_weekend{i in I_weekend_avail}:
+#	sum{w in W}(sum {j in J[5]} z[i,w,5,4,j]) = 1*r[i];
 
 ### Assigning constraints... ###
-# OLD
 subject to z_constraint1{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
-	z[i,w,d,s,j] >= x[i,w,d,s,j] + h[i,w] - 1;
+	z[i,w,d,s,j] - (1 - r[i]) >= x[i,w,d,s,j] + h[i,w] - 1;
 
 subject to z_constraint2{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
 	z[i,w,d,s,j] <= x[i,w,d,s,j];

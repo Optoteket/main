@@ -3,7 +3,11 @@
 \contentsline {section}{\numberline {1.1}Background}{1}
 \contentsline {section}{\numberline {1.2}Problem description}{1}
 \contentsline {chapter}{\numberline {2}Literature review}{3}
-\contentsline {section}{\numberline {2.1}Tour scheduling}{3}
+\contentsline {section}{\numberline {2.1}Tour scheduling problem (TSP)}{3}
+\contentsline {section}{\numberline {2.2}Personnel task scheduling problem (PTSP)}{3}
+\contentsline {section}{\numberline {2.3}Shift minimisation personnel task scheduling problem (SMPTSP)}{4}
+\contentsline {section}{\numberline {2.4}Fixed/flexible job scheduling problem (FJSP)}{4}
+\contentsline {section}{\numberline {2.5}Work load allocation and worker satisfaction}{4}
 \contentsline {chapter}{\numberline {3}Implementation insights}{5}
 \contentsline {chapter}{\numberline {4}The ideal CSTR: the chemostat}{7}
 \contentsline {section}{\numberline {4.1}Some simple models of biological growth}{7}
