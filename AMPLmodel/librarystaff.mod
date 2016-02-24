@@ -91,14 +91,17 @@ subject to three_days_weekends{i in I_weekend_avail}:
 #	sum{w in W}(sum {j in J[5]} z[i,w,5,4,j]) = 1*r[i];
 
 ### Assigning constraints... ###
-subject to z_constraint1{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
+subject to z_constraint1{i in I_weekend_avail, w in W, d in 1..5, s in S[d], j in J[d]}:
 	z[i,w,d,s,j] >= x[i,w,d,s,j] + h[i,w] - 1;
 
 subject to z_constraint2{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
 	z[i,w,d,s,j] <= x[i,w,d,s,j];
 
 subject to z_constraint3{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
-	z[i,w,d,s,j] <= h[i,w];
+	z[i,w,d,s,j] <= h[i,w]; # h[i,w] = 0 if r[i] = 0
+
+subject to z_constraint1a{i in I_weekend_avail, w in W, d in 6..7, s in S[d], j in J[d]}:
+	z[i,w,d,s,j] - (1 - r[i]) >= x[i,w,d,s,j] + h[i,w] - 1;
 
 ################################
 
