@@ -122,15 +122,15 @@ subject to three_days_weekends{i in I_weekend_avail, w in W}:
 ### Assign only if qualified and available ###
 
 subject to librarians_only_assigned_if_qualavail_weekdays{i in I_lib, w in W, d in 1..5, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
-	x[i,w,d,s,j] <= (sum {v in V} (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
+	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
 
 subject to librarians_only_assigned_if_qualavail_weekends{i in I_lib, w in W, d in 6..7, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
-	x[i,w,d,s,j] <= (sum {v in V} (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
+	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
 
 subject to assistants_only_assigned_if_qualavail_weekdays{i in I_ass, w in W, d in 1..5, s in S[d], j in J[d]}: #assistants not qualified for 'Info' on weekdays
-	x[i,w,d,s,j] <= (sum {v in V} (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
+	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
 
 subject to assistants_only_assigned_if_qualavail_weekends{i in I_ass, w in W, d in 6..7, s in S[d], j in J[d]}: #assistants not qualified for 'Info' or 'HB' on weekends
-	x[i,w,d,s,j] <= (sum {v in V} (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
+	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
 ##############################################
 
