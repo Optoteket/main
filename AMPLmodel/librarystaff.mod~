@@ -61,7 +61,7 @@ subject to no_assistants_at_HB{i in I_ass, w in W, d in 6..7, s in S[d]}:
 subject to one_weekend_per_five_weeks{i in I}:
 	sum{w in W} h[i,w] <= 1;
 
-#Allowing only one type of week rotation
+#Stating if worker i has a weekend or not
 subject to work_in_weekend{i in I}:
 	r[i] = sum{w in W} h[i,w];
 
@@ -82,33 +82,34 @@ subject to help_constraint3{i in I, w in W, d in D, s in S[d], j in J[d]}:
 #################################
 
 
-#Ensuring that if a worker i is working weekend w then they will work friday afternoon, saturday and sunday in week w
+#Ensuring that if a worker i is working weekend w then they will work saturday and sunday in week w
 subject to three_days_weekends{i in I_weekend_avail}:
 	sum{w in W}(sum {s in S[6]}(sum {j in J[6]} (z[i,w,6,s,j])) + sum {s in S[7]}(sum {j in J[7]} (z[i,w,7,s,j]))) = 2*r[i];
 
-#Ensuring the friday is consecutive to the weekend work
+#Ensuring the friday is consecutive to the weekend work in week w
 #subject to friday_added_to_the_weekend{i in I_weekend_avail}:
 #	sum{w in W}(sum {j in J[5]} z[i,w,5,4,j]) = 1*r[i];
 
 ### Assigning constraints... ###
 subject to z_constraint1{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
-	z[i,w,d,s,j] - (1 - r[i]) >= x[i,w,d,s,j] + h[i,w] - 1;
+	z[i,w,d,s,j] >= x[i,w,d,s,j] + h[i,w] - 1;
 
 subject to z_constraint2{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
 	z[i,w,d,s,j] <= x[i,w,d,s,j];
 
 subject to z_constraint3{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
 	z[i,w,d,s,j] <= h[i,w];
-#################################
+
+################################
 
 
 
 ### Assign only if qualified and available ###
 
-subject to librarians_only_assigned_if_qualavail_weekdays{i in I_lib, w in W, d in 1..5, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB' #MR PROBLEM RIGHT HERE
+subject to librarians_only_assigned_if_qualavail_weekdays{i in I_lib, w in W, d in 1..5, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
 	x[i,w,d,s,j] <= (sum {v in V} (h[i,v]*qualavail[i,(w-v+8) mod 5 +1,d,s,j]));
 
-subject to librarians_only_assigned_if_qualavail_weekends{i in I_lib, w in W, d in 6..7, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB' #MR PROBLEM RIGHT HERE
+subject to librarians_only_assigned_if_qualavail_weekends{i in I_lib, w in W, d in 6..7, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
 	x[i,w,d,s,j] <= (sum {v in V} (h[i,v]*qualavail[i,(w-v+8) mod 5 +1,d,s,j]));
 
 subject to assistants_only_assigned_if_qualavail_weekdays{i in I_ass, w in W, d in 1..5, s in S[d], j in J[d]}: #assistants not qualified for 'Info' on weekdays
