@@ -26,7 +26,7 @@ param qualavail{i in I,w in W, d in D, s in S[d], j in J[d]} binary; #Worker i q
 #param inner{I,D,W} binary; #saying if worker i has inner service day d week w
 
 ### Variables ###
-var r{i in I} binary; #1 if person i has a weekend, 0 otherwise
+var r{i in I, w in W} binary; #1 if person i has a rotation (phase shift) of w weeks, 0 otherwise
 var h{i in I, w in W} binary; #1 if worker i works weekend in week w
 var x{i in I, w in W, d in D, s in S[d], j in J[d]} binary; #1 if worker i is assigned task type j in shift s day d week w
 #var y{i in I, w in W, d in D} binary; #1 if worker i used day d in week w
@@ -58,13 +58,17 @@ subject to max_one_task_per_day{i in I, w in W, d in D}:
 subject to no_assistants_at_HB{i in I_ass, w in W, d in 6..7, s in S[d]}:
 	x[i,w,d,s,'HB'] = 0;
 
-#Allowing a "weekend-worker" to only work one weekend per five weeks
-subject to one_weekend_per_five_weeks{i in I}:
+#Stating number of weeks worker i:s schedule is phase shifted
+subject to week_at_weekend_w{i in I}:
+	sum{w in W} r[i,w] = 1;
+
+#Allowing a "weekend-worker" to work one weekend per five weeks at most
+subject to one_weekend_per_five_weeks{i in I_weekend_avail}:
 	sum{w in W} h[i,w] <= 1;
 
-#Stating if worker i has a weekend or not
-subject to work_in_weekend{i in I}:
-	r[i] = sum{w in W} h[i,w];
+#Rotate the schedule so weekend work is at week w. If worker i does not work weekend (h = 0) then the rotation is free.
+subject to rotation_demand{i in I, w in W}:
+	r[i,w] >= h[i,w];
 
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
 subject to find_lowest_stand_in_amount_no_weekends_no_evenings{w in W, d in 1..5, s in 1..3, j in J[d]}: #RHS: number of qualified workers at work that is available & not assigned to any task.
@@ -73,10 +77,10 @@ subject to find_lowest_stand_in_amount_no_weekends_no_evenings{w in W, d in 1..5
 ### Help constraints... ###
 #thought: help[i,w,d,s,j] shall be used in other constraints. Also: (1-x[i,w,d,s,j]) shall be (1-x[i,(w-v+5) mod 5 +1,d,s,j]) ???
 subject to help_constraint1{i in I, w in W, d in D, s in S[d], j in J[d]}:
-	stand_in[i,w,d,s,j] >= sum {v in V} (h[i,v]*qualavail[i,(w-v+8) mod 5 +1,d,s,j]) + (1-x[i,w,d,s,j]) - 1; #Qualified, available and not working a shift
+	stand_in[i,w,d,s,j] >= sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) + (1-x[i,w,d,s,j]) - 1; #Qualified, available and not working a shift
 
 subject to help_constraint2{i in I, w in W, d in D, s in S[d], j in J[d]}:
-	stand_in[i,w,d,s,j] <= sum {v in V} (h[i,v]*qualavail[i,(w-v+8) mod 5 +1,d,s,j]);
+	stand_in[i,w,d,s,j] <= sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]);
 
 subject to help_constraint3{i in I, w in W, d in D, s in S[d], j in J[d]}:
 	stand_in[i,w,d,s,j] <= (1-x[i,w,d,s,j]);
@@ -84,25 +88,32 @@ subject to help_constraint3{i in I, w in W, d in D, s in S[d], j in J[d]}:
 
 
 #Ensuring that if a worker i is working weekend w then they will work saturday and sunday in week w
-subject to three_days_weekends{i in I_weekend_avail}:
-	sum{w in W}(sum {s in S[6]}(sum {j in J[6]} (z[i,w,6,s,j])) + sum {s in S[7]}(sum {j in J[7]} (z[i,w,7,s,j]))) = 2*r[i];
+subject to three_days_weekends{i in I_weekend_avail, w in W}:
+	sum {s in S[6]}(sum {j in J[6]} (x[i,w,6,s,j])) + sum {s in S[7]}(sum {j in J[7]} (x[i,w,7,s,j])) = 2*h[i,w];
 
-#Ensuring the friday is consecutive to the weekend work in week w
+
+### OLD ###
+#Ensuring that if a worker i is working weekend w then they will work saturday and sunday in week w
+#subject to three_days_weekends{i in I_weekend_avail}:
+#	sum{w in W}(sum {s in S[6]}(sum {j in J[6]} (z[i,w,6,s,j])) + sum {s in S[7]}(sum {j in J[7]} (z[i,w,7,s,j]))) = 2*r[i];
+###########
+
+#Ensuring the friday is consecutive to the weekend work in week w. ADD To objective function?
 #subject to friday_added_to_the_weekend{i in I_weekend_avail}:
 #	sum{w in W}(sum {j in J[5]} z[i,w,5,4,j]) = 1*r[i];
 
 ### Assigning constraints... ###
-subject to z_constraint1{i in I_weekend_avail, w in W, d in 1..5, s in S[d], j in J[d]}:
-	z[i,w,d,s,j] >= x[i,w,d,s,j] + h[i,w] - 1;
+#subject to z_constraint1{i in I_weekend_avail, w in W, d in 1..5, s in S[d], j in J[d]}:
+#	z[i,w,d,s,j] >= x[i,w,d,s,j] + h[i,w] - 1;
 
-subject to z_constraint2{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
-	z[i,w,d,s,j] <= x[i,w,d,s,j];
+#subject to z_constraint2{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
+#	z[i,w,d,s,j] <= x[i,w,d,s,j];
 
-subject to z_constraint3{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
-	z[i,w,d,s,j] <= h[i,w]; # h[i,w] = 0 if r[i] = 0
+#subject to z_constraint3{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
+#	z[i,w,d,s,j] <= h[i,w]; # h[i,w] = 0 if r[i] = 0
 
-subject to z_constraint1a{i in I_weekend_avail, w in W, d in 6..7, s in S[d], j in J[d]}:
-	z[i,w,d,s,j] - (1 - r[i]) >= x[i,w,d,s,j] + h[i,w] - 1;
+#subject to z_constraint1a{i in I_weekend_avail, w in W, d in 6..7, s in S[d], j in J[d]}:
+#	z[i,w,d,s,j] - (1 - r[i]) >= x[i,w,d,s,j] + h[i,w] - 1;
 
 ################################
 
@@ -111,15 +122,15 @@ subject to z_constraint1a{i in I_weekend_avail, w in W, d in 6..7, s in S[d], j 
 ### Assign only if qualified and available ###
 
 subject to librarians_only_assigned_if_qualavail_weekdays{i in I_lib, w in W, d in 1..5, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
-	x[i,w,d,s,j] <= (sum {v in V} (h[i,v]*qualavail[i,(w-v+8) mod 5 +1,d,s,j]));
+	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
 
 subject to librarians_only_assigned_if_qualavail_weekends{i in I_lib, w in W, d in 6..7, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
-	x[i,w,d,s,j] <= (sum {v in V} (h[i,v]*qualavail[i,(w-v+8) mod 5 +1,d,s,j]));
+	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
 
 subject to assistants_only_assigned_if_qualavail_weekdays{i in I_ass, w in W, d in 1..5, s in S[d], j in J[d]}: #assistants not qualified for 'Info' on weekdays
-	x[i,w,d,s,j] <= (sum {v in V} (h[i,v]*qualavail[i,(w-v+8) mod 5 +1,d,s,j]));
+	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
 
 subject to assistants_only_assigned_if_qualavail_weekends{i in I_ass, w in W, d in 6..7, s in S[d], j in J[d]}: #assistants not qualified for 'Info' or 'HB' on weekends
-	x[i,w,d,s,j] <= (sum {v in V} (h[i,v]*qualavail[i,(w-v+8) mod 5 +1,d,s,j]));
+	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
 ##############################################
 
