@@ -26,10 +26,10 @@ param qualavail{i in I,w in W, d in D, s in S[d], j in J[d]} binary; #Worker i q
 #param inner{I,D,W} binary; #saying if worker i has inner service day d week w
 
 ### Variables ###
+var h{i in I, w in W} binary; #1 if worker i works weekend in week w
 var x{i in I, w in W, d in D, s in S[d], j in J[d]} binary; #1 if worker i is assigned task type j in shift s day d week w
 #var y{i in I, w in W, d in D} binary; #1 if worker i used day d in week w
 var lowest_stand_in_amount integer; # Lowest number of stand-in workers at any shift
-var h{i in I, w in W} binary; #1 if worker i works weekend in week w
 var z{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]} binary; #1 if x = 1 and h = 1, 0 else
 var stand_in{i in I, w in W, d in D, s in S[d], j in J[d]} binary; #1 if (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) = 1 and x[i,w,d,s,j] = 0. First term is if a worker is working a weekend
 var r{i in I} binary; #1 if person i has a weekend, 0 otherwise
