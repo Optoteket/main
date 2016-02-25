@@ -43,7 +43,7 @@ maximize stand_ins_and_competence: #Add overstaffing as constraint?? or objectiv
 
 ### Constraints ###
 #number of workers to be assigned to different task types at different shifts (shall work for all days 1..7)
-subject to task_assign_amount{w in W, d in D, s in S[d], j in J[d]}:
+subject to task_assign_amount{w in W, d in 6..7, s in S[d], j in J[d]}:
 	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
 
 #Stating that a worker can only be assigned one (outer) task per day (weekends included) where they are available
