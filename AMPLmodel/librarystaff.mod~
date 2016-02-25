@@ -43,16 +43,17 @@ maximize stand_ins_and_competence: #Add overstaffing as constraint?? or objectiv
 
 ### Constraints ###
 #number of workers to be assigned to different task types at different shifts (shall work for all days 1..7)
-subject to task_assign_amount{w in W, d in 6..7, s in S[d], j in J[d]}:
+subject to task_assign_amount{w in W, d in D,s in S[d], j in J[d]}:
 	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
 
 #Stating that a worker can only be assigned one (outer) task per day (weekends included) where they are available
 subject to max_one_task_per_day{i in I, w in W, d in D}:
 	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;
 
+###########qualavail för assistenter är 0 nu på info_desk => unnecessary constraint?
 #Assigning that assistants can not be assigned to Info desks in any day
-#subject to no_assistants_at_infodesks{i in I_ass, w in W, d in D, s in S[d]}:
-#	x[i,w,d,s,'Info'] = 0;
+subject to no_assistants_at_infodesks{i in I_ass, w in W, d in D, s in S[d]}:
+	x[i,w,d,s,'Info'] = 0;
 
 #Assigning that assistants can not be assigned to Hageby during weekends
 subject to no_assistants_at_HB{i in I_ass, w in W, d in 6..7, s in S[d]}:
@@ -69,6 +70,9 @@ subject to one_weekend_per_five_weeks{i in I_weekend_avail}:
 #Rotate the schedule so weekend work is at week w. If worker i does not work weekend (h = 0) then the rotation is free.
 subject to rotation_demand{i in I, w in W}:
 	r[i,w] >= h[i,w];
+
+#subject to maximum_one_stand_in_per_shift{i in I, w in W, d in D, s in S[d]}:
+#	sum{j in J[d]} stand_in[i,w,d,s,j] <= 1;
 
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
 subject to find_lowest_stand_in_amount_no_weekends_no_evenings{w in W, d in 1..5, s in 1..3, j in J[d]}: #RHS: number of qualified workers at work that is available & not assigned to any task.
