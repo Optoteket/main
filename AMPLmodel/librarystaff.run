@@ -25,6 +25,7 @@ data librarystaff.dat;    # Read data file
 #exit;
 # Solve the problem
 solve;
+display abs(lowest_stand_in_amount);
 
 # Print in terminal of objective function value (inactive)
 #display cost;
