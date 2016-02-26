@@ -3,7 +3,7 @@
 # Master Students: Claes Arvidson and Emelie Karlsson
 # First version: 2016-02-09
 
-### Sets ###
+#################################### Sets ########################################################################
 set D; #Set of days in a week
 set W; #Set of weeks
 set I; #Set of staff
@@ -17,10 +17,9 @@ set I_ass; #Set of assistants
 set V; #Set of possible week rotations (shift the week by 1..5 steps)
 
 set Shifts;
-param Shift_list{Shifts};
 
 
-### Parameters ###
+#################################### Parameters ########################################################################
 param skill{I} binary; #Staff skill competence for worker i, 0 if Assistant or 1 if Librarian
 param avail{i in I, w in W, d in D, s in S[d]} binary; #Worker i available for shift s day d week w
 param task_worker_demand{d in D, s in S[d], j in J[d]} integer; #number of workers required for task type j shift s on day d
@@ -28,9 +27,10 @@ param qualavail{i in I,w in W, d in D, s in S[d], j in J[d]} binary; #Worker i q
 #param meeting{S{D},D,W} binary;
 #param inner{I,D,W} binary; #saying if worker i has inner service day d week w
 
+param Shift_list{Shifts};
 param N := 1;
 
-### Variables ###
+#################################### Variables ########################################################################
 var r{i in I, w in W} binary; #1 if person i has a rotation (phase shift) of w weeks, 0 otherwise
 var h{i in I, w in W} binary; #1 if worker i works weekend in week w
 var x{i in I, w in W, d in D, s in S[d], j in J[d]} binary; #1 if worker i is assigned task type j in shift s day d week w
@@ -45,27 +45,30 @@ var shifts_that_differ_between_weeks{i in I, w in W, w_prime in W, d in 1..5, s 
 
 
 
-############### Objective function ######################################################################################
+################################## Objective function ###################################################################
 
-maximize objective: #Add overstaffing as constraint?? or objective function
+maximize objective: #Maximize stand-ins and create schedules with similar weeks for each worker
 	N*lowest_stand_in_amount - sum{i in I}(sum{w in 1..4}(sum{w_prime in (w+1)..5}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks[i,w,w_prime,d,s]))));
 
-#########################################################################################################################
 
+
+#################################### Constraints ########################################################################
 
 #subject to lowest_number:
 #	sum{i in I}(sum{w in 1..4}(sum{w_prime in (w+1)..5}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks[i,w,w_prime,d,s])))) >= 1800;
 
 
-### Constraints ###
+######################## Task demand for workers #####################################
 #number of workers to be assigned to different task types at different shifts (shall work for all days 1..7)
 subject to task_assign_amount{w in W, d in D,s in S[d], j in J[d]}:
 	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
 
+######################## Maximum one task per day #####################################
 #Stating that a worker can only be assigned one (outer) task per day (weekends included) where they are available
 subject to max_one_task_per_day{i in I, w in W, d in D}:
 	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;
 
+####################### Only librarians on Info and HB ################################
 ###########qualavail för assistenter är 0 nu på info_desk => unnecessary constraint?
 #Assigning that assistants can not be assigned to Info desks in any day
 subject to no_assistants_at_infodesks{i in I_ass, w in W, d in D, s in S[d]}:
@@ -75,8 +78,9 @@ subject to no_assistants_at_infodesks{i in I_ass, w in W, d in D, s in S[d]}:
 subject to no_assistants_at_HB{i in I_ass, w in W, d in 6..7, s in S[d]}:
 	x[i,w,d,s,'HB'] = 0;
 
+####################### Week rotation and weekend constraints #########################
 #Stating number of weeks worker i:s schedule is phase shifted
-subject to week_at_weekend_w{i in I}:
+subject to rotation_of_week{i in I}:
 	sum{w in W} r[i,w] = 1;
 
 #Allowing a "weekend-worker" to work one weekend per five weeks at most
@@ -87,31 +91,27 @@ subject to one_weekend_per_five_weeks{i in I_weekend_avail}:
 subject to rotation_demand{i in I, w in W}:
 	r[i,w] >= h[i,w];
 
-#subject to maximum_one_stand_in_per_shift{i in I, w in W, d in D, s in S[d]}:
-#	sum{j in J[d]} stand_in[i,w,d,s,j] <= 1;
+#Ensuring that if a worker i is working weekend w then they will work saturday and sunday in week w
+subject to three_days_weekends{i in I_weekend_avail, w in W}:
+	sum {s in S[6]}(sum {j in J[6]} (x[i,w,6,s,j])) + sum {s in S[7]}(sum {j in J[7]} (x[i,w,7,s,j])) = 2*h[i,w];
 
+######################### Stand-in constraints #################################
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
 subject to find_lowest_stand_in_amount_no_weekends_no_evenings{w in W, d in 1..5, s in 1..3, j in J[d]}: #RHS: number of qualified workers at work that is available & not assigned to any task.
 	lowest_stand_in_amount <= sum{i in I} stand_in[i,w,d,s,j]; 		#+ meeting[s,d,w]*M; 
 
-### Help constraints... ###
-#thought: help[i,w,d,s,j] shall be used in other constraints. Also: (1-x[i,w,d,s,j]) shall be (1-x[i,(w-v+5) mod 5 +1,d,s,j]) ???
-subject to help_constraint1{i in I, w in W, d in D, s in S[d], j in J[d]}:
+#A worker is a stand in if he/she is available, qualified and is not already scheduled. Takes schedule rotation into account
+subject to find_qualavail_not_working{i in I, w in W, d in D, s in S[d], j in J[d]}:
 	stand_in[i,w,d,s,j] >= sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) + (1-x[i,w,d,s,j]) - 1; #Qualified, available and not working a shift
 
+### Help constraints for qualavail and not scheduled ###
 subject to help_constraint2{i in I, w in W, d in D, s in S[d], j in J[d]}:
 	stand_in[i,w,d,s,j] <= sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]);
 
 subject to help_constraint3{i in I, w in W, d in D, s in S[d], j in J[d]}:
 	stand_in[i,w,d,s,j] <= (1-x[i,w,d,s,j]);
-#################################
 
-
-#Ensuring that if a worker i is working weekend w then they will work saturday and sunday in week w
-subject to three_days_weekends{i in I_weekend_avail, w in W}:
-	sum {s in S[6]}(sum {j in J[6]} (x[i,w,6,s,j])) + sum {s in S[7]}(sum {j in J[7]} (x[i,w,7,s,j])) = 2*h[i,w];
-
-### Assign only if qualified and available ###
+####################### Only assign if qualified and available ######################
 
 subject to librarians_only_assigned_if_qualavail_weekdays{i in I_lib, w in W, d in 1..5, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
 	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
@@ -124,9 +124,8 @@ subject to assistants_only_assigned_if_qualavail_weekdays{i in I_ass, w in W, d 
 
 subject to assistants_only_assigned_if_qualavail_weekends{i in I_ass, w in W, d in 6..7, s in S[d], j in J[d]}: #assistants not qualified for 'Info' or 'HB' on weekends
 	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
-##############################################
 
-### Second objective function constraints ###
+############### Second objective function constraints: similar weeks for workers #############
 #subject to positive_values_of_abs:
 #	shifts_that_differ_between_weeks >= sum{i in I}(sum{w in 1..4}(sum{w_prim in w+1..5}(sum{d in 1..5}(sum{s in 1..3} (y[i,w,d,s]-y[i,w_prim,d,s])))));
 
@@ -154,6 +153,8 @@ subject to assign_y{i in I, w in W, d in 1..5, s in 1..3}:
 
 
 ### OLD ###
+#subject to maximum_one_stand_in_per_shift{i in I, w in W, d in D, s in S[d]}:
+#	sum{j in J[d]} stand_in[i,w,d,s,j] <= 1;
 #Ensuring that if a worker i is working weekend w then they will work saturday and sunday in week w
 #subject to three_days_weekends{i in I_weekend_avail}:
 #	sum{w in W}(sum {s in S[6]}(sum {j in J[6]} (z[i,w,6,s,j])) + sum {s in S[7]}(sum {j in J[7]} (z[i,w,7,s,j]))) = 2*r[i];
