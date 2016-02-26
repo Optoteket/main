@@ -16,6 +16,9 @@ set I_lib; #Set of librarians
 set I_ass; #Set of assistants
 set V; #Set of possible week rotations (shift the week by 1..5 steps)
 
+set Shifts;
+param Shift_list;
+
 
 ### Parameters ###
 param skill{I} binary; #Staff skill competence for worker i, 0 if Assistant or 1 if Librarian
@@ -25,20 +28,33 @@ param qualavail{i in I,w in W, d in D, s in S[d], j in J[d]} binary; #Worker i q
 #param meeting{S{D},D,W} binary;
 #param inner{I,D,W} binary; #saying if worker i has inner service day d week w
 
+param N := 1;
+
 ### Variables ###
 var r{i in I, w in W} binary; #1 if person i has a rotation (phase shift) of w weeks, 0 otherwise
 var h{i in I, w in W} binary; #1 if worker i works weekend in week w
 var x{i in I, w in W, d in D, s in S[d], j in J[d]} binary; #1 if worker i is assigned task type j in shift s day d week w
-#var y{i in I, w in W, d in D} binary; #1 if worker i used day d in week w
-var lowest_stand_in_amount integer; # Lowest number of stand-in workers at any shift
 var z{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]} binary; #1 if x = 1 and h = 1, 0 else
 var stand_in{i in I, w in W, d in D, s in S[d], j in J[d]} binary; #1 if (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) = 1 and x[i,w,d,s,j] = 0. First term is if a worker is working a weekend
+var y{i in I, w in W, d in 1..5, s in 1..3} binary; #1 if worker i works week w, day d, shift s. No weekends and no evenings
+
+var lowest_stand_in_amount integer; # Lowest number of stand-in workers at any shift
+var shifts_that_differ_between_weeks{i in I, w in W, w_prime in W, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
 
 
 
-### Objective function ###
-maximize stand_ins_and_competence: #Add overstaffing as constraint?? or objective function
-	lowest_stand_in_amount;
+
+
+############### Objective function ######################################################################################
+
+maximize objective: #Add overstaffing as constraint?? or objective function
+	N*lowest_stand_in_amount - sum{i in I}(sum{w in 1..4}(sum{w_prime in (w+1)..5}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks[i,w,w_prime,d,s]))));
+
+#########################################################################################################################
+
+
+#subject to lowest_number:
+#	sum{i in I}(sum{w in 1..4}(sum{w_prime in (w+1)..5}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks[i,w,w_prime,d,s])))) >= 1800;
 
 
 ### Constraints ###
@@ -95,6 +111,47 @@ subject to help_constraint3{i in I, w in W, d in D, s in S[d], j in J[d]}:
 subject to three_days_weekends{i in I_weekend_avail, w in W}:
 	sum {s in S[6]}(sum {j in J[6]} (x[i,w,6,s,j])) + sum {s in S[7]}(sum {j in J[7]} (x[i,w,7,s,j])) = 2*h[i,w];
 
+### Assign only if qualified and available ###
+
+subject to librarians_only_assigned_if_qualavail_weekdays{i in I_lib, w in W, d in 1..5, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
+	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
+
+subject to librarians_only_assigned_if_qualavail_weekends{i in I_lib, w in W, d in 6..7, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
+	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
+
+subject to assistants_only_assigned_if_qualavail_weekdays{i in I_ass, w in W, d in 1..5, s in S[d], j in J[d]}: #assistants not qualified for 'Info' on weekdays
+	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
+
+subject to assistants_only_assigned_if_qualavail_weekends{i in I_ass, w in W, d in 6..7, s in S[d], j in J[d]}: #assistants not qualified for 'Info' or 'HB' on weekends
+	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
+##############################################
+
+### Second objective function constraints ###
+#subject to positive_values_of_abs:
+#	shifts_that_differ_between_weeks >= sum{i in I}(sum{w in 1..4}(sum{w_prim in w+1..5}(sum{d in 1..5}(sum{s in 1..3} (y[i,w,d,s]-y[i,w_prim,d,s])))));
+
+#subject to negative_values_of_abs:
+#	shifts_that_differ_between_weeks >= -sum{i in I}(sum{w in 1..4}(sum{w_prim in w+1..5}(sum{d in 1..5}(sum{s in 1..3} (y[i,w,d,s]-y[i,w_prim,d,s])))));
+
+subject to positive_values_of_abs{i in I, w in 1..4, w_prime in (w+1)..5, d in 1..5, s in 1..3}:
+	shifts_that_differ_between_weeks[i,w,w_prime,d,s] >= (y[i,w,d,s]-y[i,w_prime,d,s]);
+
+subject to negative_values_of_abs{i in I, w in 1..4, w_prime in (w+1)..5, d in 1..5, s in 1..3}:
+	shifts_that_differ_between_weeks[i,w,w_prime,d,s] >= -(y[i,w,d,s]-y[i,w_prime,d,s]);
+
+
+#############################################
+
+### Visualize ###
+subject to assign_y{i in I, w in W, d in 1..5, s in 1..3}:
+	y[i,w,d,s] = sum{j in J[d]} x[i,w,d,s,j];
+#################
+
+
+
+
+
+
 
 ### OLD ###
 #Ensuring that if a worker i is working weekend w then they will work saturday and sunday in week w
@@ -120,21 +177,4 @@ subject to three_days_weekends{i in I_weekend_avail, w in W}:
 #	z[i,w,d,s,j] - (1 - r[i]) >= x[i,w,d,s,j] + h[i,w] - 1;
 
 ################################
-
-
-
-### Assign only if qualified and available ###
-
-subject to librarians_only_assigned_if_qualavail_weekdays{i in I_lib, w in W, d in 1..5, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
-	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
-
-subject to librarians_only_assigned_if_qualavail_weekends{i in I_lib, w in W, d in 6..7, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
-	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
-
-subject to assistants_only_assigned_if_qualavail_weekdays{i in I_ass, w in W, d in 1..5, s in S[d], j in J[d]}: #assistants not qualified for 'Info' on weekdays
-	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
-
-subject to assistants_only_assigned_if_qualavail_weekends{i in I_ass, w in W, d in 6..7, s in S[d], j in J[d]}: #assistants not qualified for 'Info' or 'HB' on weekends
-	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
-##############################################
 
