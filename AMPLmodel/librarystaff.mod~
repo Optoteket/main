@@ -28,7 +28,7 @@ param qualavail{i in I,w in W, d in D, s in S[d], j in J[d]} binary; #Worker i q
 #param inner{I,D,W} binary; #saying if worker i has inner service day d week w
 
 param Shift_list{Shifts};
-param N := 10; #The bigger, the more priority to maximize stand-ins
+param N := 1; #The bigger, the more priority to maximize stand-ins
 
 #################################### Variables ########################################################################
 var r{i in I, w in W} binary; #1 if person i has a rotation (phase shift) of w weeks, 0 otherwise
@@ -37,9 +37,10 @@ var x{i in I, w in W, d in D, s in S[d], j in J[d]} binary; #1 if worker i is as
 var z{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]} binary; #1 if x = 1 and h = 1, 0 else
 var stand_in{i in I, w in W, d in D, s in S[d], j in J[d]} binary; #1 if (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) = 1 and x[i,w,d,s,j] = 0. First term is if a worker is working a weekend
 var y{i in I, w in W, d in 1..5, s in 1..3} binary; #1 if worker i works week w, day d, shift s. No weekends and no evenings
-
 var lowest_stand_in_amount integer; # Lowest number of stand-in workers at any shift
 var shifts_that_differ_between_weeks{i in I, w in W, w_prime in W, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
+var hb{i in I, w in W} binary; #1 if a person i works in HB week w
+var working_friday{i in I, w in W} binary; #1 if a person works weekend but not in HB
 
 
 
@@ -79,12 +80,34 @@ subject to rotation_demand{i in I, w in W}:
 
 #Add friday to objective function ??
 #Ensuring that if a worker i is working weekend w then they will work saturday and sunday in week w
-subject to three_days_weekends{i in I_weekend_avail, w in W, j in J[d]}:
-	sum {s in S[6]} x[i,w,6,s,j] + sum {s in S[7]} x[i,w,7,s,j] = 2*h[i,w];  #+ x[i,w,5,4,j] = 3*h[i,w];
+subject to three_days_weekends{i in I_weekend_avail, w in W}:
+	sum {s in S[6]}(sum {j in J[6]} x[i,w,6,s,j]) + sum {s in S[7]}(sum {j in J[7]} x[i,w,7,s,j]) = 2*h[i,w];  #+ sum {j in J[5]} x[i,w,5,4,j] = 3*h[i,w];
 
-#Ensuring the friday is consecutive to the weekend work in week w. ADD To objective function?
+subject to same_tasks_on_weekends{i in I_weekend_avail, w in W, j in J[7]} :
+	sum{s in S[6]} x[i,w,6,s,j] = sum{s in S[6]} x[i,w,7,s,j];
+
+
+######################### Friday constraints #################################
+#assigns hb to 1 if a worker is working in HB on saturday (and sunday)
+subject to assign_hb{i in I_weekend_avail, w in W}:
+	hb[i,w] = x[i,w,6,1,'HB'];
+
 #subject to friday_added_to_the_weekend{i in I_weekend_avail, w in W}:
-#	sum {j in J[5]} x[i,w,5,4,j] = 1*h[i,w];
+#	sum {j in J[5]} x[i,w,5,4,j] = working_friday[i,w];
+
+#Help constraints. working_friday = 1 if worker i works weekend w, but does not work in HB
+subject to help_constraint_friday_1{i in I_weekend_avail, w in W}:
+	working_friday[i,w] >= h[i,w] + (1 - hb[i,w]) - 1;
+
+subject to help_constraint_friday_2{i in I_weekend_avail, w in W}:
+	working_friday[i,w] <= h[i,w];
+
+subject to help_constraint_friday_3{i in I_weekend_avail, w in W}:
+	working_friday[i,w] <= (1 - hb[i,w]);
+
+
+
+
 
 ######################### Stand-in constraints #################################
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded

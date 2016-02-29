@@ -2,17 +2,17 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}
 \contentsline {section}{\numberline {1.1}Background}{1}
 \contentsline {section}{\numberline {1.2}Problem description}{1}
-\contentsline {chapter}{\numberline {2}Literature review}{3}
-\contentsline {section}{\numberline {2.1}Tour scheduling problem (TSP)}{3}
-\contentsline {section}{\numberline {2.2}Personnel task scheduling problem (PTSP)}{3}
-\contentsline {section}{\numberline {2.3}Shift minimisation personnel task scheduling problem (SMPTSP)}{4}
-\contentsline {section}{\numberline {2.4}Fixed/flexible job scheduling problem (FJSP)}{4}
-\contentsline {section}{\numberline {2.5}Work load allocation and worker satisfaction}{4}
-\contentsline {chapter}{\numberline {3}Implementation insights}{5}
-\contentsline {chapter}{\numberline {4}The ideal CSTR: the chemostat}{7}
-\contentsline {section}{\numberline {4.1}Some simple models of biological growth}{7}
-\contentsline {subsection}{\numberline {4.1.1}Exponential growth}{7}
-\contentsline {subsection}{\numberline {4.1.2}The logistic equation}{7}
-\contentsline {section}{\numberline {4.2}The chemostat}{7}
-\contentsline {chapter}{\numberline {A}The Linearized stability}{11}
-\contentsline {section}{\numberline {A.1}The Linearization}{11}
+\contentsline {chapter}{\numberline {2}Literature review}{5}
+\contentsline {section}{\numberline {2.1}Tour scheduling problem (TSP)}{5}
+\contentsline {section}{\numberline {2.2}Personnel task scheduling problem (PTSP)}{5}
+\contentsline {section}{\numberline {2.3}Shift minimisation personnel task scheduling problem (SMPTSP)}{6}
+\contentsline {section}{\numberline {2.4}Fixed/flexible job scheduling problem (FJSP)}{6}
+\contentsline {section}{\numberline {2.5}Work load allocation and worker satisfaction}{6}
+\contentsline {chapter}{\numberline {3}Implementation insights}{7}
+\contentsline {chapter}{\numberline {4}The ideal CSTR: the chemostat}{9}
+\contentsline {section}{\numberline {4.1}Some simple models of biological growth}{9}
+\contentsline {subsection}{\numberline {4.1.1}Exponential growth}{9}
+\contentsline {subsection}{\numberline {4.1.2}The logistic equation}{9}
+\contentsline {section}{\numberline {4.2}The chemostat}{9}
+\contentsline {chapter}{\numberline {A}The Linearized stability}{13}
+\contentsline {section}{\numberline {A.1}The Linearization}{13}

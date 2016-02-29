@@ -23,12 +23,12 @@ data librarystaff.dat;    # Read data file
 param time_elapsed;
 param end;
 let time_elapsed := _ampl_time + _total_solve_elapsed_time;
-#############################################################################
+
 
 
 ################################# Solve ####################################
 solve;
-##############################################################################
+
 
 
 
@@ -38,7 +38,7 @@ param shift_change;
 let shift_change := sum{i in I}(sum{w in 1..4}(sum{w_prim in (w+1)..5}(sum{d in 1..5}(sum{s in 1..3} abs(y[i,w,d,s]-y[i,w_prim,d,s])))));
 
 printf "\n The number of shiftchanges in total were: %d \n \n", shift_change;
-##############################################################################
+
 
 
 
@@ -52,13 +52,13 @@ for {i in I}
 	let Shift_list[i] := sum{w in W}(sum{d in D}(sum{s in S[d]}(sum{j in J[d]} x[i,w,d,s,j])));
 }
 #display Shift_list;
-###############################################################################
+
 
 
 
 ########################## Display of variables ###############################
-#display lowest_stand_in_amount;
-
+display lowest_stand_in_amount;
+display working_friday;
 #display shifts_that_differ_between_weeks;
 # Print in terminal of objective function value (inactive)
 #display cost;

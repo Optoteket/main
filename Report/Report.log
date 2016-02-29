@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  24 FEB 2016 14:05
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  29 FEB 2016 16:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -648,13 +648,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--58
 [1
 
 ]
-Overfull \hbox (193.50978pt too wide) in paragraph at lines 104--149
+Overfull \hbox (193.50977pt too wide) in paragraph at lines 104--149
 [][] 
  []
 
-) (/sw/texlive/2011/texmf-dist/tex/latex/base/utf8.def
+[2]) (/sw/texlive/2011/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
-) [2]
+) [3] [4
+
+]
 Chapter 2.
 (/sw/texlive/2011/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
@@ -665,9 +667,7 @@ Overfull \hbox (4.55617pt too wide) in paragraph at lines 23--24
 nd Es-cud-ero, 1983a,
  []
 
-[3
-
-]
+[5]
 Overfull \hbox (9.36456pt too wide) in paragraph at lines 39--39
 []\OT1/cmr/bx/n/14.4 Fixed/flexible job schedul-ing prob-lem (FJSP) 
  []
@@ -692,23 +692,23 @@ le/pii/S0307904X11004173
 
 ) (/sw/texlive/2011/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
-) [4]
+) [6]
 Chapter 3.
-[5
+[7
 
-] [6
+] [8
 
 ]
 Chapter 4.
-[7] [8] [9
+[9] [10] [11
 
-] [10
+] [12
 
 ]
 Appendix A.
-[11] [12]
+[13] [14]
 File: univlogo.eps Graphic file (type eps)
- <univlogo.eps> [13
+ <univlogo.eps> [15
 
 
 Non-PDF special ignored!] (./Report.aux) ) 
@@ -738,10 +738,10 @@ ve/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></sw/texlive/2011/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></sw/texlive/2011/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmtt8.pfb></sw/texlive/2011/texmf-dist/fonts/t
 ype1/public/cm-super/sfrm1000.pfb>
-Output written on Report.pdf (27 pages, 229590 bytes).
+Output written on Report.pdf (29 pages, 230834 bytes).
 PDF statistics:
- 165 PDF objects out of 1000 (max. 8388607)
- 116 compressed objects within 2 object streams
+ 171 PDF objects out of 1000 (max. 8388607)
+ 120 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
