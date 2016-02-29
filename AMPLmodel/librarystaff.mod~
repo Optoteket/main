@@ -28,7 +28,7 @@ param qualavail{i in I,w in W, d in D, s in S[d], j in J[d]} binary; #Worker i q
 #param inner{I,D,W} binary; #saying if worker i has inner service day d week w
 
 param Shift_list{Shifts};
-param N := 1;
+param N := 10; #The bigger, the more priority to maximize stand-ins
 
 #################################### Variables ########################################################################
 var r{i in I, w in W} binary; #1 if person i has a rotation (phase shift) of w weeks, 0 otherwise
@@ -54,10 +54,6 @@ maximize objective: #Maximize stand-ins and create schedules with similar weeks 
 
 #################################### Constraints ########################################################################
 
-#subject to lowest_number:
-#	sum{i in I}(sum{w in 1..4}(sum{w_prime in (w+1)..5}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks[i,w,w_prime,d,s])))) >= 1800;
-
-
 ######################## Task demand for workers #####################################
 #number of workers to be assigned to different task types at different shifts (shall work for all days 1..7)
 subject to task_assign_amount{w in W, d in D,s in S[d], j in J[d]}:
@@ -67,16 +63,6 @@ subject to task_assign_amount{w in W, d in D,s in S[d], j in J[d]}:
 #Stating that a worker can only be assigned one (outer) task per day (weekends included) where they are available
 subject to max_one_task_per_day{i in I, w in W, d in D}:
 	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;
-
-####################### Only librarians on Info and HB ################################
-###########qualavail för assistenter är 0 nu på info_desk => unnecessary constraint?
-#Assigning that assistants can not be assigned to Info desks in any day
-subject to no_assistants_at_infodesks{i in I_ass, w in W, d in D, s in S[d]}:
-	x[i,w,d,s,'Info'] = 0;
-
-#Assigning that assistants can not be assigned to Hageby during weekends
-subject to no_assistants_at_HB{i in I_ass, w in W, d in 6..7, s in S[d]}:
-	x[i,w,d,s,'HB'] = 0;
 
 ####################### Week rotation and weekend constraints #########################
 #Stating number of weeks worker i:s schedule is phase shifted
@@ -91,17 +77,22 @@ subject to one_weekend_per_five_weeks{i in I_weekend_avail}:
 subject to rotation_demand{i in I, w in W}:
 	r[i,w] >= h[i,w];
 
+#Add friday to objective function ??
 #Ensuring that if a worker i is working weekend w then they will work saturday and sunday in week w
-subject to three_days_weekends{i in I_weekend_avail, w in W}:
-	sum {s in S[6]}(sum {j in J[6]} (x[i,w,6,s,j])) + sum {s in S[7]}(sum {j in J[7]} (x[i,w,7,s,j])) = 2*h[i,w];
+subject to three_days_weekends{i in I_weekend_avail, w in W, j in J[d]}:
+	sum {s in S[6]} x[i,w,6,s,j] + sum {s in S[7]} x[i,w,7,s,j] = 2*h[i,w];  #+ x[i,w,5,4,j] = 3*h[i,w];
+
+#Ensuring the friday is consecutive to the weekend work in week w. ADD To objective function?
+#subject to friday_added_to_the_weekend{i in I_weekend_avail, w in W}:
+#	sum {j in J[5]} x[i,w,5,4,j] = 1*h[i,w];
 
 ######################### Stand-in constraints #################################
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
-subject to find_lowest_stand_in_amount_no_weekends_no_evenings{w in W, d in 1..5, s in 1..3, j in J[d]}: #RHS: number of qualified workers at work that is available & not assigned to any task.
+subject to find_lowest_stand_in_amount_no_weekends_no_evenings{w in W, d in 1..5, s in 1..3, j in {'Exp','Info'}}: #RHS: number of qualified workers at work that is available & not assigned to any task.
 	lowest_stand_in_amount <= sum{i in I} stand_in[i,w,d,s,j]; 		#+ meeting[s,d,w]*M; 
 
 #A worker is a stand in if he/she is available, qualified and is not already scheduled. Takes schedule rotation into account
-subject to find_ qualavail_not_working{i in I, w in W, d in D, s in S[d], j in J[d]}:
+subject to find_qualavail_not_working{i in I, w in W, d in D, s in S[d], j in J[d]}:
 	stand_in[i,w,d,s,j] >= sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) + (1-x[i,w,d,s,j]) - 1; #Qualified, available and not working a shift
 
 ### Help constraints for qualavail and not scheduled ###
@@ -125,57 +116,21 @@ subject to assistants_only_assigned_if_qualavail_weekdays{i in I_ass, w in W, d 
 subject to assistants_only_assigned_if_qualavail_weekends{i in I_ass, w in W, d in 6..7, s in S[d], j in J[d]}: #assistants not qualified for 'Info' or 'HB' on weekends
 	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
 
-############### Second objective function constraints: similar weeks for workers #############
-#subject to positive_values_of_abs:
-#	shifts_that_differ_between_weeks >= sum{i in I}(sum{w in 1..4}(sum{w_prim in w+1..5}(sum{d in 1..5}(sum{s in 1..3} (y[i,w,d,s]-y[i,w_prim,d,s])))));
-
-#subject to negative_values_of_abs:
-#	shifts_that_differ_between_weeks >= -sum{i in I}(sum{w in 1..4}(sum{w_prim in w+1..5}(sum{d in 1..5}(sum{s in 1..3} (y[i,w,d,s]-y[i,w_prim,d,s])))));
-
+############### Second objective function constraints: Similar weeks for workers #############
 subject to positive_values_of_abs{i in I, w in 1..4, w_prime in (w+1)..5, d in 1..5, s in 1..3}:
 	shifts_that_differ_between_weeks[i,w,w_prime,d,s] >= (y[i,w,d,s]-y[i,w_prime,d,s]);
 
 subject to negative_values_of_abs{i in I, w in 1..4, w_prime in (w+1)..5, d in 1..5, s in 1..3}:
 	shifts_that_differ_between_weeks[i,w,w_prime,d,s] >= -(y[i,w,d,s]-y[i,w_prime,d,s]);
+##############################################################################################
 
 
 #############################################
 
-### Visualize ###
+### Visualizing and modeling ###
+#Variable saying if a worker i is assigned a shift s
 subject to assign_y{i in I, w in W, d in 1..5, s in 1..3}:
 	y[i,w,d,s] = sum{j in J[d]} x[i,w,d,s,j];
-#################
-
-
-
-
-
-
-
-### OLD ###
-#subject to maximum_one_stand_in_per_shift{i in I, w in W, d in D, s in S[d]}:
-#	sum{j in J[d]} stand_in[i,w,d,s,j] <= 1;
-#Ensuring that if a worker i is working weekend w then they will work saturday and sunday in week w
-#subject to three_days_weekends{i in I_weekend_avail}:
-#	sum{w in W}(sum {s in S[6]}(sum {j in J[6]} (z[i,w,6,s,j])) + sum {s in S[7]}(sum {j in J[7]} (z[i,w,7,s,j]))) = 2*r[i];
-###########
-
-#Ensuring the friday is consecutive to the weekend work in week w. ADD To objective function?
-#subject to friday_added_to_the_weekend{i in I_weekend_avail}:
-#	sum{w in W}(sum {j in J[5]} z[i,w,5,4,j]) = 1*r[i];
-
-### Assigning constraints... ###
-#subject to z_constraint1{i in I_weekend_avail, w in W, d in 1..5, s in S[d], j in J[d]}:
-#	z[i,w,d,s,j] >= x[i,w,d,s,j] + h[i,w] - 1;
-
-#subject to z_constraint2{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
-#	z[i,w,d,s,j] <= x[i,w,d,s,j];
-
-#subject to z_constraint3{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]}:
-#	z[i,w,d,s,j] <= h[i,w]; # h[i,w] = 0 if r[i] = 0
-
-#subject to z_constraint1a{i in I_weekend_avail, w in W, d in 6..7, s in S[d], j in J[d]}:
-#	z[i,w,d,s,j] - (1 - r[i]) >= x[i,w,d,s,j] + h[i,w] - 1;
-
 ################################
+
 
