@@ -16,18 +16,20 @@ set I_lib; #Set of librarians
 set I_ass; #Set of assistants
 set V; #Set of possible week rotations (shift the week by 1..5 steps)
 
-set Shifts;
+set Workers;
 
 
 #################################### Parameters ########################################################################
 param skill{I} binary; #Staff skill competence for worker i, 0 if Assistant or 1 if Librarian
-param avail{i in I, w in W, d in D, s in S[d]} binary; #Worker i available for shift s day d week w
+param avail{i in I, w in W, d in D, s in S[d]} binary; #Worker i available for shift s, day d, week w
+param avail_day{i in I, w in W, d in D} binary; #1 if worker i is available day d, week w
 param task_worker_demand{d in D, s in S[d], j in J[d]} integer; #number of workers required for task type j shift s on day d
 param qualavail{i in I,w in W, d in D, s in S[d], j in J[d]} binary; #Worker i qualified and available for task type j shift s day d week w
 #param meeting{S{D},D,W} binary;
 #param inner{I,D,W} binary; #saying if worker i has inner service day d week w
 
-param Shift_list{Shifts};
+param Shift_list{Workers};
+param stand_in_day_d{I, W, 1..5};
 param N := 1; #The bigger, the more priority to maximize stand-ins
 
 #################################### Variables ########################################################################
@@ -35,7 +37,7 @@ var r{i in I, w in W} binary; #1 if person i has a rotation (phase shift) of w w
 var h{i in I, w in W} binary; #1 if worker i works weekend in week w
 var x{i in I, w in W, d in D, s in S[d], j in J[d]} binary; #1 if worker i is assigned task type j in shift s day d week w
 var z{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]} binary; #1 if x = 1 and h = 1, 0 else
-var stand_in{i in I, w in W, d in D, s in S[d], j in J[d]} binary; #1 if (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) = 1 and x[i,w,d,s,j] = 0. First term is if a worker is working a weekend
+var stand_in{i in I, w in W, d in D} binary; #1 if (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) = 1 and x[i,w,d,s,j] = 0. First term is if a worker is working a weekend
 var y{i in I, w in W, d in 1..5, s in 1..3} binary; #1 if worker i works week w, day d, shift s. No weekends and no evenings
 var lowest_stand_in_amount integer; # Lowest number of stand-in workers at any shift
 var shifts_that_differ_between_weeks{i in I, w in W, w_prime in W, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
@@ -65,6 +67,11 @@ subject to task_assign_amount{w in W, d in D,s in S[d], j in J[d]}:
 subject to max_one_task_per_day{i in I, w in W, d in D}:
 	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;
 
+######################## Maximum one 'PL' per week #####################################
+#Allowing a worker i to only work with 'Plocklistan' once per week
+subject to max_one_PL_per_week{i in I, w in W}:
+	sum{d in 1..5} x[i,w,d,1,'PL'] <= 1;
+
 ####################### Week rotation and weekend constraints #########################
 #Stating number of weeks worker i:s schedule is phase shifted
 subject to rotation_of_week{i in I}:
@@ -92,8 +99,8 @@ subject to same_tasks_on_weekends{i in I_weekend_avail, w in W, j in J[7]} :
 subject to assign_hb{i in I_weekend_avail, w in W}:
 	hb[i,w] = x[i,w,6,1,'HB'];
 
-#subject to friday_added_to_the_weekend{i in I_weekend_avail, w in W}:
-#	sum {j in J[5]} x[i,w,5,4,j] = working_friday_evening[i,w];
+subject to friday_added_to_the_weekend{i in I_weekend_avail, w in W}:
+	sum {j in J[5]} x[i,w,5,4,j] = working_friday_evening[i,w];
 
 #Help constraints. working_friday_evening = 1 if worker i works weekend w, but does not work in HB
 subject to help_constraint_friday_1{i in I_weekend_avail, w in W}:
@@ -108,22 +115,21 @@ subject to help_constraint_friday_3{i in I_weekend_avail, w in W}:
 
 
 
-
 ######################### Stand-in constraints #################################
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
-subject to find_lowest_stand_in_amount_no_weekends_no_evenings{w in W, d in 1..5, s in 1..3, j in {'Exp','Info'}}: #RHS: number of qualified workers at work that is available & not assigned to any task.
-	lowest_stand_in_amount <= sum{i in I} stand_in[i,w,d,s,j]; 		#+ meeting[s,d,w]*M; 
+subject to find_lowest_stand_in_amount_no_weekends_no_evenings{w in W, d in 1..5}: #RHS: number of qualified workers at work that is available & not assigned to any task.
+	lowest_stand_in_amount <= sum{i in I} stand_in[i,w,d]; 		#+ meeting[s,d,w]*M; 
 
-#A worker is a stand in if he/she is available, qualified and is not already scheduled. Takes schedule rotation into account
-subject to find_qualavail_not_working{i in I, w in W, d in D, s in S[d], j in J[d]}:
-	stand_in[i,w,d,s,j] >= sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) + (1-x[i,w,d,s,j]) - 1; #Qualified, available and not working a shift
+#A worker is a stand-in if he/she is available, qualified and is not already scheduled. Takes schedule rotation into account
+subject to find_avail_not_working_day{i in I, w in W, d in 1..5}:
+	stand_in[i,w,d] >= sum {v in V} (r[i,v]*avail_day[i,(w-v+5) mod 5 +1,d]) + (1-sum{s in 1..3}(sum{j in J[d]} x[i,w,d,s,j])) - 1; #Available and not working any shift day d.
 
 ### Help constraints for qualavail and not scheduled ###
-subject to help_constraint2{i in I, w in W, d in D, s in S[d], j in J[d]}:
-	stand_in[i,w,d,s,j] <= sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]);
+subject to help_constraint2{i in I, w in W, d in 1..5}:
+	stand_in[i,w,d] <= sum {v in V} (r[i,v]*avail_day[i,(w-v+5) mod 5 +1,d]);
 
-subject to help_constraint3{i in I, w in W, d in D, s in S[d], j in J[d]}:
-	stand_in[i,w,d,s,j] <= (1-x[i,w,d,s,j]);
+subject to help_constraint3{i in I, w in W, d in 1..5}:
+	stand_in[i,w,d] <= 1-sum{s in 1..3}(sum{j in J[d]} x[i,w,d,s,j]);
 
 ####################### Only assign if qualified and available ######################
 
@@ -157,3 +163,26 @@ subject to assign_y{i in I, w in W, d in 1..5, s in 1..3}:
 ################################
 
 
+
+
+
+
+
+
+
+
+######################### OLD! Means: Stand-ins PER TASK TYPE #################################
+#Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
+#subject to find_lowest_stand_in_amount_no_weekends_no_evenings{w in W, d in 1..5, s in 1..3, j in {'Exp','Info'}}: #RHS: number of qualified workers at work that is available & not assigned to any task.
+#	lowest_stand_in_amount <= sum{i in I} stand_in[i,w,d,s,j]; 		#+ meeting[s,d,w]*M; 
+
+#A worker is a stand in if he/she is available, qualified and is not already scheduled. Takes schedule rotation into account
+#subject to find_qualavail_not_working{i in I, w in W, d in D, s in S[d], j in J[d]}:
+#	stand_in[i,w,d,s,j] >= sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) + (1-x[i,w,d,s,j]) - 1; #Qualified, available and not working a shift
+
+### Help constraints for qualavail and not scheduled ###
+#subject to help_constraint2{i in I, w in W, d in D, s in S[d], j in J[d]}:
+#	stand_in[i,w,d,s,j] <= sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]);
+
+#subject to help_constraint3{i in I, w in W, d in D, s in S[d], j in J[d]}:
+#	stand_in[i,w,d,s,j] <= (1-x[i,w,d,s,j]);
