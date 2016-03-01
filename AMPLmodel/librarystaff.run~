@@ -59,7 +59,6 @@ for {i in I}
 ########################## Display of variables ###############################
 display lowest_stand_in_amount;
 #display working_friday_evening;
-display r, h;
 #display shifts_that_differ_between_weeks;
 # Print in terminal of objective function value (inactive)
 #display cost;
