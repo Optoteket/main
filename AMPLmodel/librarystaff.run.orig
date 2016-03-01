@@ -12,7 +12,11 @@ option presolve 0;
 option omit_zero_cols 1;   # No zeros printed in columns
 option omit_zero_rows 1;   # No zeros printed in rows
 option display_1col 10000; # Only one column printed
-option cplex_options "timing 1 mipdisplay 2 time = 11"; # Time measurement and printing. NOTE: Time = x means the solve breaks after x seconds.
+<<<<<<< HEAD
+option cplex_options "timing 1 mipdisplay 2 time = 60"; # Time measurement and printing. NOTE: Time = x means the solve breaks after x seconds.
+=======
+option cplex_options "timing 1 mipdisplay 2 time = 30"; # Time measurement and printing. NOTE: Time = x means the solve breaks after x seconds.
+>>>>>>> ea74f2c8bf36ddeccb73798eef7cffce83087988
 
 model librarystaff.mod;   # Read model file 
 data librarystaff.dat;    # Read data file 
@@ -70,7 +74,7 @@ for {i in I, w in W, d in 1..5}
 
 ########################## Display of variables ###############################
 display lowest_stand_in_amount;
-display stand_in_day_d;
+#display stand_in_day_d;
 #display working_friday_evening;
 #display shifts_that_differ_between_weeks;
 # Print in terminal of objective function value (inactive)

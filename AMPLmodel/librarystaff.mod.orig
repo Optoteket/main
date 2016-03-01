@@ -52,11 +52,7 @@ var shifts_that_differ_between_weeks{i in I, w in W, w_prime in W, d in 1..5, s 
 var diff_num_same_shifts{i in I, w in W, s in 1..3, s_prime in 1..3} integer;
 var hb{i in I, w in W} binary; #1 if a person i works in HB week w
 var working_friday_evening{i in I, w in W} binary; #1 if a person works weekend but not in HB
-<<<<<<< HEAD
 var num_days_with_same_shift{i in I,w in W,s in 1..3} integer;
-=======
-
->>>>>>> ea74f2c8bf36ddeccb73798eef7cffce83087988
 
 
 
@@ -114,13 +110,8 @@ subject to same_tasks_on_weekends{i in I_weekend_avail, w in W, j in J[7]} :
 subject to assign_hb{i in I_weekend_avail, w in W}:
 	hb[i,w] = x[i,w,6,1,'HB'];
 
-<<<<<<< HEAD
-#subject to friday_added_to_the_weekend{i in I_weekend_avail, w in W}:
-#	sum {j in J[5]} x[i,w,5,4,j] = working_friday_evening[i,w];
-=======
 subject to friday_added_to_the_weekend{i in I_weekend_avail, w in W}:
 	sum {j in J[5]} x[i,w,5,4,j] = working_friday_evening[i,w];
->>>>>>> ea74f2c8bf36ddeccb73798eef7cffce83087988
 
 #Help constraints. working_friday_evening = 1 if worker i works weekend w, but does not work in HB
 subject to help_constraint_friday_1{i in I_weekend_avail, w in W}:
@@ -131,10 +122,6 @@ subject to help_constraint_friday_2{i in I_weekend_avail, w in W}:
 
 subject to help_constraint_friday_3{i in I_weekend_avail, w in W}:
 	working_friday_evening[i,w] <= (1 - hb[i,w]);
-<<<<<<< HEAD
-
-=======
->>>>>>> ea74f2c8bf36ddeccb73798eef7cffce83087988
 
 
 
@@ -145,14 +132,14 @@ subject to find_lowest_stand_in_amount_no_weekends_no_evenings{w in W, d in 1..5
 	lowest_stand_in_amount <= sum{i in I} stand_in[i,w,d]; 		#+ meeting[s,d,w]*M; 
 
 #A worker is a stand-in if he/she is available, qualified and is not already scheduled. Takes schedule rotation into account
-subject to find_avail_not_working_day{i in I, w in W, d in D}:
+subject to find_avail_not_working_day{i in I, w in W, d in 1..5}:
 	stand_in[i,w,d] >= sum {v in V} (r[i,v]*avail_day[i,(w-v+5) mod 5 +1,d]) + (1-sum{s in 1..3}(sum{j in J[d]} x[i,w,d,s,j])) - 1; #Available and not working any shift day d.
 
 ### Help constraints for qualavail and not scheduled ###
-subject to help_constraint2{i in I, w in W, d in D}:
+subject to help_constraint2{i in I, w in W, d in 1..5}:
 	stand_in[i,w,d] <= sum {v in V} (r[i,v]*avail_day[i,(w-v+5) mod 5 +1,d]);
 
-subject to help_constraint3{i in I, w in W, d in D}:
+subject to help_constraint3{i in I, w in W, d in 1..5}:
 	stand_in[i,w,d] <= 1-sum{s in 1..3}(sum{j in J[d]} x[i,w,d,s,j]);
 
 ####################### Only assign if qualified and available ######################
