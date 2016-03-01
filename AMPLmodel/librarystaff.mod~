@@ -133,7 +133,7 @@ subject to help_constraint2{i in I, w in W, d in 1..5}:
 	stand_in[i,w,d] <= sum {v in V} (r[i,v]*avail_day[i,(w-v+5) mod 5 +1,d]);
 
 subject to help_constraint3{i in I, w in W, d in 1..5}:
-	stand_in[i,w,d] <= 1-sum{s in 1..3}(sum{j in J[d]} x[i,w,d,s,j]);
+	stand_in[i,w,d] <= 1-sum{s in 1..4}(sum{j in J[d]} x[i,w,d,s,j]);
 
 ####################### Only assign if qualified and available ######################
 
