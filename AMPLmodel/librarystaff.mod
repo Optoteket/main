@@ -30,7 +30,7 @@ param qualavail{i in I,w in W, d in D, s in S[d], j in J[d]} binary; #Worker i q
 
 param Shift_list{Workers};
 param stand_in_day_d{I, W, 1..5};
-param N1 := 10; #The bigger, the more priority to maximize stand-ins
+param N1 := 1000; #The bigger, the more priority to maximize stand-ins
 param N2 := 1; #Prioritize similar weeks
 param N3 := 1; #Prioritize varied time of shifts
 
@@ -55,8 +55,8 @@ var diff_num_same_shifts{i in I, w in W, s in 1..2, s_prime in 2..3} integer, <=
 
 maximize objective: #Maximize stand-ins and create schedules with similar weeks for each worker
 	N1*lowest_stand_in_amount 
-	#- N2*sum{i in I}(sum{w in 1..4}(sum{w_prime in (w+1)..5}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks[i,w,w_prime,d,s]))))
-	 + N3*sum{i in I}(sum{w in W}(sum{s in 1..2}(sum{s_prime in (s+1)..3} diff_num_same_shifts[i,w,s,s_prime])))
+	- N2*sum{i in I}(sum{w in 1..4}(sum{w_prime in (w+1)..5}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks[i,w,w_prime,d,s]))))
+	 #+ N3*sum{i in I}(sum{w in W}(sum{s in 1..2}(sum{s_prime in (s+1)..3} diff_num_same_shifts[i,w,s,s_prime])))
 	;
 
 #################################### CONSTRAINTS ########################################################################
@@ -156,27 +156,17 @@ subject to positive_values_of_abs{i in I, w in 1..4, w_prime in (w+1)..5, d in 1
 subject to negative_values_of_abs{i in I, w in 1..4, w_prime in (w+1)..5, d in 1..5, s in 1..3}:
 	shifts_that_differ_between_weeks[i,w,w_prime,d,s] >= -(y[i,w,d,s]-y[i,w_prime,d,s]);
 
-############### Third objective function constraints: Variation of shifts for workers #############
-subject to num_of_days_with_same_shift_constraint{i in I, w in W, s in 1..3}:
-	num_days_with_same_shift[i,w,s] = sum{d in 1..5} y[i,w,d,s];
-
-subject to positive_values_of_abs2{i in I, w in W, s in 1..2, s_prime in (s+1)..3}:
-	diff_num_same_shifts[i,w,s,s_prime] >= (num_days_with_same_shift[i,w,s]-num_days_with_same_shift[i,w,s_prime]);
-
-subject to negative_values_of_abs2{i in I, w in W, s in 1..2, s_prime in (s+1)..3}:
-	diff_num_same_shifts[i,w,s,s_prime] >= -(num_days_with_same_shift[i,w,s]-num_days_with_same_shift[i,w,s_prime]);
 
 
-##############################################################################################
-
-
-#############################################
-
-### Visualizing and modeling ###
+###################### Worker shift assignment ##############################
 #Variable saying if a worker i is assigned a shift s
 subject to assign_y{i in I, w in W, d in 1..5, s in 1..3}:
 	y[i,w,d,s] = sum{j in J[d]} x[i,w,d,s,j];
-################################
+
+
+######################### Time constraints #################################
+subject to max_three_shifts_per_five_weeks{i in I, w in W, s in 1..3}:
+	sum{d in 1..5} y[i,w,d,s] <= 2;
 
 
 
@@ -185,7 +175,18 @@ subject to assign_y{i in I, w in W, d in 1..5, s in 1..3}:
 
 
 
+############### Third objective function constraints: Variation of shifts for workers #############
+#subject to num_of_days_with_same_shift_constraint{i in I, w in W, s in 1..3}:
+#	num_days_with_same_shift[i,w,s] = sum{d in 1..5} y[i,w,d,s];
 
+#subject to positive_values_of_abs2{i in I, w in W, s in 1..2, s_prime in (s+1)..3}:
+#	diff_num_same_shifts[i,w,s,s_prime] >= (num_days_with_same_shift[i,w,s]-num_days_with_same_shift[i,w,s_prime]);
+
+#subject to negative_values_of_abs2{i in I, w in W, s in 1..2, s_prime in (s+1)..3}:
+#	diff_num_same_shifts[i,w,s,s_prime] >= -(num_days_with_same_shift[i,w,s]-num_days_with_same_shift[i,w,s_prime]);
+
+
+##############################################################################################
 
 ######################### OLD! Means: Stand-ins PER TASK TYPE #################################
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
