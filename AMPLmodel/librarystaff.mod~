@@ -46,7 +46,7 @@ var shifts_that_differ_between_weeks{i in I, w in W, w_prime in W, d in 1..5, s 
 var hb{i in I, w in W} binary; #1 if a person i works in HB week w
 var working_friday_evening{i in I, w in W} binary; #1 if a person works weekend but not in HB
 var num_days_with_same_shift{i in I, w in W, s in 1..3} integer;
-var diff_num_same_shifts{i in I, w in W, s in 1..2, s_prime in 2..3} integer;
+var diff_num_same_shifts{i in I, w in W, s in 1..2, s_prime in 2..3} integer, <= 6;
 
 
 
@@ -166,8 +166,6 @@ subject to positive_values_of_abs2{i in I, w in W, s in 1..2, s_prime in (s+1)..
 subject to negative_values_of_abs2{i in I, w in W, s in 1..2, s_prime in (s+1)..3}:
 	diff_num_same_shifts[i,w,s,s_prime] >= -(num_days_with_same_shift[i,w,s]-num_days_with_same_shift[i,w,s_prime]);
 
-subject to upper_bound{i in I, w in W, s in 1..2, s_prime in (s+1)..3}:
-	diff_num_same_shifts[i,w,s,s_prime] <= 6;
 
 ##############################################################################################
 

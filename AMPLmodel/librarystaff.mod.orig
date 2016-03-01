@@ -166,9 +166,11 @@ subject to positive_values_of_abs2{i in I, w in W, s in 1..2, s_prime in (s+1)..
 subject to negative_values_of_abs2{i in I, w in W, s in 1..2, s_prime in (s+1)..3}:
 	diff_num_same_shifts[i,w,s,s_prime] >= -(num_days_with_same_shift[i,w,s]-num_days_with_same_shift[i,w,s_prime]);
 
+<<<<<<< HEAD
 #subject to upper_bound{i in I, w in W, s in 1..2, s_prime in (s+1)..3}:
 #	diff_num_same_shifts[i,w,s,s_prime] <= 6;
-
+=======
+>>>>>>> 9e53d29ff632dd73609fc672bd014426c11a5e5e
 
 ##############################################################################################
 
