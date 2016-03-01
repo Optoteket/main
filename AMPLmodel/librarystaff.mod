@@ -30,9 +30,9 @@ param qualavail{i in I,w in W, d in D, s in S[d], j in J[d]} binary; #Worker i q
 
 param Shift_list{Workers};
 param stand_in_day_d{I, W, 1..5};
-param N1 := 10; #The bigger, the more priority to maximize stand-ins
+param N1 := 1; #The bigger, the more priority to maximize stand-ins
 param N2 := 1; #Prioritize similar weeks
-param N3 := 1; #Prioritize varied time of shifts
+param N3 := 2; #Prioritize varied time of shifts
 
 #################################### Variables ########################################################################
 var r{i in I, w in W} binary; #1 if person i has a rotation (phase shift) of w weeks, 0 otherwise
@@ -166,8 +166,8 @@ subject to positive_values_of_abs2{i in I, w in W, s in 1..2, s_prime in (s+1)..
 subject to negative_values_of_abs2{i in I, w in W, s in 1..2, s_prime in (s+1)..3}:
 	diff_num_same_shifts[i,w,s,s_prime] >= -(num_days_with_same_shift[i,w,s]-num_days_with_same_shift[i,w,s_prime]);
 
-subject to upper_bound{i in I, w in W, s in 1..2, s_prime in (s+1)..3}:
-	diff_num_same_shifts[i,w,s,s_prime] <= 6;
+#subject to upper_bound{i in I, w in W, s in 1..2, s_prime in (s+1)..3}:
+#	diff_num_same_shifts[i,w,s,s_prime] <= 6;
 
 ##############################################################################################
 
