@@ -71,7 +71,7 @@ for {i in I, w in W, d in 1..5}
 ########################## Display of variables ###############################
 display lowest_stand_in_amount;
 display num_days_with_same_shift;
-#display working_friday_evening;
+display diff_num_same_shifts;
 #display shifts_that_differ_between_weeks;
 # Print in terminal of objective function value (inactive)
 #display cost;
