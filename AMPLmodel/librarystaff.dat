@@ -1,4 +1,4 @@
-# Data file Created: 3/2/2016 2:41:23 AM
+# Data file Created: 3/2/2016 6:22:20 AM
 # Master Thesis: Work Distribution of a Heterogeneous Library Staff - A Personnel Task Scheduling Problem
 # Master Students: Claes Arvidson and Emelie Karlsson
 
@@ -14,11 +14,11 @@ set S[4] := 1 2 3 4; #Set of outer shift in day 4
 set S[5] := 1 2 3 4; #Set of outer shift in day 5
 set S[6] := 1; #Set of outer shift in day 6
 set S[7] := 1; #Set of outer shift in day 7
-set J[1] := Exp Info PL; #Set of total outer tasks at a day D, Exp, Info + plocklista
-set J[2] := Exp Info PL; #Set of total outer tasks at a day D, Exp, Info + plocklista
-set J[3] := Exp Info PL; #Set of total outer tasks at a day D, Exp, Info + plocklista
-set J[4] := Exp Info PL; #Set of total outer tasks at a day D, Exp, Info + plocklista
-set J[5] := Exp Info PL; #Set of total outer tasks at a day D, Exp, Info + plocklista
+set J[1] := Exp Info PL LOW; #Set of total outer tasks at a day D, Exp, Info + plocklista
+set J[2] := Exp Info PL LOW; #Set of total outer tasks at a day D, Exp, Info + plocklista
+set J[3] := Exp Info PL LOW; #Set of total outer tasks at a day D, Exp, Info + plocklista
+set J[4] := Exp Info PL LOW; #Set of total outer tasks at a day D, Exp, Info + plocklista
+set J[5] := Exp Info PL LOW; #Set of total outer tasks at a day D, Exp, Info + plocklista
 set J[6] := Exp Info HB; #Set of total outer tasks at a day D, Exp, Info + Hageby
 set J[7] := Exp Info HB; #Set of total outer tasks at a day D, Exp, Info + Hageby
 set I_weekend_avail := 3 5 7 8 9 12 13 14 16 17 19 23 24 25 27 31 32 36 37 38 4 1 6 10 11 15 18 20 22 26 29 30 33 35 39 ;

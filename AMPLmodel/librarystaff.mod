@@ -21,13 +21,15 @@ set Workers;
 
 
 #################################### Parameters ########################################################################
+#param meeting{S{D},D,W} binary;
+#param inner{I,D,W} binary; #saying if worker i has inner service day d week w
 param skill{I} binary; #Staff skill competence for worker i, 0 if Assistant or 1 if Librarian
 param avail{i in I, w in W, d in D, s in S[d]} binary; #Worker i available for shift s, day d, week w
 param avail_day{i in I, w in W, d in D} binary; #1 if worker i is available day d, week w
 param task_worker_demand{d in D, s in S[d], j in J[d]} integer; #number of workers required for task type j shift s on day d
 param qualavail{i in I,w in W, d in D, s in S[d], j in J[d]} binary; #Worker i qualified and available for task type j shift s day d week w
-#param meeting{S{D},D,W} binary;
-#param inner{I,D,W} binary; #saying if worker i has inner service day d week w
+param lib_on_wheels_worker_demand{w in W,d in D,s in S[d]} integer; #number of workers required for library on wheels week w, day d, shift s
+param lib_on_wheels_avail{i in I_lib,w in W,d in D,s in S[d]} binary; #1 if a librarian is available to work in library on wheels week w, day d, shift s
 
 param Shift_list{Workers};
 param stand_in_day_d{I, W, 1..5};
@@ -64,8 +66,13 @@ maximize objective: #Maximize stand-ins and create schedules with similar weeks 
 
 ######################## Task demand for workers #####################################
 #number of workers to be assigned to different task types at different shifts (shall work for all days 1..7)
-subject to task_assign_amount{w in W, d in D,s in S[d], j in J[d]}:
+subject to task_assign_amount_weekdays{w in W, d in 1..5,s in S[d], j in {'Exp', 'Info', 'PL'}}:
 	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
+subject to task_assign_amount_weekends{w in W, d in 6..7,s in S[d], j in J[d]}:
+	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
+
+subject to task_assign_amount_library_on_wheels{w in W, d in 1..5,s in S[d]}:
+	sum{i in I} x[i,w,d,s,'LOW'] = lib_on_wheels_worker_demand[w,d,s];
 
 ######################## Maximum one task per day #####################################
 #Stating that a worker can only be assigned one (outer) task per day (weekends included) where they are available
@@ -93,19 +100,19 @@ subject to rotation_demand{i in I, w in W}:
 #Add friday to objective function ??
 #Ensuring that if a worker i is working weekend w then they will work saturday and sunday in week w
 subject to three_days_weekends{i in I_weekend_avail, w in W}:
-	sum {s in S[6]}(sum {j in J[6]} x[i,w,6,s,j]) + sum {s in S[7]}(sum {j in J[7]} x[i,w,7,s,j]) = 2*h[i,w];  #+ sum {j in J[5]} x[i,w,5,4,j] = 3*h[i,w];
+	sum {s in S[6]}(sum {j in J[6]} x[i,w,6,s,j]) + sum {s in S[7]}(sum {j in J[7]} x[i,w,7,s,j]) = 2*h[i,w];
 
 subject to same_tasks_on_weekends{i in I_weekend_avail, w in W, j in J[7]} :
 	sum{s in S[6]} x[i,w,6,s,j] = sum{s in S[6]} x[i,w,7,s,j];
 
 
 ######################### Friday constraints #################################
+subject to friday_added_to_the_weekend{i in I_weekend_avail, w in W}:
+	sum {j in {'Exp', 'Info', 'PL'}} x[i,w,5,4,j] = working_friday_evening[i,w];
+
 #assigns hb to 1 if a worker is working in HB on saturday (and sunday)
 subject to assign_hb{i in I_weekend_avail, w in W}:
 	hb[i,w] = x[i,w,6,1,'HB'];
-
-subject to friday_added_to_the_weekend{i in I_weekend_avail, w in W}:
-	sum {j in J[5]} x[i,w,5,4,j] = working_friday_evening[i,w];
 
 #Help constraints. working_friday_evening = 1 if worker i works weekend w, but does not work in HB
 subject to help_constraint_friday_1{i in I_weekend_avail, w in W}:
@@ -127,28 +134,32 @@ subject to find_lowest_stand_in_amount_no_weekends_no_evenings{w in W, d in 1..5
 
 #A worker is a stand-in if he/she is available, qualified and is not already scheduled. Takes schedule rotation into account
 subject to find_avail_not_working_day{i in I, w in W, d in 1..5}:
-	stand_in[i,w,d] >= sum {v in V} (r[i,v]*avail_day[i,(w-v+5) mod 5 +1,d]) + (1-sum{s in 1..4}(sum{j in J[d]} x[i,w,d,s,j])) - 1; #Available and not working any shift day d.
+	stand_in[i,w,d] >= sum {v in V} (r[i,v]*avail_day[i,(w-v+5) mod 5 +1,d]) + (1-sum{s in 1..4}(sum{j in {'Exp', 'Info', 'PL'}} x[i,w,d,s,j])) - 1; #Available and not working any shift day d.
 
 ### Help constraints for qualavail and not scheduled ###
 subject to help_constraint2{i in I, w in W, d in 1..5}:
 	stand_in[i,w,d] <= sum {v in V} (r[i,v]*avail_day[i,(w-v+5) mod 5 +1,d]);
 
 subject to help_constraint3{i in I, w in W, d in 1..5}:
-	stand_in[i,w,d] <= 1-sum{s in 1..4}(sum{j in J[d]} x[i,w,d,s,j]);
+	stand_in[i,w,d] <= 1-sum{s in 1..4}(sum{j in {'Exp', 'Info', 'PL'}} x[i,w,d,s,j]);
 
 ####################### Only assign if qualified and available ######################
 
-subject to librarians_only_assigned_if_qualavail_weekdays{i in I_lib, w in W, d in 1..5, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
+subject to librarians_only_assigned_if_qualavail_weekdays{i in I_lib, w in W, d in 1..5, s in S[d], j in {'Exp', 'Info', 'PL'}}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
 	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
 
-subject to librarians_only_assigned_if_qualavail_weekends{i in I_lib, w in W, d in 6..7, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
+subject to librarians_only_assigned_if_qualavail_weekends{i in I_lib, w in W, d in 6..7, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'. No 'LOW' on weekends either
 	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
 
-subject to assistants_only_assigned_if_qualavail_weekdays{i in I_ass, w in W, d in 1..5, s in S[d], j in J[d]}: #assistants not qualified for 'Info' on weekdays
+subject to assistants_only_assigned_if_qualavail_weekdays{i in I_ass, w in W, d in 1..5, s in S[d], j in {'Exp', 'Info', 'PL'}}: #assistants not qualified for 'Info' on weekdays
 	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
 
-subject to assistants_only_assigned_if_qualavail_weekends{i in I_ass, w in W, d in 6..7, s in S[d], j in J[d]}: #assistants not qualified for 'Info' or 'HB' on weekends
+subject to assistants_only_assigned_if_qualavail_weekends{i in I_ass, w in W, d in 6..7, s in S[d], j in J[d]}: #assistants not qualified for 'Info' or 'HB' on weekends, no 'LOW' on weekends either
 	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
+### LIBRARY ON WHEELS ###
+subject to lib_on_wheels_constraint{i in I_lib_on_wheels, w in W, d in 2..3, s in S[d]}: #Around five librarians qualified for library on wheels. They _shall_ be assigned their shifts there
+	x[i,w,d,s,'LOW'] = (sum {v in V} (r[i,v]*lib_on_wheels_avail[i,(w-v+5) mod 5 +1,d,s]));
+
 
 ############### Second objective function constraints: Similar weeks for workers #############
 subject to positive_values_of_abs{i in I, w in 1..4, w_prime in (w+1)..5, d in 1..5, s in 1..3}:
@@ -162,12 +173,16 @@ subject to negative_values_of_abs{i in I, w in 1..4, w_prime in (w+1)..5, d in 1
 ###################### Worker shift assignment ##############################
 #Variable saying if a worker i is assigned a shift s
 subject to assign_y{i in I, w in W, d in 1..5, s in 1..3}:
-	y[i,w,d,s] = sum{j in J[d]} x[i,w,d,s,j];
+	y[i,w,d,s] = sum{j in {'Exp', 'Info', 'PL'}} x[i,w,d,s,j];
 
 
 ######################### Time constraints #################################
-subject to max_three_shifts_per_five_weeks{i in I, w in W, s in 1..3}:
+#Allowing only three shifts at a certain time each week
+subject to max_three_shifts_per_week{i in I, w in W, s in 1..3}:
 	sum{d in 1..5} y[i,w,d,s] <= 2;
+
+
+
 
 
 
@@ -195,12 +210,12 @@ subject to max_three_shifts_per_five_weeks{i in I, w in W, s in 1..3}:
 #	lowest_stand_in_amount <= sum{i in I} stand_in[i,w,d,s,j]; 		#+ meeting[s,d,w]*M; 
 
 #A worker is a stand in if he/she is available, qualified and is not already scheduled. Takes schedule rotation into account
-#subject to find_qualavail_not_working{i in I, w in W, d in D, s in S[d], j in J[d]}:
+#subject to find_qualavail_not_working{i in I, w in W, d in D, s in S[d], j in {xxxxxx}}:
 #	stand_in[i,w,d,s,j] >= sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) + (1-x[i,w,d,s,j]) - 1; #Qualified, available and not working a shift
 
 ### Help constraints for qualavail and not scheduled ###
-#subject to help_constraint2{i in I, w in W, d in D, s in S[d], j in J[d]}:
+#subject to help_constraint2{i in I, w in W, d in D, s in S[d], j in {xxxxxx}}:
 #	stand_in[i,w,d,s,j] <= sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]);
 
-#subject to help_constraint3{i in I, w in W, d in D, s in S[d], j in J[d]}:
+#subject to help_constraint3{i in I, w in W, d in D, s in S[d], j in {xxxxxx}}:
 #	stand_in[i,w,d,s,j] <= (1-x[i,w,d,s,j]);

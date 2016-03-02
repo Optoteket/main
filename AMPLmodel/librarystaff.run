@@ -12,7 +12,7 @@ option presolve 0;
 option omit_zero_cols 1;   # No zeros printed in columns
 option omit_zero_rows 1;   # No zeros printed in rows
 option display_1col 10000; # Only one column printed
-option cplex_options "timing 1 mipdisplay 2 time = 57600"; # Time measurement and printing. NOTE: Time = x means the solve breaks after x seconds.
+option cplex_options "timing 1 mipdisplay 2 time = 25"; # Time measurement and printing. NOTE: Time = x means the solve breaks after x seconds.
 
 model librarystaff.mod;   # Read model file 
 data librarystaff.dat;    # Read data file 
