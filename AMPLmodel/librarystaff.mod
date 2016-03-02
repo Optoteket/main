@@ -51,7 +51,7 @@ var working_friday_evening{i in I, w in W} binary; #1 if a person works weekend 
 var num_days_with_same_shift{i in I, w in W, s in 1..3} integer;
 #var diff_num_same_shifts{i in I, w in W, s in 1..2, s_prime in 2..3} integer;
 #var total_sum_of_shift_differences integer;
-var help_with_max_abs[i,w,s,s_prime] integer;
+#var help_with_max_abs[i,w,s,s_prime] integer;
 
 
 
@@ -71,9 +71,9 @@ maximize objective: #Maximize stand-ins and create schedules with similar weeks 
 ######################## Task demand for workers #####################################
 #number of workers to be assigned to different task types at different shifts (shall work for all days 1..7)
 subject to task_assign_amount_weekdays{w in W, d in 1..5,s in S[d], j in {'Exp', 'Info', 'PL'}}:
-	sum{i in I} x[i,w,d,s,j] <= task_worker_demand[d,s,j];
+	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
 subject to task_assign_amount_weekends{w in W, d in 6..7,s in S[d], j in J[d]}:
-	sum{i in I} x[i,w,d,s,j] <= task_worker_demand[d,s,j];
+	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
 
 subject to task_assign_amount_library_on_wheels{w in W, d in 1..5,s in S[d]}:
 	sum{i in I_lib_on_wheels} x[i,w,d,s,'LOW'] = lib_on_wheels_worker_demand[w,d,s];
@@ -207,7 +207,6 @@ subject to max_three_shifts_per_week{i in I, w in W, s in 1..3}:
 
 
 
->>>>>>> 3fb30dcee2c6c377bd2426cc1552ad795680c081
 ############### Third objective function constraints: Variation of shifts for workers #############
 #subject to num_of_days_with_same_shift_constraint{i in I, w in W, s in 1..3}:
 #	num_days_with_same_shift[i,w,s] = sum{d in 1..5} y[i,w,d,s];
