@@ -3,149 +3,10 @@
 % Linköping University Spring 2016
 % First version: 2016-01-27
 
-%            the super-template for a thesis at LiTH v 1.002
-%            ===============================================
-%
-% This is a template for writing a thesis at Linköpings Universitet
-%
-%   1 If you use the template to produce a final thesís (or some
-%     other document) consider the template to be in the public domain.
-%     This means that you can use and exploit it in any way. Otherwise
-%     read 2 below.
-%
-%   2 This template is licenced under a Creative Commons Attribution, 
-%     ShareAlike 2.5 license meaning that: 
-%
-%     You are free to:
-%       1. Share: to copy, distribute, display, and perform the work.
-%       2. Remix: to make derivative works.
-%
-%     Under the following conditions:
-%       1. Attribution. You must attribute the work in the manner
-%          specified by the author or licensor (see 11 below).
-%       2. Share Alike. If you alter, transform, or build upon this
-%          work, you may distribute the resulting work only under
-%          a license identical to this one.  t
-%       3. For any reuse or distribution, you must make clear to
-%          others the license terms of this work.
-%       4. Any of these conditions can be waived if you get permission
-%          from the copyright holder (see 1 above).
-%
-%     (See also http://creativecommons.org/licenses/by-sa/2.5/ )
-%
-%   3 Example: if you use this template to produce another template
-%     you must license it under the above license. And leave the 
-%     changelog intact (you may or may not add your name to it).
-%    
-%     Example: if you use this template to produce a final thesis
-%     you do not need to license your final thesis in any particular
-%     way - but if you find significant improvements to this template
-%     you may or may not share them.
-%
-%   4 if you find it useful - use it
-%
-%   5 if you do not find it useful - only use it for inspiration :)
-%
-%   6 if you find obvious errors: mail me or change them your self.
-%
-%   7 The text here are comments, when compiling this document
-%     lines starting with % will be ignored. 
-%
-%   8 You can read the comments then erase them and save the file as
-%     my_favourite_filename.tex to save the comments for a rainy day.
-%
-%   9 I have tried to make the strange pages automatic so that you do 
-%     not have to edit them by hand.
-%
-%  10 I have tried to explain tables, figures etc "on the fly" so that
-%     it will be easy for you to consult this template 
-%
-%  11 This template was compiled by me Per Erik Strandberg,
-%     www.pererikstrandberg.se while I wrote my D-uppsats in applied
-%     mathematics 2003/2004 at LiTH (accually it was finished after I
-%     had finished it), since I felt the need of a simple template. 
-%
-%  12 If you make contributions to this template and redistribute it
-%     feel free to add your name to the changelog below, but leave 
-%     all previous authors (this is required by the license).
-%
-%
-% Changelog (Authorname, email, date, contribution) 
-% -----------------------------------------------------
-%   * Per Erik Strandberg, per9000@gmail.com, 2004 apr 03: 
-%     From different sources added 2 frontpages, the library page,
-%     contents and the copyrightpage into one simple overviewable file.
-%     Added comments and (semi-)automatic commands for boring stuff to
-%     fill in manually (after having erased errorous automatic commands)
-%
-%   * Per Erik Strandberg, per9000@gmail.com, 2004 apr 30:
-%     Some spelling problems were fixed.
-%
-%   * Per Erik Strandberg, per9000@gmail.com, 2007 jan 23: released to
-%     the public domain for use only, redistribution of the template 
-%     licensed under Creative Commons Attribution-ShareAlike 2.5.
-%
-%
-% Stuff included are:
-% -------------------
-%   * Frontpage (fully automatic)
-%   * another frontpage (fully automatic)
-%   * library page (semiautomatic)
-%   * contents (preface, chapters, bibliography, appendix)
-%   * copyrightpage
-%   * my walkthrough, and a checklist :)
-%   * how to make an index (not that detailed)
-%
-% Files needed for this template:
-% -------------------------------
-%   * this file: template.tex
-%   * some LaTeX (and TeX?)-packages provided by administrator or downloaded
-%     to install them ask an administrator or use Miktex for windows.
-%   * some pictures in eps-format 
-%        - univlogo.eps   202 kb
-%        - epresslogo.eps 190 kb
-%
-% Recommended guides:
-% -------------------
-%   * the not so short introduction to LaTeX available at:
-%     http://www.ctan.org/tex-archive/info/lshort/english/lshort.pdf
-%     or google for "the not so short introduction to LaTeX"
-%   * your favourite local guide to LaTeX
-%
-% CHECKLIST - what MUST be done
-% -----------------------------
-%   * Fill in the newcommands starting on line ~ 80: author, abstract etc
-%   * If you are not writing a thesis on D level for 20 credits 
-%     you must change them to C and 10 or whatever on line ~ 200
-%   * The library page is automatic except for
-%        - department adress, line ~ 248
-%        - language, and report category (well marked)
-%        - and ISSN (0348-2960), line ~ 433 (just put nothing there if
-%          you do not know what it is or if you are not wrinting a
-%          thesis at MAI)
-%
-% KNOWN PROBLEMS AND SOLUTIONS:
-% ------------------------------
-%   P When in 12 pt mode the word licentiatavhandling is too large for
-%     the library page, it looks nice in 10 pt mode however.  
-%   S I just ignored this and hoped no one would mind.
-% 
-%   P Are the titlepages really centered in a good way?
-%   S I don't know- you tell me.
-
-% comments will be added in "realtime" like this:
-
-% in documentclass tag you could write 10pt for a more printerfriendly format,
-% or, if it is 10pt already, you could write 12pt for a more printer-
-% -unfriendly format working better in S5-size (the bookletsize).
-% But do not change a4paper to something else, the printing people
-% will just rescale your document to the appropriate size.
-% openright will force new chapter to start on the right
 \documentclass[a4paper, 10pt, twoside, openright]{book}
 \pagestyle{headings}
 
 % some of the packages used are
-%\usepackage[utf8]{inputenc}
 \usepackage{latexsym}
 \usepackage{eepic}
 \usepackage{makeidx}
@@ -440,82 +301,6 @@ MMI      & Michaelis-Menten Inhibition (or Inhibited)\index{MMI}
 % ..................chapter ...............................................
 \chapter{Introduction}
 
-\iffalse
-
-% I wanted sans serif in the ingress of every chapter, some people say
-% this is possible with the command \ingress or something, I don't know...
-\textsf{%
-This text is written as a master of science final
-thesis\footnote{No it is not- it is a LaTeX-template for people
-  writing them.}
-at Linköpings universitet
-by Per Erik Strandberg
-% sometimes you need ~ to force space
-with \putsupervisor~as supervisor and \putexaminer~as examiner,
-with Emacs in \LaTeX{}
-in 2003/2004.}
-
-\textsf{%
-This first chapter will define what is a Continuous stirred tank bioreactor
-and a chemostat. We give some background and formulate some main
-questions we wish to answer, and describe what topics are covered.  
-}
-
-
-\section{Background} 
-
-Modeling of biological growth in reactors\ldots
-by dynamical systems started in the 1950's,
-when Monod, and Novick and Szilard developed the concept of
-\emph{Continuous Stirred Tank (bio)Reactors}(CSTRs\index{CSTR}) that
-differed from traditional batchreactors.
-
-% this is one example of how to make a picture
-\begin{figure}[h]
-\begin{center}
-\begin{tabular}{|p{75mm}|}
-\hline \\
-\begin{picture}(130,090)
-\put(080,020){\line(1,0){050}}
-\put(080,020){\line(0,1){030}}
-\put(130,020){\line(0,1){030}}
-\multiput(080,045)(002,000){25}{\line(1,0){001}}
-\put(090,085){\vector(0,-1){35}}
-\put(123,025){\vector(1,0){25}}
-\put(082,025){$X$, $S$, $\mu$}
-\put(140,012){$F$, $X$, $S$}
-\put(092,065){$S_0$, $F$}
-\end{picture}\\
-\hline
-\end{tabular}
-\end{center}
-\caption{The ideal CSTR: the chemostat\ldots}
-\end{figure}
-
-A chemostat is typically made of a reactor\ldots 
-
-\section{Another section}
-
-This report provides a summary of already
-existing knowledge of bioreactors and a detailed analysis\ldots
-
-
-\section{Topics covered}
-There are five chapters (and this introduction)
-and two appendixes. Main topics dealt with are: 
-
-% this is my favourite command: description...
-\begin{description} 
-\item[Chapter 2:]{We explain the chemostat equations with the standard
-    Michaelis-Menten kinetics by starting with two simple models of
-    biological growth. We also present some tools useful for studying
-    dynamical systems in two dimensions.}   
-\item[Appendix A:]{An appendix dealing with tools used to simplify the
-    analysis of linearized stability in steady states.}
-\end{description}
-
-% -------------------------------------------------------------------------
-\fi
 % ----------------------------------From here ------------------------------
 
 \inputencoding{\enc}
@@ -596,19 +381,6 @@ growth-chamber, reactor, in which the bacteria reproduces.
 
 
 
-
-% the not so good structure of how a formula might look:
-%\begin{displaymath}
-%\mathbf{A}=
-%\left( \begin{array}{cc}
-%\ala \frac{S}{1+S} \frac{1}{(1+\frac{X}{\XC})^2} -1 
-%& \ala \frac{1}{(1+S)^2} \frac{X}{1+\frac{X}{\XC}}   \\
-%- \frac{S}{1+S} \frac{1}{(1+\frac{X}{\XC})^2} \phantom{+11} 
-%& - \frac{1}{(1+S)^2} \frac{X}{1+\frac{X}{\XC}}-1  \rule{0pt}{3ex}   \\
-%\end{array}\right).
-%\end{displaymath}
-
-
 % a big, bad table
 \begin{tabular}{|c|c|c|} \hline %\hline
 %-------------------------------------------------------------------
@@ -652,7 +424,9 @@ Monods chemostat does not ``feel'' this inhibition and does not care\ldots
 
 
 % this is a way of using the index subgroups
-% \section{Chemostats in series\index{Chemostat!In series} 
+% \section{Chemostats in series\index{Chemostat!In series}
+
+This document is an example of BibTeX using in bibliography management. Three items are cited: \textit{The \LaTeX\ Companion} book \cite{latexcompanion}, the Einstein journal paper \cite{einstein}, and the Donald Knuth's website \cite{knuthwebsite}. The \LaTeX\ related items are \cite{latexcompanion,knuthwebsite}.
 
 
 % ..................chapter ...............................................
@@ -669,32 +443,32 @@ Monods chemostat does not ``feel'' this inhibition and does not care\ldots
 % to something here you will get: "...according to [1] we have..." or
 % "...another observation made by [3,6,60] suggests that..."
 %
-Here is an example of how to cite books in your bibliography. This
-text will be displayed at the end of chapter two. This is some kind of
-bibiography, according to \cite{beta}, we have\ldots And according to
-\cite{beta,Glad} we have something else.
+%Here is an example of how to cite books in your bibliography. This
+%text will be displayed at the end of chapter two. This is some kind of
+%bibiography, according to \cite{beta}, we have\ldots And according to
+%\cite{beta,Glad} we have something else.
 
-\begin{thebibliography}{99}
+%\begin{thebibliography}{99}
+\bibliographystyle{unsrt}
+\bibliography{Chapters/References}
 
+%\bibitem{beta} % this beta is what you 'call' when you refer to beta
+%Lennart Råde, Bertil Westergren, 
+%(2001), 
+%\emph{Mathematics Handbook for Science and Engineering},
+%Studentlitteratur, 
+%Lund.
 
+%\bibitem{Glad} % and glag is the handle of Glad.
+%Torkel Glad, Lennart Ljung,
+%(1989), 
+%\emph{Reglerteknik grundläggande teori},
+%Studentlitteratur, 
+%Lund.
 
-\bibitem{beta} % this beta is what you 'call' when you refer to beta
-Lennart Råde, Bertil Westergren, 
-(2001), 
-\emph{Mathematics Handbook for Science and Engineering},
-Studentlitteratur, 
-Lund.
+%\end{thebibliography}
 
-\bibitem{Glad} % and glag is the handle of Glad.
-Torkel Glad, Lennart Ljung,
-(1989), 
-\emph{Reglerteknik grundläggande teori},
-Studentlitteratur, 
-Lund.
-
-\end{thebibliography}
-
-% .................. appendix ...................................
+%%% .................. appendix ...................................
 
 \appendix
 
