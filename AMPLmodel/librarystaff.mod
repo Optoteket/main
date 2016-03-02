@@ -15,6 +15,7 @@ set I_weekend_avail; #Set of workers available for weekend work. Subset of I
 set I_lib; #Set of librarians
 set I_ass; #Set of assistants
 set V; #Set of possible week rotations (shift the week by 1..5 steps)
+set I_lib_on_wheels; #Set of librarians available to work in library on wheels (Bokbussen)
 
 set Workers;
 
