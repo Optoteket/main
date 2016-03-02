@@ -202,8 +202,11 @@ subject to max_three_shifts_per_week{i in I, w in W, s in 1..3}:
 #	diff_num_same_shifts[i,w,s,s_prime] >= -help_with_max_abs[i,w,s,s_prime];
 
 
-######################### OLD! Means: Stand-ins PER TASK TYPE #################################
+<<<<<<< HEAD
+##############################################################################################
 
+######################### OLD! Means: Stand-ins PER TASK TYPE #################################
+=======
 
 
 
