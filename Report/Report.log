@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  3 MAR 2016 14:45
-=======
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  3 MAR 2016 12:17
->>>>>>> dc18dc940d63067c0bcffe20be5b45c8beb9f819
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  3 MAR 2016 16:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -493,7 +489,11 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \f@ncyO@erf=\skip49
 \f@ncyO@olf=\skip50
 \f@ncyO@orf=\skip51
-) (./Report.aux)
+) (./Report.aux
+
+LaTeX Warning: Label `PTSP' multiply defined.
+
+)
 \openout1 = `Report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 113.
@@ -511,8 +511,7 @@ LaTeX Font Info:    ... okay on input line 113.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 113.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 113.
 
-
-(/sw/texlive/2011/texmf-dist/tex/latex/base/ts1cmr.fd
+ (/sw/texlive/2011/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 113.
@@ -666,38 +665,38 @@ Chapter 2.
 (/sw/texlive/2011/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
 )
-<<<<<<< HEAD
-(./Chapters/LiteratureReview.tex [5]
-Overfull \hbox (4.55617pt too wide) in paragraph at lines 41--42
-=======
 (./Chapters/LiteratureReview.tex [5
 
 ]
-Overfull \hbox (4.55617pt too wide) in paragraph at lines 35--36
->>>>>>> dc18dc940d63067c0bcffe20be5b45c8beb9f819
+Overfull \hbox (24.69463pt too wide) in paragraph at lines 38--68
+[][] 
+ []
+
+[6]
+Overfull \hbox (4.55617pt too wide) in paragraph at lines 77--78
 []\OT1/cmr/m/n/10 "Task as-signe-ment for main-te-nance per-son-nel": Roberts a
 nd Es-cud-ero, 1983a,
  []
 
 
-Overfull \hbox (9.36456pt too wide) in paragraph at lines 57--57
+Overfull \hbox (9.36456pt too wide) in paragraph at lines 93--93
 []\OT1/cmr/bx/n/14.4 Fixed/flexible job schedul-ing prob-lem (FJSP) 
  []
 
-[6]
-Overfull \hbox (168.3344pt too wide) in paragraph at lines 60--62
+
+Overfull \hbox (168.3344pt too wide) in paragraph at lines 96--98
 \OT1/cmr/m/n/10 Task Schedul-ing Prob-lems" M. Kr-ish-namoor-thy http://www.sci
 encedirect.com/science/article/pii/S0377221711010435 
  []
 
 
-Overfull \hbox (94.41751pt too wide) in paragraph at lines 63--64
+Overfull \hbox (94.41751pt too wide) in paragraph at lines 99--100
 \OT1/cmr/m/n/10 time con-straints" Andr^^Se Rossi, http://www.sciencedirect.com
 /science/article/pii/S0305054809002251
  []
 
 
-Overfull \hbox (47.9452pt too wide) in paragraph at lines 65--68
+Overfull \hbox (47.9452pt too wide) in paragraph at lines 101--104
 []\OT1/cmr/m/n/10 Cemal []Ozg^^?uven http://www.sciencedirect.com/science/artic
 le/pii/S0307904X11004173
  []
@@ -723,39 +722,38 @@ File: univlogo.eps Graphic file (type eps)
  <univlogo.eps> [17
 
 
-Non-PDF special ignored!] (./Report.aux) ) 
+Non-PDF special ignored!] (./Report.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
  2835 strings out of 493633
  36816 string characters out of 3146323
- 94864 words of memory out of 3000000
+ 94903 words of memory out of 3000000
  6042 multiletter control sequences out of 15000+200000
  10808 words of font info for 42 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
  38i,16n,43p,782b,472s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/sw/texlive/2011/texmf-dist/fonts/en
-c/dvips/cm-super/cm-super-ts1.enc}</sw/texlive/2011/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmbx10.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmbx12.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mex10.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pf
-b></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></sw/te
-xlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></sw/texlive/201
-1/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></sw/texlive/2011/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmr12.pfb></sw/texlive/2011/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr5.pfb></sw/texlive/2011/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmr7.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr9.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmss
-10.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
-/sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></sw/texli
-ve/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></sw/texlive/2011/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></sw/texlive/2011/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmti7.pfb></sw/texlive/2011/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmtt8.pfb></sw/texlive/2011/texmf-dist/fonts/type1/publ
-ic/cm-super/sfrm1000.pfb>
-<<<<<<< HEAD
-Output written on Report.pdf (31 pages, 243755 bytes).
-=======
-Output written on Report.pdf (31 pages, 243360 bytes).
->>>>>>> dc18dc940d63067c0bcffe20be5b45c8beb9f819
+{/sw/texlive/2011/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</sw/t
+exlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></sw/texlive/2
+011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></sw/texlive/2011/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></sw/texlive/2011/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi10.pfb></sw/texlive/2011/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmmi5.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi7.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr10.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12
+.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></sw/
+texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></sw/texlive/20
+11/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></sw/texlive/2011/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmss10.pfb></sw/texlive/2011/texmf-dist/font
+s/type1/public/amsfonts/cm/cmsy10.pfb></sw/texlive/2011/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmsy5.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy7.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmti10.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.p
+fb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></sw/t
+exlive/2011/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on Report.pdf (31 pages, 248994 bytes).
 PDF statistics:
  182 PDF objects out of 1000 (max. 8388607)
  128 compressed objects within 2 object streams

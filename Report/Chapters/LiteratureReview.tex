@@ -13,8 +13,8 @@ The problem which is most similar to our problem is, however, task assignment. T
 and Rostering" Ernst et al. 2004,  covers papers from 1954. The bibliography covers the most important contributions to the area of scheduling up to the year 2004 and divides the area into different subcategories. Below, we have identified the most relevant areas of scheduling in relation to the problem at hand.
 \fi
 
-\section{Tour scheduling problem with a heterogenous work force (TSP)}\label{TSP}
-The tour scheduling problem involves creating work shifts with days off for a work force. 
+\section{Tour scheduling problem with a heterogenous work force}\label{TSP}
+The tour scheduling problem (TSP) involves creating work shifts with days off for a work force. 
 In the paper review of different scheduling problem written by Ernst et al. (2004) one can see a number of references to tour scheduling problems. However, there are significantly lower number of references regarding heterogeneous workforce which is of interest to us.
 
 Papers of interest:
@@ -26,48 +26,50 @@ Papers of interest:
 "An integer linear programming-based heuristic for scheduling heterogeneous, part-time service employees" Heterogenous work force, tour scheduling. Using two objective functions Hojati and Patil, 2010
 
 
-\section{Personnel task scheduling problem (PTSP)} \label{PTSP}
-There are several variants to the Personnel Task Scheduling Problem. The common attributes is to assign a set of tasks with fixed start and end time to staff members that possesses certain skills, allowing them to perform a subset of the available tasks. The start and end time of their shifts are also predetermined for each day.
+\section{Personnel task scheduling problem} \label{PTSP}
+In many practical instances production managers will face the personnel task scheduling problem (PTSP) while scheduling plant operations. It occurs when the rosterer or shift supervisor need to allocate tasks with specified start and end times to available personnel who have the required qualifications. Furthermore, it also occurs in situations where tasks of fixed times have been assigned to machines. Decisions will then have to be made regarding the amount of maintenance workers needed and which machine the workers are assigned to.
+
+There are several variants to the Personnel Task Scheduling Problem. The common attributes are to assign a set of tasks with fixed start and end time to staff members that possesses certain skills, allowing them to perform a subset of the available tasks. The start and end time of their shifts are also predetermined for each day.
 
 One variant, which also is the most simple, is called the \textit{Feasibility Problem} where the aim is to just find a feasible solution. This requires that each task is allocated to a qualified and available worker. It is also required that a worker can not be assigned more than one task simultaneously as well as tasks can not be pre-empted, meaning that each task has to be completed by one and the same worker.
 
+In Table \ref{PTSP} one can see attributes of PTSP variants. The nomenclature of the attributes T, S, Q, O refer to the \textit{Task type}, \textit{Shift type}, \textit{Qualifications} and \textit{Objective function} respectively. 
 \begin{table}[!h]
-\caption{Attributes of PTSP}
+\caption{PTSP variants}
 \label{PTSP}
-\begin{tabular}{|l|l|}
+\begin{tabular}{|c|c|l|}
 %-------------------------------------------------------------------
 \hline
-\textbf{Outer service} & \textbf{Property} \\ \hline
+\textbf{Attribute} & \textbf{Type} & \textbf{Explanation} \\ \hline
 %-------------------------------------------------------------------
- & Start time, end time, week and duration \
-\\ \hline 
+T & F & Fixed contiguous tasks \\
+& V & Variable task durations \\
+& S & Split (non-contiguous) tasks \\
+& C & Changeover times between consecutive tasks \\
+\hline 
 %-------------------------------------------------------------------
- & Station
-\\ \hline 
+S & F & Fixed, given shift lengths \\
+& I & Identical shifts which are effectively of infinite duration \\
+& D & Maximum duration without given start or end times \\
+& U & Unlimited number of shifts of each type available \\
+\hline 
 %-------------------------------------------------------------------
- & Number of qualified librarians demanded
-\\ \hline 
+Q & I & Identical qualification for all staff (homogeneous workforce) \\
+& H & Heterogeneous workforce \\
+\hline 
 %-------------------------------------------------------------------
- & Number of qualified assistants demanded
-\\ \hline 
-%-------------------------------------------------------------------
+O & F & No objective, just find a feasible schedule \\
+& A & Minimise assignment cost \\
+& T & Worktime costs including overtime \\
+& W & Minimise number of workers \\
+& U & Minimise unallocated tasks \\
+\hline  
 
-\textbf{Inner service} & \textbf{Property} \\ \hline
-%-------------------------------------------------------------------
- & Start time, end time, week and duration \
-\\ \hline 
-%-------------------------------------------------------------------
- & Type
-\\ \hline 
-%-------------------------------------------------------------------
- & Number of qualified librarians demanded
-\\ \hline 
-%-------------------------------------------------------------------
- & Number of qualified assistants demanded
-\\ \hline 
 %-------------------------------------------------------------------
 \end{tabular}
 \end{table}
+
+Our problem would be most related to the PTSP[F;F;H;F]. The difference is the objective function as we are looking to maximize the number of qualified stand-ins each day as well as maximize employee satisfaction by meeting their recommendations. 
 
 Most likely our problem. Definition is "in which a set of tasks with fixed start and finish times have to be allocated to a heterogeneous workforce". The objective of these problems is to minimise the overall cost of personnel required to perform all tasks.
 
