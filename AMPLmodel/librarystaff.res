@@ -413,7 +413,7 @@
 412     "x[1,1,2,2,'Info']"                              0
 413     "x[1,1,2,2,'PL']"                                0
 414     "x[1,1,2,2,'LOW']"                               0
-415     "x[1,1,2,3,'Exp']"                               1
+415     "x[1,1,2,3,'Exp']"                               0
 416     "x[1,1,2,3,'Info']"                              0
 417     "x[1,1,2,3,'PL']"                                0
 418     "x[1,1,2,3,'LOW']"                               0
@@ -585,7 +585,7 @@
 584     "x[1,3,2,2,'Info']"                              0
 585     "x[1,3,2,2,'PL']"                                0
 586     "x[1,3,2,2,'LOW']"                               0
-587     "x[1,3,2,3,'Exp']"                               1
+587     "x[1,3,2,3,'Exp']"                               0
 588     "x[1,3,2,3,'Info']"                              0
 589     "x[1,3,2,3,'PL']"                                0
 590     "x[1,3,2,3,'LOW']"                               0
@@ -663,7 +663,7 @@
 662     "x[1,4,1,4,'Info']"                              0
 663     "x[1,4,1,4,'PL']"                                0
 664     "x[1,4,1,4,'LOW']"                               0
-665     "x[1,4,2,1,'Exp']"                               0
+665     "x[1,4,2,1,'Exp']"                               1
 666     "x[1,4,2,1,'Info']"                              0
 667     "x[1,4,2,1,'PL']"                                0
 668     "x[1,4,2,1,'LOW']"                               0
@@ -671,7 +671,7 @@
 670     "x[1,4,2,2,'Info']"                              0
 671     "x[1,4,2,2,'PL']"                                0
 672     "x[1,4,2,2,'LOW']"                               0
-673     "x[1,4,2,3,'Exp']"                               1
+673     "x[1,4,2,3,'Exp']"                               0
 674     "x[1,4,2,3,'Info']"                              0
 675     "x[1,4,2,3,'PL']"                                0
 676     "x[1,4,2,3,'LOW']"                               0
@@ -757,7 +757,7 @@
 756     "x[1,5,2,2,'Info']"                              0
 757     "x[1,5,2,2,'PL']"                                0
 758     "x[1,5,2,2,'LOW']"                               0
-759     "x[1,5,2,3,'Exp']"                               1
+759     "x[1,5,2,3,'Exp']"                               0
 760     "x[1,5,2,3,'Info']"                              0
 761     "x[1,5,2,3,'PL']"                                0
 762     "x[1,5,2,3,'LOW']"                               0
@@ -1912,7 +1912,7 @@
 1911    "x[4,3,4,3,'PL']"                                0
 1912    "x[4,3,4,3,'LOW']"                               0
 1913    "x[4,3,4,4,'Exp']"                               0
-1914    "x[4,3,4,4,'Info']"                              0
+1914    "x[4,3,4,4,'Info']"                              1
 1915    "x[4,3,4,4,'PL']"                                0
 1916    "x[4,3,4,4,'LOW']"                               0
 1917    "x[4,3,5,1,'Exp']"                               0
@@ -2391,8 +2391,8 @@
 2390    "x[5,4,2,2,'Info']"                              0
 2391    "x[5,4,2,2,'PL']"                                0
 2392    "x[5,4,2,2,'LOW']"                               0
-2393    "x[5,4,2,3,'Exp']"                               0
-2394    "x[5,4,2,3,'Info']"                              1
+2393    "x[5,4,2,3,'Exp']"                               1
+2394    "x[5,4,2,3,'Info']"                              0
 2395    "x[5,4,2,3,'PL']"                                0
 2396    "x[5,4,2,3,'LOW']"                               0
 2397    "x[5,4,2,4,'Exp']"                               0
@@ -3632,7 +3632,7 @@
 3631    "x[8,3,4,3,'PL']"                                0
 3632    "x[8,3,4,3,'LOW']"                               0
 3633    "x[8,3,4,4,'Exp']"                               0
-3634    "x[8,3,4,4,'Info']"                              1
+3634    "x[8,3,4,4,'Info']"                              0
 3635    "x[8,3,4,4,'PL']"                                0
 3636    "x[8,3,4,4,'LOW']"                               0
 3637    "x[8,3,5,1,'Exp']"                               0
@@ -3747,8 +3747,8 @@
 3746    "x[8,5,1,1,'Info']"                              0
 3747    "x[8,5,1,1,'PL']"                                0
 3748    "x[8,5,1,1,'LOW']"                               0
-3749    "x[8,5,1,2,'Exp']"                               0
-3750    "x[8,5,1,2,'Info']"                              1
+3749    "x[8,5,1,2,'Exp']"                               1
+3750    "x[8,5,1,2,'Info']"                              0
 3751    "x[8,5,1,2,'PL']"                                0
 3752    "x[8,5,1,2,'LOW']"                               0
 3753    "x[8,5,1,3,'Exp']"                               0
@@ -4737,7 +4737,7 @@
 4736    "x[11,1,3,4,'Info']"                             0
 4737    "x[11,1,3,4,'PL']"                               0
 4738    "x[11,1,3,4,'LOW']"                              0
-4739    "x[11,1,4,1,'Exp']"                              1
+4739    "x[11,1,4,1,'Exp']"                              0
 4740    "x[11,1,4,1,'Info']"                             0
 4741    "x[11,1,4,1,'PL']"                               0
 4742    "x[11,1,4,1,'LOW']"                              0
@@ -4823,7 +4823,7 @@
 4822    "x[11,2,3,4,'Info']"                             0
 4823    "x[11,2,3,4,'PL']"                               0
 4824    "x[11,2,3,4,'LOW']"                              0
-4825    "x[11,2,4,1,'Exp']"                              1
+4825    "x[11,2,4,1,'Exp']"                              0
 4826    "x[11,2,4,1,'Info']"                             0
 4827    "x[11,2,4,1,'PL']"                               0
 4828    "x[11,2,4,1,'LOW']"                              0
@@ -5191,8 +5191,8 @@
 5190    "x[12,1,5,2,'Info']"                             0
 5191    "x[12,1,5,2,'PL']"                               0
 5192    "x[12,1,5,2,'LOW']"                              0
-5193    "x[12,1,5,3,'Exp']"                              0
-5194    "x[12,1,5,3,'Info']"                             1
+5193    "x[12,1,5,3,'Exp']"                              1
+5194    "x[12,1,5,3,'Info']"                             0
 5195    "x[12,1,5,3,'PL']"                               0
 5196    "x[12,1,5,3,'LOW']"                              0
 5197    "x[12,1,5,4,'Exp']"                              0
@@ -5299,8 +5299,8 @@
 5298    "x[12,3,1,2,'Info']"                             0
 5299    "x[12,3,1,2,'PL']"                               0
 5300    "x[12,3,1,2,'LOW']"                              0
-5301    "x[12,3,1,3,'Exp']"                              0
-5302    "x[12,3,1,3,'Info']"                             1
+5301    "x[12,3,1,3,'Exp']"                              1
+5302    "x[12,3,1,3,'Info']"                             0
 5303    "x[12,3,1,3,'PL']"                               0
 5304    "x[12,3,1,3,'LOW']"                              0
 5305    "x[12,3,1,4,'Exp']"                              0
@@ -6911,8 +6911,8 @@
 6910    "x[16,1,5,2,'Info']"                             0
 6911    "x[16,1,5,2,'PL']"                               0
 6912    "x[16,1,5,2,'LOW']"                              0
-6913    "x[16,1,5,3,'Exp']"                              1
-6914    "x[16,1,5,3,'Info']"                             0
+6913    "x[16,1,5,3,'Exp']"                              0
+6914    "x[16,1,5,3,'Info']"                             1
 6915    "x[16,1,5,3,'PL']"                               0
 6916    "x[16,1,5,3,'LOW']"                              0
 6917    "x[16,1,5,4,'Exp']"                              0
@@ -7552,7 +7552,7 @@
 7551    "x[17,4,2,2,'PL']"                               0
 7552    "x[17,4,2,2,'LOW']"                              0
 7553    "x[17,4,2,3,'Exp']"                              0
-7554    "x[17,4,2,3,'Info']"                             0
+7554    "x[17,4,2,3,'Info']"                             1
 7555    "x[17,4,2,3,'PL']"                               0
 7556    "x[17,4,2,3,'LOW']"                              0
 7557    "x[17,4,2,4,'Exp']"                              0
@@ -7723,7 +7723,7 @@
 7722    "x[18,1,2,2,'Info']"                             0
 7723    "x[18,1,2,2,'PL']"                               0
 7724    "x[18,1,2,2,'LOW']"                              0
-7725    "x[18,1,2,3,'Exp']"                              0
+7725    "x[18,1,2,3,'Exp']"                              1
 7726    "x[18,1,2,3,'Info']"                             0
 7727    "x[18,1,2,3,'PL']"                               0
 7728    "x[18,1,2,3,'LOW']"                              0
@@ -7895,7 +7895,7 @@
 7894    "x[18,3,2,2,'Info']"                             0
 7895    "x[18,3,2,2,'PL']"                               0
 7896    "x[18,3,2,2,'LOW']"                              0
-7897    "x[18,3,2,3,'Exp']"                              0
+7897    "x[18,3,2,3,'Exp']"                              1
 7898    "x[18,3,2,3,'Info']"                             0
 7899    "x[18,3,2,3,'PL']"                               0
 7900    "x[18,3,2,3,'LOW']"                              0
@@ -8205,8 +8205,8 @@
 8204    "x[19,1,5,3,'Info']"                             0
 8205    "x[19,1,5,3,'PL']"                               0
 8206    "x[19,1,5,3,'LOW']"                              0
-8207    "x[19,1,5,4,'Exp']"                              0
-8208    "x[19,1,5,4,'Info']"                             1
+8207    "x[19,1,5,4,'Exp']"                              1
+8208    "x[19,1,5,4,'Info']"                             0
 8209    "x[19,1,5,4,'PL']"                               0
 8210    "x[19,1,5,4,'LOW']"                              0
 8211    "x[19,1,6,1,'Exp']"                              1
@@ -8477,8 +8477,8 @@
 8476    "x[19,5,1,1,'Info']"                             0
 8477    "x[19,5,1,1,'PL']"                               0
 8478    "x[19,5,1,1,'LOW']"                              0
-8479    "x[19,5,1,2,'Exp']"                              1
-8480    "x[19,5,1,2,'Info']"                             0
+8479    "x[19,5,1,2,'Exp']"                              0
+8480    "x[19,5,1,2,'Info']"                             1
 8481    "x[19,5,1,2,'PL']"                               0
 8482    "x[19,5,1,2,'LOW']"                              0
 8483    "x[19,5,1,3,'Exp']"                              0
@@ -8607,7 +8607,7 @@
 8606    "x[20,1,3,4,'Info']"                             0
 8607    "x[20,1,3,4,'PL']"                               0
 8608    "x[20,1,3,4,'LOW']"                              0
-8609    "x[20,1,4,1,'Exp']"                              0
+8609    "x[20,1,4,1,'Exp']"                              1
 8610    "x[20,1,4,1,'Info']"                             0
 8611    "x[20,1,4,1,'PL']"                               0
 8612    "x[20,1,4,1,'LOW']"                              0
@@ -8693,7 +8693,7 @@
 8692    "x[20,2,3,4,'Info']"                             0
 8693    "x[20,2,3,4,'PL']"                               0
 8694    "x[20,2,3,4,'LOW']"                              0
-8695    "x[20,2,4,1,'Exp']"                              0
+8695    "x[20,2,4,1,'Exp']"                              1
 8696    "x[20,2,4,1,'Info']"                             0
 8697    "x[20,2,4,1,'PL']"                               0
 8698    "x[20,2,4,1,'LOW']"                              0
@@ -10355,8 +10355,8 @@
 10354   "x[24,1,5,3,'Info']"                             0
 10355   "x[24,1,5,3,'PL']"                               0
 10356   "x[24,1,5,3,'LOW']"                              0
-10357   "x[24,1,5,4,'Exp']"                              1
-10358   "x[24,1,5,4,'Info']"                             0
+10357   "x[24,1,5,4,'Exp']"                              0
+10358   "x[24,1,5,4,'Info']"                             1
 10359   "x[24,1,5,4,'PL']"                               0
 10360   "x[24,1,5,4,'LOW']"                              0
 10361   "x[24,1,6,1,'Exp']"                              0
@@ -10647,7 +10647,7 @@
 10646   "x[24,5,2,2,'Info']"                             0
 10647   "x[24,5,2,2,'PL']"                               0
 10648   "x[24,5,2,2,'LOW']"                              0
-10649   "x[24,5,2,3,'Exp']"                              0
+10649   "x[24,5,2,3,'Exp']"                              1
 10650   "x[24,5,2,3,'Info']"                             0
 10651   "x[24,5,2,3,'PL']"                               0
 10652   "x[24,5,2,3,'LOW']"                              0
@@ -11241,7 +11241,7 @@
 11240   "x[26,2,1,4,'Info']"                             0
 11241   "x[26,2,1,4,'PL']"                               0
 11242   "x[26,2,1,4,'LOW']"                              0
-11243   "x[26,2,2,1,'Exp']"                              1
+11243   "x[26,2,2,1,'Exp']"                              0
 11244   "x[26,2,2,1,'Info']"                             0
 11245   "x[26,2,2,1,'PL']"                               0
 11246   "x[26,2,2,1,'LOW']"                              0
@@ -11413,7 +11413,7 @@
 11412   "x[26,4,1,4,'Info']"                             0
 11413   "x[26,4,1,4,'PL']"                               0
 11414   "x[26,4,1,4,'LOW']"                              0
-11415   "x[26,4,2,1,'Exp']"                              1
+11415   "x[26,4,2,1,'Exp']"                              0
 11416   "x[26,4,2,1,'Info']"                             0
 11417   "x[26,4,2,1,'PL']"                               0
 11418   "x[26,4,2,1,'LOW']"                              0
@@ -12961,7 +12961,7 @@
 12960   "x[30,2,1,4,'Info']"                             0
 12961   "x[30,2,1,4,'PL']"                               0
 12962   "x[30,2,1,4,'LOW']"                              0
-12963   "x[30,2,2,1,'Exp']"                              0
+12963   "x[30,2,2,1,'Exp']"                              1
 12964   "x[30,2,2,1,'Info']"                             0
 12965   "x[30,2,2,1,'PL']"                               0
 12966   "x[30,2,2,1,'LOW']"                              0
@@ -13341,8 +13341,8 @@
 13340   "x[31,1,4,1,'Info']"                             0
 13341   "x[31,1,4,1,'PL']"                               0
 13342   "x[31,1,4,1,'LOW']"                              0
-13343   "x[31,1,4,2,'Exp']"                              0
-13344   "x[31,1,4,2,'Info']"                             1
+13343   "x[31,1,4,2,'Exp']"                              1
+13344   "x[31,1,4,2,'Info']"                             0
 13345   "x[31,1,4,2,'PL']"                               0
 13346   "x[31,1,4,2,'LOW']"                              0
 13347   "x[31,1,4,3,'Exp']"                              0
@@ -13771,8 +13771,8 @@
 13770   "x[32,1,4,1,'Info']"                             0
 13771   "x[32,1,4,1,'PL']"                               0
 13772   "x[32,1,4,1,'LOW']"                              0
-13773   "x[32,1,4,2,'Exp']"                              1
-13774   "x[32,1,4,2,'Info']"                             0
+13773   "x[32,1,4,2,'Exp']"                              0
+13774   "x[32,1,4,2,'Info']"                             1
 13775   "x[32,1,4,2,'PL']"                               0
 13776   "x[32,1,4,2,'LOW']"                              0
 13777   "x[32,1,4,3,'Exp']"                              0
@@ -16049,8 +16049,8 @@
 16048   "x[37,3,1,2,'Info']"                             0
 16049   "x[37,3,1,2,'PL']"                               0
 16050   "x[37,3,1,2,'LOW']"                              0
-16051   "x[37,3,1,3,'Exp']"                              1
-16052   "x[37,3,1,3,'Info']"                             0
+16051   "x[37,3,1,3,'Exp']"                              0
+16052   "x[37,3,1,3,'Info']"                             1
 16053   "x[37,3,1,3,'PL']"                               0
 16054   "x[37,3,1,3,'LOW']"                              0
 16055   "x[37,3,1,4,'Exp']"                              0
@@ -17160,7 +17160,7 @@
 17159   "x[39,5,7,1,'Info']"                             0
 17160   "x[39,5,7,1,'HB']"                               0
 17161   'stand_in[1,1,1]'                                0
-17162   'stand_in[1,1,2]'                                0
+17162   'stand_in[1,1,2]'                                1
 17163   'stand_in[1,1,3]'                                0
 17164   'stand_in[1,1,4]'                                0
 17165   'stand_in[1,1,5]'                                1
@@ -17174,7 +17174,7 @@
 17173   'stand_in[1,2,6]'                                0
 17174   'stand_in[1,2,7]'                                0
 17175   'stand_in[1,3,1]'                                0
-17176   'stand_in[1,3,2]'                                0
+17176   'stand_in[1,3,2]'                                1
 17177   'stand_in[1,3,3]'                                0
 17178   'stand_in[1,3,4]'                                0
 17179   'stand_in[1,3,5]'                                0
@@ -17188,7 +17188,7 @@
 17187   'stand_in[1,4,6]'                                0
 17188   'stand_in[1,4,7]'                                0
 17189   'stand_in[1,5,1]'                                0
-17190   'stand_in[1,5,2]'                                0
+17190   'stand_in[1,5,2]'                                1
 17191   'stand_in[1,5,3]'                                0
 17192   'stand_in[1,5,4]'                                0
 17193   'stand_in[1,5,5]'                                0
@@ -17281,7 +17281,7 @@
 17280   'stand_in[4,3,1]'                                0
 17281   'stand_in[4,3,2]'                                0
 17282   'stand_in[4,3,3]'                                1
-17283   'stand_in[4,3,4]'                                1
+17283   'stand_in[4,3,4]'                                0
 17284   'stand_in[4,3,5]'                                0
 17285   'stand_in[4,3,6]'                                0
 17286   'stand_in[4,3,7]'                                0
@@ -17421,7 +17421,7 @@
 17420   'stand_in[8,3,1]'                                0
 17421   'stand_in[8,3,2]'                                0
 17422   'stand_in[8,3,3]'                                0
-17423   'stand_in[8,3,4]'                                0
+17423   'stand_in[8,3,4]'                                1
 17424   'stand_in[8,3,5]'                                0
 17425   'stand_in[8,3,6]'                                0
 17426   'stand_in[8,3,7]'                                0
@@ -17741,7 +17741,7 @@
 17740   'stand_in[17,3,6]'                               0
 17741   'stand_in[17,3,7]'                               0
 17742   'stand_in[17,4,1]'                               0
-17743   'stand_in[17,4,2]'                               1
+17743   'stand_in[17,4,2]'                               0
 17744   'stand_in[17,4,3]'                               0
 17745   'stand_in[17,4,4]'                               0
 17746   'stand_in[17,4,5]'                               0
@@ -17755,7 +17755,7 @@
 17754   'stand_in[17,5,6]'                               0
 17755   'stand_in[17,5,7]'                               0
 17756   'stand_in[18,1,1]'                               1
-17757   'stand_in[18,1,2]'                               1
+17757   'stand_in[18,1,2]'                               0
 17758   'stand_in[18,1,3]'                               0
 17759   'stand_in[18,1,4]'                               1
 17760   'stand_in[18,1,5]'                               0
@@ -17769,7 +17769,7 @@
 17768   'stand_in[18,2,6]'                               0
 17769   'stand_in[18,2,7]'                               0
 17770   'stand_in[18,3,1]'                               0
-17771   'stand_in[18,3,2]'                               1
+17771   'stand_in[18,3,2]'                               0
 17772   'stand_in[18,3,3]'                               1
 17773   'stand_in[18,3,4]'                               0
 17774   'stand_in[18,3,5]'                               0
@@ -17827,14 +17827,14 @@
 17826   'stand_in[20,1,1]'                               0
 17827   'stand_in[20,1,2]'                               1
 17828   'stand_in[20,1,3]'                               0
-17829   'stand_in[20,1,4]'                               1
+17829   'stand_in[20,1,4]'                               0
 17830   'stand_in[20,1,5]'                               0
 17831   'stand_in[20,1,6]'                               0
 17832   'stand_in[20,1,7]'                               0
 17833   'stand_in[20,2,1]'                               0
 17834   'stand_in[20,2,2]'                               1
 17835   'stand_in[20,2,3]'                               1
-17836   'stand_in[20,2,4]'                               1
+17836   'stand_in[20,2,4]'                               0
 17837   'stand_in[20,2,5]'                               0
 17838   'stand_in[20,2,6]'                               0
 17839   'stand_in[20,2,7]'                               0
@@ -18529,7 +18529,7 @@
 18528   'y[1,1,1,3]'                                     0
 18529   'y[1,1,2,1]'                                     0
 18530   'y[1,1,2,2]'                                     0
-18531   'y[1,1,2,3]'                                     1
+18531   'y[1,1,2,3]'                                     0
 18532   'y[1,1,3,1]'                                     0
 18533   'y[1,1,3,2]'                                     0
 18534   'y[1,1,3,3]'                                     0
@@ -18559,7 +18559,7 @@
 18558   'y[1,3,1,3]'                                     0
 18559   'y[1,3,2,1]'                                     0
 18560   'y[1,3,2,2]'                                     0
-18561   'y[1,3,2,3]'                                     1
+18561   'y[1,3,2,3]'                                     0
 18562   'y[1,3,3,1]'                                     0
 18563   'y[1,3,3,2]'                                     0
 18564   'y[1,3,3,3]'                                     0
@@ -18572,9 +18572,9 @@
 18571   'y[1,4,1,1]'                                     0
 18572   'y[1,4,1,2]'                                     0
 18573   'y[1,4,1,3]'                                     0
-18574   'y[1,4,2,1]'                                     0
+18574   'y[1,4,2,1]'                                     1
 18575   'y[1,4,2,2]'                                     0
-18576   'y[1,4,2,3]'                                     1
+18576   'y[1,4,2,3]'                                     0
 18577   'y[1,4,3,1]'                                     0
 18578   'y[1,4,3,2]'                                     0
 18579   'y[1,4,3,3]'                                     0
@@ -18589,7 +18589,7 @@
 18588   'y[1,5,1,3]'                                     0
 18589   'y[1,5,2,1]'                                     0
 18590   'y[1,5,2,2]'                                     0
-18591   'y[1,5,2,3]'                                     1
+18591   'y[1,5,2,3]'                                     0
 18592   'y[1,5,3,1]'                                     0
 18593   'y[1,5,3,2]'                                     0
 18594   'y[1,5,3,3]'                                     0
@@ -19283,7 +19283,7 @@
 19282   'y[11,1,3,1]'                                    0
 19283   'y[11,1,3,2]'                                    0
 19284   'y[11,1,3,3]'                                    0
-19285   'y[11,1,4,1]'                                    1
+19285   'y[11,1,4,1]'                                    0
 19286   'y[11,1,4,2]'                                    0
 19287   'y[11,1,4,3]'                                    0
 19288   'y[11,1,5,1]'                                    0
@@ -19298,7 +19298,7 @@
 19297   'y[11,2,3,1]'                                    0
 19298   'y[11,2,3,2]'                                    0
 19299   'y[11,2,3,3]'                                    0
-19300   'y[11,2,4,1]'                                    1
+19300   'y[11,2,4,1]'                                    0
 19301   'y[11,2,4,2]'                                    0
 19302   'y[11,2,4,3]'                                    0
 19303   'y[11,2,5,1]'                                    0
@@ -19774,7 +19774,7 @@
 19773   'y[17,4,1,3]'                                    1
 19774   'y[17,4,2,1]'                                    0
 19775   'y[17,4,2,2]'                                    0
-19776   'y[17,4,2,3]'                                    0
+19776   'y[17,4,2,3]'                                    1
 19777   'y[17,4,3,1]'                                    1
 19778   'y[17,4,3,2]'                                    0
 19779   'y[17,4,3,3]'                                    0
@@ -19804,7 +19804,7 @@
 19803   'y[18,1,1,3]'                                    0
 19804   'y[18,1,2,1]'                                    0
 19805   'y[18,1,2,2]'                                    0
-19806   'y[18,1,2,3]'                                    0
+19806   'y[18,1,2,3]'                                    1
 19807   'y[18,1,3,1]'                                    1
 19808   'y[18,1,3,2]'                                    0
 19809   'y[18,1,3,3]'                                    0
@@ -19834,7 +19834,7 @@
 19833   'y[18,3,1,3]'                                    0
 19834   'y[18,3,2,1]'                                    0
 19835   'y[18,3,2,2]'                                    0
-19836   'y[18,3,2,3]'                                    0
+19836   'y[18,3,2,3]'                                    1
 19837   'y[18,3,3,1]'                                    0
 19838   'y[18,3,3,2]'                                    0
 19839   'y[18,3,3,3]'                                    0
@@ -19958,7 +19958,7 @@
 19957   'y[20,1,3,1]'                                    0
 19958   'y[20,1,3,2]'                                    1
 19959   'y[20,1,3,3]'                                    0
-19960   'y[20,1,4,1]'                                    0
+19960   'y[20,1,4,1]'                                    1
 19961   'y[20,1,4,2]'                                    0
 19962   'y[20,1,4,3]'                                    0
 19963   'y[20,1,5,1]'                                    0
@@ -19973,7 +19973,7 @@
 19972   'y[20,2,3,1]'                                    0
 19973   'y[20,2,3,2]'                                    0
 19974   'y[20,2,3,3]'                                    0
-19975   'y[20,2,4,1]'                                    0
+19975   'y[20,2,4,1]'                                    1
 19976   'y[20,2,4,2]'                                    0
 19977   'y[20,2,4,3]'                                    0
 19978   'y[20,2,5,1]'                                    0
@@ -20314,7 +20314,7 @@
 20313   'y[24,5,1,3]'                                    0
 20314   'y[24,5,2,1]'                                    0
 20315   'y[24,5,2,2]'                                    0
-20316   'y[24,5,2,3]'                                    0
+20316   'y[24,5,2,3]'                                    1
 20317   'y[24,5,3,1]'                                    0
 20318   'y[24,5,3,2]'                                    0
 20319   'y[24,5,3,3]'                                    0
@@ -20417,7 +20417,7 @@
 20416   'y[26,2,1,1]'                                    0
 20417   'y[26,2,1,2]'                                    0
 20418   'y[26,2,1,3]'                                    0
-20419   'y[26,2,2,1]'                                    1
+20419   'y[26,2,2,1]'                                    0
 20420   'y[26,2,2,2]'                                    0
 20421   'y[26,2,2,3]'                                    0
 20422   'y[26,2,3,1]'                                    0
@@ -20447,7 +20447,7 @@
 20446   'y[26,4,1,1]'                                    0
 20447   'y[26,4,1,2]'                                    0
 20448   'y[26,4,1,3]'                                    0
-20449   'y[26,4,2,1]'                                    1
+20449   'y[26,4,2,1]'                                    0
 20450   'y[26,4,2,2]'                                    0
 20451   'y[26,4,2,3]'                                    0
 20452   'y[26,4,3,1]'                                    0
@@ -20717,7 +20717,7 @@
 20716   'y[30,2,1,1]'                                    0
 20717   'y[30,2,1,2]'                                    0
 20718   'y[30,2,1,3]'                                    0
-20719   'y[30,2,2,1]'                                    0
+20719   'y[30,2,2,1]'                                    1
 20720   'y[30,2,2,2]'                                    0
 20721   'y[30,2,2,3]'                                    0
 20722   'y[30,2,3,1]'                                    0
@@ -21449,7 +21449,7 @@
 21448   'y[39,5,5,1]'                                    0
 21449   'y[39,5,5,2]'                                    0
 21450   'y[39,5,5,3]'                                    0
-21451   lowest_stand_in_amount                           2
+21451   lowest_stand_in_amount                           1
 21452   'shifts_that_differ_between_weeks[1,1,1,1,1]'    0
 21453   'shifts_that_differ_between_weeks[1,1,1,1,2]'    0
 21454   'shifts_that_differ_between_weeks[1,1,1,1,3]'    0
@@ -21470,7 +21470,7 @@
 21469   'shifts_that_differ_between_weeks[1,1,2,1,3]'    0
 21470   'shifts_that_differ_between_weeks[1,1,2,2,1]'    0
 21471   'shifts_that_differ_between_weeks[1,1,2,2,2]'    0
-21472   'shifts_that_differ_between_weeks[1,1,2,2,3]'    0
+21472   'shifts_that_differ_between_weeks[1,1,2,2,3]'    1
 21473   'shifts_that_differ_between_weeks[1,1,2,3,1]'    0
 21474   'shifts_that_differ_between_weeks[1,1,2,3,2]'    0
 21475   'shifts_that_differ_between_weeks[1,1,2,3,3]'    0
@@ -21498,7 +21498,7 @@
 21497   'shifts_that_differ_between_weeks[1,1,4,1,1]'    1
 21498   'shifts_that_differ_between_weeks[1,1,4,1,2]'    0
 21499   'shifts_that_differ_between_weeks[1,1,4,1,3]'    0
-21500   'shifts_that_differ_between_weeks[1,1,4,2,1]'    0
+21500   'shifts_that_differ_between_weeks[1,1,4,2,1]'    1
 21501   'shifts_that_differ_between_weeks[1,1,4,2,2]'    0
 21502   'shifts_that_differ_between_weeks[1,1,4,2,3]'    0
 21503   'shifts_that_differ_between_weeks[1,1,4,3,1]'    0
@@ -21560,7 +21560,7 @@
 21559   'shifts_that_differ_between_weeks[1,2,3,1,3]'    0
 21560   'shifts_that_differ_between_weeks[1,2,3,2,1]'    0
 21561   'shifts_that_differ_between_weeks[1,2,3,2,2]'    0
-21562   'shifts_that_differ_between_weeks[1,2,3,2,3]'    0
+21562   'shifts_that_differ_between_weeks[1,2,3,2,3]'    1
 21563   'shifts_that_differ_between_weeks[1,2,3,3,1]'    0
 21564   'shifts_that_differ_between_weeks[1,2,3,3,2]'    0
 21565   'shifts_that_differ_between_weeks[1,2,3,3,3]'    0
@@ -21573,9 +21573,9 @@
 21572   'shifts_that_differ_between_weeks[1,2,4,1,1]'    1
 21573   'shifts_that_differ_between_weeks[1,2,4,1,2]'    0
 21574   'shifts_that_differ_between_weeks[1,2,4,1,3]'    0
-21575   'shifts_that_differ_between_weeks[1,2,4,2,1]'    0
+21575   'shifts_that_differ_between_weeks[1,2,4,2,1]'    1
 21576   'shifts_that_differ_between_weeks[1,2,4,2,2]'    0
-21577   'shifts_that_differ_between_weeks[1,2,4,2,3]'    0
+21577   'shifts_that_differ_between_weeks[1,2,4,2,3]'    1
 21578   'shifts_that_differ_between_weeks[1,2,4,3,1]'    0
 21579   'shifts_that_differ_between_weeks[1,2,4,3,2]'    0
 21580   'shifts_that_differ_between_weeks[1,2,4,3,3]'    0
@@ -21590,7 +21590,7 @@
 21589   'shifts_that_differ_between_weeks[1,2,5,1,3]'    0
 21590   'shifts_that_differ_between_weeks[1,2,5,2,1]'    0
 21591   'shifts_that_differ_between_weeks[1,2,5,2,2]'    0
-21592   'shifts_that_differ_between_weeks[1,2,5,2,3]'    0
+21592   'shifts_that_differ_between_weeks[1,2,5,2,3]'    1
 21593   'shifts_that_differ_between_weeks[1,2,5,3,1]'    0
 21594   'shifts_that_differ_between_weeks[1,2,5,3,2]'    0
 21595   'shifts_that_differ_between_weeks[1,2,5,3,3]'    0
@@ -21648,7 +21648,7 @@
 21647   'shifts_that_differ_between_weeks[1,3,4,1,1]'    1
 21648   'shifts_that_differ_between_weeks[1,3,4,1,2]'    0
 21649   'shifts_that_differ_between_weeks[1,3,4,1,3]'    0
-21650   'shifts_that_differ_between_weeks[1,3,4,2,1]'    0
+21650   'shifts_that_differ_between_weeks[1,3,4,2,1]'    1
 21651   'shifts_that_differ_between_weeks[1,3,4,2,2]'    0
 21652   'shifts_that_differ_between_weeks[1,3,4,2,3]'    0
 21653   'shifts_that_differ_between_weeks[1,3,4,3,1]'    0
@@ -21738,7 +21738,7 @@
 21737   'shifts_that_differ_between_weeks[1,4,5,1,1]'    1
 21738   'shifts_that_differ_between_weeks[1,4,5,1,2]'    0
 21739   'shifts_that_differ_between_weeks[1,4,5,1,3]'    0
-21740   'shifts_that_differ_between_weeks[1,4,5,2,1]'    0
+21740   'shifts_that_differ_between_weeks[1,4,5,2,1]'    1
 21741   'shifts_that_differ_between_weeks[1,4,5,2,2]'    0
 21742   'shifts_that_differ_between_weeks[1,4,5,2,3]'    0
 21743   'shifts_that_differ_between_weeks[1,4,5,3,1]'    0
@@ -25239,7 +25239,7 @@
 25238   'shifts_that_differ_between_weeks[11,1,3,3,1]'   0
 25239   'shifts_that_differ_between_weeks[11,1,3,3,2]'   0
 25240   'shifts_that_differ_between_weeks[11,1,3,3,3]'   0
-25241   'shifts_that_differ_between_weeks[11,1,3,4,1]'   0
+25241   'shifts_that_differ_between_weeks[11,1,3,4,1]'   1
 25242   'shifts_that_differ_between_weeks[11,1,3,4,2]'   0
 25243   'shifts_that_differ_between_weeks[11,1,3,4,3]'   0
 25244   'shifts_that_differ_between_weeks[11,1,3,5,1]'   0
@@ -25254,7 +25254,7 @@
 25253   'shifts_that_differ_between_weeks[11,1,4,3,1]'   0
 25254   'shifts_that_differ_between_weeks[11,1,4,3,2]'   0
 25255   'shifts_that_differ_between_weeks[11,1,4,3,3]'   0
-25256   'shifts_that_differ_between_weeks[11,1,4,4,1]'   0
+25256   'shifts_that_differ_between_weeks[11,1,4,4,1]'   1
 25257   'shifts_that_differ_between_weeks[11,1,4,4,2]'   0
 25258   'shifts_that_differ_between_weeks[11,1,4,4,3]'   0
 25259   'shifts_that_differ_between_weeks[11,1,4,5,1]'   0
@@ -25269,7 +25269,7 @@
 25268   'shifts_that_differ_between_weeks[11,1,5,3,1]'   0
 25269   'shifts_that_differ_between_weeks[11,1,5,3,2]'   0
 25270   'shifts_that_differ_between_weeks[11,1,5,3,3]'   0
-25271   'shifts_that_differ_between_weeks[11,1,5,4,1]'   0
+25271   'shifts_that_differ_between_weeks[11,1,5,4,1]'   1
 25272   'shifts_that_differ_between_weeks[11,1,5,4,2]'   0
 25273   'shifts_that_differ_between_weeks[11,1,5,4,3]'   0
 25274   'shifts_that_differ_between_weeks[11,1,5,5,1]'   0
@@ -25314,7 +25314,7 @@
 25313   'shifts_that_differ_between_weeks[11,2,3,3,1]'   0
 25314   'shifts_that_differ_between_weeks[11,2,3,3,2]'   0
 25315   'shifts_that_differ_between_weeks[11,2,3,3,3]'   0
-25316   'shifts_that_differ_between_weeks[11,2,3,4,1]'   0
+25316   'shifts_that_differ_between_weeks[11,2,3,4,1]'   1
 25317   'shifts_that_differ_between_weeks[11,2,3,4,2]'   0
 25318   'shifts_that_differ_between_weeks[11,2,3,4,3]'   0
 25319   'shifts_that_differ_between_weeks[11,2,3,5,1]'   0
@@ -25329,7 +25329,7 @@
 25328   'shifts_that_differ_between_weeks[11,2,4,3,1]'   0
 25329   'shifts_that_differ_between_weeks[11,2,4,3,2]'   0
 25330   'shifts_that_differ_between_weeks[11,2,4,3,3]'   0
-25331   'shifts_that_differ_between_weeks[11,2,4,4,1]'   0
+25331   'shifts_that_differ_between_weeks[11,2,4,4,1]'   1
 25332   'shifts_that_differ_between_weeks[11,2,4,4,2]'   0
 25333   'shifts_that_differ_between_weeks[11,2,4,4,3]'   0
 25334   'shifts_that_differ_between_weeks[11,2,4,5,1]'   0
@@ -25344,7 +25344,7 @@
 25343   'shifts_that_differ_between_weeks[11,2,5,3,1]'   0
 25344   'shifts_that_differ_between_weeks[11,2,5,3,2]'   0
 25345   'shifts_that_differ_between_weeks[11,2,5,3,3]'   0
-25346   'shifts_that_differ_between_weeks[11,2,5,4,1]'   0
+25346   'shifts_that_differ_between_weeks[11,2,5,4,1]'   1
 25347   'shifts_that_differ_between_weeks[11,2,5,4,2]'   0
 25348   'shifts_that_differ_between_weeks[11,2,5,4,3]'   0
 25349   'shifts_that_differ_between_weeks[11,2,5,5,1]'   0
@@ -27500,7 +27500,7 @@
 27499   'shifts_that_differ_between_weeks[17,1,4,1,3]'   0
 27500   'shifts_that_differ_between_weeks[17,1,4,2,1]'   0
 27501   'shifts_that_differ_between_weeks[17,1,4,2,2]'   0
-27502   'shifts_that_differ_between_weeks[17,1,4,2,3]'   0
+27502   'shifts_that_differ_between_weeks[17,1,4,2,3]'   1
 27503   'shifts_that_differ_between_weeks[17,1,4,3,1]'   0
 27504   'shifts_that_differ_between_weeks[17,1,4,3,2]'   0
 27505   'shifts_that_differ_between_weeks[17,1,4,3,3]'   0
@@ -27575,7 +27575,7 @@
 27574   'shifts_that_differ_between_weeks[17,2,4,1,3]'   1
 27575   'shifts_that_differ_between_weeks[17,2,4,2,1]'   1
 27576   'shifts_that_differ_between_weeks[17,2,4,2,2]'   0
-27577   'shifts_that_differ_between_weeks[17,2,4,2,3]'   0
+27577   'shifts_that_differ_between_weeks[17,2,4,2,3]'   1
 27578   'shifts_that_differ_between_weeks[17,2,4,3,1]'   1
 27579   'shifts_that_differ_between_weeks[17,2,4,3,2]'   0
 27580   'shifts_that_differ_between_weeks[17,2,4,3,3]'   0
@@ -27650,7 +27650,7 @@
 27649   'shifts_that_differ_between_weeks[17,3,4,1,3]'   1
 27650   'shifts_that_differ_between_weeks[17,3,4,2,1]'   1
 27651   'shifts_that_differ_between_weeks[17,3,4,2,2]'   0
-27652   'shifts_that_differ_between_weeks[17,3,4,2,3]'   0
+27652   'shifts_that_differ_between_weeks[17,3,4,2,3]'   1
 27653   'shifts_that_differ_between_weeks[17,3,4,3,1]'   1
 27654   'shifts_that_differ_between_weeks[17,3,4,3,2]'   1
 27655   'shifts_that_differ_between_weeks[17,3,4,3,3]'   0
@@ -27740,7 +27740,7 @@
 27739   'shifts_that_differ_between_weeks[17,4,5,1,3]'   1
 27740   'shifts_that_differ_between_weeks[17,4,5,2,1]'   0
 27741   'shifts_that_differ_between_weeks[17,4,5,2,2]'   1
-27742   'shifts_that_differ_between_weeks[17,4,5,2,3]'   0
+27742   'shifts_that_differ_between_weeks[17,4,5,2,3]'   1
 27743   'shifts_that_differ_between_weeks[17,4,5,3,1]'   0
 27744   'shifts_that_differ_between_weeks[17,4,5,3,2]'   0
 27745   'shifts_that_differ_between_weeks[17,4,5,3,3]'   0
@@ -27845,7 +27845,7 @@
 27844   'shifts_that_differ_between_weeks[18,1,2,1,3]'   0
 27845   'shifts_that_differ_between_weeks[18,1,2,2,1]'   0
 27846   'shifts_that_differ_between_weeks[18,1,2,2,2]'   0
-27847   'shifts_that_differ_between_weeks[18,1,2,2,3]'   0
+27847   'shifts_that_differ_between_weeks[18,1,2,2,3]'   1
 27848   'shifts_that_differ_between_weeks[18,1,2,3,1]'   0
 27849   'shifts_that_differ_between_weeks[18,1,2,3,2]'   0
 27850   'shifts_that_differ_between_weeks[18,1,2,3,3]'   0
@@ -27875,7 +27875,7 @@
 27874   'shifts_that_differ_between_weeks[18,1,4,1,3]'   0
 27875   'shifts_that_differ_between_weeks[18,1,4,2,1]'   0
 27876   'shifts_that_differ_between_weeks[18,1,4,2,2]'   0
-27877   'shifts_that_differ_between_weeks[18,1,4,2,3]'   0
+27877   'shifts_that_differ_between_weeks[18,1,4,2,3]'   1
 27878   'shifts_that_differ_between_weeks[18,1,4,3,1]'   0
 27879   'shifts_that_differ_between_weeks[18,1,4,3,2]'   0
 27880   'shifts_that_differ_between_weeks[18,1,4,3,3]'   0
@@ -27890,7 +27890,7 @@
 27889   'shifts_that_differ_between_weeks[18,1,5,1,3]'   0
 27890   'shifts_that_differ_between_weeks[18,1,5,2,1]'   0
 27891   'shifts_that_differ_between_weeks[18,1,5,2,2]'   0
-27892   'shifts_that_differ_between_weeks[18,1,5,2,3]'   0
+27892   'shifts_that_differ_between_weeks[18,1,5,2,3]'   1
 27893   'shifts_that_differ_between_weeks[18,1,5,3,1]'   1
 27894   'shifts_that_differ_between_weeks[18,1,5,3,2]'   0
 27895   'shifts_that_differ_between_weeks[18,1,5,3,3]'   0
@@ -27935,7 +27935,7 @@
 27934   'shifts_that_differ_between_weeks[18,2,3,1,3]'   0
 27935   'shifts_that_differ_between_weeks[18,2,3,2,1]'   0
 27936   'shifts_that_differ_between_weeks[18,2,3,2,2]'   0
-27937   'shifts_that_differ_between_weeks[18,2,3,2,3]'   0
+27937   'shifts_that_differ_between_weeks[18,2,3,2,3]'   1
 27938   'shifts_that_differ_between_weeks[18,2,3,3,1]'   1
 27939   'shifts_that_differ_between_weeks[18,2,3,3,2]'   0
 27940   'shifts_that_differ_between_weeks[18,2,3,3,3]'   0
@@ -28025,7 +28025,7 @@
 28024   'shifts_that_differ_between_weeks[18,3,4,1,3]'   0
 28025   'shifts_that_differ_between_weeks[18,3,4,2,1]'   0
 28026   'shifts_that_differ_between_weeks[18,3,4,2,2]'   0
-28027   'shifts_that_differ_between_weeks[18,3,4,2,3]'   0
+28027   'shifts_that_differ_between_weeks[18,3,4,2,3]'   1
 28028   'shifts_that_differ_between_weeks[18,3,4,3,1]'   1
 28029   'shifts_that_differ_between_weeks[18,3,4,3,2]'   0
 28030   'shifts_that_differ_between_weeks[18,3,4,3,3]'   0
@@ -28040,7 +28040,7 @@
 28039   'shifts_that_differ_between_weeks[18,3,5,1,3]'   0
 28040   'shifts_that_differ_between_weeks[18,3,5,2,1]'   0
 28041   'shifts_that_differ_between_weeks[18,3,5,2,2]'   0
-28042   'shifts_that_differ_between_weeks[18,3,5,2,3]'   0
+28042   'shifts_that_differ_between_weeks[18,3,5,2,3]'   1
 28043   'shifts_that_differ_between_weeks[18,3,5,3,1]'   0
 28044   'shifts_that_differ_between_weeks[18,3,5,3,2]'   0
 28045   'shifts_that_differ_between_weeks[18,3,5,3,3]'   0
@@ -28614,7 +28614,7 @@
 28613   'shifts_that_differ_between_weeks[20,1,3,3,1]'   1
 28614   'shifts_that_differ_between_weeks[20,1,3,3,2]'   1
 28615   'shifts_that_differ_between_weeks[20,1,3,3,3]'   0
-28616   'shifts_that_differ_between_weeks[20,1,3,4,1]'   0
+28616   'shifts_that_differ_between_weeks[20,1,3,4,1]'   1
 28617   'shifts_that_differ_between_weeks[20,1,3,4,2]'   0
 28618   'shifts_that_differ_between_weeks[20,1,3,4,3]'   0
 28619   'shifts_that_differ_between_weeks[20,1,3,5,1]'   0
@@ -28629,7 +28629,7 @@
 28628   'shifts_that_differ_between_weeks[20,1,4,3,1]'   1
 28629   'shifts_that_differ_between_weeks[20,1,4,3,2]'   1
 28630   'shifts_that_differ_between_weeks[20,1,4,3,3]'   0
-28631   'shifts_that_differ_between_weeks[20,1,4,4,1]'   0
+28631   'shifts_that_differ_between_weeks[20,1,4,4,1]'   1
 28632   'shifts_that_differ_between_weeks[20,1,4,4,2]'   0
 28633   'shifts_that_differ_between_weeks[20,1,4,4,3]'   0
 28634   'shifts_that_differ_between_weeks[20,1,4,5,1]'   0
@@ -28644,7 +28644,7 @@
 28643   'shifts_that_differ_between_weeks[20,1,5,3,1]'   0
 28644   'shifts_that_differ_between_weeks[20,1,5,3,2]'   1
 28645   'shifts_that_differ_between_weeks[20,1,5,3,3]'   0
-28646   'shifts_that_differ_between_weeks[20,1,5,4,1]'   0
+28646   'shifts_that_differ_between_weeks[20,1,5,4,1]'   1
 28647   'shifts_that_differ_between_weeks[20,1,5,4,2]'   0
 28648   'shifts_that_differ_between_weeks[20,1,5,4,3]'   0
 28649   'shifts_that_differ_between_weeks[20,1,5,5,1]'   0
@@ -28689,7 +28689,7 @@
 28688   'shifts_that_differ_between_weeks[20,2,3,3,1]'   1
 28689   'shifts_that_differ_between_weeks[20,2,3,3,2]'   0
 28690   'shifts_that_differ_between_weeks[20,2,3,3,3]'   0
-28691   'shifts_that_differ_between_weeks[20,2,3,4,1]'   0
+28691   'shifts_that_differ_between_weeks[20,2,3,4,1]'   1
 28692   'shifts_that_differ_between_weeks[20,2,3,4,2]'   0
 28693   'shifts_that_differ_between_weeks[20,2,3,4,3]'   0
 28694   'shifts_that_differ_between_weeks[20,2,3,5,1]'   0
@@ -28704,7 +28704,7 @@
 28703   'shifts_that_differ_between_weeks[20,2,4,3,1]'   1
 28704   'shifts_that_differ_between_weeks[20,2,4,3,2]'   0
 28705   'shifts_that_differ_between_weeks[20,2,4,3,3]'   0
-28706   'shifts_that_differ_between_weeks[20,2,4,4,1]'   0
+28706   'shifts_that_differ_between_weeks[20,2,4,4,1]'   1
 28707   'shifts_that_differ_between_weeks[20,2,4,4,2]'   0
 28708   'shifts_that_differ_between_weeks[20,2,4,4,3]'   0
 28709   'shifts_that_differ_between_weeks[20,2,4,5,1]'   0
@@ -28719,7 +28719,7 @@
 28718   'shifts_that_differ_between_weeks[20,2,5,3,1]'   0
 28719   'shifts_that_differ_between_weeks[20,2,5,3,2]'   0
 28720   'shifts_that_differ_between_weeks[20,2,5,3,3]'   0
-28721   'shifts_that_differ_between_weeks[20,2,5,4,1]'   0
+28721   'shifts_that_differ_between_weeks[20,2,5,4,1]'   1
 28722   'shifts_that_differ_between_weeks[20,2,5,4,2]'   0
 28723   'shifts_that_differ_between_weeks[20,2,5,4,3]'   0
 28724   'shifts_that_differ_between_weeks[20,2,5,5,1]'   0
@@ -30140,7 +30140,7 @@
 30139   'shifts_that_differ_between_weeks[24,1,5,1,3]'   0
 30140   'shifts_that_differ_between_weeks[24,1,5,2,1]'   0
 30141   'shifts_that_differ_between_weeks[24,1,5,2,2]'   1
-30142   'shifts_that_differ_between_weeks[24,1,5,2,3]'   0
+30142   'shifts_that_differ_between_weeks[24,1,5,2,3]'   1
 30143   'shifts_that_differ_between_weeks[24,1,5,3,1]'   0
 30144   'shifts_that_differ_between_weeks[24,1,5,3,2]'   0
 30145   'shifts_that_differ_between_weeks[24,1,5,3,3]'   0
@@ -30215,7 +30215,7 @@
 30214   'shifts_that_differ_between_weeks[24,2,5,1,3]'   1
 30215   'shifts_that_differ_between_weeks[24,2,5,2,1]'   0
 30216   'shifts_that_differ_between_weeks[24,2,5,2,2]'   0
-30217   'shifts_that_differ_between_weeks[24,2,5,2,3]'   0
+30217   'shifts_that_differ_between_weeks[24,2,5,2,3]'   1
 30218   'shifts_that_differ_between_weeks[24,2,5,3,1]'   0
 30219   'shifts_that_differ_between_weeks[24,2,5,3,2]'   0
 30220   'shifts_that_differ_between_weeks[24,2,5,3,3]'   0
@@ -30290,7 +30290,7 @@
 30289   'shifts_that_differ_between_weeks[24,3,5,1,3]'   1
 30290   'shifts_that_differ_between_weeks[24,3,5,2,1]'   0
 30291   'shifts_that_differ_between_weeks[24,3,5,2,2]'   0
-30292   'shifts_that_differ_between_weeks[24,3,5,2,3]'   0
+30292   'shifts_that_differ_between_weeks[24,3,5,2,3]'   1
 30293   'shifts_that_differ_between_weeks[24,3,5,3,1]'   0
 30294   'shifts_that_differ_between_weeks[24,3,5,3,2]'   0
 30295   'shifts_that_differ_between_weeks[24,3,5,3,3]'   0
@@ -30365,7 +30365,7 @@
 30364   'shifts_that_differ_between_weeks[24,4,5,1,3]'   1
 30365   'shifts_that_differ_between_weeks[24,4,5,2,1]'   0
 30366   'shifts_that_differ_between_weeks[24,4,5,2,2]'   1
-30367   'shifts_that_differ_between_weeks[24,4,5,2,3]'   0
+30367   'shifts_that_differ_between_weeks[24,4,5,2,3]'   1
 30368   'shifts_that_differ_between_weeks[24,4,5,3,1]'   0
 30369   'shifts_that_differ_between_weeks[24,4,5,3,2]'   0
 30370   'shifts_that_differ_between_weeks[24,4,5,3,3]'   0
@@ -30843,7 +30843,7 @@
 30842   'shifts_that_differ_between_weeks[26,1,2,1,1]'   0
 30843   'shifts_that_differ_between_weeks[26,1,2,1,2]'   0
 30844   'shifts_that_differ_between_weeks[26,1,2,1,3]'   0
-30845   'shifts_that_differ_between_weeks[26,1,2,2,1]'   0
+30845   'shifts_that_differ_between_weeks[26,1,2,2,1]'   1
 30846   'shifts_that_differ_between_weeks[26,1,2,2,2]'   0
 30847   'shifts_that_differ_between_weeks[26,1,2,2,3]'   0
 30848   'shifts_that_differ_between_weeks[26,1,2,3,1]'   0
@@ -30873,7 +30873,7 @@
 30872   'shifts_that_differ_between_weeks[26,1,4,1,1]'   0
 30873   'shifts_that_differ_between_weeks[26,1,4,1,2]'   0
 30874   'shifts_that_differ_between_weeks[26,1,4,1,3]'   0
-30875   'shifts_that_differ_between_weeks[26,1,4,2,1]'   0
+30875   'shifts_that_differ_between_weeks[26,1,4,2,1]'   1
 30876   'shifts_that_differ_between_weeks[26,1,4,2,2]'   0
 30877   'shifts_that_differ_between_weeks[26,1,4,2,3]'   0
 30878   'shifts_that_differ_between_weeks[26,1,4,3,1]'   0
@@ -30933,7 +30933,7 @@
 30932   'shifts_that_differ_between_weeks[26,2,3,1,1]'   0
 30933   'shifts_that_differ_between_weeks[26,2,3,1,2]'   0
 30934   'shifts_that_differ_between_weeks[26,2,3,1,3]'   0
-30935   'shifts_that_differ_between_weeks[26,2,3,2,1]'   0
+30935   'shifts_that_differ_between_weeks[26,2,3,2,1]'   1
 30936   'shifts_that_differ_between_weeks[26,2,3,2,2]'   0
 30937   'shifts_that_differ_between_weeks[26,2,3,2,3]'   0
 30938   'shifts_that_differ_between_weeks[26,2,3,3,1]'   0
@@ -30963,7 +30963,7 @@
 30962   'shifts_that_differ_between_weeks[26,2,5,1,1]'   0
 30963   'shifts_that_differ_between_weeks[26,2,5,1,2]'   0
 30964   'shifts_that_differ_between_weeks[26,2,5,1,3]'   0
-30965   'shifts_that_differ_between_weeks[26,2,5,2,1]'   0
+30965   'shifts_that_differ_between_weeks[26,2,5,2,1]'   1
 30966   'shifts_that_differ_between_weeks[26,2,5,2,2]'   0
 30967   'shifts_that_differ_between_weeks[26,2,5,2,3]'   0
 30968   'shifts_that_differ_between_weeks[26,2,5,3,1]'   0
@@ -31023,7 +31023,7 @@
 31022   'shifts_that_differ_between_weeks[26,3,4,1,1]'   0
 31023   'shifts_that_differ_between_weeks[26,3,4,1,2]'   0
 31024   'shifts_that_differ_between_weeks[26,3,4,1,3]'   0
-31025   'shifts_that_differ_between_weeks[26,3,4,2,1]'   0
+31025   'shifts_that_differ_between_weeks[26,3,4,2,1]'   1
 31026   'shifts_that_differ_between_weeks[26,3,4,2,2]'   0
 31027   'shifts_that_differ_between_weeks[26,3,4,2,3]'   0
 31028   'shifts_that_differ_between_weeks[26,3,4,3,1]'   0
@@ -31113,7 +31113,7 @@
 31112   'shifts_that_differ_between_weeks[26,4,5,1,1]'   0
 31113   'shifts_that_differ_between_weeks[26,4,5,1,2]'   0
 31114   'shifts_that_differ_between_weeks[26,4,5,1,3]'   0
-31115   'shifts_that_differ_between_weeks[26,4,5,2,1]'   0
+31115   'shifts_that_differ_between_weeks[26,4,5,2,1]'   1
 31116   'shifts_that_differ_between_weeks[26,4,5,2,2]'   0
 31117   'shifts_that_differ_between_weeks[26,4,5,2,3]'   0
 31118   'shifts_that_differ_between_weeks[26,4,5,3,1]'   0
@@ -32343,7 +32343,7 @@
 32342   'shifts_that_differ_between_weeks[30,1,2,1,1]'   0
 32343   'shifts_that_differ_between_weeks[30,1,2,1,2]'   0
 32344   'shifts_that_differ_between_weeks[30,1,2,1,3]'   0
-32345   'shifts_that_differ_between_weeks[30,1,2,2,1]'   0
+32345   'shifts_that_differ_between_weeks[30,1,2,2,1]'   1
 32346   'shifts_that_differ_between_weeks[30,1,2,2,2]'   0
 32347   'shifts_that_differ_between_weeks[30,1,2,2,3]'   1
 32348   'shifts_that_differ_between_weeks[30,1,2,3,1]'   0
@@ -32433,7 +32433,7 @@
 32432   'shifts_that_differ_between_weeks[30,2,3,1,1]'   0
 32433   'shifts_that_differ_between_weeks[30,2,3,1,2]'   0
 32434   'shifts_that_differ_between_weeks[30,2,3,1,3]'   0
-32435   'shifts_that_differ_between_weeks[30,2,3,2,1]'   0
+32435   'shifts_that_differ_between_weeks[30,2,3,2,1]'   1
 32436   'shifts_that_differ_between_weeks[30,2,3,2,2]'   0
 32437   'shifts_that_differ_between_weeks[30,2,3,2,3]'   0
 32438   'shifts_that_differ_between_weeks[30,2,3,3,1]'   1
@@ -32448,7 +32448,7 @@
 32447   'shifts_that_differ_between_weeks[30,2,4,1,1]'   0
 32448   'shifts_that_differ_between_weeks[30,2,4,1,2]'   0
 32449   'shifts_that_differ_between_weeks[30,2,4,1,3]'   0
-32450   'shifts_that_differ_between_weeks[30,2,4,2,1]'   0
+32450   'shifts_that_differ_between_weeks[30,2,4,2,1]'   1
 32451   'shifts_that_differ_between_weeks[30,2,4,2,2]'   0
 32452   'shifts_that_differ_between_weeks[30,2,4,2,3]'   0
 32453   'shifts_that_differ_between_weeks[30,2,4,3,1]'   0
@@ -32463,7 +32463,7 @@
 32462   'shifts_that_differ_between_weeks[30,2,5,1,1]'   0
 32463   'shifts_that_differ_between_weeks[30,2,5,1,2]'   0
 32464   'shifts_that_differ_between_weeks[30,2,5,1,3]'   0
-32465   'shifts_that_differ_between_weeks[30,2,5,2,1]'   0
+32465   'shifts_that_differ_between_weeks[30,2,5,2,1]'   1
 32466   'shifts_that_differ_between_weeks[30,2,5,2,2]'   0
 32467   'shifts_that_differ_between_weeks[30,2,5,2,3]'   0
 32468   'shifts_that_differ_between_weeks[30,2,5,3,1]'   0
