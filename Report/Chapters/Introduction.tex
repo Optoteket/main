@@ -4,12 +4,30 @@
 %\section{Background} 
 %Schemaläggning av personal vid Norrköpings bibliotek.
 \section{Background}
-At a library absence can cause problems, both due to lack of personnel as well as due to the qualifications required to perform a task varies. If a worker were to be unavailable a day on a meeting or being ill it would require for a stand-in to fill the vacancy. Therefore, it is of great interest to have a schedule with as many skilled stand-ins as possible to overcome such disturbances. Furthermore, the library personnel have certain demands and preferences as to how a satisfactory working schedule should be. For instance, it is neither preferable to work more than one evening each week nor work more weekends than required. 
+At a library absence can cause problems, both due to lack of personnel as well as due to the qualifications required to perform a task varies. If a worker were to be unavailable a day because of a meeting or being ill it would require for a stand-in to fill the vacancy. Therefore, it is of great interest to have a schedule with as many skilled stand-ins as possible to overcome such disturbances. Furthermore, the library personnel have certain demands and preferences as to how a satisfactory working schedule should be. For instance, it is neither preferable to work more than one evening each week nor work more weekends than required. 
 
 \section{Problem description}
 \subsection{Main objectives}
-\subsection{Requirements on weekday activities in outer stations}
-\subsection{Requirements on weekend activities: library and filial}
+Main objective is to create a schedule with as many stand-ins as possible, so that all days have a maximum amount of stand-ins. Diversity during the week and repetivity of the schedule each week is also desired.
+
+\subsection{Requirements on weekday activities}
+During weekdays, there is a worker demand at the stations Exp, Info, Plocklista and Library on wheels. <TABLE OF DEMAND>. Plocklista is unique in the sense that its duration is longer than one shift. It is modeled as the three first shifts of a weekday.
+
+In addition there is the Library on wheels, which has a different demand of workers depending on odd and even weeks. 
+\subsection{Requirements on weekend activities}
+There are three different weekend stations: Exp, Info and Hageby. Working a weekend also means working friday unless you are scheduled to work in Hageby. 
+\subsection{Diversity in skill}
+There are essentially two types of workers in a library. Librarians and assistants. The competence of the workers looks as follows: <TABLE OF DIFFERENT COMPETENCES>
+
+A subset of the librarians can handle the Library on wheels and all are expected to take shifts at Hageby.
+
+\subsection{Personnel availability and task assignment limitations}
+The staff at the library have certain times of availability. Every day, a person can perform at maximum one task. Plocklistan is limited to once a week.
+
+Personnel is only allowed to work one weekend out of five. The following week, the worker is free on the times requested by the worker. Also, some workers have specific 
+
+\subsection{Inner work} 
+
 The goal of this thesis is to distribute given tasks to the heterogeneous workforce at the library of Norrköping. Each task is either classified as an outer or an inner service where an outer service is when a librarian needs to interact with visitors. Inner services can in some rare cases require a predetermined person to be assigned to a specified time or day.
 
 Demands and requests are to be fulfilled to the furthest extent possible. Weekends are included in the scheduling problem, which adds more constraints regarding the number of contiguous working days. However, the librarians are permitted a few exceptions from these laws regarding days of rest.
