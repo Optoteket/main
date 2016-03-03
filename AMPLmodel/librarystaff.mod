@@ -204,8 +204,8 @@ subject to assign_y{i in I, w in W, d in 1..5, s in 1..3}:
 	y[i,w,d,s] = sum{j in {'Exp', 'Info', 'PL'}} x[i,w,d,s,j];
 
 #Workers that shall be assigned a weekday free from tasks
-subject to task_free_weekday{i in I_task_free, w in W}:
-	sum{d in 1..5}(sum{s in 1..3} y[i,w,d,s]) >= 1;
+subject to task_free_weekday{i in I_free_day, w in W}:
+	sum{d in 1..5}(1-sum{s in 1..3} y[i,w,d,s]) >= 1;
 
 ######################### Time constraints #################################
 #Allowing only three shifts at a certain time each week
