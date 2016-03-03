@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  3 MAR 2016 14:45
+=======
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  3 MAR 2016 12:17
+>>>>>>> dc18dc940d63067c0bcffe20be5b45c8beb9f819
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -635,35 +639,42 @@ File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
 (./Chapters/Introduction.tex [1
 
 ]
-Overfull \hbox (42.36172pt too wide) in paragraph at lines 36--57
+Overfull \hbox (42.36172pt too wide) in paragraph at lines 54--75
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 59--60
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
 
  []
 
 
-Overfull \hbox (193.50977pt too wide) in paragraph at lines 106--151
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (193.50977pt too wide) in paragraph at lines 124--169
 [][] 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [2])
-(/sw/texlive/2011/texmf-dist/tex/latex/base/utf8.def
+[2] [3]) (/sw/texlive/2011/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
-) [3] [4
-
-]
+) [4]
 Chapter 2.
 (/sw/texlive/2011/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
 )
+<<<<<<< HEAD
 (./Chapters/LiteratureReview.tex [5]
 Overfull \hbox (4.55617pt too wide) in paragraph at lines 41--42
+=======
+(./Chapters/LiteratureReview.tex [5
+
+]
+Overfull \hbox (4.55617pt too wide) in paragraph at lines 35--36
+>>>>>>> dc18dc940d63067c0bcffe20be5b45c8beb9f819
 []\OT1/cmr/m/n/10 "Task as-signe-ment for main-te-nance per-son-nel": Roberts a
 nd Es-cud-ero, 1983a,
  []
@@ -716,7 +727,7 @@ Non-PDF special ignored!] (./Report.aux) )
 Here is how much of TeX's memory you used:
  2835 strings out of 493633
  36816 string characters out of 3146323
- 92864 words of memory out of 3000000
+ 94864 words of memory out of 3000000
  6042 multiletter control sequences out of 15000+200000
  10808 words of font info for 42 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
@@ -740,7 +751,11 @@ exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></sw/texlive/2011/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmti7.pfb></sw/texlive/2011/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmtt8.pfb></sw/texlive/2011/texmf-dist/fonts/type1/publ
 ic/cm-super/sfrm1000.pfb>
+<<<<<<< HEAD
 Output written on Report.pdf (31 pages, 243755 bytes).
+=======
+Output written on Report.pdf (31 pages, 243360 bytes).
+>>>>>>> dc18dc940d63067c0bcffe20be5b45c8beb9f819
 PDF statistics:
  182 PDF objects out of 1000 (max. 8388607)
  128 compressed objects within 2 object streams
