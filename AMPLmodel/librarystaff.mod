@@ -33,7 +33,8 @@ param lib_on_wheels_avail{i in I_lib,w in W,d in D,s in S[d]} binary; #1 if a li
 
 param Shift_list{Workers};
 param stand_in_day_d{I, W, 1..5};
-param N1 := 10; #The bigger, the more priority to maximize stand-ins
+param N1 := 100; #The bigger, the more priority to maximize librarian stand-ins
+param N11 := 10; #The bigger, the more priority to maximize assistants stand-ins
 param N2 := 1; #Prioritize similar weeks
 param N3 := 1; #Prioritize varied time of shifts
 
@@ -42,9 +43,11 @@ var r{i in I, w in W} binary; #1 if person i has a rotation (phase shift) of w w
 var h{i in I, w in W} binary; #1 if worker i works weekend in week w
 var x{i in I, w in W, d in D, s in S[d], j in J[d]} binary; #1 if worker i is assigned task type j in shift s day d week w
 var z{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]} binary; #1 if x = 1 and h = 1, 0 else
-var stand_in{i in I, w in W, d in D} binary; #1 if (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) = 1 and x[i,w,d,s,j] = 0. First term is if a worker is working a weekend
+var stand_in_lib{i in I_lib, w in W, d in D} binary; #1 if (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) = 1 and x[i,w,d,s,j] = 0. First term is if a worker is working a weekend
+var stand_in_ass{i in I_ass, w in W, d in D} binary; #1 if (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) = 1 and x[i,w,d,s,j] = 0. First term is if a worker is working a weekend
 var y{i in I, w in W, d in 1..5, s in 1..3} binary; #1 if worker i works week w, day d, shift s. No weekends and no evenings
-var lowest_stand_in_amount integer; # Lowest number of stand-in workers at any shift
+var lowest_stand_in_amount_lib integer; # Lowest number of stand-in workers at any shift
+var lowest_stand_in_amount_ass integer; # Lowest number of stand-in workers at any shift
 var shifts_that_differ_between_weeks{i in I, w in W, w_prime in W, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
 var hb{i in I, w in W} binary; #1 if a person i works in HB week w
 var working_friday_evening{i in I, w in W} binary; #1 if a person works weekend but not in HB
@@ -59,7 +62,8 @@ var num_days_with_same_shift{i in I, w in W, s in 1..3} integer;
 ################################## OBJECTIVE FUNCTION ###################################################################
 
 maximize objective: #Maximize stand-ins and create schedules with similar weeks for each worker
-	N1*lowest_stand_in_amount 
+	N1*lowest_stand_in_amount_lib
+	+ N11*lowest_stand_in_amount_ass
 	- N2*sum{i in I}(sum{w in 1..4}(sum{w_prime in (w+1)..5}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks[i,w,w_prime,d,s]))))
 
 	# + N3*sum{i in I}(sum{w in W}(sum{s in 1..2}(sum{s_prime in (s+1)..3} diff_num_same_shifts[i,w,s,s_prime])))
@@ -137,19 +141,35 @@ subject to help_constraint_friday_3{i in I_weekend_avail, w in W}:
 
 ######################### Stand-in constraints #################################
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
-subject to find_lowest_stand_in_amount_no_weekends_no_evenings{w in W, d in 1..5}: #RHS: number of qualified workers at work that is available & not assigned to any task.
-	lowest_stand_in_amount <= sum{i in I} stand_in[i,w,d]; 		#+ meeting[s,d,w]*M; 
+subject to find_lowest_stand_in_amount_no_weekends_no_evenings_lib{w in W, d in 1..5}: #RHS: number of qualified workers at work that is available & not assigned to any task.
+	lowest_stand_in_amount_lib <= sum{i in I_lib} stand_in_lib[i,w,d]; 		#+ meeting[s,d,w]*M; 
 
 #A worker is a stand-in if he/she is available, qualified and is not already scheduled. Takes schedule rotation into account
-subject to find_avail_not_working_day{i in I, w in W, d in 1..5}:
-	stand_in[i,w,d] >= sum {v in V} (r[i,v]*avail_day[i,(w-v+5) mod 5 +1,d]) + (1-sum{s in 1..4}(sum{j in {'Exp', 'Info', 'PL'}} x[i,w,d,s,j])) - 1; #Available and not working any shift day d.
+subject to find_avail_not_working_day_lib{i in I_lib, w in W, d in 1..5}:
+	stand_in_lib[i,w,d] >= sum {v in V} (r[i,v]*avail_day[i,(w-v+5) mod 5 +1,d]) + (1-sum{s in 1..4}(sum{j in {'Exp', 'Info', 'PL'}} x[i,w,d,s,j])) - 1; #Available and not working any shift day d.
 
 ### Help constraints for qualavail and not scheduled ###
-subject to help_constraint2{i in I, w in W, d in 1..5}:
-	stand_in[i,w,d] <= sum {v in V} (r[i,v]*avail_day[i,(w-v+5) mod 5 +1,d]);
+subject to help_constraint2_lib{i in I_lib, w in W, d in 1..5}:
+	stand_in_lib[i,w,d] <= sum {v in V} (r[i,v]*avail_day[i,(w-v+5) mod 5 +1,d]);
 
-subject to help_constraint3{i in I, w in W, d in 1..5}:
-	stand_in[i,w,d] <= 1-sum{s in 1..4}(sum{j in {'Exp', 'Info', 'PL'}} x[i,w,d,s,j]);
+subject to help_constraint3_lib{i in I_lib, w in W, d in 1..5}:
+	stand_in_lib[i,w,d] <= 1-sum{s in 1..4}(sum{j in {'Exp', 'Info', 'PL'}} x[i,w,d,s,j]);
+
+### Stand-ins for assistants
+#Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
+subject to find_lowest_stand_in_amount_no_weekends_no_evenings_ass{w in W, d in 1..5}: #RHS: number of qualified workers at work that is available & not assigned to any task.
+	lowest_stand_in_amount_ass <= sum{i in I_ass} stand_in_ass[i,w,d]; 		#+ meeting[s,d,w]*M; 
+
+#A worker is a stand-in if he/she is available, qualified and is not already scheduled. Takes schedule rotation into account
+subject to find_avail_not_working_day_ass{i in I_ass, w in W, d in 1..5}:
+	stand_in_ass[i,w,d] >= sum {v in V} (r[i,v]*avail_day[i,(w-v+5) mod 5 +1,d]) + (1-sum{s in 1..4}(sum{j in {'Exp', 'PL'}} x[i,w,d,s,j])) - 1; #Available and not working any shift day d.
+
+### Help constraints for qualavail and not scheduled ###
+subject to help_constraint2_ass{i in I_ass, w in W, d in 1..5}:
+	stand_in_ass[i,w,d] <= sum {v in V} (r[i,v]*avail_day[i,(w-v+5) mod 5 +1,d]);
+
+subject to help_constraint3_ass{i in I_ass, w in W, d in 1..5}:
+	stand_in_ass[i,w,d] <= 1-sum{s in 1..4}(sum{j in {'Exp', 'PL'}} x[i,w,d,s,j]);
 
 ####################### Only assign if qualified and available ######################
 
