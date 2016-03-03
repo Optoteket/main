@@ -16,6 +16,7 @@ set I_lib; #Set of librarians
 set I_ass; #Set of assistants
 set V; #Set of possible week rotations (shift the week by 1..5 steps)
 set I_lib_on_wheels; #Set of librarians available to work in library on wheels (Bokbussen)
+set I_free_day; #Set of workers that shall be assigned a free weekday per week
 
 set Workers;
 
@@ -198,10 +199,13 @@ subject to negative_values_of_abs{i in I, w in 1..4, w_prime in (w+1)..5, d in 1
 
 
 ###################### Worker shift assignment ##############################
-#Variable saying if a worker i is assigned a shift s
+#Variable saying if a worker i is assigned a shift s, not accounting Library on wheels
 subject to assign_y{i in I, w in W, d in 1..5, s in 1..3}:
 	y[i,w,d,s] = sum{j in {'Exp', 'Info', 'PL'}} x[i,w,d,s,j];
 
+#Workers that shall be assigned a weekday free from tasks
+subject to task_free_weekday{i in I_task_free, w in W}:
+	sum{d in 1..5}(sum{s in 1..3} y[i,w,d,s]) >= 1;
 
 ######################### Time constraints #################################
 #Allowing only three shifts at a certain time each week
@@ -209,56 +213,4 @@ subject to max_three_shifts_per_week{i in I, w in W, s in 1..3}:
 	sum{d in 1..5} y[i,w,d,s] <= 2;
 
 
-############### Third objective function constraints: Variation of shifts for workers #############
-#subject to max_abs_1{i in I, w in W, s in 1..2, s_prime in (s+1)..3}:
-#	help_with_max_abs[i,w,s,s_prime] >= (num_days_with_same_shift[i,w,s]-num_days_with_same_shift[i,w,s_prime]);
 
-#subject to max_abs_2{i in I, w in W, s in 1..2, s_prime in (s+1)..3}:
-#	help_with_max_abs[i,w,s,s_prime] >= -(num_days_with_same_shift[i,w,s]-num_days_with_same_shift[i,w,s_prime]);
-
-#subject to num_of_days_with_same_shift_constraint{i in I, w in W, s in 1..3}:
-#	num_days_with_same_shift[i,w,s] = sum{d in 1..5} y[i,w,d,s];
-
-#subject to positive_values_of_abs2{i in I, w in W, s in 1..2, s_prime in (s+1)..3}:
-#	diff_num_same_shifts[i,w,s,s_prime] <= help_with_max_abs[i,w,s,s_prime];
-
-#subject to negative_values_of_abs2{i in I, w in W, s in 1..2, s_prime in (s+1)..3}:
-#	diff_num_same_shifts[i,w,s,s_prime] >= -help_with_max_abs[i,w,s,s_prime];
-
-
-######################### OLD! Means: Stand-ins PER TASK TYPE #################################
-
-
-
-
-############### Third objective function constraints: Variation of shifts for workers #############
-#subject to num_of_days_with_same_shift_constraint{i in I, w in W, s in 1..3}:
-#	num_days_with_same_shift[i,w,s] = sum{d in 1..5} y[i,w,d,s];
-
-#subject to positive_values_of_abs2{i in I, w in W, s in 1..2, s_prime in (s+1)..3}:
-#	diff_num_same_shifts[i,w,s,s_prime] <= (num_days_with_same_shift[i,w,s]-num_days_with_same_shift[i,w,s_prime]);
-
-#subject to negative_values_of_abs2{i in I, w in W, s in 1..2, s_prime in (s+1)..3}:
-#	diff_num_same_shifts[i,w,s,s_prime] <= -(num_days_with_same_shift[i,w,s]-num_days_with_same_shift[i,w,s_prime]);
-
-#subject to total_sum_OF3
-#	total_sum_of_shift_differences = sum{i in I}(sum{w in W}(sum{s in 1..2}(sum{s_prime in (s+1)..3} diff_num_same_shifts[i,w,s,s_prime])));
-
-#subject to upper_bound{i in I, w in W, s in 1..2, s_prime in (s+1)..3}:
-#	diff_num_same_shifts[i,w,s,s_prime] <= 6;
-
-
-#Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
-#subject to find_lowest_stand_in_amount_no_weekends_no_evenings{w in W, d in 1..5, s in 1..3, j in {'Exp','Info'}}: #RHS: number of qualified workers at work that is available & not assigned to any task.
-#	lowest_stand_in_amount <= sum{i in I} stand_in[i,w,d,s,j]; 		#+ meeting[s,d,w]*M; 
-
-#A worker is a stand in if he/she is available, qualified and is not already scheduled. Takes schedule rotation into account
-#subject to find_qualavail_not_working{i in I, w in W, d in D, s in S[d], j in {xxxxxx}}:
-#	stand_in[i,w,d,s,j] >= sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) + (1-x[i,w,d,s,j]) - 1; #Qualified, available and not working a shift
-
-### Help constraints for qualavail and not scheduled ###
-#subject to help_constraint2{i in I, w in W, d in D, s in S[d], j in {xxxxxx}}:
-#	stand_in[i,w,d,s,j] <= sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]);
-
-#subject to help_constraint3{i in I, w in W, d in D, s in S[d], j in {xxxxxx}}:
-#	stand_in[i,w,d,s,j] <= (1-x[i,w,d,s,j]);
