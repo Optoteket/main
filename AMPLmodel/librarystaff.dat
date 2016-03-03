@@ -1,4 +1,4 @@
-# Data file Created: 3/2/2016 6:22:20 AM
+# Data file Created: 3/3/2016 1:23:02 AM
 # Master Thesis: Work Distribution of a Heterogeneous Library Staff - A Personnel Task Scheduling Problem
 # Master Students: Claes Arvidson and Emelie Karlsson
 
@@ -1934,7 +1934,7 @@ param	avail	:=
 	25 2 5 4 0
 	25 2 6 1 0
 	25 2 7 1 0
-	25 3 1 1 1
+	25 3 1 1 0
 	25 3 1 2 1
 	25 3 1 3 1
 	25 3 1 4 0
@@ -1956,7 +1956,7 @@ param	avail	:=
 	25 3 5 4 1
 	25 3 6 1 1
 	25 3 7 1 1
-	25 4 1 1 0
+	25 4 1 1 1
 	25 4 1 2 1
 	25 4 1 3 1
 	25 4 1 4 0
@@ -4917,12 +4917,12 @@ param	avail_day	:=
 	25 2 3 1
 	25 2 4 0
 	25 2 5 0
-	25 3 1 1
+	25 3 1 0
 	25 3 2 1
 	25 3 3 1
 	25 3 4 1
 	25 3 5 1
-	25 4 1 0
+	25 4 1 1
 	25 4 2 1
 	25 4 3 1
 	25 4 4 1
@@ -7049,7 +7049,7 @@ param	lib_on_wheels_avail	:=
 	25 2 5 2 0
 	25 2 5 3 0
 	25 2 5 4 0
-	25 3 1 1 0
+	25 3 1 1 1
 	25 3 1 2 0
 	25 3 1 3 0
 	25 3 1 4 0
@@ -7069,7 +7069,7 @@ param	lib_on_wheels_avail	:=
 	25 3 5 2 0
 	25 3 5 3 0
 	25 3 5 4 0
-	25 4 1 1 1
+	25 4 1 1 0
 	25 4 1 2 0
 	25 4 1 3 0
 	25 4 1 4 0
@@ -12893,9 +12893,9 @@ param	qualavail	:=
 	25 2 7 1 Exp 0
 	25 2 7 1 Info 0
 	25 2 7 1 HB 0
-	25 3 1 1 Exp 1
-	25 3 1 1 Info 1
-	25 3 1 1 PL 1
+	25 3 1 1 Exp 0
+	25 3 1 1 Info 0
+	25 3 1 1 PL 0
 	25 3 1 2 Exp 1
 	25 3 1 2 Info 1
 	25 3 1 2 PL 0
@@ -12959,9 +12959,9 @@ param	qualavail	:=
 	25 3 7 1 Exp 0
 	25 3 7 1 Info 0
 	25 3 7 1 HB 0
-	25 4 1 1 Exp 0
-	25 4 1 1 Info 0
-	25 4 1 1 PL 0
+	25 4 1 1 Exp 1
+	25 4 1 1 Info 1
+	25 4 1 1 PL 1
 	25 4 1 2 Exp 1
 	25 4 1 2 Info 1
 	25 4 1 2 PL 0
