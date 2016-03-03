@@ -72,6 +72,7 @@ maximize objective: #Maximize stand-ins and create schedules with similar weeks 
 #number of workers to be assigned to different task types at different shifts (shall work for all days 1..7)
 subject to task_assign_amount_weekdays{w in W, d in 1..5,s in S[d], j in {'Exp', 'Info', 'PL'}}:
 	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
+
 subject to task_assign_amount_weekends{w in W, d in 6..7,s in S[d], j in J[d]}:
 	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
 
@@ -80,7 +81,10 @@ subject to task_assign_amount_library_on_wheels{w in W, d in 1..5,s in S[d]}:
 
 ######################## Maximum one task per day #####################################
 #Stating that a worker can only be assigned one (outer) task per day (weekends included) where they are available
-subject to max_one_task_per_day{i in I, w in W, d in D}:
+subject to max_one_task_per_day_weekday{i in I, w in W, d in 1..5}:
+	sum{s in S[d]}(sum {j in {'Exp','Info','PL'}} x[i,w,d,s,j]) <= 1;
+
+subject to max_one_task_per_day_weekend{i in I, w in W, d in 6..7}:
 	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;
 
 ######################## Maximum one 'PL' per week #####################################
@@ -161,7 +165,7 @@ subject to assistants_only_assigned_if_qualavail_weekdays{i in I_ass, w in W, d 
 subject to assistants_only_assigned_if_qualavail_weekends{i in I_ass, w in W, d in 6..7, s in S[d], j in J[d]}: #assistants not qualified for 'Info' or 'HB' on weekends, no 'LOW' on weekends either
 	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]));
 ### LIBRARY ON WHEELS ###
-subject to lib_on_wheels_constraint{i in I_lib_on_wheels, w in W, d in {2,3,5}, s in S[1]}: #Around five librarians qualified for library on wheels. They _shall_ be assigned their shifts there
+subject to lib_on_wheels_constraint{i in I_lib_on_wheels, w in W, d in {1,2,3,5}, s in S[1]}: #Around five librarians qualified for library on wheels. They _shall_ be assigned their shifts there
 	x[i,w,d,s,'LOW'] = (sum {v in V} (r[i,v]*lib_on_wheels_avail[i,(w-v+5) mod 5 +1,d,s]));
 
 
