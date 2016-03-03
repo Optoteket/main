@@ -4,9 +4,9 @@ The scheduling problem has been studied since the 1950's as a mathematical optim
 
 In the paper \cite{Ernst_2004} the scheduling problem is classified into different subcategories. A few relevant areas for our work include task based demand scheduling, days off scheduling, shift scheduling, tour scheduling and task assignment. Task based demand scheduling involves the process of finding the demand from a list of tasks which need to be performed. This problem resembles our problem since also in our problem we require a number of tasks to be performed. However, in our case the pool of workers is fixed and thus the objective differs. 
 	
-Days off scheduling involves scheduling staff and assigning a day off. This problem is often found together with shift scheduling which involves choosing the most suitable shifts for a workforce. The combination of the two is called tour scheduling and will be discussed more further down in this report. The big difference between our problem and tour scheduling is that in our problem we are not allowed to choose the free days of the workers, only in what week to put them.
+Days off scheduling involves scheduling staff and assigning a day off. This problem is often found together with shift scheduling which involves choosing the most suitable shifts for a workforce. The combination of the two is called tour scheduling and will be discussed more later in this report. The big difference between our problem and tour scheduling is that in our problem we are not allowed to choose the free days of the workers, only in what week to assign them.
 
-The problem which is most similar to our problem is however task assignment. This problem and different variations of it will be discussed in section \ref{PTSP} forward.
+The problem which is most similar to our problem is, however, task assignment. This problem and different variations of it will be discussed in section \ref{PTSP}.
 
 \iffalse
  (The Use of Mathematical Models in Plant Maintenance Decision Making, 1967) In surveys such as "An Annotated Bibliography of Personnel Scheduling
@@ -15,7 +15,7 @@ and Rostering" Ernst et al. 2004,  covers papers from 1954. The bibliography cov
 
 \section{Tour scheduling problem with a heterogenous work force (TSP)}\label{TSP}
 The tour scheduling problem involves creating work shifts with days off for a work force. 
-In the paper review of different scheduling problem written by Ernst et al. (2004) one can see a number of references to tour scheduling problems. However, there are significantly lower number of references regarding heterogeneous workforce.
+In the paper review of different scheduling problem written by Ernst et al. (2004) one can see a number of references to tour scheduling problems. However, there are significantly lower number of references regarding heterogeneous workforce which is of interest to us.
 
 Papers of interest:
 "Task assignment and tour scheduling": Loucks and Jacobs, 1991
@@ -27,6 +27,48 @@ Papers of interest:
 
 
 \section{Personnel task scheduling problem (PTSP)} \label{PTSP}
+There are several variants to the Personnel Task Scheduling Problem. The common attributes is to assign a set of tasks with fixed start and end time to staff members that possesses certain skills, allowing them to perform a subset of the available tasks. The start and end time of their shifts are also predetermined for each day.
+
+One variant, which also is the most simple, is called the \textit{Feasibility Problem} where the aim is to just find a feasible solution. This requires that each task is allocated to a qualified and available worker. It is also required that a worker can not be assigned more than one task simultaneously as well as tasks can not be pre-empted, meaning that each task has to be completed by one and the same worker.
+
+\begin{table}[!h]
+\caption{Outer and inner services}
+\label{int:2}
+\begin{tabular}{|l|l|}
+%-------------------------------------------------------------------
+\hline
+\textbf{Outer service} & \textbf{Property} \\ \hline
+%-------------------------------------------------------------------
+ & Start time, end time, week and duration \
+\\ \hline 
+%-------------------------------------------------------------------
+ & Station
+\\ \hline 
+%-------------------------------------------------------------------
+ & Number of qualified librarians demanded
+\\ \hline 
+%-------------------------------------------------------------------
+ & Number of qualified assistants demanded
+\\ \hline 
+%-------------------------------------------------------------------
+
+\textbf{Inner service} & \textbf{Property} \\ \hline
+%-------------------------------------------------------------------
+ & Start time, end time, week and duration \
+\\ \hline 
+%-------------------------------------------------------------------
+ & Type
+\\ \hline 
+%-------------------------------------------------------------------
+ & Number of qualified librarians demanded
+\\ \hline 
+%-------------------------------------------------------------------
+ & Number of qualified assistants demanded
+\\ \hline 
+%-------------------------------------------------------------------
+\end{tabular}
+\end{table}
+
 Most likely our problem. Definition is "in which a set of tasks with fixed start and finish times have to be allocated to a heterogeneous workforce". The objective of these problems is to minimise the overall cost of personnel required to perform all tasks.
 
 Papers of interest:

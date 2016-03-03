@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  3 MAR 2016 14:45
+=======
 This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  3 MAR 2016 12:17
+>>>>>>> dc18dc940d63067c0bcffe20be5b45c8beb9f819
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -662,38 +666,43 @@ Chapter 2.
 (/sw/texlive/2011/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
 )
+<<<<<<< HEAD
+(./Chapters/LiteratureReview.tex [5]
+Overfull \hbox (4.55617pt too wide) in paragraph at lines 41--42
+=======
 (./Chapters/LiteratureReview.tex [5
 
 ]
 Overfull \hbox (4.55617pt too wide) in paragraph at lines 35--36
+>>>>>>> dc18dc940d63067c0bcffe20be5b45c8beb9f819
 []\OT1/cmr/m/n/10 "Task as-signe-ment for main-te-nance per-son-nel": Roberts a
 nd Es-cud-ero, 1983a,
  []
 
 
-Overfull \hbox (9.36456pt too wide) in paragraph at lines 51--51
+Overfull \hbox (9.36456pt too wide) in paragraph at lines 57--57
 []\OT1/cmr/bx/n/14.4 Fixed/flexible job schedul-ing prob-lem (FJSP) 
  []
 
-
-Overfull \hbox (168.3344pt too wide) in paragraph at lines 54--56
+[6]
+Overfull \hbox (168.3344pt too wide) in paragraph at lines 60--62
 \OT1/cmr/m/n/10 Task Schedul-ing Prob-lems" M. Kr-ish-namoor-thy http://www.sci
 encedirect.com/science/article/pii/S0377221711010435 
  []
 
 
-Overfull \hbox (94.41751pt too wide) in paragraph at lines 57--58
+Overfull \hbox (94.41751pt too wide) in paragraph at lines 63--64
 \OT1/cmr/m/n/10 time con-straints" Andr^^Se Rossi, http://www.sciencedirect.com
 /science/article/pii/S0305054809002251
  []
 
 
-Overfull \hbox (47.9452pt too wide) in paragraph at lines 59--62
+Overfull \hbox (47.9452pt too wide) in paragraph at lines 65--68
 []\OT1/cmr/m/n/10 Cemal []Ozg^^?uven http://www.sciencedirect.com/science/artic
 le/pii/S0307904X11004173
  []
 
-[6]) (/sw/texlive/2011/texmf-dist/tex/latex/base/utf8.def
+) (/sw/texlive/2011/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
 ) [7] [8
 
@@ -742,7 +751,11 @@ exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></sw/texlive/2011/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmti7.pfb></sw/texlive/2011/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmtt8.pfb></sw/texlive/2011/texmf-dist/fonts/type1/publ
 ic/cm-super/sfrm1000.pfb>
+<<<<<<< HEAD
+Output written on Report.pdf (31 pages, 243755 bytes).
+=======
 Output written on Report.pdf (31 pages, 243360 bytes).
+>>>>>>> dc18dc940d63067c0bcffe20be5b45c8beb9f819
 PDF statistics:
  182 PDF objects out of 1000 (max. 8388607)
  128 compressed objects within 2 object streams
