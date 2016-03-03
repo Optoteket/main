@@ -69,7 +69,9 @@ for {i in I, w in W, d in 1..5}
 
 
 ########################## Display of variables ###############################
-display lowest_stand_in_amount;
+#display lowest_stand_in_amount;
+display lowest_stand_in_amount_lib;
+display lowest_stand_in_amount_ass;
 #display stand_in_day_d;
 #display working_friday_evening;
 #display shifts_that_differ_between_weeks;
