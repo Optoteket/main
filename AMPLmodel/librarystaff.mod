@@ -34,8 +34,8 @@ param lib_on_wheels_avail{i in I_lib,w in W,d in D,s in S[d]} binary; #1 if a li
 
 param Shift_list{Workers};
 param stand_in_day_d{I, W, 1..5};
-param N1 := 100; #The bigger, the more priority to maximize librarian stand-ins
-param N11 := 10; #The bigger, the more priority to maximize assistants stand-ins
+param N1 := 40; #The bigger, the more priority to maximize librarian stand-ins
+param N11 := 20; #The bigger, the more priority to maximize assistants stand-ins
 param N2 := 1; #Prioritize similar weeks
 param N3 := 1; #Prioritize varied time of shifts
 
