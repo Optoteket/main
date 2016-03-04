@@ -8,4 +8,4 @@ echo "Adding CPLEX module"
 . /sw/modules/init/bash.init
 module add cplex/12.5-fullampl
 echo "Module added"
-ampl < librarystaff.run
+ampl < librarystaff10W.run
