@@ -66,7 +66,7 @@ var num_days_with_same_shift{i in I, w in W, s in 1..3} integer;
 maximize objective: #Maximize stand-ins and create schedules with similar weeks for each worker
 	N1l*lowest_stand_in_amount_lib
 	+ N1a*lowest_stand_in_amount_ass
-	#- N2*sum{i in I}(sum{w in 1..9}(sum{w_prime in (w+1)..10}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks[i,w,w_prime,d,s]))))
+	- N2*sum{i in I}(sum{w in 1..9}(sum{w_prime in (w+1)..10}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks[i,w,w_prime,d,s]))))
 	;
 
 #################################### CONSTRAINTS ########################################################################
@@ -79,8 +79,8 @@ subject to task_assign_amount_weekdays{w in W, d in 1..5,s in S[d], j in {'Exp',
 #subject to task_assign_amount_weekends{w in W, d in 6..7,s in S[d], j in J[d]}:
 #	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
 
-#subject to task_assign_amount_library_on_wheels{w in W, d in 1..5,s in S[d]}:
-#	sum{i in I_lib_on_wheels} x[i,w,d,s,'LOW'] = lib_on_wheels_worker_demand[w,d,s];
+subject to task_assign_amount_library_on_wheels{w in W, d in 1..5,s in S[d]}:
+	sum{i in I_lib_on_wheels} x[i,w,d,s,'LOW'] = lib_on_wheels_worker_demand[w,d,s];
 
 ######################## Maximum one task per day #####################################
 #Stating that a worker can only be assigned one (outer) task per day (weekends included) where they are available. Library on wheels not included
@@ -123,6 +123,7 @@ subject to rotation_demand2{i in I, w in W}:
 #Ensuring that if a worker i is working weekend w then they will work saturday and sunday in week w
 subject to two_days_weekends1{i in I_weekend_avail, w in W}:
 	sum {s in S[6]}(sum {j in J[6]} x[i,w,6,s,j]) + sum {s in S[7]}(sum {j in J[7]} x[i,w,7,s,j]) = 2*h1[i,w];
+
 subject to two_days_weekends2{i in I_weekend_avail, w in W}:
 	sum {s in S[6]}(sum {j in J[6]} x[i,w,6,s,j]) + sum {s in S[7]}(sum {j in J[7]} x[i,w,7,s,j]) = 2*h2[i,w];
 
