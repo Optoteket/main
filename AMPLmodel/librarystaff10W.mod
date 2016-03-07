@@ -78,12 +78,16 @@ subject to task_assign_amount_weekends{w in W, d in 6..7,s in S[d], j in J[d]}:
 	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
 
 subject to task_assign_amount_library_on_wheels{w in W, d in 1..5,s in S[d]}:
-	sum{i in I} x[i,w,d,s,'LOW'] = lib_on_wheels_worker_demand[w,d,s];
+	sum{i in I_lib_on_wheels} x[i,w,d,s,'LOW'] = lib_on_wheels_worker_demand[w,d,s];
 
 ######################## Maximum one task per day #####################################
 #Stating that a worker can only be assigned one (outer) task per day (weekends included) where they are available. Library on wheels not included
-subject to max_one_task_per_day_weekday{i in I, w in W, d in 1..5}:
-	sum{s in S[d]}(sum {j in {'Exp','Info','PL'}} x[i,w,d,s,j]) <= 1;
+#subject to max_one_task_per_day_weekday{i in I, w in W, d in 1..5}:
+#	sum{s in S[d]}(sum {j in {'Exp','Info','PL'}} x[i,w,d,s,j]) <= 1;
+
+#Stating that a worker performing library on wheels cannot perform another task that day
+subject to only_LOW{i in I, w in W, d in 1..5}:
+	sum{s in S[d]}(sum {j in {'Exp','Info','PL'}}x[i,w,d,s,j]) <= 1 - sum{s in 1..3} x[i,w,d,s,'LOW'];
 
 subject to max_one_task_per_day_weekend{i in I, w in W, d in 6..7}:
 	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;
@@ -185,22 +189,22 @@ subject to help_constraint3_ass{i in I_ass, w in W, d in 1..5}:
 
 ####################### Only assign if qualified and available ######################
 
-subject to librarians_only_assigned_if_qualavail_weekdays{i in I_lib, w in W, d in 1..5, s in S[d], j in {'Exp', 'Info', 'PL'}}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
+subject to librarians_only_assigned_if_qualavail_weekdays{i in I, w in W, d in 1..5, s in S[d], j in {'Exp', 'Info', 'PL'}}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
 	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
 
-subject to librarians_only_assigned_if_qualavail_weekends{i in I_lib, w in W, d in 6..7, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'. No 'LOW' on weekends either
+subject to librarians_only_assigned_if_qualavail_weekends{i in I, w in W, d in 6..7, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'. No 'LOW' on weekends either
 	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
 
-subject to assistants_only_assigned_if_qualavail_weekdays{i in I_ass, w in W, d in 1..5, s in S[d], j in {'Exp', 'Info', 'PL'}}: #assistants not qualified for 'Info' on weekdays
-	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
+#subject to assistants_only_assigned_if_qualavail_weekdays{i in I_ass, w in W, d in 1..5, s in S[d], j in {'Exp', 'Info', 'PL'}}: #assistants not qualified for 'Info' on weekdays
+#	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
 
-subject to assistants_only_assigned_if_qualavail_weekends{i in I_ass, w in W, d in 6..7, s in S[d], j in J[d]}: #assistants not qualified for 'Info' or 'HB' on weekends, no 'LOW' on weekends either
-	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
+#subject to assistants_only_assigned_if_qualavail_weekends{i in I_ass, w in W, d in 6..7, s in S[d], j in J[d]}: #assistants not qualified for 'Info' or 'HB' on weekends, no 'LOW' on weekends either
+#	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
 ### LIBRARY ON WHEELS ###
-#subject to lib_on_wheels_constraint{i in I_lib_on_wheels, w in W, d in 1..5, s in S[1]}: #Around five librarians qualified for library on wheels. They _shall_ be assigned their shifts there
+#subject to lib_on_wheels_constraint{i in I_lib_on_wheels, w in W, d in 1..5, s in S[d]}: #Around five librarians qualified for library on wheels. They _shall_ be assigned their shifts there
 #	x[i,w,d,s,'LOW'] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,'LOW']));
 
-
+# _lib_on_wheels
 ############### Second objective function constraints: Similar weeks for workers #############
 subject to positive_values_of_abs{i in I, w in 1..9, w_prime in (w+1)..10, d in 1..5, s in 1..3}:
 	shifts_that_differ_between_weeks[i,w,w_prime,d,s] >= (y[i,w,d,s]-y[i,w_prime,d,s]);
