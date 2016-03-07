@@ -24,8 +24,6 @@ set Workers;
 #################################### Parameters ########################################################################
 #param meeting{S{D},D,W} binary;
 #param inner{I,D,W} binary; #saying if worker i has inner service day d week w
-param skill{I} binary; #Staff skill competence for worker i, 0 if Assistant or 1 if Librarian
-param avail{i in I, w in W, d in D, s in S[d]} binary; #Worker i available for shift s, day d, week w
 param avail_day{i in I, w in W, d in D} binary; #1 if worker i is available day d, week w
 param task_worker_demand{d in D, s in S[d], j in J[d]} integer; #number of workers required for task type j shift s on day d
 param qualavail{i in I,w in W, d in D, s in S[d], j in J[d]} binary; #Worker i qualified and available for task type j shift s day d week w
@@ -79,8 +77,8 @@ subject to task_assign_amount_weekdays{w in W, d in 1..5,s in S[d], j in {'Exp',
 subject to task_assign_amount_weekends{w in W, d in 6..7,s in S[d], j in J[d]}:
 	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
 
-subject to task_assign_amount_library_on_wheels{w in W, d in 1..5,s in S[d]}:
-	sum{i in I_lib_on_wheels} x[i,w,d,s,'LOW'] = lib_on_wheels_worker_demand[w,d,s];
+#subject to task_assign_amount_library_on_wheels{w in W, d in 1..5,s in S[d]}:
+#	sum{i in I_lib_on_wheels} x[i,w,d,s,'LOW'] = lib_on_wheels_worker_demand[w,d,s];
 
 ######################## Maximum one task per day #####################################
 #Stating that a worker can only be assigned one (outer) task per day (weekends included) where they are available. Library on wheels not included
@@ -112,19 +110,17 @@ subject to first_weekend_happening_max_once{i in I_weekend_avail}:
 subject to second_weekend_happening_max_once{i in I_weekend_avail}:
 	sum{w in W} h2[i,w] <= 1;
 
-#Rotate the schedule so weekend work is at week w. If worker i does not work weekend (h = 0) then the rotation is free.
+#Rotate the schedule so weekend work is at week w. If worker i does not work weekend (h1 = h2 = 0) then the rotation is free.
 subject to rotation_demand{i in I, w in W}:
-	r[i,w] >= h1[i,w]; #Problem when 10 weeks? YES
+	r[i,w] >= h1[i,w];
 
-#if weekend 2 is 1 for a week w, then rotation r shall be shifted by 5. e.g. h2[i,7] = 1 then r[i,2] = 1, if h2[i,2] = 1 then r[i,7] = 1
+#if weekend two is 1 for a week w, then rotation r shall be shifted by 5. e.g. h2[i,7] = 1 then r[i,2] = 1, if h2[i,2] = 1 then r[i,7] = 1
 subject to rotation_demand2{i in I, w in W}:
 	r[i,(w+4) mod 10 + 1] >= h2[i,w];
 
 #Ensuring that if a worker i is working weekend w then they will work saturday and sunday in week w
-subject to two_days_weekends1{i in I_weekend_avail, w in W}:
-	sum {s in S[6]}(sum {j in J[6]} x[i,w,6,s,j]) + sum {s in S[7]}(sum {j in J[7]} x[i,w,7,s,j]) = 2*h1[i,w];
-subject to two_days_weekends2{i in I_weekend_avail, w in W}:
-	sum {s in S[6]}(sum {j in J[6]} x[i,w,6,s,j]) + sum {s in S[7]}(sum {j in J[7]} x[i,w,7,s,j]) = 2*h2[i,w];
+subject to two_days_weekends{i in I_weekend_avail, w in W}:
+	sum {s in S[6]}(sum {j in J[6]} x[i,w,6,s,j]) + sum {s in S[7]}(sum {j in J[7]} x[i,w,7,s,j]) = 2*h1[i,w] + 2*h2[i,w];
 
 subject to same_tasks_on_weekends{i in I_weekend_avail, w in W, j in J[7]} :
 	sum{s in S[6]} x[i,w,6,s,j] = sum{s in S[7]} x[i,w,7,s,j]; #s = 1 for weekends anyhow
@@ -145,8 +141,8 @@ subject to help_constraint_friday_weekend1_1{i in I_weekend_avail, w in W}:
 subject to help_constraint_friday_weekend2_1{i in I_weekend_avail, w in W}:
 	working_friday_evening[i,w] >= h2[i,w] + (1 - hb[i,w]) - 1;
 
-#subject to help_constraint_friday_weekend1_2{i in I_weekend_avail, w in W}:
-#	working_friday_evening[i,w] <= h1[i,w] + h2[i,w];
+subject to help_constraint_friday_weekend1_2{i in I_weekend_avail, w in W}:
+	working_friday_evening[i,w] <= h1[i,w] + h2[i,w];
 
 subject to help_constraint_friday_weekend3{i in I_weekend_avail, w in W}:
 	working_friday_evening[i,w] <= (1 - hb[i,w]);
@@ -192,14 +188,14 @@ subject to help_constraint3_ass{i in I_ass, w in W, d in 1..5}:
 subject to librarians_only_assigned_if_qualavail_weekdays{i in I_lib, w in W, d in 1..5, s in S[d], j in {'Exp', 'Info', 'PL'}}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
 	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
 
-#subject to librarians_only_assigned_if_qualavail_weekends{i in I_lib, w in W, d in 6..7, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'. No 'LOW' on weekends either
-#	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
+subject to librarians_only_assigned_if_qualavail_weekends{i in I_lib, w in W, d in 6..7, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'. No 'LOW' on weekends either
+	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
 
 subject to assistants_only_assigned_if_qualavail_weekdays{i in I_ass, w in W, d in 1..5, s in S[d], j in {'Exp', 'Info', 'PL'}}: #assistants not qualified for 'Info' on weekdays
 	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
 
-#subject to assistants_only_assigned_if_qualavail_weekends{i in I_ass, w in W, d in 6..7, s in S[d], j in J[d]}: #assistants not qualified for 'Info' or 'HB' on weekends, no 'LOW' on weekends either
-#	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
+subject to assistants_only_assigned_if_qualavail_weekends{i in I_ass, w in W, d in 6..7, s in S[d], j in J[d]}: #assistants not qualified for 'Info' or 'HB' on weekends, no 'LOW' on weekends either
+	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
 ### LIBRARY ON WHEELS ###
 #subject to lib_on_wheels_constraint{i in I_lib_on_wheels, w in W, d in 1..5, s in S[1]}: #Around five librarians qualified for library on wheels. They _shall_ be assigned their shifts there
 #	x[i,w,d,s,'LOW'] = (sum {v in V} (r[i,v]*lib_on_wheels_avail[i,(w-v+10) mod 10 +1,d,s]));
