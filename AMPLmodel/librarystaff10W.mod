@@ -104,7 +104,7 @@ subject to max_two_PL_per_five_last_weeks{i in I}:
 subject to rotation_of_week{i in I}:
 	sum{w in W} r[i,w] = 1;
 
-#Allowing a "weekend-worker" to work two weekends per ten weeks
+#Allowing a "weekend-worker" to work a maximum of two weekends per ten weeks
 subject to first_weekend_happening_max_once{i in I_weekend_avail}:
 	sum{w in W} h1[i,w] <= 1;
 subject to second_weekend_happening_max_once{i in I_weekend_avail}:
