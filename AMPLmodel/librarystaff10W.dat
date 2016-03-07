@@ -71,71 +71,71 @@ param	skill	:=
 	35		0
 	39		0;
 param	task_worker_demand	:=
-	1 1 Exp 2
-	1 1 Info 2
+	1 1 Exp 1
+	1 1 Info 1
 	1 1 PL 1
-	1 2 Exp 3
-	1 2 Info 3
+	1 2 Exp 1
+	1 2 Info 1
 	1 2 PL 0
-	1 3 Exp 3
-	1 3 Info 3
+	1 3 Exp 1
+	1 3 Info 1
 	1 3 PL 0
-	1 4 Exp 3
-	1 4 Info 3
+	1 4 Exp 1
+	1 4 Info 1
 	1 4 PL 0
-	2 1 Exp 2
-	2 1 Info 2
+	2 1 Exp 1
+	2 1 Info 1
 	2 1 PL 1
-	2 2 Exp 3
-	2 2 Info 3
+	2 2 Exp 1
+	2 2 Info 1
 	2 2 PL 0
-	2 3 Exp 3
-	2 3 Info 3
+	2 3 Exp 1
+	2 3 Info 1
 	2 3 PL 0
-	2 4 Exp 3
-	2 4 Info 3
+	2 4 Exp 1
+	2 4 Info 1
 	2 4 PL 0
-	3 1 Exp 2
-	3 1 Info 2
+	3 1 Exp 1
+	3 1 Info 1
 	3 1 PL 1
-	3 2 Exp 3
-	3 2 Info 3
+	3 2 Exp 1
+	3 2 Info 1
 	3 2 PL 0
-	3 3 Exp 3
-	3 3 Info 3
+	3 3 Exp 1
+	3 3 Info 1
 	3 3 PL 0
-	3 4 Exp 3
-	3 4 Info 3
+	3 4 Exp 1
+	3 4 Info 1
 	3 4 PL 0
-	4 1 Exp 2
-	4 1 Info 2
+	4 1 Exp 1
+	4 1 Info 1
 	4 1 PL 1
-	4 2 Exp 3
-	4 2 Info 3
+	4 2 Exp 1
+	4 2 Info 1
 	4 2 PL 0
-	4 3 Exp 3
-	4 3 Info 3
+	4 3 Exp 1
+	4 3 Info 1
 	4 3 PL 0
-	4 4 Exp 3
-	4 4 Info 3
+	4 4 Exp 1
+	4 4 Info 1
 	4 4 PL 0
-	5 1 Exp 2
-	5 1 Info 2
+	5 1 Exp 1
+	5 1 Info 1
 	5 1 PL 1
-	5 2 Exp 3
-	5 2 Info 3
+	5 2 Exp 1
+	5 2 Info 1
 	5 2 PL 0
-	5 3 Exp 3
-	5 3 Info 3
+	5 3 Exp 1
+	5 3 Info 1
 	5 3 PL 0
-	5 4 Exp 3
-	5 4 Info 3
+	5 4 Exp 1
+	5 4 Info 1
 	5 4 PL 0
-	6 1 Exp 3
-	6 1 Info 3
+	6 1 Exp 1
+	6 1 Info 1
 	6 1 HB 1
-	7 1 Exp 3
-	7 1 Info 3
+	7 1 Exp 1
+	7 1 Info 1
 	7 1 HB 1
 ;
 param	lib_on_wheels_worker_demand	:=

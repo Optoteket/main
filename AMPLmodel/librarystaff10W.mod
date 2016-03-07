@@ -76,11 +76,11 @@ maximize objective: #Maximize stand-ins and create schedules with similar weeks 
 subject to task_assign_amount_weekdays{w in W, d in 1..5,s in S[d], j in {'Exp', 'Info', 'PL'}}:
 	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
 
-#subject to task_assign_amount_weekends{w in W, d in 6..7,s in S[d], j in J[d]}:
-#	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
+subject to task_assign_amount_weekends{w in W, d in 6..7,s in S[d], j in J[d]}:
+	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
 
-#subject to task_assign_amount_library_on_wheels{w in W, d in 1..5,s in S[d]}:
-#	sum{i in I_lib_on_wheels} x[i,w,d,s,'LOW'] = lib_on_wheels_worker_demand[w,d,s];
+subject to task_assign_amount_library_on_wheels{w in W, d in 1..5,s in S[d]}:
+	sum{i in I_lib_on_wheels} x[i,w,d,s,'LOW'] = lib_on_wheels_worker_demand[w,d,s];
 
 ######################## Maximum one task per day #####################################
 #Stating that a worker can only be assigned one (outer) task per day (weekends included) where they are available. Library on wheels not included
@@ -92,14 +92,14 @@ subject to max_one_task_per_day_weekend{i in I, w in W, d in 6..7}:
 
 ######################## Maximum one 'PL' per week and maximum two per five weeks #####################################
 #Allowing a worker i to only work with 'Plocklistan' once per week
-#subject to max_one_PL_per_week{i in I, w in W}:
-#	sum{d in 1..5} x[i,w,d,1,'PL'] <= 1;
+subject to max_one_PL_per_week{i in I, w in W}:
+	sum{d in 1..5} x[i,w,d,1,'PL'] <= 1;
 
 #Allowing a worker i maximum two 'PL' per five weeks
-#subject to max_two_PL_per_five_first_weeks{i in I}:
-#	sum{w in 1..5}(sum{d in 1..5} x[i,w,d,1,'PL']) <= 2;
-#subject to max_two_PL_per_five_last_weeks{i in I}:
-#	sum{w in 6..10}(sum{d in 1..5} x[i,w,d,1,'PL']) <= 2;
+subject to max_two_PL_per_five_first_weeks{i in I}:
+	sum{w in 1..5}(sum{d in 1..5} x[i,w,d,1,'PL']) <= 2;
+subject to max_two_PL_per_five_last_weeks{i in I}:
+	sum{w in 6..10}(sum{d in 1..5} x[i,w,d,1,'PL']) <= 2;
 
 ####################### Week rotation and weekend constraints #########################
 #Stating number of weeks worker i:s schedule is phase shifted
@@ -189,14 +189,14 @@ subject to help_constraint3_ass{i in I_ass, w in W, d in 1..5}:
 
 ####################### Only assign if qualified and available ######################
 
-#subject to librarians_only_assigned_if_qualavail_weekdays{i in I_lib, w in W, d in 1..5, s in S[d], j in {'Exp', 'Info', 'PL'}}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
-#	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
+subject to librarians_only_assigned_if_qualavail_weekdays{i in I_lib, w in W, d in 1..5, s in S[d], j in {'Exp', 'Info', 'PL'}}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
+	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
 
 #subject to librarians_only_assigned_if_qualavail_weekends{i in I_lib, w in W, d in 6..7, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'. No 'LOW' on weekends either
 #	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
 
-#subject to assistants_only_assigned_if_qualavail_weekdays{i in I_ass, w in W, d in 1..5, s in S[d], j in {'Exp', 'Info', 'PL'}}: #assistants not qualified for 'Info' on weekdays
-#	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
+subject to assistants_only_assigned_if_qualavail_weekdays{i in I_ass, w in W, d in 1..5, s in S[d], j in {'Exp', 'Info', 'PL'}}: #assistants not qualified for 'Info' on weekdays
+	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
 
 #subject to assistants_only_assigned_if_qualavail_weekends{i in I_ass, w in W, d in 6..7, s in S[d], j in J[d]}: #assistants not qualified for 'Info' or 'HB' on weekends, no 'LOW' on weekends either
 #	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
