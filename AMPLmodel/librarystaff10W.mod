@@ -158,14 +158,14 @@ subject to find_lowest_stand_in_amount_no_weekends_no_evenings_lib{w in W, d in 
 
 #A worker is a stand-in if he/she is available, qualified and is not already scheduled. Takes schedule rotation into account
 subject to find_avail_not_working_day_lib{i in I_lib, w in W, d in 1..5}:
-	stand_in_lib[i,w,d] >= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]) + (1-sum{s in 1..4}(sum{j in J[d]} x[i,w,d,s,j])) - 1; #Available and not working any shift day d. Note: ADD LOW here?? Done
+	stand_in_lib[i,w,d] >= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]) + (1-sum{s in 1..4}(sum{j in J[d]} x[i,w,d,s,j])) - 1; #Available and not working any shift day d. Note: ADD LOW here??
 
 ### Help constraints for qualavail and not scheduled ###
 subject to help_constraint2_lib{i in I_lib, w in W, d in 1..5}:
 	stand_in_lib[i,w,d] <= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]);
 
 subject to help_constraint3_lib{i in I_lib, w in W, d in 1..5}:
-	stand_in_lib[i,w,d] <= 1-sum{s in 1..4}(sum{j in J[d]} x[i,w,d,s,j]); # Note: ADD LOW here?? Done.
+	stand_in_lib[i,w,d] <= 1-sum{s in 1..4}(sum{j in J[d]} x[i,w,d,s,j]); # Note: ADD LOW here??
 
 ### Stand-ins for assistants
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
