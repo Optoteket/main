@@ -197,8 +197,8 @@ subject to assistants_only_assigned_if_qualavail_weekdays{i in I_ass, w in W, d 
 subject to assistants_only_assigned_if_qualavail_weekends{i in I_ass, w in W, d in 6..7, s in S[d], j in J[d]}: #assistants not qualified for 'Info' or 'HB' on weekends, no 'LOW' on weekends either
 	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
 ### LIBRARY ON WHEELS ###
-#subject to lib_on_wheels_constraint{i in I_lib_on_wheels, w in W, d in 1..5, s in S[1]}: #Around five librarians qualified for library on wheels. They _shall_ be assigned their shifts there
-#	x[i,w,d,s,'LOW'] = (sum {v in V} (r[i,v]*lib_on_wheels_avail[i,(w-v+10) mod 10 +1,d,s]));
+subject to lib_on_wheels_constraint{i in I_lib_on_wheels, w in W, d in 1..5, s in S[1]}: #Around five librarians qualified for library on wheels. They _shall_ be assigned their shifts there
+	x[i,w,d,s,'LOW'] = (sum {v in V} (r[i,v]*lib_on_wheels_avail[i,(w-v+10) mod 10 +1,d,s]));
 
 
 ############### Second objective function constraints: Similar weeks for workers #############
