@@ -64,7 +64,7 @@ var num_days_with_same_shift{i in I, w in W, s in 1..3} integer;
 maximize objective: #Maximize stand-ins and create schedules with similar weeks for each worker
 	N1l*lowest_stand_in_amount_lib
 	+ N1a*lowest_stand_in_amount_ass
-	#- N2*sum{i in I}(sum{w in 1..9}(sum{w_prime in (w+1)..10}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks[i,w,w_prime,d,s]))))
+	- N2*sum{i in I}(sum{w in 1..9}(sum{w_prime in (w+1)..10}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks[i,w,w_prime,d,s]))))
 	;
 
 #################################### CONSTRAINTS ########################################################################
@@ -104,7 +104,7 @@ subject to max_two_PL_per_five_last_weeks{i in I}:
 subject to rotation_of_week{i in I}:
 	sum{w in W} r[i,w] = 1;
 
-#Allowing a "weekend-worker" to work two weekends per ten weeks
+#Allowing a "weekend-worker" to work a maximum of two weekends per ten weeks
 subject to first_weekend_happening_max_once{i in I_weekend_avail}:
 	sum{w in W} h1[i,w] <= 1;
 subject to second_weekend_happening_max_once{i in I_weekend_avail}:
