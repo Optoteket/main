@@ -135,7 +135,7 @@ subject to same_tasks_on_weekends{i in I_weekend_avail, w in W, j in J[7]} :
 	sum{s in S[6]} x[i,w,6,s,j] = sum{s in S[7]} x[i,w,7,s,j]; #s = 1 for weekends anyhow
 
 
-######################### Friday constraints #################################
+######################### Friday/weekend constraints #################################
 subject to friday_added_to_the_weekend{i in I_weekend_avail, w in W}:
 	sum {j in {'Exp', 'Info', 'PL'}} x[i,w,5,4,j] = working_friday_evening[i,w];
 
@@ -157,9 +157,12 @@ subject to help_constraint_friday_weekend3{i in I_weekend_avail, w in W}:
 	working_friday_evening[i,w] <= (1 - hb[i,w]);
 
 #HB constraints
-subject to max_one_weekend_at_HB_per_ten_weeks{i in I_lib, w in W}:
+subject to max_two_days_at_HB_per_ten_weeks{i in I_lib, w in W}:
 	sum{d in 6..7} x[i,w,d,1,'HB'] <= 2;
 
+#Workers who only work at HB when they are due for weekend work
+subject to worker_not_assigned_exp_info{w in W}:
+	sum{d in 6..7}sum{j in {'Exp','Info'}} x[23,w,d,1,j] = 0;
 
 
 
