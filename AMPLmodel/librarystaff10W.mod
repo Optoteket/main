@@ -32,8 +32,8 @@ param lib_on_wheels_avail{i in I_lib,w in W,d in D,s in S[d]} binary; #1 if a li
 
 param Shift_list{Workers}; #used to visualize results in terminal, see .run file
 param stand_in_day_d{I, W, 1..5}; #used to print number of stand-ins for each day
-param N1l := 40; #The bigger, the more priority to maximize librarian stand-ins
-param N1a := 20; #The bigger, the more priority to maximize assistants stand-ins
+param N1l := 4000; #The bigger, the more priority to maximize librarian stand-ins
+param N1a := 2000; #The bigger, the more priority to maximize assistants stand-ins
 param N2 := 1; #Prioritize similar weeks
 param N3 := 1; #Prioritize varied time of shifts
 
@@ -77,8 +77,11 @@ subject to task_assign_amount_weekdays{w in W, d in 1..5,s in S[d], j in {'Exp',
 subject to task_assign_amount_weekends{w in W, d in 6..7,s in S[d], j in J[d]}:
 	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
 
-subject to task_assign_amount_library_on_wheels{w in W, d in 1..5,s in S[d]}:
-	sum{i in I_lib_on_wheels} x[i,w,d,s,'LOW'] = lib_on_wheels_worker_demand[w,d,s];
+subject to task_assign_amount_library_on_wheels{w in W, d in {1, 2, 3, 5} ,s in S[d]}:
+	sum{i in I} x[i,w,d,s,'LOW'] = lib_on_wheels_worker_demand[w,d,s];
+
+subject to task_assign_amount_library_on_wheels2{w in W,s in {1, 2, 3}}: #not enough workers for library on wheels both s = 1 and s = 4 on thursdays
+	sum{i in I} x[i,w,4,s,'LOW'] = lib_on_wheels_worker_demand[w,4,s];
 
 ######################## Maximum one task per day #####################################
 #Stating that a worker can only be assigned one (outer) task per day (weekends included) where they are available. Library on wheels not included
@@ -87,7 +90,12 @@ subject to task_assign_amount_library_on_wheels{w in W, d in 1..5,s in S[d]}:
 
 #Stating that a worker performing library on wheels cannot perform another task that day
 subject to only_LOW{i in I, w in W, d in 1..5}:
-	sum{s in S[d]}(sum {j in {'Exp','Info','PL'}}x[i,w,d,s,j]) <= 1 - sum{s in 1..3} x[i,w,d,s,'LOW'];
+	sum{s in S[d]}(sum {j in {'Exp','Info','PL'}}x[i,w,d,s,j]) <= 1; # - x[i,w,d,1,'LOW'];
+subject to more_LOW{i in I, w in W, d in 1..5}:
+	sum{s in S[d]} x[i,w,d,s,'LOW'] <= 2;
+
+#subject to only_LOW2{i in I, w in W, d in 1..5}:
+#	sum{s in S[d]}(sum {j in {'Exp','Info','PL'}}x[i,w,d,s,j]) <= 1 - x[i,w,d,4,'LOW'];
 
 subject to max_one_task_per_day_weekend{i in I, w in W, d in 6..7}:
 	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;
@@ -160,7 +168,7 @@ subject to help_constraint_friday_weekend3{i in I_weekend_avail, w in W}:
 subject to find_lowest_stand_in_amount_no_weekends_no_evenings_lib{w in W, d in 1..5}: #RHS: number of qualified workers at work that is available & not assigned to any task.
 	lowest_stand_in_amount_lib <= sum{i in I_lib} stand_in_lib[i,w,d]; 		#+ meeting[s,d,w]*M; 
 
-#A worker is a stand-in if he/she is available, qualified and is not already scheduled. Takes schedule rotation into account
+#A worker is a stand-in if he/she is available for shift 1-3, qualified and is not already scheduled. Takes schedule rotation into account
 subject to find_avail_not_working_day_lib{i in I_lib, w in W, d in 1..5}:
 	stand_in_lib[i,w,d] >= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]) + (1-sum{s in 1..4}(sum{j in J[d]} x[i,w,d,s,j])) - 1; #Available and not working any shift day d. Note: ADD LOW here??
 
@@ -189,7 +197,7 @@ subject to help_constraint3_ass{i in I_ass, w in W, d in 1..5}:
 
 ####################### Only assign if qualified and available ######################
 
-subject to librarians_only_assigned_if_qualavail_weekdays{i in I, w in W, d in 1..5, s in S[d], j in {'Exp', 'Info', 'PL'}}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
+subject to librarians_only_assigned_if_qualavail_weekdays{i in I, w in W, d in 1..5, s in S[d], j in {'Exp', 'Info', 'PL', 'LOW'}}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
 	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
 
 subject to librarians_only_assigned_if_qualavail_weekends{i in I, w in W, d in 6..7, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'. No 'LOW' on weekends either
@@ -224,8 +232,8 @@ subject to task_free_weekday{i in I_free_day, w in W}:
 
 ######################### Time constraints #################################
 #Allowing only three shifts at a certain time each week
-subject to max_three_shifts_per_week{i in I, w in W, s in 1..3}:
-	sum{d in 1..5} y[i,w,d,s] <= 2;
+subject to max_three_shifts_at_same_hours_per_week{i in I, w in W, s in 1..3}:
+	sum{d in 1..5} y[i,w,d,s] <= 3;
 
 
 
