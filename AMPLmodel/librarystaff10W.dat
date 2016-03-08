@@ -1,4 +1,4 @@
-# Data file Created: 3/8/2016 2:17:34 AM
+# Data file Created: 3/8/2016 6:31:33 AM
 # Master Thesis: Work Distribution of a Heterogeneous Library Staff - A Personnel Task Scheduling Problem
 # Master Students: Claes Arvidson and Emelie Karlsson
 
@@ -26,6 +26,7 @@ set I_lib := 2 3 4 5 7 8 9 12 13 14 16 17 19 21 23 24 25 27 31 32 36 37 38 ; # S
 set I_ass := 1 6 10 11 15 18 20 22 26 28 29 30 33 34 35 39 ; # Set with all of the assistants
 set I_lib_on_wheels := 14 17 25 36 37 ; # Set with all librarians working in the library on wheels
 set I_free_day := 25 29;
+set I_odd_even := 13 17 ; #Set of all workers with odd or even weeks
 set V := 1 2 3 4 5 6 7 8 9 10 ; #Set with the number of weekphases possible |V| = |W|
 
 
@@ -702,22 +703,22 @@ param	avail_day	:=
 	12 10 4 1
 	12 10 5 1
 	13 1 1 1
-	13 1 2 1
+	13 1 2 0
 	13 1 3 1
 	13 1 4 1
 	13 1 5 1
 	13 2 1 0
-	13 2 2 0
+	13 2 2 1
 	13 2 3 1
 	13 2 4 1
 	13 2 5 0
 	13 3 1 1
-	13 3 2 1
+	13 3 2 0
 	13 3 3 1
 	13 3 4 1
 	13 3 5 1
 	13 4 1 1
-	13 4 2 0
+	13 4 2 1
 	13 4 3 1
 	13 4 4 1
 	13 4 5 1
@@ -727,7 +728,7 @@ param	avail_day	:=
 	13 5 4 1
 	13 5 5 1
 	13 6 1 1
-	13 6 2 0
+	13 6 2 1
 	13 6 3 1
 	13 6 4 1
 	13 6 5 1
@@ -737,7 +738,7 @@ param	avail_day	:=
 	13 7 4 1
 	13 7 5 0
 	13 8 1 1
-	13 8 2 0
+	13 8 2 1
 	13 8 3 1
 	13 8 4 1
 	13 8 5 1
@@ -747,7 +748,7 @@ param	avail_day	:=
 	13 9 4 1
 	13 9 5 1
 	13 10 1 1
-	13 10 2 0
+	13 10 2 1
 	13 10 3 1
 	13 10 4 1
 	13 10 5 1
@@ -9151,14 +9152,14 @@ param	qualavail	:=
 	13 1 1 4 LOW 0
 	13 1 2 1 Exp 1
 	13 1 2 1 Info 1
-	13 1 2 1 PL 1
+	13 1 2 1 PL 0
 	13 1 2 1 LOW 0
 	13 1 2 2 Exp 1
 	13 1 2 2 Info 1
 	13 1 2 2 PL 0
 	13 1 2 2 LOW 0
-	13 1 2 3 Exp 1
-	13 1 2 3 Info 1
+	13 1 2 3 Exp 0
+	13 1 2 3 Info 0
 	13 1 2 3 PL 0
 	13 1 2 3 LOW 0
 	13 1 2 4 Exp 1
@@ -9235,12 +9236,12 @@ param	qualavail	:=
 	13 2 1 4 Info 0
 	13 2 1 4 PL 0
 	13 2 1 4 LOW 0
-	13 2 2 1 Exp 0
-	13 2 2 1 Info 0
-	13 2 2 1 PL 0
+	13 2 2 1 Exp 1
+	13 2 2 1 Info 1
+	13 2 2 1 PL 1
 	13 2 2 1 LOW 0
-	13 2 2 2 Exp 0
-	13 2 2 2 Info 0
+	13 2 2 2 Exp 1
+	13 2 2 2 Info 1
 	13 2 2 2 PL 0
 	13 2 2 2 LOW 0
 	13 2 2 3 Exp 1
@@ -9323,14 +9324,14 @@ param	qualavail	:=
 	13 3 1 4 LOW 0
 	13 3 2 1 Exp 1
 	13 3 2 1 Info 1
-	13 3 2 1 PL 1
+	13 3 2 1 PL 0
 	13 3 2 1 LOW 0
 	13 3 2 2 Exp 1
 	13 3 2 2 Info 1
 	13 3 2 2 PL 0
 	13 3 2 2 LOW 0
-	13 3 2 3 Exp 1
-	13 3 2 3 Info 1
+	13 3 2 3 Exp 0
+	13 3 2 3 Info 0
 	13 3 2 3 PL 0
 	13 3 2 3 LOW 0
 	13 3 2 4 Exp 1
@@ -9407,12 +9408,12 @@ param	qualavail	:=
 	13 4 1 4 Info 0
 	13 4 1 4 PL 0
 	13 4 1 4 LOW 0
-	13 4 2 1 Exp 0
-	13 4 2 1 Info 0
-	13 4 2 1 PL 0
+	13 4 2 1 Exp 1
+	13 4 2 1 Info 1
+	13 4 2 1 PL 1
 	13 4 2 1 LOW 0
-	13 4 2 2 Exp 0
-	13 4 2 2 Info 0
+	13 4 2 2 Exp 1
+	13 4 2 2 Info 1
 	13 4 2 2 PL 0
 	13 4 2 2 LOW 0
 	13 4 2 3 Exp 1
@@ -9493,16 +9494,16 @@ param	qualavail	:=
 	13 5 1 4 Info 0
 	13 5 1 4 PL 0
 	13 5 1 4 LOW 0
-	13 5 2 1 Exp 0
-	13 5 2 1 Info 0
+	13 5 2 1 Exp 1
+	13 5 2 1 Info 1
 	13 5 2 1 PL 0
 	13 5 2 1 LOW 0
-	13 5 2 2 Exp 0
-	13 5 2 2 Info 0
+	13 5 2 2 Exp 1
+	13 5 2 2 Info 1
 	13 5 2 2 PL 0
 	13 5 2 2 LOW 0
-	13 5 2 3 Exp 1
-	13 5 2 3 Info 1
+	13 5 2 3 Exp 0
+	13 5 2 3 Info 0
 	13 5 2 3 PL 0
 	13 5 2 3 LOW 0
 	13 5 2 4 Exp 1
@@ -9579,12 +9580,12 @@ param	qualavail	:=
 	13 6 1 4 Info 0
 	13 6 1 4 PL 0
 	13 6 1 4 LOW 0
-	13 6 2 1 Exp 0
-	13 6 2 1 Info 0
-	13 6 2 1 PL 0
+	13 6 2 1 Exp 1
+	13 6 2 1 Info 1
+	13 6 2 1 PL 1
 	13 6 2 1 LOW 0
-	13 6 2 2 Exp 0
-	13 6 2 2 Info 0
+	13 6 2 2 Exp 1
+	13 6 2 2 Info 1
 	13 6 2 2 PL 0
 	13 6 2 2 LOW 0
 	13 6 2 3 Exp 1
@@ -9665,16 +9666,16 @@ param	qualavail	:=
 	13 7 1 4 Info 0
 	13 7 1 4 PL 0
 	13 7 1 4 LOW 0
-	13 7 2 1 Exp 0
-	13 7 2 1 Info 0
+	13 7 2 1 Exp 1
+	13 7 2 1 Info 1
 	13 7 2 1 PL 0
 	13 7 2 1 LOW 0
-	13 7 2 2 Exp 0
-	13 7 2 2 Info 0
+	13 7 2 2 Exp 1
+	13 7 2 2 Info 1
 	13 7 2 2 PL 0
 	13 7 2 2 LOW 0
-	13 7 2 3 Exp 1
-	13 7 2 3 Info 1
+	13 7 2 3 Exp 0
+	13 7 2 3 Info 0
 	13 7 2 3 PL 0
 	13 7 2 3 LOW 0
 	13 7 2 4 Exp 1
@@ -9751,12 +9752,12 @@ param	qualavail	:=
 	13 8 1 4 Info 0
 	13 8 1 4 PL 0
 	13 8 1 4 LOW 0
-	13 8 2 1 Exp 0
-	13 8 2 1 Info 0
-	13 8 2 1 PL 0
+	13 8 2 1 Exp 1
+	13 8 2 1 Info 1
+	13 8 2 1 PL 1
 	13 8 2 1 LOW 0
-	13 8 2 2 Exp 0
-	13 8 2 2 Info 0
+	13 8 2 2 Exp 1
+	13 8 2 2 Info 1
 	13 8 2 2 PL 0
 	13 8 2 2 LOW 0
 	13 8 2 3 Exp 1
@@ -9837,16 +9838,16 @@ param	qualavail	:=
 	13 9 1 4 Info 0
 	13 9 1 4 PL 0
 	13 9 1 4 LOW 0
-	13 9 2 1 Exp 0
-	13 9 2 1 Info 0
+	13 9 2 1 Exp 1
+	13 9 2 1 Info 1
 	13 9 2 1 PL 0
 	13 9 2 1 LOW 0
-	13 9 2 2 Exp 0
-	13 9 2 2 Info 0
+	13 9 2 2 Exp 1
+	13 9 2 2 Info 1
 	13 9 2 2 PL 0
 	13 9 2 2 LOW 0
-	13 9 2 3 Exp 1
-	13 9 2 3 Info 1
+	13 9 2 3 Exp 0
+	13 9 2 3 Info 0
 	13 9 2 3 PL 0
 	13 9 2 3 LOW 0
 	13 9 2 4 Exp 1
@@ -9923,12 +9924,12 @@ param	qualavail	:=
 	13 10 1 4 Info 0
 	13 10 1 4 PL 0
 	13 10 1 4 LOW 0
-	13 10 2 1 Exp 0
-	13 10 2 1 Info 0
-	13 10 2 1 PL 0
+	13 10 2 1 Exp 1
+	13 10 2 1 Info 1
+	13 10 2 1 PL 1
 	13 10 2 1 LOW 0
-	13 10 2 2 Exp 0
-	13 10 2 2 Info 0
+	13 10 2 2 Exp 1
+	13 10 2 2 Info 1
 	13 10 2 2 PL 0
 	13 10 2 2 LOW 0
 	13 10 2 3 Exp 1
@@ -16159,10 +16160,10 @@ param	qualavail	:=
 	25 2 4 3 Info 0
 	25 2 4 3 PL 0
 	25 2 4 3 LOW 0
-	25 2 4 4 Exp 0
-	25 2 4 4 Info 0
+	25 2 4 4 Exp 1
+	25 2 4 4 Info 1
 	25 2 4 4 PL 0
-	25 2 4 4 LOW 0
+	25 2 4 4 LOW 1
 	25 2 5 1 Exp 0
 	25 2 5 1 Info 0
 	25 2 5 1 PL 0

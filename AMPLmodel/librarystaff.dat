@@ -1,4 +1,4 @@
-# Data file Created: 3/4/2016 5:50:15 AM
+# Data file Created: 3/8/2016 6:24:59 AM
 # Master Thesis: Work Distribution of a Heterogeneous Library Staff - A Personnel Task Scheduling Problem
 # Master Students: Claes Arvidson and Emelie Karlsson
 
@@ -25,7 +25,7 @@ set I_weekend_avail := 3 5 7 8 9 12 13 14 16 17 19 23 24 25 27 31 32 36 37 38 4 
 set I_lib := 2 3 5 7 8 9 12 13 14 16 17 19 21 23 24 25 27 31 32 36 37 38 4 ; # Set with all of the librarians
 set I_ass := 1 6 10 11 15 18 20 22 26 28 29 30 33 34 35 39 ; # Set with all of the assistants
 set I_lib_on_wheels := 14 17 25 36 37 ; # Set with all librarians working in the library on wheels
-set I_free_day := 2529;
+set I_free_day := 25 29;
 set V := 1 2 3 4 5; #Set with the number of weekphases possible |V| = |W|
 
 

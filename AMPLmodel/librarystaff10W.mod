@@ -17,6 +17,7 @@ set I_ass; #Set of assistants
 set V; #Set of possible week rotations (shift the week by 1..10 steps)
 set I_lib_on_wheels; #Set of librarians available to work in library on wheels (Bokbussen)
 set I_free_day; #Set of workers that shall be assigned a free weekday per week
+set I_odd_even; #Set of all workers with odd or even weeks
 
 set Workers;
 
@@ -35,7 +36,6 @@ param stand_in_day_d{I, W, 1..5}; #used to print number of stand-ins for each da
 param N1l := 4000; #The bigger, the more priority to maximize librarian stand-ins
 param N1a := 2000; #The bigger, the more priority to maximize assistants stand-ins
 param N2 := 1; #Prioritize similar weeks
-param N3 := 1; #Prioritize varied time of shifts
 
 #################################### Variables ########################################################################
 var r{i in I, w in W} binary; #1 if person i has a rotation (phase shift) of w weeks, 0 otherwise
@@ -77,25 +77,18 @@ subject to task_assign_amount_weekdays{w in W, d in 1..5,s in S[d], j in {'Exp',
 subject to task_assign_amount_weekends{w in W, d in 6..7,s in S[d], j in J[d]}:
 	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
 
-subject to task_assign_amount_library_on_wheels{w in W, d in {1, 2, 3, 5} ,s in S[d]}:
+subject to task_assign_amount_library_on_wheels{w in W, d in 1..5 ,s in S[d]}:
 	sum{i in I} x[i,w,d,s,'LOW'] = lib_on_wheels_worker_demand[w,d,s];
 
-subject to task_assign_amount_library_on_wheels2{w in W,s in {1, 2, 3}}: #not enough workers for library on wheels both s = 1 and s = 4 on thursdays
-	sum{i in I} x[i,w,4,s,'LOW'] = lib_on_wheels_worker_demand[w,4,s];
-
 ######################## Maximum one task per day #####################################
-#Stating that a worker can only be assigned one (outer) task per day (weekends included) where they are available. Library on wheels not included
-#subject to max_one_task_per_day_weekday{i in I, w in W, d in 1..5}:
-#	sum{s in S[d]}(sum {j in {'Exp','Info','PL'}} x[i,w,d,s,j]) <= 1;
-
 #Stating that a worker performing library on wheels cannot perform another task that day
 subject to only_LOW{i in I, w in W, d in 1..5}:
 	sum{s in S[d]}(sum {j in {'Exp','Info','PL'}}x[i,w,d,s,j]) <= 1; # - x[i,w,d,1,'LOW'];
 subject to more_LOW{i in I, w in W, d in 1..5}:
 	sum{s in S[d]} x[i,w,d,s,'LOW'] <= 2;
 
-#subject to only_LOW2{i in I, w in W, d in 1..5}:
-#	sum{s in S[d]}(sum {j in {'Exp','Info','PL'}}x[i,w,d,s,j]) <= 1 - x[i,w,d,4,'LOW'];
+subject to only_LOW2{i in I, w in W, d in 1..5}:
+	sum{s in S[d]}(sum {j in {'Exp','Info','PL'}}x[i,w,d,s,j]) <= 1; # - x[i,w,d,4,'LOW'];
 
 subject to max_one_task_per_day_weekend{i in I, w in W, d in 6..7}:
 	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;
@@ -112,7 +105,7 @@ subject to max_two_PL_per_five_last_weeks{i in I}:
 	sum{w in 6..10}(sum{d in 1..5} x[i,w,d,1,'PL']) <= 2;
 
 ####################### Week rotation and weekend constraints #########################
-#Stating number of weeks worker i:s schedule is phase shifted
+#Stating the week where the evening shall be rotated to
 subject to rotation_of_week{i in I}:
 	sum{w in W} r[i,w] = 1;
 
@@ -125,6 +118,10 @@ subject to second_weekend_happening_max_once{i in I_weekend_avail}:
 #Rotate the schedule so weekend work is at week w. If worker i does not work weekend (h1 = h2 = 0) then the rotation is free.
 subject to rotation_demand{i in I, w in W}:
 	r[i,w] >= h1[i,w];
+
+#Only rotate even numbers for the workers with demands of odd and even weeks
+subject to only_even_rotations{i in I_odd_even, w in 1..5}:
+	r[i,2*w] = 0;
 
 #if weekend two is 1 for a week w, then rotation r shall be shifted by 5. e.g. h2[i,7] = 1 then r[i,2] = 1, if h2[i,2] = 1 then r[i,7] = 1
 subject to rotation_demand2{i in I, w in W}:
@@ -159,6 +156,10 @@ subject to help_constraint_friday_weekend1_2{i in I_weekend_avail, w in W}:
 subject to help_constraint_friday_weekend3{i in I_weekend_avail, w in W}:
 	working_friday_evening[i,w] <= (1 - hb[i,w]);
 
+#HB constraints
+subject to max_one_weekend_at_HB_per_ten_weeks{i in I_lib, w in W}:
+	sum{d in 6..7} x[i,w,d,1,'HB'] <= 2;
+
 
 
 
@@ -170,14 +171,20 @@ subject to find_lowest_stand_in_amount_no_weekends_no_evenings_lib{w in W, d in 
 
 #A worker is a stand-in if he/she is available for shift 1-3, qualified and is not already scheduled. Takes schedule rotation into account
 subject to find_avail_not_working_day_lib{i in I_lib, w in W, d in 1..5}:
-	stand_in_lib[i,w,d] >= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]) + (1-sum{s in 1..4}(sum{j in J[d]} x[i,w,d,s,j])) - 1; #Available and not working any shift day d. Note: ADD LOW here??
+	stand_in_lib[i,w,d] >= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]) + (1-sum{s in 1..4}(sum{j in {'Exp', 'Info', 'PL'}} x[i,w,d,s,j])) - 1; #Available and not working any shift day d. Note: ADD LOW here??
 
 ### Help constraints for qualavail and not scheduled ###
 subject to help_constraint2_lib{i in I_lib, w in W, d in 1..5}:
 	stand_in_lib[i,w,d] <= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]);
 
 subject to help_constraint3_lib{i in I_lib, w in W, d in 1..5}:
-	stand_in_lib[i,w,d] <= 1-sum{s in 1..4}(sum{j in J[d]} x[i,w,d,s,j]); # Note: ADD LOW here??
+	stand_in_lib[i,w,d] <= 1-sum{s in 1..4}(sum{j in {'Exp', 'Info', 'PL'}} x[i,w,d,s,j]); # Note: ADD LOW here??
+
+subject to help_constraint4_lib{i in I_lib, w in W, d in 1..5}:
+	stand_in_lib[i,w,d] <= 1-sum{s in 1..3} x[i,w,d,s,'LOW'];
+
+subject to help_constraint5_lib{i in I_lib, w in W, d in 1..5}:
+	stand_in_lib[i,w,d] <= 1- x[i,w,d,4,'LOW'];
 
 ### Stand-ins for assistants
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
@@ -233,7 +240,7 @@ subject to task_free_weekday{i in I_free_day, w in W}:
 ######################### Time constraints #################################
 #Allowing only three shifts at a certain time each week
 subject to max_three_shifts_at_same_hours_per_week{i in I, w in W, s in 1..3}:
-	sum{d in 1..5} y[i,w,d,s] <= 3;
+	sum{d in 1..5} y[i,w,d,s] <= 2;
 
 
 
