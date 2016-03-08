@@ -13,8 +13,13 @@
 \contentsline {section}{\numberline {2.1}Tour scheduling problem with a heterogenous work force}{5}
 \contentsline {section}{\numberline {2.2}Personnel task scheduling problem}{6}
 \contentsline {section}{\numberline {2.3}Shift minimisation personnel task scheduling problem (SMPTSP)}{7}
+<<<<<<< HEAD
 \contentsline {section}{\numberline {2.4}Fixed/flexible job scheduling problem (FJSP)}{7}
 \contentsline {section}{\numberline {2.5}Work load allocation and worker satisfaction}{8}
+=======
+\contentsline {section}{\numberline {2.4}Work load allocation and worker satisfaction}{7}
+\contentsline {section}{\numberline {2.5}Fixed/flexible job scheduling problem (FJSP)}{8}
+>>>>>>> 1d5ffe71fb5cc5812473d2ebd500e393fbce5c32
 \contentsline {chapter}{\numberline {3}Implementation insights}{9}
 \contentsline {chapter}{\numberline {4}The ideal CSTR: the chemostat}{11}
 \contentsline {section}{\numberline {4.1}Some simple models of biological growth}{11}

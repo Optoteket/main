@@ -33,10 +33,28 @@ Bokbussen: kan man göra en person som högsta prio för bokbusspass och sedan sätt
 
 
 Frågor angående schemat vi tagit fram:
-- Vad tycker ni om antalet reserver? Om man vill frigöra fler kan man se till att byta plats på tisdag och fredag som ledig dag för vissa.
-- Hur ser arbetsfördelningen ut?
-- Hur ser helgfördelningen ut?
-- 5-veckorsschema eller 10-veckorsschema?
+	- Vad tycker ni om antalet reserver? Om man vill frigöra fler kan man se till att byta plats på tisdag och fredag som ledig dag för vissa.
+	- Hur ser arbetsfördelningen ut?
+	- Hur ser helgfördelningen ut?
+
+Hagebyfrågor:
+	- ID 22, ll och ID 23, le?
+	- Grundchemat stämmer inte...
+
+Frågor om specifik personal:
+
+	-hm: ni har skrivit "endast pass som i grundschemat" men personen har pass vissa tisdagsmornar och plocklistan andra tisdagar. Vi tänker oss det som att plocklistan är ett pass som går över tre pass. Betyder det att personen 	kan ta övriga pass också alla tider på tisdagar, dvs 8-16?  
+
+	-Samma sak gäller mk som har plocklista en torsdag (v.6), men som annars bara jobbar tisdag morgon och måndag kväll.
+
+	-Samma sak med me. Denne har plocklistan v. 4. men annars pass endast 13-16 på måndagar övriga veckor. Kan vi modellera det som att personen kan ha pass när som helst på en måndag 8-16?
+
+	-sa: "Hageby tisdag - passfri HB", betyder det att vi ska lägga in denne som passfri endast på tisdagar?
+
+	-sö: är personen ledig torsdagar?
+
+	-sl: "tisdag, fredag (undantag v 1 - kan ha pass)", dvs. undantag första veckan efter veckovila?
+
 
 
 
