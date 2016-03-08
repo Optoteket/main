@@ -78,7 +78,7 @@ subject to task_assign_amount_weekends{w in W, d in 6..7,s in S[d], j in J[d]}:
 	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
 
 subject to task_assign_amount_library_on_wheels{w in W, d in 1..5,s in S[d]}:
-	sum{i in I_lib_on_wheels} x[i,w,d,s,'LOW'] = lib_on_wheels_worker_demand[w,d,s];
+	sum{i in I} x[i,w,d,s,'LOW'] = lib_on_wheels_worker_demand[w,d,s];
 
 ######################## Maximum one task per day #####################################
 #Stating that a worker can only be assigned one (outer) task per day (weekends included) where they are available. Library on wheels not included
