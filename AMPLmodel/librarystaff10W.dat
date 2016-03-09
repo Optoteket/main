@@ -1,4 +1,4 @@
-# Data file Created: 3/8/2016 6:31:33 AM
+# Data file Created: 3/9/2016 12:49:35 AM
 # Master Thesis: Work Distribution of a Heterogeneous Library Staff - A Personnel Task Scheduling Problem
 # Master Students: Claes Arvidson and Emelie Karlsson
 
@@ -16160,10 +16160,10 @@ param	qualavail	:=
 	25 2 4 3 Info 0
 	25 2 4 3 PL 0
 	25 2 4 3 LOW 0
-	25 2 4 4 Exp 1
-	25 2 4 4 Info 1
+	25 2 4 4 Exp 0
+	25 2 4 4 Info 0
 	25 2 4 4 PL 0
-	25 2 4 4 LOW 1
+	25 2 4 4 LOW 0
 	25 2 5 1 Exp 0
 	25 2 5 1 Info 0
 	25 2 5 1 PL 0
@@ -16590,10 +16590,10 @@ param	qualavail	:=
 	25 7 4 3 Info 0
 	25 7 4 3 PL 0
 	25 7 4 3 LOW 0
-	25 7 4 4 Exp 1
-	25 7 4 4 Info 1
+	25 7 4 4 Exp 0
+	25 7 4 4 Info 0
 	25 7 4 4 PL 0
-	25 7 4 4 LOW 1
+	25 7 4 4 LOW 0
 	25 7 5 1 Exp 0
 	25 7 5 1 Info 0
 	25 7 5 1 PL 0
