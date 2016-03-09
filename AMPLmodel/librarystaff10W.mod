@@ -33,8 +33,8 @@ param lib_on_wheels_avail{i in I_lib,w in W,d in D,s in S[d]} binary; #1 if a li
 
 param Shift_list{Workers}; #used to visualize results in terminal, see .run file
 param stand_in_day_d{I, W, 1..5}; #used to print number of stand-ins for each day
-param N1l := 4000; #The bigger, the more priority to maximize librarian stand-ins
-param N1a := 2000; #The bigger, the more priority to maximize assistants stand-ins
+param N1l := 200; #The bigger, the more priority to maximize librarian stand-ins
+param N1a := 20; #The bigger, the more priority to maximize assistants stand-ins
 param N2 := 1; #Prioritize similar weeks
 
 #################################### Variables ########################################################################
@@ -163,8 +163,6 @@ subject to max_two_days_at_HB_per_ten_weeks{i in I_lib}:
 #Workers who only work at HB when they are due for weekend work
 subject to worker_not_assigned_exp_info{w in W}:
 	sum{d in 6..7}sum{j in {'Exp','Info'}} x[23,w,d,1,j] = 0;
-
-
 
 
 ######################### First objective function constraints: Stand-in constraints #################################
