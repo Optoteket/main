@@ -32,6 +32,9 @@ param lib_on_wheels_worker_demand{w in W,d in D,s in S[d]} integer; #number of w
 param lib_on_wheels_avail{i in I_lib,w in W,d in D,s in S[d]} binary; #1 if a librarian is available to work in library on wheels week w, day d, shift s
 
 param Shift_list{Workers}; #used to visualize results in terminal, see .run file
+param LOW_list{Workers};
+param PL_list{Workers};
+
 param stand_in_day_d{I, W, 1..5}; #used to print number of stand-ins for each day
 param N1l := 200; #The bigger, the more priority to maximize librarian stand-ins
 param N1a := 20; #The bigger, the more priority to maximize assistants stand-ins
@@ -157,7 +160,7 @@ subject to help_constraint_friday_weekend3{i in I_weekend_avail, w in W}:
 	working_friday_evening[i,w] <= (1 - hb[i,w]);
 
 #HB constraints
-subject to max_two_days_at_HB_per_ten_weeks{i in I_lib}:
+subject to max_two_days_at_HB_per_ten_weeks{i in I_lib diff {23}}:
 	sum{w in W}(sum{d in 6..7} x[i,w,d,1,'HB']) <= 2;
 
 #Workers who only work at HB when they are due for weekend work
