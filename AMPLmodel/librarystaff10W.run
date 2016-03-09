@@ -43,15 +43,27 @@ printf "\n The number of shiftchanges in total were: %d \n \n", shift_change;
 
 
 ###################### Print number of shifts each worker is assigned #####################
-#param number_of_workers := 39;
-#let Workers := 1..number_of_workers;
+param number_of_workers := 39;
+let Workers := 1..number_of_workers;
 
-#Loop för Shift_list{Workers}
+#Loop for the lists{Workers}
+for {i in I}
+{
+	let Shift_list[i] := sum{w in W}(sum{d in D}(sum{s in S[d]}(sum{j in J[d]} x[i,w,d,s,j])))/10;
+	let LOW_list[i] := sum{w in W}(sum{d in 1..5}(sum{s in S[d]} x[i,w,d,s,'LOW'] ));
+	let PL_list[i] := sum{w in W}(sum{d in 1..5}(sum{s in S[d]} x[i,w,d,s,'PL'] ));
+}
+display Shift_list, LOW_list, PL_list;
+
+
+###################### Print number of LOW shifts each person has per ten weeks #####################
+#param number_of_lows;
 #for {i in I}
 #{
-#	let Shift_list[i] := sum{w in W}(sum{d in D}(sum{s in S[d]}(sum{j in J[d]} x[i,w,d,s,j])));
+#	
 #}
-#display Shift_list;
+
+
 
 ###################### Print number of stand-ins each day #####################
 
@@ -87,6 +99,9 @@ display lowest_stand_in_amount_ass;
 
 ### display the variables ###
 display _varname, _var > librarystaff10W.res;
+display Shift_list > librarystaff10W.res;
+display LOW_list > librarystaff10W.res;
+display PL_list > librarystaff10W.res;
 
 #display task_worker_demand;
 ###############################################################################
