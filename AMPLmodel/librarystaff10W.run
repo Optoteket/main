@@ -102,15 +102,15 @@ display lowest_stand_in_amount_ass;
 display _varname, _var > librarystaff10W.res;
 for {i in I}
 {
-	printf "Shift_list[%d] = %f \n", i, Shift_list[i] > librarystaff10W.res;
+	printf "Shift_list[%d] = %1g \n", i, Shift_list[i] > librarystaff10W.res;
 }
 for {i in I}
 {
-	printf "LOW_list[%d] = %f \n", i, LOW_list[i] > librarystaff10W.res;
+	printf "LOW_list[%d] = %1g \n", i, LOW_list[i] > librarystaff10W.res;
 }
 for {i in I}
 {
-	printf "PL_list[%d] = %f \n", i, PL_list[i] > librarystaff10W.res;
+	printf "PL_list[%d] = %1g \n", i, PL_list[i] > librarystaff10W.res;
 }
 
 #display Shift_list > librarystaff10W.res;
