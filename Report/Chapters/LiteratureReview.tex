@@ -87,7 +87,9 @@ This type of problem can be found when developing a rostering solution for groun
 
 Similar problems of type PTSP related to airplanes can also be found when scheduling for either airport mainteance staff (leading to either PTSP[F;I;H;U-A] or PTSP[F;I-U;H;W]), planes to gates or staff that do not stay in one location, such as airline stewards. 
 
-Another application, which has been studied frequently, can be found in classroom assignment. Based on demands such as the amount of students in a class or the duration of the class, different classrooms have to be considered. Requirements of certain equipment, e.g. for a laboratory, may also greatly limit the available rooms to choose from. The aim here would be to find a feasible assignment of classrooms and the type of problem would be PTSP[S;I;H;F] with the possibility to add preferences to the objective function. Such a preference could be to assign the lessons as close to each other as possible on a day, preventing travel distances between classes for teachers and students.
+Another application, which has been frequently studied, can be found in classroom assignments. Based on demands such as the amount of students in a class or the duration of the class, different classrooms have to be considered. Requirements of certain equipment, e.g. for a laboratory, may also greatly limit the available rooms to choose from.
+
+For classroom assignment there are no start or end times for the shifts, as they represent the rooms. The aim would be to find a feasible assignment of classrooms and therefore the type of problem would be PTSP[S;I;H;F] with the possibility of adding preferences to the objective function. An example of a preference would be to assign the lessons as close to each other as possible on a day, preventing travel distances between classes for teachers and students.
 
 
 Papers of interest:

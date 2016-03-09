@@ -15,12 +15,12 @@
 \contentsline {subsection}{\numberline {2.2.1}Applications}{7}
 \contentsline {section}{\numberline {2.3}Shift minimisation personnel task scheduling problem (SMPTSP)}{8}
 \contentsline {section}{\numberline {2.4}Work load allocation and worker satisfaction}{8}
-\contentsline {section}{\numberline {2.5}Fixed/flexible job scheduling problem (FJSP)}{8}
-\contentsline {chapter}{\numberline {3}Implementation insights}{9}
-\contentsline {chapter}{\numberline {4}The ideal CSTR: the chemostat}{11}
-\contentsline {section}{\numberline {4.1}Some simple models of biological growth}{11}
-\contentsline {subsection}{\numberline {4.1.1}Exponential growth}{11}
-\contentsline {subsection}{\numberline {4.1.2}The logistic equation}{11}
-\contentsline {section}{\numberline {4.2}The chemostat}{11}
-\contentsline {chapter}{\numberline {A}The Linearized stability}{15}
-\contentsline {section}{\numberline {A.1}The Linearization}{15}
+\contentsline {section}{\numberline {2.5}Fixed/flexible job scheduling problem (FJSP)}{9}
+\contentsline {chapter}{\numberline {3}Implementation insights}{11}
+\contentsline {chapter}{\numberline {4}The ideal CSTR: the chemostat}{13}
+\contentsline {section}{\numberline {4.1}Some simple models of biological growth}{13}
+\contentsline {subsection}{\numberline {4.1.1}Exponential growth}{13}
+\contentsline {subsection}{\numberline {4.1.2}The logistic equation}{13}
+\contentsline {section}{\numberline {4.2}The chemostat}{13}
+\contentsline {chapter}{\numberline {A}The Linearized stability}{17}
+\contentsline {section}{\numberline {A.1}The Linearization}{17}

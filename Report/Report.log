@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  9 MAR 2016 14:40
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.10.17)  9 MAR 2016 16:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -676,53 +676,54 @@ Overfull \hbox (24.69463pt too wide) in paragraph at lines 45--75
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6]
-Overfull \hbox (4.55617pt too wide) in paragraph at lines 94--95
+[7]
+Overfull \hbox (4.55617pt too wide) in paragraph at lines 98--99
 []\OT1/cmr/m/n/10 "Task as-signe-ment for main-te-nance per-son-nel": Roberts a
 nd Es-cud-ero, 1983a,
  []
 
-[7]
-Overfull \hbox (9.36456pt too wide) in paragraph at lines 122--122
+
+Overfull \hbox (9.36456pt too wide) in paragraph at lines 126--126
 []\OT1/cmr/bx/n/14.4 Fixed/flexible job schedul-ing prob-lem (FJSP) 
  []
 
-
-Overfull \hbox (168.3344pt too wide) in paragraph at lines 127--129
+[8]
+Overfull \hbox (168.3344pt too wide) in paragraph at lines 131--133
 \OT1/cmr/m/n/10 Task Schedul-ing Prob-lems" M. Kr-ish-namoor-thy http://www.sci
 encedirect.com/science/article/pii/S0377221711010435 
  []
 
 
-Overfull \hbox (94.41751pt too wide) in paragraph at lines 130--131
+Overfull \hbox (94.41751pt too wide) in paragraph at lines 134--135
 \OT1/cmr/m/n/10 time con-straints" Andr^^Se Rossi, http://www.sciencedirect.com
 /science/article/pii/S0305054809002251
  []
 
 
-Overfull \hbox (47.9452pt too wide) in paragraph at lines 132--135
+Overfull \hbox (47.9452pt too wide) in paragraph at lines 136--139
 []\OT1/cmr/m/n/10 Cemal []Ozg^^?uven http://www.sciencedirect.com/science/artic
 le/pii/S0307904X11004173
  []
 
 ) (/sw/texlive/2011/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
-) [8]
-Chapter 3.
-[9
+) [9] [10
 
-] [10
+]
+Chapter 3.
+[11] [12
 
 ]
 Chapter 4.
-[11] (./Report.bbl [12]) [13
+[13] (./Report.bbl [14]) [15
 
-] [14
+] [16
 
 ]
 Appendix A.
-[15] [16]
+[17] [18]
 File: univlogo.eps Graphic file (type eps)
- <univlogo.eps> [17
+ <univlogo.eps> [19
 
 
 Non-PDF special ignored!] (./Report.aux)
@@ -756,10 +757,10 @@ sfonts/cm/cmsy7.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmti10.pfb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.p
 fb></sw/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></sw/t
 exlive/2011/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on Report.pdf (31 pages, 250656 bytes).
+Output written on Report.pdf (33 pages, 253690 bytes).
 PDF statistics:
- 182 PDF objects out of 1000 (max. 8388607)
- 128 compressed objects within 2 object streams
+ 188 PDF objects out of 1000 (max. 8388607)
+ 132 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
