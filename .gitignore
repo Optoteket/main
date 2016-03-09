@@ -24,3 +24,5 @@
 .~lock*
 *~
 *.orig
+
+echo "Ignoring things!"
