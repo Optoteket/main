@@ -40,7 +40,7 @@ There are several variants to the Personnel Task Scheduling Problem. The common 
 One variant, which also is the most simple, is called the \textit{Feasibility Problem} where the aim is to just find a feasible solution. This requires that each task is allocated to a qualified and available worker. It is also required that a worker can not be assigned more than one task simultaneously as well as tasks can not be pre-empted, meaning that each task has to be completed by one and the same worker.
 
 In Table \ref{PTSP} one can see attributes of PTSP variants. The nomenclature of the attributes T, S, Q, O refer to the \textit{Task type}, \textit{Shift type}, \textit{Qualifications} and \textit{Objective function} respectively. 
-\begin{table}[!h]
+\begin{table}[H]
 \caption{PTSP variants}
 \label{PTSP}
 \begin{tabular}{|c|c|l|}
@@ -75,9 +75,24 @@ O & F & No objective, just find a feasible schedule \\
 \end{tabular}
 \end{table}
 
-Our problem would be most related to the PTSP[F;F;H;F]. The difference is the objective function as we are looking to maximize the number of qualified stand-ins each day as well as maximize employee satisfaction by meeting their recommendations. 
+With this definition of PTSP attributes many of the most basic problems and a few more complex ones can be described. It is, however, not possible to describe all of the numerous combinations using these nomenclatures.
 
-Most likely our problem. Definition is "in which a set of tasks with fixed start and finish times have to be allocated to a heterogeneous workforce". The objective of these problems is to minimise the overall cost of personnel required to perform all tasks.
+By combining attributes it is possible to obtain more complex variants of the PTSP. An example would be the PTSP[F;F;H;A-T-W] where multiple objectives are used. This problem has fixed contiguous tasks, fixed shift lengths, heterogeneous workforce and three objective functions; assigment costs, work time with overtime included and requirements to minimize the number of workers respectively. This objective function is then a linear combination with different parameters used to prioritize them against each other.
+
+Our problem would be most related to the PTSP[F;F;H;F]. The difference is the objective function, since we are looking to maximize the number of qualified stand-ins each day as well as maximize employee satisfaction by meeting their recommendations. This can not be described with the type of attributes given in Table \ref{PTSP} above because we have no costs, a fix number of workers and no unallocated tasks when a feasible solution is found. 
+
+Different variants of PTSP are given names in the literature. One example is when the shifts and qualifications are identical (S=I and Q=I) and the objective function is to minimize the number of workers that are used (O=W). This variant, PTSP[F;I;I;W], has been published as the \textit{"fixed job schedule problem"} and is described in Section \ref{FJSP} below.
+
+\subsection{Applications}
+This type of problem can be found when developing a rostering solution for ground personnel at an airport. Such a problem can be dealt with by first assigning workers to days to satisfy all the labour constraints, followed by assigning the tasks to the scheduled workers.
+
+Similar problems of type PTSP related to airplanes can also be found when scheduling for either airport mainteance staff (leading to either PTSP[F;I;H;U-A] or PTSP[F;I-U;H;W]), planes to gates or staff that do not stay in one location, such as airline stewards. 
+
+Another application, which has been frequently studied, can be found in classroom assignments. Based on demands such as the amount of students in a class or the duration of the class, different classrooms have to be considered. Requirements of certain equipment, e.g. for a laboratory, may also greatly limit the available rooms to choose from.
+
+For classroom assignment there are no start or end times for the shifts, as they represent the rooms. The aim would be to find a feasible assignment of classrooms and therefore the type of problem would be PTSP[S;I;H;F] with the possibility of adding preferences to the objective function. An example of a preference would be to assign the lessons as close to each other as possible on a day, preventing travel distances between classes for teachers and students.
+
+
 
 Papers of interest:
 "The Personnel Task Scheduling Problem", Mohan Krishnamoorthy, Andreas T. Ernst (2001) - probably the most fundamental article
@@ -136,6 +151,7 @@ Solution methods to compare (similar problems):
 
 "An integer linear programming-based heuristic for scheduling heterogeneous, part-time service employees" Heterogenous work force, tour scheduling. Using two objective functions Hojati and Patil, 2010
 
+for another definition as PTSP[F;I;I;W], see "The Personnel Task Scheduling Problem" by Krishnamoorty and Ernst, 2001
 
 
 
