@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{Ernst_2004}
 Ernst et~al.
@@ -21,6 +21,28 @@ Hwang Choi and Park.
 Krishnamoorthy et~al.
 \newblock The personnel task scheduling problem.
 \newblock 2001.
+
+\bibitem{krishnamoorthy_2011}
+Krishnamoorthy et~al.
+\newblock Algorithms for large scale shift minimisation personnel task
+  scheduling problems.
+\newblock 2011.
+
+\bibitem{Gertsbakh_1977}
+H.I.~Stern I.~Gertsbakh.
+\newblock Minimal resources for fixed and variable job schedules.
+\newblock 1977.
+
+\bibitem{fischetti_1992}
+Fischetti et~al.
+\newblock Approximation algorithms for fixed job schedule problems.
+\newblock 1992.
+
+\bibitem{kroon_1997}
+Luk N. Van~Wassenhove Leo G.~Kroon, Marc~Salomon.
+\newblock Exact and approximation algorithms for the tactical fixed interval
+  scheduling problem.
+\newblock 1997.
 
 \bibitem{latexcompanion}
 Michel Goossens, Frank Mittelbach, and Alexander Samarin.
