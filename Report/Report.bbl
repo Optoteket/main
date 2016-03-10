@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{Ernst_2004}
 Ernst et~al.
@@ -27,6 +27,16 @@ Krishnamoorthy et~al.
 \newblock Algorithms for large scale shift minimisation personnel task
   scheduling problems.
 \newblock 2011.
+
+\bibitem{Gertsbakh_1977}
+H.I.~Stern I.~Gertsbakh.
+\newblock Minimal resources for fixed and variable job schedules.
+\newblock 1977.
+
+\bibitem{fischetti_1992}
+Fischetti et~al.
+\newblock Approximation algorithms for fixed job schedule problems.
+\newblock 1992.
 
 \bibitem{kroon_1997}
 Kroon et~al.
