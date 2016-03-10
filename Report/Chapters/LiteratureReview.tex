@@ -13,10 +13,10 @@ The problem which is most similar to our problem is, however, task assignment. T
 
 
 
-\section{Tour scheduling problem with a heterogenous work force}\label{TSP}
+\section{Tour Scheduling Problem with a heterogenous work force}\label{TSP}
 Emelie
 
-The tour scheduling problem (TSP) involves creating work shifts with days off for a work force. According to Loucks and Jacobs, the vast majority of all tour scheduling problems up to 1991 were with a homogeneous workforce, that is under the assumption that any worker could perform any assigned task \cite{loucks_1991}. The authors discuss a tour scheduling problem where the objective is to construct weekly schedules for each worker which also show the specific task assignments. The problem is studied in the context of fast food restaurants, where certain personnel is qualified only for certain stations in the restaurant. In such industries, the demand of staff differs between different weekdays and different times of the day. Two things differ between workers, their availability for work and their qualification. Furthermore, the workers working times are not fixed, but are composed of a number of consecutive tasks assigned during a block of time during a day.
+The Tour Scheduling Problem (TSP) involves creating work shifts with days off for a work force. According to Loucks and Jacobs, the vast majority of all tour scheduling problems up to 1991 were with a homogeneous workforce, that is under the assumption that any worker could perform any assigned task \cite{loucks_1991}. The authors discuss a tour scheduling problem where the objective is to construct weekly schedules for each worker which also show the specific task assignments. The problem is studied in the context of fast food restaurants, where certain personnel is qualified only for certain stations in the restaurant. In such industries, the demand of staff differs between different weekdays and different times of the day. Two things differ between workers, their availability for work and their qualification. Furthermore, the workers working times are not fixed, but are composed of a number of consecutive tasks assigned during a block of time during a day.
 
 The representative problem studied in the article involves creating a one-week schedule for 40 workers in a fast food restaurant, available for eight different tasks with a seven-day, 128-hour workweek. Several synthetic problems are studied in the article, all, however with minimum shift lenght three hours, maximum shift length eight hours and five maximum number of work days.
 
@@ -30,14 +30,14 @@ The greatest difference between the problem studied by Loucks and Jacobs and our
 In some cases, a problem can be a combined tour scheduling and task assignment problem or can be divided into these two solution stages, as is the case in \cite{keylist}. "An integer linear programming-based heuristic for scheduling heterogeneous, part-time service employees" , 2011
 
 
-\section{Personnel task scheduling problem} \label{PTSP}
+\section{Personnel Task Scheduling Problem} \label{PTSP}
 Claes
 
-In many practical instances production managers will face the personnel task scheduling problem (PTSP) while scheduling plant operations. It occurs when the rosterer or shift supervisor need to allocate tasks with specified start and end times to available personnel who have the required qualifications. Furthermore, it also occurs in situations where tasks of fixed times have been assigned to machines. Decisions will then have to be made regarding the amount of maintenance workers needed and which machine the workers are assigned to.
+In many practical instances production managers will face the Personnel Task Scheduling Problem (PTSP) while scheduling plant operations. It occurs when the rosterer or shift supervisor need to allocate tasks with specified start and end times to available personnel who have the required qualifications. Furthermore, it also occurs in situations where tasks of fixed times have been assigned to machines. Decisions will then have to be made regarding the amount of maintenance workers needed and which machine the workers are assigned to. \cite{krishnamoorthy_2001}
 
-There are several variants to the Personnel Task Scheduling Problem. The common attributes are to assign a set of tasks with fixed start and end time to staff members that possesses certain skills, allowing them to perform a subset of the available tasks. The start and end time of their shifts are also predetermined for each day.
+There are several variants to the PTSP. These have been studied in an article by \cite{krishnamoorthy_2001} who gives a list of attributes that commonly appear in a PTSP and are listed in Table \ref{PTSP} below. There are furthermore traits that always appear in a PTSP; tasks with fixed start and end time are to be distributed to staff members that possesses certain skills, allowing them to perform a subset of the available tasks. The start and end time of their shifts are also predetermined for each day.
 
-One variant, which also is the most simple, is called the \textit{Feasibility Problem} where the aim is to just find a feasible solution. This requires that each task is allocated to a qualified and available worker. It is also required that a worker can not be assigned more than one task simultaneously as well as tasks can not be pre-empted, meaning that each task has to be completed by one and the same worker.
+One variant, which also is the most simple, is mentioned in \cite{krishnamoorthy_2001} and is called the \textit{Feasibility Problem} where the aim is to just find a feasible solution. This requires that each task is allocated to a qualified and available worker. It is also required that a worker can not be assigned more than one task simultaneously as well as tasks can not be pre-empted, meaning that each task has to be completed by one and the same worker.
 
 In Table \ref{PTSP} one can see attributes of PTSP variants. The nomenclature of the attributes T, S, Q, O refer to the \textit{Task type}, \textit{Shift type}, \textit{Qualifications} and \textit{Objective function} respectively. 
 \begin{table}[H]
@@ -75,18 +75,18 @@ O & F & No objective, just find a feasible schedule \\
 \end{tabular}
 \end{table}
 
-With this definition of PTSP attributes many of the most basic problems and a few more complex ones can be described. It is, however, not possible to describe all of the numerous combinations using these nomenclatures.
+With this definition of PTSP attributes many of the most basic problems and a few more complex ones can be described. It is, however, not possible to describe all of the numerous types of PTSP using these nomenclatures.
 
-By combining attributes it is possible to obtain more complex variants of the PTSP. An example would be the PTSP[F;F;H;A-T-W] where multiple objectives are used. This problem has fixed contiguous tasks, fixed shift lengths, heterogeneous workforce and three objective functions; assigment costs, work time with overtime included and requirements to minimize the number of workers respectively. This objective function is then a linear combination with different parameters used to prioritize them against each other.
+By combining attributes it is possible to obtain more complex variants of the PTSP. An example would be the PTSP[F;F;H;A-T-W] mentioned in \cite{krishnamoorthy_2001} where multiple objectives are used. This problem has fixed contiguous tasks, fixed shift lengths, heterogeneous workforce and three objective functions; assigment costs, work time with overtime included and requirements to minimize the number of workers respectively. This objective function is then a linear combination with different parameters used to prioritize them against each other.
 
 Our problem would be most related to the PTSP[F;F;H;F]. The difference is the objective function, since we are looking to maximize the number of qualified stand-ins each day as well as maximize employee satisfaction by meeting their recommendations. This can not be described with the type of attributes given in Table \ref{PTSP} above because we have no costs, a fix number of workers and no unallocated tasks when a feasible solution is found. 
 
-Different variants of PTSP are given names in the literature. One example is when the shifts and qualifications are identical (S=I and Q=I) and the objective function is to minimize the number of workers that are used (O=W). This variant, PTSP[F;I;I;W], has been published as the \textit{"fixed job schedule problem"} and is described in Section \ref{FJSP} below.
+Different variants of PTSP are given names in the literature. One example is when the shifts and qualifications are identical (S=I and Q=I) and the objective function is to minimize the number of workers that are used (O=W). This variant, PTSP[F;I;I;W], has been published as the \textit{"fixed job schedule problem"} and is described in Section \ref{FJSP} below \cite{krishnamoorthy_2001}.
 
 \subsection{Applications}
 This type of problem can be found when developing a rostering solution for ground personnel at an airport. Such a problem can be dealt with by first assigning workers to days to satisfy all the labour constraints, followed by assigning the tasks to the scheduled workers.
 
-Similar problems of type PTSP related to airplanes can also be found when scheduling for either airport mainteance staff (leading to either PTSP[F;I;H;U-A] or PTSP[F;I-U;H;W]), planes to gates or staff that do not stay in one location, such as airline stewards. 
+Similar problems of type PTSP related to airplanes can also be found when scheduling for either airport mainteance staff (leading to either PTSP[F;I;H;U-A] or PTSP[F;I-U;H;W]), staff that do not stay in one location, such as airline stewards, or planes to gates. 
 
 Another application, which has been frequently studied, can be found in classroom assignments. Based on demands such as the amount of students in a class or the duration of the class, different classrooms have to be considered. Requirements of certain equipment, e.g. for a laboratory, may also greatly limit the available rooms to choose from.
 
@@ -94,15 +94,20 @@ For classroom assignment there are no start or end times for the shifts, as they
 
 
 
-Papers of interest:
-"The Personnel Task Scheduling Problem", Mohan Krishnamoorthy, Andreas T. Ernst (2001) - probably the most fundamental article
+%Papers of interest:
+%"The Personnel Task Scheduling Problem", Mohan Krishnamoorthy, Andreas T. Ernst (2001) - probably the most fundamental article
+%
+%"Task assignement for maintenance personnel": Roberts and Escudero, 1983a, 1983b
+%
+%"A stochastic programming model for scheduling maintenance personnel" Duffuaa and Al-Sultan, 1999
 
-"Task assignement for maintenance personnel": Roberts and Escudero, 1983a, 1983b
-
-"A stochastic programming model for scheduling maintenance personnel" Duffuaa and Al-Sultan, 1999
-
-\section{Shift minimisation personnel task scheduling problem (SMPTSP)}\label{SMTSP}
+\section{Shift Minimisation Personnel Task Scheduling Problem}\label{SMTSP}
 Claes
+
+A close relative to the PTSP is the Shift Minimisation Personnel Task Scheduling Problem (SMPTSP) and is a special case in which the aim is to minimize the cost occuring due to the number of personnel (shifts) that are used. The same traits are valid in this problem as in the PTSP; workers with fixed work hours are to be assigned tasks, with specified start and end times, they are qualified for.
+
+In article \cite{krishnamoorthy_2011} they "concentrate mainly on a variant of the PTSP in which the number of personnel (shifts) required is to be minimised."
+
 
 Difference: "The only cost incurred is due to the number of personnel (shifts) that are used."
 
