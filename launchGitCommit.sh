@@ -8,6 +8,6 @@ git add .
 
 echo "Cleaned and added with .gitignore"
 
-git commit
+git commit -m "Cleanup"
 
 echo "Commited changes"
