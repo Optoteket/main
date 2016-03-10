@@ -28,6 +28,12 @@ Krishnamoorthy et~al.
   scheduling problems.
 \newblock 2011.
 
+\bibitem{kroon_1997}
+Luk N. Van~Wassenhove Leo G.~Kroon, Marc~Salomon.
+\newblock Exact and approximation algorithms for the tactical fixed interval
+  scheduling problem.
+\newblock 1997.
+
 \bibitem{Gertsbakh_1977}
 H.I.~Stern I.~Gertsbakh.
 \newblock Minimal resources for fixed and variable job schedules.
@@ -38,11 +44,11 @@ Fischetti et~al.
 \newblock Approximation algorithms for fixed job schedule problems.
 \newblock 1992.
 
-\bibitem{kroon_1997}
-Luk N. Van~Wassenhove Leo G.~Kroon, Marc~Salomon.
-\newblock Exact and approximation algorithms for the tactical fixed interval
-  scheduling problem.
-\newblock 1997.
+\bibitem{akbari_2012}
+Mohammad Akbari.
+\newblock Scheduling part-time and mixed-skilled workers to maximize employee
+  satisfaction.
+\newblock 2012.
 
 \bibitem{latexcompanion}
 Michel Goossens, Frank Mittelbach, and Alexander Samarin.
