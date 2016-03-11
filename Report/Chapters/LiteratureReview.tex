@@ -110,7 +110,7 @@ In article \cite{krishnamoorthy_2011} they "... concentrate mainly on a variant 
 
 When there are a large number of workers available with qualifications to perform different tasks and it is needed to ensure all tasks for that day are performed SMPTSP can be applied. The PTSP and SMPTSP are therefore useful day-to-day management tools that commonly occurs in many practical instances where tasks are allocated on a daily basis.
 
-SMPTSP is almost identical to another problem introduced by Kroon et al. \cite{kroon_1997} which is called the Tactical Fixed Interval Scheduling Problem (TFISP) and is described in Section %\ref{other} below.
+SMPTSP is almost identical to another problem introduced by Kroon et al. \cite{kroon_1997} which is called the Tactical Fixed Interval Scheduling Problem (TFISP) and is described in Section \ref{other} below.
 
 It is shown in \cite{kroon_1997} that SMPTSP is a complex problem even if the preemption constraint were to be removed. However, if the qualifications of the workers were identical it would become an easily solvable problem \cite{krishnamoorthy_2011}.
 
@@ -133,23 +133,24 @@ It is shown in \cite{kroon_1997} that SMPTSP is a complex problem even if the pr
 
 Variations of the task assignment problem relevant for our problem include the fixed job schedule problem and the flexible job scheduling problem. The fixed job schedule problem (FJSP) has been studied since the 1970s in the context of task assignment in processors. The problem concerns the distribution of tasks with fixed starting and ending times over a workforce with identical skills, such as processing units \cite{krishnamoorthy_2011}. Such problmes have been solved by I. Gertsbakh, H.I. Stern \cite{Gertsbakh_1977} and Fischetti et al. \cite{fischetti_1992}. In the article by Gertsbakh, a situation where n jobs need to be scheduled over an unlimited number of procesors is studied. The jobs have a specified starting time and duration. The objective of such a problem becomes the minimization of the number of machines needed to perform all tasks. Fischetti solves a similar problem, but adds time constraints, saying that no processor is allowed to work for more than a fixed time \textit{T} during a day as well as a spread time constraint forcing tasks to tasks to spread out with time gap \textit{s} over a processor.	
 
-Another type of problem is the tactical fixed interval scheduling problem. This is a problem very closely related to the SMPTSP problem with the only difference being that the TFISP concerns workers which are always available, such as industrial machines or processors. The problem is studied by for example Kroon et al. \cite{kroon_1997}. As opposed to the FJSP, this problem deals with a heterogeneous workforce. Two different contexts are studied by Kroon et al. One of them concerns the handling of arriving aircraft passengers at an earport. Two modes of transport from the aeroplane to the airport are investigated; directly by gate or by bus. The two transportation modes thus correspond processing units which can take only a number of jobs at the same time.
+Another type of problem is the tactical fixed interval scheduling problem. This is a problem very closely related to the SMPTSP problem with the only difference being that the TFISP concerns workers which are always available, such as industrial machines or processors. The problem is studied by for example Kroon et al. \cite{kroon_1997}. A typical TFISP can be expressed using the nomenclature in Table \ref{PTSP} and written as PTSP[F;I-U;H;W] \cite{krishnamoorthy_2001}.
 
-OFISP
+As opposed to the FJSP, the TFISP deals with a heterogeneous workforce. Two different contexts are studied by Kroon et al. One of them concerns the handling of arriving aircraft passengers at an airport. Two modes of transport from the aeroplane to the airport are investigated; directly by gate or by bus. The two transportation modes thus correspond processing units which can take only a number of jobs at the same time.
+
+The Operational Fixed Interval Scheduling Problem (OFISP) is a similar problem to TFISP. Both problem types are restricted by the following; each machine (worker) can not handle more than one job at a time, each machine can only handle a subset of the jobs and preemption is not allowed. The difference between them occurs in the objective function as TFISP tries to minimize the number of workers and OFISP tries to minimize the operational costs and the number of unallocated tasks \cite{kroon_1993}. In the present nomenclature this would give rise to the problem PTSP[F;I;H;U-A] \cite{krishnamoorthy_2001}. Given the definition above, OFISP can be seen both as a job scheduling problem and a task assignment problem.
 
 
 
-Problem defined in: "Algorithms for large scale Shift Minimisation Personnel Task Scheduling Problems" M. Krishnamoorthy
-http://www.sciencedirect.com/science/article/pii/S0377221711010435
-
-Problem: "A metaheuristic for the fixed job scheduling problem under spread time constraints" André Rossi, http://www.sciencedirect.com/science/article/pii/S0305054809002251 (Fixed job)
+%Problem defined in: "Algorithms for large scale Shift Minimisation Personnel Task Scheduling Problems" M. Krishnamoorthy
+%http://www.sciencedirect.com/science/article/pii/S0377221711010435
+%
+%Problem: "A metaheuristic for the fixed job scheduling problem under spread time constraints" André Rossi, http://www.sciencedirect.com/science/article/pii/S0305054809002251 (Fixed job)
 
 \section{Work load allocation and worker satisfaction} \label{WLA}
-For most scheduling problems, the main objective is to reduce worker-related costs by reducing the number of workers needed to perform a task, or by reducing the working time for part-time employees. Equivalently, the goal in production industries is to reduce the number of machines needed. However, what has been studied more in recent years is also scheduling problems which take into account worker satisfaction. In an article by Akbari from 2012 a scheduling problem for part-time workers with different preferences, seniority level and productivity is investigated. In this article, these aspects are reflected in the objective function and weighted against each other. \cite{akbari_2012}
+For most scheduling problems, the main objective is to reduce worker-related costs by reducing the number of workers needed to perform a task, or by reducing the working time for part-time employees. Equivalently, the goal in production industries is to reduce the number of machines needed. However, what has been studied more in recent years is also scheduling problems which take into account worker satisfaction. In an article by Akbari from 2012 a scheduling problem for part-time workers with different preferences, seniority level and productivity is investigated. \cite{akbari_2012}
 
-Other factors which may affect worker satisfaction, and in the long run efficiency and presence at work are fagique, fairness and boredom. These are discussed by Eiselt and Marianov \cite{eiselt_2006}. Repetitiveness of a job as well as the level of challenge can cause bordom in workers. Increasing variance is done by Eiselt and Marianov through providing an upper bound of how many tasks can be performed in a given time span. 
+Trötthet och uttråkad. Något vi borde ta med i litteraturen enligt Torbjörn, fast inte leta källor på det. Mer källor?
 
-The authors suggest that any scheduling problem can be viewed from either a task-centered approach, focusing on the requirements on the employees to perform the task, or a employee-centred approach, which takes into account all abilities of the worker. In the second type of approach, personal motivations and aspirations play an important role, while in the first, only skill is relevant. It should be noted that it is more convenient to use the former in any task assignment problem, while the latter should not be ignored. This is usually the case with mathematical modeling. However, such softer values must be taken into account in any good task assignment model. The article suggests some sort of measurement of the distance between the task requirements and the worker abilities is used. This will then be minimized in the objective function.
 
 Source: "Employee positioning and workload allocation", Eiselt, Marianov, 2006
 "Scheduling part-time and mixed-skilled workers to maximize employee satisfaction" Mohammad Akbari 2012
@@ -158,9 +159,6 @@ Source: "Employee positioning and workload allocation", Eiselt, Marianov, 2006
 
 
 \section{Methods}
-The method selected for solving different scheduling problems depends on the age of the article, as recently, more advanced computational resources are available, enabling also more difficult scheduling problems to be solved to optimality. Also the nature of the problem itself affect what solution mehtods are applied. 
-
-
 \subsection{TSP with inhom workforce}
 
 Solution methods to compare (similar problems):
@@ -176,10 +174,5 @@ Shift based approach. Assigning all good shifts to employees
 
 for another definition as PTSP[F;I;I;W], see "The Personnel Task Scheduling Problem" by Krishnamoorty and Ernst, 2001
 
-\subsection{Integer Programming}
 
-\subsection{Similated Anneahling}
-
-
-\subsection{Heuristics}
 
