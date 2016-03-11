@@ -11,11 +11,21 @@ Loucks and Jacobs.
   heuristic approach.
 \newblock 1991.
 
+\bibitem{thompson_1988}
+G.M. Thompson.
+\newblock A comparison of techniques for scheduling non-homogeneous employees
+  in a service environment subject to non-cyclical demand.
+
 \bibitem{choi_hwang_park_2009}
 Hwang Choi and Park.
 \newblock Scheduling restaurant workers to minimize labor cost and meet service
   standards.
 \newblock 2009.
+
+\bibitem{rong_2010}
+Aiying Rong.
+\newblock Monthly tour scheduling models with mixed skills considering weekend
+  off requirements.
 
 \bibitem{krishnamoorthy_2001}
 Krishnamoorthy et~al.
@@ -47,13 +57,19 @@ Fischetti et~al.
 \bibitem{kroon_1993}
 Kroon et~al.
 \newblock Exact and approximation algorithms for the operational fixed interval
-  scheduling problem year =.
+  scheduling problem.
 
 \bibitem{akbari_2012}
 Mohammad Akbari.
 \newblock Scheduling part-time and mixed-skilled workers to maximize employee
   satisfaction.
 \newblock 2012.
+
+\bibitem{mohan_2008}
+
+
+\bibitem{eiselt_2006}
+
 
 \bibitem{latexcompanion}
 Michel Goossens, Frank Mittelbach, and Alexander Samarin.

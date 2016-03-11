@@ -31,16 +31,14 @@ param qualavail{i in I,w in W, d in D, s in S[d], j in J[d]} binary; #Worker i q
 param lib_on_wheels_worker_demand{w in W,d in D,s in S[d]} integer; #number of workers required for library on wheels week w, day d, shift s
 param lib_on_wheels_avail{i in I_lib,w in W,d in D,s in S[d]} binary; #1 if a librarian is available to work in library on wheels week w, day d, shift s
 
-
 param Shift_list{Workers}; #used to visualize results in terminal, see .run file
 param LOW_list{Workers};
 param PL_list{Workers};
 
 param stand_in_day_d{I, W, 1..5}; #used to print number of stand-ins for each day
-param N1l := 4000; #The bigger, the more priority to maximize librarian stand-ins
-param N1a := 2000; #The bigger, the more priority to maximize assistants stand-ins
-param N2 := 5; #Prioritize similar weeks
-param N3 := 1; #Prioritize evenness between LOW shifts
+param N1l := 200; #The bigger, the more priority to maximize librarian stand-ins
+param N1a := 20; #The bigger, the more priority to maximize assistants stand-ins
+param N2 := 1; #Prioritize similar weeks
 
 #################################### Variables ########################################################################
 var r{i in I, w in W} binary; #1 if person i has a rotation (phase shift) of w weeks, 0 otherwise
@@ -60,7 +58,7 @@ var num_days_with_same_shift{i in I, w in W, s in 1..3} integer;
 #var diff_num_same_shifts{i in I, w in W, s in 1..2, s_prime in 2..3} integer;
 #var total_sum_of_shift_differences integer;
 #var help_with_max_abs[i,w,s,s_prime] integer;
-#var lowest_lib_on_wheels integer; #the lowest number of LOW tasks a person has that are qualified for LOW
+
 
 
 
@@ -70,7 +68,6 @@ maximize objective: #Maximize stand-ins and create schedules with similar weeks 
 	N1l*lowest_stand_in_amount_lib
 	+ N1a*lowest_stand_in_amount_ass
 	- N2*sum{i in I}(sum{w in 1..9}(sum{w_prime in (w+1)..10}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks[i,w,w_prime,d,s]))))
-	#+ N3*lowest_lib_on_wheels
 	;
 
 #################################### CONSTRAINTS ########################################################################
@@ -98,6 +95,9 @@ subject to only_LOW2{i in I, w in W, d in 1..5}:
 
 subject to max_one_task_per_day_weekend{i in I, w in W, d in 6..7}:
 	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;
+
+subject to max_one_task_per_evening_not_fridays{i in I, w in W, d in 1..4}:
+	sum{j in J[d]} x[i,w,d,4,j] <= 1;
 
 ######################## Maximum one 'PL' per week and maximum two per five weeks #####################################
 #Allowing a worker i to only work with 'Plocklistan' once per week
@@ -248,10 +248,6 @@ subject to task_free_weekday{i in I_free_day, w in W}:
 #Allowing only three shifts at a certain time each week
 subject to max_three_shifts_at_same_hours_per_week{i in I, w in W, s in 1..3}:
 	sum{d in 1..5} y[i,w,d,s] <= 2;
-
-
-######################### Third objective function constraints ##################################subject to upper_bound_obj_function{i in I_lib_on_wheels}:
-#	lowest_lib_on_wheels <= sum{w in W} (sum{d in 1..5}( sum{s in S[d]} x[i,w,d,s,'LOW']));
 
 
 

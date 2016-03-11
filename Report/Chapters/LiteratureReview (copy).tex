@@ -1,0 +1,202 @@
+% Review of previous work in the field
+
+The scheduling problem is a mathematical optimization problem which has been studied since the 1950's and which involves creating a feasible and satisfactory schedule for workers or machines performing tasks. Ernst et al. provide an overview of work in the area up to 2001. According to them, the complexity of the scheduling problem has not increased in recent years. However, the mathematical models used to solve the scheduling problems have become more realistic and refined. Due to this as well as the development of more powerful computational methods, it is possible today to solve scheduling problems in a more satisfactory way than before, taking into account softer values such as worker satisfaction and worker fatigue \cite{Ernst_2004}.
+
+In the part \cite{Ernst_2004} the scheduling problem is classified into different subcategories which are areas related to the work of this paper. A few relevant areas for our work include Tour Scheduling Problems (TSP), Personnel Task Scheduling Problems (PTSP), Shift Minimization Task Scheduling Problems (SMTSP) and a few variations of these. Within these categories, the subproblem of task assignment, that is, the assignment of who does what is most relevant for our problem.
+
+
+
+%Problems with heterogeneous work forces, that is, a difference in skill between the workers and problems which consider also softer values such as fairness are 
+%
+%Task based demand scheduling involves the process of distributing a fixed number of tasks which need to be performed over a workforce. The workforce can either be fixed, as in our case, or subject to minimization in the objective function.
+%	
+%Days off scheduling involves scheduling staff and assigning a days off as required by work time regulations. This problem is often found together with shift scheduling which involves choosing the most suitable shifts for a workforce. The combination of the two is called tour scheduling and will be discussed later in this report. The big difference between our problem and tour scheduling is that in our problem we are not allowed to choose the free days of the workers, only in what week to assign them, and there is no shift work.
+%
+%The problem which is most similar to our problem is, however, task assignment. This problem and different variations of it will be discussed in section \ref{PTSP}.
+%
+
+
+\section{Tour Scheduling Problem with a heterogenous work force}\label{TSP}
+
+The Tour Scheduling Problem (TSP) involves creating work shifts with days off for a work force. A shift here refers to a set of contiguous hours during which a worker is assigned for work. The need for days off occurs when there is weekend demand for staff and other free days need to be assigned instead. 
+
+According to Loucks and Jacobs, the vast majority of all tour scheduling problems up to 1991 involved a homogeneous workforce, that is, any worker can perform any assigned task \cite{loucks_1991}. An early study of the our scheduling problem is provided by Thompson in 1988 \cite{thompson_1988}. The problem studied in these articles concern only homogeneous work forces and the task assignment part is lacking.
+
+
+In the article by Loucks and Jacobs, the authors study a tour scheduling problem with a heterogeneous work force. The problem both involves tour scheduling and task assignment, where the latter part is most interesting to us. The problem is studied in the context of fast food restaurants, where certain personnel is qualified only for certain stations in the restaurant. In such industries, the demand of staff differs between different weekdays and different times of the day. Two things differ between workers, their availability for work and their qualification. Worker shifts of between a minimum and maximum number of hours per day are to be created.
+
+The representative problem studied in the article involves creating a one-week schedule for 40 workers in a fast food restaurant, available for eight different tasks with a seven-day, 128-hour workweek. Several synthetic problems are studied in the article, all, however with minimum shift lenght three hours, maximum shift length eight hours and five maximum number of work days.
+
+A similar problem to the one descibed by Loucks and Jacobs is studied by Choi et al. \cite{choi_hwang_park_2009}. They focus on a particular fast food restaurant in Seoul, which is made a representative of fast food chains in general. In this study, only two types of workers are available; fulltime and part time workers, with no other reference to difference in skill. The different shifts are already given by the reastaurant managers and the task is to combine them into a tour. The task assignment aspect is lacking in this article.
+
+%One big difference between this study and the previous one is the identification of part-time and full-time workers, between which the ratio of scheduled personnel should always be 6:4. Although a tour is scheduled also in this problem, the properties of the tour is different from Louck and Jacobs as the shifts are already divided into periods 8:00-12:00, 12:00-14:00, 14:00-21:00 and 21:00-23:00 while the latter schedules on an hourly basis. The task assignment dimension is lacking in this article, making it less similar to the problem described in this report.
+
+In both articles the main objective is to minimize both overstaffing and understaffing, which will both have economical consequences for the fast food chain. This is done by redusing or increasing the work force. For a problem with a fixed work force, such as ours, this objective is not relevant. In the example studied by Loucks and Jacobs there is also a goal to meet staff demand on total working hours. This is modeled as a secondary goal and is similar to our goal and somehow models a "soft" value, which is of interest to us.
+
+A more recent tour scheduling problems concern monthly tour scheduling, as opposed to most literature which concerns only weekly scheduling. Such a study was done by Aiying Rong in 2010 \cite{rong_2010}. The main purpose of monthly scheduling, as stated in the article is the possibility to plan a schedule with respect to fairness and balance over a longer period of time. The problem concerns workers with different skills, where each worker also can possess multiple skills, which is referred to as a mixed skill problem. This is similar to our problem, where assistants can perform some tasks and librarians can perform all tasks. Workers with different weekend-off requirements are studied and there is a pool of workers to take personnel from. The problem does not involve task assignment, which makes it less relevant for us.
+
+%The greatest difference between the problem studied by Loucks and Jacobs and our problem is the composition of shifts. Both problems have heterogeneous worker qualification and availability and both deal with task assignment for schedules with a fluctuating worker demand. Since our problem only concerns librarians and assistants, there are fewer skill groups. Compared to the problem studied by \cite{choi_hwang_park_2009}, there is more similarity in the shift design as the library also has four different shifts. However, our problem is a task asssignment problem and does not affect working times. 
+
+
+
+\section{Personnel Task Scheduling Problem} \label{PTSP}
+
+In many practical instances production managers will face the Personnel Task Scheduling Problem (PTSP) while scheduling plant operations. It occurs when the rosterer or shift supervisor need to allocate tasks with specified start and end times to available personnel who have the required qualifications. Furthermore, it also occurs in situations where tasks of fixed times are going to be assigned to machines. Decisions will then have to be made regarding the amount of maintenance workers needed and which machine the workers are assigned to look after. \cite{krishnamoorthy_2001}
+
+There are numerous variants to the PTSP. These have been studied in an article by \cite{krishnamoorthy_2001} who gives a list of attributes that commonly appear in a PTSP and are listed in Table \ref{PTSP} below. There are furthermore traits that always appear in a PTSP; tasks with fixed start and end time are to be distributed to staff members that possesses certain skills, allowing them to perform only a subset of the available tasks. The start and end time of their shifts are also predetermined for each day.
+
+One variant, which also is the most simple, is mentioned in \cite{krishnamoorthy_2001} and is called the \textit{Feasibility Problem} where the aim is to just find a feasible solution. This requires that each task is allocated to a qualified and available worker. It is also required that a worker cannot be assigned more than one task simultaneously as well as tasks cannot be pre-empted, meaning that each task has to be completed by one and the same worker.
+
+In Table \ref{PTSP} one can see attributes of PTSP variants. The nomenclature of the attributes T, S, Q, O refer to the \textit{Task type}, \textit{Shift type}, \textit{Qualifications} and \textit{Objective function} respectively. 
+\begin{table}[H]
+\caption{PTSP variants}
+\label{PTSP}
+\begin{tabular}{|c|c|l|}
+%-------------------------------------------------------------------
+\hline
+\textbf{Attribute} & \textbf{Type} & \textbf{Explanation} \\ \hline
+%-------------------------------------------------------------------
+T & F & Fixed contiguous tasks \\
+& V & Variable task durations \\
+& S & Split (non-contiguous) tasks \\
+& C & Changeover times between consecutive tasks \\
+\hline 
+%-------------------------------------------------------------------
+S & F & Fixed, given shift lengths \\
+& I & Identical shifts which are effectively of infinite duration \\
+& D & Maximum duration without given start or end times \\
+& U & Unlimited number of shifts of each type available \\
+\hline 
+%-------------------------------------------------------------------
+Q & I & Identical qualification for all staff (homogeneous workforce) \\
+& H & Heterogeneous workforce \\
+\hline 
+%-------------------------------------------------------------------
+O & F & No objective, just find a feasible schedule \\
+& A & Minimise assignment cost \\
+& T & Worktime costs including overtime \\
+& W & Minimise number of workers \\
+& U & Minimise unallocated tasks \\
+\hline  
+
+%-------------------------------------------------------------------
+\end{tabular}
+\end{table}
+
+Many of the most basic problems and a few more complex ones can be described with this definition of PTSP attributes. It is, however, not possible to describe all of the numerous types of PTSP using these nomenclatures \cite{krishnamoorthy_2001}.
+
+By combining attributes it is possible to obtain more complex variants of the PTSP. An example would be the PTSP[F;F;H;A-T-W] mentioned in \cite{krishnamoorthy_2001} where multiple objectives are used. This problem has fixed contiguous tasks, fixed shift lengths, heterogeneous workforce and three objective functions; assigment costs, work time with overtime included and requirements to minimize the number of workers respectively. For this problem the objective function is then a linear combination with different parameters used to prioritize (weigh) them against each other.
+
+Given the nomenclature above our problem would be most related to the PTSP[F;F;H;F]. The difference is that the objective function is not empty. We are looking to maximize the number of qualified stand-ins each day as well as maximize employee satisfaction by meeting their recommendations. This cannot be described with the type of attributes given in Table \ref{PTSP} above, since we have a fix number of workers, no costs and no unallocated tasks when a feasible solution is found. 
+
+Different variants of PTSP are given names in the literature. One example is when the shifts and qualifications are identical (S=I and Q=I) and the objective function is to minimize the number of workers that are used (O=W). This variant, PTSP[F;I;I;W], has been published as the \textit{"fixed job schedule problem"} and is described in Section \ref{other} below \cite{krishnamoorthy_2001}.
+
+\subsection{Applications}
+An example where this type of problem can be found is when developing a rostering solution for ground personnel at an airport. Such a problem can be dealt with by first assigning workers to days to satisfy all the labour constraints, followed by assigning the tasks to the scheduled workers \cite{krishnamoorthy_2001}.
+
+Three similar problems of type PTSP related to airplanes can also be found when scheduling for either airport maintenance staff, planes to gates or staff that do not stay in one location, such as airline stewards. Scheduling for airport maintenance staff can lead to either PTSP[F;I;H;U-A] or PTSP[F;I-U;H;W] and are given the abbreviations OFISP and TFISP respectively. These are described and discussed further in Section \ref{other} \cite{krishnamoorthy_2001}. 
+
+Another application, which has been frequently studied, can be found in classroom assignments. Based on demands such as the amount of students in a class or the duration of a class, different classrooms have to be considered. Requirements of equipment, e.g. for a laboratory, may also greatly limit the available rooms to choose from \cite{krishnamoorthy_2001}.
+
+Worth noting for classroom assignment is that there are no start or end times for the shifts, as they represent the rooms. The aim in the present problem would be to simply find a feasible assignment of classrooms. Therefore the nomenclature of the problem would be PTSP[S;I;H;F], with the possibility of adding preferences to the objective function. An example of a preference would be to assign the lessons as close to each other as possible on a day, preventing traveling distances between classes for teachers and students \cite{krishnamoorthy_2001}.
+
+
+
+%Papers of interest:
+%"The Personnel Task Scheduling Problem", Mohan Krishnamoorthy, Andreas T. Ernst (2001) - probably the most fundamental article
+%
+%"Task assignement for maintenance personnel": Roberts and Escudero, 1983a, 1983b
+%
+%"A stochastic programming model for scheduling maintenance personnel" Duffuaa and Al-Sultan, 1999
+
+\section{Shift Minimisation Personnel Task Scheduling Problem}\label{SMTSP}
+Claes
+
+A close relative to the PTSP is the Shift Minimisation Personnel Task Scheduling Problem (SMPTSP) and is a special case in which the aim is to minimize the cost occuring due to the number of personnel (shifts) that are used. The same common traits are valid in this problem as in the PTSP; workers with fixed work hours are to be assigned tasks, with specified start and end times, that they are qualified for \cite{krishnamoorthy_2011}.
+
+In article \cite{krishnamoorthy_2011} they "... concentrate mainly on a variant of the PTSP in which the number of personnel (shifts) required is to be minimised.". In doing so, it is possible to determine the lowest number and mix of staff a company should have to complete the tasks at hand and still be operational. They also presumed that the pool of workers are unlimited for either skill group, which is not the case in our problem due to the limitations on the amount of librarians and assistants available. 
+
+SMPTSP can be applied when there are a large number of workers available with different qualifications and it is needed to ensure that the tasks for that day are performed. The PTSP and SMPTSP are therefore useful day-to-day management tools that commonly occurs in many practical instances where tasks are allocated on a daily basis \cite{krishnamoorthy_2011}.
+
+It is shown in \cite{kroon_1997} that SMPTSP is a complex problem even if the preemption constraint were to be removed. However, if the qualifications of the workers were identical it would become an easily solvable problem \cite{krishnamoorthy_2011}.
+
+SMPTSP is almost identical to another problem introduced by Kroon et al. which is called the Tactical Fixed Interval Scheduling Problem (TFISP) and is described in Section \ref{other} below \cite{krishnamoorthy_2011}.
+
+
+
+% CONCLUSION: By being able to efficiently deploy the workforce it results in an optimized resource occupation, which in turn reduces or eliminates the need of temporal workers. These temporal workers are otherwise needed in the case when no stand-ins are available to cover when a worker cannot show up for work, which results in extra expenses for the library.
+
+ 
+
+%Difference: "The only cost incurred is due to the number of personnel (shifts) that are used."
+%
+%Papers of interest:
+%"Algorithms for large scale Shift Minimisation Personnel Task Scheduling Problems" Krishnamoorthy, Ernst, Baatar (2011)
+%
+%"The shift minimisation personnel task scheduling problem: A new hybrid approach and computational insights" Smet, Wauters, Mihaylov, Berghe (2014)
+%
+%"Fast local search and guided local search and their application to British Telecom's workforce scheduling problem" Tsang and Voudouris, 1997 - also with travelling costs, investigates two methods.
+%
+%"A Triplet-Based Exact Method for the Shift Minimisation Personnel Task Scheduling Problem" Baatar et al., 2015
+
+\section{Other similar problems}\label{other}
+
+Variations of the task assignment problem relevant for our problem include the Fixed Job Schedule Problem and the flexible job scheduling problem. The Fixed Job Schedule Problem (FJSP) has been studied since the 1970s in the context of task assignment in processors. The problem concerns the distribution of tasks with fixed starting and ending times over a workforce with identical skills, such as processing units \cite{krishnamoorthy_2011}. Such problmes have been solved by I. Gertsbakh, H.I. Stern \cite{Gertsbakh_1977} and Fischetti et al. \cite{fischetti_1992}. In the article by Gertsbakh, a situation where n jobs need to be scheduled over an unlimited number of procesors is studied. The jobs have a specified starting time and duration. The objective of such a problem becomes the minimization of the number of machines needed to perform all tasks. Fischetti solves a similar problem, but adds time constraints, saying that no processor is allowed to work for more than a fixed time \textit{T} during a day as well as a spread time constraint forcing tasks to tasks to spread out with time gap \textit{s} over a processor.	
+%PTSP[F;I;I;W] - Gertsbakh and Stern as well as Fischetti et al. or PTSP[F;I;I;U-A] - Arkin and Silverberg
+
+Another type of problem is the Tactical Fixed Interval Scheduling Problem. This is a problem very closely related to the SMPTSP problem with the only difference being that the TFISP concerns workers which are always available, such as industrial machines or processors. The problem is studied by for example Kroon et al. \cite{kroon_1997}. A typical TFISP can be expressed using the nomenclature in Table \ref{PTSP} and written as PTSP[F;I-U;H;W] \cite{krishnamoorthy_2001}.
+%TFISP = PTSP[F;F;H;W]PTSP[F;U;H;W]PTSP[F;I-U;H;W]
+
+As opposed to the FJSP, the TFISP deals with a heterogeneous workforce. Two different contexts are studied by Kroon et al. One of them concerns the handling of arriving aircraft passengers at an airport. Two modes of transport from the aeroplane to the airport are investigated; directly by gate or by bus. The two transportation modes thus correspond processing units which can take only a number of jobs at the same time.
+
+The Operational Fixed Interval Scheduling Problem (OFISP) is a close relative to TFISP, where both types are restricted by the following; each machine (worker) cannot handle more than one job at a time, each machine can only handle a subset of the jobs and preemption is not allowed. The difference between them occurs in the objective function as TFISP tries to minimize the number of workers while OFISP tries to minimize the operational costs and the number of unallocated tasks \cite{kroon_1993}. In the present nomenclature this would give rise to the problem PTSP[F;I;H;U-A] \cite{krishnamoorthy_2001}. Given the definition above, working shifts are to be created for the workers and tasks are to be allocated on a day-to-day basis. OFISP can therefore be seen both as a job scheduling problem and a task assignment problem \cite{kroon_1993}.
+
+
+
+%Problem defined in: "Algorithms for large scale Shift Minimisation Personnel Task Scheduling Problems" M. Krishnamoorthy
+%http://www.sciencedirect.com/science/article/pii/S0377221711010435
+%
+%Problem: "A metaheuristic for the fixed job scheduling problem under spread time constraints" André Rossi, http://www.sciencedirect.com/science/article/pii/S0305054809002251 (Fixed job)
+
+\section{Work load allocation and worker satisfaction} \label{WLA}
+For most scheduling problems, the main objective is to reduce worker-related costs by reducing the number of workers needed to perform a task, or by reducing the working time for part-time employees. Equivalently, the goal in production industries is to reduce the number of machines needed. However, what has been studied more in recent years is also scheduling problems which take into account worker satisfaction. In an article by Akbari from 2012 a scheduling problem for part-time workers with different preferences, seniority level and productivity is investigated. In this article, these aspects are reflected in the objective function and weighted against each other. \cite{akbari_2012}
+
+Other factors which may affect worker satisfaction, and in the long run efficiency and presence at work are fagique, fairness and boredom. These are discussed by Eiselt and Marianov \cite{eiselt_2006}. Repetitiveness of a job as well as the level of challenge can cause bordom in workers. Increasing variance is done by Eiselt and Marianov through providing an upper bound of how many tasks can be performed in a given time span. 
+
+The authors suggest that any scheduling problem can be viewed from either a task-centered approach, focusing on the requirements on the employees to perform the task, or a employee-centred approach, which takes into account all abilities of the worker. In the second type of approach, personal motivations and aspirations play an important role, while in the first, only skill is relevant. It should be noted that it is more convenient to use the former in any task assignment problem, while the latter should not be ignored. This is usually the case with mathematical modeling. However, such softer values must be taken into account in any good task assignment model. The article suggests some sort of measurement of the distance between the task requirements and the worker abilities is used. This will then be minimized in the objective function.
+
+%Source: "Employee positioning and workload allocation", Eiselt, Marianov, 2006
+%"Scheduling part-time and mixed-skilled workers to maximize employee satisfaction" Mohammad Akbari 2012
+
+%"Scheduling part-time personnel with availability restrictions and preferences to maximize employee satisfaction" Srimathy Mohan 2008
+%Trötthet och uttråkad. Något vi borde ta med i litteraturen enligt Torbjörn, fast inte leta källor på det. Mer källor?
+%
+%
+%Source: "Employee positioning and workload allocation", Eiselt, Marianov, 2006
+%"Scheduling part-time and mixed-skilled workers to maximize employee satisfaction" Mohammad Akbari 2012
+%
+%"Scheduling part-time personnel with availability restrictions and preferences to maximize employee satisfaction" Srimathy Mohan 2008
+
+
+\section{Methods}
+\subsection{TSP with inhom workforce}
+
+Solution methods to compare (similar problems):
+
+"Task assignment and tour scheduling": Loucks and Jacobs, 1991
+2-phased heuristic. Creating shifts from hours.
+
+
+"Scheduling Restaurant Workers to Minimize Labor Cost and Meet Service Standards" Choi, Hwang and Park, 2009
+
+"An integer linear programming-based heuristic for scheduling heterogeneous, part-time service employees" Heterogenous work force, tour scheduling. Using two objective functions Hojati and Patil, 2010 
+Shift based approach. Assigning all good shifts to employees
+
+for another definition as PTSP[F;I;I;W], see "The Personnel Task Scheduling Problem" by Krishnamoorty and Ernst, 2001
+
+Write about Thompson 1988 "A comparison of techniques for scheduling non-homogeneous employees in a service environment subject to non-cyclical demand"! Thompson proposes two different methods for solving the scheduling problem.
+
+In some cases, a problem can be a combined tour scheduling and task assignment problem or can be divided into these two solution stages, as is the case in \cite{keylist}. "An integer linear programming-based heuristic for scheduling heterogeneous, part-time service employees" , 2011
+
+=====================================================
+
