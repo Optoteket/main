@@ -30,7 +30,7 @@ param task_worker_demand{d in D, s in S[d], j in J[d]} integer; #number of worke
 param qualavail{i in I,w in W, d in D, s in S[d], j in J[d]} binary; #Worker i qualified and available for task type j shift s day d week w
 param lib_on_wheels_worker_demand{w in W,d in D,s in S[d]} integer; #number of workers required for library on wheels week w, day d, shift s
 param lib_on_wheels_avail{i in I_lib,w in W,d in D,s in S[d]} binary; #1 if a librarian is available to work in library on wheels week w, day d, shift s
-param lowest_lib_on_wheels; #the lowest number of LOW tasks a person has that are qualified for LOW
+
 
 param Shift_list{Workers}; #used to visualize results in terminal, see .run file
 param LOW_list{Workers};
@@ -60,7 +60,7 @@ var num_days_with_same_shift{i in I, w in W, s in 1..3} integer;
 #var diff_num_same_shifts{i in I, w in W, s in 1..2, s_prime in 2..3} integer;
 #var total_sum_of_shift_differences integer;
 #var help_with_max_abs[i,w,s,s_prime] integer;
-
+#var lowest_lib_on_wheels integer; #the lowest number of LOW tasks a person has that are qualified for LOW
 
 
 
@@ -70,7 +70,7 @@ maximize objective: #Maximize stand-ins and create schedules with similar weeks 
 	N1l*lowest_stand_in_amount_lib
 	+ N1a*lowest_stand_in_amount_ass
 	- N2*sum{i in I}(sum{w in 1..9}(sum{w_prime in (w+1)..10}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks[i,w,w_prime,d,s]))))
-	+ N3*lowest_lib_on_wheels
+	#+ N3*lowest_lib_on_wheels
 	;
 
 #################################### CONSTRAINTS ########################################################################
@@ -250,8 +250,8 @@ subject to max_three_shifts_at_same_hours_per_week{i in I, w in W, s in 1..3}:
 	sum{d in 1..5} y[i,w,d,s] <= 2;
 
 
-######################### Third objective function constraints #################################subject to upper_bound_obj_function{i in I_lib_on_wheels}:
-	lowest_lib_on_wheels <= sum{w in W}(sum{d in D}(sum{s in S[d]}x[i,w,d,s,'LOW']));
+######################### Third objective function constraints ##################################subject to upper_bound_obj_function{i in I_lib_on_wheels}:
+#	lowest_lib_on_wheels <= sum{w in W} (sum{d in 1..5}( sum{s in S[d]} x[i,w,d,s,'LOW']));
 
 
 
