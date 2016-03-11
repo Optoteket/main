@@ -40,7 +40,6 @@ param stand_in_day_d{I, W, 1..5}; #used to print number of stand-ins for each da
 param N1l := 4000; #The bigger, the more priority to maximize librarian stand-ins
 param N1a := 2000; #The bigger, the more priority to maximize assistants stand-ins
 param N2 := 5; #Prioritize similar weeks
-param N3 := 1; #Prioritize evenness between LOW shifts
 
 #################################### Variables ########################################################################
 var r{i in I, w in W} binary; #1 if person i has a rotation (phase shift) of w weeks, 0 otherwise
@@ -53,15 +52,19 @@ var stand_in_ass{i in I_ass, w in W, d in D} binary; #1 if (h[i,v]*qualavail[i,(
 var y{i in I, w in W, d in 1..5, s in 1..3} binary; #1 if worker i works week w, day d, shift s. No weekends and no evenings
 var lowest_stand_in_amount_lib integer; # Lowest number of stand-in workers at any shift
 var lowest_stand_in_amount_ass integer; # Lowest number of stand-in workers at any shift
-var shifts_that_differ_between_weeks{i in I, w in W, w_prime in W, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
+#var shifts_that_differ_between_weeks{i in I, w in W, w_prime in W, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
 var hb{i in I, w in W} binary; #1 if a person i works in HB week w
 var working_friday_evening{i in I, w in W} binary; #1 if a person works weekend but not in HB
 var num_days_with_same_shift{i in I, w in W, s in 1..3} integer;
 #var diff_num_same_shifts{i in I, w in W, s in 1..2, s_prime in 2..3} integer;
 #var total_sum_of_shift_differences integer;
 #var help_with_max_abs[i,w,s,s_prime] integer;
-#var lowest_lib_on_wheels integer; #the lowest number of LOW tasks a person has that are qualified for LOW
 
+var shifts_that_differ_between_weeks1{i in I, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
+var shifts_that_differ_between_weeks2{i in I, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
+var shifts_that_differ_between_weeks3{i in I, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
+var shifts_that_differ_between_weeks4{i in I, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
+var shifts_that_differ_between_weeks5{i in I, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
 
 
 ################################## OBJECTIVE FUNCTION ###################################################################
@@ -69,8 +72,12 @@ var num_days_with_same_shift{i in I, w in W, s in 1..3} integer;
 maximize objective: #Maximize stand-ins and create schedules with similar weeks for each worker
 	N1l*lowest_stand_in_amount_lib
 	+ N1a*lowest_stand_in_amount_ass
-	- N2*sum{i in I}(sum{w in 1..9}(sum{w_prime in (w+1)..10}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks[i,w,w_prime,d,s]))))
-	#+ N3*lowest_lib_on_wheels
+	#- N2*sum{i in I}(sum{w in 1..9}(sum{w_prime in (w+1)..10}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks[i,w,w_prime,d,s]))))
+	- N2*sum{i in I}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks1[i,d,s]))
+	- N2*sum{i in I}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks2[i,d,s]))
+	- N2*sum{i in I}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks3[i,d,s]))
+	- N2*sum{i in I}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks4[i,d,s]))
+	- N2*sum{i in I}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks5[i,d,s]))
 	;
 
 #################################### CONSTRAINTS ########################################################################
@@ -98,6 +105,9 @@ subject to only_LOW2{i in I, w in W, d in 1..5}:
 
 subject to max_one_task_per_day_weekend{i in I, w in W, d in 6..7}:
 	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;
+
+subject to max_one_task_per_evening_not_fridays{w in W, d in 1..4}:
+	sum{j in J[d]} x[36,w,d,4,j] <= 1;
 
 ######################## Maximum one 'PL' per week and maximum two per five weeks #####################################
 #Allowing a worker i to only work with 'Plocklistan' once per week
@@ -228,11 +238,42 @@ subject to librarians_only_assigned_if_qualavail_weekends{i in I, w in W, d in 6
 
 # _lib_on_wheels
 ############### Second objective function constraints: Similar weeks for workers #############
-subject to positive_values_of_abs{i in I, w in 1..9, w_prime in (w+1)..10, d in 1..5, s in 1..3}:
-	shifts_that_differ_between_weeks[i,w,w_prime,d,s] >= (y[i,w,d,s]-y[i,w_prime,d,s]);
+#subject to positive_values_of_abs{i in I, w in 1..9, w_prime in (w+1)..10, d in 1..5, s in 1..3}:
+#	shifts_that_differ_between_weeks[i,w,w_prime,d,s] >= (y[i,w,d,s]-y[i,w_prime,d,s]);
 
-subject to negative_values_of_abs{i in I, w in 1..9, w_prime in (w+1)..10, d in 1..5, s in 1..3}:
-	shifts_that_differ_between_weeks[i,w,w_prime,d,s] >= -(y[i,w,d,s]-y[i,w_prime,d,s]);
+#subject to negative_values_of_abs{i in I, w in 1..9, w_prime in (w+1)..10, d in 1..5, s in 1..3}:
+#	shifts_that_differ_between_weeks[i,w,w_prime,d,s] >= -(y[i,w,d,s]-y[i,w_prime,d,s]);
+
+subject to positive_values_of_abs1{i in I, d in 1..5, s in 1..3}:
+	shifts_that_differ_between_weeks1[i,d,s] >= (y[i,1,d,s]-y[i,6,d,s]);
+
+subject to negative_values_of_abs1{i in I, d in 1..5, s in 1..3}:
+	shifts_that_differ_between_weeks1[i,d,s] >= -(y[i,1,d,s]-y[i,6,d,s]);
+
+subject to positive_values_of_abs2{i in I, d in 1..5, s in 1..3}:
+	shifts_that_differ_between_weeks2[i,d,s] >= (y[i,2,d,s]-y[i,7,d,s]);
+
+subject to negative_values_of_abs2{i in I, d in 1..5, s in 1..3}:
+	shifts_that_differ_between_weeks2[i,d,s] >= -(y[i,2,d,s]-y[i,7,d,s]);
+
+subject to positive_values_of_abs3{i in I, d in 1..5, s in 1..3}:
+	shifts_that_differ_between_weeks3[i,d,s] >= (y[i,3,d,s]-y[i,8,d,s]);
+
+subject to negative_values_of_abs3{i in I, d in 1..5, s in 1..3}:
+	shifts_that_differ_between_weeks3[i,d,s] >= -(y[i,3,d,s]-y[i,8,d,s]);
+
+subject to positive_values_of_abs4{i in I, d in 1..5, s in 1..3}:
+	shifts_that_differ_between_weeks4[i,d,s] >= (y[i,4,d,s]-y[i,9,d,s]);
+
+subject to negative_values_of_abs4{i in I, d in 1..5, s in 1..3}:
+	shifts_that_differ_between_weeks4[i,d,s] >= -(y[i,4,d,s]-y[i,9,d,s]);
+
+subject to positive_values_of_abs5{i in I, d in 1..5, s in 1..3}:
+	shifts_that_differ_between_weeks5[i,d,s] >= (y[i,5,d,s]-y[i,10,d,s]);
+
+subject to negative_values_of_abs5{i in I, d in 1..5, s in 1..3}:
+	shifts_that_differ_between_weeks5[i,d,s] >= -(y[i,5,d,s]-y[i,10,d,s]);
+
 
 
 ###################### Worker shift assignment ##############################
@@ -249,9 +290,6 @@ subject to task_free_weekday{i in I_free_day, w in W}:
 subject to max_three_shifts_at_same_hours_per_week{i in I, w in W, s in 1..3}:
 	sum{d in 1..5} y[i,w,d,s] <= 2;
 
-
-######################### Third objective function constraints ##################################subject to upper_bound_obj_function{i in I_lib_on_wheels}:
-#	lowest_lib_on_wheels <= sum{w in W} (sum{d in 1..5}( sum{s in S[d]} x[i,w,d,s,'LOW']));
 
 
 
