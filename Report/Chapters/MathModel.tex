@@ -1,0 +1,25 @@
+%A thorough description of the mathematical model in words and in math. More significant and general constraints in equations and less significant in words.
+In this chapter the mathematical model implemented to solve this problem will be presented. Variables and sets will be stated prior to the objective function and constraints. A list of all the parameters can be found in Appendix \ref{parameters}. 
+\section{Set and variable definitions} \label{variables}
+To solve the problem many sets and definitions had to be declared as there are many unique requirements that have to be met. An example is that some want a day free from outer tasks so that they can focus on other assignments or attend meetings. Another one is that some personnel have different schedules for odd and even weeks. These specific cases have to be modeled and result in a variety of set and variable definitions. Hence, a bigger part of the definitions are instead listed in Appendix \ref{sets and variables}.
+\begin{table}[H]
+\centering
+\caption{Significant sets and variables}
+\label{tab:sets and variables}
+\begin{tabular}{ll}
+I                & Set of workers                                             \\
+W                & Set of weeks                                               \\
+D                & Set of days in a week                                      \\
+$S_d$           & Set of shifts day \textit{d}                                        \\
+$J_d$           & Set of task types day \textit{d}                                    \\
+$x_{iwdsj}$ & 1 if worker \textit{i} is assigned task \textit{j} in week \textit{w}, day \textit{d}, shift \textit{s}, 0 otherwise \\
+$h1_{iw}$      & 1 if worker \textit{i} works its first weekend week \textit{w}, 0 otherwise               \\
+$h2_{iw}$      & 1 if worker \textit{i} works its second weekend week \textit{w}, 0 otherwise             
+\end{tabular}
+\end{table}
+
+
+\section{Objective function}
+
+\section{Constraints}
+To model this problem it has been of relevance to divide many of the constraints into weekend- and weekday constraints. 
