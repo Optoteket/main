@@ -126,8 +126,6 @@ In both articles the main objective is to minimize both overstaffing and underst
 
 A more recent tour scheduling problems concern monthly tour scheduling, as opposed to most literature which concerns only weekly scheduling. Such a study was done by Aiying Rong in 2010 \cite{rong_2010}. The main advantage of monthly scheduling over shorter time periods, as stated in the article, is the possibility to plan a schedule with respect to fairness and balance over a longer period of time. The problem concerns workers with different skills, where each worker also can possess multiple skills. This is referred to as a mixed skill problem. Thus the problem is similar to our problem, where mixed skill is also present. In the study, workers have individual weekend-off requirements. The problem does not involve task assignment, which makes it less relevant for us.
 
-
-
 \section{Other similar problems}\label{other}
 
 Variations of the task assignment problem relevant for our problem include for example the Fixed Job Schedule Problem (FJSP). The FJSP has been studied since the 1970s in the context of task assignment in processors. The problem concerns the distribution of tasks with fixed starting and ending times over a workforce with identical skills, such as processing units \cite{krishnamoorthy_2011}. Such problmes have been solved by I. Gertsbakh, H.I. Stern \cite{Gertsbakh_1977} and Fischetti et al. \cite{fischetti_1992}. In the article by Gertsbakh, a situation where n jobs need to be scheduled over an unlimited number of procesors is studied. The jobs have a specified starting time and duration. The objective of such a problem becomes the minimization of the number of machines needed to perform all tasks. Fischetti solves a similar problem, but adds time constraints, saying that no processor is allowed to work for more than a fixed time \textit{T} during a day as well as a spread time constraint forcing tasks to tasks to spread out with time gap \textit{s} over a processor.	
@@ -147,7 +145,10 @@ The Operational Fixed Interval Scheduling Problem (OFISP) is a close relative to
 %
 %Problem: "A metaheuristic for the fixed job scheduling problem under spread time constraints" André Rossi, http://www.sciencedirect.com/science/article/pii/S0305054809002251 (Fixed job)
 
-\section{Work load allocation and worker satisfaction} \label{WLA}
+
+\section{Modeling stochastic work loads}
+
+\section{Modeling soft constraints} \label{WLA}
 For most scheduling problems, the main objective is to minimize worker-related costs by reducing the number of workers needed to perform a task, or by reducing the working time for part-time employees. Equivalently, the goal in production industries is to reduce the number of machines needed. Recently, however, many studies have started to focus more or softer values such as worker satisfaction as an objective. Such values are usually considered when scheduling is done manually, but have been forgotten or set aside in mathematical modeling.
 
  In an article by Akbari from 2012 a scheduling problem for part-time workers with different preferences, seniority level and productivity is investigated. In this article, these aspects are reflected in the objective function and weighted against each other. \cite{akbari_2012}. A similar problem was also studied by Mohan in 2008, but for a work force of only part-time workers \cite{mohan_2008}. %Write more here!
@@ -167,12 +168,20 @@ Other factors which may affect worker satisfaction, and in the long run efficien
 
 
 \section{Methods}
+
+column generation
+Lagrangean relaxation
+Network models
+General integer programming
+Heusristics (\cite{eiselt_2008})
+
 \subsection{TSP with inhom workforce}
 
 Solution methods to compare (similar problems):
 
 "Task assignment and tour scheduling": Loucks and Jacobs, 1991
-2-phased heuristic. Creating shifts from hours.
+2-phased heuristic. Construction phase, improvement phase.
+Creating shifts from hours.
 
 
 
@@ -188,11 +197,41 @@ Write about Thompson 1988 "A comparison of techniques for scheduling non-homogen
 
 In some cases, a problem can be a combined tour scheduling and task assignment problem or can be divided into these two solution stages, as is the case in \cite{keylist}. "An integer linear programming-based heuristic for scheduling heterogeneous, part-time service employees" , 2011'
 
+\subsection{Solving the SMPTSP}
+\cite{smet_2014}
+Hybrid approach, works better for homogeneous work forces. Matheuristical methods presented, can be considered state of the art. Is based on the work by Krishmooty et al \cite{krishnamoorthy_2012}.
+
 \subsection{Integer Programming}
 
-\subsection{Similated Anneahling}
+\subsection{Simulated Anneahling}
+
+Simulated Annealing (SA) has been studied as a solution method to the scheduling problem by researchers such as Brusco and Jacobs in the early 1990's. The method is a metaheuristic method which has the advantage over local search methods that it does not easily get stuck in local optima. The method is a random optimization method designed to find a global optimum solution. The method allows bad moves according to a function ... . 
+According to Akbari, Simulated Anneahling 
+
+\subsection{Variable Neighbourhood Search}
+
+Also avoids local optima. 
+
+"A variable neighborhood search based matheuristic for nurse rostering problems" Della Croce et Salassa. "VNS outoperforms exact commercial general purpose solvers"
+Matheuristic approach!
+
+Early work by:
+Hansen  and  Mladenovic
+2001
+Mladenovic and Hansen
+1997
+)
+
 
 \subsection{Heuristics}
+
+\subsection{Goal programming and Fuzzy Goal Programming}
+Bellman and Zadeh's max-min operator!
+
+Fuzzy goal programming.  "Fuzzy goals" = soft constraints. Fuzzy set theory. The basic idea of FGP is to present some of the model parameters as imprecise numbers.
+Goal programming: good when combining soft and hard constraints.
+
+Using an average value approach with goals that are contradictory makes it possible to maximize the amount of "goodness" in the solution, by priotritizing one constraint over another, which in total generates the most good.
 
 
 =====================================================
