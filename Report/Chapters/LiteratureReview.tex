@@ -154,7 +154,11 @@ The Operational Fixed Interval Scheduling Problem (OFISP) is a close relative to
 %Problem: "A metaheuristic for the fixed job scheduling problem under spread time constraints" André Rossi, http://www.sciencedirect.com/science/article/pii/S0305054809002251 (Fixed job)
 
 
-\section{Modeling stochastic work loads}
+\subsection{Maintenance scheduling}
+What differs mostly between the problem types described above and the problem studied in this thesis work, is the difference in objective. The main objective for the librarian scheduling problem, after assigning all tasks to available personnel, is to maximize the number of stand-in staff. A similar problem arises in the maintenance industry, where some jobs can be forseen and other jobs are of a stochastic nature, that is, there is a probability that a maintenance job will occur a certain hour. The problem combing both unplanned and planned maintenance worker scheduling was studied in 1999 by Duffuaa and Al-Sultan, as a continuation of Robers' and Escudero's work in 1983 \cite{duffuaa_1999} \cite{roberts_1983}. 
+
+In the article, a fixed, heterogeneous work force consisting of electricians, plumbers and mechanics is studied. The shifts of the personnel are predetermined by their given work times and thus the problem becomes a pure task assignment problem. An objective function is used where the goal is to maximize the number of planned and unplanned jobs performed by the workers, by taking into account the probability of unplanned work to occur. Thus, certain workers will be left at the station as stand-ins in the case an unplanned job arrives.
+
 
 \section{Modeling soft constraints} \label{WLA}
 For most scheduling problems, the main objective is to minimize worker-related costs by reducing the number of workers needed to perform a task, or by reducing the working time for part-time employees. Equivalently, the goal in production industries is to reduce the number of machines needed. Recently, however, many studies have started to focus more or softer values such as worker satisfaction as an objective. Such values are usually considered when scheduling is done manually, but have been forgotten or set aside in mathematical modeling.
@@ -175,43 +179,60 @@ Other factors which may affect worker satisfaction, and in the long run efficien
 %"Scheduling part-time personnel with availability restrictions and preferences to maximize employee satisfaction" Srimathy Mohan 2008
 
 
-\section{Methods}
+\section{Solution Methods}
 
-column generation
-Lagrangean relaxation
-Network models
-General integer programming
-Heusristics (\cite{eiselt_2008})
+In many real life situations, the scheduling method used to create worker schedules is a simple matching algoritm between two can do what and when. The process is most often left in the hands of experienced and knowledgable schedulers, who konw the capacity of the work force and how to maximize productivity by meeting task demands as well as employee demands and individual personality traits. This is referred to as the "art" of scheduling \cite{roberts_1983}. However, when personnel forces grow large and there are regulations, task skill requirements or several personnel preferences to take into account, the problem becomes too large to solve manually in a satisfactory manner.
 
-\subsection{TSP with inhom workforce}
-
-Solution methods to compare (similar problems):
-
-"Task assignment and tour scheduling": Loucks and Jacobs, 1991
-2-phased heuristic. Construction phase, improvement phase.
-Creating shifts from hours.
+The first computational methods used for solving scheduling problems were in many cases simple heuristics resembling the scheduling process as performed in a manual way. One example of this is the heuristic presented by Loucks and Jacobs which assigns workers to tasks, following certain rules, until all tasks are assigned \cite{loucks_1991}. An overview of solution methods is given by Ernst et al, where almost 30 different methods are presented  and it is not uncommon that special purpose algorithms are used to suite a specific problem \cite{ernst_2004}. Some of the more interesting solution methods with respect to the probelm studied in this thesis are discussed in this section. These include solving with commercial solvers, matheuristic methods such as simulated anneahling and variable neighbourhood search, pure heuristic methods, goal programming and fuzzy goal programming.  
 
 
+%column generation\\
+%Lagrangean relaxation\\
+%Network models\\
+%General integer programming\\
+%Heusristics (\cite{eiselt_2008})\\
 
-"Scheduling Restaurant Workers to Minimize Labor Cost and Meet Service Standards" Choi, Hwang and Park, 2009
+\subsection{Commersial software}
 
-"An integer linear programming-based heuristic for scheduling heterogeneous, part-time service employees" Heterogenous work force, tour scheduling. Using two objective functions Hojati and Patil, 2010 
-Shift based approach. Assigning all good shifts to employees
+Commersially available scheduling programs.
 
+\subsection{Mathematical Programming}
 
-for another definition as PTSP[F;I;I;W], see "The Personnel Task Scheduling Problem" by Krishnamoorty and Ernst, 2001
+Formulating a mathematical model. Objective function and constraints. Solving using commersial solver such as CPLEX or Guroby.
 
-Write about Thompson 1988 "A comparison of techniques for scheduling non-homogeneous employees in a service environment subject to non-cyclical demand"! Thompson proposes two different methods for solving the scheduling problem.
+%Using a commercial solver such as CPLEX or Guroby seldom needs the computational insight as does using a customized algorithm. 
 
-In some cases, a problem can be a combined tour scheduling and task assignment problem or can be divided into these two solution stages, as is the case in \cite{keylist}. "An integer linear programming-based heuristic for scheduling heterogeneous, part-time service employees" , 2011'
+%\subsection{TSP with inhom workforce}
+%
+%Solution methods to compare (similar problems):
+%
+%"Task assignment and tour scheduling": Loucks and Jacobs, 1991
+%2-phased heuristic. Construction phase, improvement phase.
+%Creating shifts from hours.
+%
+%
+%
+%"Scheduling Restaurant Workers to Minimize Labor Cost and Meet Service Standards" Choi, Hwang and Park, 2009
+%
+%"An integer linear programming-based heuristic for scheduling heterogeneous, part-time service employees" Heterogenous work force, tour scheduling. Using two objective functions Hojati and Patil, 2010 
+%Shift based approach. Assigning all good shifts to employees
+%
+%
+%for another definition as PTSP[F;I;I;W], see "The Personnel Task Scheduling Problem" by Krishnamoorty and Ernst, 2001
+%
+%Write about Thompson 1988 "A comparison of techniques for scheduling non-homogeneous employees in a service environment subject to non-cyclical demand"! Thompson proposes two different methods for solving the scheduling problem.
+%
+%In some cases, a problem can be a combined tour scheduling and task assignment problem or can be divided into these two solution stages, as is the case in \cite{keylist}. "An integer linear programming-based heuristic for scheduling heterogeneous, part-time service employees" , 2011'
 
-\subsection{Solving the SMPTSP}
-\cite{smet_2014}
-Hybrid approach, works better for homogeneous work forces. Matheuristical methods presented, can be considered state of the art. Is based on the work by Krishmooty et al \cite{krishnamoorthy_2012}.
+%\subsection{Solving the SMPTSP}
+\ %cite{smet_2014}
+%Hybrid approach, works better for homogeneous work forces. Matheuristical methods presented, can be considered state of the art. Is based on the work by Krishmooty et al \cite{krishnamoorthy_2012}.
 
-\subsection{Integer Programming}
+%\subsection{Integer Programming}
 
-\subsection{Simulated Anneahling}
+Stochastic and non-stochastic
+
+\subsection{Simulated Annealing}
 
 Simulated Annealing (SA) has been studied as a solution method to the scheduling problem by researchers such as Brusco and Jacobs in the early 1990's. The method is a metaheuristic method which has the advantage over local search methods that it does not easily get stuck in local optima. The method is a random optimization method designed to find a global optimum solution. The method allows bad moves according to a function ... . 
 According to Akbari, Simulated Anneahling 
@@ -224,16 +245,17 @@ Also avoids local optima.
 Matheuristic approach!
 
 Early work by:
-Hansen  and  Mladenovic
-2001
-Mladenovic and Hansen
-1997
-)
+Hansen  and  Mladenovic, 2001, Mladenovic and Hansen, 1997
 
+\subsection{Tabu Search}
 
-\subsection{Heuristics}
+Commonly used meta-heuristic.
 
 \subsection{Goal programming and Fuzzy Goal Programming}
+
+GP: Used for multiple goals.
+FGP: Used for contradictory goals.
+
 Bellman and Zadeh's max-min operator!
 
 Fuzzy goal programming.  "Fuzzy goals" = soft constraints. Fuzzy set theory. The basic idea of FGP is to present some of the model parameters as imprecise numbers.
@@ -241,6 +263,4 @@ Goal programming: good when combining soft and hard constraints.
 
 Using an average value approach with goals that are contradictory makes it possible to maximize the amount of "goodness" in the solution, by priotritizing one constraint over another, which in total generates the most good.
 
-
-=====================================================
 
