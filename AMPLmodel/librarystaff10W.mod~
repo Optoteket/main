@@ -106,6 +106,9 @@ subject to only_LOW2{i in I, w in W, d in 1..5}:
 subject to max_one_task_per_day_weekend{i in I, w in W, d in 6..7}:
 	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;
 
+subject to max_one_task_per_evening_not_fridays{w in W, d in 1..4}:
+	sum{j in J[d]} x[36,w,d,4,j] <= 1;
+
 ######################## Maximum one 'PL' per week and maximum two per five weeks #####################################
 #Allowing a worker i to only work with 'Plocklistan' once per week
 subject to max_one_PL_per_week{i in I, w in W}:
