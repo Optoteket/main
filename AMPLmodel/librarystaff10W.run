@@ -34,11 +34,23 @@ solve;
 
 
 ##################### Display number of shift changes ########################
-param shift_change;
+param shift_change1;
+param shift_change2;
+param shift_change3;
+param shift_change4;
+param shift_change5;
 
-let shift_change := sum{i in I}(sum{w in 1..9}(sum{w_prim in (w+1)..10}(sum{d in 1..5}(sum{s in 1..3} abs(y[i,w,d,s]-y[i,w_prim,d,s])))));
+let shift_change1 := sum{i in I}(sum{d in 1..5}(sum{s in 1..3} abs(y[i,1,d,s]-y[i,6,d,s])));
+let shift_change2 := sum{i in I}(sum{d in 1..5}(sum{s in 1..3} abs(y[i,2,d,s]-y[i,7,d,s])));
+let shift_change3 := sum{i in I}(sum{d in 1..5}(sum{s in 1..3} abs(y[i,3,d,s]-y[i,8,d,s])));
+let shift_change4 := sum{i in I}(sum{d in 1..5}(sum{s in 1..3} abs(y[i,4,d,s]-y[i,9,d,s])));
+let shift_change5 := sum{i in I}(sum{d in 1..5}(sum{s in 1..3} abs(y[i,5,d,s]-y[i,10,d,s])));
 
-printf "\n The number of shiftchanges in total were: %d \n \n", shift_change;
+printf "\n The number of shiftchanges in total were: %d \n", shift_change1;
+printf "\n The number of shiftchanges in total were: %d \n", shift_change2;
+printf "\n The number of shiftchanges in total were: %d \n", shift_change3;
+printf "\n The number of shiftchanges in total were: %d \n", shift_change4;
+printf "\n The number of shiftchanges in total were: %d \n", shift_change5;
 
 
 

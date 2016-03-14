@@ -31,6 +31,7 @@ param qualavail{i in I,w in W, d in D, s in S[d], j in J[d]} binary; #Worker i q
 param lib_on_wheels_worker_demand{w in W,d in D,s in S[d]} integer; #number of workers required for library on wheels week w, day d, shift s
 param lib_on_wheels_avail{i in I_lib,w in W,d in D,s in S[d]} binary; #1 if a librarian is available to work in library on wheels week w, day d, shift s
 
+
 param Shift_list{Workers}; #used to visualize results in terminal, see .run file
 param LOW_list{Workers};
 param PL_list{Workers};
@@ -288,6 +289,7 @@ subject to task_free_weekday{i in I_free_day, w in W}:
 #Allowing only three shifts at a certain time each week
 subject to max_three_shifts_at_same_hours_per_week{i in I, w in W, s in 1..3}:
 	sum{d in 1..5} y[i,w,d,s] <= 2;
+
 
 
 
