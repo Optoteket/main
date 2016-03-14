@@ -148,13 +148,11 @@ The Operational Fixed Interval Scheduling Problem (OFISP) is a close relative to
 %Problem: "A metaheuristic for the fixed job scheduling problem under spread time constraints" André Rossi, http://www.sciencedirect.com/science/article/pii/S0305054809002251 (Fixed job)
 
 \section{Work load allocation and worker satisfaction} \label{WLA}
-For most scheduling problems, the main objective is to minimize worker-related costs by reducing the number of workers needed to perform a task, or by reducing the working time for part-time employees. Equivalently, the goal in production industries is to reduce the number of machines needed. Recently, however, many studies have started to focus more or softer values such as worker satisfaction as an objective. Such values are usually considered when scheduling is done manually, but have been forgotten or set aside in mathematical modeling.
+For most scheduling problems, the main objective is to reduce worker-related costs by reducing the number of workers needed to perform a task, or by reducing the working time for part-time employees. Equivalently, the goal in production industries is to reduce the number of machines needed. However, what has been studied more in recent years is also scheduling problems which take into account worker satisfaction. In an article by Akbari from 2012 a scheduling problem for part-time workers with different preferences, seniority level and productivity is investigated. In this article, these aspects are reflected in the objective function and weighted against each other. \cite{akbari_2012}. A similar problem was also studied by Mohan in 2008, but for a work force of only part-time workers \cite{mohan_2008}.
 
- In an article by Akbari from 2012 a scheduling problem for part-time workers with different preferences, seniority level and productivity is investigated. In this article, these aspects are reflected in the objective function and weighted against each other. \cite{akbari_2012}. A similar problem was also studied by Mohan in 2008, but for a work force of only part-time workers \cite{mohan_2008}. %Write more here!
+Other factors which may affect worker satisfaction, and in the long run efficiency and presence at work are fagique, fairness and boredom. These are discussed by Eiselt and Marianov \cite{eiselt_2006}. Repetitiveness of a job as well as the level of challenge can cause bordom in workers. Increasing variance is done by Eiselt and Marianov through providing an upper bound of how many tasks can be performed in a given time span. 
 
-Other factors which may affect worker satisfaction, and in the long run efficiency and presence at work are fagique, fairness and boredom. These are discussed by Eiselt and Marianov \cite{eiselt_2006}. Repetitiveness of a job as well as the level of challenge can cause bordom in workers. Increasing variance is done by Eiselt and Marianov through providing an upper bound of how many tasks can be performed in a given time span. The article suggests some sort of measurement of the distance between the task requirements and the worker abilities is used. This will then be minimized in the objective function.
-
-%The authors suggest that any scheduling problem can be viewed from either a task-centered approach, focusing on the requirements on the employees to perform the task, or a employee-centred approach, which takes into account all abilities of the worker. In the second type of approach, personal motivations and aspirations play an important role, while in the first, only skill is relevant. 
+The authors suggest that any scheduling problem can be viewed from either a task-centered approach, focusing on the requirements on the employees to perform the task, or a employee-centred approach, which takes into account all abilities of the worker. In the second type of approach, personal motivations and aspirations play an important role, while in the first, only skill is relevant. It should be noted that it is more convenient to use the former in any task assignment problem, while the latter should not be ignored. This is usually the case with mathematical modeling. However, such softer values must be taken into account in any good task assignment model. The article suggests some sort of measurement of the distance between the task requirements and the worker abilities is used. This will then be minimized in the objective function.
 
 %"Scheduling part-time personnel with availability restrictions and preferences to maximize employee satisfaction" Srimathy Mohan 2008
 %Trötthet och uttråkad. Något vi borde ta med i litteraturen enligt Torbjörn, fast inte leta källor på det. Mer källor?
@@ -191,6 +189,7 @@ In some cases, a problem can be a combined tour scheduling and task assignment p
 \subsection{Integer Programming}
 
 \subsection{Similated Anneahling}
+
 
 \subsection{Heuristics}
 

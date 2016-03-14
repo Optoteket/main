@@ -5,18 +5,6 @@ Ernst et~al.
 \newblock An annotated bibliography of personnel scheduling and rostering.
 \newblock 2004.
 
-\bibitem{loucks_1991}
-Loucks and Jacobs.
-\newblock Task assignment and tour scheduling of a heterogeneous work force: A
-  heuristic approach.
-\newblock 1991.
-
-\bibitem{choi_hwang_park_2009}
-Hwang Choi and Park.
-\newblock Scheduling restaurant workers to minimize labor cost and meet service
-  standards.
-\newblock 2009.
-
 \bibitem{krishnamoorthy_2001}
 Krishnamoorthy et~al.
 \newblock The personnel task scheduling problem.
@@ -34,6 +22,30 @@ Luk N. Van~Wassenhove Leo G.~Kroon, Marc~Salomon.
   scheduling problem.
 \newblock 1997.
 
+\bibitem{loucks_1991}
+Loucks and Jacobs.
+\newblock Task assignment and tour scheduling of a heterogeneous work force: A
+  heuristic approach.
+\newblock 1991.
+
+\bibitem{thompson_1988}
+G.M. Thompson.
+\newblock A comparison of techniques for scheduling non-homogeneous employees
+  in a service environment subject to non-cyclical demand.
+\newblock 1988.
+
+\bibitem{choi_hwang_park_2009}
+Hwang Choi and Park.
+\newblock Scheduling restaurant workers to minimize labor cost and meet service
+  standards.
+\newblock 2009.
+
+\bibitem{rong_2010}
+Aiying Rong.
+\newblock Monthly tour scheduling models with mixed skills considering weekend
+  off requirements.
+\newblock 2010.
+
 \bibitem{Gertsbakh_1977}
 H.I.~Stern I.~Gertsbakh.
 \newblock Minimal resources for fixed and variable job schedules.
@@ -47,7 +59,8 @@ Fischetti et~al.
 \bibitem{kroon_1993}
 Kroon et~al.
 \newblock Exact and approximation algorithms for the operational fixed interval
-  scheduling problem year =.
+  scheduling problem.
+\newblock 1993.
 
 \bibitem{akbari_2012}
 Mohammad Akbari.
@@ -55,8 +68,16 @@ Mohammad Akbari.
   satisfaction.
 \newblock 2012.
 
-\bibitem{eiselt_2006}
+\bibitem{mohan_2008}
+Srimathy Mohan.
+\newblock Scheduling part-time personnel with availability restrictions and
+  preferences to maximize employee satisfaction.
+\newblock 2008.
 
+\bibitem{eiselt_2006}
+Vladimir~Marianov H.A.~Eiselta.
+\newblock Employee positioning and workload allocation.
+\newblock 2006.
 
 \bibitem{latexcompanion}
 Michel Goossens, Frank Mittelbach, and Alexander Samarin.
