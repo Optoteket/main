@@ -15,7 +15,7 @@ set I_weekend_avail; #Set of workers available for weekend work. Subset of I
 set I_lib; #Set of librarians
 set I_ass; #Set of assistants
 set V; #Set of possible week rotations (shift the week by 1..10 steps)
-set I_lib_on_wheels; #Set of librarians available to work in library on wheels (Bokbussen)
+set I_LOW; #Set of librarians available to work in library on wheels (Bokbussen)
 set I_free_day; #Set of workers that shall be assigned a free weekday per week
 set I_odd_even; #Set of all workers with odd or even weeks
 
@@ -26,10 +26,10 @@ set Workers;
 #param meeting{S{D},D,W} binary;
 #param inner{I,D,W} binary; #saying if worker i has inner service day d week w
 param avail_day{i in I, w in W, d in D} binary; #1 if worker i is available day d, week w
-param task_worker_demand{d in D, s in S[d], j in J[d]} integer; #number of workers required for task type j shift s on day d
+param task_demand{d in D, s in S[d], j in J[d]} integer; #number of workers required for task type j shift s on day d
 param qualavail{i in I,w in W, d in D, s in S[d], j in J[d]} binary; #Worker i qualified and available for task type j shift s day d week w
-param lib_on_wheels_worker_demand{w in W,d in D,s in S[d]} integer; #number of workers required for library on wheels week w, day d, shift s
-param lib_on_wheels_avail{i in I_lib,w in W,d in D,s in S[d]} binary; #1 if a librarian is available to work in library on wheels week w, day d, shift s
+param LOW_demand{w in W,d in D,s in S[d]} integer; #number of workers required for library on wheels week w, day d, shift s
+param LOW_avail{i in I_lib,w in W,d in D,s in S[d]} binary; #1 if a librarian is available to work in library on wheels week w, day d, shift s
 
 
 param Shift_list{Workers}; #used to visualize results in terminal, see .run file
@@ -47,37 +47,38 @@ var h1{i in I, w in W} binary; #1 if worker i works weekend 1 in week w
 var h2{i in I, w in W} binary; #1 if worker i works weekend 2 in week w
 var x{i in I, w in W, d in D, s in S[d], j in J[d]} binary; #1 if worker i is assigned task type j in shift s day d week w
 var z{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]} binary; #1 if x = 1 and h = 1, 0 else
-var stand_in_lib{i in I_lib, w in W, d in D} binary; #1 if (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) = 1 and x[i,w,d,s,j] = 0. First term is if a worker is working a weekend
-var stand_in_ass{i in I_ass, w in W, d in D} binary; #1 if (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) = 1 and x[i,w,d,s,j] = 0. First term is if a worker is working a weekend
+var lib{i in I_lib, w in W, d in D} binary; #1 if (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) = 1 and x[i,w,d,s,j] = 0. First term is if a worker is working a weekend
+var ass{i in I_ass, w in W, d in D} binary; #1 if (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) = 1 and x[i,w,d,s,j] = 0. First term is if a worker is working a weekend
 var y{i in I, w in W, d in 1..5, s in 1..3} binary; #1 if worker i works week w, day d, shift s. No weekends and no evenings
-var lowest_stand_in_amount_lib integer; # Lowest number of stand-in workers at any shift
-var lowest_stand_in_amount_ass integer; # Lowest number of stand-in workers at any shift
+var lib_min integer; # Lowest number of stand-in workers at any shift
+var ass_min integer; # Lowest number of stand-in workers at any shift
 #var shifts_that_differ_between_weeks{i in I, w in W, w_prime in W, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
 var hb{i in I, w in W} binary; #1 if a person i works in HB week w
-var working_friday_evening{i in I, w in W} binary; #1 if a person works weekend but not in HB
-var num_days_with_same_shift{i in I, w in W, s in 1..3} integer;
+var friday_evening{i in I, w in W} binary; #1 if a person works weekend but not in HB
+#var num_days_with_same_shift{i in I, w in W, s in 1..3} integer;
 #var diff_num_same_shifts{i in I, w in W, s in 1..2, s_prime in 2..3} integer;
 #var total_sum_of_shift_differences integer;
 #var help_with_max_abs[i,w,s,s_prime] integer;
 
-var shifts_that_differ_between_weeks1{i in I, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
-var shifts_that_differ_between_weeks2{i in I, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
-var shifts_that_differ_between_weeks3{i in I, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
-var shifts_that_differ_between_weeks4{i in I, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
-var shifts_that_differ_between_weeks5{i in I, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
-
+var shift_differ_1_6{i in I, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
+var shift_differ_2_7{i in I, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
+var shift_differ_3_8{i in I, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
+var shift_differ_4_9{i in I, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
+var shift_differ_5_10{i in I, d in 1..5, s in 1..3} binary; #Shift that differ between different weeks for a worker at a certain shift
+var shift_differ{i in I, w in 1..5, d in 1..5, s in 1..3} binary;
 
 ################################## OBJECTIVE FUNCTION ###################################################################
 
 maximize objective: #Maximize stand-ins and create schedules with similar weeks for each worker
-	N1l*lowest_stand_in_amount_lib
-	+ N1a*lowest_stand_in_amount_ass
+	N1l*lib_min
+	+ N1a*ass_min
 	#- N2*sum{i in I}(sum{w in 1..9}(sum{w_prime in (w+1)..10}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks[i,w,w_prime,d,s]))))
-	- N2*sum{i in I}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks1[i,d,s]))
-	- N2*sum{i in I}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks2[i,d,s]))
-	- N2*sum{i in I}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks3[i,d,s]))
-	- N2*sum{i in I}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks4[i,d,s]))
-	- N2*sum{i in I}(sum{d in 1..5}(sum{s in 1..3} shifts_that_differ_between_weeks5[i,d,s]))
+	#- N2*sum{i in I}(sum{d in 1..5}(sum{s in 1..3} shift_differ_1_6[i,d,s]))
+	#- N2*sum{i in I}(sum{d in 1..5}(sum{s in 1..3} shift_differ_2_7[i,d,s]))
+	#- N2*sum{i in I}(sum{d in 1..5}(sum{s in 1..3} shift_differ_3_8[i,d,s]))
+	#- N2*sum{i in I}(sum{d in 1..5}(sum{s in 1..3} shift_differ_4_9[i,d,s]))
+	#- N2*sum{i in I}(sum{d in 1..5}(sum{s in 1..3} shift_differ_5_10[i,d,s]))
+	- N2*sum{i in I}(sum{w in 1..5}(sum{d in 1..5}(sum{s in 1..3} shift_differ[i,w,d,s])))
 	;
 
 #################################### CONSTRAINTS ########################################################################
@@ -85,13 +86,13 @@ maximize objective: #Maximize stand-ins and create schedules with similar weeks 
 ######################## Task demand for workers #####################################
 #number of workers to be assigned to different task types at different shifts (shall work for all days 1..7)
 subject to task_assign_amount_weekdays{w in W, d in 1..5,s in S[d], j in {'Exp', 'Info', 'PL'}}:
-	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
+	sum{i in I} x[i,w,d,s,j] = task_demand[d,s,j];
 
 subject to task_assign_amount_weekends{w in W, d in 6..7,s in S[d], j in J[d]}:
-	sum{i in I} x[i,w,d,s,j] = task_worker_demand[d,s,j];
+	sum{i in I} x[i,w,d,s,j] = task_demand[d,s,j];
 
 subject to task_assign_amount_library_on_wheels{w in W, d in 1..5 ,s in S[d]}:
-	sum{i in I} x[i,w,d,s,'LOW'] = lib_on_wheels_worker_demand[w,d,s];
+	sum{i in I} x[i,w,d,s,'LOW'] = LOW_demand[w,d,s];
 
 ######################## Maximum one task per day #####################################
 #Stating that a worker performing library on wheels cannot perform another task that day
@@ -153,7 +154,7 @@ subject to same_tasks_on_weekends{i in I_weekend_avail, w in W, j in J[7]} :
 
 ######################### Friday/weekend constraints #################################
 subject to friday_added_to_the_weekend{i in I_weekend_avail, w in W}:
-	sum {j in {'Exp', 'Info', 'PL'}} x[i,w,5,4,j] = working_friday_evening[i,w];
+	sum {j in {'Exp', 'Info', 'PL'}} x[i,w,5,4,j] = friday_evening[i,w];
 
 #assigns hb to 1 if a worker is working in HB on saturday (and sunday)
 subject to assign_hb{i in I_weekend_avail, w in W}:
@@ -161,16 +162,16 @@ subject to assign_hb{i in I_weekend_avail, w in W}:
 
 #Help constraints. working_friday_evening = 1 if worker i works weekend w, but does not work in HB
 subject to help_constraint_friday_weekend1_1{i in I_weekend_avail, w in W}:
-	working_friday_evening[i,w] >= h1[i,w] + (1 - hb[i,w]) - 1;
+	friday_evening[i,w] >= h1[i,w] + (1 - hb[i,w]) - 1;
 
 subject to help_constraint_friday_weekend2_1{i in I_weekend_avail, w in W}:
-	working_friday_evening[i,w] >= h2[i,w] + (1 - hb[i,w]) - 1;
+	friday_evening[i,w] >= h2[i,w] + (1 - hb[i,w]) - 1;
 
 subject to help_constraint_friday_weekend1_2{i in I_weekend_avail, w in W}:
-	working_friday_evening[i,w] <= h1[i,w] + h2[i,w];
+	friday_evening[i,w] <= h1[i,w] + h2[i,w];
 
 subject to help_constraint_friday_weekend3{i in I_weekend_avail, w in W}:
-	working_friday_evening[i,w] <= (1 - hb[i,w]);
+	friday_evening[i,w] <= (1 - hb[i,w]);
 
 #HB constraints
 subject to max_two_days_at_HB_per_ten_weeks{i in I_lib diff {23}}:
@@ -184,57 +185,48 @@ subject to worker_not_assigned_exp_info{w in W}:
 ######################### First objective function constraints: Stand-in constraints #################################
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
 subject to find_lowest_stand_in_amount_no_weekends_no_evenings_lib{w in W, d in 1..5}: #RHS: number of qualified workers at work that is available & not assigned to any task.
-	lowest_stand_in_amount_lib <= sum{i in I_lib} stand_in_lib[i,w,d]; 		#+ meeting[s,d,w]*M; 
+	lib_min <= sum{i in I_lib} lib[i,w,d]; 		#+ meeting[s,d,w]*M; 
 
 #A worker is a stand-in if he/she is available for shift 1-3, qualified and is not already scheduled. Takes schedule rotation into account
 subject to find_avail_not_working_day_lib{i in I_lib, w in W, d in 1..5}:
-	stand_in_lib[i,w,d] >= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]) + (1-sum{s in 1..4}(sum{j in {'Exp', 'Info', 'PL'}} x[i,w,d,s,j])) - 1; #Available and not working any shift day d. Note: ADD LOW here??
+	lib[i,w,d] >= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]) + (1-sum{s in 1..4}(sum{j in {'Exp', 'Info', 'PL'}} x[i,w,d,s,j])) - 1; #Available and not working any shift day d. Note: ADD LOW here??
 
 ### Help constraints for qualavail and not scheduled ###
 subject to help_constraint2_lib{i in I_lib, w in W, d in 1..5}:
-	stand_in_lib[i,w,d] <= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]);
+	lib[i,w,d] <= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]);
 
 subject to help_constraint3_lib{i in I_lib, w in W, d in 1..5}:
-	stand_in_lib[i,w,d] <= 1-sum{s in 1..4}(sum{j in {'Exp', 'Info', 'PL'}} x[i,w,d,s,j]); # Note: ADD LOW here??
+	lib[i,w,d] <= 1-sum{s in 1..4}(sum{j in {'Exp', 'Info', 'PL'}} x[i,w,d,s,j]); # Note: ADD LOW here??
 
 subject to help_constraint4_lib{i in I_lib, w in W, d in 1..5}:
-	stand_in_lib[i,w,d] <= 1-sum{s in 1..3} x[i,w,d,s,'LOW'];
+	lib[i,w,d] <= 1-sum{s in 1..3} x[i,w,d,s,'LOW'];
 
 subject to help_constraint5_lib{i in I_lib, w in W, d in 1..5}:
-	stand_in_lib[i,w,d] <= 1- x[i,w,d,4,'LOW'];
+	lib[i,w,d] <= 1- x[i,w,d,4,'LOW'];
 
 ### Stand-ins for assistants
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
 subject to find_lowest_stand_in_amount_no_weekends_no_evenings_ass{w in W, d in 1..5}: #RHS: number of qualified workers at work that is available & not assigned to any task.
-	lowest_stand_in_amount_ass <= sum{i in I_ass} stand_in_ass[i,w,d]; 		#+ meeting[s,d,w]*M; 
+	ass_min <= sum{i in I_ass} ass[i,w,d]; 		#+ meeting[s,d,w]*M; 
 
 #A worker is a stand-in if he/she is available, qualified and is not already scheduled. Takes schedule rotation into account
 subject to find_avail_not_working_day_ass{i in I_ass, w in W, d in 1..5}:
-	stand_in_ass[i,w,d] >= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]) + (1-sum{s in 1..4}(sum{j in {'Exp', 'PL'}} x[i,w,d,s,j])) - 1; #Available and not working any shift day d.
+	ass[i,w,d] >= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]) + (1-sum{s in 1..4}(sum{j in {'Exp', 'PL'}} x[i,w,d,s,j])) - 1; #Available and not working any shift day d.
 
 ### Help constraints for qualavail and not scheduled ###
 subject to help_constraint2_ass{i in I_ass, w in W, d in 1..5}:
-	stand_in_ass[i,w,d] <= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]);
+	ass[i,w,d] <= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]);
 
 subject to help_constraint3_ass{i in I_ass, w in W, d in 1..5}:
-	stand_in_ass[i,w,d] <= 1-sum{s in 1..4}(sum{j in {'Exp', 'PL'}} x[i,w,d,s,j]);
+	ass[i,w,d] <= 1-sum{s in 1..4}(sum{j in {'Exp', 'PL'}} x[i,w,d,s,j]);
 
 ####################### Only assign if qualified and available ######################
 
-subject to librarians_only_assigned_if_qualavail_weekdays{i in I, w in W, d in 1..5, s in S[d], j in {'Exp', 'Info', 'PL', 'LOW'}}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
+subject to only_assigned_if_qualavail_weekdays{i in I, w in W, d in 1..5, s in S[d], j in {'Exp', 'Info', 'PL', 'LOW'}}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
 	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
 
-subject to librarians_only_assigned_if_qualavail_weekends{i in I, w in W, d in 6..7, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'. No 'LOW' on weekends either
+subject to only_assigned_if_qualavail_weekends{i in I, w in W, d in 6..7, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'. No 'LOW' on weekends either
 	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
-
-#subject to assistants_only_assigned_if_qualavail_weekdays{i in I_ass, w in W, d in 1..5, s in S[d], j in {'Exp', 'Info', 'PL'}}: #assistants not qualified for 'Info' on weekdays
-#	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
-
-#subject to assistants_only_assigned_if_qualavail_weekends{i in I_ass, w in W, d in 6..7, s in S[d], j in J[d]}: #assistants not qualified for 'Info' or 'HB' on weekends, no 'LOW' on weekends either
-#	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
-### LIBRARY ON WHEELS ###
-#subject to lib_on_wheels_constraint{i in I_lib_on_wheels, w in W, d in 1..5, s in S[d]}: #Around five librarians qualified for library on wheels. They _shall_ be assigned their shifts there
-#	x[i,w,d,s,'LOW'] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,'LOW']));
 
 # _lib_on_wheels
 ############### Second objective function constraints: Similar weeks for workers #############
@@ -244,35 +236,41 @@ subject to librarians_only_assigned_if_qualavail_weekends{i in I, w in W, d in 6
 #subject to negative_values_of_abs{i in I, w in 1..9, w_prime in (w+1)..10, d in 1..5, s in 1..3}:
 #	shifts_that_differ_between_weeks[i,w,w_prime,d,s] >= -(y[i,w,d,s]-y[i,w_prime,d,s]);
 
-subject to positive_values_of_abs1{i in I, d in 1..5, s in 1..3}:
-	shifts_that_differ_between_weeks1[i,d,s] >= (y[i,1,d,s]-y[i,6,d,s]);
+#subject to positive_values_of_abs1{i in I, d in 1..5, s in 1..3}:
+#	shift_differ_1_6[i,d,s] >= (y[i,1,d,s]-y[i,6,d,s]);
 
-subject to negative_values_of_abs1{i in I, d in 1..5, s in 1..3}:
-	shifts_that_differ_between_weeks1[i,d,s] >= -(y[i,1,d,s]-y[i,6,d,s]);
+#subject to negative_values_of_abs1{i in I, d in 1..5, s in 1..3}:
+#	shift_differ_1_6[i,d,s] >= -(y[i,1,d,s]-y[i,6,d,s]);
 
-subject to positive_values_of_abs2{i in I, d in 1..5, s in 1..3}:
-	shifts_that_differ_between_weeks2[i,d,s] >= (y[i,2,d,s]-y[i,7,d,s]);
+#subject to positive_values_of_abs2{i in I, d in 1..5, s in 1..3}:
+#	shift_differ_2_7[i,d,s] >= (y[i,2,d,s]-y[i,7,d,s]);
 
-subject to negative_values_of_abs2{i in I, d in 1..5, s in 1..3}:
-	shifts_that_differ_between_weeks2[i,d,s] >= -(y[i,2,d,s]-y[i,7,d,s]);
+#subject to negative_values_of_abs2{i in I, d in 1..5, s in 1..3}:
+#	shift_differ_2_7[i,d,s] >= -(y[i,2,d,s]-y[i,7,d,s]);
 
-subject to positive_values_of_abs3{i in I, d in 1..5, s in 1..3}:
-	shifts_that_differ_between_weeks3[i,d,s] >= (y[i,3,d,s]-y[i,8,d,s]);
+#subject to positive_values_of_abs3{i in I, d in 1..5, s in 1..3}:
+#	shift_differ_3_8[i,d,s] >= (y[i,3,d,s]-y[i,8,d,s]);
 
-subject to negative_values_of_abs3{i in I, d in 1..5, s in 1..3}:
-	shifts_that_differ_between_weeks3[i,d,s] >= -(y[i,3,d,s]-y[i,8,d,s]);
+#subject to negative_values_of_abs3{i in I, d in 1..5, s in 1..3}:
+#	shift_differ_3_8[i,d,s] >= -(y[i,3,d,s]-y[i,8,d,s]);
 
-subject to positive_values_of_abs4{i in I, d in 1..5, s in 1..3}:
-	shifts_that_differ_between_weeks4[i,d,s] >= (y[i,4,d,s]-y[i,9,d,s]);
+#subject to positive_values_of_abs4{i in I, d in 1..5, s in 1..3}:
+#	shift_differ_4_9[i,d,s] >= (y[i,4,d,s]-y[i,9,d,s]);
 
-subject to negative_values_of_abs4{i in I, d in 1..5, s in 1..3}:
-	shifts_that_differ_between_weeks4[i,d,s] >= -(y[i,4,d,s]-y[i,9,d,s]);
+#subject to negative_values_of_abs4{i in I, d in 1..5, s in 1..3}:
+#	shift_differ_4_9[i,d,s] >= -(y[i,4,d,s]-y[i,9,d,s]);
 
-subject to positive_values_of_abs5{i in I, d in 1..5, s in 1..3}:
-	shifts_that_differ_between_weeks5[i,d,s] >= (y[i,5,d,s]-y[i,10,d,s]);
+#subject to positive_values_of_abs5{i in I, d in 1..5, s in 1..3}:
+#	shift_differ_5_10[i,d,s] >= (y[i,5,d,s]-y[i,10,d,s]);
 
-subject to negative_values_of_abs5{i in I, d in 1..5, s in 1..3}:
-	shifts_that_differ_between_weeks5[i,d,s] >= -(y[i,5,d,s]-y[i,10,d,s]);
+#subject to negative_values_of_abs5{i in I, d in 1..5, s in 1..3}:
+#	shift_differ_5_10[i,d,s] >= -(y[i,5,d,s]-y[i,10,d,s]);
+
+subject to positive_values_of_absX{i in I, w in 1..5, d in 1..5, s in 1..3}:
+	shift_differ[i,w,d,s] >= (y[i,w,d,s]-y[i,w+5,d,s]);
+
+subject to negative_values_of_absX{i in I, w in 1..5, d in 1..5, s in 1..3}:
+	shift_differ[i,w,d,s] >= -(y[i,w,d,s]-y[i,w+5,d,s]);
 
 
 

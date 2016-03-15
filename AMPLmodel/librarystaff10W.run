@@ -55,7 +55,7 @@ printf "\n The number of shiftchanges in total were: %d \n", shift_change5;
 
 
 
-###################### Print number of shifts each worker is assigned #####################
+###################### Print number of shifts, LOW and PL each worker is assigned #####################
 param number_of_workers := 39;
 let Workers := 1..number_of_workers;
 
@@ -69,12 +69,6 @@ for {i in I}
 display Shift_list, LOW_list, PL_list;
 
 
-###################### Print number of LOW shifts each person has per ten weeks #####################
-#param number_of_lows;
-#for {i in I}
-#{
-#	
-#}
 
 
 
@@ -95,11 +89,8 @@ display Shift_list, LOW_list, PL_list;
 
 ########################## Display of variables ###############################
 #display lowest_stand_in_amount;
-display lowest_stand_in_amount_lib;
-display lowest_stand_in_amount_ass;
-#display stand_in_day_d;
-#display working_friday_evening;
-#display shifts_that_differ_between_weeks;
+display lib_min;
+display ass_min;
 # Print in terminal of objective function value (inactive)
 #display cost;
 #display y1;
@@ -125,9 +116,4 @@ for {i in I}
 	printf "PL_list[%d] = %1g \n", i, PL_list[i] > librarystaff10W.res;
 }
 
-#display Shift_list > librarystaff10W.res;
-#display LOW_list > librarystaff10W.res;
-#display PL_list > librarystaff10W.res;
-
-#display task_worker_demand;
 ###############################################################################
