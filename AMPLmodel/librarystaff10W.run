@@ -91,6 +91,7 @@ display Shift_list, LOW_list, PL_list;
 #display lowest_stand_in_amount;
 display lib_min;
 display ass_min;
+display shift_differ_weeks;
 # Print in terminal of objective function value (inactive)
 #display cost;
 #display y1;
