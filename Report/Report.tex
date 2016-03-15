@@ -7,6 +7,8 @@
 \pagestyle{headings}
 
 % some of the packages used are
+\usepackage[round, authoryear]{natbib}
+\bibliographystyle{unsrtnat}
 \usepackage{latexsym}
 \usepackage{eepic}
 \usepackage{makeidx}
@@ -128,8 +130,14 @@ Nyckelhål, XBOX, Dagens viktigaste nyckelord, and Keywords.}
 \newcommand{\mmu}[0]{{\mu}_{max} }
 \newcommand{\KMAX}[0]{\mmu}
 \newcommand{\AAA}[0]{\mathbf{A} }
-\newcommand{\enc}[0]{utf8}
 % stop erasing here
+
+\newcommand{\enc}[0]{utf8}
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
+\newcommand{\specialcelltwo}[2][c]{%
+   \begin{tabular}[#1]{@{}l@{}l@{}}#2\end{tabular}}
+
 
 % don't mind these
 \title{\puttitle}
@@ -469,7 +477,6 @@ This document is an example of BibTeX using in bibliography management. Three it
 %\cite{beta,Glad} we have something else.
 
 %\begin{thebibliography}{99}
-\bibliographystyle{unsrt}
 \bibliography{Chapters/References}
 
 %\bibitem{beta} % this beta is what you 'call' when you refer to beta

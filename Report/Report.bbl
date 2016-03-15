@@ -1,105 +1,116 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{19}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem{Ernst_2004}
+\bibitem[et~al.(2004)]{ernst_2004}
 Ernst et~al.
 \newblock An annotated bibliography of personnel scheduling and rostering.
-\newblock 2004.
+\newblock \emph{Annalen der Physik}, 2004.
 
-\bibitem{krishnamoorthy_2001}
+\bibitem[et~al.(2001)]{krishnamoorthy_2001}
 Krishnamoorthy et~al.
 \newblock The personnel task scheduling problem.
-\newblock 2001.
+\newblock \emph{Annalen der Physik}, 2001.
 
-\bibitem{krishnamoorthy_2011}
+\bibitem[et~al.(2011)]{krishnamoorthy_2011}
 Krishnamoorthy et~al.
 \newblock Algorithms for large scale shift minimisation personnel task
   scheduling problems.
-\newblock 2011.
+\newblock \emph{Annalen der Physik}, 2011.
 
-\bibitem{kroon_1997}
+\bibitem[Leo G.~Kroon(1997)]{kroon_1997}
 Luk N. Van~Wassenhove Leo G.~Kroon, Marc~Salomon.
 \newblock Exact and approximation algorithms for the tactical fixed interval
   scheduling problem.
-\newblock 1997.
+\newblock \emph{Annalen der Physik}, 1997.
 
-\bibitem{loucks_1991}
-Loucks and Jacobs.
+\bibitem[Loucks(1991)]{loucks_1991}
+Jacobs Loucks.
 \newblock Task assignment and tour scheduling of a heterogeneous work force: A
   heuristic approach.
-\newblock 1991.
+\newblock \emph{Annalen der Physik}, 1991.
 
-\bibitem{thompson_1988}
+\bibitem[Thompson(1988)]{thompson_1988}
 G.M. Thompson.
 \newblock A comparison of techniques for scheduling non-homogeneous employees
   in a service environment subject to non-cyclical demand.
-\newblock 1988.
+\newblock \emph{Annalen der Physik}, 1988.
 
-\bibitem{choi_hwang_park_2009}
+\bibitem[Choi and Park(2009)]{choi_hwang_park_2009}
 Hwang Choi and Park.
 \newblock Scheduling restaurant workers to minimize labor cost and meet service
   standards.
-\newblock 2009.
+\newblock \emph{Annalen der Physik}, 2009.
 
-\bibitem{rong_2010}
+\bibitem[Rong(2010)]{rong_2010}
 Aiying Rong.
 \newblock Monthly tour scheduling models with mixed skills considering weekend
   off requirements.
-\newblock 2010.
+\newblock \emph{Annalen der Physik}, 2010.
 
-\bibitem{gertsbakh_1977}
+\bibitem[I.~Gertsbakh(1977)]{gertsbakh_1977}
 H.I.~Stern I.~Gertsbakh.
 \newblock Minimal resources for fixed and variable job schedules.
-\newblock 1977.
+\newblock \emph{Annalen der Physik}, 1977.
 
-\bibitem{fischetti_1992}
+\bibitem[et~al.(1992)]{fischetti_1992}
 Fischetti et~al.
 \newblock Approximation algorithms for fixed job schedule problems.
-\newblock 1992.
+\newblock \emph{Annalen der Physik}, 1992.
 
-\bibitem{kroon_1993}
+\bibitem[et~al.(1993)]{kroon_1993}
 Kroon et~al.
 \newblock Exact and approximation algorithms for the operational fixed interval
   scheduling problem.
 \newblock 1993.
 
-\bibitem{duffuaa_1999}
+\bibitem[S.O.~Duffuaa(1999)]{duffuaa_1999}
 K.S. Al-Sultan S.O.~Duffuaa.
 \newblock A stochastic programming model for scheduling maintenance personnel.
-\newblock 1999.
+\newblock \emph{Annalen der Physik}, 1999.
 
-\bibitem{roberts_1983}
-title~= S.~M.~Roberts, L. F.~Escudero.
+\bibitem[S.~M.~Roberts(1983)]{roberts_1983}
+L.~F.~Escudero S.~M.~Roberts.
+\newblock Scheduling of plant maintenance personnel.
+\newblock \emph{Annalen der Physik}, 1983.
 
-\bibitem{akbari_2012}
+\bibitem[Akbari(2012)]{akbari_2012}
 Mohammad Akbari.
 \newblock Scheduling part-time and mixed-skilled workers to maximize employee
   satisfaction.
-\newblock 2012.
+\newblock \emph{Annalen der Physik}, 2012.
 
-\bibitem{mohan_2008}
+\bibitem[Mohan(2008)]{mohan_2008}
 Srimathy Mohan.
 \newblock Scheduling part-time personnel with availability restrictions and
   preferences to maximize employee satisfaction.
-\newblock 2008.
+\newblock \emph{Annalen der Physik}, 2008.
 
-\bibitem{eiselt_2006}
+\bibitem[H.A.~Eiselta(2006)]{eiselt_2006}
 Vladimir~Marianov H.A.~Eiselta.
 \newblock Employee positioning and workload allocation.
-\newblock 2006.
+\newblock \emph{Annalen der Physik}, 2006.
 
-\bibitem{latexcompanion}
+\bibitem[Goossens et~al.(1993)Goossens, Mittelbach, and
+  Samarin]{latexcompanion}
 Michel Goossens, Frank Mittelbach, and Alexander Samarin.
-\newblock {\em The \LaTeX\ Companion}.
+\newblock \emph{The \LaTeX\ Companion}.
 \newblock Addison-Wesley, Reading, Massachusetts, 1993.
 
-\bibitem{einstein}
+\bibitem[Einstein(1905)]{einstein}
 Albert Einstein.
 \newblock {Zur Elektrodynamik bewegter K{\"o}rper}. ({German}) [{On} the
   electrodynamics of moving bodies].
-\newblock {\em Annalen der Physik}, 322(10):891--921, 1905.
+\newblock \emph{Annalen der Physik}, 322\penalty0 (10):\penalty0 891--921,
+  1905.
+\newblock \doi{http://dx.doi.org/10.1002/andp.19053221004}.
 
-\bibitem{knuthwebsite}
+\bibitem[Knuth()]{knuthwebsite}
 Donald Knuth.
 \newblock Knuth: Computers and typesetting.
+\newblock URL \url{http://www-cs-faculty.stanford.edu/\~{}uno/abcde.html}.
 
 \end{thebibliography}
