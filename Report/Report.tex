@@ -9,10 +9,12 @@
 % some of the packages used are
 \usepackage[round, authoryear]{natbib}
 \bibliographystyle{unsrtnat}
+\usepackage{xcolor, colortbl}
+\usepackage{tabularx}
 \usepackage{latexsym}
 \usepackage{eepic}
 \usepackage{makeidx}
-\usepackage[dvips]{graphicx}
+\usepackage{graphicx}
 \usepackage[utf8]{inputenc}  %för ä ö å ?
 \usepackage[english]{babel}
 %\usepackage{times}
@@ -132,11 +134,16 @@ Nyckelhål, XBOX, Dagens viktigaste nyckelord, and Keywords.}
 \newcommand{\AAA}[0]{\mathbf{A} }
 % stop erasing here
 
+%\usepackage[first=0,last=9]{lcg}
+%\newcommand{\ra}{\rand0.\arabic{rand}}
 \newcommand{\enc}[0]{utf8}
+\definecolor{bluegray}{rgb}{0.4, 0.6, 0.8}
+\definecolor{Gray}{gray}{0.85}
 \newcommand{\specialcell}[2][c]{%
   \begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
 \newcommand{\specialcelltwo}[2][c]{%
    \begin{tabular}[#1]{@{}l@{}l@{}}#2\end{tabular}}
+
 
 
 % don't mind these
@@ -415,6 +422,7 @@ growth-chamber, reactor, in which the bacteria reproduces.
 $\phantom{\Bigg(}$Model$\phantom{\Bigg(}$ & Monods Chemostat & CSI-CSTR \\ 
 \hline %\hline 
 %-------------------------------------------------------------------
+\rowcolor{bluegray}
 $\mu\phantom{\Bigg(}$
 & $\frac{ S} {1+S}$
 & $\frac{ S} {1+S+\frac{{S}^{2}}{\KI}}$ \\ %\hline

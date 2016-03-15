@@ -4,42 +4,137 @@
 %\section{Background} 
 %Schemaläggning av personal vid Norrköpings bibliotek.
 \section{Background}
-At a library absence can cause problems, both due to lack of personnel as well as due to the qualifications required to perform a task varies. If a worker were to be unavailable a day because of a meeting or being ill it would require for a stand-in to fill the vacancy. Therefore, it is of great interest to have a schedule with as many skilled stand-ins as possible to overcome such disturbances. Furthermore, the library personnel have certain demands and preferences as to how a satisfactory working schedule should be. For instance, it is neither preferable to work more than one evening each week nor work more weekends than required. 
+At a library absence can cause problems, both due to lack of personnel as well as due to the qualifications required to perform a task varies. If a worker were to be unavailable a day because of a meeting or being ill it would require for a stand-in to fill the vacancy. Therefore, it is of great interest to have a schedule with as many skilled stand-ins as possible to overcome such disturbances. Furthermore, the library personnel have certain demands and preferences as to how a satisfactory working schedule should be. For instance, it is neither preferable to work more than one evening each week nor work more weekends than required.
+
+The central library of Norrköping is more than 100 years old. The library has more than 40 employees. These consist of both librarians and assistants, who handle simpler tasks.  The library is open both weekdays until 20:00 and during weekend days until 16, which is challenge for the schedulers of the library since this requires time compensation for the staff. The library also provides its services to more than five other smaller libraries.% Beskrivande text om Norrköpings bibliotek! 
 
 \section{Problem description}
 
 \subsection{Description of the daily tasks at the library}
 The most important activity at a library is the activity directed towards the public. This includes lending books services as well as providing customers with helpful information about the resources at their disposal. These are referred to as "outer tasks". At the same time, the uppsättning of books must be maintained, the returned books must be sorted and put back, the web page must be up to date and so on. Such work is often referred to as "inner work" and is equally part of the everyday tasks of a librarian. 
 
-At the library of Norrköping, three main outer tasks can be identified as working in the expedition desk, working in the information desk and assembling books from the "fetch list" (sv. plocklista). Table \ref{Outer_Tasks} describes the properties of theses tasks.
+At the library of Norrköping, three main outer tasks can be identified as working in the service counter (sv. expiditionsdisken), working in the information counter (sv. informationsdiken)  and assembling books according to the "fetch list" (sv. plocklista). These tasks can be performed by either librarians or assistants, as descirbed in able \ref{tab:Outer_Tasks}.
 
 \begin{table}[h]
 \centering
-\caption{Outer Tasks}
-\label{Outer_Tasks}
-\begin{tabular}[10pt]{|l|l|}
+\caption{Outer tasks can be performed exclusively by librarians or by assistants also.}
+\label{tab:Outer_Tasks}
+\begin{tabularx}{\textwidth}{|X|l|X|}
 \hline
 %-------------------------------------------------------------------
-\large{\textbf{Task}} & \large{\textbf{Description} }
-\\ \hline 
+\large{\textbf{Task}} & \large{\textbf{Description}} & \large{\textbf{Qualification}}\\ \hline 
 %------------------------------------------------------------------- 
-Expedition Desk (Exp) & \specialcelltwo{Handles questions about loans, \\ loan cards and the loaning machine.\\Any library worker can be assigned here.}
+Service Counter (Exp)  & \specialcell[t]{Administring loans, library cards\\ and the loaning machine} & Assistants, Librarians
 %\begin{tabular}[x]{@{}c@{}}\\\end{tabular}  
 \\ \hline
 %-------------------------------------------------------------------
-Information Desk (Info) & \specialcell{Handle questions about the library's resources.\\Only librarians are qualified for this task.}
+Information Counter (Info) & \specialcell[t]{Handling questions \\about the library's resources.} & Librarians
 \\ \hline 
 %-------------------------------------------------------------------
-Fetch List (FL) & \specialcelltwo{Books which need to be fetched \\ and sent to other libraries.\\All workers are qualified for this task} 
+Fetch List (FL) & \specialcell[t]{Fetching books that are to be \\sent to other libraries.} & Assistants, Librarians
 \\ \hline 
 %-------------------------------------------------------------------
-\end{tabular}
+\end{tabularx}
+\end{table} 
+
+As the number of visitors in the library differs at different times of the day and during different days so does the demand for people for the three tasks. The demand of people at for the different tasks is illustrated in table \ref{tab:Outer_Task_Demand}. 
+
+
+
+\begin{table}[h]
+\centering
+\caption{Demand of staff for the three daily tasks.}
+\label{tab:Outer_Task_Demand}
+\begin{tabularx}{\textwidth}{|X|l|l|l|l|X|}
+\hline
+%-------------------------------------------------------------------
+\textbf{Day} & \textbf{Time} & \textbf{Exp demand} & \textbf{Info demand} & \textbf{FL demand}
+\\ \hline 
+%%------------------------------------------------------------------- 
+Mon-Fri & 08:00-10:00 & 2 & 2 & 1
+\\ \hline 
+%%------------------------------------------------------------------- 
+Mon-Fri & 10:00-13:00 & 3 & 3 & 1
+\\ \hline 
+%%-------------------------------------------------------------------
+Mon-Fri & 13:00-16:00  & 3 & 3 & 1
+\\ \hline 
+%%-------------------------------------------------------------------
+Mon-Fri & 16:00-20:00 & 3 & 3 & -
+\\ \hline 
+%%-------------------------------------------------------------------
+Sat & 11:00-16:00  & 3 & 3 & -
+\\ \hline 
+%%------------------------------------------------------------------- 
+Sun & 11:00-16:00  & 3 & 3 & -
+\\ \hline 
+\end{tabularx}
 \end{table} 
 
 
-\subsection{External activities: Hageby and Library on Wheels}
+As is the case with most libraries, the Central Library of Norrköping also has responsiblities that fall outside of it's normal daily activities. One such resposibility is the running of a smaller library filial in Hageby, situated in a suburbian area of Norrköping, during weekends. For this tasks only librarians are qualified as the placement implies all types of library tasks.
+
+Similarly, only librarians are qualified for the task known as "Library on Wheels" (sv. Bokbussen), which is a type of library bus, providing citizens in remoter areas of the city with books and other library services. The Library on Wheels has only operates a few times a week and the schedule differs between even and odd weeks.
+
+\begin{table}[h]
+\centering
+\caption{Demand of staff at Hageby and Library on Wheels}
+\label{tab:Hageby_LOW_Demand}
+\begin{tabularx}{\textwidth}{|X|l|l|l|l|X|}
+\hline
+%-------------------------------------------------------------------
+\textbf{Day} & \textbf{Time} & \textbf{Hageby}& \textbf{LoW - odd week} & \textbf{LoW - even week} 
+\\ \hline 
+%%------------------------------------------------------------------- 
+\rowcolor{Gray} 
+Mon & 08:00-10:00 & - & 1 & 1
+\\ \hline 
+%%-------------------------------------------------------------------
+\rowcolor{Gray}  
+Mon & 16:00-20:00 & - & 1 & -
+\\ \hline 
+%%-------------------------------------------------------------------
+Tue & 08:00-10:00 & - & - & -
+\\ \hline 
+%%------------------------------------------------------------------- 
+Tue & 16:00-20:00 & - & - & -
+\\ \hline 
+%%-------------------------------------------------------------------
+\rowcolor{Gray} 
+Wed & 08:00-10:00 & - & 1 & 1
+\\ \hline 
+%%------------------------------------------------------------------- 
+\rowcolor{Gray} 
+Wed & 16:00-20:00 & - & 1 & 1
+\\ \hline 
+%%-------------------------------------------------------------------
+Thu & 08:00-10:00 & - & 1 & 1
+\\ \hline 
+%%-------------------------------------------------------------------
+Thu & 16:00-20:00 & - & 1 & 1
+\\ \hline 
+%%-------------------------------------------------------------------
+\rowcolor{Gray}
+Fri & 08:00-10:00 & - & 1 & -
+\\ \hline 
+%%------------------------------------------------------------------- 
+\rowcolor{Gray}
+Fri & 16:00-20:00 & - & - & -
+\\ \hline 
+%%-------------------------------------------------------------------
+Sat & 11:00-16:00  & 1 & - & -
+\\ \hline 
+%%-------------------------------------------------------------------
+Sun & 11:00-16:00  & 1 & - & -
+\\ \hline 
+\end{tabularx}
+\end{table} 
 
 \subsection{Personnel attributes}
+
+The Central Library of Norrköping currently has 39 workers, 23 of which are librarians and 16 of which are assistants. All staff have different availability for performing tasks, depending on their working hours and the amount of inner work they are in charge of.
+
+Personnel works whole weekends!
 
 \subsection{Main objective: increase number of stand in personnel}
 
