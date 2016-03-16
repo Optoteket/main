@@ -1,3 +1,5 @@
+### To do: Integrate h1 and h2 into H[i,w,h]
+
 # Model file
 # Master Thesis: Work Distribution of a Heterogeneous Library Staff - A Personnel Task Scheduling Problem
 # Master Students: Claes Arvidson and Emelie Karlsson
@@ -39,8 +41,9 @@ param N2 := 5; #Prioritize similar weeks
 
 #################################### Variables ########################################################################
 var r{i in I, w in W} binary; #1 if person i has a rotation (phase shift) of w weeks, 0 otherwise
-var h1{i in I, w in W} binary; #1 if worker i works weekend 1 in week w
-var h2{i in I, w in W} binary; #1 if worker i works weekend 2 in week w
+var H{i in I, w in W, h in 1..2} binary; #1 if worker i works weekend h in week w
+#var h1{i in I, w in W} binary; #1 if worker i works weekend 1 in week w
+#var h2{i in I, w in W} binary; #1 if worker i works weekend 2 in week w
 var x{i in I, w in W, d in D, s in S[d], j in J[d]} binary; #1 if worker i is assigned task type j in shift s day d week w
 var z{i in I_weekend_avail, w in W, d in D, s in S[d], j in J[d]} binary; #1 if x = 1 and h = 1, 0 else
 var lib{i in I_lib, w in W, d in D} binary; #1 if (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) = 1 and x[i,w,d,s,j] = 0. First term is if a worker is working a weekend
@@ -50,7 +53,6 @@ var lib_min integer; # Lowest number of stand-in workers at any shift
 var ass_min integer; # Lowest number of stand-in workers at any shift
 var hb{i in I, w in W} binary; #1 if a person i works in HB week w
 var friday_evening{i in I, w in W} binary; #1 if a person works weekend but not in HB
-
 
 var shift_differ_weeks{i in I, w in 1..5, d in 1..5, s in 1..3} binary;
 
@@ -108,14 +110,16 @@ subject to rotation_of_week{i in I}:
 	sum{w in W} r[i,w] = 1;
 
 #Allowing a "weekend-worker" to work two weekends per ten weeks
-subject to first_weekend_happening_max_once{i in I_weekend_avail}:
-	sum{w in W} h1[i,w] <= 1;
-subject to second_weekend_happening_max_once{i in I_weekend_avail}:
-	sum{w in W} h2[i,w] <= 1;
+subject to weekend_happening_max_once{i in I_weekend_avail, h in 1..2}:
+	sum{w in W} H[i,w,h] <= 1;
+#subject to first_weekend_happening_max_once{i in I_weekend_avail}:
+#	sum{w in W} h1[i,w] <= 1;
+#subject to second_weekend_happening_max_once{i in I_weekend_avail}:
+#	sum{w in W} h2[i,w] <= 1;
 
-#Rotate the schedule so weekend work is at week w. If worker i does not work weekend (h1 = h2 = 0) then the rotation is free.
+#Rotate the schedule so weekend work is at week w. If worker i does not work weekend (H[i,w,1] = H[i,w,2] = 0) then the rotation is free.
 subject to rotation_demand{i in I, w in W}:
-	r[i,w] >= h1[i,w];
+	r[i,w] >= H[i,w,1];
 
 #Only rotate even numbers for the workers with demands of odd and even weeks
 subject to only_even_rotations{i in I_odd_even, w in 1..5}:
@@ -123,11 +127,11 @@ subject to only_even_rotations{i in I_odd_even, w in 1..5}:
 
 #if weekend two is 1 for a week w, then rotation r shall be shifted by 5. e.g. h2[i,7] = 1 then r[i,2] = 1, if h2[i,2] = 1 then r[i,7] = 1
 subject to rotation_demand2{i in I, w in W}:
-	r[i,(w+4) mod 10 + 1] >= h2[i,w];
+	r[i,(w+4) mod 10 + 1] >= H[i,w,2];
 
 #Ensuring that if a worker i is working weekend w then they will work saturday and sunday in week w
 subject to two_days_weekends{i in I_weekend_avail, w in W}:
-	sum {s in S[6]}(sum {j in J[6]} x[i,w,6,s,j]) + sum {s in S[7]}(sum {j in J[7]} x[i,w,7,s,j]) = 2*h1[i,w] + 2*h2[i,w];
+	sum {s in S[6]}(sum {j in J[6]} x[i,w,6,s,j]) + sum {s in S[7]}(sum {j in J[7]} x[i,w,7,s,j]) = 2*(sum{h in 1..2} H[i,w,h]);	 # h1[i,w] + 2*h2[i,w];
 
 subject to same_tasks_on_weekends{i in I_weekend_avail, w in W, j in J[7]} :
 	sum{s in S[6]} x[i,w,6,s,j] = sum{s in S[7]} x[i,w,7,s,j]; #s = 1 for weekends anyhow
@@ -142,14 +146,11 @@ subject to assign_hb{i in I_weekend_avail, w in W}:
 	hb[i,w] = x[i,w,6,1,'HB'];
 
 #Help constraints. working_friday_evening = 1 if worker i works weekend w, but does not work in HB
-subject to help_constraint_friday_weekend1_1{i in I_weekend_avail, w in W}:
-	friday_evening[i,w] >= h1[i,w] + (1 - hb[i,w]) - 1;
+subject to help_constraint_friday_weekend1{i in I_weekend_avail, w in W, h in 1..2}:
+	friday_evening[i,w] >= H[i,w,h] + (1 - hb[i,w]) - 1;
 
-subject to help_constraint_friday_weekend2_1{i in I_weekend_avail, w in W}:
-	friday_evening[i,w] >= h2[i,w] + (1 - hb[i,w]) - 1;
-
-subject to help_constraint_friday_weekend1_2{i in I_weekend_avail, w in W}:
-	friday_evening[i,w] <= h1[i,w] + h2[i,w];
+subject to help_constraint_friday_weekend2{i in I_weekend_avail, w in W}:
+	friday_evening[i,w] <= sum{h in 1..2} H[i,w,h];
 
 subject to help_constraint_friday_weekend3{i in I_weekend_avail, w in W}:
 	friday_evening[i,w] <= (1 - hb[i,w]);

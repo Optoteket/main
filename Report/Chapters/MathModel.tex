@@ -1,42 +1,70 @@
 %A thorough description of the mathematical model in words and in math. More significant and general constraints in equations and less significant in words.
 In this chapter the mathematical model implemented to solve this problem will be presented. Variables and sets will be stated prior to the objective function and constraints. A list of all the parameters can be found in Appendix \ref{parameters}. 
 \section{Set and variable definitions} \label{variables}
-To solve the problem many sets and definitions had to be declared as there are many unique requirements that have to be met. An example is that some want a day free from outer tasks so that they can focus on other assignments or attend meetings. Another one is that some personnel have different schedules for odd and even weeks. These specific cases have to be modeled and result in a variety of set and variable definitions. Hence, a bigger part of the definitions are instead listed in Appendix \ref{sets and variables}.
+To solve the problem many sets and variables had to be declared as there are many unique requirements that have to be met. An example is that some want a day free from outer tasks so that they can focus on other assignments or attend meetings. Another one is that some personnel have different schedules for odd and even weeks. These specific cases have to be modeled and result in a variety of set and variable definitions. Hence, only the most important ones are listed in Table \ref{tab:sets}. A complete list of the definitions can be found in Appendix \ref{sets and variables}.
 \begin{table}[H]
 \centering
-\caption{Significant sets and variables}
-\label{tab:sets and variables}
+\caption{Significant sets}
+\label{tab:sets}
 \begin{tabular}{ll}
 I                & Set of workers                                             \\
+I\_lib	& Set of librarians (I\_lib $\subseteq$ I)	\\
+I\_ass	& Set of assistants (I\_ass $\subseteq$ I)	\\
 W                & Set of weeks                                               \\
 D                & Set of days in a week                                      \\
 $S_d$           & Set of shifts day \textit{d}                                        \\
-$J_d$           & Set of task types day \textit{d}                                    \\
-$x_{iwdsj}$ & 1 if worker \textit{i} is assigned task \textit{j} in week \textit{w}, day \textit{d}, shift \textit{s}, 0 otherwise \\
-$h1_{iw}$      & 1 if worker \textit{i} works its first weekend week \textit{w}, 0 otherwise               \\
-$h2_{iw}$      & 1 if worker \textit{i} works its second weekend week \textit{w}, 0 otherwise             
+$J_d$           & Set of task types day \textit{d}                                    \\          
 \end{tabular}
 \end{table}
+
+In order to further define the problem we define the following decision variables. Let,
+\begin{align}
+    x_{iwdsj}&=
+    \begin{cases}
+      1, & \text{if worker \textit{i} is assigned in week \textit{w}, day \textit{d}, shift \textit{s} to a task \textit{j}}\\
+      0, & \text{otherwise}
+    \end{cases}
+    \\
+    h1_{iw}&=
+    \begin{cases}
+      1, & \text{if worker \textit{i} works its first weekend in week \textit{w}}\\
+      0, & \text{otherwise}
+    \end{cases}
+    \\
+	h2_{iw}&=
+	\begin{cases}
+	  1, & \text{if worker \textit{i} works its second weekend in week \textit{w}}\\
+	  0, & \text{otherwise}
+	\end{cases}
+	\\
+	lib_{iwd}&=
+	\begin{cases}
+	  1, & \text{if librarian \textit{i} is a stand-in week \textit{w} day \textit{d}} \\
+	  0, & \text{otherwise}
+	\end{cases}
+	\\
+	ass_{iwd}&=
+	\begin{cases}
+ 		1, & \text{if assistant \textit{i} is a stand-in week \textit{w} day \textit{d}} \\
+ 		0, & \text{otherwise}
+	\end{cases}
+\end{align}
+
+
 
 
 
 \section{Objective function}
-Due to multiple objective functions, it has been necessary to weigh them against each other to prioritize using parameters. As can be seen in equation ... below
+Due to multiple objective functions, it has been necessary to weigh them against each other using parameters. This is shown in equation \ref{objfn} below, where \textit{N1l}, \textit{N1a} and \textit{N2} are the parameters.
 
-\begin{equation}
-\begin{split}
-max &  N1l*lowest\_stand\_in\_amount\_lib\\
- & + N1a*lowest\_stand\_in\_amount\_ass
-\end{split}
-\end{equation}
 
-\begin{equation*}
-\begin{aligned}
-max & N1l*lowest\_stand\_in\_amount\_lib \\
-& + N1a*lowest\_stand\_in\_amount\_ass \\
-& - N2*\sum_{n=1}^{\infty} 2^{-n} = 1 \\
-\end{aligned}
-\end{equation*}
+\begin{align} \label{objfn}
+max &N1l*lowest\_stand\_in\_amount\_lib\\
+ + &N1a*lowest\_stand\_in\_amount\_ass \\
+ - &N2*\sum_{i \in I}\sum_{w = 1}^{5}\sum_{d = 1}^{5}\sum_{s = 1}^{3} shift\_differ\_weeks_{iwds}
+\end{align}
+
+
 
 \section{Constraints}
 To model this problem it has been of relevance to divide many of the constraints into weekend- and weekday constraints. 
