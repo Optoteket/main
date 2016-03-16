@@ -1,116 +1,126 @@
-\begin{thebibliography}{19}
+\begin{thebibliography}{18}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[et~al.(2004)]{ernst_2004}
-Ernst et~al.
+\bibitem[Ernst et~al.(2004)Ernst, Jiang, Krishnamoorthy, Owens, and
+  Sier]{ernst_2004}
+Andreas~T Ernst, Houyuan Jiang, Mohan Krishnamoorthy, Bowie Owens, and David
+  Sier.
 \newblock An annotated bibliography of personnel scheduling and rostering.
-\newblock \emph{Annalen der Physik}, 2004.
+\newblock \emph{Annals of Operations Research}, 127\penalty0 (1-4):\penalty0
+  21--144, 2004.
 
-\bibitem[et~al.(2001)]{krishnamoorthy_2001}
-Krishnamoorthy et~al.
+\bibitem[Krishnamoorthy and Ernst(2001)]{krishnamoorthy_2001}
+Mohan Krishnamoorthy and Andreas~T Ernst.
 \newblock The personnel task scheduling problem.
-\newblock \emph{Annalen der Physik}, 2001.
+\newblock In \emph{Optimization methods and applications}, pages 343--368.
+  Springer, 2001.
 
-\bibitem[et~al.(2011)]{krishnamoorthy_2011}
-Krishnamoorthy et~al.
+\bibitem[Krishnamoorthy et~al.(2012)Krishnamoorthy, Ernst, and
+  Baatar]{krishnamoorthy_2012}
+Mohan Krishnamoorthy, Andreas~T Ernst, and Davaa Baatar.
 \newblock Algorithms for large scale shift minimisation personnel task
   scheduling problems.
-\newblock \emph{Annalen der Physik}, 2011.
+\newblock \emph{European Journal of Operational Research}, 219\penalty0
+  (1):\penalty0 34--48, 2012.
 
-\bibitem[Leo G.~Kroon(1997)]{kroon_1997}
-Luk N. Van~Wassenhove Leo G.~Kroon, Marc~Salomon.
-\newblock Exact and approximation algorithms for the tactical fixed interval
+\bibitem[Kroon et~al.(1995)Kroon, Salomon, and Van~Wassenhove]{kroon_1995}
+Leo~G Kroon, Marc Salomon, and Luk~N Van~Wassenhove.
+\newblock Exact and approximation algorithms for the operational fixed interval
   scheduling problem.
-\newblock \emph{Annalen der Physik}, 1997.
+\newblock \emph{European Journal of Operational Research}, 82\penalty0
+  (1):\penalty0 190--205, 1995.
 
-\bibitem[Loucks(1991)]{loucks_1991}
-Jacobs Loucks.
-\newblock Task assignment and tour scheduling of a heterogeneous work force: A
+\bibitem[Loucks and Jacobs(1991)]{loucks_1991}
+John~S Loucks and F~Robert Jacobs.
+\newblock Tour scheduling and task assignment of a heterogeneous work force: A
   heuristic approach.
-\newblock \emph{Annalen der Physik}, 1991.
+\newblock \emph{Decision Sciences}, 22\penalty0 (4):\penalty0 719--738, 1991.
 
-\bibitem[Thompson(1988)]{thompson_1988}
-G.M. Thompson.
-\newblock A comparison of techniques for scheduling non-homogeneous employees
-  in a service environment subject to non-cyclical demand.
-\newblock \emph{Annalen der Physik}, 1988.
+\bibitem[Roberts and Escudero(1983{\natexlab{a}})]{thompson_1988}
+SM~Roberts and LF~Escudero.
+\newblock Scheduling of plant maintenance personnel.
+\newblock \emph{Journal of Optimization theory and Applications}, 39\penalty0
+  (3):\penalty0 323--343, 1983{\natexlab{a}}.
 
-\bibitem[Choi and Park(2009)]{choi_hwang_park_2009}
-Hwang Choi and Park.
+\bibitem[Choi et~al.(2009)Choi, HWaNG, and Park]{choi_hwang_park_2009}
+Kyuwan Choi, JOHyE HWaNG, and Myoungju Park.
 \newblock Scheduling restaurant workers to minimize labor cost and meet service
   standards.
-\newblock \emph{Annalen der Physik}, 2009.
+\newblock \emph{Cornell Hospitality Quarterly}, 50\penalty0 (2):\penalty0
+  155--167, 2009.
 
 \bibitem[Rong(2010)]{rong_2010}
 Aiying Rong.
 \newblock Monthly tour scheduling models with mixed skills considering weekend
   off requirements.
-\newblock \emph{Annalen der Physik}, 2010.
+\newblock \emph{Computers \& Industrial Engineering}, 59\penalty0 (2):\penalty0
+  334--343, 2010.
 
-\bibitem[I.~Gertsbakh(1977)]{gertsbakh_1977}
-H.I.~Stern I.~Gertsbakh.
+\bibitem[Hojati and Patil(2011)]{hojati_2011}
+Mehran Hojati and Ashok~S Patil.
+\newblock An integer linear programming-based heuristic for scheduling
+  heterogeneous, part-time service employees.
+\newblock \emph{European Journal of Operational Research}, 209\penalty0
+  (1):\penalty0 37--50, 2011.
+
+\bibitem[Gertsbakh and Stern(1978)]{gertsbakh_1977}
+Ilya Gertsbakh and Helman~I Stern.
 \newblock Minimal resources for fixed and variable job schedules.
-\newblock \emph{Annalen der Physik}, 1977.
+\newblock \emph{Operations Research}, 26\penalty0 (1):\penalty0 68--85, 1978.
 
-\bibitem[et~al.(1992)]{fischetti_1992}
-Fischetti et~al.
+\bibitem[Fischetti et~al.(1992)Fischetti, Martello, and Toth]{fischetti_1992}
+Matteo Fischetti, Silvano Martello, and Paolo Toth.
 \newblock Approximation algorithms for fixed job schedule problems.
-\newblock \emph{Annalen der Physik}, 1992.
+\newblock \emph{Operations Research}, 40\penalty0 (1-supplement-1):\penalty0
+  S96--S108, 1992.
 
-\bibitem[et~al.(1993)]{kroon_1993}
-Kroon et~al.
-\newblock Exact and approximation algorithms for the operational fixed interval
-  scheduling problem.
-\newblock 1993.
-
-\bibitem[S.O.~Duffuaa(1999)]{duffuaa_1999}
-K.S. Al-Sultan S.O.~Duffuaa.
+\bibitem[Duffuaa and Al-Sultan(1999)]{duffuaa_1999}
+Salih~O Duffuaa and KS~Al-Sultan.
 \newblock A stochastic programming model for scheduling maintenance personnel.
-\newblock \emph{Annalen der Physik}, 1999.
+\newblock \emph{Applied Mathematical Modelling}, 23\penalty0 (5):\penalty0
+  385--397, 1999.
 
-\bibitem[S.~M.~Roberts(1983)]{roberts_1983}
-L.~F.~Escudero S.~M.~Roberts.
+\bibitem[Roberts and Escudero(1983{\natexlab{b}})]{roberts_1983}
+SM~Roberts and LF~Escudero.
 \newblock Scheduling of plant maintenance personnel.
-\newblock \emph{Annalen der Physik}, 1983.
+\newblock \emph{Journal of Optimization theory and Applications}, 39\penalty0
+  (3):\penalty0 323--343, 1983{\natexlab{b}}.
 
-\bibitem[Akbari(2012)]{akbari_2012}
-Mohammad Akbari.
+\bibitem[Akbari et~al.(2013)Akbari, Zandieh, and Dorri]{akbari_2013}
+Mohammad Akbari, M~Zandieh, and Behrouz Dorri.
 \newblock Scheduling part-time and mixed-skilled workers to maximize employee
   satisfaction.
-\newblock \emph{Annalen der Physik}, 2012.
+\newblock \emph{The International Journal of Advanced Manufacturing
+  Technology}, 64\penalty0 (5-8):\penalty0 1017--1027, 2013.
 
 \bibitem[Mohan(2008)]{mohan_2008}
 Srimathy Mohan.
 \newblock Scheduling part-time personnel with availability restrictions and
   preferences to maximize employee satisfaction.
-\newblock \emph{Annalen der Physik}, 2008.
+\newblock \emph{Mathematical and Computer Modelling}, 48\penalty0
+  (11):\penalty0 1806--1813, 2008.
 
-\bibitem[H.A.~Eiselta(2006)]{eiselt_2006}
-Vladimir~Marianov H.A.~Eiselta.
+\bibitem[Eiselt and Marianov(2008)]{eiselt_2008}
+Horst~A Eiselt and Vladimir Marianov.
 \newblock Employee positioning and workload allocation.
-\newblock \emph{Annalen der Physik}, 2006.
+\newblock \emph{Computers \& operations research}, 35\penalty0 (2):\penalty0
+  513--524, 2008.
 
-\bibitem[Goossens et~al.(1993)Goossens, Mittelbach, and
-  Samarin]{latexcompanion}
-Michel Goossens, Frank Mittelbach, and Alexander Samarin.
-\newblock \emph{The \LaTeX\ Companion}.
-\newblock Addison-Wesley, Reading, Massachusetts, 1993.
+\bibitem[Shahnazari-Shahrezaei et~al.(2013)Shahnazari-Shahrezaei,
+  Tavakkoli-Moghaddam, and Kazemipoor]{shahnazari_2013}
+Parisa Shahnazari-Shahrezaei, Reza Tavakkoli-Moghaddam, and Hamed Kazemipoor.
+\newblock Solving a multi-objective multi-skilled manpower scheduling model by
+  a fuzzy goal programming approach.
+\newblock \emph{Applied Mathematical Modelling}, 37\penalty0 (7):\penalty0
+  5424--5443, 2013.
 
-\bibitem[Einstein(1905)]{einstein}
-Albert Einstein.
-\newblock {Zur Elektrodynamik bewegter K{\"o}rper}. ({German}) [{On} the
-  electrodynamics of moving bodies].
-\newblock \emph{Annalen der Physik}, 322\penalty0 (10):\penalty0 891--921,
-  1905.
-\newblock \doi{http://dx.doi.org/10.1002/andp.19053221004}.
-
-\bibitem[Knuth()]{knuthwebsite}
-Donald Knuth.
-\newblock Knuth: Computers and typesetting.
-\newblock URL \url{http://www-cs-faculty.stanford.edu/\~{}uno/abcde.html}.
+\bibitem[Lee(1989)]{lee_1989}
+Bum-Il Lee.
+\newblock Multiple objective decision making in a fuzzy environment.
+\newblock 1989.
 
 \end{thebibliography}
