@@ -17,12 +17,12 @@ At the library of Norrköping, three main outer tasks can be identified as worki
 
 \begin{table}[h]
 \centering
-\caption{Outer tasks can be performed exclusively by librarians or by assistants also.}
+\caption{Outer tasks can be performed exclusively by librarians or by both assistants and librarians.}
 \label{tab:Outer_Tasks}
 \begin{tabularx}{\textwidth}{|X|l|X|}
 \hline
 %-------------------------------------------------------------------
-\large{\textbf{Task}} & \large{\textbf{Description}} & \large{\textbf{Qualification}}\\ \hline 
+\textbf{Task} & \textbf{Description} & \textbf{Qualification}\\ \hline 
 %------------------------------------------------------------------- 
 Service Counter (Exp)  & \specialcell[t]{Administring loans, library cards\\ and the loaning machine} & Assistants, Librarians
 %\begin{tabular}[x]{@{}c@{}}\\\end{tabular}  
@@ -48,7 +48,7 @@ As the number of visitors in the library differs at different times of the day a
 \begin{tabularx}{\textwidth}{|X|l|l|l|l|X|}
 \hline
 %-------------------------------------------------------------------
-\textbf{Day} & \textbf{Time} & \textbf{Exp demand} & \textbf{Info demand} & \textbf{FL demand}
+\textbf{Day} & \textbf{Time} & \textbf{Exp demand} & \textbf{Info demand} & \textbf{PL demand}
 \\ \hline 
 %%------------------------------------------------------------------- 
 Mon-Fri & 08:00-10:00 & 2 & 2 & 1
@@ -76,7 +76,7 @@ As is the case with most libraries, the Central Library of Norrköping also has 
 
 Similarly, only librarians are qualified for the task known as "Library on Wheels" (sv. Bokbussen), which is a type of library bus, providing citizens in remoter areas of the city with books and other library services. The Library on Wheels has only operates a few times a week and the schedule differs between even and odd weeks.
 
-\begin{table}[h]
+\begin{table}[!h]
 \centering
 \caption{Demand of staff  Library on Wheels}
 \label{tab:LOW_Demand}
@@ -130,7 +130,7 @@ Fri & 16:00-20:00 & - & -
 \end{tabularx}
 \end{table} 
 
-\begin{table}[h]
+\begin{table}[!h]
 \centering
 \caption{Demand of staff at Hageby}
 \label{tab:Hageby_Demand}
@@ -161,7 +161,7 @@ All workers have a five week schedule in the same manner as sample worker Bob. H
 
 
 
-\begin{table}[h]
+\begin{table}[!h]
 \centering
 \caption{Schedule for sample worker Bob. Yellow signifies availability. In parenthesis, the weekend shift. Week rotation 4.}
 \label{tab:Bob_avail}
@@ -292,67 +292,51 @@ Considering again sample worker Bob's schedule, it may look as if Bob can be sch
 \item A worker is only allowed to work one evening per week, excluding the Friday evening of the weekend week.
 \end{enumerate}
 
+An example of a feasible schedule for the sample worker is provided in Table \ref{tab:Lib_feas_sched}. It should be noted that this schedule is created for a general worker and does not necessarily apply to all workers. Special availabilities due to odd-and even weeks exist and only a subset of the librarians are available for the Library on Wheels task.  
 
-\begin{table}[h]
+\begin{table}[!h]
 \centering
-\caption{Overall schedule for week 1.}
-\label{tab:General_schedule}
-\begin{tabularx}{\textwidth}{|X|l|l|l|l|X|}
+\caption{Example of a feasible first week for the sample worker.}
+\label{tab:Lib_feas_sched}
+\begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
 \hline
 %-------------------------------------------------------------------
-\textbf{Schedule week 1} & & & & &  
+\textbf{Week 1} & \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
 \\ \hline 
 %%------------------------------------------------------------------- 
-\textbf{Monday}& \colcell \textbf{Exp} & \colcell \textbf{Info} & \colcell \textbf{FL} & \colcell \textbf{LoW - odd} & \colcell \textbf{LoW- even} 
-\\ \hline 
-%%------------------------------------------------------------------- 
-
- 08:00 - 10:00 & \small W1, W2 & \small W1,W2 & \small W1 & \small W1 & \small W1
-\\ \hline 
-%%------------------------------------------------------------------- 
- 10:00 - 13:00 & \small W1, W2, W3 & \small W1, W2, W3 & \small W1 & - & -
-\\ \hline 
-%%------------------------------------------------------------------- 
- 13:00 - 16:00 & \small W1, W2, W3 & \small W1, W2, W3 & \small W1 & - & -
-\\ \hline 
-%%------------------------------------------------------------------- 
- 16:00 - 20:00 & \small W1, W2, W3 & \small W1, W2, W3 & \small W1 & - & -
-\\ \hline 
-%%------------------------------------------------------------------- 
-\textbf{Tuesday}& \colcell \textbf{Exp} & \colcell \textbf{Info} & \colcell \textbf{FL} & \colcell \textbf{LoW - odd } & \colcell \textbf{LoW- even} 
-\\ \hline 
-%%------------------------------------------------------------------- 
-\textbf{Wednesday}& \colcell \textbf{Exp} & \colcell \textbf{Info} & \colcell \textbf{FL} & \colcell \textbf{LoW - odd } & \colcell \textbf{LoW- even} 
+%\rowcolor{Gray} 
+\small \colcell 08:00-10:00 (11:00-16:00)& \colcelltwo & \small \colcellthree Exp & \colcelltwo & \small \colcellthree PL & \colcelltwo & & 
 \\ \hline 
 %%-------------------------------------------------------------------
-\textbf{Thursday}& \colcell \textbf{Exp} & \colcell \textbf{Info} & \colcell \textbf{FL} & \colcell \textbf{LoW - odd } & \colcell \textbf{LoW- even} 
+%\rowcolor{Gray} 
+\small \colcell 10:00-13:00 & \small \colcellthree Exp & \colcelltwo & \colcelltwo & \small \colcellthree PL & \colcelltwo & & 
 \\ \hline 
 %%-------------------------------------------------------------------
-\textbf{Friday}& \colcell \textbf{Exp} & \colcell \textbf{Info} & \colcell \textbf{FL} & \colcell \textbf{LoW - odd } & \colcell \textbf{LoW- even} 
+%\rowcolor{Gray} 
+\small \colcell 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & \small \colcellthree PL & \small \colcellthree Info & &
 \\ \hline 
 %%-------------------------------------------------------------------
-%Mon-Fri & 08:00-10:00 & 2 & 2 & 1
-%\\ \hline 
-%%%------------------------------------------------------------------- 
-%Mon-Fri & 10:00-13:00 & 3 & 3 & 1
-%\\ \hline 
-%%%-------------------------------------------------------------------
-%Mon-Fri & 13:00-16:00  & 3 & 3 & 1
-%\\ \hline 
-%%%-------------------------------------------------------------------
-%Mon-Fri & 16:00-20:00 & 3 & 3 & -
-%\\ \hline 
-%%%-------------------------------------------------------------------
-%Sat & 11:00-16:00  & 3 & 3 & -
-%\\ \hline 
-%%%------------------------------------------------------------------- 
-%Sun & 11:00-16:00  & 3 & 3 & -
-%\\ \hline 
+%\rowcolor{Gray} 
+\small \colcell 16:00-20:00 & & & \small \colcellthree Info& & & &
+\\ \hline 
+%%-------------------------------------------------------------------
 \end{tabularx}
-\end{table}
+\end{table} 
 
+\clearpage
 
 \subsection{Main objective: increase number of stand in personnel}
+
+The real challenges in creating a schedule according to the instructions above, is not to distribute the tasks but to make sure there is stand in personnel ready to take shifts in the case other personnel is otherwise occupied or is on sick-leave. This emergency back-up system is crucial for the library in order to be able to keep the library desks open and fully staffed. This is the highest priority of the library.
+
+A stand in is defined as a worker who is available for inner tasks during the three day-shifts, but has not any shift scheduled for that day. Inner work sometimes prevents personnel from being scheduled as a stand-in for the outer tasks, and therefore also information about such work must be known to the scheduler. Both librarians and assistants can be scheduled as a stand in, but only librarians are qualified to take emergency shifts at the Info desk. Since the regular library activity is the most crucial activity, there is no need for stand ins during evening and weekends. Similarly, there is specific personnel assigned as stand-ins for the Library on Wheels or for Hageby.
+
+Apart from maximizing the number of stand ins for each day at the library, another important feature of a schedule is repetitiveness and fairness. It is desirable for the sake of the personnel to create schedules which are similar between the weeks and 
+
+
+
+
+
 
 \subsection{Secondary objectives: repetitiveness of the schedule}
 
@@ -535,63 +519,43 @@ The problem can be formulated as a personnel tasks scheduling problem for a hete
 "The thesis is divided into..."
 
 
-
-\iffalse
-\begin{table}[!h]
+\begin{table}[h]
 \centering
-\caption{Week 4 for sample worker Bob. Yellow signifies availability. In parenthesis, the weekend shift.}
-\label{tab:Lib_avail2}
-\begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
+\caption{Overall schedule for week 1.}
+\label{tab:General_schedule}
+\begin{tabularx}{\textwidth}{|X|l|l|l|l|X|}
 \hline
 %-------------------------------------------------------------------
-& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
+\textbf{Schedule week 1} & & & & &  
 \\ \hline 
 %%------------------------------------------------------------------- 
-%\rowcolor{Gray} 
-\colcell 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo
+\textbf{Monday}& \colcell \textbf{Exp} & \colcell \textbf{Info} & \colcell \textbf{PL} & \colcell \textbf{LoW - odd} & \colcell \textbf{LoW- even} 
+\\ \hline 
+%%------------------------------------------------------------------- 
+
+ 08:00 - 10:00 & \small W1, W2 & \small W1,W2 & \small W1 & \small W1 & \small W1
+\\ \hline 
+%%------------------------------------------------------------------- 
+ 10:00 - 13:00 & \small W1, W2, W3 & \small W1, W2, W3 & \small W1 & - & -
+\\ \hline 
+%%------------------------------------------------------------------- 
+ 13:00 - 16:00 & \small W1, W2, W3 & \small W1, W2, W3 & \small W1 & - & -
+\\ \hline 
+%%------------------------------------------------------------------- 
+ 16:00 - 20:00 & \small W1, W2, W3 & \small W1, W2, W3 & \small W1 & - & -
+\\ \hline 
+%%------------------------------------------------------------------- 
+\textbf{Tuesday}& \colcell \textbf{Exp} & \colcell \textbf{Info} & \colcell \textbf{PL} & \colcell \textbf{LoW - odd } & \colcell \textbf{LoW- even} 
+\\ \hline 
+%%------------------------------------------------------------------- 
+\textbf{Wednesday}& \colcell \textbf{Exp} & \colcell \textbf{Info} & \colcell \textbf{PL} & \colcell \textbf{LoW - odd } & \colcell \textbf{LoW- even} 
 \\ \hline 
 %%-------------------------------------------------------------------
-%\rowcolor{Gray} 
-\colcell 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo &   & 
+\textbf{Thursday}& \colcell \textbf{Exp} & \colcell \textbf{Info} & \colcell \textbf{PL} & \colcell \textbf{LoW - odd } & \colcell \textbf{LoW- even} 
 \\ \hline 
 %%-------------------------------------------------------------------
-%\rowcolor{Gray} 
-\colcell 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & &
-\\ \hline 
-%%-------------------------------------------------------------------
-%\rowcolor{Gray} 
-\colcell 16:00-20:00 & & & \colcelltwo & & \colcelltwo & &
+\textbf{Friday}& \colcell \textbf{Exp} & \colcell \textbf{Info} & \colcell \textbf{PL} & \colcell \textbf{LoW - odd } & \colcell \textbf{LoW- even} 
 \\ \hline 
 %%-------------------------------------------------------------------
 \end{tabularx}
-\end{table} 
-
-\begin{table}[!h]
-\centering
-\caption{Week 5 for sample worker Bob. Yellow signifies availability. In parenthesis, the weekend shift.}
-\label{tab:Lib_avail3}
-\begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
-\hline
-%-------------------------------------------------------------------
-& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
-\\ \hline 
-%%------------------------------------------------------------------- 
-%\rowcolor{Gray} 
-\colcell 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & & & & 
-\\ \hline 
-%%-------------------------------------------------------------------
-%\rowcolor{Gray} 
-\colcell 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & & & & 
-\\ \hline 
-%%-------------------------------------------------------------------
-%\rowcolor{Gray} 
-\colcell 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & & & &
-\\ \hline 
-%%-------------------------------------------------------------------
-%\rowcolor{Gray} 
-\colcell 16:00-20:00 & & & \colcelltwo & & & &
-\\ \hline 
-%%-------------------------------------------------------------------
-\end{tabularx}
-\end{table} 
-\fi
+\end{table}
