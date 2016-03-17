@@ -67,29 +67,15 @@ abstract is what everyone reads\ldots}
 Keyword One, Chemostat, Another Key-Word, Key, Clé, Mot de cle,
 Nyckelhål, XBOX, Dagens viktigaste nyckelord, and Keywords.}
 
-
-\newcommand{\putthemonth}[0]{June }%please keep the space after the month
+\newcommand{\putthemonth}[0]{June }
 
 \newcommand{\putshortdate}[0]{2016}
 
-% you don't have to change this
 \newcommand{\putmydate}[0]{\putthemonth \putshortdate}
-
-% this construction might be bad if you are multiple authors, 
-% then comment the 4 lines below and
-% uncomment the 2 lines below them 
-%\newcommand{\putfirstname}[0]{Per Erik } % please keep the space
-%
-%\newcommand{\putlastname}[0]{Strandberg}
-%
-%\newcommand{\putauthor}[0]{\putfirstname \putlastname}
-%
-%\newcommand{\putegotext}[0]{\putlastname, \putshortdate.}
 
 \newcommand{\putauthor}[0]{Claes Arvidson, Emelie Karlsson}
 
 \newcommand{\putegotext}[0]{Arvidson, Karlsson, 2016.}
-
 
 \newcommand{\puttitle}[0]{Work Distribution of a Heterogeneous Library Staff - A Personnel Task Scheduling Problem}
 
@@ -144,11 +130,13 @@ Nyckelhål, XBOX, Dagens viktigaste nyckelord, and Keywords.}
 % Colors
 \newcommand{\enc}[0]{utf8}
 \definecolor{bluegray}{rgb}{0.4, 0.6, 0.8}
+\definecolor{darkcyan}{rgb}{0.0, 0.55, 0.55}
 \definecolor{corn}{rgb}{0.98, 0.93, 0.36}
 \definecolor{coralred}{rgb}{1.0, 0.25, 0.25}
 \definecolor{Gray}{gray}{0.85}
 \newcommand{\colcell}{\cellcolor{Gray}}
 \newcommand{\colcelltwo}{\cellcolor{corn}}
+\newcommand{\colcellthree}{\cellcolor{darkcyan}}
 \newcolumntype{g}{>{\columncolor{corn}}c}
 
 % Special cells
@@ -230,15 +218,7 @@ Nyckelhål, XBOX, Dagens viktigaste nyckelord, and Keywords.}
 \thispagestyle{empty}
 \pagestyle{empty}
 
-% theese are old stuff made by the old library page, not needed I guess
-%\setlength{\parindent}{0pt}
-%\setlength{\textwidth}{210mm}
-%\setlength{\textheight}{297mm}
-%\setlength{\topmargin}{-1.0in}
-%\setlength{\oddsidemargin}{-1.2in}
 \setlength{\unitlength}{1mm}
-%\begin{picture}(210,297)(40,-40)
-
 
 
 \setlength{\unitlength}{1pt}
@@ -303,15 +283,15 @@ Matheuristic & Text\\
 
 \section*{Symbols\index{Symbols}}
 
-\begin{tabular}{ll}
-$Y_0$      & The amount of the variable $Y$ inserted into a system.\\
-$\hat Y$& The unit-dimension of the variable $Y$, for example $\hat t=1s$ .\\
-$\bar Y_i$ & A steady state (number $i$) value of Y.\\
-\phantom{a}& \phantom{b} \\
-$K_i$ & Constants used in kinetic expressions, for example $K_I$.\\
-\phantom{a}& \phantom{b} \\
-$\AAA$     & The system matrix. \\
-\end{tabular}
+%\begin{tabular}{ll}
+%$Y_0$      & The amount of the variable $Y$ inserted into a system.\\
+%$\hat Y$& The unit-dimension of the variable $Y$, for example $\hat t=1s$ .\\
+%$\bar Y_i$ & A steady state (number $i$) value of Y.\\
+%\phantom{a}& \phantom{b} \\
+%$K_i$ & Constants used in kinetic expressions, for example $K_I$.\\
+%\phantom{a}& \phantom{b} \\
+%$\AAA$     & The system matrix. \\
+%\end{tabular}
 
 \section*{Abbreviations\index{Abbreviations}}
 
@@ -321,14 +301,6 @@ Info	& Text\\
 PL		& Text\\
 PTSP	& Text\\
 SMPTSP	& Text\\
-
-
-
-
-CPI      & Competitive Product Inhibition (or Inhibited)\index{CPI}\\
-CSI      & Competitive Substrate Inhibition (or Inhibited)\index{CSI}\\
-CSTR     & Continuous Stirred Tank (bio)Reactor\index{CSTR}\\
-MMI      & Michaelis-Menten Inhibition (or Inhibited)\index{MMI}
 \end{tabular}
 
 
@@ -365,158 +337,8 @@ MMI      & Michaelis-Menten Inhibition (or Inhibited)\index{MMI}
 \inputencoding{\enc}
 
 
-
-% ..................chapter ...............................................
-\chapter{The ideal CSTR: the chemostat\index{Chemostat}}
-
-\textsf{%
-In this chapter we study exponential growth, the logistic\ldots .}
-
-\section{Some simple models of biological growth}
-
-\subsection{Exponential growth\index{Exponential growth}}
-
-% the command mbox forces things to be placed together
-If \mbox{$\mu =$ constant $>0$,} we get $X(t)={X}_0
-{e}^{\mu t}$.
-
-\subsection{The logistic equation\index{Logistic equation}}
-
-Let us assume that $\frac{dX}{dt}=\mu \cdot X,$ with
-$\mu=\mu(S)=k\cdot S$ \ldots 
-
-% one way of displaying maths: 
-\begin{displaymath}
-\left\{ \begin{array}{ll}
-\frac{dX}{dt}=kSX                            & (a) \\
-\frac{dS}{dt}=- \alpha kSX \rule{0pt}{3ex}   & (b) 
-\end{array}\right.
-\end{displaymath}
-
-% another way to display math with a number:
-\begin{equation} \label{logistic}
-\frac{dX}{dt}= r(1- \frac{X}{B})X  
-\end{equation}
-
-An explicit solution to (\ref{logistic}) is: 
-$X(t)=\frac{{X}_{0}B}{{X}_{0}+(B-{X}_{0}){e}^{-rt}},$ if $0<{X}_{0}<B$. 
-It can be found by separating variables in equation (\ref{logistic})
-
-
-\section{The chemostat\index{Chemostat|textbf}} 
-
-A chemostat is made of two main parts; a nutrient reservoir, and a
-growth-chamber, reactor, in which the bacteria reproduces. 
-
-% here is how to display text upright in formula \textrm{your text}
-\begin{equation} \label{chemo_basic}
-\left\{ \begin{array}{l}
-\frac{dX}{dt}= \mu(S)X \overbrace{-X\frac{F}{V}}^{\textrm{new}}  \\
-\frac{dS}{dt}=- \alpha \mu(S) X
-\underbrace{-S\frac{F}{V}+ {S}_{0}\frac{F}{V}}_{\textrm{new}} 
-\end{array}\right.
-\end{equation}
-
-% yet another way of displaying maths and a way of using a matrix
-\begin{displaymath}
-\mathbf{A} =
-\left( \begin{array}{cc}
-0 &  \sigma {\alpha}_{1}  \\
- - \frac{1}{{\alpha}_{1}} & -\sigma - 1 \\
-\end{array}\right)
-\end{displaymath}
-
-% this subsubsection will not be numbered because we use the *
-\subsubsection*{The invariant line: conclusions}
-
-
-
-% a big, bad table
-\begin{tabular}{|c|c|c|} \hline %\hline
-%-------------------------------------------------------------------
-$\phantom{\Bigg(}$Model$\phantom{\Bigg(}$ & Monods Chemostat & CSI-CSTR \\ 
-\hline %\hline 
-%-------------------------------------------------------------------
-\rowcolor{bluegray}
-$\mu\phantom{\Bigg(}$
-& $\frac{ S} {1+S}$
-& $\frac{ S} {1+S+\frac{{S}^{2}}{\KI}}$ \\ %\hline
-%-------------------------------------------------------------------
-$\frac{dX}{dt} \phantom{\Bigg(}$ 
-& $\phantom{-}\ala\frac{ S}{1+S}X-X$        
-& $\phantom{-}\ala\frac{ S}{1+S+\frac{{S}^{2}}{\KI}}X-X $  \\
-$\frac{dS}{dt} \phantom{\Bigg)}$ 
-& $-\frac{S} {1+S}X-S+\alb $        
-& $-\frac{S} {1+S+\frac{{S}^{2}}{\KI}}X-S+\alb$        \\ %\hline
-%------------------------------------------------------------------
-XNC%
-& $S=\frac{1}{\ala - 1} \phantom{\Bigg(}$
-& $S=\frac{\KI(\ala-1)}{2}\pm\sqrt{{(\frac{\KI(\ala-1)}{2})}^{2}-\KI}$ \\
-SNC% 
-& $ X= \frac{ (\alb-S)(1+S) }  { S }$ 
-& $ X=
-\frac{({\alpha}_{2}-S)(1+S+\frac{{S}^{2}}{\KI})}{S}\phantom{\Bigg(} $\\ 
-%-------------------------------------------------------------------
-limit% 
-& $-$
-& $ K_I \rightarrow \infty\phantom{\Bigg(}$  \\ \hline 
-\end{tabular}
-
-
-% No matter how many empty lines you put here, it will be compact in
-% your outfile. Hint: solve with some kind of phantom or so.
-
-
-The other three models, the chemostat, the MMI-CSTR and the CPI-CSTR
-are quite similar in comparison to the CSI-CSTR. 
-
-% one way of using ``feel'' instead of "feel"
-Monods chemostat does not ``feel'' this inhibition and does not care\ldots 
-
-
-% this is a way of using the index subgroups
-% \section{Chemostats in series\index{Chemostat!In series}
-
-This document is an example of BibTeX using in bibliography management. Three items are cited: \textit{The \LaTeX\ Companion} book \cite{latexcompanion}, the Einstein journal paper \cite{einstein}, and the Donald Knuth's website \cite{knuthwebsite}. The \LaTeX\ related items are \cite{latexcompanion,knuthwebsite}.
-
-
-% ..................chapter ...............................................
-
-% you really should have some kind of summary and conclusion
-% \chapter{Summary and conclusion}
-% In this report several mathematical models of bacteria population
-% growth in bioreactors were analyzed.
-
-
-% .................. bibliography...................................
-% the number 99 is some kind of maximum for LaTeX to know an upper limit
-% this is one of the ways of dealing with references, when you refer
-% to something here you will get: "...according to [1] we have..." or
-% "...another observation made by [3,6,60] suggests that..."
-%
-%Here is an example of how to cite books in your bibliography. This
-%text will be displayed at the end of chapter two. This is some kind of
-%bibiography, according to \cite{beta}, we have\ldots And according to
-%\cite{beta,Glad} we have something else.
-
-%\begin{thebibliography}{99}
 \bibliography{Chapters/References}
 
-%\bibitem{beta} % this beta is what you 'call' when you refer to beta
-%Lennart Råde, Bertil Westergren, 
-%(2001), 
-%\emph{Mathematics Handbook for Science and Engineering},
-%Studentlitteratur, 
-%Lund.
-
-%\bibitem{Glad} % and glag is the handle of Glad.
-%Torkel Glad, Lennart Ljung,
-%(1989), 
-%\emph{Reglerteknik grundläggande teori},
-%Studentlitteratur, 
-%Lund.
-
-%\end{thebibliography}
 
 %%% .................. appendix ...................................
 
@@ -614,77 +436,6 @@ This document is an example of BibTeX using in bibliography management. Three it
 	LOW\_demand_{wds}&= \text{number of workers required day \textit{d}, shift \textit{s} at the library on wheels}
 \end{align}
 
-
-\chapter{The Linearized stability\index{Stability}} \label{Stab}
-
-\section{The Linearization\index{Linearization}}
-
-$F(x)$, a one-variable function of $x$ can be Taylor-expanded
-around a fix $X$. We get $F(X+x)=F(X) + F'(X) x + O({x}^{2})$.
-For small perturbations of $x$ around $X$ we get the linearization:
-$F(X+x) \approx F(X) + F'(X) x$, containing only the
-constant and the linear terms.
-
-For functions of two variables $F(X+x,S+s)$ and $G(X+x,S+s)$:
-\begin{displaymath} 
-\left\{ \begin{array}{l}
-F(X+x,S+s)= F(X,S) + {F}_{X}'(X,S)x + {F}_{S}'(X,S)s + O({(x+s)}^{2})\\
-G(X+x,S+s)= G(X,S) + {G}_{X}'(X,S)x + {G}_{S}'(X,S)s + O({(x+s)}^{2})
-\rule{0pt}{3ex} 
-\end{array}\right. 
-\end{displaymath}
-
-% I had some matlab code, insert it like this if you feel like it:
-% scriptsize lowers fontsize
-% verbatim forces LaTeX to write all symbols and in your way
-\begin{scriptsize}
-\begin{verbatim}
-function chemostat_inhibited(alpha1, alpha2, xp0, sp0, xc)
-%
-%chemostat_inhibited Displays a phaseportrait, nullclines 
-%   and an Euler-path of an inhibited Chemostat.
-%   chemostat_inhibited(alfa1, alfa2, np0, cp0, nc) will run if 
-%   alpha1 > 1/xc, thus there is a reproduction.
-%   alpha2 > 1/(xc*alpha1-1), thus there is sufficient stock-nutrition. 
-%   xp0 > 0 , you can not have a nonpositive population.
-%   sp0 > 0 , you can not have a nonpositive concentration.
-%   xc  > 0
-%
-%   The blue arrows represent the vectorfield.
-%   The black lines are two of the three nullclines.
-%   The black dotted line is the invariant line (no solution crosses it).
-%   The red line is an Eulerpath, starting in + and ending in *.
-%
-%   Try the following:
-%   chemostat_inhibited(5, 3, 0.2, 0.3, 6)
-%
-%   by Per Erik Strandberg, 2003-2004.
-%
-
-% Start-condition:
-%------------------
-if ((alpha1>1) & (alpha2>0) & (sp0>0) & (xp0>0) & xc>0),
-
-    if (alpha2<1/(alpha1-1)),
-        disp(' ')
-        disp (' (HINT: Only the trivial steady state, alpha2 is too small...)')
-    else 
-        disp(' ')
-        disp (' (HINT: Two steady states, alpha2 is quite large...)')
-    end
-        
-    
-% The illegal indata case:
-%---------------------------
-else
-    disp('   chemostat_inhibited.m by Per Erik Strandberg, 2003-2004.')
-    disp('   Did not Finish OK. (You used illegal indata.)')
-    disp(' ')
-    disp('   For syntax help type: help chemostat_inhibited .')    
-    disp(' ')
-end
-\end{verbatim}
-\end{scriptsize}
 
 
 
