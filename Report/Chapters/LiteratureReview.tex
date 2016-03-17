@@ -90,6 +90,11 @@ It is shown in \citet{kroon_1995} that SMPTSP is a complex problem even if the p
 
 SMPTSP is almost identical to another problem introduced by Kroon et al. which is called the Tactical Fixed Interval Scheduling Problem and is described in Section \ref{other} below \citet{krishnamoorthy_2012}.
 
+During the last decade, a couple heuristics have been implemented to deal with the SMPTSP. One method introduced by \citet{krishnamoorthy_2012} is a Lagrangean relaxation approach that combines two problem specific heuristics; Volume Algorithm (VA) and Wedelin's Algorithm (WA). These heuristics exploit the special structure of the SMPTSP by relaxing some of the harder constraints into the objective function, thus being problem specific heuristics. All that remain after the relaxation is a problem decomposed into several independent problems that can be solved independently. A solution to these decomposed problems is discussed further in \citet{krishnamoorthy_2012}.
+
+Another method to solve the SMPTSP is to use a very large-scale neighbourhood search algorithm, which was presented by \citet{smet_2012}. The main purpose of their implemented hybrid local search is to repeatedly fix and optimize to find neighbouring solutions. Using this method on 137 benchmark instances introduced by \citet{krishnamoorthy_2012}, Smet and Vanden Berghe managed to find 81 optimal solutions compared to Krishnamoorthy et al. who only managed to find 67. Furthermore, both methods found feasible solutions for 135 out of the 137 problem instances. This comparison is presented in \citet{smet_2014}.
+
+\citet{smet_2014} introduced a third and most effective method to solve the SMPTSP. By using a versatile two-phase matheuristic approach solutions to all 137 benchmark instances could be found for the first time. The procedure used in their implementation is to; first generate an initial solution by using a constructive heuristic, followed by improving the solution using an improvement heuristic. Which heuristics they considered can be seen in their article by \citet{smet_2014}.
 
 
 % CONCLUSION: By being able to efficiently deploy the workforce it results in an optimized resource occupation, which in turn reduces or eliminates the need of temporal workers. These temporal workers are otherwise needed in the case when no stand-ins are available to cover when a worker cannot show up for work, which results in extra expenses for the library.
@@ -195,14 +200,14 @@ Referera tillbaka i texten, samt lägg till nya reflektioner.
 
 
 
-\iffalse
+
 \section{Solution Methods}
 Integrate into previous parts!
 
 
-In many real life situations, the scheduling method used to create worker schedules is a simple matching algoritm between two can do what and when. The process is most often left in the hands of experienced and knowledgable schedulers, who konw the capacity of the work force and how to maximize productivity by meeting task demands as well as employee demands and individual personality traits. This is referred to as the "art" of scheduling \citet{roberts_1983}. However, when personnel forces grow large and there are regulations, task skill requirements or several personnel preferences to take into account, the problem becomes too large to solve manually in a satisfactory manner.
+In many real life situations, the scheduling method used to create worker schedules is a simple matching algoritm between two can do what and when. The process is most often left in the hands of experienced and knowledgable schedulers, who know the capacity of the work force and how to maximize productivity by meeting task demands as well as employee demands and individual personality traits. This is referred to as the "art" of scheduling \citet{roberts_1983}. However, when personnel forces grow large and there are regulations, task skill requirements or several personnel preferences to take into account, the problem becomes too large to solve manually in a satisfactory manner.
 
-The first computational methods used for solving scheduling problems were in many cases simple heuristics resembling the scheduling process as performed in a manual way. One example of this is the heuristic presented by Loucks and Jacobs which assigns workers to tasks, following certain rules, until all tasks are assigned \citet{loucks_1991}. An overview of solution methods is given by Ernst et al, where almost 30 different methods are presented  and it is not uncommon that special purpose algorithms are used to suite a specific problem \citet{ernst_2004}. Some of the more interesting solution methods with respect to the probelm studied in this thesis are discussed in this section. These include solving with commercial solvers, matheuristic methods such as simulated anneahling and variable neighbourhood search, pure heuristic methods, goal programming and fuzzy goal programming.  
+The first computational methods used for solving scheduling problems were in many cases simple heuristics resembling the scheduling process as performed in a manual way. One example of this is the heuristic presented by Loucks and Jacobs which assigns workers to tasks, following certain rules, until all tasks are assigned \citet{loucks_1991}. An overview of solution methods is given by Ernst et al, where almost 30 different methods are presented  and it is not uncommon that special purpose algorithms are used to suite a specific problem \citet{ernst_2004}. Some of the more interesting solution methods with respect to the probelm studied in this thesis are discussed in this section. These include solving with commercial solvers, matheuristic methods such as simulated annealing and variable neighbourhood search, pure heuristic methods, goal programming and fuzzy goal programming.  
 
 
 %column generation\\
@@ -263,4 +268,4 @@ Goal programming: good when combining soft and hard constraints.
 
 Using an average value approach with goals that are contradictory makes it possible to maximize the amount of "goodness" in the solution, by priotritizing one constraint over another, which in total generates the most good.
 
-\fi
+

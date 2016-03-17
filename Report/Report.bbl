@@ -1,4 +1,4 @@
-\begin{thebibliography}{18}
+\begin{thebibliography}{20}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -33,6 +33,19 @@ Leo~G Kroon, Marc Salomon, and Luk~N Van~Wassenhove.
   scheduling problem.
 \newblock \emph{European Journal of Operational Research}, 82\penalty0
   (1):\penalty0 190--205, 1995.
+
+\bibitem[Smet and Vanden~Berghe(2012)]{smet_2012}
+Pieter Smet and Greet Vanden~Berghe.
+\newblock A matheuristic approach to the shift minimisation personnel task
+  scheduling problem.
+\newblock \emph{Practice and theory of automated timetabling}, pages 145--151,
+  2012.
+
+\bibitem[Smet et~al.(2014)Smet, Wauters, Mihaylov, and Berghe]{smet_2014}
+Pieter Smet, Tony Wauters, Mihail Mihaylov, and Greet~Vanden Berghe.
+\newblock The shift minimisation personnel task scheduling problem: A new
+  hybrid approach and computational insights.
+\newblock \emph{Omega}, 46:\penalty0 64--73, 2014.
 
 \bibitem[Loucks and Jacobs(1991)]{loucks_1991}
 John~S Loucks and F~Robert Jacobs.

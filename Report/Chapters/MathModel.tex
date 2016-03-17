@@ -1,5 +1,5 @@
 %A thorough description of the mathematical model in words and in math. More significant and general constraints in equations and less significant in words.
-In this chapter the mathematical model implemented to solve this problem will be presented. Prior to the objective function and constraints, the most significant variables and sets will be stated to give the reader an idea of how the work has proceeded. In Section \ref{constraints} the constraints will only be presented in pseudocode. %To get a full view of the mathematical problem the reader  A list of the defined parameters can be found in Appendix \ref{definitions}. 
+In this chapter the mathematical model implemented to solve this problem will be presented. Prior to the objective function and constraints, the most significant variables and sets will be stated to give the reader an idea of how the work has proceeded. In Section \ref{constraints} the constraints will be presented only in pseudocode. Complete model with the full set of constraints can be found in Attachment \ref{modfile}. %To get a full view of the mathematical problem the reader  A list of the defined parameters can be found in Appendix \ref{definitions}. 
 \section{Set and variable definitions} \label{variables}
 To solve the problem many sets and variables had to be declared as there are many unique and personal requirements that have to be met. An example is that some personnel want a day free from outer tasks so that they can focus on other assignments or attend meetings. Another one is that some have two different schedules whether it is an odd or even week. These specific cases have to be modeled and result in a variety of set and variable definitions. Hence, only the most important ones are listed below. A complete list of the definitions can be found in Appendix \ref{definitions}. \\
 \itab{I} \tab{Set of workers}\\
@@ -79,7 +79,7 @@ max &N1l*lib\_min\\
 \end{split}
 \end{equation}
 
-If $\textit{N1a} > \textit{N1l}$ then the function were to prioritize assistants as stand-ins rather than librarians. Assistants are, however, less desired as stand-ins, due to their lack of skill to perform all task types. Therefore, it is of relevance to set $\textit{N1a} \leq \textit{N1l}$
+If $\textit{N1a} > \textit{N1l}$ then the function were to prioritize assistants as stand-ins rather than librarians. Assistants are, however, less desired as stand-ins, due to their lack of skill to perform all task types. Therefore, it is desired to set $\textit{N1a} \leq \textit{N1l}$.
 
 \section{Constraints} \label{constraints}
 To model this problem it has been of relevance to divide many of the constraints into weekend- and weekday constraints. Several help constraints have also been added to avoid quadratic variables. These would otherwise occur when two decision variables are multiplied with each other. 
