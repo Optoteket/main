@@ -78,61 +78,269 @@ Similarly, only librarians are qualified for the task known as "Library on Wheel
 
 \begin{table}[h]
 \centering
-\caption{Demand of staff at Hageby and Library on Wheels}
-\label{tab:Hageby_LOW_Demand}
-\begin{tabularx}{\textwidth}{|X|l|l|l|l|X|}
+\caption{Demand of staff  Library on Wheels}
+\label{tab:LOW_Demand}
+\begin{tabularx}{0.85\textwidth}{|l|l|l|X|}
 \hline
 %-------------------------------------------------------------------
-\textbf{Day} & \textbf{Time} & \textbf{Hageby}& \textbf{LoW - odd week} & \textbf{LoW - even week} 
+\textbf{Day} & \textbf{Time} & \textbf{LoW - odd week} & \textbf{LoW - even week} 
 \\ \hline 
 %%------------------------------------------------------------------- 
 \rowcolor{Gray} 
-Mon & 08:00-10:00 & - & 1 & 1
+Mon & 08:00-10:00 & 1 & 1
 \\ \hline 
 %%-------------------------------------------------------------------
 \rowcolor{Gray}  
-Mon & 16:00-20:00 & - & 1 & -
+Mon & 16:00-20:00 & 1 & -
 \\ \hline 
 %%-------------------------------------------------------------------
-Tue & 08:00-10:00 & - & - & -
+Tue & 08:00-10:00 & - & -
 \\ \hline 
 %%------------------------------------------------------------------- 
-Tue & 16:00-20:00 & - & - & -
+Tue & 16:00-20:00 & - & -
 \\ \hline 
 %%-------------------------------------------------------------------
 \rowcolor{Gray} 
-Wed & 08:00-10:00 & - & 1 & 1
+Wed & 08:00-10:00 & 1 & 1
 \\ \hline 
 %%------------------------------------------------------------------- 
 \rowcolor{Gray} 
-Wed & 16:00-20:00 & - & 1 & 1
+Wed & 16:00-20:00 & 1 & 1
 \\ \hline 
 %%-------------------------------------------------------------------
-Thu & 08:00-10:00 & - & 1 & 1
+Thu & 08:00-10:00 & 1 & 1
 \\ \hline 
 %%-------------------------------------------------------------------
-Thu & 16:00-20:00 & - & 1 & 1
+Thu & 16:00-20:00 & 1 & 1
 \\ \hline 
 %%-------------------------------------------------------------------
 \rowcolor{Gray}
-Fri & 08:00-10:00 & - & 1 & -
+Fri & 08:00-10:00 & 1 & -
 \\ \hline 
 %%------------------------------------------------------------------- 
 \rowcolor{Gray}
-Fri & 16:00-20:00 & - & - & -
+Fri & 16:00-20:00 & - & -
+\\ \hline 
+%%%%-------------------------------------------------------------------
+%Sat & 11:00-16:00 & - & -
+%\\ \hline 
+%%%-------------------------------------------------------------------
+%Sun & 11:00-16:00 & - & -
+%\\ \hline 
+\end{tabularx}
+\end{table} 
+
+\begin{table}[h]
+\centering
+\caption{Demand of staff at Hageby}
+\label{tab:Hageby_Demand}
+\begin{tabularx}{0.5\textwidth}{|l|l|X|}
+\hline
+%-------------------------------------------------------------------
+\textbf{Day} & \textbf{Time} & \textbf{Hageby}
+\\ \hline 
+%%------------------------------------------------------------------- 
+%%-------------------------------------------------------------------
+Sat & 11:00-16:00  & 1 
 \\ \hline 
 %%-------------------------------------------------------------------
-Sat & 11:00-16:00  & 1 & - & -
-\\ \hline 
-%%-------------------------------------------------------------------
-Sun & 11:00-16:00  & 1 & - & -
+Sun & 11:00-16:00  & 1 
 \\ \hline 
 \end{tabularx}
 \end{table} 
 
 \subsection{Personnel attributes}
 
-The Central Library of Norrköping currently has 39 workers, 23 of which are librarians and 16 of which are assistants. All staff have different availability for performing tasks, depending on their working hours and the amount of inner work they are in charge of.
+At a library, the most important workers are the librarians. They make sure the library's resource collection is up to date, that the visitors find what they're looking for and perform a larger number of inner tasks. Simpler tasks can also be performed by a group of workers called assistants and they help the librarians in keeping the library running in many ways.
+
+The Central Library of Norrköping currently has 39 workers, 23 of which are librarians and 16 of which are assistants. All staff have different availability for performing tasks, depending on their working hours and the amount of inner work they are in charge of. Generally, each worker is assigned one evening per week and once per five weeks, he/she is asssigned to weekend work. The following week is compensated by two free days, placed according to the wishes of the worker.
+
+Let's consider a sample worker Bob. Bob works full time and is also assigned to work on Wednesday evenings. Bob works weekend on the fourth week and has chosen to take out his days off on Thursdays and Fridays on week five. His availability is thus illustrated in table \ref{tab:Bob_avail}. The availability schedule repeats itself after five weeks (Note: Whether or not Bob is assigned any tasks during these weeks is not illustrated in the table).
+
+All workers have a five week schedule in the same manner as sample worker Bob. However, in order to meet the weekend demands as illustrated by Tables \ref{tab:Outer_Task_Demand} and \ref{tab:Hageby_LOW_Demand}, it is evident that not all workers can be assigned for weekend work at week 4. Instead, Bob's schedule should be seen as a \textit{relative schedule}, which can be shifted by whole weeks. We refer to this as the \textit{week rotation}. The relative schedule is relative to the \textit{overall schedule} for the library, which is illustrated by Table \tab{tab:}. If Bob for example has week rotation 1, this means the week 4 in his relative schedule would be placed on week 1 in the overall schedule.
+
+
+
+\begin{table}[h]
+\centering
+\caption{Schedule for sample worker Bob. Yellow signifies availability. In parenthesis, the weekend shift. Week rotation 4.}
+\label{tab:Bob_avail}
+\begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
+\hline
+%-------------------------------------------------------------------
+\textbf{Week 1}& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
+\\ \hline 
+%%------------------------------------------------------------------- 
+%\rowcolor{Gray} 
+\colcell 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo &   & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & &
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 16:00-20:00 & & & \colcelltwo & & & &
+\\ \hline 
+%%-------------------------------------------------------------------
+\end{tabularx}
+\begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
+\hline
+%-------------------------------------------------------------------
+\textbf{Week 2}& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
+\\ \hline 
+%%------------------------------------------------------------------- 
+%\rowcolor{Gray} 
+\colcell 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo &   & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & &
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 16:00-20:00 & & & \colcelltwo & & & &
+\\ \hline 
+%%-------------------------------------------------------------------
+\end{tabularx}
+\begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
+\hline
+%-------------------------------------------------------------------
+\textbf{Week 3}& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
+\\ \hline 
+%%------------------------------------------------------------------- 
+%\rowcolor{Gray} 
+\colcell 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo &   & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & &
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 16:00-20:00 & & & \colcelltwo & & & &
+\\ \hline 
+%%-------------------------------------------------------------------
+\end{tabularx}
+\begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
+\hline
+%-------------------------------------------------------------------
+\textbf{Week 4}& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
+\\ \hline 
+%%------------------------------------------------------------------- 
+%\rowcolor{Gray} 
+\colcell 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo &   & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & &
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 16:00-20:00 & & & \colcelltwo & & \colcelltwo & &
+\\ \hline 
+%%-------------------------------------------------------------------
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
+\hline
+%-------------------------------------------------------------------
+\textbf{Week 5}& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
+\\ \hline 
+%%------------------------------------------------------------------- 
+%\rowcolor{Gray} 
+\colcell 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & & & & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & & & & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & & & &
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 16:00-20:00 & & & \colcelltwo & & & &
+\\ \hline 
+%%-------------------------------------------------------------------
+\end{tabularx}
+\end{table} 
+
+
+\begin{table}[h]
+\centering
+\caption{Overall schedule for week 1.}
+\label{tab:General_schedule}
+\begin{tabularx}{\textwidth}{|X|l|l|l|l|X|}
+\hline
+%-------------------------------------------------------------------
+\textbf{Schedule week 1} & & & & &  
+\\ \hline 
+%%------------------------------------------------------------------- 
+\textbf{Monday}& \colcell \textbf{Exp} & \colcell \textbf{Info} & \colcell \textbf{FL} & \colcell \textbf{LoW - odd} & \colcell \textbf{LoW- even} 
+\\ \hline 
+%%------------------------------------------------------------------- 
+
+ 08:00 - 10:00 & \small W1, W2 & \small W1,W2 & \small W1 & \small W1 & \small W1
+\\ \hline 
+%%------------------------------------------------------------------- 
+ 10:00 - 13:00 & \small W1, W2, W3 & \small W1, W2, W3 & \small W1 & - & -
+\\ \hline 
+%%------------------------------------------------------------------- 
+ 13:00 - 16:00 & \small W1, W2, W3 & \small W1, W2, W3 & \small W1 & - & -
+\\ \hline 
+%%------------------------------------------------------------------- 
+ 16:00 - 20:00 & \small W1, W2, W3 & \small W1, W2, W3 & \small W1 & - & -
+\\ \hline 
+%%------------------------------------------------------------------- 
+\textbf{Tuesday}& \colcell \textbf{Exp} & \colcell \textbf{Info} & \colcell \textbf{FL} & \colcell \textbf{LoW - odd } & \colcell \textbf{LoW- even} 
+\\ \hline 
+%%------------------------------------------------------------------- 
+\textbf{Wednesday}& \colcell \textbf{Exp} & \colcell \textbf{Info} & \colcell \textbf{FL} & \colcell \textbf{LoW - odd } & \colcell \textbf{LoW- even} 
+\\ \hline 
+%%-------------------------------------------------------------------
+\textbf{Thursday}& \colcell \textbf{Exp} & \colcell \textbf{Info} & \colcell \textbf{FL} & \colcell \textbf{LoW - odd } & \colcell \textbf{LoW- even} 
+\\ \hline 
+%%-------------------------------------------------------------------
+\textbf{Friday}& \colcell \textbf{Exp} & \colcell \textbf{Info} & \colcell \textbf{FL} & \colcell \textbf{LoW - odd } & \colcell \textbf{LoW- even} 
+\\ \hline 
+%%-------------------------------------------------------------------
+%Mon-Fri & 08:00-10:00 & 2 & 2 & 1
+%\\ \hline 
+%%%------------------------------------------------------------------- 
+%Mon-Fri & 10:00-13:00 & 3 & 3 & 1
+%\\ \hline 
+%%%-------------------------------------------------------------------
+%Mon-Fri & 13:00-16:00  & 3 & 3 & 1
+%\\ \hline 
+%%%-------------------------------------------------------------------
+%Mon-Fri & 16:00-20:00 & 3 & 3 & -
+%\\ \hline 
+%%%-------------------------------------------------------------------
+%Sat & 11:00-16:00  & 3 & 3 & -
+%\\ \hline 
+%%%------------------------------------------------------------------- 
+%Sun & 11:00-16:00  & 3 & 3 & -
+%\\ \hline 
+\end{tabularx}
+\end{table}
 
 Personnel works whole weekends!
 
@@ -317,3 +525,65 @@ The problem can be formulated as a personnel tasks scheduling problem for a hete
 \section{Topics Covered}
 
 "The thesis is divided into..."
+
+
+
+\iffalse
+\begin{table}[!h]
+\centering
+\caption{Week 4 for sample worker Bob. Yellow signifies availability. In parenthesis, the weekend shift.}
+\label{tab:Lib_avail2}
+\begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
+\hline
+%-------------------------------------------------------------------
+& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
+\\ \hline 
+%%------------------------------------------------------------------- 
+%\rowcolor{Gray} 
+\colcell 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo &   & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & &
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 16:00-20:00 & & & \colcelltwo & & \colcelltwo & &
+\\ \hline 
+%%-------------------------------------------------------------------
+\end{tabularx}
+\end{table} 
+
+\begin{table}[!h]
+\centering
+\caption{Week 5 for sample worker Bob. Yellow signifies availability. In parenthesis, the weekend shift.}
+\label{tab:Lib_avail3}
+\begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
+\hline
+%-------------------------------------------------------------------
+& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
+\\ \hline 
+%%------------------------------------------------------------------- 
+%\rowcolor{Gray} 
+\colcell 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & & & & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & & & & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & & & &
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 16:00-20:00 & & & \colcelltwo & & & &
+\\ \hline 
+%%-------------------------------------------------------------------
+\end{tabularx}
+\end{table} 
+\fi

@@ -140,9 +140,18 @@ Nyckelhål, XBOX, Dagens viktigaste nyckelord, and Keywords.}
 
 %\usepackage[first=0,last=9]{lcg}
 %\newcommand{\ra}{\rand0.\arabic{rand}}
+
+% Colors
 \newcommand{\enc}[0]{utf8}
 \definecolor{bluegray}{rgb}{0.4, 0.6, 0.8}
+\definecolor{corn}{rgb}{0.98, 0.93, 0.36}
+\definecolor{coralred}{rgb}{1.0, 0.25, 0.25}
 \definecolor{Gray}{gray}{0.85}
+\newcommand{\colcell}{\cellcolor{Gray}}
+\newcommand{\colcelltwo}{\cellcolor{corn}}
+\newcolumntype{g}{>{\columncolor{corn}}c}
+
+% Special cells
 \newcommand{\specialcell}[2][c]{%
   \begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
 \newcommand{\specialcelltwo}[2][c]{%
