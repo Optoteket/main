@@ -75,11 +75,8 @@ subject to task_assign_amount_library_on_wheels{w in W, d in 1..5 ,s in S[d]}:
 
 ######################## Maximum one task per day #####################################
 #Stating that a worker performing library on wheels cannot perform another task that day
-subject to only_LOW{i in I, w in W, d in 1..5, s2 in {1,4}}:
+subject to only_LOW{i in I, w in W, d in 1..5, s2 in S[d]}:
 	sum{s in S[d]}(sum {j in {'Exp','Info','PL'}}x[i,w,d,s,j]) <= 1 - x[i,w,d,s2,'LOW'];
-
-#subject to only_LOW2{i in I, w in W, d in 1..5}:
-#	sum{s in S[d]}(sum {j in {'Exp','Info','PL'}}x[i,w,d,s,j]) <= 1 - x[i,w,d,4,'LOW'];
 
 subject to two_LOW_allowed{i in I, w in W, d in 1..5}:
 	sum{s in S[d]} x[i,w,d,s,'LOW'] <= 2;
@@ -96,11 +93,11 @@ subject to max_one_PL_per_week{i in I, w in W}:
 	sum{d in 1..5} x[i,w,d,1,'PL'] <= 1;
 
 #Allowing a worker i maximum two 'PL' per five weeks
-subject to max_two_PL_per_five_first_weeks{i in I}:
-	sum{w in 1..5}(sum{d in 1..5} x[i,w,d,1,'PL']) <= 2;
-subject to max_two_PL_per_five_last_weeks{i in I}:
-	sum{w in 6..10}(sum{d in 1..5} x[i,w,d,1,'PL']) <= 2;
-
+subject to max_three_PL_per_ten_weeks{i in I}:
+	sum{w in W}(sum{d in 1..5} x[i,w,d,1,'PL']) <= 3;
+#subject to max_two_PL_per_five_last_weeks{i in I}:
+#	sum{w in 6..10}(sum{d in 1..5} x[i,w,d,1,'PL']) <= 2;
+	
 ####################### Week rotation and weekend constraints #########################
 #Stating the week where the evening shall be rotated to
 subject to rotation_of_week{i in I}:
