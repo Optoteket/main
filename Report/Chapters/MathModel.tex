@@ -2,11 +2,11 @@
 In this chapter the mathematical model implemented to solve this problem will be presented. Prior to the objective function and constraints, the most significant variables and sets will be stated to give the reader an idea of how the work has proceeded. In Section \ref{constraints} the constraints will be presented only in pseudocode. Complete model with the full set of constraints can be found in Attachment \ref{modfile}. %To get a full view of the mathematical problem the reader  A list of the defined parameters can be found in Appendix \ref{definitions}. 
 \section{Set and variable definitions} \label{variables}
 To solve the problem many sets and variables had to be declared as there are many unique and personal requirements that have to be met. An example is that some personnel want a day free from outer tasks so that they can focus on other assignments or attend meetings. Another one is that some have two different schedules whether it is an odd or even week. These specific cases have to be modeled and result in a variety of set and variable definitions. Hence, only the most important ones are listed below. A complete list of the definitions can be found in Appendix \ref{definitions}. \\
-\itab{I} \tab{Set of workers}\\
-\itab{I\_lib} \tab{Set of librarians (I\_lib $\subseteq$ I)} \\
-\itab{I\_ass}	 \tab{Set of assistants (I\_ass $\subseteq$ I)}	\\
-\itab{W}                 \tab{Set of weeks}                                               \\
-\itab{D}                 \tab{Set of days in a week}                                      \\
+\itab{$I$} \tab{Set of workers}\\
+\itab{$I_{lib}$} \tab{Set of librarians ($I_{lib} \subseteq I$)} \\
+\itab{$I_{ass}$}	 \tab{Set of assistants ($I_{ass} \subseteq I$)}	\\
+\itab{$W$}                 \tab{Set of weeks}                                               \\
+\itab{$D$}                 \tab{Set of days in a week}                                      \\
 \itab{$S_d$}           \tab{Set of shifts day \textit{d}}                                        \\
 \itab{$J_d$}            \tab{Set of task types day \textit{d}}                                    \\
 
@@ -20,66 +20,75 @@ In order to further define the problem we introduce the following variables. Let
     \\
     H_{iwh}&=
     \begin{cases}
-      1, & \text{if worker \textit{i} works weekend h in week \textit{w}}\\
+      1, & \text{if worker \textit{i} works weekend \textit{h}, week \textit{w}}\\
       0, & \text{otherwise}
     \end{cases}
 	\\
 	r_{iw}&=
 	\begin{cases}
-		1, & \text{if worker \textit{i} has its scheduled rotated \textit{w-1 steps}}\\
+		1, & \text{if worker \textit{i} has its scheduled rotated \textit{w-1} steps}\\
 		0, & \text{otherwise}
 	\end{cases}
 	\\
-	lib_{iwd}&=
+	l_{iwd}&=
 	\begin{cases}
-	  1, & \text{if librarian \textit{i} is a stand-in week \textit{w} day \textit{d}} \\
+	  1, & \text{if librarian \textit{i} is a stand-in week \textit{w}, day \textit{d}} \\
 	  0, & \text{otherwise}
 	\end{cases}
 	\\
-	ass_{iwd}&=
+	a_{iwd}&=
 	\begin{cases}
- 		1, & \text{if assistant \textit{i} is a stand-in week \textit{w} day \textit{d}} \\
+ 		1, & \text{if assistant \textit{i} is a stand-in week \textit{w}, day \textit{d}} \\
  		0, & \text{otherwise}
 	\end{cases}
 	\\
 	y_{iwds}&=
 	\begin{cases}
- 		1, & \text{if worker \textit{i} is working \textit{w} day \textit{d} regardless of task type} \\
+ 		1, & \text{if worker \textit{i} works week \textit{w}, day \textit{d}, shift \textit{s} regardless of task type} \\
  		0, & \text{otherwise}
 	\end{cases}
 	\\
-	hb_{iw}&=
+	h_{iw}&=
 	\begin{cases}
- 		1, & \text{if assistant \textit{i} is a stand-in week \textit{w} day \textit{d}} \\
+ 		1, & \text{if worker \textit{i} works at HB week \textit{w}} \\
  		0, & \text{otherwise}
 	\end{cases}
 	\\
-	friday\_evening_{iw}&=
+	f_{iw}&=
 	\begin{cases}
- 		1, & \text{if assistant \textit{i} is a stand-in week \textit{w} day \textit{d}} \\
+ 		1, & \text{if worker \textit{i} is assigned to work friday evening week \textit{w}} \\
  		0, & \text{otherwise}
 	\end{cases}	
 	\\
-	lib\_min&= \text{lowest number of stand-in librarians found (integer)} \\
-	ass\_min&= \text{lowest number of stand-in assistants found (integer)}
+	l_{min}&= \text{lowest number of stand-in librarians found (integer)} \\
+	a_{min}&= \text{lowest number of stand-in assistants found (integer)} \\
+	s_{iwds}&= \text{number of shifts \textit{s} that differ for a worker \textit{i} between week \textit{w} and \textit{w+5}, day \textit{d} (integer)}
 \end{align}
 
 %All decision variables are not presented. Instead, it is up to the reader to see the complete list of variables in Appendix \ref{definitions}.
 
-Based on these defined variables it has been possible to solve our scheduling problem. \textit{lib\_min} and \textit{ass\_min} are the variables of most significance as they represent the number of stand-ins found after a run. 
+Based on the variables defined above it has been possible to solve our scheduling problem. \textit{$l_{min}$} and \textit{$a_{min}$} are the variables of most significance as they represent the number of stand-ins found after a run. 
 
 \section{Objective function}
-Due to multiple objective functions it has been necessary to weigh them against each other using parameters. These are shown in Equation \ref{objfcn} below, where \textit{N1l}, \textit{N1a} and \textit{N2} are the parameters.
+Due to multiple objective functions it has been necessary to weigh them against each other using parameters. These are shown in Equation \ref{objfcn} below as \textit{N1l}, \textit{N1a} and \textit{N2}.
 
 \begin{equation} \label{objfcn}
 \begin{split}
-max &N1l*lib\_min\\
- + &N1a*ass\_min \\
- - &N2*\sum_{i \in I}\sum_{w = 1}^{5}\sum_{d = 1}^{5}\sum_{s = 1}^{3} shift\_differ\_weeks_{iwds}
+max &N1l*l_{min}\\
+ + &N1a*a_{min} \\
+ - &N2*\sum_{i \in I}\sum_{w = 1}^{5}\sum_{d = 1}^{5}\sum_{s = 1}^{3} s_{iwds}
 \end{split}
 \end{equation}
 
-If $\textit{N1a} > \textit{N1l}$ then the function were to prioritize assistants as stand-ins rather than librarians. Assistants are, however, less desired as stand-ins, due to their lack of skill to perform all task types. Therefore, it is desired to set $\textit{N1a} \leq \textit{N1l}$.
+If $\textit{N1l} < \textit{N1a}$ then the function were to prioritize assistants as stand-ins rather than librarians. Librarians are, however, more desired as stand-ins, due to their ability to perform all task types. Therefore, it is desired to set $\textit{N1l} \geq \textit{N1a}$.
 
 \section{Constraints} \label{constraints}
-To model this problem it has been of relevance to divide many of the constraints into weekend- and weekday constraints. Several help constraints have also been added to avoid quadratic variables. These would otherwise occur when two decision variables are multiplied with each other. 
+To model this problem it has been of relevance to divide many of the constraints into weekend- and weekday constraints. Several help constraints have also been added to avoid quadratic variables. These would otherwise occur when two decision variables are multiplied with each other.
+
+The most crucial constraint is to ensure that the demand of workers is met each day. This can be modeled as,
+\begin{equation}
+\sum_{i \in I} x_{iwdsj} = task\_demand_{wdsj}, \; \forall w\in W,d\in D,s\in S,j\in J_d
+\end{equation}
+
+where $task\_demand_{dsj}$ is the number of workers required day \textit{d}, shift \textit{s} for a task \textit{j}.
+
