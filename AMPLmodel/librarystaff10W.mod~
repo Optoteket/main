@@ -75,7 +75,7 @@ subject to task_assign_amount_library_on_wheels{w in W, d in 1..5 ,s in S[d]}:
 
 ######################## Maximum one task per day #####################################
 #Stating that a worker performing library on wheels cannot perform another task that day
-subject to only_LOW{i in I, w in W, d in 1..5, s2 in {1,4}}:
+subject to only_LOW{i in I, w in W, d in 1..5, s2 in S[d]}:
 	sum{s in S[d]}(sum {j in {'Exp','Info','PL'}}x[i,w,d,s,j]) <= 1 - x[i,w,d,s2,'LOW'];
 
 subject to two_LOW_allowed{i in I, w in W, d in 1..5}:

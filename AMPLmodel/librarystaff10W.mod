@@ -93,11 +93,11 @@ subject to max_one_PL_per_week{i in I, w in W}:
 	sum{d in 1..5} x[i,w,d,1,'PL'] <= 1;
 
 #Allowing a worker i maximum two 'PL' per five weeks
-subject to max_two_PL_per_five_first_weeks{i in I}:
-	sum{w in 1..5}(sum{d in 1..5} x[i,w,d,1,'PL']) <= 2;
-subject to max_two_PL_per_five_last_weeks{i in I}:
-	sum{w in 6..10}(sum{d in 1..5} x[i,w,d,1,'PL']) <= 2;
-
+subject to max_three_PL_per_ten_weeks{i in I}:
+	sum{w in W}(sum{d in 1..5} x[i,w,d,1,'PL']) <= 3;
+#subject to max_two_PL_per_five_last_weeks{i in I}:
+#	sum{w in 6..10}(sum{d in 1..5} x[i,w,d,1,'PL']) <= 2;
+	
 ####################### Week rotation and weekend constraints #########################
 #Stating the week where the evening shall be rotated to
 subject to rotation_of_week{i in I}:
