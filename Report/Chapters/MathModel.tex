@@ -90,5 +90,15 @@ The most crucial constraint is to ensure that the demand of workers is met each 
 \sum_{i \in I} x_{iwdsj} = task\_demand_{wdsj}, \; \forall w\in W,d\in D,s\in S,j\in J_d
 \end{equation}
 
-where $task\_demand_{dsj}$ is the number of workers required day \textit{d}, shift \textit{s} for a task \textit{j}.
+where $task\_demand_{wdsj}$ is the number of workers required week \textit{w}, day \textit{d}, shift \textit{s} for a task \textit{j}.
 
+To ensure that no worker is assigned more than one task the following constraint is implemented,
+\begin{equation} \label{one_task_constraint}
+\sum_{s\in S}\sum_{j\in J_d} x_{iwdsj} \leq 1, \; \forall i\in I, w \in W, d\in D
+\end{equation}
+However, if we allow a person to have two shifts at the library on wheels in a day Equation \ref{one_task_constraint} has to be slightly modified.
+
+A preference is to only allow one PL per week. This is easily modeled with the following constraint,
+\begin{equation} 
+\sum_{s \in S_d}\sum_{d \in D} x_{iwdsj=PL} \leq 1, \; \forall i\in I, w \in W
+\end{equation}

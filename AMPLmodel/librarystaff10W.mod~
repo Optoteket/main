@@ -81,9 +81,6 @@ subject to only_LOW{i in I, w in W, d in 1..5, s2 in {1,4}}:
 subject to two_LOW_allowed{i in I, w in W, d in 1..5}:
 	sum{s in S[d]} x[i,w,d,s,'LOW'] <= 2;
 
-subject to only_LOW2{i in I, w in W, d in 1..5}:
-	sum{s in S[d]}(sum {j in {'Exp','Info','PL'}}x[i,w,d,s,j]) <= 1 - x[i,w,d,4,'LOW'];
-
 subject to max_one_task_per_day_weekend{i in I, w in W, d in 6..7}:
 	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;
 
