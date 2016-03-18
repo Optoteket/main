@@ -3,42 +3,42 @@
 \section{Background}
 
 
-At a library absence can cause problems, both due to lack of personnel as well as due to the qualifications required to perform a task varies. If a worker were to be unavailable a day because of a meeting or being ill it would require for a stand-in to fill the vacancy. Therefore, it is of great interest to have a schedule with as many skilled stand-ins as possible to overcome such disturbances. Furthermore, the library personnel have certain demands and preferences as to how a satisfactory working schedule should be. For instance, it is neither preferable to work more than one evening per week nor work more weekends than required.
+At a library, staff absence can cause problems and can result in either a general shortage of staff or of staff with a special competence. If a worker is unavailable a certain day because of a meeting or illness it would require a stand-in to fill the vacancy. Therefore, it is of great interest to create schedules with as many skilled stand-ins as possible to overcome such disturbances when they occur. Furthermore, the library personnel have certain demands and preferences as to how a satisfactory working schedule should be. For instance, it is neither preferable to work more than one evening per week nor work more weekends than required. 
 
-The problem addressed in this thesis concerns the particular library staff at the Central Library of Norrköping. The library has more than 40 employees and the appended building from the 1950's is known to all its inhabitants. The library is open weekdays between 08:00 and 20:00 and during weekend days between 08:00 and 16:00. The generous opening times also creates a challenge for the library as it requires a large pool of well coordinated personnel. In addition to keeping the library running the library also provides its services to more than one other smaller library. This creates a challenge for the library schedulers.
+The problem addressed in this thesis work concerns the library staff at the Central Library of Norrköping. The library has more than 40 employees and the culturally important building from the 1950's is known to all inahbitants of Norrköping. The library is open weekdays between 08:00 and 20:00 and during weekend days between 11:00 and 16:00. The generous opening times also creates a challenge for the library as it requires a large pool of well coordinated personnel. In addition to keeping the library running the library also provides its services to one other smaller library. This creates a challenge for the library schedulers.
 
 \section{Problem description}
 
-In this section, the most important features of the librarian scheduling problem studied in this thesis will be explained.  
+In this section, the most important features of the librarian scheduling problem studied in this thesis work will be explained.  
 
 \subsection{Description of the daily tasks at the library}
-The most important activity at a library is the activity directed towards the public. This includes lending books services as well as providing customers with helpful information about the resources at their disposal. These are referred to as "outer tasks". At the same time, the uppsättning of books must be maintained, the returned books must be sorted and put back, the web page must be up to date and so on. Such work is often referred to as "inner work" and is equally part of the everyday tasks of a librarian. 
+The most important activity at a library is the activity directed towards the public. This includes book loan services as well as providing customers with helpful information about the resources at the disposal of the library. These activities are referred to as "outer tasks". In addition, the book collection must be maintained, the returned books must be sorted and put back to the shelves, the web page must be updated and so on. Such work is often referred to as "inner work" and this non-public work is an equally important part of the everyday activities of the library staff. 
 
-At the library of Norrköping, three main outer tasks can be identified as working in the service counter (sv. expiditionsdisken), working in the information counter (sv. informationsdiken)  and assembling books according to the "fetch list" (sv. plocklista). These tasks can be performed by either librarians or assistants, as descirbed in Table \ref{tab:Outer_Tasks}. Note that the fetch list is actually only one task which covers the whole day.
+At the library of Norrköping, three main outer task types can be identified; working in the service counter (sv. expiditionsdisken), working in the information counter (sv. informationsdiken)  and assembling books which are to be sent to other libraries according to the "fetch list" (sv. plocklista). The fetch list is a task types which for which the worker is shceduled during a whole day, while the other task types have two or three hour shifts. The outer tasks can be performed by either librarians or assistants or both, as descirbed in Table \ref{tab:Outer_Tasks}.
 
 \begin{table}[h]
 \centering
-\caption{Outer tasks can be performed exclusively by librarians or by both assistants and librarians.}
+\caption{Outer tasks can be performed exclusively by librarians or by both librarians and assistants.}
 \label{tab:Outer_Tasks}
-\begin{tabularx}{\textwidth}{|X|l|X|}
+\begin{tabularx}{\textwidth}{|l|l|X|}
 \hline
 %-------------------------------------------------------------------
 \textbf{Task} & \textbf{Description} & \textbf{Qualification}\\ \hline 
 %------------------------------------------------------------------- 
-Service Counter (Exp)  & \specialcell[t]{Administring loans, library cards\\ and the loaning machine} & Assistants, Librarians
+\specialcell[t]{Service Counter \\ (Exp)}  & \specialcell[t]{Administring loans, library cards\\ and the loaning machine} & \specialcell[t]{Librarian or \\  Assistant} 
 %\begin{tabular}[x]{@{}c@{}}\\\end{tabular}  
 \\ \hline
 %-------------------------------------------------------------------
-Information Counter (Info) & \specialcell[t]{Handling questions \\about the library's resources.} & Librarians
+\specialcell[t]{Information Counter \\ (Info)} & \specialcell[t]{Handling questions \\about the library's resources.} & Librarian
 \\ \hline 
 %-------------------------------------------------------------------
-Fetch List (PL) & \specialcell[t]{Fetching books that are to be \\sent to other libraries.} & Assistants, Librarians
+\specialcell[t]{Fetch List \\(PL)} & \specialcell[t]{Fetching books that are to be \\sent to other libraries.} & \specialcell[t]{Librarian  or \\  Assistant}
 \\ \hline 
 %-------------------------------------------------------------------
 \end{tabularx}
 \end{table} 
 
-As the number of visitors in the library differs at different times of the day and during different days so does the demand for people for the three tasks. The demand of people at for the different tasks is illustrated in table \ref{tab:Outer_Task_Demand}. 
+Since the number of visitors at the library varies throughout the day and also during different days of the week, so does the demand for personnel for the three tasks. The demand of personnel for the different task types is illustrated in table \ref{tab:Outer_Task_Demand}, according to figures given by the library. 
 
 
 
@@ -75,61 +75,8 @@ Sun & 11:00-16:00  & 3 & 3 & -
 
 As is the case with most libraries, the Central Library of Norrköping also has responsiblities that fall outside of it's normal daily activities. One such resposibility is the running of a smaller library filial in Hageby, situated in a suburbian area of Norrköping, during weekends. For this tasks only librarians are qualified as the placement implies all types of library tasks.
 
-Similarly, only librarians are qualified for the task known as "Library on Wheels" (sv. Bokbussen), which is a type of library bus, providing citizens in remoter areas of the city with books and other library services. The Library on Wheels has only operates a few times a week and the schedule differs between even and odd weeks.
+Similarly, only librarians are qualified for the task known as the "Library on Wheels" (sv. Bokbussen), which is a type of library bus, providing citizens in remoter areas of the city with books and other library services. A qualified librarian is needed for this task type. The Library on Wheels only operates a few times a week and the schedule differs between even and odd weeks.
 
-\begin{table}[!h]
-\centering
-\caption{Demand of staff  Library on Wheels}
-\label{tab:LOW_Demand}
-\begin{tabularx}{0.85\textwidth}{|l|l|l|X|}
-\hline
-%-------------------------------------------------------------------
-\textbf{Day} & \textbf{Time} & \textbf{LoW - odd week} & \textbf{LoW - even week} 
-\\ \hline 
-%%------------------------------------------------------------------- 
-\rowcolor{Gray} 
-Mon & 08:00-10:00 & 1 & 1
-\\ \hline 
-%%-------------------------------------------------------------------
-\rowcolor{Gray}  
-Mon & 16:00-20:00 & 1 & -
-\\ \hline 
-%%-------------------------------------------------------------------
-Tue & 08:00-10:00 & - & -
-\\ \hline 
-%%------------------------------------------------------------------- 
-Tue & 16:00-20:00 & - & -
-\\ \hline 
-%%-------------------------------------------------------------------
-\rowcolor{Gray} 
-Wed & 08:00-10:00 & 1 & 1
-\\ \hline 
-%%------------------------------------------------------------------- 
-\rowcolor{Gray} 
-Wed & 16:00-20:00 & 1 & 1
-\\ \hline 
-%%-------------------------------------------------------------------
-Thu & 08:00-10:00 & 1 & 1
-\\ \hline 
-%%-------------------------------------------------------------------
-Thu & 16:00-20:00 & 1 & 1
-\\ \hline 
-%%-------------------------------------------------------------------
-\rowcolor{Gray}
-Fri & 08:00-10:00 & 1 & -
-\\ \hline 
-%%------------------------------------------------------------------- 
-\rowcolor{Gray}
-Fri & 16:00-20:00 & - & -
-\\ \hline 
-%%%%-------------------------------------------------------------------
-%Sat & 11:00-16:00 & - & -
-%\\ \hline 
-%%%-------------------------------------------------------------------
-%Sun & 11:00-16:00 & - & -
-%\\ \hline 
-\end{tabularx}
-\end{table} 
 
 \begin{table}[!h]
 \centering
@@ -138,10 +85,9 @@ Fri & 16:00-20:00 & - & -
 \begin{tabularx}{0.5\textwidth}{|l|l|X|}
 \hline
 %-------------------------------------------------------------------
-\textbf{Day} & \textbf{Time} & \textbf{Hageby}
+\textbf{Day} & \textbf{Time} & \textbf{HB}
 \\ \hline 
 %%------------------------------------------------------------------- 
-%%-------------------------------------------------------------------
 Sat & 11:00-16:00  & 1 
 \\ \hline 
 %%-------------------------------------------------------------------
@@ -150,21 +96,74 @@ Sun & 11:00-16:00  & 1
 \end{tabularx}
 \end{table} 
 
+
+
+\begin{table}[!h]
+\centering
+\caption{Demand of staff Library on Wheels}
+\label{tab:LOW_Demand}
+\begin{tabularx}{0.85\textwidth}{|l|l|l|X|}
+\hline
+%-------------------------------------------------------------------
+\textbf{Day} & \textbf{Time} & \textbf{BokB - odd week} & \textbf{BokB - even week} 
+\\ \hline 
+%------------------------------------------------------------------- 
+\rowcolor{Gray} 
+Mon & 08:00-10:00 & 1 & 1
+\\ \hline 
+%-------------------------------------------------------------------
+\rowcolor{Gray}  
+Mon & 16:00-20:00 & 1 & -
+\\ \hline 
+%-------------------------------------------------------------------
+Tue & 08:00-10:00 & - & -
+\\ \hline 
+%------------------------------------------------------------------- 
+Tue & 16:00-20:00 & - & -
+\\ \hline 
+%-------------------------------------------------------------------
+\rowcolor{Gray} 
+Wed & 08:00-10:00 & 1 & 1
+\\ \hline 
+%------------------------------------------------------------------- 
+\rowcolor{Gray} 
+Wed & 16:00-20:00 & 1 & 1
+\\ \hline 
+%-------------------------------------------------------------------
+Thu & 08:00-10:00 & 1 & 1
+\\ \hline 
+%-------------------------------------------------------------------
+Thu & 16:00-20:00 & 1 & 1
+\\ \hline 
+%-------------------------------------------------------------------
+\rowcolor{Gray}
+Fri & 08:00-10:00 & 1 & -
+\\ \hline 
+%------------------------------------------------------------------- 
+\rowcolor{Gray}
+Fri & 16:00-20:00 & - & -
+\\ \hline 
+%--------------------------------------------------------------
+\end{tabularx}
+\end{table} 
+
 \subsection{Personnel attributes}
 
-At a library, the most important workers are the librarians. They make sure the library's resource collection is up to date, that the visitors find what they're looking for and perform a larger number of inner tasks. Simpler tasks can also be performed by a group of workers called assistants and they help the librarians in keeping the library running in many ways.
+At a library, the main group of workers are librarians and assistants. The librarians make sure the library's resource collection is up to date, that the visitors find what they're looking for and perform a larger number of inner tasks. Assistans can perform most of theses tasks, while others require librarian competence.
 
-The Central Library of Norrköping currently has 39 workers, 23 of which are librarians and 16 of which are assistants. All staff have different availability for performing tasks, depending on their working hours and the amount of inner work they are in charge of. Generally, each worker is assigned one evening per week and once per five weeks, he/she is asssigned to weekend work. The following week is compensated by two free days, placed according to the wishes of the worker.
+The Central Library of Norrköping currently has 39 workers, 23 of which are librarians and 16 of which are assistants. All staff have different availability for performing tasks, depending on their working hours and the amount of inner work they are in charge of. In the standard case, each worker is assigned one evening per week and once per five weeks, he/she is assigned to work during the weekend. The following week is compensated by two free days, placed according to the wishes of the worker.
 
-Let's consider a sample worker Bob. Bob works full time and is also assigned to work on Wednesday evenings. Bob works weekend on the fourth week and has chosen to take out his days off on Thursdays and Fridays on week five. His availability is thus illustrated in table \ref{tab:Bob_avail}. The availability schedule repeats itself after five weeks (Note: Whether or not Bob is assigned any tasks during these weeks is not illustrated in the table).
+Let's consider a sample worker who is qualified for librarian tasks. The worker works full time and is also assigned to work on Wednesday evenings. The worker also works weekend on the fourth week and has chosen to take out his days off on Thursdays and Fridays on week five. His availability is thus illustrated in table \ref{tab:Bob_avail}. The schedule repeats itself after five weeks and illustrates only the availability for tasks but says nothing about whether he has been assigned any tasks or not.
 
-All workers have a five week schedule in the same manner as sample worker Bob. However, in order to meet the weekend demands as illustrated by Tables \ref{tab:Outer_Task_Demand}, \ref{tab:LOW_Demand} and \ref{tab:Hageby_Demand}, it is evident that not all workers can be assigned for weekend work at week 4. Instead, a worker's schedule should be seen as a \textit{relative schedule}, which can be shifted by whole weeks. We refer to this as the \textit{week rotation}. The relative schedule is relative to the \textit{overall schedule} for the library. If Bob for example has week rotation 1, this means the week 4 in his relative schedule would be placed on week 1 in the overall schedule.
+All workers have a five week schedule in the same manner as the sample worker. However, in order to meet the weekend demands as illustrated by Tables \ref{tab:Outer_Task_Demand}, \ref{tab:LOW_Demand} and \ref{tab:Hageby_Demand}, it is evident that not all workers can be assigned for weekend work at week 4. Instead, a worker's schedule should be seen as a \textit{relative schedule}, which can be shifted by whole weeks. We refer to this as the \textit{week rotation}.
+
+ The relative schedule is relative to the \textit{overall schedule} for the library. If the sample worker for example has week rotation 1, this means the weekend week in his relative schedule would be shifted to week 1 in the overall schedule. In Table \ref{tab:Bob_avail}, the weekend rotation is 4.
 
 
 
 \begin{table}[!h]
 \centering
-\caption{Schedule for sample worker Bob. Yellow signifies availability. In parenthesis, the weekend shift. Week rotation 4.}
+\caption{Availability schedule for a sample worker. Yellow signifies that the worker is available. In parenthesis, the weekend shift. The week rotation is 4.}
 \label{tab:Bob_avail}
 \begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
 \hline
@@ -284,16 +283,20 @@ All workers have a five week schedule in the same manner as sample worker Bob. H
 \end{tabularx}
 \end{table} 
 
-Considering again sample worker Bob's schedule, it may look as if Bob can be scheduled for tasks up to four times a day. However, there are regulations controlling how the outer tasks are to be distributed among the workers. Regulations say that:
+Considering again the sample worker's schedule, it may look as if the worker can be scheduled for tasks at any yellow shift. However, there are regulations set ut by the library controlling how the outer tasks are to be distributed among the workers. The regulation are put in place to guarantee that worker schedules are not too unbalanced and uncomfortable. 
 
-\begin{enumerate}
-\item A worker can at a maximum perform one task per day.
-\item A worker works only one weekend in five weeks.
-\item A worker must work Friday evening shift, Saturday shift and Sunday shift consecutively. For HB-workers, no Friday evening shift.
-\item A worker is only allowed to work one evening per week, excluding the Friday evening of the weekend week.
-\end{enumerate}
+For one thing, workers are only allowed to take at a maximum one task per day. Secondly, workers only work one weekend per five weeks. During this weekend it is customary that you work Friday evening shift, Saturday and Sunday shift consecutively. This is not true for Hageby, which is far away and is thus compensated by not entailing Friday evening work. Thirdly, weekend work is be compensated by days off. There are a few possible variations of the weekend compensation, but usually the worker takes one and a half or two days off the week following upon weekend work. Lastly, a worker is only allowed to work one evening per week, excluding the Friday which belongs to the weekend week.
+%
+%Regulations say that:
+%
+%\begin{enumerate}
+%\item A worker can at a maximum perform one task per day.
+%\item A worker works only one weekend in five weeks.
+%\item A worker must work Friday evening shift, Saturday shift and Sunday shift consecutively. For HB-workers, no Friday evening shift.
+%\item A worker is only allowed to work one evening per week, excluding the Friday evening of the weekend week.
+%\end{enumerate}
 
-An example of a feasible schedule for the sample worker is provided in Table \ref{tab:Lib_feas_sched}. It should be noted that this schedule is created for a general worker and does not necessarily apply to all workers. Special availabilities due to odd-and even weeks exist and only a subset of the librarians are available for the Library on Wheels and Hageby. Also, some workers never work evening or weekend shifts.  
+An example of a feasible schedule for the sample worker is provided in Table \ref{tab:Lib_feas_sched}. It should be noted that this schedule is created for a general worker and does not necessarily apply to all workers. Among workers, special availability restrictions due to odd-and even weeks exist and only a subset of the librarians are available for the Library on Wheels and Hageby. Also, some workers never work evening or weekend shifts.  
 
 \begin{table}[!h]
 \centering
@@ -325,13 +328,13 @@ An example of a feasible schedule for the sample worker is provided in Table \re
 \end{table} 
 
 
-\subsection{Main objectives for a satisfactory schedule}
+\subsection{Scheduling objectives: stand-in maximization and schedule variation}
 
-The real challenges in creating a schedule according to the instructions above, is not to distribute the tasks but to make sure there is stand in personnel ready to take shifts in the case other personnel is otherwise occupied or is on sick-leave. This emergency back-up system is crucial for the library in order to be able to keep the library desks open and fully staffed. This is the highest priority of the library.
+What is investigated in this thesis is not primarily how to distribute the tasks according to the rules given above, but rather how to do this is a way so that the number of stand-in personnel is maximized. The emergency back-up system of stand-ins is crucial for the library in order to be able to keep the library desks open and fully staffed. Thus is the highest priority of the library to maximize the number of stand-in personnel.
 
-A stand in is defined as a worker who is available for inner tasks during the three day-shifts, but has not any shift scheduled for that day. Inner work sometimes prevents personnel from being scheduled as a stand-in for the outer tasks, and therefore also information about such work must be known to the scheduler. Both librarians and assistants can be scheduled as a stand in, but only librarians are qualified to take emergency shifts at the Info desk. Since the regular library activity is the most crucial activity, there is no need for stand ins during evening and weekends. Similarly, there is specific personnel assigned as stand-ins for the Library on Wheels or for Hageby.
+A stand-in is defined as a worker who is available for outer tasks during shifts one to three, but who is not scheduled at any shift scheduled in that day. Inner work sometimes prevents personnel from being scheduled as a stand-in for the outer tasks, and therefore also information about such work must be known to the scheduler. Both librarians and assistants can be scheduled as a stand-in, but only librarians are qualified to take emergency shifts at the Info desk. Since the regular library activity is the most crucial activity, there is no need for stand-ins during evening and weekends. Similarly, there are no assigned stand-ins for the Library on Wheels or for Hageby.
 
-Apart from maximizing the number of stand ins for each day at the library, another important feature of a schedule is repetitiveness and fairness. It is desirable for the sake of the personnel to create schedules in which the weeks resemble eachother or are repeated according to some pattern. On the other hand, since some shifts are more attractive than other and in order to avoid too much repetitiveness it is desirable that the days during a work week are not too similar. The example schedule in Table \ref{tab:Lib_feas_sched} is an example of a varied scheduled. 
+Apart from maximizing the number of stand-ins for each day at the library, another important measurement of a good schedule is the level of variation. It is desirable for the sake of the personnel to create schedules in which the weeks resemble eachother or are repeated according to some pattern. On the other hand, since some shifts are more attractive than other and in order to avoid too much repetitiveness it is desirable that the days during a work week are not too similar. The example schedule in Table \ref{tab:Lib_feas_sched} is an example of a sufficiently varied weekly schedule. 
 
 \section{Method}
 
