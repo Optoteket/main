@@ -1,4 +1,4 @@
-# Data file Created: 3/16/2016 2:18:49 AM
+# Data file Created: 3/21/2016 2:24:35 AM
 # Master Thesis: Work Distribution of a Heterogeneous Library Staff - A Personnel Task Scheduling Problem
 # Master Students: Claes Arvidson and Emelie Karlsson
 
@@ -6,6 +6,7 @@
 ### Sets ###
 set D := 1 2 3 4 5 6 7 ; #Set of days in a week
 set W := 1 2 3 4 5 6 7 8 9 10 ; #Set of weeks
+set V := 1 2 3 4 5 6 7 8 9 10 ; #Set with the number of weekphases possible |V| = |W|
 set I := 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 ; #Number of workers in total
 set S[1] := 1 2 3 4; #Set of outer shift in day 1
 set S[2] := 1 2 3 4; #Set of outer shift in day 2
@@ -27,7 +28,10 @@ set I_ass := 1 6 10 11 15 18 20 22 26 28 29 30 33 34 35 39 ; # Set with all of t
 set I_LOW := 14 17 25 36 37 ; # Set with all librarians working in the library on wheels
 set I_free_day := 25 29;
 set I_odd_even := 13 17 ; #Set of all workers with odd or even weeks
-set V := 1 2 3 4 5 6 7 8 9 10 ; #Set with the number of weekphases possible |V| = |W|
+set I_big_meeting := 2 3 4 5 7 8 12 13 16 17 19 21 24 25 27 32 36 37 38 1 6 10 11 15 18 20 22 26 28 29 30 33 34 35 39 ; #Set of all workers that attend big meetings
+set I_child := 14 16 19 21 25 10 ; #Set of all workers that belong to the child department
+set I_adult := 2 3 4 12 13 17 24 31 32 36 37 20 30 34 ; #Set of all workers that belong to the adult department
+set I_media := 5 7 8 9 27 1 15 18 29 39 ; #Set of all workers that belong to the media department
 
 
 ### Parameters ###

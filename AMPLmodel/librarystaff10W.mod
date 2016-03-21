@@ -51,6 +51,8 @@ var ass_min integer; # Lowest number of stand-in workers at any shift
 var hb{i in I, w in W} binary; #1 if a person i works in HB week w
 var friday_evening{i in I, w in W} binary; #1 if a person works weekend but not in HB
 var shift_differ_weeks{i in I, w in 1..5, d in 1..5, s in 1..3} binary;
+var B{i in I_big_meeting, w in W, d in 1..5, s in 1..3} binary; #1 if worker i has a big meeting week w, day d, shift s
+var D{i in I_child union I_adult union I_media, w in W, d in 1..5, s in 1..3} binary; #1 if worker i has a child department meeting week w, day d, shift s
 
 ################################## OBJECTIVE FUNCTION ###################################################################
 
@@ -72,6 +74,13 @@ subject to task_assign_amount_weekends{w in W, d in 6..7,s in S[d], j in J[d]}:
 
 subject to task_assign_amount_library_on_wheels{w in W, d in 1..5 ,s in S[d]}:
 	sum{i in I} x[i,w,d,s,'LOW'] = LOW_demand[w,d,s];
+
+######################## Meeting constraints #########################################
+subject to one_big_meeting_per_five_weeks{i in I_big_meeting}:
+	sum{w in W}(sum{d in 1..5} B[i,w,d,1] + B[i,(w+4) mod 10 + 1,d,1]) = 2;
+
+
+
 
 ######################## Maximum one task per day #####################################
 #Stating that a worker performing library on wheels cannot perform another task that day
