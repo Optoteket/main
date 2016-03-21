@@ -75,13 +75,6 @@ subject to task_assign_amount_weekends{w in W, d in 6..7,s in S[d], j in J[d]}:
 subject to task_assign_amount_library_on_wheels{w in W, d in 1..5 ,s in S[d]}:
 	sum{i in I} x[i,w,d,s,'LOW'] = LOW_demand[w,d,s];
 
-######################## Meeting constraints #########################################
-subject to one_big_meeting_per_five_weeks{i in I_big_meeting}:
-	sum{w in W}(sum{d in 1..5} B[i,w,d,1] + B[i,(w+4) mod 10 + 1,d,1]) = 2;
-
-subject to second_meeting_five_weeks_diff{i in I_big_meeting}:
-	
-
 
 ######################## Maximum one task per day #####################################
 #Stating that a worker performing library on wheels cannot perform another task that day
