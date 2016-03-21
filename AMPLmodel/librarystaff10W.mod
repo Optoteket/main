@@ -56,8 +56,6 @@ var stand_in_ass_min integer; # Lowest number of stand-in workers at any shift
 var hb{i in I, w in W} binary; #1 if a person i works in HB week w
 var friday_evening{i in I, w in W} binary; #1 if a person works weekend but not in HB
 var shift_differ_weeks{i in I, w in 1..5, d in 1..5, s in 1..3} binary;
-#var big_meeting{i in I_big_meeting, w in W, d in 1..5, s in 1..3} binary; #1 if worker i has a big meeting week w, day d, shift s
-#var D{i in I_child union I_adult union I_media, w in W, d in 1..5, s in 1..3} binary; #1 if worker i has a child department meeting week w, day d, shift s
 var M_big{w in W, d in 1..5, s in 1..4} binary; #1 if a big meeting is placed on this week, day, shift, 0 otherwise
 var M_child{w in W, d in 1..5, s in 1..4} binary; #1 if a child meeting is placed on this week, day, shift, 0 otherwise
 var M_adult{w in W, d in 1..5, s in 1..4} binary; #1 if an adult meeting is placed on this week, day, shift, 0 otherwise
@@ -127,14 +125,6 @@ subject to two_media_meetings_per_ten_weeks{w in 1..5}:
 
 subject to no_task_when_media_meeting{i in I_media, w in W, d in 1..5, s in S[d], j in {'Exp','Info','PL'}}:
 	M_media[w,d,s] + x[i,w,d,s,j] <= 1;
-
-# Only Exp and Info tasks are cancelled by Big Meeting
-#subject to no_task_when_big_meeting{i in I_big_meeting, w in W, j in {'Exp','Info', 'PL'}}:
-#	M_big[w,1,1] + x[i,w,1,1,j] <= 1;
-
-# Department meeting constraints: child
-#subject to one_big_meeting_per_five_weeks:
-#	sum{w in W} (M_child[w,d,s] + M[(w + 4) mod 10 + 1]) = 2;
 
 ######################## Maximum one task per day #####################################
 #Stating that a worker performing library on wheels cannot perform another task that day
