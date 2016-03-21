@@ -1,7 +1,7 @@
 %A thorough description of the mathematical model in words and in math. More significant and general constraints in equations and less significant in words.
-In this chapter the mathematical model implemented to solve this problem will be presented. Prior to the objective function and constraints, the most significant variables and sets will be stated to give the reader an idea of how the work has proceeded. In Section \ref{constraints} the essential constraints will be presented and explained. A complete model with the full set of constraints can be found in Attachment \ref{definitions}. %To get a full view of the mathematical problem the reader  A list of the defined parameters can be found in Appendix \ref{definitions}. 
+In this chapter the mathematical model implemented to solve this problem will be presented. Prior to the objective function and constraints, the most significant variables and sets will be stated to give the reader some basic knowledge of the implemented model. In Section \ref{constraints} the essential constraints will be presented and explained. A complete model with all definitions and the full set of constraints can be found in Attachment \ref{definitions}. %To get a full view of the mathematical problem the reader  A list of the defined parameters can be found in Appendix \ref{definitions}. 
 \section{Set and variable definitions} \label{variables}
-To solve the problem many sets and variables had to be declared as there are many unique and individual requirements that have to be met. An example is that some personnel want a day free from outer tasks to be able to focus on other assignments or attend meetings. Another one is that a couple of workers have two different schedules whether it is an odd or even week. These specific cases have to be modeled and result in a variety of set and variable definitions. Hence, only the most important ones are listed below. A complete list of the definitions can be found in Appendix \ref{definitions}. \\
+To solve the problem many sets and variables had to be declared, as there are many unique and individual requirements that have to be met. An example is that some personnel want a day free from outer tasks to be able to focus on other assignments or attend meetings. Another example is that some have two alternating schedules for odd and even weeks. These specific cases have to be modeled and result in a variety of set and variable definitions. Hence, only the most important ones are listed below. A complete list of the definitions can be found in Appendix \ref{definitions}. \\
 \itab{$I$} \tab{Set of workers}\\
 \itab{$I_{lib}$} \tab{Set of librarians ($I_{lib} \subseteq I$)} \\
 \itab{$I_{ass}$}	 \tab{Set of assistants ($I_{ass} \subseteq I$)}	\\
@@ -20,7 +20,7 @@ In order to further define the problem we introduce the following variables. Let
     \\
     H_{iwh}&=
     \begin{cases}
-      1, & \text{if worker \textit{i} works weekend \textit{h}, week \textit{w}}\\
+      1, & \text{if worker \textit{i} works weekend \textit{h} in week \textit{w}}\\
       0, & \text{otherwise}
     \end{cases}
 	\\
@@ -87,23 +87,23 @@ To model this problem it has been of relevance to divide many of the constraints
 
 The most crucial constraint is to ensure that the demand of workers is met each day. This can be modeled as,
 \begin{equation}
-\sum_{i \in I} x_{iwdsj} = task\_demand_{wdsj}, \; \forall w\in W,d\in D,s\in S,j\in J_d
+\sum_{i \in I} x_{iwdsj} = demand_{wdsj}, \; \forall w\in W,d\in D,s\in S,j\in J_d
 \end{equation}
 
-where $task\_demand_{wdsj}$ is the number of workers required week \textit{w}, day \textit{d}, shift \textit{s} for a task \textit{j}.
+where $demand_{wdsj}$ is the number of workers required week \textit{w}, day \textit{d}, shift \textit{s} for a task \textit{j}.
 
 To ensure that no worker is assigned more than one task the following constraint is implemented,
 \begin{equation} \label{constr:one_task_constraint}
 \sum_{s\in S}\sum_{j\in J_d} x_{iwdsj} \leq 1, \; \forall i\in I, w \in W, d\in D
 \end{equation}
-However, if we allow a person to have two shifts at the library on wheels in a day Equation \ref{constr:one_task_constraint} has to be slightly modified.
+However, if we allow a person to have two shifts at the library on wheels in a day Equation \ref{constr:one_task_constraint} has to be slightly modified, which is shown in the complete model in Appendix \ref{definitions}.
 
 A preference is to only allow one PL per week and a maximum of three PL per ten weeks. These are easily modeled with the following constraints,
 \begin{equation} \label{constr:one_PL}
-\sum_{s \in S_d}\sum_{d \in D} x_{iwdsj=PL} \leq 1, \; \forall i\in I, w \in W
+\sum_{s \in S_d}\sum_{d \in D} x_{iwdsPL} \leq 1, \; \forall i\in I, w \in W
 \end{equation}
 \begin{equation} \label{constr:three_PL}
-\sum_{w \in W}\sum_{s \in S_d}\sum_{d \in D} x_{iwdsj=PL} \leq 3, \; \forall i\in I
+\sum_{w \in W}\sum_{s \in S_d}\sum_{d \in D} x_{iwdsPL} \leq 3, \; \forall i\in I
 \end{equation}
 
 To further model the problem weekends and week rotations have to be considered. The following three constraints are the most basic constraints regarding weekends and week rotations:
@@ -114,12 +114,31 @@ To further model the problem weekends and week rotations have to be considered. 
 \sum_{w \in W} H_{iwh} \leq 1, \; \forall i\in I, h = 1,2
 \end{equation}
 \begin{equation} \label{constr:rot_weekend}
-r_{iw} =
-	\begin{cases}
- 		1, & \text{if $H_{iwh=1} = 1$} \\
- 		0/1, & \text{otherwise}
-	\end{cases}
-	\; \forall i\in I, w \in W \;
+r_{iw} \geq H_{iw1}, \; \forall i\in I, w \in W
+%	\begin{cases}
+% 		1, & \text{if $H_{iwh=1} = 1$} \\
+% 		0/1, & \text{otherwise}
+%	\end{cases}
+%	\; \forall i\in I, w \in W \;
 \end{equation}
 
-quation \ref{constr:one_rot} ensures that only one rotation of a workers schedule is active. Equation \ref{constr:max_one_weekend} allows a worker to work a maximum of two weekends $(h = 1, h = 2)$ in ten weeks.
+Equation \ref{constr:one_rot} provides all workers a rotation of their schedule regardless if they are working weekends or not. Equation \ref{constr:max_one_weekend} allows a worker to work a maximum of two weekends $(h = 1, h = 2)$ per ten weeks. Lastly, Equation \ref{constr:rot_weekend} in combination with Equation \ref{constr:one_rot} ensures that the schedule rotation is aligned with the first weekend, if the worker is due for weekend work. In case the worker is not due for weekend work, the rotation of the schedule is free.
+
+A worker is supposed to work weekends with a five-week interval. However, in case there are enough workers to satisfy the demand on weekends it may only be necessary to work one weekend per ten weeks for some. To avoid problems with the rotation when only the second weekend is assigned to a worker, the following equation was implemented:
+\begin{equation} \label{constr:five_week_interval}
+r_{i(mod_{10}(w+4)+1)} \geq H_{iw2}, \; \forall i\in I, w \in W
+\end{equation}
+Worth noting is that if a worker is assigned to work both weekends then Equation \ref{constr:five_week_interval} says the same as Equation \ref{constr:rot_weekend}.
+
+A worker is supposed to work Saturday and Sunday with the same task when working a weekend. This can be modeled with the following constraints:
+\begin{equation} \label{constr:consecutive_days}
+\sum_{j \in J_d} x_{iw61j} + \sum_{j \in J_d} x_{iw71j} = 2*\sum_{h \in 1,2} H_{iwh}, \; \forall i\in I, w \in W
+\end{equation}
+\begin{equation} \label{constr:same_tasks}
+x_{iw61j} = x_{iw71j}, \; \forall i\in I, w \in W, j \in J_d
+\end{equation}
+
+Friday evening is also included in extension to working Saturday and Sunday, unless the worker is assigned to HB. Though, it does not have to be the same task as the weekend, thus not included in Equation \ref{constr:same_tasks}. Equation \ref{constr:friday_added} below adds friday
+\begin{equation} \label{constr:friday_added}
+x_{iw61j} = x_{iw71j}, \; \forall i\in I, w \in W, j \in J_d
+\end{equation}
