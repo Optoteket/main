@@ -93,12 +93,10 @@ display stand_in_lib_min;
 display stand_in_ass_min;
 display shift_differ_weeks;
 display M_big;
-# Print in terminal of objective function value (inactive)
-#display cost;
-#display y1;
-#display y2;
-#display y3;
-#display x;
+display num_child_qualavail;
+display num_adult_qualavail;
+display num_media_qualavail;
+
 
 #Utskrift av villkor, tex slack
 #display villkorsnamn.slack;
