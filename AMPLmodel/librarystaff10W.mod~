@@ -56,15 +56,10 @@ var stand_in_ass_min integer; # Lowest number of stand-in workers at any shift
 var hb{i in I, w in W} binary; #1 if a person i works in HB week w
 var friday_evening{i in I, w in W} binary; #1 if a person works weekend but not in HB
 var shift_differ_weeks{i in I, w in 1..5, d in 1..5, s in 1..3} binary;
-<<<<<<< HEAD
-#var B{i in I_big_meeting, w in W, d in 1..5, s in 1..3} binary; #1 if worker i has a big meeting week w, day d, shift s
-#var D{i in I_child union I_adult union I_media, w in W, d in 1..5, s in 1..3} binary; #1 if worker i has a child department meeting week w, day d, shift s
-=======
 var M_big{w in W, d in 1..5, s in 1..4} binary; #1 if a big meeting is placed on this week, day, shift, 0 otherwise
 var M_child{w in W, d in 1..5, s in 1..4} binary; #1 if a child meeting is placed on this week, day, shift, 0 otherwise
 var M_adult{w in W, d in 1..5, s in 1..4} binary; #1 if an adult meeting is placed on this week, day, shift, 0 otherwise
 var M_media{w in W, d in 1..5, s in 1..4} binary; #1 if a media meeting is placed on this week, day, shift, 0 otherwise
->>>>>>> b9223fda255ca8bf420d0973466d7109877d335d
 
 ################################## OBJECTIVE FUNCTION ###################################################################
 
@@ -131,7 +126,6 @@ subject to two_media_meetings_per_ten_weeks{w in 1..5}:
 subject to no_task_when_media_meeting{i in I_media, w in W, d in 1..5, s in S[d], j in {'Exp','Info','PL'}}:
 	M_media[w,d,s] + x[i,w,d,s,j] <= 1;
 
-
 ######################## Maximum one task per day #####################################
 #Stating that a worker performing library on wheels cannot perform another task that day
 subject to only_LOW{i in I, w in W, d in 1..5, s2 in S[d]}:
@@ -143,8 +137,8 @@ subject to two_LOW_allowed{i in I, w in W, d in 1..5}:
 subject to max_one_task_per_day_weekend{i in I, w in W, d in 6..7}:
 	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;
 
-subject to max_one_task_per_evening_not_fridays{i in I, w in W, d in 1..4}:
-	sum{j in J[d]} x[i,w,d,4,j] <= 1;
+subject to max_one_task_per_evening_not_fridays{i in I diff {36}, w in W}:
+	sum{d in 1..4}(sum{j in J[d]} x[i,w,d,4,j]) <= 1;
 
 ######################## Maximum one 'PL' per week and maximum two per five weeks #####################################
 #Allowing a worker i to only work with 'Plocklistan' once per week
@@ -154,8 +148,6 @@ subject to max_one_PL_per_week{i in I, w in W}:
 #Allowing a worker i maximum two 'PL' per five weeks
 subject to max_three_PL_per_ten_weeks{i in I}:
 	sum{w in W}(sum{d in 1..5} x[i,w,d,1,'PL']) <= 3;
-#subject to max_two_PL_per_five_last_weeks{i in I}:
-#	sum{w in 6..10}(sum{d in 1..5} x[i,w,d,1,'PL']) <= 2;
 	
 ####################### Week rotation and weekend constraints #########################
 #Stating the week where the evening shall be rotated to
@@ -175,15 +167,15 @@ subject to only_even_rotations{i in I_odd_even, w in 1..5}:
 	r[i,2*w] = 0;
 
 #if weekend two is 1 for a week w, then rotation r shall be shifted by 5. e.g. h2[i,7] = 1 then r[i,2] = 1, if h2[i,2] = 1 then r[i,7] = 1
-#subject to rotation_demand2{i in I, w in W}:
-#	r[i,(w+4) mod 10 + 1] >= H[i,w,2];
+subject to rotation_demand2{i in I, w in W}:
+	r[i,(w+4) mod 10 + 1] >= H[i,w,2];
 
 #Ensuring that if a worker i is working weekend w then they will work saturday and sunday in week w
 subject to two_days_weekends{i in I_weekend_avail, w in W}:
-	sum {j in J[6]} x[i,w,6,1,j] + sum {j in J[7]} x[i,w,7,1,j] = 2*(sum{h in 1..2} H[i,w,h]);	 # 2*h1[i,w] + 2*h2[i,w];
+	sum {s in S[6]}(sum {j in J[6]} x[i,w,6,s,j]) + sum {s in S[7]}(sum {j in J[7]} x[i,w,7,s,j]) = 2*(sum{h in 1..2} H[i,w,h]);	 # h1[i,w] + 2*h2[i,w];
 
 subject to same_tasks_on_weekends{i in I_weekend_avail, w in W, j in J[7]} :
-	x[i,w,6,1,j] = x[i,w,7,1,j]; #s = 1 for weekends anyhow
+	sum{s in S[6]} x[i,w,6,s,j] = sum{s in S[7]} x[i,w,7,s,j]; #s = 1 for weekends anyhow
 
 
 ######################### Friday/weekend constraints #################################
@@ -232,6 +224,7 @@ subject to help_constraint3_lib{i in I_lib, w in W, d in 1..5}:
 subject to help_constraint4_lib{i in I_lib, w in W, d in 1..5}:
 	stand_in_lib[i,w,d] <= 1-sum{s in 1..3} x[i,w,d,s,'LOW'];
 
+#extra constraint added since two lows are possible (evening and day)
 subject to help_constraint5_lib{i in I_lib, w in W, d in 1..5}:
 	stand_in_lib[i,w,d] <= 1- x[i,w,d,4,'LOW'];
 

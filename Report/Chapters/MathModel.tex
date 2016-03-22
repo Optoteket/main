@@ -48,7 +48,7 @@ In order to further define the problem we introduce the following variables. Let
  		0, & \text{otherwise}
 	\end{cases}
 	\\
-	h_{iw}&=
+	b_{iw}&=
 	\begin{cases}
  		1, & \text{if worker \textit{i} works at HB week \textit{w}} \\
  		0, & \text{otherwise}
@@ -128,17 +128,38 @@ A worker is supposed to work weekends with a five-week interval. However, in cas
 \begin{equation} \label{constr:five_week_interval}
 r_{i(mod_{10}(w+4)+1)} \geq H_{iw2}, \; \forall i\in I, w \in W
 \end{equation}
-Worth noting is that if a worker is assigned to work both weekends then Equation \ref{constr:five_week_interval} says the same as Equation \ref{constr:rot_weekend}.
+Worth noting is that if a worker is assigned both weekends then Equation \ref{constr:five_week_interval} says the same as Equation \ref{constr:rot_weekend}.
 
 A worker is supposed to work Saturday and Sunday with the same task when working a weekend. This can be modeled with the following constraints:
 \begin{equation} \label{constr:consecutive_days}
-\sum_{j \in J_d} x_{iw61j} + \sum_{j \in J_d} x_{iw71j} = 2*\sum_{h \in 1,2} H_{iwh}, \; \forall i\in I, w \in W
+\sum_{j \in J_d} x_{iw61j} + \sum_{j \in J_d} x_{iw71j} = 2*\sum_{h = 1}^{2} H_{iwh}, \; \forall i\in I, w \in W
 \end{equation}
 \begin{equation} \label{constr:same_tasks}
 x_{iw61j} = x_{iw71j}, \; \forall i\in I, w \in W, j \in J_d
 \end{equation}
 
-Friday evening is also included in extension to working Saturday and Sunday, unless the worker is assigned to HB. Though, it does not have to be the same task as the weekend, thus not included in Equation \ref{constr:same_tasks}. Equation \ref{constr:friday_added} below adds friday
+Friday evening is also included in extension to working Saturday and Sunday, unless the worker is assigned to HB. It does, however, not require to be the same task as during the weekend, thus Fridays not included in Equation \ref{constr:same_tasks}. Equation \ref{constr:friday_added} below adds Fridays to the weekend:
 \begin{equation} \label{constr:friday_added}
-x_{iw61j} = x_{iw71j}, \; \forall i\in I, w \in W, j \in J_d
+\sum_{j \in J \backslash 'LoW'}x_{iw54j} = f_{iw}, \; \forall i \in I, w \in W
 \end{equation}
+The variable $f_{iw}$ is, as mentioned previously, one if and only if a worker is working weekend as well as not being assigned to HB. The help constraints implemented to avoid multiplication of the two variables $b_{iw}$ and $H_{iwh}$ are left out of this section and can instead be seen in Appendix \ref{definitions}.
+
+It is of interest to implement a constraint preventing workers to be assigned HB more than once every ten weeks to avoid unfairness. The constraint can be modeled as:
+\begin{equation} \label{constr:max_one_hb}
+\sum_{w \in W}\sum_{d = 6}^{7}x_{iwd1HB} \leq 2, \; \forall i \in I
+\end{equation}
+The combination of Equations \ref{constr:max_one_hb} and \ref{constr:same_tasks} ensure that once a worker is assigned HB it will be for two consecutive weekend days. Why this is preferable is described in Section \ref{section:library_tasks}.
+
+To calculate the variable $l_{min}$ and $a_{min}$ used in the objective function (\ref{objfcn}) the following equations were implemented:
+\begin{equation} \label{constr:l_min}
+l_{min} \leq \sum_{i \in I_{lib}} l_{iwd}, \; \forall w \in W, d=1, \ldots, 5
+\end{equation}
+\begin{equation} \label{constr:a_min}
+a_{min} \leq \sum_{i \in I_{ass}} a_{iwd}, \; \forall w \in W, d=1, \ldots, 5
+\end{equation}
+
+%a_{iwd} 0/1, so sum of the I_ass gives all the stand-ins. a_min <= #stand_ins that still shall be maximized in the obj function.
+
+%subject to find_lowest_stand_in_amount_no_weekends_no_evenings_lib{w in W, d in 1..5}: #RHS: number of qualified workers at work that is available & not assigned to any task.
+%
+%	stand_in_lib_min <= sum{i in I_lib} stand_in_lib[i,w,d]; 
