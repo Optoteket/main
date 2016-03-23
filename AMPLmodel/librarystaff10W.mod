@@ -60,12 +60,6 @@ var M_big{w in W, d in 1..5, s in 1..4} binary; #1 if a big meeting is placed on
 var M_child{w in W, d in 1..5, s in 1..3} binary; #1 if a child meeting is placed on this week, day, shift, 0 otherwise
 var M_adult{w in W, d in 1..5, s in 1..3} binary; #1 if an adult meeting is placed on this week, day, shift, 0 otherwise
 var M_media{w in W, d in 1..5, s in 1..3} binary; #1 if a media meeting is placed on this week, day, shift, 0 otherwise
-var num_child_qualavail integer;
-var num_adult_qualavail integer;
-var num_media_qualavail integer;
-var avail_child{i in I_child, w in W,d in 1..5,s in 1..3} binary;
-var avail_adult{i in I_adult, w in W,d in 1..5,s in 1..3} binary;
-var avail_media{i in I_media, w in W,d in 1..5,s in 1..3} binary;
 
 ################################## OBJECTIVE FUNCTION ###################################################################
 
@@ -73,9 +67,6 @@ maximize objective: #Maximize stand-ins and create schedules with similar weeks 
 	N1l*stand_in_lib_min
 	+ N1a*stand_in_ass_min
 	- N2*sum{i in I}(sum{w in 1..5}(sum{d in 1..5}(sum{s in 1..3} shift_differ_weeks[i,w,d,s])))
-	#+ num_child_qualavail
-	#+ num_adult_qualavail
-	#+ num_media_qualavail
 	;
 
 #################################### CONSTRAINTS ########################################################################
@@ -118,19 +109,6 @@ subject to no_task_when_child_meeting{i in I_child, w in W, d in 1..5, s in 1..3
 subject to all_must_be_qualavail_child{i in I_child, w in W, d in 1..5, s in 1..3}:
 	M_child[w,d,s] <= sum{v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,'Exp']);
 
-
-#subject to num_workers_availble_for_child_meeting_1{i in I_child, w in W, d in 1..5, s in 1..3}:
-#	avail_child[i,w,d,s] >= sum{v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,'Exp']) + M_child[w,d,s] - 1;
-
-#subject to num_workers_availble_for_child_meeting_2{i in I_child, w in W, d in 1..5, s in 1..3}:
-#	avail_child[i,w,d,s] <= sum{v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,'Exp']);
-
-#subject to num_workers_availble_for_child_meeting_3{i in I_child, w in W, d in 1..5, s in 1..3}:
-#	avail_child[i,w,d,s] <=  M_child[w,d,s];
-
-#subject to num_workers_availble_for_child_meeting_4:
-#	num_child_qualavail <= sum{i in I_child} (sum{w in W} (sum{d in 1..5} (sum{s in 1..3} avail_child[i,w,d,s])));
-
 ######################### Department meeting constraint: adult ########################
 subject to one_adult_meeting_per_five_weeks:
 	sum{w in 1..5}(sum{d in 1..5}(sum{s in 1..3} M_adult[w,d,s])) = 1;
@@ -144,17 +122,6 @@ subject to no_task_when_adult_meeting{i in I_adult, w in W, d in 1..5, s in 1..3
 subject to all_must_be_qualavail_adult{i in I_adult, w in W, d in 1..5, s in 1..3}:
 	M_adult[w,d,s] <= sum{v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,'Exp']);
 
-#subject to num_workers_availble_for_adult_meeting_1{i in I_adult, w in W, d in 1..5, s in 1..3}:
-#	avail_adult[i,w,d,s] >= sum{v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,'Exp']) + M_adult[w,d,s] - 1;
-
-#subject to num_workers_availble_for_adult_meeting_2{i in I_adult, w in W, d in 1..5, s in 1..3}:
-#	avail_adult[i,w,d,s] <= sum{v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,'Exp']);
-
-#subject to num_workers_availble_for_adult_meeting_3{i in I_adult, w in W, d in 1..5, s in 1..3}:
-#	avail_adult[i,w,d,s] <=  M_adult[w,d,s];
-
-#subject to num_workers_availble_for_adult_meeting_4:
-#	num_adult_qualavail <= sum{i in I_adult} (sum{w in W} (sum{d in 1..5} (sum{s in 1..3} avail_adult[i,w,d,s])));
 
 ######################### Department meeting constraint: media ########################
 subject to one_media_meeting_per_five_weeks:
@@ -169,17 +136,6 @@ subject to no_task_when_media_meeting{i in I_media, w in W, d in 1..5, s in 1..3
 subject to all_must_be_qualavail_media{i in I_media diff {39}, w in W, d in 1..5, s in 1..3}:
 	M_media[w,d,s] <= sum{v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,'Exp']);
 
-#subject to num_workers_availble_for_media_meeting_1{i in I_media, w in W, d in 1..5, s in 1..3}:
-#	avail_media[i,w,d,s] >= sum{v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,'Exp']) + M_media[w,d,s] - 1;
-
-#subject to num_workers_availble_for_media_meeting_2{i in I_media, w in W, d in 1..5, s in 1..3}:
-#	avail_media[i,w,d,s] <= sum{v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,'Exp']);
-
-#subject to num_workers_availble_for_media_meeting_3{i in I_media, w in W, d in 1..5, s in 1..3}:
-#	avail_media[i,w,d,s] <=  M_media[w,d,s];
-
-#subject to num_workers_availble_for_media_meeting_4:
-#	num_media_qualavail <= sum{i in I_media} (sum{w in W} (sum{d in 1..5} (sum{s in 1..3} avail_media[i,w,d,s])));
 
 ######################## Maximum one task per day #####################################
 #Stating that a worker performing library on wheels cannot perform another task that day
@@ -308,7 +264,6 @@ subject to only_assigned_if_qualavail_weekdays{i in I, w in W, d in 1..5, s in S
 subject to only_assigned_if_qualavail_weekends{i in I, w in W, d in 6..7, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'. No 'LOW' on weekends either
 	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
 
-# _lib_on_wheels
 ############### Second objective function constraints: Similar weeks for workers #############
 
 subject to positive_values_of_absX{i in I, w in 1..5, d in 1..5, s in 1..3}:
