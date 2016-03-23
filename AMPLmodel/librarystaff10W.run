@@ -93,9 +93,6 @@ display stand_in_lib_min;
 display stand_in_ass_min;
 #display shift_differ_weeks;
 display M_big;
-display num_child_qualavail;
-display num_adult_qualavail;
-display num_media_qualavail;
 
 
 #Utskrift av villkor, tex slack
