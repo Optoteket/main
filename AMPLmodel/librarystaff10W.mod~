@@ -302,11 +302,9 @@ subject to help_constraint3_ass{i in I_ass, w in W, d in 1..5}:
 
 ####################### Only assign if qualified and available ######################
 
-subject to only_assigned_if_qualavail_weekdays{i in I, w in W, d in 1..5, s in S[d], j in {'Exp', 'Info', 'PL', 'LOW'}}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
+subject to only_assigned_if_qualavail_weekdays{i in I, w in W, d in D, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'
 	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
 
-subject to only_assigned_if_qualavail_weekends{i in I, w in W, d in 6..7, s in S[d], j in J[d]}: #librarians qualified for all: 'Exp', 'Info', 'PL', 'HB'. No 'LOW' on weekends either
-	x[i,w,d,s,j] <= (sum {v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,j]));
 
 # _lib_on_wheels
 ############### Second objective function constraints: Similar weeks for workers #############
@@ -320,19 +318,23 @@ subject to negative_values_of_absX{i in I, w in 1..5, d in 1..5, s in 1..3}:
 
 
 ###################### Worker shift assignment ##############################
-#Variable saying if a worker i is assigned a shift s, not accounting Library on wheels
+#Variable saying if a worker i is assigned a shift s, not accounting Library on Wheels
 subject to assign_y{i in I, w in W, d in 1..5, s in 1..3}:
 	y[i,w,d,s] = sum{j in {'Exp', 'Info', 'PL'}} x[i,w,d,s,j];
 
 #Workers that shall be assigned a weekday free from tasks
 subject to task_free_weekday{i in I_free_day, w in W}:
-	sum{d in 1..5}(1-sum{s in 1..3} y[i,w,d,s]) >= 1;
+	sum{d in 1..5}(1-sum{s in 1..3}(sum{j in J[d]} x[i,w,d,s,j])) >= 1;
 
 ######################### Time constraints #################################
-#Allowing only three shifts at a certain time each week
+#Allowing only three shifts at a certain time each week, not accounting Library on Wheels
 subject to max_three_shifts_at_same_hours_per_week{i in I, w in W, s in 1..3}:
 	sum{d in 1..5} y[i,w,d,s] <= 2;
 
-subject to no_weekend_tasks_except_LOW{w in W, d in 1..4, j in {'Exp', 'Info'}}:
+#Worker 25 works only weekends on HB
+subject to no_weekend_tasks_except_HB{w in W, d in 1..4, j in {'Exp', 'Info'}}:
 	x[25,w,d,4,j] = 0;
+
+#subject to low_evenings:
+#	sum{w in W}(sum{d in 1..5}x[25,w,d,1,'LOW']) >= 9;
 

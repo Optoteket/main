@@ -1,16 +1,16 @@
 %A thorough description of the mathematical model in words and in math. More significant and general constraints in equations and less significant in words.
-In this chapter the mathematical model implemented to solve this problem will be presented. Prior to the objective function and constraints, the most significant variables and sets will be stated to give the reader some basic knowledge of the implemented model. In Section \ref{constraints} the essential constraints will be presented and explained. A complete model with all definitions and the full set of constraints can be found in Attachment \ref{definitions}. %To get a full view of the mathematical problem the reader  A list of the defined parameters can be found in Appendix \ref{definitions}. 
+In this chapter the mathematical model implemented to solve this problem will be presented. Prior to the objective function and constraints, the most significant sets and variables will be provided to give the reader some basic knowledge of the implemented model. Section \ref{section:obj} presents the objective function and gives a short description of what it represents. In Section \ref{constraints} the essential constraints will be presented and explained. A complete model with all definitions and the full set of constraints can be found in Attachment \ref{definitions}. %To get a full view of the mathematical problem the reader  A list of the defined parameters can be found in Appendix \ref{definitions}. 
 \section{Set and variable definitions} \label{variables}
-To solve the problem many sets and variables had to be declared, as there are many unique and individual requirements that have to be met. An example is that some personnel want a day free from outer tasks to be able to focus on other assignments or attend meetings. Another example is that some have two alternating schedules for odd and even weeks. These specific cases have to be modeled and result in a variety of set and variable definitions. Hence, only the most important ones are listed below. A complete list of the definitions can be found in Appendix \ref{definitions}. \\
+To solve the problem many sets and variables had to be declared. There are many unique and individual requirements that have to be met, given by the library. An example is that some personnel want a day free from outer tasks to be able to attend meetings or perform inner tasks. Another example is that some have two alternating schedules for odd and even weeks. These specific cases have to be modeled and result in a variety of set and variable definitions. Hence, only the most important ones are listed below. A complete list of the definitions can be found in Appendix \ref{definitions}. \\
 \itab{$I$} \tab{Set of workers}\\
 \itab{$I_{lib}$} \tab{Set of librarians ($I_{lib} \subseteq I$)} \\
 \itab{$I_{ass}$}	 \tab{Set of assistants ($I_{ass} \subseteq I$)}	\\
 \itab{$W$}                 \tab{Set of weeks}                                               \\
 \itab{$D$}                 \tab{Set of days in a week}                                      \\
-\itab{$S_d$}           \tab{Set of shifts day \textit{d}}                                        \\
-\itab{$J_d$}            \tab{Set of task types day \textit{d}}                                    \\
+\itab{$S_d$}           \tab{Set of shifts available day \textit{d}}                                        \\
+\itab{$J_d$}            \tab{Set of task types available day \textit{d}}                                    \\
 
-In order to further define the problem we introduce the following variables. Let,
+In order to further define the problem we introduce the following variables: Let,
 \begin{align}
     x_{iwdsj}&=
     \begin{cases}
@@ -20,13 +20,13 @@ In order to further define the problem we introduce the following variables. Let
     \\
     H_{iwh}&=
     \begin{cases}
-      1, & \text{if worker \textit{i} works weekend \textit{h} in week \textit{w}}\\
+      1, & \text{if worker \textit{i} works weekend \textit{h} (= 1, 2) in week \textit{w}}\\
       0, & \text{otherwise}
     \end{cases}
 	\\
 	r_{iw}&=
 	\begin{cases}
-		1, & \text{if worker \textit{i} has its scheduled rotated \textit{w-1} steps}\\
+		1, & \text{if worker \textit{i} has its schedule rotated \textit{w-1} steps}\\
 		0, & \text{otherwise}
 	\end{cases}
 	\\
@@ -44,7 +44,7 @@ In order to further define the problem we introduce the following variables. Let
 	\\
 	y_{iwds}&=
 	\begin{cases}
- 		1, & \text{if worker \textit{i} works week \textit{w}, day \textit{d}, shift \textit{s} regardless of task type} \\
+ 		1, & \text{if worker \textit{i} works week \textit{w}, weekday \textit{d}, shift \textit{s} at task type 'Info', 'Exp' or 'PL'} \\
  		0, & \text{otherwise}
 	\end{cases}
 	\\
@@ -62,51 +62,43 @@ In order to further define the problem we introduce the following variables. Let
 	\\
 	l_{min}&= \text{lowest number of stand-in librarians found (integer)} \\
 	a_{min}&= \text{lowest number of stand-in assistants found (integer)} \\
-	s_{iwds}&= \text{number of shifts \textit{s} that differ for a worker \textit{i} between week \textit{w} and \textit{w+5}, day \textit{d} (integer)}
+	d_{iwds}&= \text{number of shifts \textit{s} that differ for a worker \textit{i} between week \textit{w} and \textit{w+5} and day \textit{d} (integer)}
 \end{align}
 
 %All decision variables are not presented. Instead, it is up to the reader to see the complete list of variables in Appendix \ref{definitions}.
 
 Based on the variables defined above it has been possible to solve our scheduling problem. \textit{$l_{min}$} and \textit{$a_{min}$} are the variables of most significance as they represent the number of stand-ins found after a run. 
 
-\section{Objective function}
-Due to multiple objective functions it has been necessary to weigh them against each other using parameters. These are shown in Equation \ref{objfcn} below as \textit{N1l}, \textit{N1a} and \textit{N2}.
+\section{Objective function} \label{section:obj}
+Due to multiple objective functions it has been necessary to weigh them against each other using parameters. These are shown in Equation \ref{objfcn} below as $L$, $A$ and $N$.
 
 \begin{equation} \label{objfcn}
 \begin{split}
-max &N1l*l_{min}\\
- + &N1a*a_{min} \\
- - &N2*\sum_{i \in I}\sum_{w = 1}^{5}\sum_{d = 1}^{5}\sum_{s = 1}^{3} s_{iwds}
+max &L*l_{min}\\
+ + &A*a_{min} \\
+ - &N*\sum_{i \in I}\sum_{w = 1}^{5}\sum_{d = 1}^{5}\sum_{s = 1}^{3} d_{iwds}
 \end{split}
 \end{equation}
+The two first objective functions represent the lowest amount of stand-in librarians and assistants found. The third objective function is a preference from the library that weeks with a five-week interval should be as similar as possible (e.g. week 1 and 6, 2 and 7 etc.).
 
-If $\textit{N1l} < \textit{N1a}$ then the function were to prioritize assistants as stand-ins rather than librarians. Librarians are, however, more desired as stand-ins, due to their ability to perform all task types. Therefore, it is desired to set $\textit{N1l} \geq \textit{N1a}$.
+If $\textit{L} < \textit{A}$ in the model the solver would prioritize assistants over librarians as stand-ins. Librarians are, however, more desired as stand-ins, due to their ability to perform all task types. Therefore, it is desired to set $\textit{L} \geq \textit{A}$.
 
 \section{Constraints} \label{constraints}
 To model this problem it has been of relevance to divide many of the constraints into weekend- and weekday constraints. Several help constraints have also been added to avoid multiplication of two variables, making the problem non-linear.
 
-The most crucial constraint is to ensure that the demand of workers is met each day. This can be modeled as,
+The most crucial constraint is to ensure that the demand of workers is met each day. This can be modeled as:
 \begin{equation}
 \sum_{i \in I} x_{iwdsj} = demand_{wdsj}, \; \forall w\in W,d\in D,s\in S,j\in J_d
 \end{equation}
+$demand_{wdsj}$ is the number of workers required week \textit{w}, day \textit{d}, shift \textit{s} for a task \textit{j}.
 
-where $demand_{wdsj}$ is the number of workers required week \textit{w}, day \textit{d}, shift \textit{s} for a task \textit{j}.
-
-To ensure that no worker is assigned more than one task the following constraint is implemented,
+To ensure that no worker is assigned more than one task the following constraint is implemented:
 \begin{equation} \label{constr:one_task_constraint}
 \sum_{s\in S}\sum_{j\in J_d} x_{iwdsj} \leq 1, \; \forall i\in I, w \in W, d\in D
 \end{equation}
 However, if we allow a person to have two shifts at the library on wheels in a day Equation \ref{constr:one_task_constraint} has to be slightly modified, which is shown in the complete model in Appendix \ref{definitions}.
 
-A preference is to only allow one PL per week and a maximum of three PL per ten weeks. These are easily modeled with the following constraints,
-\begin{equation} \label{constr:one_PL}
-\sum_{s \in S_d}\sum_{d \in D} x_{iwdsPL} \leq 1, \; \forall i\in I, w \in W
-\end{equation}
-\begin{equation} \label{constr:three_PL}
-\sum_{w \in W}\sum_{s \in S_d}\sum_{d \in D} x_{iwdsPL} \leq 3, \; \forall i\in I
-\end{equation}
-
-To further model the problem weekends and week rotations have to be considered. The following three constraints are the most basic constraints regarding weekends and week rotations:
+To further model the problem weekends and week rotations have to be considered. The following three constraints are the most basic constraints regarding weekends $H_{iwh}$ and week rotations $r_{iw}$:
 \begin{equation} \label{constr:one_rot}
 \sum_{w \in W} r_{iw} = 1, \; \forall i\in I
 \end{equation}
@@ -122,15 +114,15 @@ r_{iw} \geq H_{iw1}, \; \forall i\in I, w \in W
 %	\; \forall i\in I, w \in W \;
 \end{equation}
 
-Equation \ref{constr:one_rot} provides all workers a rotation of their schedule regardless if they are working weekends or not. Equation \ref{constr:max_one_weekend} allows a worker to work a maximum of two weekends $(h = 1, h = 2)$ per ten weeks. Lastly, Equation \ref{constr:rot_weekend} in combination with Equation \ref{constr:one_rot} ensures that the schedule rotation is aligned with the first weekend, if the worker is due for weekend work. In case the worker is not due for weekend work, the rotation of the schedule is free.
+Equation \ref{constr:one_rot} provides all workers with a rotation of their schedule regardless if they are working weekends or not. Equation \ref{constr:max_one_weekend} allows a worker a maximum of two weekends $(h = 1, h = 2)$ per ten weeks. Lastly, Equation \ref{constr:rot_weekend} in combination with Equation \ref{constr:one_rot} ensures that the schedule rotation is aligned with the first weekend, if the worker is due for weekend work. In case the worker is not due for weekend work, the rotation of the schedule is free.
 
-A worker is supposed to work weekends with a five-week interval. However, in case there are enough workers to satisfy the demand on weekends it may only be necessary to work one weekend per ten weeks for some. To avoid problems with the rotation when only the second weekend is assigned to a worker, the following equation was implemented:
+A worker is supposed to work weekends with a five-week interval. However, in case when there are enough workers to satisfy the demand on weekends it may be enough to work one weekend per ten weeks for some. To avoid problems with the rotation when only the second weekend is assigned to a worker, the following equation was implemented:
 \begin{equation} \label{constr:five_week_interval}
 r_{i(mod_{10}(w+4)+1)} \geq H_{iw2}, \; \forall i\in I, w \in W
 \end{equation}
-Worth noting is that if a worker is assigned both weekends then Equation \ref{constr:five_week_interval} says the same as Equation \ref{constr:rot_weekend}.
+Worth noting is that if a worker is assigned both weekends then Equation \ref{constr:five_week_interval} provides the same information as Equation \ref{constr:rot_weekend}.
 
-A worker is supposed to work Saturday and Sunday with the same task when working a weekend. This can be modeled with the following constraints:
+A worker is supposed to work with the same task both Saturday and Sunday when working a weekend. This can be modeled with the following constraints:
 \begin{equation} \label{constr:consecutive_days}
 \sum_{j \in J_d} x_{iw61j} + \sum_{j \in J_d} x_{iw71j} = 2*\sum_{h = 1}^{2} H_{iwh}, \; \forall i\in I, w \in W
 \end{equation}
@@ -138,17 +130,17 @@ A worker is supposed to work Saturday and Sunday with the same task when working
 x_{iw61j} = x_{iw71j}, \; \forall i\in I, w \in W, j \in J_d
 \end{equation}
 
-Friday evening is also included in extension to working Saturday and Sunday, unless the worker is assigned to HB. It does, however, not require to be the same task as during the weekend, thus Fridays not included in Equation \ref{constr:same_tasks}. Equation \ref{constr:friday_added} below adds Fridays to the weekend:
+Friday evening is also included in extension to working Saturday and Sunday, unless the worker is assigned to HB. It is, however, not a necessity to perform the same task Friday evenings as during the weekend, thus Fridays not included in Equation \ref{constr:same_tasks}. Equation \ref{constr:friday_added} below adds Fridays to the weekend:
 \begin{equation} \label{constr:friday_added}
 \sum_{j \in J \backslash 'LoW'}x_{iw54j} = f_{iw}, \; \forall i \in I, w \in W
 \end{equation}
 The variable $f_{iw}$ is, as mentioned previously, one if and only if a worker is working weekend as well as not being assigned to HB. The help constraints implemented to avoid multiplication of the two variables $b_{iw}$ and $H_{iwh}$ are left out of this section and can instead be seen in Appendix \ref{definitions}.
 
-It is of interest to implement a constraint preventing workers to be assigned HB more than once every ten weeks to avoid unfairness. The constraint can be modeled as:
+It is of interest to implement a constraint preventing workers to be assigned to HB more than once every ten weeks to avoid unfairness. The constraint can be modeled as:
 \begin{equation} \label{constr:max_one_hb}
 \sum_{w \in W}\sum_{d = 6}^{7}x_{iwd1HB} \leq 2, \; \forall i \in I
 \end{equation}
-The combination of Equations \ref{constr:max_one_hb} and \ref{constr:same_tasks} ensure that once a worker is assigned HB it will be for two consecutive weekend days. Why this is preferable is described in Section \ref{section:library_tasks}.
+The combination of Equations \ref{constr:max_one_hb} and \ref{constr:same_tasks} ensure that once a worker is assigned to HB it will be for two consecutive weekend days, which is as many days the previous equation allow a worker every ten weeks. Why this is preferable is described in Section \ref{section:library_tasks}.
 
 To calculate the variable $l_{min}$ and $a_{min}$ used in the objective function (\ref{objfcn}) the following equations were implemented:
 \begin{equation} \label{constr:l_min}
@@ -157,9 +149,56 @@ l_{min} \leq \sum_{i \in I_{lib}} l_{iwd}, \; \forall w \in W, d=1, \ldots, 5
 \begin{equation} \label{constr:a_min}
 a_{min} \leq \sum_{i \in I_{ass}} a_{iwd}, \; \forall w \in W, d=1, \ldots, 5
 \end{equation}
+$l_{iwd}$ and $a_{iwd}$ are binary variables stating, for a day $d$, whether a worker is a stand-in or not. $l_{min}$ and $a_{min}$ are being maximized in the objective function; therefore, they will assume the lowest value of stand-in librarians and assistants respectively, for any day during the ten weeks. Just as with previous equations, help constraints have been left out for simplicity reasons. In this case regarding the determination of $l_{iwd}$ and $a_{iwd}$.
 
-%a_{iwd} 0/1, so sum of the I_ass gives all the stand-ins. a_min <= #stand_ins that still shall be maximized in the obj function.
+As stated in Section \ref{section:obj}, two weeks with a five-week interval should be as similar as possible. Equation \ref{constr:obj_fcn_shifts} aids in providing this preference:
+\begin{equation} \label{constr:obj_fcn_shifts}
+d_{iwds} = \abs{y_{iwds} - y_{i(w+5)ds}}, \; \forall i \in I, w = 1,\ldots,5, d = 1, \ldots, 5, s = 1,\ldots,3
+\end{equation}
+$y_{iwds}$ is a decision variable decided by:
+\begin{equation} \label{constr:y_assign}
+y_{iwds} = \sum_{j \in J_d\backslash 'LoW'} x_{iwdsj}, \; \forall i \in I, w \in W, d = 1, \ldots, 5, s = 1,\ldots,3
+\end{equation}
+The decision variable $d_{iwds}$ in Equation \ref{constr:obj_fcn_shifts} states if there is a difference in assignment between week $w$ and $w+5$. Thus, a variable minimized in the objective function.
 
-%subject to find_lowest_stand_in_amount_no_weekends_no_evenings_lib{w in W, d in 1..5}: #RHS: number of qualified workers at work that is available & not assigned to any task.
-%
-%	stand_in_lib_min <= sum{i in I_lib} stand_in_lib[i,w,d]; 
+Another preference is to only allow one PL per week and a maximum of three PL per ten weeks. These are easily modeled with the following constraints:
+\begin{equation} \label{constr:one_PL}
+\sum_{s \in S_d}\sum_{d \in D} x_{iwdsPL} \leq 1, \; \forall i\in I, w \in W
+\end{equation}
+\begin{equation} \label{constr:three_PL}
+\sum_{w \in W}\sum_{s \in S_d}\sum_{d \in D} x_{iwdsPL} \leq 3, \; \forall i\in I
+\end{equation}
+The duration of a PL, which is for an entire day, is the cause of this preference. Some workers are required to have some alloted time to perform inner tasks.
+
+A third preference is to have various start times of the assigned tasks each week. The following equation was implemented to meet such requirements:
+\begin{equation} \label{constr:various_start_times}
+\sum_{d = 1, \ldots, 5} y_{iwds} \leq 2, \; \forall i\in I, w \in W, s = 1, \ldots, 3
+\end{equation}
+Equation \ref{constr:various_start_times} allows a worker to have at most two tasks starting at the same hour. Worth noting is that task type \textit{LoW} is disregarded in the constraint as the variable $y_{iwds}$ is used, see Equation \ref{constr:y_assign}.
+
+Every workers schedule is able to rotate up to nine times, where the decision variable $r_{iv}$ decides the rotation. Therefore, the parameter $qualavail_{iwdsj}$ has to align with the rotation so that all workers are assigned tasks only when available. This is provided in the following equation:
+\begin{equation} \label{constr:qualavail}
+x_{iwdsj} \leq \sum_{v \in V} r_{iv}*qualavail_{i(mod_{10}(w-v+10)+1)dsj}, \; \forall i \in I, w \in W, d \in D, s \in S_d, j \in J_d
+\end{equation}
+Table \ref{tab:mod} gives a better understanding of how the modulus function in the parameter $qualavail_{iwdsj}$ is used. \textit{w} represent the current week in the relative schedule and \textit{v} represent \textit{v-1} rotations to the right from the relative schedule. The resulting week after rotations can be seen in the cells.
+
+\begin{table}[H]
+\centering
+\caption{Resulting table of the function $mod_{10}(w-v+10)+1$}
+\label{tab:mod}
+\begin{tabular}{llllllllllll}
+    &                         &                         &                         &                         &                         & \multicolumn{2}{l}{w =}                           &                         &                         &                         &                         \\
+    &                         & 1                       & 2                       & 3                       & 4                       & 5                       & 6                       & 7                       & 8                       & 9                       & 10                      \\ \cline{3-12} 
+    & \multicolumn{1}{l|}{1}  & \multicolumn{1}{l|}{1}  & \multicolumn{1}{l|}{2}  & \multicolumn{1}{l|}{3}  & \multicolumn{1}{l|}{4}  & \multicolumn{1}{l|}{5}  & \multicolumn{1}{l|}{6}  & \multicolumn{1}{l|}{7}  & \multicolumn{1}{l|}{8}  & \multicolumn{1}{l|}{9}  & \multicolumn{1}{l|}{10} \\ \cline{3-12} 
+    & \multicolumn{1}{l|}{2}  & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{1}  & \multicolumn{1}{l|}{2}  & \multicolumn{1}{l|}{3}  & \multicolumn{1}{l|}{4}  & \multicolumn{1}{l|}{5}  & \multicolumn{1}{l|}{6}  & \multicolumn{1}{l|}{7}  & \multicolumn{1}{l|}{8}  & \multicolumn{1}{l|}{9}  \\ \cline{3-12} 
+    & \multicolumn{1}{l|}{3}  & \multicolumn{1}{l|}{9}  & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{1}  & \multicolumn{1}{l|}{2}  & \multicolumn{1}{l|}{3}  & \multicolumn{1}{l|}{4}  & \multicolumn{1}{l|}{5}  & \multicolumn{1}{l|}{6}  & \multicolumn{1}{l|}{7}  & \multicolumn{1}{l|}{8}  \\ \cline{3-12} 
+    & \multicolumn{1}{l|}{4}  & \multicolumn{1}{l|}{8}  & \multicolumn{1}{l|}{9}  & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{1}  & \multicolumn{1}{l|}{2}  & \multicolumn{1}{l|}{3}  & \multicolumn{1}{l|}{4}  & \multicolumn{1}{l|}{5}  & \multicolumn{1}{l|}{6}  & \multicolumn{1}{l|}{7}  \\ \cline{3-12} 
+v = & \multicolumn{1}{l|}{5}  & \multicolumn{1}{l|}{7}  & \multicolumn{1}{l|}{8}  & \multicolumn{1}{l|}{9}  & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{1}  & \multicolumn{1}{l|}{2}  & \multicolumn{1}{l|}{3}  & \multicolumn{1}{l|}{4}  & \multicolumn{1}{l|}{5}  & \multicolumn{1}{l|}{6}  \\ \cline{3-12} 
+    & \multicolumn{1}{l|}{6}  & \multicolumn{1}{l|}{6}  & \multicolumn{1}{l|}{7}  & \multicolumn{1}{l|}{8}  & \multicolumn{1}{l|}{9}  & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{1}  & \multicolumn{1}{l|}{2}  & \multicolumn{1}{l|}{3}  & \multicolumn{1}{l|}{4}  & \multicolumn{1}{l|}{5}  \\ \cline{3-12} 
+    & \multicolumn{1}{l|}{7}  & \multicolumn{1}{l|}{5}  & \multicolumn{1}{l|}{6}  & \multicolumn{1}{l|}{7}  & \multicolumn{1}{l|}{8}  & \multicolumn{1}{l|}{9}  & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{1}  & \multicolumn{1}{l|}{2}  & \multicolumn{1}{l|}{3}  & \multicolumn{1}{l|}{4}  \\ \cline{3-12} 
+    & \multicolumn{1}{l|}{8}  & \multicolumn{1}{l|}{4}  & \multicolumn{1}{l|}{5}  & \multicolumn{1}{l|}{6}  & \multicolumn{1}{l|}{7}  & \multicolumn{1}{l|}{8}  & \multicolumn{1}{l|}{9}  & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{1}  & \multicolumn{1}{l|}{2}  & \multicolumn{1}{l|}{3}  \\ \cline{3-12} 
+    & \multicolumn{1}{l|}{9}  & \multicolumn{1}{l|}{3}  & \multicolumn{1}{l|}{4}  & \multicolumn{1}{l|}{5}  & \multicolumn{1}{l|}{6}  & \multicolumn{1}{l|}{7}  & \multicolumn{1}{l|}{8}  & \multicolumn{1}{l|}{9}  & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{1}  & \multicolumn{1}{l|}{2}  \\ \cline{3-12} 
+    & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{2}  & \multicolumn{1}{l|}{3}  & \multicolumn{1}{l|}{4}  & \multicolumn{1}{l|}{5}  & \multicolumn{1}{l|}{6}  & \multicolumn{1}{l|}{7}  & \multicolumn{1}{l|}{8}  & \multicolumn{1}{l|}{9}  & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{1}  \\ \cline{3-12} 
+\end{tabular}
+\end{table}
+

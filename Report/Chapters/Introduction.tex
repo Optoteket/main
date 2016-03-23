@@ -375,15 +375,15 @@ Personnel is only allowed to work one weekend out of five. The following week, t
 
 \subsection{Inner work} 
 
-The goal of this thesis is to distribute given tasks to the heterogeneous workforce at the library of Norrköping. Each task is either classified as an outer or an inner service where an outer service is when a librarian needs to interact with visitors. Inner services can in some rare cases require a predetermined person to be assigned to a specified time or day.
+The goal of this thesis is to distribute given tasks to the heterogeneous workforce at the library of Norrköping. Each task is either classified as an outer or an inner task where an outer task is when a librarian needs to interact with visitors. Inner task can in some rare cases require a predetermined person to be assigned to a specified time or day.
 
 Demands and requests are to be fulfilled to the furthest extent possible. Weekends are included in the scheduling problem, which adds more constraints regarding the number of contiguous working days. However, the librarians are permitted a few exceptions from these laws regarding days of rest.
 
-The main purpose of the thesis is to create a schedule robust enough to withstand absence, such that outer services always are assigned to a qualified and available worker. This is visualized as having a list of available stand-ins for each shift. 
+The main purpose of the thesis is to create a schedule robust enough to withstand absence, such that outer tasks always are assigned to a qualified and available worker. This is visualized as having a list of available stand-ins for each shift. 
 
-There are a limited number of workers at the library and they make the resources that are to be distributed. Each individual has a set of \textit{skills} and \textit{competences}. Competences refer to the capability of being assigned the different outer services; Expedition, Norpan, Information desk, Library on wheels and Hageby as well as different inner services. The set of skills an individual can possess are described in Table \ref{int:1}. In total there are 39 workers available.
+There are a limited number of workers at the library and they make the resources that are to be distributed. Each individual has a set of \textit{skills} and \textit{competences}. Competences refer to the capability of being assigned the different outer tasks; Expedition, Norpan, Information desk, Library on wheels and Hageby as well as different inner tasks. The set of skills an individual can possess are described in Table \ref{int:1}. In total there are 39 workers available.
 
-The outer services can be seen as assignments which requires available workers to be assigned to them. Each outer service is specified to a certain station, time and date. They also have a fix length and occur on a regular basis every ten weeks, which makes it possible to create a periodic schedule with a period of ten weeks. 
+The outer taskss can be seen as assignments which requires available workers to be assigned to them. Each outer task is specified to a certain station, time and date. They also have a fix length and occur on a regular basis every ten weeks, which makes it possible to create a periodic schedule with a period of ten weeks. 
 
 
 %Examensarbetet går ut på att lägga ett arbetsschema för personalen vid Norrköpings bibliotek. Problemet går i grund och botten ut på att fylla alla uppgifter på de stationer som tillhör bibliotekets utåtriktade verksamhet (så kallade yttre tjänst)  med personal av rätt kompetens samt samtidigt som personalen får tid över till övriga uppgifter (så kallad inre tjänst). Schemat som tas fram ska även uppfylla de regelverk och önskemål som finns kring personalens individuella scheman, till exempel de arbetstider som ingår i de olika tjänsterna. Då det även ingår helgarbete i personalens arbetsuppgifter ska lediga dagar fördelas enligt arbetsmiljölagen och de undantag från dessa lagar gällande veckovilan.
@@ -409,7 +409,7 @@ Work degree & 0-100 \%
 Type of employment & Librarian/Assistant
 \\ \hline 
 %-------------------------------------------------------------------
-Competence & Inner and outer services the worker is qualified for  
+Competence & Inner and outer tasks the worker is qualified for  
 \\ \hline 
 %-------------------------------------------------------------------
 Weekly rest & Which days the worker has requested after working a weekend
@@ -421,15 +421,15 @@ Other requests & Does not work evenings etc.
 \end{tabular}
 \end{table} 
 
-Furthermore, outer and a few inner services can be characterized by different properties, which are represented in Table \ref{int:2}. \\
+Furthermore, outer and a few inner tasks can be characterized by different properties, which are represented in Table \ref{int:2}. \\
 
 \begin{table}[!h]
-\caption{Outer and inner services}
+\caption{Outer and inner tasks}
 \label{int:2}
 \begin{tabular}{|l|l|}
 %-------------------------------------------------------------------
 \hline
-\textbf{Outer service} & \textbf{Property} \\ \hline
+\textbf{Outer task} & \textbf{Property} \\ \hline
 %-------------------------------------------------------------------
  & Start time, end time, week and duration \
 \\ \hline 
@@ -444,7 +444,7 @@ Furthermore, outer and a few inner services can be characterized by different pr
 \\ \hline 
 %-------------------------------------------------------------------
 
-\textbf{Inner service} & \textbf{Property} \\ \hline
+\textbf{Inner task} & \textbf{Property} \\ \hline
 %-------------------------------------------------------------------
  & Start time, end time, week and duration \
 \\ \hline 
@@ -473,7 +473,7 @@ In addition to the properties mentioned above, there are several requirements th
 \hline
 \textbf{Job requirements} & \textbf{Description} \\ \hline
 %-------------------------------------------------------------------
-1 & A maximum of one outer service is to be distributed to each person and day.
+1 & A maximum of one outer task is to be distributed to each person and day.
 \\ \hline 
 %-------------------------------------------------------------------
 2 & Remaining work time is individually distributed on assignments such as reshelving books.
@@ -497,7 +497,7 @@ In addition to the properties mentioned above, there are several requirements th
 
 \textbf{Robust requirements} & \textbf{Description} \\ \hline
 %-------------------------------------------------------------------
-1 & Each outer service require at least one stand-in.
+1 & Each outer task require at least one stand-in.
 \\ \hline 
 %-------------------------------------------------------------------
 2 & The stand-ins have to be qualified for the tasks they are stand-in for.

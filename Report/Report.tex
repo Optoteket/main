@@ -23,6 +23,7 @@
 \usepackage{textcomp}
 \usepackage{float}
 \usepackage{amsmath}
+\usepackage{mathtools}
 
 % the fancy header/footer
 % consult http://research.cmis.csiro.au/gjw/tex/docs/fancyhdr.pdf
@@ -42,6 +43,7 @@
   \fancyfoot[RE,LO]{\nouppercase{\small{\putegotext}}}
   \fancyfoot[LE,RO]{\small{\thepage}}
   \renewcommand{\headrulewidth}{0pt}  \renewcommand{\footrulewidth}{0.2pt} }
+
 
 % ------------------------------------------------------------------------
 % BEGINNING of abstract, author, examiner, etc
@@ -100,7 +102,8 @@ Nyckelhål, XBOX, Dagens viktigaste nyckelord, and Keywords.}
 %Create the command \tab
 \newcommand{\tab}[1]{\hspace{.2\textwidth}\rlap{#1}}
 \newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
-
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
 %
 % END of abstract, author, examiner, etc
 % ------------------------------------------------------------------------
@@ -279,6 +282,8 @@ Plocklista & Text\\
 Library on wheels & Text\\
 Rostering & Text\\
 Matheuristic & Text\\
+Initial schedule (?)
+Basic schedule (?)
 \end{tabular}
 
 \section*{Symbols\index{Symbols}}
