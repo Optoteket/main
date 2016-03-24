@@ -62,7 +62,7 @@ let Workers := 1..number_of_workers;
 #Loop for the lists{Workers}
 for {i in I}
 {
-	let Shift_list[i] := sum{w in W}(sum{d in D}(sum{s in S[d]}(sum{j in J[d]} x[i,w,d,s,j])))/10;
+	let Shift_list[i] := sum{w in W}(sum{d in 1..5}(sum{s in S[d]}(sum{j in J[d]} x[i,w,d,s,j])))/10;
 	let LOW_list[i] := sum{w in W}(sum{d in 1..5}(sum{s in S[d]} x[i,w,d,s,'LOW'] ));
 	let PL_list[i] := sum{w in W}(sum{d in 1..5}(sum{s in S[d]} x[i,w,d,s,'PL'] ));
 }
