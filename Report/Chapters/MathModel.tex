@@ -225,3 +225,24 @@ d_{iwds} = \abs{y_{iwds} - y_{i(w+5)ds}}, \; \forall i \in I, w = 1,\ldots,5, d 
 The decision variable $d_{iwds}$ in the previous equation states if there is a difference in assignment between two tasks at the same hour and day for two weeks: $w$ and $w+5$. Thus, a variable minimized in the objective function.
 % EXPLAIN MORE!!!!
 \subsection{Meeting constraints} \label{section:meeting_constraints}
+%subject to one_big_meeting_per_five_weeks:
+%	sum{w in 1..5} M_big[w,1,1] = 1;
+%
+%subject to two_big_meetings_per_ten_weeks{w in 1..5}:
+%	M_big[(w + 4) mod 10 + 1,1,1] = M_big[w,1,1];
+%
+%subject to all_other_times_no_meeting:
+%	sum{w in W}(sum{d in 1..5}(sum{s in S[d]} M_big[w,d,s])) = 2;
+%
+%subject to no_other_tasks_if_boss{i in I diff I_big_meeting, w in W}:
+%	sum {s in 2..3} (sum{j in {'Exp','Info','PL'}} x[i,w,1,s,j]) <= (1-M_big[w,1,1]);
+At the library there are both library meetings as well as department meetings, where both occur with a five-week interval. Library meetings are set to take place from 8-10 on Mondays, whereas department meetings are more freely distributed. The constraints modeling library meetings are as follows:
+\begin{equation} \label{constr:library_meetings}
+\sum_{w = 1, \ldots, 5} M_{w11} = 1
+\end{equation}
+\begin{equation} \label{constr:library_meetings2}
+M_{(mod_{10}(w+4)+1)11} = M_{w11}, \; \forall w = 1, \ldots, 5
+\end{equation}
+\begin{equation} \label{constr:library_meetings3}
+M_{(mod_{10}(w+4)+1)11} = M_{w11}, \; \forall i \in I, \ldots, 5
+\end{equation}
