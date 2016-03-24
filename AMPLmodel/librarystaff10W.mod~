@@ -21,11 +21,9 @@ set I_free_day; #Set of workers that shall be assigned a free weekday per week
 set I_odd_even; #Set of all workers with odd or even weeks
 set I_weekend_avail; #Set of workers available for weekend work.
 set I_big_meeting; #Set of all workers that attend big meetings
-set I_child; #Set of all workers that belong to the child department
-set I_adult; #Set of all workers that belong to the adult department
-set I_media; #Set of all workers that belong to the media department
-
-
+set I_no_PL; #Set of workers not working on PL
+set I_many_PL; #Set of workers working 3-4 rimes PL in 10 weeks
+ 
 set Workers; #Only used to present results
 
 
@@ -44,6 +42,9 @@ param stand_in_day_d{I, W, 1..5}; #used to print number of stand-ins for each da
 param N1l := 4000; #The bigger, the more priority to maximize librarian stand-ins
 param N1a := 2000; #The bigger, the more priority to maximize assistants stand-ins
 param N2 := 5; #Prioritize similar weeks
+param num_PL_week := 1; #Max num of PL in a week
+param num_PL_week_10_weeks := 3; #Max num of PL in a 10 weeks
+param num_shifts_per_time := 2; #Max num of shifts at the same time in a week
 
 #################################### Variables ########################################################################
 var r{i in I, w in W} binary; #1 if person i has a rotation (phase shift) of w weeks, 0 otherwise
@@ -59,8 +60,6 @@ var friday_evening{i in I, w in W} binary; #1 if a person works weekend but not 
 var shift_differ_weeks{i in I, w in 1..5, d in 1..5, s in 1..3} binary;
 var M_big{w in W, d in 1..5, s in 1..4} binary; #1 if a big meeting is placed on this week, day, shift, 0 otherwise
 var meeting{w in W, d in 1..5, s in 1..3, dep in 1..3} binary; #1 if a child meeting is placed on this week, day, shift, 0 otherwise
-#var M_adult{w in W, d in 1..5, s in 1..3} binary; #1 if an adult meeting is placed on this week, day, shift, 0 otherwise
-#var M_media{w in W, d in 1..5, s in 1..3} binary; #1 if a media meeting is placed on this week, day, shift, 0 otherwise
 var working_a_shift{i in I, w in W, d in 1..5} binary;
 
 ################################## OBJECTIVE FUNCTION ###################################################################
@@ -136,12 +135,32 @@ subject to max_one_task_per_evening_not_fridays{i in I diff {36}, w in W}:
 ######################## Maximum one 'PL' per week and maximum two per five weeks #####################################
 #Allowing a worker i to only work with 'Plocklistan' once per week
 subject to max_one_PL_per_week{i in I, w in W}:
-	sum{d in 1..5} x[i,w,d,1,'PL'] <= 1;
+	sum{d in 1..5} x[i,w,d,1,'PL'] <= num_PL_week;
 
 #Allowing a worker i maximum two 'PL' per five weeks
-subject to max_three_PL_per_ten_weeks{i in I}:
-	sum{w in W}(sum{d in 1..5} x[i,w,d,1,'PL']) <= 3;
+#subject to max_three_PL_per_ten_weeks{i in I}:
+#	sum{w in W}(sum{d in 1..5} x[i,w,d,1,'PL']) <= num_PL_week_10_weeks;
+
+#Not working PL
+subject to no_work_on_PL{i in I_no_PL, w in W, d in 1..5, s in S[d]}:
+	x[i,w,d,s,'PL'] = 0;
 	
+#Working many times at PL
+subject to many_work_on_PL_min{i in I_many_PL}:
+	sum{w in W}(sum{d in 1..5} x[i,w,d,1,'PL']) >= 3;
+
+#Working many times at PL
+subject to many_work_on_PL_max{i in I_many_PL}:
+	sum{w in W}(sum{d in 1..5} x[i,w,d,1,'PL']) <= 4;
+
+#Working regular num times at PL
+#subject to regular_work_on_PL_min{i in I diff I_no_PL diff I_many_PL}:
+#	sum{w in W}(sum{d in 1..5}x[i,w,d,1,'PL']) >= 2;
+
+#Working regular num times at PL
+subject to regular_work_on_PL_max{i in I diff I_no_PL diff I_many_PL}:
+	sum{w in W}(sum{d in 1..5}x[i,w,d,1,'PL']) <= 3;
+
 ####################### Week rotation and weekend constraints #########################
 #Stating the week where the evening shall be rotated to
 subject to rotation_of_week{i in I}:
@@ -220,13 +239,6 @@ subject to help_constraint2_lib{i in I_lib, w in W, d in 1..5}:
 subject to help_constraint3_lib{i in I_lib, w in W, d in 1..5}:
 	stand_in_lib[i,w,d] <= 1-working_a_shift[i,w,d]; # Note: ADD LOW here??
 
-#extra constraint added since two lows are possible (evening and day)
-#subject to help_constraint4_lib{i in I_lib, w in W, d in 1..5}:
-#	stand_in_lib[i,w,d] <= 1-sum{s in 1..3} x[i,w,d,s,'LOW'];
-
-#extra constraint added since two lows are possible (evening and day)
-#subject to help_constraint5_lib{i in I_lib, w in W, d in 1..5}:
-#	stand_in_lib[i,w,d] <= 1- x[i,w,d,4,'LOW'];
 
 ### Stand-ins for assistants
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
@@ -270,20 +282,24 @@ subject to task_free_weekday{i in I_free_day, w in W}:
 ######################### Time constraints #################################
 #Allowing only three shifts at a certain time each week, not accounting Library on Wheels
 subject to max_three_shifts_at_same_hours_per_week{i in I, w in W, s in 1..3}:
+<<<<<<< HEAD
 	sum{d in 1..5} y[i,w,d,s] <= 2;
+=======
+	sum{d in 1..5} y[i,w,d,s] <= num_shifts_per_time;
+>>>>>>> 1be22367837cf744aadf664ca5fb72ec60d23853
 
 ######################## Lib on Wheels constraints #########################
-#Worker 25 works only evenings on LOW
-subject to no_evening_tasks_except_LOW{w in W, d in 1..4, j in {'Exp', 'Info','PL'}}:
-	x[25,w,d,4,j] = 0;
-
 #Worker 25 works on LOW all available Wednesdays
+<<<<<<< HEAD
 subject to 25_works_all_Wednesdays:
+=======
+subject to 25_works_all_Thursdays:
+>>>>>>> 1be22367837cf744aadf664ca5fb72ec60d23853
 	sum{w in W} x[25,w,4,4,'LOW'] = 8;
 
 #Workers 25 has LOW every other Monday morning and 36 the other
-subject to every_other_monday_morning{w in 1..9}:
-	x[36,w,1,4,'LOW'] = 1- x[25,w+1,1,1,'LOW'];
+subject to every_other_monday_morning{w in W}:
+	x[36,w,1,4,'LOW'] = 1- x[25,w,1,1,'LOW'];
 
 #Workers 14 and 37, five times in ten weeks
 subject to five_times_LOW_in_10_weeks:
@@ -292,4 +308,11 @@ subject to five_times_LOW_in_10_weeks:
 #Workers 14 and 37 work every second week at LOW
 subject to five_times_LOW_in_10_weeks2{w in 1..9}:
 	x[37,w,3,4,'LOW'] = 1- x[37,w+1,3,4,'LOW'];
+<<<<<<< HEAD
+=======
+
+#Worker 36 only works on LOW in evenings
+subject to only_LOW_in_evening{w in W, d in 1..4,j in {'Exp', 'Info', 'PL'}}:
+	x[36,w,d,4,j] = 0;
+>>>>>>> 1be22367837cf744aadf664ca5fb72ec60d23853
 
