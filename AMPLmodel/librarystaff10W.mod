@@ -61,6 +61,7 @@ var shift_differ_weeks{i in I, w in 1..5, d in 1..5, s in 1..3} binary;
 var M_big{w in W, d in 1..5, s in 1..4} binary; #1 if a big meeting is placed on this week, day, shift, 0 otherwise
 var meeting{w in W, d in 1..5, s in 1..3, dep in 1..3} binary; #1 if a child meeting is placed on this week, day, shift, 0 otherwise
 var working_a_shift{i in I, w in W, d in 1..5} binary;
+var shifts_worked{i in I};
 
 ################################## OBJECTIVE FUNCTION ###################################################################
 
@@ -97,6 +98,14 @@ subject to all_other_times_no_meeting:
 subject to no_other_tasks_if_boss{i in I diff I_big_meeting, w in W}:
 	sum {s in 1..3} (sum{j in {'Exp','Info','PL'}} x[i,w,1,s,j]) <= (1-M_big[w,1,1]);
 
+######################## Shifts worked constraints #########################################
+
+subject to average_shifts_a_week{i in I}:
+	shifts_worked[i] = sum{w in W}(sum{d in 1..5}(sum{s in S[d]}(sum{j in J[d]} x[i,w,d,s,j])))/10;
+
+subject to not_more_than_four_shifts_a_week{i in I}:
+	shifts_worked[i] <= 4;
+
 ######################## Department meeting constraints #########################
 #Departments 1..3 have meetings once in 5 weeks
 subject to one_meeting_per_five_weeks{dep in 1..3}:
@@ -109,6 +118,10 @@ subject to two_meetings_per_ten_weeks{dep in 1..3, w in 1..5, d in 1..5, s in 1.
 #No task can be performed when there is a department meeting
 subject to no_task_when_meeting{dep in 1..3, i in I_dep[dep], w in W, d in 1..5, s in 1..3, j in J[d]}:
 	meeting[w,d,s,dep] + x[i,w,d,s,j] <= 1;
+
+#No meeting when PL in the morning shift
+subject to no_meeting_if_PL{dep in 1..3, i in I_dep[dep], w in W, d in 1..5, s in 1..3}:
+	meeting[w,d,2,dep] + meeting[w,d,3,dep] + x[i,w,d,1,'PL'] <= 1;
 
 #All staff must be available during the meeting, except 39 who is never available
 subject to all_must_be_qualavail{dep in 1..3, i in I_dep[dep] diff {39}, w in W, d in 1..5, s in 1..3}:
