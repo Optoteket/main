@@ -272,22 +272,14 @@ subject to task_free_weekday{i in I_free_day, w in W}:
 subject to max_three_shifts_at_same_hours_per_week{i in I, w in W, s in 1..3}:
 	sum{d in 1..5} y[i,w,d,s] <= 2;
 
-<<<<<<< HEAD
-#Worker 25 works only weekends on HB
-subject to no_weekend_tasks_except_HB{w in W, d in 1..4, j in {'Exp', 'Info'}}:
-	x[25,w,d,4,j] = 0;
-
-#subject to low_evenings:
-#	sum{w in W}(sum{d in 1..5}x[25,w,d,1,'LOW']) >= 9;
-=======
 ######################## Lib on Wheels constraints #########################
 #Worker 25 works only evenings on LOW
 subject to no_evening_tasks_except_LOW{w in W, d in 1..4, j in {'Exp', 'Info','PL'}}:
 	x[25,w,d,4,j] = 0;
 
 #Worker 25 works on LOW all available Wednesdays
-#subject to 25_works_all_Wednesdays:
-#	sum{w in W} x[25,w,3,4,'LOW'] = 8;
+subject to 25_works_all_Wednesdays:
+	sum{w in W} x[25,w,4,4,'LOW'] = 8;
 
 #Workers 25 has LOW every other Monday morning and 36 the other
 subject to every_other_monday_morning{w in 1..9}:
@@ -300,5 +292,4 @@ subject to five_times_LOW_in_10_weeks:
 #Workers 14 and 37 work every second week at LOW
 subject to five_times_LOW_in_10_weeks2{w in 1..9}:
 	x[37,w,3,4,'LOW'] = 1- x[37,w+1,3,4,'LOW'];
->>>>>>> 4811b3b779e5978ca1784dbb3e45127adc37224a
 
