@@ -61,6 +61,7 @@ var shift_differ_weeks{i in I, w in 1..5, d in 1..5, s in 1..3} binary;
 var M_big{w in W, d in 1..5, s in 1..4} binary; #1 if a big meeting is placed on this week, day, shift, 0 otherwise
 var meeting{w in W, d in 1..5, s in 1..3, dep in 1..3} binary; #1 if a child meeting is placed on this week, day, shift, 0 otherwise
 var working_a_shift{i in I, w in W, d in 1..5} binary;
+var shifts_worked{i in I};
 
 ################################## OBJECTIVE FUNCTION ###################################################################
 
@@ -83,13 +84,26 @@ subject to task_assign_amount_weekdays{w in W, d in D,s in S[d], j in J[d] diff 
 subject to task_assign_amount_library_on_wheels{w in W, d in 1..5 ,s in S[d]}:
 	sum{i in I} x[i,w,d,s,'LOW'] = LOW_demand[w,d,s];
 
+######################## Shifts worked constraints #########################################
+
+#subject to average_shifts_a_week{i in I}:
+#	shifts_worked[i] = sum{w in W}(sum{d in 1..5}(sum{s in S[d]}(sum{j in J[d]} x[i,w,d,s,j])))/10;
+
+#subject to not_more_than_four_shifts_a_week{i in I}:
+#	shifts_worked[i] <= 4;
+
+subject to max_four_shifts_per_week{i in I diff {36}, w in W}:
+	sum{d in 1..5}(sum{s in S[d]}(sum{j in J[d]} x[i,w,d,s,j])) <= 4;
+
 ######################## Big meeting constraints #########################################
 # Big meeting constraints
 subject to one_big_meeting_per_five_weeks:
 	sum{w in 1..5} M_big[w,1,1] = 1;
 
 subject to two_big_meetings_per_ten_weeks{w in 1..5}:
-	M_big[(w + 4) mod 10 + 1,1,1] = M_big[w,1,1];
+	M_big[w+5,1,1] = M_big[w,1,1];
+
+#Add: No task can be performed when there is a library meeting?
 
 #subject to all_other_times_no_meeting:
 #	sum{w in W}(sum{d in 1..5}(sum{s in S[d]} M_big[w,d,s])) = 2;
@@ -104,15 +118,23 @@ subject to one_meeting_per_five_weeks{dep in 1..3}:
 
 #Departments 1..3 have meetings twice in 10 weeks
 subject to two_meetings_per_ten_weeks{dep in 1..3, w in 1..5, d in 1..5, s in 1..3}:
-	meeting[(w + 4) mod 10 + 1,d,s,dep] = meeting[w,d,s,dep];
+	meeting[w+5,d,s,dep] = meeting[w,d,s,dep];
 
 #No task can be performed when there is a department meeting
 subject to no_task_when_meeting{dep in 1..3, i in I_dep[dep], w in W, d in 1..5, s in 1..3, j in J[d]}:
 	meeting[w,d,s,dep] + x[i,w,d,s,j] <= 1;
 
+#No meeting when PL in the morning shift
+subject to no_meeting_if_PL{dep in 1..3, i in I_dep[dep], w in W, d in 1..5, s in 1..3}:
+	meeting[w,d,2,dep] + meeting[w,d,3,dep] + x[i,w,d,1,'PL'] <= 1;
+
 #All staff must be available during the meeting, except 39 who is never available
 subject to all_must_be_qualavail{dep in 1..3, i in I_dep[dep] diff {39}, w in W, d in 1..5, s in 1..3}:
 	meeting[w,d,s,dep] <= sum{v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,'Exp']);
+
+##################### Meeting constraint #######################################
+#subject to max_one_meeting_per_week{dep in 1..3, i in I_big_meeting union I_dep[dep], w in W}:
+#	M_big[w,1,1] + M_big[(w + 4) mod 10 + 1,1,1] + sum{d in 1..5}(sum{s in 1..3} (meeting[w,d,s,dep] + meeting[(w + 4) mod 10 + 1,d,s,dep])) <= 2;
 
 ######################## Maximum one task per day #####################################
 #Stating that a worker performing library on wheels cannot perform another task that day

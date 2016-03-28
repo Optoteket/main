@@ -1,8 +1,17 @@
 %Results from running the mathematical model in CPELX.
 
-\section{Evaluation of performance}
+\section{Problem studied}
 
-Running the mathematical model in CPLEX 12.5.0.0 finds an optimum solution in approximately 17 minutes (1031). In the objective function, the parameters L = 4000, A = 2000 and N = 5 were used, thus having twice as much priority on finding librarian stand-ins than assistant stand-ins. 
+An adaptation of the problem described ni the problem description was modeled and run in CPLEX. The special case studied involved the specific demands of the library on the personnel such as who is not particularly good at a task. For this reason, many extra constraints were added, see Appendix A. The features of the problem studied involve:
+
+
+\begin{itemize}
+\item A schedule of 10 weeks was to be generated.
+\end{itemize}
+
+
+Running the mathematical model in CPLEX 12.5.0.0 finds an optimum solution in approximately 17 minutes (1031). In the objective function, the parameters L = 4000, A = 2000 and N = 5 were used, thus having twice as much priority on finding librarian stand-ins than assistant stand-ins.
+ 
 
 \iffalse
 Other parameters include:

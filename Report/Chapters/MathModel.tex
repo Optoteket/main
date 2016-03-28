@@ -110,7 +110,7 @@ The most crucial constraint is to ensure that the demand of workers is met each 
 \end{equation}
 $demand_{wdsj}$ is an integer representing the number of workers required week \textit{w}, day \textit{d}, shift \textit{s} for a task \textit{j}.
 
-The following constraint says whether a worker is assigned a task during a weekday where the evening shifts and task type Library on Wheels are excluded:
+The following constraint says whether a worker is assigned a task during a weekday where the evening shifts and task type \textit{Library on Wheels} are excluded:
 \begin{equation} \label{constr:y_assign}
 y_{iwds} = \sum_{j \in J_d\backslash 'LoW'} x_{iwdsj}, \; \forall i \in I, w \in W, d = 1, \ldots, 5, s = 1,\ldots,3
 \end{equation}
@@ -135,7 +135,17 @@ Another preference is to have various start times of the assigned tasks each wee
 \begin{equation} \label{constr:various_start_times}
 \sum_{d = 1, \ldots, 5} y_{iwds} \leq 2, \; \forall i\in I, w \in W, s = 1, \ldots, 3
 \end{equation}
-Equation \ref{constr:various_start_times} allows a worker to have at most two tasks starting at the same hour. Worth noting is that task type \textit{LoW} is disregarded in the constraint as the variable $y_{iwds}$ is used, see Equation \ref{constr:y_assign}.
+Equation \ref{constr:various_start_times} allows a worker to have at most two tasks starting at the same hour. Worth noting is that task type \textit{Library on Wheels} is disregarded in the constraint as the variable $y_{iwds}$ is used; see Equation \ref{constr:y_assign} for the definition.
+
+It is desirable to avoid assigning too many tasks to a worker. Reason for this is to let the worker have some time to allot for inner services during weekdays. The two equations below model this preference:
+\begin{equation} \label{constr:average_shifts}
+S_i = \sum_{w \in W} \sum_{d = 1, \ldots, 5} \sum_{s in S_d} \sum_{j in J_d} x_{iwdsj}/10, \; \forall i \in I
+\end{equation}
+\begin{equation} \label{constr:four_weekly_shifts_at_most}
+S_i \leq 4, \; \forall i\in I
+\end{equation}
+Equation \ref{constr:average_shifts} calculates an average of shifts assigned to each individual worker and Equation \ref{constr:four_weekly_shifts_at_most} allows a worker at most an average of four shifts per week.
+%Ändra till max 4 tasks per vecka diff {36}?
 
 \subsection{Weekend and rotation constraints} \label{section:weekend_rot_constraints}
 To further model the problem weekends and week rotations have to be considered. The following three constraints are the most basic constraints regarding weekends $H_{iwh}$ and week rotations $r_{iw}$:
@@ -158,7 +168,7 @@ Equation \ref{constr:one_rot} provides all workers with a rotation of their sche
 
 A worker is supposed to work weekends with a five-week interval. However, in case when there are enough workers to satisfy the demand on weekends it may be enough to work one weekend per ten weeks for some. To avoid problems with the rotation when only the second weekend is assigned to a worker, the following equation was implemented:
 \begin{equation} \label{constr:five_week_interval}
-r_{i(mod_{10}(w+4)+1)} \geq H_{iw2}, \; \forall i\in I, w \in W
+r_{i({10}(w+4)+1)} \geq H_{iw2}, \; \forall i\in I, w \in W
 \end{equation}
 Worth noting is that if a worker is assigned both weekends then Equation \ref{constr:five_week_interval} provides the same information as Equation \ref{constr:rot_weekend}.
 
@@ -236,13 +246,29 @@ The decision variable $d_{iwds}$ in the previous equation states if there is a d
 %
 %subject to no_other_tasks_if_boss{i in I diff I_big_meeting, w in W}:
 %	sum {s in 2..3} (sum{j in {'Exp','Info','PL'}} x[i,w,1,s,j]) <= (1-M_big[w,1,1]);
-At the library there are both library meetings as well as department meetings, where both occur with a five-week interval. Library meetings are set to take place from 8-10 on Mondays, whereas department meetings are more freely distributed. The constraints modeling library meetings are as follows:
+At the library there are both library meetings as well as department meetings, where both occur with a five-week interval. Library meetings are set to take place from 8-10 on Mondays, whereas department meetings are more freely distributed. A few workers are not assigned library meetings, since they are needed at the stations to keep the library running. The set $I_{big}$ in the equation below consists of all workers who are to be assigned library meetings. The constraints modeling library meetings are as follows:
 \begin{equation} \label{constr:library_meetings}
 \sum_{w = 1, \ldots, 5} M_{w11} = 1
 \end{equation}
 \begin{equation} \label{constr:library_meetings2}
-M_{(mod_{10}(w+4)+1)11} = M_{w11}, \; \forall w = 1, \ldots, 5
+M_{(w+5)11} = M_{w11}, \; \forall w = 1, \ldots, 5
 \end{equation}
 \begin{equation} \label{constr:library_meetings3}
-M_{(mod_{10}(w+4)+1)11} = M_{w11}, \; \forall i \in I, \ldots, 5
+\sum_{s = 2,3} \sum_{j \in J_d \backslash 'LoW'} x_{iw1sj} \leq 1-M_{w11}, \; \forall i \in I \backslash I_{big}, w \in W
 \end{equation}
+Equation \ref{constr:library_meetings} and \ref{constr:library_meetings2} assign two library meetings with a five-week interval during the ten-week scheduling period. Equation \ref{constr:library_meetings3} makes sure that the workers that do not attend library meetings are assigned any other task the day of the meeting.
+
+The constraints modeling department meetings are somewhat similar to the library meetings. Just as for library meetings they take place two times with a five-week interval, which is described by Equation \ref{constr:dep_meetings} and \ref{constr:dep_meetings2}.
+\begin{equation} \label{constr:dep_meetings}
+\sum_{w = 1, \ldots, 5}\sum_{d = 1, \ldots, 5}\sum_{s = 1, \ldots, 3} m_{wdsD} = 1
+\end{equation}
+\begin{equation} \label{constr:dep_meetings2}
+m_{(w+5)dsD} = m_{wdsD}, \; \forall D = 1, \ldots, 3, w = 1, \ldots, 5, d = 1, \ldots, 5, s = 1, \ldots, 3
+\end{equation}
+\begin{equation} \label{constr:dep_meetings3}
+m_{wdsD} + x_{iwdsj} \leq 1, \; \forall D = 1, \ldots, 3, i \in I_D, w \in W, d = 1, \ldots, 5, s = 1, \ldots, 3, j \in J_d
+\end{equation}
+\begin{equation} \label{constr:dep_meetings4}
+m_{wdsD} \leq \sum_{v \in V} r_{iv}*qualavail_{i(mod_{10}(w-v+10)+1)dsExp}, \; \forall D = 1, \ldots, 3, i \in I_D, w \in W, d = 1, \ldots, 5, s = 1, \ldots, 3
+\end{equation}
+Equation \ref{constr:dep_meetings3} allows a worker to either attend a meeting or work with a task. 
