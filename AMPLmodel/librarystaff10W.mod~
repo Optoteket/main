@@ -76,7 +76,7 @@ maximize objective: #Maximize stand-ins and create schedules with similar weeks 
 ######################## Task demand for workers #####################################
 #number of workers to be assigned to different task types at different shifts (shall work for all days 1..7), except when there is a big meeting
 subject to task_assign_amount_weekdays{w in W, d in D,s in S[d], j in J[d] diff {'LOW'}}:
-	sum{i in I} x[i,w,d,s,j] = task_demand[d,s,j];
+	sum{i in I} x[i,w,d,s,j] = (1-M_big[w,1,1])*task_demand[d,s,j];
 
 #subject to task_assign_amount_weekends{w in W, d in 6..7,s in S[d], j in J[d]}:
 #	sum{i in I} x[i,w,d,s,j] = task_demand[d,s,j];
@@ -103,9 +103,9 @@ subject to one_big_meeting_per_five_weeks:
 subject to two_big_meetings_per_ten_weeks{w in 1..5}:
 	M_big[w+5,1,1] = M_big[w,1,1];
 
-#Add: No task can be performed when there is a library meeting?
-subject to no_task_when_big_meeting{i in I_big_meeting, w in W, j in J[d]}:
-	M_big[w,1,1] + x[i,w,1,1,j] <= 1;
+#No task can be performed by the participants of the big meeting
+#subject to no_task_when_big_meeting{i in I_big_meeting, w in W, j in J[1]}:
+#	M_big[w,1,1] + x[i,w,1,1,j] <= 1;
 
 #subject to all_other_times_no_meeting:
 #	sum{w in W}(sum{d in 1..5}(sum{s in S[d]} M_big[w,d,s])) = 2;
