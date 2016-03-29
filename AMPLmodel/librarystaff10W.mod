@@ -103,7 +103,9 @@ subject to one_big_meeting_per_five_weeks:
 subject to two_big_meetings_per_ten_weeks{w in 1..5}:
 	M_big[w+5,1,1] = M_big[w,1,1];
 
-#Add: No task can be performed when there is a library meeting?
+#No task can be performed by the participants of the big meeting
+subject to no_task_when_big_meeting{i in I_big_meeting, w in W, j in J[d]}:
+	M_big[w,1,1] + x[i,w,1,1,j] <= 1;
 
 #subject to all_other_times_no_meeting:
 #	sum{w in W}(sum{d in 1..5}(sum{s in S[d]} M_big[w,d,s])) = 2;
@@ -133,8 +135,8 @@ subject to all_must_be_qualavail{dep in 1..3, i in I_dep[dep] diff {39}, w in W,
 	meeting[w,d,s,dep] <= sum{v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,'Exp']);
 
 ##################### Meeting constraint #######################################
-#subject to max_one_meeting_per_week{dep in 1..3, i in I_big_meeting union I_dep[dep], w in W}:
-#	M_big[w,1,1] + M_big[(w + 4) mod 10 + 1,1,1] + sum{d in 1..5}(sum{s in 1..3} (meeting[w,d,s,dep] + meeting[(w + 4) mod 10 + 1,d,s,dep])) <= 2;
+subject to max_one_meeting_per_week{dep in 1..3, i in I_big_meeting union I_dep[dep], w in W}:
+	M_big[w,1,1] + sum{d in 1..5}(sum{s in 1..3} meeting[w,d,s,dep]) <= 1;
 
 ######################## Maximum one task per day #####################################
 #Stating that a worker performing library on wheels cannot perform another task that day

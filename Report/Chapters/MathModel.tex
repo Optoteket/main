@@ -1,7 +1,7 @@
 %A thorough description of the mathematical model in words and in math. More significant and general constraints in equations and less significant in words.
 In this chapter the mathematical model implemented to solve this problem will be presented. Prior to the objective function and constraints, the most significant sets and variables will be provided to give the reader some basic knowledge of the implemented model. Section \ref{section:obj} presents the objective function and gives a short description of what it represents. In Section \ref{constraints} the essential constraints will be presented and explained. A complete model with all definitions and the full set of constraints can be found in Attachment \ref{definitions}. %To get a full view of the mathematical problem the reader  A list of the defined parameters can be found in Appendix \ref{definitions}. 
 \section{Set and variable definitions} \label{variables}
-To solve the problem many sets and variables had to be declared. There are many unique and individual requirements that have to be met, given by the library. An example is that some personnel want a day free from outer tasks to be able to attend meetings or perform inner tasks. Another example is that some have two alternating schedules for odd and even weeks. These specific cases have to be modeled and result in a variety of set and variable definitions. Hence, only the most important ones are listed below. A complete list of the definitions can be found in Appendix \ref{definitions}. \\
+To solve the problem many sets and variables had to be declared. There are many unique and individual requirements, given by the library, that have to be met. An example is that some personnel want a day free from outer tasks to be able to attend meetings or perform inner tasks. Another example is that some have two alternating schedules for odd and even weeks. These specific cases have to be modeled and result in a variety of set and variable definitions. Hence, only the most important ones are listed below. A complete list of the definitions can be found in Appendix \ref{definitions}. \\
 \itab{$I$} \tab{Set of workers}\\
 \itab{$I_{lib}$} \tab{Set of librarians ($I_{lib} \subseteq I$)} \\
 \itab{$I_{ass}$}	 \tab{Set of assistants ($I_{ass} \subseteq I$)}	\\
@@ -44,7 +44,7 @@ In order to further define the problem we introduce the following variables: Let
 	\\
 	y_{iwds}&=
 	\begin{cases}
- 		1, & \text{if worker \textit{i} works week \textit{w}, weekday \textit{d}, shift \textit{s} at task type 'Info', 'Exp' or 'PL'} \\
+ 		1, & \text{if worker \textit{i} works week \textit{w}, day \textit{d}, shift \textit{s} at task type 'Info', 'Exp' or 'PL'} \\
  		0, & \text{otherwise}
 	\end{cases}
 	\\
@@ -78,9 +78,15 @@ In order to further define the problem we introduce the following variables: Let
 	 	0, & \text{otherwise}
 	\end{cases}
 	\\
+	d_{iwds}&=
+	\begin{cases}
+	 	1, & \text{if there is a difference in assignment of tasks at a shift \textit{s}, for a worker \textit{i},}\\
+	 		& \text{day \textit{d} between week \textit{w} and \textit{w+5}} \\
+	 	0, & \text{otherwise}
+	\end{cases}
+	\\
 	l_{min}&= \text{lowest number of stand-in librarians found (integer)} \\
 	a_{min}&= \text{lowest number of stand-in assistants found (integer)} \\
-	d_{iwds}&= \text{number of shifts \textit{s} that differ for a worker \textit{i} between week \textit{w} and \textit{w+5} and day \textit{d} (integer)}
 \end{align}
 
 Based on the variables defined above it has been possible to solve our scheduling problem. \textit{$l_{min}$} and \textit{$a_{min}$} are the variables of most significance as they represent the number of stand-ins found after a run. 
@@ -89,11 +95,9 @@ Based on the variables defined above it has been possible to solve our schedulin
 Due to multiple objective functions it has been necessary to weigh them against each other using parameters. These are shown in Equation \ref{objfcn} below as $L$, $A$ and $N$.
 
 \begin{equation} \label{objfcn}
-\begin{split}
-max &L*l_{min}\\
- + &A*a_{min} \\
- - &N*\sum_{i \in I}\sum_{w = 1}^{5}\sum_{d = 1}^{5}\sum_{s = 1}^{3} d_{iwds}
-\end{split}
+\begin{aligned}
+maximize & L*l_{min} + A*a_{min} - N*\sum_{i \in I}\sum_{w = 1}^{5}\sum_{d = 1}^{5}\sum_{s = 1}^{3} d_{iwds}
+\end{aligned}
 \end{equation}
 The two first objective functions represent the lowest amount of stand-in librarians and assistants found. The third objective function is a preference from the library that weeks with a five-week interval should be as similar as possible (e.g. week 1 and 6, 2 and 7 etc.).
 
@@ -258,7 +262,7 @@ M_{(w+5)11} = M_{w11}, \; \forall w = 1, \ldots, 5
 \end{equation}
 Equation \ref{constr:library_meetings} and \ref{constr:library_meetings2} assign two library meetings with a five-week interval during the ten-week scheduling period. Equation \ref{constr:library_meetings3} makes sure that the workers that do not attend library meetings are assigned any other task the day of the meeting.
 
-The constraints modeling department meetings are somewhat similar to the library meetings. Just as for library meetings they take place two times with a five-week interval, which is described by Equation \ref{constr:dep_meetings} and \ref{constr:dep_meetings2}.
+The constraints added to model department meetings are somewhat similar to the library meeting constraints. Just as for library meetings they take place two times during the ten weeks with a five-week interval, which is described by Equation \ref{constr:dep_meetings} and \ref{constr:dep_meetings2}.
 \begin{equation} \label{constr:dep_meetings}
 \sum_{w = 1, \ldots, 5}\sum_{d = 1, \ldots, 5}\sum_{s = 1, \ldots, 3} m_{wdsD} = 1
 \end{equation}
@@ -271,4 +275,5 @@ m_{wdsD} + x_{iwdsj} \leq 1, \; \forall D = 1, \ldots, 3, i \in I_D, w \in W, d 
 \begin{equation} \label{constr:dep_meetings4}
 m_{wdsD} \leq \sum_{v \in V} r_{iv}*qualavail_{i(mod_{10}(w-v+10)+1)dsExp}, \; \forall D = 1, \ldots, 3, i \in I_D, w \in W, d = 1, \ldots, 5, s = 1, \ldots, 3
 \end{equation}
-Equation \ref{constr:dep_meetings3} allows a worker to either attend a meeting or work with a task. 
+Equation \ref{constr:dep_meetings3} prohibits a worker from multitasking, i.e. attend a meeting as well as work with a task. Lastly, Equation \ref{constr:dep_meetings4} enables department meetings only when everyone in that department is available for a task; the rotation is taken into the account.
+
