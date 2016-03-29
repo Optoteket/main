@@ -103,6 +103,9 @@ subject to one_big_meeting_per_five_weeks:
 subject to two_big_meetings_per_ten_weeks{w in 1..5}:
 	M_big[w+5,1,1] = M_big[w,1,1];
 
+subject to all_other_times_no_meeting:
+	sum{w in W}(sum{d in 1..5}(sum{s in S[d]} M_big[w,d,s])) = 2;
+
 #No task can be performed by the participants of the big meeting
 #subject to no_task_when_big_meeting{i in I_big_meeting, w in W, j in J[1]}:
 #	M_big[w,1,1] + x[i,w,1,1,j] <= 1;
