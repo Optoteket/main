@@ -76,7 +76,7 @@ maximize objective: #Maximize stand-ins and create schedules with similar weeks 
 ######################## Task demand for workers #####################################
 #number of workers to be assigned to different task types at different shifts (shall work for all days 1..7), except when there is a big meeting
 subject to task_assign_amount_weekdays{w in W, d in D,s in S[d], j in J[d] diff {'LOW'}}:
-	sum{i in I} x[i,w,d,s,j] = (1-M_big[w,1,1])*task_demand[d,s,j];
+	sum{i in I} x[i,w,d,s,j] = (1-M_big[w,d,s])*task_demand[d,s,j];
 
 #subject to task_assign_amount_weekends{w in W, d in 6..7,s in S[d], j in J[d]}:
 #	sum{i in I} x[i,w,d,s,j] = task_demand[d,s,j];

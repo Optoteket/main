@@ -86,7 +86,7 @@ In order to further define the problem we introduce the following variables: Let
 	\end{cases}
 	\\
 	l_{min}&= \text{lowest number of stand-in librarians found (integer)} \\
-	a_{min}&= \text{lowest number of stand-in assistants found (integer)} \\
+	a_{min}&= \text{lowest number of stand-in assistants found (integer)}
 \end{align}
 
 Based on the variables defined above it has been possible to solve our scheduling problem. \textit{$l_{min}$} and \textit{$a_{min}$} are the variables of most significance as they represent the number of stand-ins found after a run. 
@@ -94,11 +94,12 @@ Based on the variables defined above it has been possible to solve our schedulin
 \section{Objective function} \label{section:obj}
 Due to multiple objective functions it has been necessary to weigh them against each other using parameters. These are shown in Equation \ref{objfcn} below as $L$, $A$ and $N$.
 
-\begin{equation} \label{objfcn}
+\begin{equation} 
 \begin{aligned}
-maximize & L*l_{min} + A*a_{min} - N*\sum_{i \in I}\sum_{w = 1}^{5}\sum_{d = 1}^{5}\sum_{s = 1}^{3} d_{iwds}
+ maximize & & \alpha \cdot l_{min} + \beta \cdot a_{min} - \gamma \sum_{i \in I}\sum_{w = 1}^{5}\sum_{d = 1}^{5}\sum_{s = 1}^{3} d_{iwds}    \label{objfcn}
 \end{aligned}
 \end{equation}
+
 The two first objective functions represent the lowest amount of stand-in librarians and assistants found. The third objective function is a preference from the library that weeks with a five-week interval should be as similar as possible (e.g. week 1 and 6, 2 and 7 etc.).
 
 If $\textit{L} < \textit{A}$ in the model the solver would prioritize assistants over librarians as stand-ins. Librarians are, however, more desired as stand-ins, due to their ability to perform all task types. Therefore, it is desired to set $\textit{L} \geq \textit{A}$.
@@ -116,7 +117,7 @@ $demand_{wdsj}$ is an integer representing the number of workers required week \
 
 The following constraint says whether a worker is assigned a task during a weekday where the evening shifts and task type \textit{Library on Wheels} are excluded:
 \begin{equation} \label{constr:y_assign}
-y_{iwds} = \sum_{j \in J_d\backslash 'LoW'} x_{iwdsj}, \; \forall i \in I, w \in W, d = 1, \ldots, 5, s = 1,\ldots,3
+y_{iwds} = \sum_{j \in J_d\backslash 'LoW'} x_{iwdsj}, \; \forall i \in I, w \in W, d = 1 \ldots 5, s = 1,\ldots,3
 \end{equation}
 This constraint is used to simplify the definition of a couple constraints.
 
