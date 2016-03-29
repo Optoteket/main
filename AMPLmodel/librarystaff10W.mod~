@@ -76,7 +76,7 @@ maximize objective: #Maximize stand-ins and create schedules with similar weeks 
 ######################## Task demand for workers #####################################
 #number of workers to be assigned to different task types at different shifts (shall work for all days 1..7), except when there is a big meeting
 subject to task_assign_amount_weekdays{w in W, d in D,s in S[d], j in J[d] diff {'LOW'}}:
-	sum{i in I} x[i,w,d,s,j] = task_demand[d,s,j];
+	sum{i in I} x[i,w,d,s,j] = (1-M_big[w,1,1])*task_demand[d,s,j];
 
 #subject to task_assign_amount_weekends{w in W, d in 6..7,s in S[d], j in J[d]}:
 #	sum{i in I} x[i,w,d,s,j] = task_demand[d,s,j];
@@ -84,28 +84,34 @@ subject to task_assign_amount_weekdays{w in W, d in D,s in S[d], j in J[d] diff 
 subject to task_assign_amount_library_on_wheels{w in W, d in 1..5 ,s in S[d]}:
 	sum{i in I} x[i,w,d,s,'LOW'] = LOW_demand[w,d,s];
 
+######################## Shifts worked constraints #########################################
+
+#subject to average_shifts_a_week{i in I}:
+#	shifts_worked[i] = sum{w in W}(sum{d in 1..5}(sum{s in S[d]}(sum{j in J[d]} x[i,w,d,s,j])))/10;
+
+#subject to not_more_than_four_shifts_a_week{i in I}:
+#	shifts_worked[i] <= 4;
+
+subject to max_four_shifts_per_week{i in I diff {36}, w in W}:
+	sum{d in 1..5}(sum{s in S[d]}(sum{j in J[d]} x[i,w,d,s,j])) <= 4;
+
 ######################## Big meeting constraints #########################################
 # Big meeting constraints
 subject to one_big_meeting_per_five_weeks:
 	sum{w in 1..5} M_big[w,1,1] = 1;
 
 subject to two_big_meetings_per_ten_weeks{w in 1..5}:
-	M_big[(w + 4) mod 10 + 1,1,1] = M_big[w,1,1];
+	M_big[w+5,1,1] = M_big[w,1,1];
 
-subject to all_other_times_no_meeting:
-	sum{w in W}(sum{d in 1..5}(sum{s in S[d]} M_big[w,d,s])) = 2;
+#No task can be performed by the participants of the big meeting
+#subject to no_task_when_big_meeting{i in I_big_meeting, w in W, j in J[1]}:
+#	M_big[w,1,1] + x[i,w,1,1,j] <= 1;
+
+#subject to all_other_times_no_meeting:
+#	sum{w in W}(sum{d in 1..5}(sum{s in S[d]} M_big[w,d,s])) = 2;
 
 subject to no_other_tasks_if_boss{i in I diff I_big_meeting, w in W}:
 	sum {s in 2..3} (sum{j in {'Exp','Info','PL'}} x[i,w,1,s,j]) <= (1-M_big[w,1,1]);
-
-######################## Shifts worked constraints #########################################
-
-subject to not_more_than_four_shifts_a_week{i in I}:
-	shifts_worked[i] <= 4;
-
-subject to average_shifts_a_week{i in I}:
-	shifts_worked[i] = sum{w in W}(sum{d in 1..5}(sum{s in S[d]}(sum{j in J[d]} x[i,w,d,s,j])))/10;
-
 
 ######################## Department meeting constraints #########################
 #Departments 1..3 have meetings once in 5 weeks
@@ -114,7 +120,7 @@ subject to one_meeting_per_five_weeks{dep in 1..3}:
 
 #Departments 1..3 have meetings twice in 10 weeks
 subject to two_meetings_per_ten_weeks{dep in 1..3, w in 1..5, d in 1..5, s in 1..3}:
-	meeting[(w + 4) mod 10 + 1,d,s,dep] = meeting[w,d,s,dep];
+	meeting[w+5,d,s,dep] = meeting[w,d,s,dep];
 
 #No task can be performed when there is a department meeting
 subject to no_task_when_meeting{dep in 1..3, i in I_dep[dep], w in W, d in 1..5, s in 1..3, j in J[d]}:
@@ -127,6 +133,10 @@ subject to no_meeting_if_PL{dep in 1..3, i in I_dep[dep], w in W, d in 1..5, s i
 #All staff must be available during the meeting, except 39 who is never available
 subject to all_must_be_qualavail{dep in 1..3, i in I_dep[dep] diff {39}, w in W, d in 1..5, s in 1..3}:
 	meeting[w,d,s,dep] <= sum{v in V} (r[i,v]*qualavail[i,(w-v+10) mod 10 +1,d,s,'Exp']);
+
+##################### Meeting constraint #######################################
+subject to max_one_meeting_per_week{dep in 1..3, i in I_big_meeting union I_dep[dep], w in W}:
+	M_big[w,1,1] + sum{d in 1..5}(sum{s in 1..3} meeting[w,d,s,dep]) <= 1;
 
 ######################## Maximum one task per day #####################################
 #Stating that a worker performing library on wheels cannot perform another task that day
