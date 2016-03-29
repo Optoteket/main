@@ -5,6 +5,8 @@
 # Master Students: Claes Arvidson and Emelie Karlsson
 # First version: 2016-02-09
 
+# Possible test: Use max 4 tasks per week OR 4 tasks on average
+
 #################################### Sets ########################################################################
 set D; #Set of days in a week
 set W; #Set of weeks
@@ -62,14 +64,13 @@ var M_big{w in W, d in 1..5, s in 1..4} binary; #1 if a big meeting is placed on
 var meeting{w in W, d in 1..5, s in 1..3, dep in 1..3} binary; #1 if a child meeting is placed on this week, day, shift, 0 otherwise
 var working_a_shift{i in I, w in W, d in 1..5} binary;
 var shifts_worked{i in I};
+var shifts_that_differ integer;
 
 ################################## OBJECTIVE FUNCTION ###################################################################
 
 maximize objective: #Maximize stand-ins and create schedules with similar weeks for each worker
-	N1l*stand_in_lib_min
-	+ N1a*stand_in_ass_min
-	- N2*sum{i in I}(sum{w in 1..5}(sum{d in 1..5}(sum{s in 1..3} shift_differ_weeks[i,w,d,s])))
-	;
+	N1l*stand_in_lib_min + N1a*stand_in_ass_min - N2*shifts_that_differ;
+
 
 #################################### CONSTRAINTS ########################################################################
 
@@ -86,12 +87,6 @@ subject to task_assign_amount_library_on_wheels{w in W, d in 1..5 ,s in S[d]}:
 
 ######################## Shifts worked constraints #########################################
 
-#subject to average_shifts_a_week{i in I}:
-#	shifts_worked[i] = sum{w in W}(sum{d in 1..5}(sum{s in S[d]}(sum{j in J[d]} x[i,w,d,s,j])))/10;
-
-#subject to not_more_than_four_shifts_a_week{i in I}:
-#	shifts_worked[i] <= 4;
-
 subject to max_four_shifts_per_week{i in I diff {36}, w in W}:
 	sum{d in 1..5}(sum{s in S[d]}(sum{j in J[d]} x[i,w,d,s,j])) <= 4;
 
@@ -105,10 +100,6 @@ subject to two_big_meetings_per_ten_weeks{w in 1..5}:
 
 subject to all_other_times_no_meeting:
 	sum{w in W}(sum{d in 1..5}(sum{s in S[d]} M_big[w,d,s])) = 2;
-
-#No task can be performed by the participants of the big meeting
-#subject to no_task_when_big_meeting{i in I_big_meeting, w in W, j in J[1]}:
-#	M_big[w,1,1] + x[i,w,1,1,j] <= 1;
 
 subject to no_other_tasks_if_boss{i in I diff I_big_meeting, w in W}:
 	sum {s in 1..3} (sum{j in {'Exp','Info','PL'}} x[i,w,1,s,j]) <= (1-M_big[w,1,1]);
@@ -143,29 +134,18 @@ subject to max_one_meeting_per_week{dep in 1..3, i in I_big_meeting union I_dep[
 subject to only_LOW{i in I, w in W, d in 1..5, s2 in S[d]}:
 	sum{s in S[d]}(sum {j in {'Exp','Info','PL'}} x[i,w,d,s,j]) <= 1 - x[i,w,d,s2,'LOW'];
 
-#Stating that a worker performing library on wheels can perform another task only on friday evening
-#subject to only_LOW_and_task_fridays{i in I, w in W, s2 in 1..3}:
-#	sum{s in 1..3}(sum {j in {'Exp','Info','PL'}} x[i,w,5,s,j]) <= 1 - x[i,w,5,s2,'LOW'];
-
-subject to two_LOW_allowed{i in I, w in W, d in 1..5}:
-	sum{s in S[d]} x[i,w,d,s,'LOW'] <= 2;
-
 subject to max_one_task_per_day_weekend{i in I, w in W, d in 6..7}:
 	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;
 
 subject to max_one_task_per_evening_not_fridays{i in I diff {36}, w in W}:
 	sum{d in 1..4}(sum{j in J[d]} x[i,w,d,4,j]) <= 1;
 
-######################## Maximum one 'PL' per week and maximum two per five weeks #####################################
+######################## PL constraints #####################################
 #Allowing a worker i to only work with 'Plocklistan' once per week
 subject to max_one_PL_per_week{i in I, w in W}:
 	sum{d in 1..5} x[i,w,d,1,'PL'] <= num_PL_week;
 
-#Allowing a worker i maximum two 'PL' per five weeks
-#subject to max_three_PL_per_ten_weeks{i in I}:
-#	sum{w in W}(sum{d in 1..5} x[i,w,d,1,'PL']) <= num_PL_week_10_weeks;
-
-#Not working PL
+#Not working at PL
 subject to no_work_on_PL{i in I_no_PL, w in W, d in 1..5, s in S[d]}:
 	x[i,w,d,s,'PL'] = 0;
 	
@@ -289,6 +269,9 @@ subject to positive_values_of_absX{i in I, w in 1..5, d in 1..5, s in 1..3}:
 
 subject to negative_values_of_absX{i in I, w in 1..5, d in 1..5, s in 1..3}:
 	shift_differ_weeks[i,w,d,s] >= -(y[i,w,d,s]-y[i,w+5,d,s]);
+
+subject to sum_of_all_shifts_that_differ:
+	shifts_that_differ = sum{i in I}(sum{w in 1..5}(sum{d in 1..5}(sum{s in 1..3} shift_differ_weeks[i,w,d,s])));
 
 ###################### Worker shift assignment ##############################
 #Variable saying if a worker i is assigned a shift s, not accounting Library on Wheels
