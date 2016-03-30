@@ -1,0 +1,59 @@
+http://download.springer.com/static/pdf/667/art%253A10.1023%252FB%253AANOR.0000019087.46656.e2.pdf?originUrl=http%3A%2F%2Flink.springer.com%2Farticle%2F10.1023%2FB%3AANOR.0000019087.46656.e2&token2=exp=1453813126~acl=%2Fstatic%2Fpdf%2F667%2Fart%25253A10.1023%25252FB%25253AANOR.0000019087.46656.e2.pdf%3ForiginUrl%3Dhttp%253A%252F%252Flink.springer.com%252Farticle%252F10.1023%252FB%253AANOR.0000019087.46656.e2*~hmac=481d144b957dddd6b1c8ccd43a27f9cccbe80a8439ea890b977844580d7650a7
+Elinas exempel
+
+http://www.sciencedirect.com/science/article/pii/S037722170300095X
+"For example, provided the shifts remain fixed, task assignment could be carried out at any time before a shift starts without causing significant disruption to the staff. So it may be sensible to generate the shifts ahead of time but delay any task assignments until one or two days before the actual ‘day of operation’, when the set of jobs that need to be performed is better known."
+
+"Module 5: Task assignment
+
+It may be necessary to assign one or more tasks to be carried out during each shift. These tasks may require particular staff skills or levels of seniority and must therefore be associated with particular lines of work."
+
+"Task assignment. Task assignments are often required when working shifts have been determined but tasks have not been allocated to individuals. Tasks are grouped and assigned to shifts, or employees, based on their starting times and durations. The assignment methods depend on whether tasks times are fixed or movable, breaks exist in shifts, overtime is allowed or specific skills or qualifications are required to perform certain tasks. Task assignment can also be carried out when constructing lines of work."
+
+
+Titta igenom denna någon dag om "Library Operations"
+http://ac.els-cdn.com/0377221782900637/1-s2.0-0377221782900637-main.pdf?_tid=2562388c-c4da-11e5-ae52-00000aacb361&acdnat=1453887871_2162f6b73fb6f46c615085452f9ac73b
+
+
+http://onlinelibrary.wiley.com/doi/10.1111/j.1540-5915.1991.tb00361.x/pdf
+Bästa källan än så länge. Går igenom task assignment med modell.
+
+
+
+Task allocation and shift scheduling
+http://cqx.sagepub.com/content/50/2/155.full.pdf+html
+http://www.sciencedirect.com/science/article/pii/S0377221710006004
+refererar även till: Loucks, J.S. 1987. A Multi-objective Heuristic Procedure for the Tour Scheduling and Task Assignment of Fast Food Restaurant Workers. PhD Thesis, Indiana University. (fanns ej på scholar)
+
+GLS and FLS for task allocation:
+http://ac.els-cdn.com/S0167637796000429/1-s2.0-S0167637796000429-main.pdf?_tid=111ac2e0-c8ef-11e5-9b92-00000aacb35d&acdnat=1454336661_b70c0d41c56d54791f48c4589c943808
+
+Stochastic task assignment:
+http://www.sciencedirect.com/science/article/pii/S0307904X98100094
+
+Good sources for task assignment (maintenance of plant personnel)
+http://link.springer.com/article/10.1007%2FBF00934542?LI=true#page-1
+http://link.springer.com/article/10.1007/BF00934541#page-1
+
+minimera work force shortages
+http://www.tandfonline.com/doi/pdf/10.1080/0740817X.2010.550906
+
+Lista med många references: non-overlapping etc.
+http://ac.els-cdn.com/S0377221712008776/1-s2.0-S0377221712008776-main.pdf?_tid=3009906e-c9b7-11e5-ad7e-00000aab0f6c&acdnat=1454422612_0ece0735a2cedd84d0b9ac52664ba54f
+
+Caroline Granfeldts exjobb:
+http://liu.diva-portal.org/smash/get/diva2:867722/FULLTEXT02.pdf
+
+Källa om endast part-time workers som ska allokeras för att täcka behov med avseende på seniority och preferences på arbetsuppgifter. Seniority, preferences of work, CUTS and LP-gap (CPLEX solver) 
+http://ac.els-cdn.com/S0895717708000526/1-s2.0-S0895717708000526-main.pdf?_tid=f0c77294-ca6b-11e5-baee-00000aab0f02&acdnat=1454500245_bf5a3fbb870e608acde14278a4d3ed9e
+
+Unfairness, boredom (cant have more than a fix number of the same tasks), Norms (HANDGIVEN MATERIAL AS WELL)
+http://www.sciencedirect.com/science/article/pii/S0305054806001031
+
+
+7, 15, 16, 17, 18, 35, 40, 45, 46, 51, 75, 76, 77, 83, 90, 96, 97, 98, 104, 105, 109, 112, 114, 121, 122, 124, 127, 135, 143,
+145, 152, 162, 163, 174, 176, 177, 180, 182, 186, 196, 202, 206, 208, 216, 221, 226, 240, 242, 244, 247, 251, 252, 255,
+261, 264, 265, 281, 283, 288, 290, 291, 297, 302
+
+
+

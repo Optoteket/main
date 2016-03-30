@@ -1,0 +1,497 @@
+% Master Thesis Report
+% Created by: Claes Arvidson and Emelie Karlsson 
+% Linköping University Spring 2016
+% First version: 2016-01-27
+
+\documentclass[a4paper, 10pt, twoside, openright]{book}
+\pagestyle{headings}
+
+% some of the packages used are
+\usepackage[round, authoryear]{natbib}
+\bibliographystyle{unsrtnat}
+\usepackage{xcolor, colortbl}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\usepackage{eepic}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}  %för ä ö å ?
+\usepackage[english]{babel}
+%\usepackage{times}
+\usepackage{amssymb}
+\usepackage{fancybox} 
+\usepackage{textcomp}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+% the fancy header/footer
+% consult http://research.cmis.csiro.au/gjw/tex/docs/fancyhdr.pdf
+% or some other fancy header documenatation for more info
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{\nouppercase{\rightmark}}
+\rfoot{\nouppercase{\leftmark}}
+\fancyfoot{} 
+\fancyhead[LO]{\nouppercase{\small{\rightmark}}}
+\fancyhead[RE]{\nouppercase{\small{\leftmark}}}
+\fancyhead[LE,RO]{\small{\thepage}}
+\fancyhead[C]{}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headrulewidth}{0.2pt}
+\fancypagestyle{plain}{ \fancyhf{}  
+  \fancyfoot[RE,LO]{\nouppercase{\small{\putegotext}}}
+  \fancyfoot[LE,RO]{\small{\thepage}}
+  \renewcommand{\headrulewidth}{0pt}  \renewcommand{\footrulewidth}{0.2pt} }
+
+\newcommand\mydots{\hbox to 1em{.\hss.\hss.}}
+% ------------------------------------------------------------------------
+% BEGINNING of abstract, author, examiner, etc
+% here you must fill in your own text. Remember to respect the { and the }.
+%
+% the *-marked % in 
+%                                   *
+%      \newcommand{\putabstract}[0]{% 
+%      some text}
+%
+% is made to avoid a blank space in the beginning of the abstract,
+% author, date etc.
+%
+\newcommand{\putabstract}[0]{%
+Here is where you can write your abstract. It may be very long, or it
+may be very short, the reason you have an abstract is for people not
+to be forced to read lots of crap.
+
+But still, they will have to read your abstract. After all, the
+abstract is what everyone reads\ldots}
+
+\newcommand{\putkeywords}[0]{%
+Keyword One, Chemostat, Another Key-Word, Key, Clé, Mot de cle,
+Nyckelhål, XBOX, Dagens viktigaste nyckelord, and Keywords.}
+
+\newcommand{\putthemonth}[0]{June }
+
+\newcommand{\putshortdate}[0]{2016}
+
+\newcommand{\putmydate}[0]{\putthemonth \putshortdate}
+
+\newcommand{\putauthor}[0]{Claes Arvidson, Emelie Karlsson}
+
+\newcommand{\putegotext}[0]{Arvidson, Karlsson, 2016.}
+
+\newcommand{\puttitle}[0]{Work Distribution of a Heterogeneous Library Staff - A Personnel Task Scheduling Problem}
+
+% some kind of administrator will give you this number
+\newcommand{\putregnumber}[0]{LiTH - MAT - EX - - 04 / 04 - - SE}
+
+\newcommand{\putexaminer}[0]{E. Rönnberg}
+
+\newcommand{\putsupervisor}[0]{T. Larsson}
+
+% for example Applied Mathematics
+\newcommand{\putdepartment}[0]{Optimeringslära}
+
+% send an email to ep.liu.se to make sure it is correct before you print
+% this number is the one I had
+\newcommand{\putmyurl}[0]{http://www.ep.liu.se/exjobb/mai/2004/tm/004/}
+
+% Please do not change into University of Linköping or something, the
+% international name of Liu is Linköpings Universitet
+\newcommand{\putliu}[0]{Linköpings Universitet}
+
+%Create the command \tab
+\newcommand{\tab}[1]{\hspace{.2\textwidth}\rlap{#1}}
+\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+%
+% END of abstract, author, examiner, etc
+% ------------------------------------------------------------------------
+
+\begin{document} 
+
+\frontmatter
+\raggedbottom
+% some new commands I used, you won't need them I guess- just erase it
+\newcommand{\ala}[0]{{\alpha}_{1}}
+\newcommand{\alb}[0]{{\alpha}_{2}}
+\newcommand{\nc}[0]{{N}_{C}}
+\newcommand{\tCh}[0]{the Chemostat }
+\newcommand{\Ch}[0]{Chemostat }
+\newcommand{\ch}[0]{chemostat }
+\newcommand{\MMk}[0]{Michaelis-Menten kinetics }
+\newcommand{\KI}[0]{{K}_{I} }
+\newcommand{\KN}[0]{{K}_{N} }
+\newcommand{\mmu}[0]{{\mu}_{max} }
+\newcommand{\KMAX}[0]{\mmu}
+\newcommand{\AAA}[0]{\mathbf{A} }
+% stop erasing here
+
+%\usepackage[first=0,last=9]{lcg}
+%\newcommand{\ra}{\rand0.\arabic{rand}}
+
+% Colors
+\newcommand{\enc}[0]{utf8}
+\definecolor{bluegray}{rgb}{0.4, 0.6, 0.8}
+\definecolor{darkcyan}{rgb}{0.0, 0.55, 0.55}
+\definecolor{corn}{rgb}{0.98, 0.93, 0.36}
+\definecolor{coralred}{rgb}{1.0, 0.25, 0.25}
+\definecolor{Gray}{gray}{0.85}
+\newcommand{\colcell}{\cellcolor{Gray}}
+\newcommand{\colcelltwo}{\cellcolor{corn}}
+\newcommand{\colcellthree}{\cellcolor{darkcyan}}
+\newcolumntype{g}{>{\columncolor{corn}}c}
+
+% Special cells
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
+\newcommand{\specialcelltwo}[2][c]{%
+   \begin{tabular}[#1]{@{}l@{}l@{}}#2\end{tabular}}
+
+
+
+% don't mind these
+\title{\puttitle}
+\author{\putauthor}
+
+% this command makes the first page, and the second page, handle with care
+% You really don't have to change anything here I guess.
+\renewcommand{\maketitle}{%
+              \newpage%
+              \pagestyle{empty}
+              \null%
+              \hfil\hspace*{-3mm}
+              \begin{minipage}{150mm}
+                \center 
+                {\Large{Master thesis}} \\\vspace*{4mm}
+                {\vbox to 22mm{\vfil\Large\textbf{\puttitle}}}
+                \vspace*{5mm}
+                 {\Large{\putauthor}}       \\ \vspace*{4mm}
+                  \putregnumber\\
+                \end{minipage}\hfil
+              \clearpage%\hspace*{0mm}\thispagestyle{empty}
+              \clearpage%\thispagestyle{empty}
+              \null%
+              \hfil\hspace*{-3mm}
+              \begin{minipage}{150mm}
+                \center
+                {\vbox to 48mm{\vfil\Large\textbf{\puttitle}}}
+                \vspace*{5mm}
+                  \putdepartment, \putliu \\ \vspace*{4mm}
+                  \textbf{\putauthor}       \\ \vspace*{4mm}
+                  \putregnumber
+                  \vspace*{100mm}\\
+                \flushleft
+                
+                Exam work:\hspace*{3pt}
+                \begin{minipage}[t]{70mm}
+% but you might want to change this 30
+                  \textbf{30 hp}
+                \end{minipage} \\ \vspace*{4mm}
+                
+                Level:\hspace*{3pt}
+                \begin{minipage}[t]{70mm}
+% and you might want to change this A 
+                  \textbf{A} 
+                \end{minipage} \\ \vspace*{4mm}
+                
+                Supervisor:\hspace*{3pt}
+                \begin{minipage}[t]{120mm}
+                  \textbf{\putsupervisor}, \\\putdepartment, \putliu
+                \end{minipage} \\ \vspace*{4mm}
+                
+                Examiner:\hspace*{3pt}
+                \begin{minipage}[t]{120mm}
+                  \textbf{\putexaminer}, \\\putdepartment, \putliu
+                \end{minipage} \\ \vspace*{4mm}
+                
+                Linköping:
+                \begin{minipage}[t]{70mm}
+                  \textbf{\putmydate}
+                \end{minipage} \\ \vspace*{4mm}
+              \end{minipage} \\ \hfill
+}
+
+% now the \maketitle command is changed and we use the new one
+\maketitle
+
+% I'm not sure this phantom is needed, but I leave to make sure
+% a phantom leaves empty space corresponding to the size of what is in it.
+\phantom{crap}
+\thispagestyle{empty}
+\pagestyle{empty}
+
+\setlength{\unitlength}{1mm}
+
+
+\setlength{\unitlength}{1pt}
+
+% now turn on fancy headers
+\pagestyle{fancy}
+
+% ..................chapter ...............................................
+\chapter*{Abstract\index{Abstract}}
+% your abstract
+\putabstract
+
+% enters keywords
+\begin{description}
+\item[Keywords:]{%
+\putkeywords
+}
+\item[URL for electronic version: ]{\hfill%\quad\\%
+%\phantom{\qquad} http://urn.kb.se/resolve?urn=urn:nbn:se:liu:diva-77777\\
+%where 77777 should be replacd by an appropriate number.
+\begin{center}
+http://urn.kb.se/resolve?urn=urn:nbn:se:liu:diva-77777
+\end{center}
+%where 77777 should be replaced by an appropriate number.
+}
+\end{description}
+
+
+% here or on the next page you put an abstract in swedish
+%\section*{Abstract in Swedish: Sammanfattning}
+%Det finns många typer av bioreaktorer som tillämpas\ldots
+
+\chapter*{Acknowledgements\index{Acknowledgements}}
+
+I would like to thank my supervisor, I would like to thank my
+supervisor, I would like to thank my supervisor, I would like to thank my supervisor\ldots
+
+I also have to thank, I would like to thank my supervisor, I would
+like to thank my supervisor, I would like to thank my supervisor, I
+would like to thank my supervisor\ldots
+
+My opponent NN also deserves my thanks, I would like to thank my
+supervisor, I would like to thank my supervisor, I would like to thank my supervisor\ldots
+
+
+
+
+
+% optional I guess
+\chapter*{Nomenclature\index{Nomenclature}}
+
+Most of the reoccurring definitions, symbols and abbreviations are described here.
+
+%----------------NEW_SECTION--------------------------------------------------
+\section*{Definitions\index{Definitions}}
+\begin{tabular}{ll}
+Plocklista & Text\\
+Library on wheels & Text\\
+Rostering & Text\\
+Matheuristic & Text\\
+Initial schedule (?)
+Basic schedule (?)
+\end{tabular}
+
+\section*{Symbols\index{Symbols}}
+
+%\begin{tabular}{ll}
+%$Y_0$      & The amount of the variable $Y$ inserted into a system.\\
+%$\hat Y$& The unit-dimension of the variable $Y$, for example $\hat t=1s$ .\\
+%$\bar Y_i$ & A steady state (number $i$) value of Y.\\
+%\phantom{a}& \phantom{b} \\
+%$K_i$ & Constants used in kinetic expressions, for example $K_I$.\\
+%\phantom{a}& \phantom{b} \\
+%$\AAA$     & The system matrix. \\
+%\end{tabular}
+
+\section*{Abbreviations\index{Abbreviations}}
+
+\begin{tabular}{ll}
+Exp		& Text\\
+Info	& Text\\
+PL		& Text\\
+PTSP	& Text\\
+SMPTSP	& Text\\
+\end{tabular}
+
+
+\tableofcontents 
+\begin{samepage}
+\listoffigures
+\let\clearpage\relax
+\listoftables
+\end{samepage}
+
+
+\mainmatter
+
+%##########################################################
+% -------------------CHAPTERS -----------------------------
+%##########################################################
+
+\chapter{Introduction}
+
+\inputencoding{\enc}
+\input{Chapters/Introduction}
+\inputencoding{\enc}
+
+\chapter{Literature review}
+
+\inputencoding{\enc}
+\input{Chapters/LiteratureReview}
+\inputencoding{\enc}
+
+\chapter{The mathematical model}
+
+\inputencoding{\enc}
+\input{Chapters/MathModel}
+\inputencoding{\enc}
+\chapter{Results from mathematical model}
+
+\inputencoding{\enc}
+\input{Chapters/MathModelResults}
+\inputencoding{\enc}
+
+%##########################################################
+% -------------------END CHAPTERS -------------------------
+%##########################################################
+
+\bibliography{Chapters/References}
+
+
+%%% .................. appendix ...................................
+
+\appendix
+\chapter{Problem definitions} \label{definitions}
+\section{Sets}
+\itab{I} \tab{Set of workers}\\
+\itab{I\_lib} \tab{Set of librarians (I\_lib $\subseteq$ I)} \\
+\itab{I\_ass}	 \tab{Set of assistants (I\_ass $\subseteq$ I)}	\\
+\itab{W}                 \tab{Set of weeks}                                               \\
+\itab{D}                 \tab{Set of days in a week}                                      \\
+\itab{$S_d$}           \tab{Set of shifts day \textit{d}}                                        \\
+\itab{$J_d$}            \tab{Set of task types day \textit{d}}                                    \\
+\itab{I\_LOW}	 \tab{Set of librarians available to work in library on wheels}	\\
+\itab{I\_free\_day}	 \tab{Set of workers that shall be assigned a free weekday per week}	\\
+\itab{I\_odd\_even}	 \tab{Set of all workers with odd or even weeks}	\\
+\itab{I\_weekend\_avail}	 \tab{Set of workers available for weekend work}	\\ 
+\newpage
+\section{Variables} \label{variabs}
+\begin{align}
+    x_{iwdsj}&=
+    \begin{cases}
+      1, & \text{if worker \textit{i} is assigned in week \textit{w}, day \textit{d}, shift \textit{s} to a task \textit{j}}\\
+      0, & \text{otherwise}
+    \end{cases}
+    \\
+    H_{iwh}&=
+    \begin{cases}
+      1, & \text{if worker \textit{i} works weekend h in week \textit{w}}\\
+      0, & \text{otherwise}
+    \end{cases}
+	\\
+	r_{iw}&=
+	\begin{cases}
+		1, & \text{if worker \textit{i} has its scheduled rotated \textit{w-1 steps}}\\
+		0, & \text{otherwise}
+	\end{cases}
+	\\
+	lib_{iwd}&=
+	\begin{cases}
+	  1, & \text{if librarian \textit{i} is a stand-in week \textit{w} day \textit{d}} \\
+	  0, & \text{otherwise}
+	\end{cases}
+	\\
+	ass_{iwd}&=
+	\begin{cases}
+ 		1, & \text{if assistant \textit{i} is a stand-in week \textit{w} day \textit{d}} \\
+ 		0, & \text{otherwise}
+	\end{cases}
+	\\
+	y_{iwds}&=
+	\begin{cases}
+ 		1, & \text{if worker \textit{i} is working \textit{w} day \textit{d} regardless of task type} \\
+ 		0, & \text{otherwise}
+	\end{cases}
+	\\
+	hb_{iw}&=
+	\begin{cases}
+ 		1, & \text{if assistant \textit{i} is a stand-in week \textit{w} day \textit{d}} \\
+ 		0, & \text{otherwise}
+	\end{cases}
+	\\
+	friday\_evening_{iw}&=
+	\begin{cases}
+ 		1, & \text{if assistant \textit{i} is a stand-in week \textit{w} day \textit{d}} \\
+ 		0, & \text{otherwise}
+	\end{cases}	
+	\\
+	lib\_min&= \text{lowest number of stand-in librarians found (integer)} \\
+	ass\_min&= \text{lowest number of stand-in assistants found (integer)}
+\end{align}
+\newpage
+\section{Parameters} \label{params}
+\begin{align}
+	N1l&= \text{a value to prioritize the amount of stand-in librarians}
+	\\
+	N1a&= \text{a value to prioritize the amount of stand-in assistants}
+	\\
+	N2&= \text{a value to prioritize similar weeks}
+	\\
+	avail\_day_{iwd}&=
+	\begin{cases}
+		1, & \text{if worker \textit{i} is available for work week \textit{w}, day \textit{d}} \\
+		0, & \text{otherwise}
+	\end{cases}
+	\\
+	task\_demand_{dsj}&= \text{number of workers required day \textit{d}, shift \textit{s} for task type \textit{j}}
+	\\
+	qualavail_{iwdsj}&=
+	\begin{cases}
+		1, & \text{if worker \textit{i} is qualified and available week \textit{w}, day \textit{d}, shift \textit{s} for task type \textit{j}} \\
+		0, & \text{otherwise}
+	\end{cases}
+	\\
+	LOW\_demand_{wds}&= \text{number of workers required day \textit{d}, shift \textit{s} at the library on wheels}
+\end{align}
+
+
+
+
+% this is the copyright page, I did not touch it much.
+
+\cleardoublepage
+
+\thispagestyle{plain}
+
+\begin{picture}(20,20)(0,0)
+% \put(0,10){\includegraphics[width=3.5cm]{epresslogo}}
+\put(280,0){\includegraphics[width=2.5cm]{univlogo.eps}}
+\end{picture}
+ 
+\null
+\vspace{0cm} 
+
+Copyright
+\medskip
+
+The publishers will keep this document online on the Internet - or its possible replacement - for a period of 25 years from the date of publication barring exceptional circumstances.
+The online availability of the document implies a permanent permission for anyone to read, to download, to print out single copies for your own use and to use it unchanged for any non-commercial research and educational purpose. Subsequent transfers of copyright cannot revoke this permission. All other uses of the document are conditional on the consent of the copyright owner. The publisher has taken technical and administrative measures to assure authenticity, security and accessibility.
+According to intellectual property law the author has the right to be mentioned when his/her work is accessed as described above and to be protected against infringement.
+For additional information about the Linköping University Electronic Press and its procedures for publication and for assurance of document integrity, please refer to its WWW home page: http://www.ep.liu.se/
+\bigskip
+
+Upphovsr\"att
+\medskip
+
+Detta dokument hålls tillgängligt på Internet - eller dess framtida ersättare - under 25 år från publiceringsdatum under förutsättning att inga extraordi\-nära omständigheter uppstår.
+Tillgång till dokumentet innebär tillstånd för var och en att läsa, ladda ner, skriva ut enstaka kopior för enskilt bruk och att använda det oförändrat för ickekommersiell forskning och för undervisning. Överföring av upphovsrätten vid en senare tidpunkt kan inte upphäva detta tillstånd. All annan användning av dokumentet kräver upphovsmannens medgivande. För att garantera äktheten, säkerheten och tillgängligheten finns det lösningar av teknisk och administrativ art.
+Upphovsmannens ideella rätt innefattar rätt att bli nämnd som upphovsman i den omfattning som god sed kräver vid användning av dokumentet på ovan beskrivna sätt samt skydd mot att dokumentet ändras eller presenteras i sådan form eller i sådant sammanhang som är kränkande för upphovsmannens litterära eller konstnärliga anseende eller egenart.
+För ytterligare information om Linköping University Electronic Press se förlagets hemsida http://www.ep.liu.se/
+
+\medskip
+
+\copyright\phantom{.} \putshortdate, \putauthor
+
+
+
+
+%----------------END OF DOCUMENT----------------------------------------------
+%----------------END OF DOCUMENT----------------------------------------------
+
+\end{document}
+ 
