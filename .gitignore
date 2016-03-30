@@ -26,10 +26,9 @@
 *.orig
 
 # Ignore the build and lib dirs
-LNS/LNS_tasks/build
-LNS/LNS_tasks/lib/*
+LNS/LNS_tasks/build/*.o
 
 # Ignore any executables
-LNS/LNS_tasks/bin/*
+LNS/LNS_tasks/bin/program
 
 echo "Ignoring things!"
