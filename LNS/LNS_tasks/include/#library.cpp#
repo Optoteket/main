@@ -1,0 +1,28 @@
+// Library class
+
+#include <vector>
+
+#include "library.h"
+
+#define NUM_WEEKS 5;
+#define NUM_DAYS 7;
+#define NUM_WEEK_DAYS 5;
+#define NUM_WEEKEND_DAYS 2;
+#define NUM_WEEK_SHIFTS 4;
+#define NUM_WEEK_TASKS 3; //Info, Exp, PL 
+
+using namespace std;
+
+typedef vector<vector<vector<double>>> array4D;
+array4D worker_demand;
+
+worker_demand.resize(WEEKS);
+
+Library::Library(){
+  cout << "Library " << endl;
+}
+
+
+
+
+
