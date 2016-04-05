@@ -27,10 +27,10 @@ public:
 		//Returns the department, "Child", "Media", "Adult" or "None"
 	string getPL() const;
 		//Returns the amount of PL a worker shall be assigned.
-	string getWeekend() const;
-		//Returns if the worker is a weekend worker, "Yes" or "No"
-	string getHB() const;
-		//Returns "Only", "None" or "Standard" for a worker at HB.
+// 	string getWeekend() const;
+// 		//Returns if the worker is a weekend worker, "Yes" or "No"
+// 	string getHB() const;
+// 		//Returns "Only", "None" or "Standard" for a worker at HB.
 	
 	  
 	//Mutator functions
