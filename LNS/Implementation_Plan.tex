@@ -84,8 +84,30 @@
 		\item Worker (contains availability (week blocks), identity, preferences etc., resulting task schedule, objective function costs associated with the worker)
 		\end{itemize}
 	\end{itemize}
-	\subsection*{Implementation: week block based approach} 
+	\subsection*{Implementation: week block based approach}
+	\begin{itemize}
+	\item Initial solution. Generate a schedule by assigning a feasible solution for each worker. The resulting schedule will most likely violate the demand constraint that is relaxed into the objective function.
 	
+	\item Classes in consideration:
+		\begin{itemize}
+		\item $Library$ (Information about current demand, total demand, workers assigned at a day $d$ and objective functions such as number of stand-ins are stored here)
+		\item $Worker$ (contains all personal information about demands, qualifications, assigned blocks, blocks available for assignment etc.)
+		\item $Block$ (a week long block containing an ID, type of block (weekend, weekrest, normal), number of tasks, tasks with information of day, shift and tasktype etc)
+		\item $Pair\_of\_blocks$ (used later when implementing for 10 week period, containts information of $shift\_differ$ and which two blocks that forms the pair)
+		\end{itemize}
+		
+	\item Destroy:
+		\begin{itemize}
+		\item Destroy week 1 for all workers (10 \% destroy) - need more than one week to move weekends (and weekrest).
+		\item Destroy five consecutive weeks for around a fifth of the workers
+		\item Identify and order the most problematic weeks for all workers and destroy in the order. Add some randomization as well to prevent getting stuck on a plateau.
+		\end{itemize}
+	\item Repair:
+		\begin{itemize}
+		\item Generate a new schedule with regard to number of tasks destroyed. The repair function searches through the pool of blocks available for each person and creates a new solution using a heuristic.
+		\item The heuristic takes the demand and availability for a person into account. If a worker is available for a whole day - minimize the number of tasks given that day in order to generate a stand-in. 
+		\end{itemize}
+	\end{itemize}
 	\section*{Second version \index{IMPL2}}
 	\begin{itemize}
 		\item Implement a 10 week schedule
