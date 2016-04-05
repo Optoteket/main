@@ -8,6 +8,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <fstream>
 
 #include "stdio.h"
 #include "task.h" 
@@ -28,6 +29,8 @@ int main()
   // 1. Create logfile
   date << "_" << timedate->tm_year + 1900 << "_" << timedate->tm_mon+1 << "_" << timedate->tm_mday << ":" << timedate->tm_hour << "-" << timedate->tm_min+1 << "-"<< timedate->tm_sec+1;
   log_file_path << log_file_dir << "logfile" << date.str() << ".dat"; 
+
+  //ofstream log_file;
 
   FILE* log_file = fopen(log_file_path.str().c_str(), "a");
   fprintf(log_file, date.str().c_str());

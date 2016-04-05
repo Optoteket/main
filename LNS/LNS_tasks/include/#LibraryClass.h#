@@ -21,6 +21,5 @@ class Library{
   //[NUM_WEEK_DAYS] [NUM_WEEK_SHIFTS] [NUM_WEEK_TASKS];
   //vector<vector<vector<vector<int>>>> worker_demand;
   static const int NUM_WEEKS;
-
 };
 
