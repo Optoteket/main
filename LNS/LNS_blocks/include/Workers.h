@@ -1,6 +1,7 @@
 #ifndef __WORKERS_H_INCLUDED__
 #define __WORKERS_H_INCLUDED__
 
+
 using namespace std;
 
 class Worker {
@@ -9,7 +10,7 @@ public:
 	Worker();
 	
 	//Overload Constructors
- 	Worker(int, string, string, string, string, string);
+	Worker(int, string, string, string, string, string);
 	
 	//Destructor
 	~Worker();
@@ -26,13 +27,15 @@ public:
 	string getDep() const;
 		//Returns the department, "Child", "Media", "Adult" or "None"
 	string getPL() const;
+	
+	//int getAvail(int, int, int) const;
 		//Returns the amount of PL a worker shall be assigned.
 // 	string getWeekend() const;
 // 		//Returns if the worker is a weekend worker, "Yes" or "No"
 // 	string getHB() const;
 // 		//Returns "Only", "None" or "Standard" for a worker at HB.
 	
-	  
+	
 	//Mutator functions
 	void setID(int);
 	void setName(string);
@@ -40,6 +43,7 @@ public:
 	void setQual(string);
 	void setDep(string);
 	void setPL(string);
+	//void setAvail(); //Input: istream
 	
 	
 	
@@ -52,6 +56,7 @@ private:
   string newQual;
   string newDep;
   string newPL;
+  //string fileopen = "./src/data/librarystaff5W.txt";
 };
 
 

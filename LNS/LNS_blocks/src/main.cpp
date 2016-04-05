@@ -17,92 +17,31 @@ int main() {
 	}
 
 
-	vector<string> vec;
-
-
+	vector<int> vec; 
+	//int a, b, c;
 	string readline;
-	size_t found;
+	string integer_string;
+	string avail_string;
 	int count = 0;
 	while( inFile.good() )
 	{
 		getline( inFile, readline);
-		cout<< "\n" << readline <<"\n";
-		found = readline.find("department");
-		if(found)
+		//cout<< "\n" << readline <<"\n";
+		size_t found = readline.find("=");
+		size_t pos = readline.find (" ");
+		if(found != string::npos)
 		{
-			cout << "It is found!" << endl;
-			count++;
-			found = 0;
+			//while (pos != string::npos){
+			integer_string = readline.substr(0,found-1); //getting the string "1 1 1"
+			avail_string = readline.substr(found+1);
+			cout << integer_string << endl;
+			//if '=' is found, then read the integers a b c = d
+			cout << found << endl;
+			cout << "an '=' found at: " << found << '\n';
 		}
-// 		cout<< "\n" << readline <<"\n";
-
-// 		std::stringstream ss(readline);
-// 		string word;
 	
 	}
 	cout << count << endl;
 	return 0;
 }
 
-
-//Read a line
-// 	getline(inFile, readline);
-// 	cout<< "\n" << readline <<"\n";
-// 	char c;
-	//Find if there is an = in the line 'readline'
-	
-// 	while (getline(ss,times,'='))
-// 	{
-// 		cout << times << endl;
-// 		stringstream ss2(times); //read in week,day,shift to another stringstream
-// 		string int_value_as_string;
-// 		while (getline(ss2,int_value_as_string,','))
-// 		{
-// 		}
-// 	}
-	//Read file line by line words separated by blankspace
-// 	while(inFile >> readline) {
-// 		if (readline == "Vuxen")
-// 		{
-// 			count++;
-// 		}
-// // 		cout << readline << endl;
-// 	}
-// 	cout << count << endl;
-	
-// 	if (inFile.good())
-// 	{
-// 		while (!inFile.good())
-// 		{
-// 			getline(inFile, line);
-// 			if (line == "lib")
-// 			{
-// 				count++;
-// 			}
-// 		}
-// 		inFile.close();
-// 		cout << count << endl;
-// 	}
-// 	else cout << "End of file \n";
-	
-// 	return 0;
-	
-// 	inFile << "Hello world\n";
-// 	inFile.close();
-
-// 	int x,y;
-// 	inFile >> x >> y;
-// 	cout << "Num1: " << x << endl;
-// 	return 0;
-// 	string name;
-	
-// 	cout << "Hello world" << endl;
-	//Create a worker
-// 	Worker worker_1(3, "Bob", "Yes", "Lib", "Child", "Many");
-// 	cout << "Frist worker's ID is: " << worker_1.getID() << endl << worker_1.getName() << endl;
-// 	cout << "Enter a name" << endl;
-// 	cin >> name;
-// 	worker_1.setName(name);
-// 	cout << "The new name of worker 1 is: " << worker_1.getName() << endl;
-//    return 0;
-// }
