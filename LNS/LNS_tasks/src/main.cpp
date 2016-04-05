@@ -10,6 +10,7 @@
 #include <sstream>
 #include <fstream>
 
+
 #include "stdio.h"
 #include "task.h" 
 #include "LibraryClass.h"
@@ -24,19 +25,29 @@ stringstream date;
 string log_file_dir = "../target/logs/";
 stringstream log_file_path;
 
+
 int main()
 {
+  //input_vector;
   // 1. Create logfile
   date << "_" << timedate->tm_year + 1900 << "_" << timedate->tm_mon+1 << "_" << timedate->tm_mday << ":" << timedate->tm_hour << "-" << timedate->tm_min+1 << "-"<< timedate->tm_sec+1;
   log_file_path << log_file_dir << "logfile" << date.str() << ".dat"; 
 
-  //ofstream log_file;
-
-  FILE* log_file = fopen(log_file_path.str().c_str(), "a");
-  fprintf(log_file, date.str().c_str());
+  ofstream log_file (log_file_path.str().c_str());
+  if (log_file.is_open())
+  {
+    log_file << date.str().c_str() << "\n";
+    log_file << "This is another line.\n";
+    log_file.close();
+  }
+  else cout << "Unable to open file";
+  //FILE* log_file = fopen(log_file_path.str().c_str(), "a");
+  //fprintf(log_file, date.str().c_str());
 
   try{
     Library library;
+    library.print_demand();
+    library.read_demand();
     // 2. Create resultfile
     // Open txt files. Read lines and put into classes/structs
     // Create initial solution
@@ -58,6 +69,6 @@ int main()
     // Error handling 
   } catch (const char* msg){ 
     cerr << msg << endl;
-    fprintf(log_file, msg);
+    //fprintf(log_file, msg);
   }
 }
