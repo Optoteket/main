@@ -47,17 +47,59 @@
 \usepackage{blindtext}
 \usepackage[utf8]{inputenc}
  
-\title{LNS Heuristic  for solving the library staff scheduling problem - Implementation Plan}
+\title{Implementation Plan for LNS heuristik}
 \author{Claes Arvidson, Emelie Karlsson}
 \date{\today}
 \begin{document}
  
 \maketitle
  
-\section*{First version: \index{IMPL1}}
-
-\section*{Second version: \index{IMPL2}}
-
-
-\end{document}
+\section*{First version \index{IMPL1}}
+	\subsection*{Requirements}
+	\begin{itemize}
+	\item Implement a 5 week schedule
+	\item Library on Wheels not considered
+	\item Softer values such as PL, free day or HB preferences not considered
+	\item Meetings not considered
+	\item Objective function:
+		\begin{itemize}
+		\item Minimize unfulfilled worker demand (relaxed hard constraint)
+		\item Maximize number of stand in librarians
+		\item Maximize number of stand in assistants
+		\end{itemize}
+	\item Hard constraints:
+		\begin{itemize}
+		\item 1 task/day for a worker
+		\item worker must be available to perform task
+		\item worker must be qualified for task (lib/ass)
+		\item the total number of tasks to be performed is constant
+		\end{itemize} 
+	\end{itemize}
+	\subsection*{Implementation: task based approach} 
+	\begin{itemize}
+	\item Initial solution. First distribute weekends to obtain a feasible weekend schedule. Secondly distribute tasks according to some rule (for example by finding  the critical task hours). Initial solution not necessarily feasible with respect to the worker demand at each shift.
+	\item Possible classes:
+		\begin{itemize}
+		\item Library (contains the demand schedule obtained from the data file, objective function costs associated with demand)
+		\item Worker (contains availability (week blocks), identity, preferences etc., resulting task schedule, objective function costs associated with the worker)
+		\end{itemize}
+	\end{itemize}
+	\subsection*{Implementation: week block based approach} 
+	
+	\section*{Second version \index{IMPL2}}
+	\begin{itemize}
+		\item Implement a 10 week schedule
+		\item Library on Wheels considered
+		\item Meetings considered
+		\item Objective function:
+				\begin{itemize}
+				\item Minimize unfulfilled worker demand (relaxed hard constraint)
+				\item Maximize number of stand in librarians
+				\item Maximize number of stand in assistants
+				\item Maximize similar weeks for workers
+				\end{itemize}
+				
+	\end{itemize}
+	
+	\end{document}
 

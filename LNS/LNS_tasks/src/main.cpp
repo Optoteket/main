@@ -11,6 +11,7 @@
 
 #include "stdio.h"
 #include "task.h" 
+#include "LibraryClass.h"
 
 using namespace std;
 
@@ -24,17 +25,17 @@ stringstream log_file_path;
 
 int main()
 {
+  // 1. Create logfile
+  date << "_" << timedate->tm_year + 1900 << "_" << timedate->tm_mon+1 << "_" << timedate->tm_mday << ":" << timedate->tm_hour << "-" << timedate->tm_min+1 << "-"<< timedate->tm_sec+1;
+  log_file_path << log_file_dir << "logfile" << date.str() << ".dat"; 
+
+  FILE* log_file = fopen(log_file_path.str().c_str(), "a");
+  fprintf(log_file, date.str().c_str());
+
   try{
-
-    // 1. Create logfile
-    date << "_" << timedate->tm_year + 1900 << "_" << timedate->tm_mon+1 << "_" << timedate->tm_mday << ":" << timedate->tm_hour << "-" << timedate->tm_min+1 << "-"<< timedate->tm_sec+1;
-    log_file_path << log_file_dir << "logfile" << date.str() << ".dat"; 
-
-    FILE* log_file = fopen(log_file_path.str().c_str(), "a");
-    fprintf(log_file, date.str().c_str());
-
+    Library library;
     // 2. Create resultfile
-
+    // Open txt files. Read lines and put into classes/structs
     // Create initial solution
     
     // LOOP: Calculate incremented costs

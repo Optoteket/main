@@ -44,7 +44,7 @@ set I_many_PL; #Set of workers working 3-4 rimes PL in 10 weeks
  
 set Workers; #Only used to present results
 
-
+                            
 #################################### Parameters ########################################################################
 #param meeting{S{D},D,W} binary;
 param avail_day{i in I, w in W, d in D} binary; #1 if worker i is available day d, week w
