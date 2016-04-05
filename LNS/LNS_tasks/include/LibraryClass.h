@@ -1,23 +1,30 @@
 // Library class h file
 #pragma once
 
-#define NUM_WEEKS 5;
-#define NUM_DAYS 7;
-#define NUM_WEEK_DAYS 5;
-#define NUM_WEEKEND_DAYS 2;
-#define NUM_WEEK_SHIFTS 4;
-#define NUM_WEEK_TASKS 3; //Info, Exp, PL 
-
 using namespace std;
-
-//typedef  array4D;
 
 class Library{
  public:
   Library();
+  void print_demand();
+  void read_demand();
+
  private:
-  unsigned char week_worker_demand [NUM_WEEKS]; 
-  //[NUM_WEEK_DAYS] [NUM_WEEK_SHIFTS] [NUM_WEEK_TASKS];
-  //vector<vector<vector<vector<int>>>> worker_demand;
+
+  enum task_types{
+    Exp,
+    Info,
+    PL,
+    HB //Add BokB v.2
+  };
+  
+  static const int NUM_WEEKS = 5;
+  static const int NUM_DAYS = 7;
+  static const int NUM_SHIFTS = 4;
+  static const int NUM_TASKS = 4;
+  int week_worker_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
+
+
+  
 };
 

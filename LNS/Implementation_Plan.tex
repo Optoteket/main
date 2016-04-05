@@ -19,21 +19,18 @@
 \usepackage{enumitem}
 
 \newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
-\definecolor{Gray}{gray}{0.85}
-\definecolor{Orange}{rgb}{1,0.88,0}
-\definecolor{LightCyan}{rgb}{0.7,0.9,0.9}
+
+% Colors
+\newcommand{\enc}[0]{utf8}
 \definecolor{bluegray}{rgb}{0.4, 0.6, 0.8}
-\definecolor{buff}{rgb}{0.94, 0.86, 0.51}
+\definecolor{darkcyan}{rgb}{0.0, 0.55, 0.55}
 \definecolor{corn}{rgb}{0.98, 0.93, 0.36}
 \definecolor{coralred}{rgb}{1.0, 0.25, 0.25}
-\definecolor{coral}{rgb}{1.0, 0.5, 0.31}
-\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
-\newcolumntype{a}{>{\columncolor{Gray}}c}
-\newcolumntype{b}{>{\columncolor{white}}c}
+\definecolor{Gray}{gray}{0.85}
+\newcommand{\colcell}{\cellcolor{Gray}}
+\newcommand{\colcelltwo}{\cellcolor{corn}}
+\newcommand{\colcellthree}{\cellcolor{darkcyan}}
 \newcolumntype{g}{>{\columncolor{corn}}c}
-\newcommand{\colcell}{\cellcolor{bluegray}}
-\newcommand{\colcelltwo}{\cellcolor{coralred}}
-\newcommand{\colcellthree}{\cellcolor{applegreen}}
 
 % the fancy header/footer
 % consult http://research.cmis.csiro.au/gjw/tex/docs/fancyhdr.pdf
@@ -63,7 +60,7 @@
 	\item Meetings not considered
 	\item Objective function:
 		\begin{itemize}
-		\item Minimize unfulfilled worker demand (relaxed hard constraint)
+		\item Minimize violated worker demand. The total number of tasks is constant, as well as the weekly number of tasks. However, days and shifts can violate demand constraints (relaxed hard constraint)
 		\item Maximize number of stand in librarians
 		\item Maximize number of stand in assistants
 		\end{itemize}
@@ -77,16 +74,48 @@
 	\end{itemize}
 	\subsection*{Implementation: task based approach} 
 	\begin{itemize}
-	\item Initial solution. First distribute weekends to obtain a feasible weekend schedule. Secondly distribute tasks according to some rule (for example by finding  the critical task hours). Initial solution not necessarily feasible with respect to the worker demand at each shift.
+	\item Initial solution. Firstly, distribute weekends to obtain a feasible weekend schedule. Secondly, distribute tasks according to some rule (for example by finding  the critical task hours). Initial solution not necessarily feasible with respect to the worker demand at each shift.
+	\item Destroy and repair: 
+		\begin{itemize}
+		\item Weekend destroy: Destroy a subset of all weekends. Subsequently destroy the week follwing the new weekends to create a feasible schedule.
+		\item Weekend repair: Repair by first placing new weekends, then, after second destroy, place tasks from week rest at deficit days.
+		\item Task destroy: Identify the days with the most \textbf{surplus} of workers. Also being an unused stand in generates some cost. Destroy these days.
+		\item Task repair: Repair by redistributing over the destroyed days and the days with \textbf{deficit} of workers. Create stand ins by placing tasks for workers who are not stand in avail.
+		\end{itemize}
 	\item Possible classes:
 		\begin{itemize}
-		\item Library (contains the demand schedule obtained from the data file, objective function costs associated with demand)
-		\item Worker (contains availability (week blocks), identity, preferences etc., resulting task schedule, objective function costs associated with the worker)
+		\item Library. Contains:
+		\begin{itemize}
+			\item Demand schedule (int [w][d][s])
+			\item Total\_cost
+			\item Cost function for weekend destroy 
+			\item Cost function summing workers in a week day (int[d])
+			\item Cost function summing number of unused stand ins in a week day (int[d])
+			
+		\end{itemize} 
+		\item Worker. Contains:
+		\begin{itemize}
+				\item Availability (int [[d][s], [d][s], ...])
+				\item Stand in avail (int [w][d])
+				\item Identity of worker (ID, name, position, preferences etc.)
+				\item Current schedule variables (int tasks [w][d][s],int num\_tasks[w][d], int num\_PL[w][d], int weekend...)
+				\item Cost function calculating worker satisfaction with schedule (int [w], int [d], implemented later...)
+		\end{itemize} 
 		\end{itemize}
 	\end{itemize}
+
+	
+%\item Diff\_demand\_avail (int [w][d][s])
+%\item Num\_stand\_in\_avail (int [w][d][s])
+%\item Cost function for Diff\_demand\_avail
+%\item Cost function for Num\_stand\_in\_avail
+	
+	\subsection*{Implementation: week block based approach} 
+
 	\subsection*{Implementation: week block based approach}
 	\begin{itemize}
 	\item Initial solution. Generate a schedule by assigning a feasible solution for each worker. The resulting schedule will most likely violate the demand constraint that is relaxed into the objective function.
+
 	
 	\item Classes in consideration:
 		\begin{itemize}
