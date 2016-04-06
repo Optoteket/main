@@ -12,17 +12,19 @@ vector <string> get_info_vector(int);
 
 int main() {
 	//create a list of worker objects. worker_list[1], worker_list[2] etc.
-	Worker myworkers[39];
+	Worker myworkers[40];
 	setAvail_worker(myworkers);
 	vector<string> All_Info;
  	All_Info = get_info_vector(4); //1 = Qualifications, 2 = ID, 3 = Name, 4 = Department, 5 = Weekends, 6 = Boss?, 7 = PL, 8 = HB, 9 = free_day?
 	cout << "The last information in the vector is: " << All_Info.back() << endl;
-//  	myworkers[1].setAvail(1,0,2,4);
-// 	myworkers[1].setAvail(0,1,2,3);
-// 	myworkers[2].setAvail(2,2,1,2);
+//   	myworkers[39].setAvail(1,0,2,4);
+//  	myworkers[39].setAvail(0,0,0,1);
+//  	myworkers[39].setAvail(2,2,1,2);
 // 	int avail = myworkers[1].getAvail(1,1,1);
-//  	myworkers[2].getAvail_matrix();
-//  	cout << "Next availability matrix" << endl;
+//   	myworkers[38].getAvail_matrix();
+// 	cout << "Next availability matrix" << endl;
+ 	myworkers[39].getAvail_matrix();
+
  	//myworkers[38].getAvail_matrix();
 	return 0;
 }
@@ -58,10 +60,10 @@ void setAvail_worker(Worker* myworkers) {
 		{
 			//Assign the ID of the worker that is being read (not in order)
 			wID = atoi(readline.c_str());
-			//wID = readline;
 			cout << wID << endl;
 		}
 		
+		//update workers_counted if "avail:" is found
 		size_t found_new_worker = readline.find ("avail:");
 		if(found_new_worker != string::npos) //A line is read containing "avail:"
 		{
@@ -93,15 +95,15 @@ void setAvail_worker(Worker* myworkers) {
 			input_vector.pop_back();
 			//Assign the availability to the workers
 			int AVAIL = atoi(avail_string.c_str());
-			if (wID = 39)
-			{
-				cout << "Hello world" << endl;
-				myworkers[wID].setAvail(week-1,day-1,shift-1,AVAIL);
-			}
-			
+// 			if (wID == 39)
+// 			{
+				cout << "Trying to type in: " << week << " " << day << " " << shift << " " << AVAIL << endl;
+ 				//if (week >= 1 && day == 4 && shift == 3){
+				myworkers[wID].setAvail(week-1, day-1, shift-1, AVAIL);
+				//myworkers[wID].setAvail(week-1,day-1,shift-1,AVAIL);
+ 				//}
+// 			}
 		}
-		
-		
 	}
 }
 

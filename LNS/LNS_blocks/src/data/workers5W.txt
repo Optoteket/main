@@ -1,4 +1,4 @@
-# Data file for Master Thesis by Claes Arvidson and Emelie Karlsson4/5/2016 4:13:31 PM
+# Data file for Master Thesis by Claes Arvidson and Emelie Karlsson4/6/2016 6:24:24 AM
 # Shows worker_type, ID, name, department, weekend, Position, PL_group, HB, freeday, *LOW, *LOW_prefer, avail
 
 
@@ -5780,6 +5780,7 @@ avail:
 
 ass
 39
+ch
 Media
 weekend
 not_boss
@@ -5927,3 +5928,4 @@ avail:
 5,7,2 = 0
 5,7,3 = 0
 5,7,4 = 0
+
