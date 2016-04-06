@@ -11,8 +11,8 @@ TARGET := bin/program
 SRCEXT := cpp
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
-CFLAGS := -g # -Wall
-LIB := -pthread -L lib 
+CFLAGS :=  -std=c++0x -g # -Wall
+LIB := -pthread -L lib
 INC := -I include
 
 $(TARGET): $(OBJECTS)

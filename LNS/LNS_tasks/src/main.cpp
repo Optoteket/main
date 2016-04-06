@@ -28,8 +28,7 @@ stringstream log_file_path;
 
 int main()
 {
-  //input_vector;
-  // 1. Create logfile
+  //1. Create logfile
   date << "_" << timedate->tm_year + 1900 << "_" << timedate->tm_mon+1 << "_" << timedate->tm_mday << ":" << timedate->tm_hour << "-" << timedate->tm_min+1 << "-"<< timedate->tm_sec+1;
   log_file_path << log_file_dir << "logfile" << date.str() << ".dat"; 
 
@@ -41,13 +40,16 @@ int main()
     log_file.close();
   }
   else cout << "Unable to open file";
-  //FILE* log_file = fopen(log_file_path.str().c_str(), "a");
-  //fprintf(log_file, date.str().c_str());
 
   try{
+    //2. Create library
     Library library;
-    library.print_demand();
     library.read_demand();
+    library.print_demand();
+
+    //3. Create workers
+
+
     // 2. Create resultfile
     // Open txt files. Read lines and put into classes/structs
     // Create initial solution
