@@ -28,13 +28,13 @@ public:
 		//Returns the department, "Child", "Media", "Adult" or "None"
 	string getPL() const;
 	
-	//int getAvail(int, int, int) const;
+	int getAvail(int, int, int) const;
 		//Returns the amount of PL a worker shall be assigned.
 // 	string getWeekend() const;
 // 		//Returns if the worker is a weekend worker, "Yes" or "No"
 // 	string getHB() const;
 // 		//Returns "Only", "None" or "Standard" for a worker at HB.
-	
+	void getAvail_matrix() const;
 	
 	//Mutator functions
 	void setID(int);
@@ -43,7 +43,7 @@ public:
 	void setQual(string);
 	void setDep(string);
 	void setPL(string);
-	//void setAvail(); //Input: istream
+	void setAvail(int, int, int, int); //Input: w, d, s and A = availability
 	
 	
 	
