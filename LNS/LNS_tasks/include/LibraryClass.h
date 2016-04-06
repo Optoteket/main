@@ -6,15 +6,13 @@ using namespace std;
 class Library{
 
  private:
-
   enum task_type {
     Exp,
     Info,
     PL,
     HB,
     BokB
-  };
-  
+  };  
   static const int NUM_WEEKS = 5;
   static const int NUM_DAYS = 7;
   static const int NUM_SHIFTS = 4;

@@ -9,11 +9,13 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <vector>
 
 
 #include "stdio.h"
 #include "task.h" 
 #include "LibraryClass.h"
+#include "WorkerClass.h"
 
 using namespace std;
 
@@ -48,6 +50,77 @@ int main()
     library.print_demand();
 
     //3. Create workers
+    ifstream worker_file ("../src/data/workers5W.txt");
+    
+    if (worker_file.fail())
+    {
+      cout << "Error: Could not read worker file" << endl;
+    }
+
+    vector<string> input_vector;
+    string input;
+    // int line_count = 0;
+    // string worker_position;
+    // int worker_ID;
+    // string worker_name;
+    // string worker_department;
+    // string worker_weekend;
+    // string worker_boss;
+    // string worker_PL_type;
+    // string worker_HB_type;
+    // string worker_freeday;
+    //int worker_avail_day;
+    //int worker_avail
+
+    while(getline(worker_file, input) && !input.empty()){
+
+      // if(input_vector.size()== 152){
+      // 	string blank_line = input_vector[151];
+      // 	cout << "Blank line:" << endl;
+      // 	cout << blank_line << endl;
+      // 	cout << "End of blank line" << " Size:" << blank_line.size() << endl;
+
+      // 	if (blank_line.empty()){
+      // 	  cout << "Blank line empty" << endl;
+      // 	}
+      // 	else if (blank_line.compare("") != 0) cout << "2 spaces" << endl;
+      // 	//else if (blank_line.c_str() == '\t') cout << "Tab" << endl;
+      // }
+      
+      //Create a new worker when all data has been read 
+      if(input.size()<2){
+	for (int i=0; i < input_vector.size(); i++){
+	  cout << input_vector[i] << endl; 
+	}
+	cout << "New person found!" << endl;
+	string worker_position = input_vector[0];
+	int worker_ID = atoi(input_vector[1].c_str());
+	string worker_name = input_vector[2];
+	string worker_department = input_vector[3];
+	string worker_weekend = input_vector[4];
+	string worker_boss = input_vector[5];
+	string worker_PL_type = input_vector[6];
+	string worker_HB_type = input_vector[7];
+	string worker_freeday = input_vector[8];
+
+	Worker worker {worker_position, worker_ID, worker_name, worker_department, worker_weekend, worker_boss, worker_PL_type, worker_HB_type, worker_freeday};
+
+	break;
+      }
+      input_vector.push_back(input);  
+    }
+
+
+
+      // string worker_position = input;
+      // int worker_ID = ;
+      // string worker_name;
+      // string worker_department;
+      // string worker_weekend;
+      // string worker_boss;
+      // string worker_PL_type;
+      // string worker_HB_type;
+      // string worker_freeday;
 
 
     // 2. Create resultfile
