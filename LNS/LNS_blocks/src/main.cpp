@@ -7,9 +7,30 @@
 #include <iomanip>
 #include "Workers.h"
 using namespace std;
+void setAvail_worker(Worker*);
+vector <string> get_info_vector(int);
+
+int main() {
+	//create a list of worker objects. worker_list[1], worker_list[2] etc.
+	Worker myworkers[40];
+	setAvail_worker(myworkers);
+	vector<string> All_Info;
+ 	All_Info = get_info_vector(4); //1 = Qualifications, 2 = ID, 3 = Name, 4 = Department, 5 = Weekends, 6 = Boss?, 7 = PL, 8 = HB, 9 = free_day?
+	cout << "The last information in the vector is: " << All_Info.back() << endl;
+//   	myworkers[39].setAvail(1,0,2,4);
+//  	myworkers[39].setAvail(0,0,0,1);
+//  	myworkers[39].setAvail(2,2,1,2);
+// 	int avail = myworkers[1].getAvail(1,1,1);
+//   	myworkers[38].getAvail_matrix();
+// 	cout << "Next availability matrix" << endl;
+ 	myworkers[39].getAvail_matrix();
+
+ 	//myworkers[38].getAvail_matrix();
+	return 0;
+}
 
 //Assigns avail for all workers
-void setAvail() {
+void setAvail_worker(Worker* myworkers) {
 	ifstream inFile("./src/data/workers5W.txt");
 	
 	//Checking for open Error
@@ -37,12 +58,17 @@ void setAvail() {
 		input_vector.clear(); //input_vector contains the integers "week" "day" "shift" read from a line
 		if(line_read_num == 6+152*workers_counted)
 		{
-			//Assign the ID of the worker that is being read
+			//Assign the ID of the worker that is being read (not in order)
 			wID = atoi(readline.c_str());
-			//wID = readline;
 			cout << wID << endl;
 		}
 		
+		//update workers_counted if "avail:" is found
+		size_t found_new_worker = readline.find ("avail:");
+		if(found_new_worker != string::npos) //A line is read containing "avail:"
+		{
+			workers_counted++;
+		}
 		
 		size_t found = readline.find("="); //Find the character with an "="
 		size_t pos = readline.find (",");
@@ -51,19 +77,15 @@ void setAvail() {
 			
 			integer_string = readline.substr(0,found-1); //getting the string "1,1,1"
 			avail_string = readline.substr(found+2); //getting the avail number as strings
-			//cout << "the integer string is:" << integer_string << endl;
 			//separate all three integers in integer_string into input_vector
 			while(pos != string::npos)
 			{
 				input_vector.push_back(integer_string.substr(0,pos)); //adds everything that appears before the first ","
-				//cout << "The integer added to the vector is:" << integer_string.substr(0,pos) << endl;
 				integer_string = integer_string.substr(pos+1); //Everything after the "," is in the new integer_string
-				//cout << integer_string << endl;
 				pos = integer_string.find(","); //Find the position of the next "," in the new readline
 			}
 			//Add the last integer (as string) to input_vector
 			input_vector.push_back(integer_string.substr(0,pos));
-			//cout << "The integer added to the vector is:" << integer_string.substr(0,pos) << endl;
 			
 			shift = atoi(input_vector.back().c_str());
 			input_vector.pop_back();
@@ -71,23 +93,22 @@ void setAvail() {
 			input_vector.pop_back();
 			week = atoi(input_vector.back().c_str());
 			input_vector.pop_back();
-			cout << week << " " << day << " " << shift << " " << atoi(avail_string.c_str()) << endl;
-			//Assign the availability to the workers 
-			//worker_list[wID].worker_avail[week][day][shift] = atoi(avail_string.c_str());
-			
+			//Assign the availability to the workers
+			int AVAIL = atoi(avail_string.c_str());
+// 			if (wID == 39)
+// 			{
+				cout << "Trying to type in: " << week << " " << day << " " << shift << " " << AVAIL << endl;
+ 				//if (week >= 1 && day == 4 && shift == 3){
+				myworkers[wID].setAvail(week-1, day-1, shift-1, AVAIL);
+				//myworkers[wID].setAvail(week-1,day-1,shift-1,AVAIL);
+ 				//}
+// 			}
 		}
-		size_t found_new_worker = readline.find ("avail:");
-		if(found_new_worker != string::npos) //A line is read containing "avail:"
-		{
-			workers_counted++;
-		}
-		
-		
 	}
 }
 
 
-vector <string> get_vector_with_info(int info_type) {
+vector <string> get_info_vector(int info_type) { //1 = Qualifications, 2 = ID, 3 = Name, 4 = Department, 5 = Weekends, 6 = Boss?, 7 = PL, 8 = HB, 9 = free_day?
 	ifstream inFile("./src/data/workers5W.txt");
 	string wInfo;
 	//Checking for open Error
@@ -208,19 +229,5 @@ vector <string> get_vector_with_info(int info_type) {
 		}
 	}
 	return input_vector;
-}
-
-int main() {
-	//create a list of worker objects. worker_list[1], worker_list[2] etc.
-	//Worker worker;
-	setAvail();
-// 	vector<string> All_Names;
-// 	All_Names = get_all_names();
-// 	cout << "The last name in the vector is: " << All_Names.back() << endl;
-// 	cout << "The first name in the vector is: " << All_Names.front() << endl;
-	vector<string> All_Qual;
- 	All_Qual = get_vector_with_info(4);
-	cout << "The last qual in the vector is: " << All_Qual.back() << endl;
-	return 0;
 }
 
