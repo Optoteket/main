@@ -27,6 +27,9 @@ stringstream date;
 string log_file_dir = "../target/logs/";
 stringstream log_file_path;
 
+void create_worker();
+
+
 
 int main()
 {
@@ -50,78 +53,7 @@ int main()
     library.print_demand();
 
     //3. Create workers
-    ifstream worker_file ("../src/data/workers5W.txt");
-    
-    if (worker_file.fail())
-    {
-      cout << "Error: Could not read worker file" << endl;
-    }
-
-    vector<string> input_vector;
-    string input;
-    // int line_count = 0;
-    // string worker_position;
-    // int worker_ID;
-    // string worker_name;
-    // string worker_department;
-    // string worker_weekend;
-    // string worker_boss;
-    // string worker_PL_type;
-    // string worker_HB_type;
-    // string worker_freeday;
-    //int worker_avail_day;
-    //int worker_avail
-
-    while(getline(worker_file, input) && !input.empty()){
-
-      // if(input_vector.size()== 152){
-      // 	string blank_line = input_vector[151];
-      // 	cout << "Blank line:" << endl;
-      // 	cout << blank_line << endl;
-      // 	cout << "End of blank line" << " Size:" << blank_line.size() << endl;
-
-      // 	if (blank_line.empty()){
-      // 	  cout << "Blank line empty" << endl;
-      // 	}
-      // 	else if (blank_line.compare("") != 0) cout << "2 spaces" << endl;
-      // 	//else if (blank_line.c_str() == '\t') cout << "Tab" << endl;
-      // }
-      
-      //Create a new worker when all data has been read 
-      if(input.size()<2){
-	for (int i=0; i < input_vector.size(); i++){
-	  cout << input_vector[i] << endl; 
-	}
-	cout << "New person found!" << endl;
-	string worker_position = input_vector[0];
-	int worker_ID = atoi(input_vector[1].c_str());
-	string worker_name = input_vector[2];
-	string worker_department = input_vector[3];
-	string worker_weekend = input_vector[4];
-	string worker_boss = input_vector[5];
-	string worker_PL_type = input_vector[6];
-	string worker_HB_type = input_vector[7];
-	string worker_freeday = input_vector[8];
-
-	Worker worker {worker_position, worker_ID, worker_name, worker_department, worker_weekend, worker_boss, worker_PL_type, worker_HB_type, worker_freeday};
-
-	break;
-      }
-      input_vector.push_back(input);  
-    }
-
-
-
-      // string worker_position = input;
-      // int worker_ID = ;
-      // string worker_name;
-      // string worker_department;
-      // string worker_weekend;
-      // string worker_boss;
-      // string worker_PL_type;
-      // string worker_HB_type;
-      // string worker_freeday;
-
+    create_worker();
 
     // 2. Create resultfile
     // Open txt files. Read lines and put into classes/structs
@@ -146,4 +78,82 @@ int main()
     cerr << msg << endl;
     //fprintf(log_file, msg);
   }
+}
+
+
+/************** Auxiliary function: create worker *************/
+void create_worker(){
+  ifstream worker_file ("../src/data/workers5W.txt");
+    
+  if (worker_file.fail())
+    {
+      cout << "Error: Could not read worker file" << endl;
+    }
+
+  vector<string> input_vector;
+  string input;
+
+  while(getline(worker_file, input) && !input.empty()){
+
+    //Create a new worker when all data has been read 
+    if(input.size()<2){
+      for (int i=0; i < input_vector.size(); i++){
+	cout << input_vector[i] << endl; 
+      }
+	cout << "Read info about worker." << endl;
+	string worker_position = input_vector[0];
+	int worker_ID = atoi(input_vector[1].c_str());
+	string worker_name = input_vector[2];
+	string worker_department = input_vector[3];
+	string worker_weekend = input_vector[4];
+	string worker_boss = input_vector[5];
+	string worker_PL_type = input_vector[6];
+	string worker_HB_type = input_vector[7];
+	string worker_freeday = input_vector[8];
+
+	//Create worker
+	Worker worker {worker_position, worker_ID, worker_name, worker_department, worker_weekend, worker_boss, worker_PL_type, worker_HB_type, worker_freeday};
+
+	input_vector.erase (input_vector.begin(),input_vector.begin()+10);
+
+	//Read availability, set in worker
+	for (int i=0; i < input_vector.size(); i++){
+	  vector<string> line_vector;
+	 
+	  //Take current line
+	  input = input_vector[i];
+	  size_t pos = input.find(",");
+
+	  //Write all words separated by space to input_vector
+	  while (pos != string::npos){
+	    line_vector.push_back(input.substr(0,pos));
+	    input = input.substr(pos+1);
+	    pos = input.find (",");
+	  }
+
+	  //Write task to input_vector
+	  pos = input.find(" ");
+	  line_vector.push_back(input.substr(0,pos));
+	  input = input.substr(pos+1);
+
+	  //Write 0 or 1 to input_vector
+	  pos = input.find(" ");
+	  line_vector.push_back(input.substr(pos+1));
+	  input = input.substr(pos+1);
+
+	  if (line_vector.size() == 4){
+	    worker.set_avail(atoi(line_vector[0].c_str())-1, atoi(line_vector[1].c_str())-1, atoi(line_vector[2].c_str())-1,  atoi(line_vector[3].c_str()));
+	  }
+	  else cout << "Error: wrong number of values from avail file."<< endl;
+	}
+      
+	worker.print_avail();
+	//Break after reading all lines of a worker 
+	break;
+      }
+      
+      // Read all lines for a worker
+      input_vector.push_back(input);  
+    }
+
 }

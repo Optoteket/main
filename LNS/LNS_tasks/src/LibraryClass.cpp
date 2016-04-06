@@ -40,9 +40,9 @@ void Library::read_demand(){
     input_vector.push_back(input.substr(pos+1));
     input = input.substr(pos+1);
 
-    for (int i=0; i < input_vector.size(); i++){
-      cout << input_vector[i] << endl;
-    }
+    // for (int i=0; i < input_vector.size(); i++){
+    //   cout << input_vector[i] << endl;
+    // }
 
     if (input_vector.size() == 5){
       set_demand(atoi(input_vector[0].c_str())-1, atoi(input_vector[1].c_str())-1, atoi(input_vector[2].c_str())-1,  input_vector[3], atoi(input_vector[4].c_str()));
@@ -100,6 +100,7 @@ void Library::set_demand(int week, int day, int shift, string task, int value){
 /************* Library function print_demand ************/
 void Library::print_demand(
 ){
+  cout << "Library demand of workers" << endl;
   cout << "Tasks: Exp, Info, PL, HB, BokB" << endl;
   for (int i=0; i< NUM_WEEKS; i++){
     for (int j=0; j< NUM_SHIFTS; j++){

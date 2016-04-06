@@ -20,10 +20,13 @@ class Worker{
   static const int NUM_DAYS = 7;
   static const int NUM_SHIFTS = 4;
   static const int NUM_TASKS = 5;
-  int avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
+  int avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+
+  vector<int[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]> avail_vector;
   
  public:
   Worker(string, int, string, string, string, string, string, string, string); 
-  
+  void set_avail(int,int,int,int);
+  void print_avail();
 };
 
