@@ -8,40 +8,219 @@
 #include "Workers.h"
 using namespace std;
 
-int main() {
-	ifstream inFile("./src/data/librarystaff5W.txt");
+//Assigns avail for all workers
+void setAvail() {
+	ifstream inFile("./src/data/workers5W.txt");
+	
 	//Checking for open Error
 	if (inFile.fail()) {
 		cerr << "Error opening the file!" << endl;
 		exit(1);
 	}
+	
 
-
-	vector<int> vec; 
-	//int a, b, c;
+	vector<string> input_vector; 
 	string readline;
 	string integer_string;
 	string avail_string;
-	int count = 0;
+	int wID = 0;
+	//string wID;
+	int line_read_num = 0;
+	int workers_counted = 0;
+// 	int number_of_workers_in_total = 39;
+ 	int week, day, shift;
 	while( inFile.good() )
 	{
+		//Read until an "=" is found and assign all availability
 		getline( inFile, readline);
-		//cout<< "\n" << readline <<"\n";
-		size_t found = readline.find("=");
-		size_t pos = readline.find (" ");
-		if(found != string::npos)
+		line_read_num++; //the line read is number: line_read_num
+		input_vector.clear(); //input_vector contains the integers "week" "day" "shift" read from a line
+		if(line_read_num == 6+152*workers_counted)
 		{
-			//while (pos != string::npos){
-			integer_string = readline.substr(0,found-1); //getting the string "1 1 1"
-			avail_string = readline.substr(found+1);
-			cout << integer_string << endl;
-			//if '=' is found, then read the integers a b c = d
-			cout << found << endl;
-			cout << "an '=' found at: " << found << '\n';
+			//Assign the ID of the worker that is being read
+			wID = atoi(readline.c_str());
+			//wID = readline;
+			cout << wID << endl;
 		}
-	
+		
+		
+		size_t found = readline.find("="); //Find the character with an "="
+		size_t pos = readline.find (",");
+		if(found != string::npos) //separate a readline if containing an "="
+		{
+			
+			integer_string = readline.substr(0,found-1); //getting the string "1,1,1"
+			avail_string = readline.substr(found+2); //getting the avail number as strings
+			//cout << "the integer string is:" << integer_string << endl;
+			//separate all three integers in integer_string into input_vector
+			while(pos != string::npos)
+			{
+				input_vector.push_back(integer_string.substr(0,pos)); //adds everything that appears before the first ","
+				//cout << "The integer added to the vector is:" << integer_string.substr(0,pos) << endl;
+				integer_string = integer_string.substr(pos+1); //Everything after the "," is in the new integer_string
+				//cout << integer_string << endl;
+				pos = integer_string.find(","); //Find the position of the next "," in the new readline
+			}
+			//Add the last integer (as string) to input_vector
+			input_vector.push_back(integer_string.substr(0,pos));
+			//cout << "The integer added to the vector is:" << integer_string.substr(0,pos) << endl;
+			
+			shift = atoi(input_vector.back().c_str());
+			input_vector.pop_back();
+			day = atoi(input_vector.back().c_str());
+			input_vector.pop_back();
+			week = atoi(input_vector.back().c_str());
+			input_vector.pop_back();
+			cout << week << " " << day << " " << shift << " " << atoi(avail_string.c_str()) << endl;
+			//Assign the availability to the workers 
+			//worker_list[wID].worker_avail[week][day][shift] = atoi(avail_string.c_str());
+			
+		}
+		size_t found_new_worker = readline.find ("avail:");
+		if(found_new_worker != string::npos) //A line is read containing "avail:"
+		{
+			workers_counted++;
+		}
+		
+		
 	}
-	cout << count << endl;
+}
+
+
+vector <string> get_vector_with_info(int info_type) {
+	ifstream inFile("./src/data/workers5W.txt");
+	string wInfo;
+	//Checking for open Error
+	if (inFile.fail()) {
+		cerr << "Error opening the file!" << endl;
+		exit(1);
+	}
+	
+	int line_read_num = 0;
+	int workers_counted = 0;
+	vector<string> input_vector;
+	string readline;
+	while( inFile.good() )
+	{
+		//Read until a line
+		getline( inFile, readline);
+		line_read_num++; //the line read is number: line_read_num
+		//cout << "info_type is: " << info_type << endl;
+		switch (info_type)
+		{
+			case 1: //Qualifications
+			{
+				if(line_read_num == 5+152*workers_counted)
+				{
+					//Assign the Info = Qualifications of the worker that is being read
+					wInfo = readline;
+					cout << wInfo << endl;
+					input_vector.push_back(wInfo);
+				}
+			}
+			break;
+			case 2: //ID
+			{
+				if(line_read_num == 6+152*workers_counted)
+				{
+					//Assign the Info = ID of the worker that is being read
+					wInfo = readline;
+					cout << wInfo << endl;
+					input_vector.push_back(wInfo);
+				}
+			}
+			break;
+			case 3: //Name
+			{
+				if(line_read_num == 7+152*workers_counted)
+				{
+					//Assign the Info = ID of the worker that is being read
+					wInfo = readline;
+					input_vector.push_back(wInfo);
+				}
+			}
+			break;
+			case 4: //Department
+			{
+				if(line_read_num == 8+152*workers_counted)
+				{
+					//Assign the Info = ID of the worker that is being read
+					wInfo = readline;
+					input_vector.push_back(wInfo);
+				}
+			}
+			break;
+			case 5: //Weekends
+			{
+				if(line_read_num == 9+152*workers_counted)
+				{
+					//Assign the Info = ID of the worker that is being read
+					wInfo = readline;
+					input_vector.push_back(wInfo);
+				}
+			}
+			break;
+			case 6: //Boss?
+			{
+				if(line_read_num == 10+152*workers_counted)
+				{
+					//Assign the Info = ID of the worker that is being read
+					wInfo = readline;
+					input_vector.push_back(wInfo);
+				}
+			}
+			break;
+			case 7: //PL_amount
+			{
+				if(line_read_num == 11+152*workers_counted)
+				{
+					//Assign the Info = ID of the worker that is being read
+					wInfo = readline;
+					input_vector.push_back(wInfo);
+				}
+			}
+			break;
+			case 8: //HB
+			{
+				if(line_read_num == 12+152*workers_counted)
+				{
+					//Assign the Info = ID of the worker that is being read
+					wInfo = readline;
+					input_vector.push_back(wInfo);
+				}
+			}
+			break;
+			case 9: //Free_day?
+			{
+				if(line_read_num == 13+152*workers_counted)
+				{
+					//Assign the Info = ID of the worker that is being read
+					wInfo = readline;
+					input_vector.push_back(wInfo);
+				}
+			}
+			break;
+		}
+		size_t found_new_worker = readline.find ("avail:");
+		if(found_new_worker != string::npos) //A line is read containing "avail:"
+		{
+			workers_counted++;
+		}
+	}
+	return input_vector;
+}
+
+int main() {
+	//create a list of worker objects. worker_list[1], worker_list[2] etc.
+	//Worker worker;
+	setAvail();
+// 	vector<string> All_Names;
+// 	All_Names = get_all_names();
+// 	cout << "The last name in the vector is: " << All_Names.back() << endl;
+// 	cout << "The first name in the vector is: " << All_Names.front() << endl;
+	vector<string> All_Qual;
+ 	All_Qual = get_vector_with_info(4);
+	cout << "The last qual in the vector is: " << All_Qual.back() << endl;
 	return 0;
 }
 

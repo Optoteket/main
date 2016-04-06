@@ -1,7 +1,7 @@
 #ifndef __WORKERS_H_INCLUDED__
 #define __WORKERS_H_INCLUDED__
 
-
+#include <iostream>
 using namespace std;
 
 class Worker {
@@ -49,14 +49,19 @@ public:
 	
 
 private:
-  //Member variables
-  int newID;
-  string newName;
-  string newBoss;
-  string newQual;
-  string newDep;
-  string newPL;
-  //string fileopen = "./src/data/librarystaff5W.txt";
+	//Member variables
+	int newID;
+	string newName;
+	string newBoss;
+	string newQual;
+	string newDep;
+	string newPL;
+// 	string avail_file = "./src/data/workers5W.txt";
+	static const int NUM_WEEKS = 5;
+	static const int NUM_DAYS = 7;
+	static const int NUM_SHIFTS = 4;
+	int worker_avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+	
 };
 
 
