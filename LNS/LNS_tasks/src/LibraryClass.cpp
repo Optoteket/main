@@ -71,13 +71,10 @@ void Library::create_workers(){
        	    worker.set_avail(atoi(line_vector[0].c_str())-1, atoi(line_vector[1].c_str())-1, atoi(line_vector[2].c_str())-1,  atoi(line_vector[3].c_str()));
        	  }
        	  else cout << "Error: wrong number of arguments from avail file." << endl;
-
 	  
        	}
       
-	//worker.print_avail();
 	worker_list.push_back(worker);
-       	//worker_list.print_avail();
 	input_vector.clear();
     }
       
@@ -86,10 +83,7 @@ void Library::create_workers(){
       input_vector.push_back(input); 
     }
   }
-  // for (int i=0; i < worker_list.size(); i++){
-  //   worker_list[i].print_avail();
-  // }
-  
+
   print_workers();
 }
 
@@ -97,47 +91,49 @@ void Library::create_workers(){
 
 int Library::cost_avail_demand_diff(){
 
-  enum position {
-    lib,
-    ass
-  };
-
-  for(int w = 0; w < NUM_WEEKS; w++){
-    for(int d = 0; d < NUM_DAYS; d++){
-      for(int s = 0; s < NUM_SHIFTS; s++){
-	num_avail[lib][w][d][s]=0; 
-	//cout << "Avail!" << endl;
-      }
-    }
-  }
-  
-  //num_avail[2][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
-  print_avail_demand_diff();
-
-
+  //Find sum of worker avail
   for(int i = 0; i < worker_list.size(); i++){
     Worker worker = worker_list[i];
     worker.print_avail();
     //cout << worker.get_pos() << endl;
-     if(worker.get_pos().compare("lib")){
-      for(int w = 0; w < NUM_WEEKS; w++){
-	for(int d = 0; d < NUM_DAYS; d++){
-	  for(int s = 0; s < NUM_SHIFTS; s++){
-	    //cout << worker.get_avail(w,d,s) << endl;
-	    if (worker.get_avail(w,d,s) == 1){
-	      num_avail[lib][w][d][s] += 1; 
-	      //cout << "Avail: ID: " << worker.get_ID() << " " << w << ", " << d << ", " << s << endl;
-	      //cout << num_avail[lib][w][d][s] << endl;
-	    }
+
+    //for(int m = lib; m<=ass; m++){
+	
+    for(int w = 0; w < NUM_WEEKS; w++){
+      for(int d = 0; d < NUM_DAYS; d++){
+	for(int s = 0; s < NUM_SHIFTS; s++){
+	  //cout << worker.get_avail(w,d,s) << endl;
+	  if (worker.get_avail(w,d,s) == 2){
+	    num_avail_workers[lib][w][d][s] += 1; 
+	    //cout << "Avail: ID: " << worker.get_ID() << " " << w << ", " << d << ", " << s << endl;
+	    //cout << num_avail[lib][w][d][s] << endl;
 	  }
+	  else if (worker.get_avail(w,d,s) == 1){
+	    num_avail_workers[ass][w][d][s] += 1; 
+	  }
+	  //else if cout << "Error: undefined worker position in cost_avail_demand_diff." << endl;
 	}
       }
-    }
- 
-    //Add check if BokB!
-    else cout << "Error: undefined worker position in cost_avail_demand_diff." << endl;
+    } 
+    //Add check if BokB! 
   }
-  print_avail_demand_diff();
+
+  //Find diff between avail and demand
+  for(int w = 0; w < NUM_WEEKS; w++){
+    for(int d = 0; d < NUM_DAYS; d++){
+      for(int s = 0; s < NUM_SHIFTS; s++){
+	//cout << worker.get_avail(w,d,s) << endl;
+	avail_demand_diff[w][d][s] =  num_avail_workers[lib][w][d][s] - week_worker_demand[w][d][s][Info]; 
+      }
+    }
+  }
+
+  //Check if infeasible! -Yes: destroy-repair librarians
+
+  //Distribute assistants according to notes.
+
+
+print_avail_demand_diff();
 }
 
 
@@ -151,17 +147,41 @@ void Library::print_workers(){
 }
 
 void Library::print_avail_demand_diff(){
-  cout << "Number of available workers (lib):" << endl;
+
+  cout << "Total num of available workers (lib and ass):" << endl;
   cout << "Tasks:( Exp,) Info, (PL, HB, BokB)" << endl;
+  
   for (int i=0; i< NUM_WEEKS; i++){
     for (int j=0; j< NUM_SHIFTS; j++){
-      for (int k=0; k< NUM_DAYS; k++){
-	 cout << num_avail[0][i][k][j] << " ";
+      for(int m = lib; m<=ass; m++){
+	for (int k=0; k< NUM_DAYS; k++){
+	  cout << num_avail_workers[m][i][k][j] << " ";
+	  //cout << avail_demand_diff[i][k][j] << " ";
+	}
+	cout << "    ";
       }
       cout << endl;
     }
     cout << endl << endl;
   }
+
+
+  cout << "Avail demand diff:" << endl;
+  cout << "Tasks:( Exp,) Info, (PL, HB, BokB)" << endl;
+  
+  for (int i=0; i< NUM_WEEKS; i++){
+    for (int j=0; j< NUM_SHIFTS; j++){
+      for (int k=0; k< NUM_DAYS; k++){
+	//cout << num_avail_workers[m][i][k][j] << " ";
+	cout << avail_demand_diff[i][k][j] << "  ";
+      }
+      cout << endl;
+    }
+    cout << endl << endl;
+  }
+
+
+
 }
 
 
@@ -279,9 +299,12 @@ Library::Library() {
     for (int j=0; j<NUM_DAYS; j++){
       for (int k=0; k<NUM_SHIFTS; k++){
     	for (int l=0; l<NUM_TASKS; l++){
-
-      week_worker_demand[i][j][k][l] = 0;
-      //cout << week_worker_demand << endl;
+	  //Reset worker demand
+	  week_worker_demand[i][j][k][l] = 0;
+	  //Reset num avail workers
+	  for (int m=lib; m<=ass; m++){
+	    num_avail_workers[m][i][j][k] = 0;
+	  }
 	}
       }
     }

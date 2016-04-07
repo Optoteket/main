@@ -26,22 +26,36 @@ class Library{
     HB,
     BokB
   };  
+
+  enum position {
+    lib,
+    ass
+  };
  
   int week_worker_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
-  int num_avail[2][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+
+  //Avail variables
+  int num_avail_workers[2][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+  int avail_demand_diff[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
 
   vector<Worker> worker_list;
 
  public:
   Library();
   void print_demand();
+
+  //Demand functions
   void read_demand();
   void set_demand(int,int,int,string,int);
   void set_demand(int,int,int,int,int);
   int get_demand(int, int, int, int);
   //void add_worker(Worker*);
+
+  //Create worker functions
   void print_workers();
   void create_workers();
+
+  //Avail compare functions
   int cost_avail_demand_diff();
   void print_avail_demand_diff();
   
