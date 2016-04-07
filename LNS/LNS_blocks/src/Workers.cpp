@@ -14,15 +14,21 @@ Worker::Worker() {
 	newQual = " ";
 	newDep = " ";
 	newPL = " ";
+	newWeekend = " ";
+	newHB = " ";
+	newFreeday = " ";
 }
 
-Worker::Worker(int id, string name, string boss, string qualification, string department, string pl) {
+Worker::Worker(int id, string name, string boss, string qualification, string department, string pl, string weekend, string hb, string free_day) {
 	newID = id;
 	newName = name;
 	newBoss = boss;
 	newQual = qualification;
 	newDep = department;
 	newPL = pl;
+	newWeekend = weekend;
+	newHB = hb;
+	newFreeday = free_day;
 }
 
 Worker::~Worker() {
@@ -47,6 +53,16 @@ string Worker::getDep() const{
 string Worker::getPL() const{ //Enumerate??
 	return newPL;
 }
+string Worker::getWeekend() const{
+	return newWeekend;
+}
+string Worker::getHB() const{
+	return newHB;
+}
+string Worker::getFreeday() const{
+	return newFreeday;
+}
+
 
 int Worker::getAvail(int week, int day, int shift) const{
 	return worker_avail[week][day][shift];
@@ -82,7 +98,15 @@ void Worker::setDep(string dep) {
 void Worker::setPL(string pl) {
 	newPL = pl;
 }
-
+void Worker::setWeekend(string weekend) {
+	newWeekend = weekend;
+}
+void Worker::setHB(string hb) {
+	newHB = hb;
+}
+void Worker::setFreeday(string free_day) {
+	newFreeday = free_day;
+}
 void Worker::setAvail(int w, int d, int s, int A) {
 	worker_avail[w][d][s] = A;
 }
