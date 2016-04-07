@@ -6,31 +6,33 @@
 #include <sstream>
 #include <iomanip>
 #include "Workers.h"
+#include "Blocks.h"
 using namespace std;
-void setAvail_worker(Worker*);
+void setAvail_worker(Worker[39]);
 vector <string> get_info_vector(int);
 
 int main() {
 	//create a list of worker objects. worker_list[1], worker_list[2] etc.
-	Worker myworkers[40];
+	Worker myworkers[39];
 	setAvail_worker(myworkers);
 	vector<string> All_Info;
  	All_Info = get_info_vector(4); //1 = Qualifications, 2 = ID, 3 = Name, 4 = Department, 5 = Weekends, 6 = Boss?, 7 = PL, 8 = HB, 9 = free_day?
 	cout << "The last information in the vector is: " << All_Info.back() << endl;
-//   	myworkers[39].setAvail(1,0,2,4);
-//  	myworkers[39].setAvail(0,0,0,1);
-//  	myworkers[39].setAvail(2,2,1,2);
-// 	int avail = myworkers[1].getAvail(1,1,1);
-//   	myworkers[38].getAvail_matrix();
+	
+	Block myblocks[3];
+	cout << "before get task matrix" << endl;
+	//myblocks[1].getTask_matrix();
+	cout << "after get task matrix" << endl;
+	
+   	//myworkers[38].getAvail_matrix();
 // 	cout << "Next availability matrix" << endl;
  	myworkers[39].getAvail_matrix();
 
- 	//myworkers[38].getAvail_matrix();
 	return 0;
 }
 
 //Assigns avail for all workers
-void setAvail_worker(Worker* myworkers) {
+void setAvail_worker(Worker myworkers[39]) {
 	ifstream inFile("./src/data/workers5W.txt");
 	
 	//Checking for open Error
@@ -95,14 +97,8 @@ void setAvail_worker(Worker* myworkers) {
 			input_vector.pop_back();
 			//Assign the availability to the workers
 			int AVAIL = atoi(avail_string.c_str());
-// 			if (wID == 39)
-// 			{
-				cout << "Trying to type in: " << week << " " << day << " " << shift << " " << AVAIL << endl;
- 				//if (week >= 1 && day == 4 && shift == 3){
-				myworkers[wID].setAvail(week-1, day-1, shift-1, AVAIL);
-				//myworkers[wID].setAvail(week-1,day-1,shift-1,AVAIL);
- 				//}
-// 			}
+			//cout << "Trying to type in: " << week << " " << day << " " << shift << " " << AVAIL << endl;
+			myworkers[wID-1].setAvail(week-1, day-1, shift-1, AVAIL);
 		}
 	}
 }
