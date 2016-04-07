@@ -7,6 +7,7 @@
 #include <iomanip>
 #include "Workers.h"
 #include "Blocks.h"
+#include "Library.h"
 using namespace std;
 void setAvail_worker(Worker[39]);
 vector <string> get_info_vector(int);
@@ -16,17 +17,16 @@ int main() {
 	Worker myworkers[39];
 	setAvail_worker(myworkers);
 	vector<string> All_Info;
- 	All_Info = get_info_vector(4); //1 = Qualifications, 2 = ID, 3 = Name, 4 = Department, 5 = Weekends, 6 = Boss?, 7 = PL, 8 = HB, 9 = free_day?
-	cout << "The last information in the vector is: " << All_Info.back() << endl;
+	Library lib;
+	lib.printDemand();
+//  	All_Info = get_info_vector(4); //1 = Qualifications, 2 = ID, 3 = Name, 4 = Department, 5 = Weekends, 6 = Boss?, 7 = PL, 8 = HB, 9 = free_day?
+// 	cout << "The last information in the vector is: " << All_Info.back() << endl;
+	enum Foo {Red, Yellow, Green};
+	//cout << Red << endl;
 	
-	Block myblocks[3];
-	cout << "before get task matrix" << endl;
+	//Block myblocks[3];
 	//myblocks[1].getTask_matrix();
-	cout << "after get task matrix" << endl;
-	
    	//myworkers[38].getAvail_matrix();
-// 	cout << "Next availability matrix" << endl;
- 	myworkers[39].getAvail_matrix();
 
 	return 0;
 }
@@ -62,7 +62,7 @@ void setAvail_worker(Worker myworkers[39]) {
 		{
 			//Assign the ID of the worker that is being read (not in order)
 			wID = atoi(readline.c_str());
-			cout << wID << endl;
+			//cout << wID << endl;
 		}
 		
 		//update workers_counted if "avail:" is found
