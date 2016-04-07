@@ -1,11 +1,24 @@
 // Library class h file
 #pragma once
 
+#include "WorkerClass.h"
+
 using namespace std;
 
 class Library{
 
  private:
+
+  static const int NUM_WEEKS = 5;
+  static const int NUM_DAYS = 7;
+  static const int NUM_SHIFTS = 4;
+  static const int NUM_TASKS = 5;
+
+  /* class Costs { */
+  /*    int cost_avail_demand_diff(); */
+  /*    int num_avail[2][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]; */
+  /* } costs; */
+
   enum task_type {
     Exp,
     Info,
@@ -13,11 +26,11 @@ class Library{
     HB,
     BokB
   };  
-  static const int NUM_WEEKS = 5;
-  static const int NUM_DAYS = 7;
-  static const int NUM_SHIFTS = 4;
-  static const int NUM_TASKS = 5;
+ 
   int week_worker_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
+  int num_avail[2][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+
+  vector<Worker> worker_list;
 
  public:
   Library();
@@ -26,7 +39,11 @@ class Library{
   void set_demand(int,int,int,string,int);
   void set_demand(int,int,int,int,int);
   int get_demand(int, int, int, int);
-
+  //void add_worker(Worker*);
+  void print_workers();
+  void create_workers();
+  int cost_avail_demand_diff();
+  void print_avail_demand_diff();
   
 };
 
