@@ -50,6 +50,8 @@ private:
 	static const int NUM_SHIFTS = 4;
 	static const int NUM_TASKS = 4;
 	int tasks_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
+	//int tasks_assigned_block[NUM_DAYS][NUM_SHIFTS];
+	vector<int> tasks_assigned_block;
 	
 };
 

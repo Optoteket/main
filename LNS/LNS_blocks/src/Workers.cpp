@@ -111,3 +111,5 @@ void Worker::setAvail(int w, int d, int s, int A) {
 	worker_avail[w][d][s] = A;
 }
 
+
+

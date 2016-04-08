@@ -50,6 +50,8 @@ public:
 	void setHB(string);
 	void setFreeday(string);
 	
+	void createBlocks();
+	
 
 	int rotation; //a number between 1-5 (0-4?) saying how many rotations have been allowed
 	int weekend_element; //a number between 1-5 stating where the weekend occurs
