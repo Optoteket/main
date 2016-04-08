@@ -1,8 +1,14 @@
 // Worker class h file
 #pragma once
 
-using namespace std;
+#include <string>
+#include <iostream>
+#include <vector>
+#include <fstream>
 
+#include "Constants.h"
+
+using namespace std;
 
 
 class Worker{
@@ -20,23 +26,30 @@ class Worker{
     string HB_type;
     string freeday;
   } identity;
- 
-  static const int NUM_WEEKS = 5;
-  static const int NUM_DAYS = 7;
-  static const int NUM_SHIFTS = 4;
-  static const int NUM_TASKS = 5;
-  int avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
 
+  struct{
+    int weekend;
+  } current;
+ 
+  int avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   vector<int[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]> avail_vector;
   
  public:
-  Worker(string, int, string, string, string, string, string, string, string);
+  //Worker(string, int, string, string, string, string, string, string, string);
+  Worker(string, int, string, string, string, string, string, string, string, int[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]);
   Worker(const Worker &obj);
-  void set_avail(int,int,int,int);
   void print_avail();
-  int get_avail(int, int, int);
+  void display_avail_vector();
 
+  //Set functions
+  void set_avail(int,int,int,int);
+  void set_weekend(int);
+
+  //Get functions
+  int get_avail(int, int, int);
   int get_ID();
+  string get_weekend();
   string get_pos();
+  int get_current_weekend();
 };
 
