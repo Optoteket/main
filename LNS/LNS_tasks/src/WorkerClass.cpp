@@ -8,7 +8,7 @@ using namespace std;
 
 /************ Worker constructor ***********/
 
-Worker::Worker(string pos, int ID, string name, string department, string weekend, string boss, string PL_type, string HB_type, string freeday){
+Worker::Worker(string pos, int ID, string name, string department, string weekend, string boss, string PL_type, string HB_type, string freeday, int worker_avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]){
 
   identity.pos = pos; 
   identity.ID = ID;
@@ -20,15 +20,38 @@ Worker::Worker(string pos, int ID, string name, string department, string weeken
   identity.HB_type = HB_type;
   identity.freeday = freeday;
 
-  current.weekend = 1;
+  if (identity.weekend.compare("weekend") != identity.weekend.npos){
+    current.weekend = 1;
+  }
+  else current.weekend = 0;
 
+  //Set availability
+  int temp_avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   for (int i=0; i< NUM_WEEKS; i++){
     for (int j=0; j<NUM_DAYS; j++){
       for (int k=0; k<NUM_SHIFTS; k++){
-	avail[i][j][k] = 0;
+	avail[i][j][k] = worker_avail[i][j][k];
+	temp_avail[i][j][k] = avail[i][j][k];
       }
     }
   }
+
+  //avail_vector.push_back(temp_avail);
+
+  // Set all other possible week rotations
+  for(int h=0; h<NUM_ROTATIONS-1; h++){
+    for (int i=0; i<NUM_WEEKS; i++){
+      for (int j=0; j<NUM_DAYS; j++){
+	for (int k=0; k<NUM_SHIFTS; k++){
+	  temp_avail[((i+1) % NUM_WEEKS) + 1][j][k] = temp_avail[i][j][k];
+	}
+      }
+    }
+    //avail_vector.push_back(temp_avail);
+  }
+
+  display_avail_vector();
+
 }
 
 /************ Worker copy constructor ***********/
@@ -90,6 +113,8 @@ void Worker::set_avail(int week, int day, int shift, int value){
   avail[week][day][shift] = value;
 }
 
+/************* Worker function: shift avail ************/
+
 /************* Worker functions: print ***********/
 
 void Worker::print_avail(){
@@ -98,6 +123,22 @@ void Worker::print_avail(){
     for (int j=0; j< NUM_SHIFTS; j++){
       for (int k=0; k< NUM_DAYS; k++){
 	cout << avail[i][k][j] << " ";
+      }
+      cout << endl;
+    }
+    cout << endl << endl;
+  }
+}
+
+void Worker::display_avail_vector(){
+  cout << "Availability vector for worker" << get_ID() << endl;
+  for (int l=0; l< NUM_ROTATIONS; l++){
+    for (int i=0; i< NUM_WEEKS; i++){
+      for (int j=0; j< NUM_SHIFTS; j++){
+	for (int k=0; k< NUM_DAYS; k++){
+	  cout << avail_vector[l][k][j][l] << " ";
+	}
+	cout << "   ";
       }
       cout << endl;
     }

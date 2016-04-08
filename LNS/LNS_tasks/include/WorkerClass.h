@@ -35,9 +35,11 @@ class Worker{
   vector<int[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]> avail_vector;
   
  public:
-  Worker(string, int, string, string, string, string, string, string, string);
+  //Worker(string, int, string, string, string, string, string, string, string);
+  Worker(string, int, string, string, string, string, string, string, string, int[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]);
   Worker(const Worker &obj);
   void print_avail();
+  void display_avail_vector();
 
   //Set functions
   void set_avail(int,int,int,int);

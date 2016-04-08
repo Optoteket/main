@@ -33,10 +33,11 @@ void Library::create_workers(){
        	string worker_PL_type = input_vector[6];
        	string worker_HB_type = input_vector[7];
        	string worker_freeday = input_vector[8];
+	int worker_avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
 
-       	//Create worker
-       	Worker worker {worker_position, worker_ID, worker_name, worker_department, worker_weekend, worker_boss, worker_PL_type, worker_HB_type, worker_freeday};
-       	input_vector.erase (input_vector.begin(),input_vector.begin()+10);
+	// //Create worker
+       	// Worker worker {worker_position, worker_ID, worker_name, worker_department, worker_weekend, worker_boss, worker_PL_type, worker_HB_type, worker_freeday};
+	input_vector.erase (input_vector.begin(),input_vector.begin()+10);
 
        	//Read availability, set in worker
        	for (int i=0; i < input_vector.size(); i++){
@@ -63,12 +64,15 @@ void Library::create_workers(){
        	  input = input.substr(pos+1);
 
       	  if (line_vector.size() == 4){
-       	    worker.set_avail(atoi(line_vector[0].c_str())-1, atoi(line_vector[1].c_str())-1, atoi(line_vector[2].c_str())-1,  atoi(line_vector[3].c_str()));
+	    worker_avail[atoi(line_vector[0].c_str())-1][atoi(line_vector[1].c_str())-1][atoi(line_vector[2].c_str())-1] = atoi(line_vector[3].c_str());
+       	    //worker.set_avail(atoi(line_vector[0].c_str())-1, atoi(line_vector[1].c_str())-1, atoi(line_vector[2].c_str())-1,  atoi(line_vector[3].c_str()));
        	  }
        	  else cout << "Error: wrong number of arguments from avail file." << endl;
 	  
        	}
       
+	//Create worker
+       	Worker worker {worker_position, worker_ID, worker_name, worker_department, worker_weekend, worker_boss, worker_PL_type, worker_HB_type, worker_freeday, worker_avail};
 	worker_list.push_back(worker);
 	input_vector.clear();
     }
@@ -78,6 +82,10 @@ void Library::create_workers(){
       input_vector.push_back(input); 
     }
   }
+
+  //Create 5 different rotation sets
+  //
+  
 
   //print_workers();
 }
@@ -150,7 +158,7 @@ void Library::shuffle_workers(){
 
   //Redistribute weekends
   for (int i=0; i < check_weekend_demand(); i++){
-    shuffled_list[i]->set_weekend((i % 7) + 1);
+    shuffled_list[i]->set_weekend((i % NUM_WEEKS) + 1);
     //cout << worker_list[i].get_weekend << endl;
   }
 
@@ -182,7 +190,7 @@ void Library::find_num_avail_workers(){
 	  //cout << worker.get_avail(w,d,s) << endl;
 	  if (worker.get_avail(w,d,s) == 2){
 	    num_avail_workers[lib][w][d][s] += 1; 
-	    cout << "Avail lib: ID: " << worker.get_ID() << " " << w << ", " << d << ", " << s << endl;
+	    //cout << "Avail lib: ID: " << worker.get_ID() << " " << w << ", " << d << ", " << s << endl;
 	    //cout << num_avail[lib][w][d][s] << endl;
 	  }
 	  else if (worker.get_avail(w,d,s) == 1){
