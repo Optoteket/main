@@ -16,6 +16,7 @@
 #include "task.h" 
 #include "LibraryClass.h"
 #include "WorkerClass.h"
+#include "Constants.h"
 
 using namespace std;
 
@@ -49,13 +50,13 @@ int main()
   try{
     //2. Create library
     Library library;
-    library.read_demand();
-    library.print_demand();
+    //library.read_demand();
+    //library.print_demand();
 
     //3. Create workers
-    library.create_workers();
+    //library.create_workers();
 
-    library.cost_avail_demand_diff();
+    //library.cost_avail_demand_diff();
 
     //4. Destroy and repair weekends
     /*****************************************/

@@ -1,11 +1,7 @@
 // Worker class
 
-#include <string>
-#include <iostream>
-#include <vector>
-#include <fstream>
-
 #include "WorkerClass.h"
+#include "Constants.h"
 
 using namespace std;
 
@@ -24,6 +20,8 @@ Worker::Worker(string pos, int ID, string name, string department, string weeken
   identity.HB_type = HB_type;
   identity.freeday = freeday;
 
+  current.weekend = 1;
+
   for (int i=0; i< NUM_WEEKS; i++){
     for (int j=0; j<NUM_DAYS; j++){
       for (int k=0; k<NUM_SHIFTS; k++){
@@ -31,14 +29,13 @@ Worker::Worker(string pos, int ID, string name, string department, string weeken
       }
     }
   }
-
 }
 
 /************ Worker copy constructor ***********/
 
 Worker::Worker(const Worker &obj){
   
-  cout << "Library copy constructor" << endl;
+  cout << "Worker copy constructor" << endl;
 
   identity.pos = obj.identity.pos; 
   identity.ID = obj.identity.ID;
@@ -70,12 +67,24 @@ string Worker::get_pos(){
   return identity.pos;
 }
 
+string Worker::get_weekend(){
+  return identity.weekend;
+}
+
+int Worker::get_current_weekend(){
+  return current.weekend;
+}
+
 int Worker::get_avail(int week, int day, int shift){
   return avail[week][day][shift];
 }
 
 
 /************** Worker functions: set **********/
+
+void Worker::set_weekend(int wend){
+  current.weekend = wend;
+}
 
 void Worker::set_avail(int week, int day, int shift, int value){
   avail[week][day][shift] = value;
