@@ -2,6 +2,7 @@
 #define __LIBRARY_H_INCLUDED__
 
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class Library {
@@ -23,6 +24,8 @@ public:
 	
 	void readDemand();
 	void printDemand();
+	void createWorkers();
+	vector <string> get_info_vector(int);
 
 
 private:
@@ -34,6 +37,7 @@ private:
 	static const int NUM_TASKS = 5;
 	int demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
 	enum task_type{Exp, Info, PL, HB, BokB};
+	//Worker myworkers[39]; //Create 39 workers in library class. Array is from 0->38
 };
 
 

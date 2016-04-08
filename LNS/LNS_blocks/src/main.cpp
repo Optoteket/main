@@ -10,19 +10,25 @@
 #include "Library.h"
 using namespace std;
 void setAvail_worker(Worker[39]);
-vector <string> get_info_vector(int);
 
 int main() {
-	//create a list of worker objects. worker_list[1], worker_list[2] etc.
+	//create a list of worker objects. myworkers[0], myworkers[1] etc.
 	Worker myworkers[39];
 	setAvail_worker(myworkers);
-	vector<string> All_Info;
+	Worker aworker(1, "Ben", "not_boss", "lib", "Child", "Normal_PL", "No_weekends", "HB", "No");
+	cout << aworker.getName() << endl;
+	cout << myworkers[0].getName() << endl;
+	myworkers[0].setName("Kent");
+	cout << myworkers[0].getName() << endl;
+	myworkers[0] = aworker;
+	cout << myworkers[0].getName() << " ID is: " << myworkers[0].getID() << endl;
+//	myworkers[0] = 
 	Library lib;
-	lib.printDemand();
+	lib.createWorkers();
+//	lib.printDemand();
+//	vector<string> All_Info;
 //  	All_Info = get_info_vector(4); //1 = Qualifications, 2 = ID, 3 = Name, 4 = Department, 5 = Weekends, 6 = Boss?, 7 = PL, 8 = HB, 9 = free_day?
 // 	cout << "The last information in the vector is: " << All_Info.back() << endl;
-	enum Foo {Red, Yellow, Green};
-	//cout << Red << endl;
 	
 	//Block myblocks[3];
 	//myblocks[1].getTask_matrix();
@@ -103,127 +109,4 @@ void setAvail_worker(Worker myworkers[39]) {
 	}
 }
 
-
-vector <string> get_info_vector(int info_type) { //1 = Qualifications, 2 = ID, 3 = Name, 4 = Department, 5 = Weekends, 6 = Boss?, 7 = PL, 8 = HB, 9 = free_day?
-	ifstream inFile("./src/data/workers5W.txt");
-	string wInfo;
-	//Checking for open Error
-	if (inFile.fail()) {
-		cerr << "Error opening the file!" << endl;
-		exit(1);
-	}
-	
-	int line_read_num = 0;
-	int workers_counted = 0;
-	vector<string> input_vector;
-	string readline;
-	while( inFile.good() )
-	{
-		//Read until a line
-		getline( inFile, readline);
-		line_read_num++; //the line read is number: line_read_num
-		//cout << "info_type is: " << info_type << endl;
-		switch (info_type)
-		{
-			case 1: //Qualifications
-			{
-				if(line_read_num == 5+152*workers_counted)
-				{
-					//Assign the Info = Qualifications of the worker that is being read
-					wInfo = readline;
-					cout << wInfo << endl;
-					input_vector.push_back(wInfo);
-				}
-			}
-			break;
-			case 2: //ID
-			{
-				if(line_read_num == 6+152*workers_counted)
-				{
-					//Assign the Info = ID of the worker that is being read
-					wInfo = readline;
-					cout << wInfo << endl;
-					input_vector.push_back(wInfo);
-				}
-			}
-			break;
-			case 3: //Name
-			{
-				if(line_read_num == 7+152*workers_counted)
-				{
-					//Assign the Info = ID of the worker that is being read
-					wInfo = readline;
-					input_vector.push_back(wInfo);
-				}
-			}
-			break;
-			case 4: //Department
-			{
-				if(line_read_num == 8+152*workers_counted)
-				{
-					//Assign the Info = ID of the worker that is being read
-					wInfo = readline;
-					input_vector.push_back(wInfo);
-				}
-			}
-			break;
-			case 5: //Weekends
-			{
-				if(line_read_num == 9+152*workers_counted)
-				{
-					//Assign the Info = ID of the worker that is being read
-					wInfo = readline;
-					input_vector.push_back(wInfo);
-				}
-			}
-			break;
-			case 6: //Boss?
-			{
-				if(line_read_num == 10+152*workers_counted)
-				{
-					//Assign the Info = ID of the worker that is being read
-					wInfo = readline;
-					input_vector.push_back(wInfo);
-				}
-			}
-			break;
-			case 7: //PL_amount
-			{
-				if(line_read_num == 11+152*workers_counted)
-				{
-					//Assign the Info = ID of the worker that is being read
-					wInfo = readline;
-					input_vector.push_back(wInfo);
-				}
-			}
-			break;
-			case 8: //HB
-			{
-				if(line_read_num == 12+152*workers_counted)
-				{
-					//Assign the Info = ID of the worker that is being read
-					wInfo = readline;
-					input_vector.push_back(wInfo);
-				}
-			}
-			break;
-			case 9: //Free_day?
-			{
-				if(line_read_num == 13+152*workers_counted)
-				{
-					//Assign the Info = ID of the worker that is being read
-					wInfo = readline;
-					input_vector.push_back(wInfo);
-				}
-			}
-			break;
-		}
-		size_t found_new_worker = readline.find ("avail:");
-		if(found_new_worker != string::npos) //A line is read containing "avail:"
-		{
-			workers_counted++;
-		}
-	}
-	return input_vector;
-}
 
