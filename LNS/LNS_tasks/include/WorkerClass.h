@@ -31,7 +31,9 @@ class Worker{
     int weekend;
   } current;
  
-  int avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+
+  //Change made 2016-04-11: avail one more param
+  int avail[NUM_ROTATIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   vector<int[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]> avail_vector;
   
  public:
