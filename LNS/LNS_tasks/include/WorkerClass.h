@@ -15,6 +15,9 @@ class Worker{
 
  private:
 
+  //Private functions, keep private for easier handling
+   void display_all_avail();
+
   struct {
     string pos;
     int ID;
@@ -29,27 +32,31 @@ class Worker{
 
   struct{
     int weekend;
+    int rotation;
   } current;
  
 
   //Change made 2016-04-11: avail one more param
-  int avail[NUM_ROTATIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
-  vector<int[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]> avail_vector;
-  
+  int avail[NUM_ROTATIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];  
+
  public:
+
   //Worker(string, int, string, string, string, string, string, string, string);
   Worker(string, int, string, string, string, string, string, string, string, int[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]);
   Worker(const Worker &obj);
-  void print_avail();
-  void display_avail_vector();
-
+  //void print_avail();
+  void print_modulo();
+  void display_avail();
+ 
   //Set functions
-  void set_avail(int,int,int,int);
+  //void set_avail(int,int,int,int,int);
   void set_weekend(int);
+  void set_rotation(int);
 
   //Get functions
   int get_avail(int, int, int);
   int get_ID();
+  int get_rotation();
   string get_weekend();
   string get_pos();
   int get_current_weekend();

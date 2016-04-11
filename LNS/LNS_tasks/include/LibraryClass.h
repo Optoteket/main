@@ -6,6 +6,10 @@
 #include <vector>
 #include <fstream>
 #include <algorithm>
+#include <stdexcept>
+#include <ctime>  
+#include <cstdlib>
+#include <random>
 
 
 #include "WorkerClass.h"
@@ -21,7 +25,7 @@ class Library{
     vector<Worker*> weekend_workers;
   } subset;
  
-  int week_worker_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
+  int worker_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
 
   //Avail variables
   int num_avail_workers[2][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
@@ -42,12 +46,15 @@ class Library{
 
   //Create worker functions
   void print_workers();
+  void print_worker_avail(int,int[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]);
   void create_workers();
+  void create_a_worker(vector<string>&);
+  void display_worker_avail();
 
   //Avail compare functions
   void find_num_avail_workers();
   void find_weekend_workers();
-  void cost_avail_demand_diff();
+  bool demand_filled();
   void print_avail_demand_diff();
   void shuffle_workers();
   int check_weekend_demand();
