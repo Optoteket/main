@@ -384,27 +384,46 @@ Worker Library::getWorker(int i) const{
 //change output to vector<Block>
 void Library::createBlockpool(){
 	int b_ID = 1;
-	//num_tasks = 0:5 (should be from 0)
-	for(int num_tasks = 1; num_tasks<=5; num_tasks++){
-		for(int j=1; j<=4; j++){
-			for(int d=1; d<=5; d++){
-				for(int s=1; s<=4; s++){
-					for(int i=0; i<= num_tasks; i++){
-						if(task_assign_avail[d][s][j] == 1){
+	//vector<int> days_assigned;
+	//vector<...> all_combination_vector;
+	//num_tasks should be from 0 to 5. 0 to 7 if weekends are included
+	for(int num_tasks_to_assign = 1; num_tasks_to_assign<=5; num_tasks_to_assign++){
+		//do {
+		all_combination_vector = create_all_unique_task_combinations(num_tasks_to_assign);
+		for(int x=0; x<all_combination_vector.size(); x++){
+			//Create class
+			Block block(b_ID); //Create block nr: b_ID
+			b_ID++;
+			cout << b_ID << endl;
+			//Assign task combination
+			assign_unique_task_combination();
+		}
+	}
+	setNum_blocks(b_ID-1); //Set num_blocks in library class to the number of blocks created
+}			
+			
+			
+vector<...> Library::create_all_unique_task_combinations(int num_tasks_to_assign){			
+			for(int j=1; j<=4; j++){
+				for(int d=1; d<=5; d++){ //Weekends excluded here
+					for(int s=1; s<=4; s++){
+						for(int i=0; i<= num_tasks_to_assign; i++){
+							
+							if(task_assign_avail[d][s][j] == 1){ //Only assign if avail
+								if(unique_block_type() == 1) {
+									//Create class
+									
+								}
+								
+							}
 							
 						}
-						cout << "In here!" << endl;
-						Block block(b_ID, "No_weekend", "No_HB");
-						b_ID++;
-						cout << b_ID << endl;
-						
 					}
 				}
 			}
-		}
-	}
-	setNum_blocks(b_ID);
+		//} until tasks_assigned_to_block == num_tasks_to_assign;
 }
+
 
 int Library::getNum_blocks() const{
 	return num_blocks;
