@@ -11,15 +11,15 @@ Block::Block() {
 	newID = 0;
 	newWeektype = " ";
 	newHB = " ";
-	for (int w=0; w< NUM_WEEKS; w++){
+	//for (int w=0; w< NUM_WEEKS; w++){
 		for (int s=0; s< NUM_SHIFTS; s++){
 			for (int d=0; d< NUM_DAYS; d++){
 				for (int j=0; j<NUM_TASKS; j++){
-					tasks_assigned[w][d][s][j] = 0;
+					tasks_assigned[d][s][j] = 0;
 				}
 			}
 		}
-	}
+	//}
 }
 
 Block::Block(int id, string weektype, string hb) {

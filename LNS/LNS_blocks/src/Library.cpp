@@ -382,63 +382,63 @@ Worker Library::getWorker(int i) const{
 }
 
 //change output to vector<Block>
-void Library::createBlockpool(){
-	int b_ID = 1;
-	//vector<int> days_assigned;
-	//vector<...> all_combination_vector;
-	//num_tasks should be from 0 to 5. 0 to 7 if weekends are included
-	for(int num_tasks_to_assign = 1; num_tasks_to_assign<=5; num_tasks_to_assign++){
-		//do {
-		all_combination_vector = create_all_unique_task_combinations(num_tasks_to_assign);
-		for(int x=0; x<all_combination_vector.size(); x++){
-			//Create class
-			Block block(b_ID); //Create block nr: b_ID
-			b_ID++;
-			cout << b_ID << endl;
-			//Assign task combination
-			assign_unique_task_combination();
-		}
-	}
-	setNum_blocks(b_ID-1); //Set num_blocks in library class to the number of blocks created
-}			
-
-
-vector<...> Library::create_all_unique_task_combinations(int num_tasks_to_assign, Block block){
-	int j_start = 1;
-	int d_start = 1;
-	int s_start = 1;
-	int tasks_assigned = 0;
-	vector<matrix[int][int][int]> combination_matrix;
-	vector<int> days_busy;
-	//Case statement selecting end of loop iteration? e.g. if num_tasks_to_assign == 1, then blocks_to_create = 
-	
-	while(tasks_assigned < num_tasks_to_assign){ //What if num_tasks_to_assign = 0?
-	//for(int i=0; i< num_tasks_to_assign; i++){
-		//Assign a task
-		for(int j=j_start; j<=4; j++){
-			for(int d=d_start; d<=5; d++){ //Weekends excluded here
-				for(int s=s_start; s<=4; s++){
-					
-					if(tasks_assigned == num_tasks_to_assign){
-						if(unique_block_type() == 1) {
-							//Add to the vector
-							combination_matrix[size+1]= multidim_array;
-						}
-						else{
-							if(task_assign_avail[d][s][j] == 1){ //Only assign if avail
-								//assign the task if not a busy day
-								if(!is_day_busy()){
-									block.setTask(d,s,j,1);
-								} //else next iteration
-							} //else next iteration
-						}
-					}
-				}
-			}
-		}
-	}
-		//} until tasks_assigned_to_block == num_tasks_to_assign;
-}
+// void Library::createBlockpool(){
+// 	int b_ID = 1;
+// 	//vector<int> days_assigned;
+// 	//vector<...> all_combination_vector;
+// 	//num_tasks should be from 0 to 5. 0 to 7 if weekends are included
+// 	for(int num_tasks_to_assign = 1; num_tasks_to_assign<=5; num_tasks_to_assign++){
+// 		//do {
+// 		all_combination_vector = create_all_unique_task_combinations(num_tasks_to_assign);
+// 		for(int x=0; x<all_combination_vector.size(); x++){
+// 			//Create class
+// 			Block block(b_ID); //Create block nr: b_ID. Note: destroys after the for-loop. Add to vector?
+// 			b_ID++;
+// 			cout << b_ID << endl;
+// 			//Assign task combination
+// 			assign_unique_task_combination();
+// 		}
+// 	}
+// 	setNum_blocks(b_ID-1); //Set num_blocks in library class to the number of blocks created
+// }			
+// 
+// 
+// vector<...> Library::create_all_unique_task_combinations(int num_tasks_to_assign, Block block){
+// 	int j_start = 1;
+// 	int d_start = 1;
+// 	int s_start = 1;
+// 	int tasks_assigned = 0;
+// 	vector<matrix[int][int][int]> combination_matrix;
+// 	vector<int> days_busy;
+// 	//Case statement selecting end of loop iteration? e.g. if num_tasks_to_assign == 1, then blocks_to_create = 
+// 	
+// 	while(tasks_assigned < num_tasks_to_assign){ //What if num_tasks_to_assign = 0?
+// 	//for(int i=0; i< num_tasks_to_assign; i++){
+// 		//Assign a task
+// 		for(int j=j_start; j<=4; j++){
+// 			for(int d=d_start; d<=5; d++){ //Weekends excluded here
+// 				for(int s=s_start; s<=4; s++){
+// 					
+// 					if(tasks_assigned == num_tasks_to_assign){
+// 						if(unique_block_type() == 1) {
+// 							//Add to the vector
+// 							combination_matrix[size+1]= multidim_array;
+// 						}
+// 						else{
+// 							if(task_assign_avail[d][s][j] == 1){ //Only assign if avail
+// 								//assign the task if not a busy day
+// 								if(!is_day_busy()){
+// 									block.setTask(d,s,j,1);
+// 								} //else next iteration
+// 							} //else next iteration
+// 						}
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+// 		//} until tasks_assigned_to_block == num_tasks_to_assign;
+// }
 
 
 int Library::getNum_blocks() const{

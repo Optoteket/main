@@ -36,7 +36,7 @@ public:
 	Worker getWorker(int i) const;
 	void setTask_avail();
 	void printTask_avail();
-	void createBlockpool();
+	//void createBlockpool();
 	
 
 private:
@@ -52,6 +52,7 @@ private:
 	enum task_type{Exp, Info, PL, HB, BokB};
 	Worker myworkers[39]; //Create 39 workers in library class. Array is from 0->38
 	int task_assign_avail[NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
+	vector<Block> block_vector;
 };
 
 

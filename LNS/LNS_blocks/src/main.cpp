@@ -20,7 +20,7 @@ int main() {
 	lib.getWorker(1).getAvail_matrix();
 	lib.printTask_avail();
 //	cout << lib.getTask_avail(0,0,0) << endl;
-	lib.createBlockpool();
+	//lib.createBlockpool();
 	cout << "Number of blocks created are: " << lib.getNum_blocks() << endl;
 	Block block1(3);
 	block1.setWeektype("Weekend");
