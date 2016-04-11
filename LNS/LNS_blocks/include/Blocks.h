@@ -25,14 +25,14 @@ public:
 		//Returns "standard_HB", "no_HB" or "only_HB". "standard_HB" means max 1 per 5 weeks(10 weeks)
 	void getTask_matrix() const;
 		//prints out the entire task matrix to the terminal
-	int getTask(int, int, int, int) const;
+	int getTask(int, int, int) const;
 		
 	
 	//Mutator functions
 	void setID(int);
 	void setWeektype(string);
 	void setHB(string);
-	void setTask(int, int, int, int, int); //Input: w, d, s, j and A = assigned value (0/1)
+	void setTask(int, int, int, int); //Input: w, d, s, j and A = assigned value (0/1)
 	
 	int num_tasks; //a number of tasks the block contains
 	int num_Exp; //a number of Exp the block contains
@@ -50,7 +50,7 @@ private:
 	static const int NUM_DAYS = 7;
 	static const int NUM_SHIFTS = 4;
 	static const int NUM_TASKS = 4;
-	int tasks_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
+	int tasks_assigned[NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
 	//int tasks_assigned_block[NUM_DAYS][NUM_SHIFTS];
 	//vector<int> tasks_assigned_block;
 	

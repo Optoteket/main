@@ -14,8 +14,8 @@ Block::Block() {
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int s=0; s< NUM_SHIFTS; s++){
 			for (int d=0; d< NUM_DAYS; d++){
-				for (int t=0; t<NUM_TASKS; t++){
-					tasks_assigned[w][d][s][t] = 0;
+				for (int j=0; j<NUM_TASKS; j++){
+					tasks_assigned[w][d][s][j] = 0;
 				}
 			}
 		}
@@ -47,23 +47,23 @@ string Block::getHB() const{
 }
 
 
-int Block::getTask(int week, int day, int shift, int tasks) const{ //1 if assigned the task, 0 else
-	return tasks_assigned[week][day][shift][tasks];
+int Block::getTask(int day, int shift, int tasks) const{ //1 if assigned the task, 0 else
+	return tasks_assigned[day][shift][tasks];
 }
 
 void Block::getTask_matrix() const{
-	for (int w=0; w< NUM_WEEKS; w++){
-		for (int s=0; s< NUM_SHIFTS; s++){
-			for (int t=0; t<NUM_TASKS; t++){
-				for (int d=0; d< NUM_DAYS; d++){
-					cout << tasks_assigned[w][d][s][t] << " ";
-				}
-				cout << "\t";
+	//for (int w=0; w< NUM_WEEKS; w++){
+	for (int s=0; s< NUM_SHIFTS; s++){
+		for (int j=0; j<NUM_TASKS; j++){
+			for (int d=0; d< NUM_DAYS; d++){
+				cout << tasks_assigned[d][s][j] << " ";
 			}
-			cout << endl;
+			cout << "\t";
 		}
-		cout << endl << endl;
+		cout << endl;
 	}
+		//cout << endl << endl;
+	//}
 }
 
 void Block::setID(int id) {
@@ -75,8 +75,8 @@ void Block::setWeektype(string weektype) {
 void Block::setHB(string hb) {
 	newHB = hb;
 }
-void Block::setTask(int w, int d, int s, int t, int A) {
-	tasks_assigned[w][d][s][t] = A;
+void Block::setTask(int d, int s, int j, int A) {
+	tasks_assigned[d][s][j] = A;
 }
 
 
