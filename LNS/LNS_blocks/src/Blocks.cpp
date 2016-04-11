@@ -28,6 +28,10 @@ Block::Block(int id, string weektype, string hb) {
 	newHB = hb;
 }
 
+Block::Block(int id) {
+	newID = id;
+}
+
 Block::~Block() {
 	
 }
