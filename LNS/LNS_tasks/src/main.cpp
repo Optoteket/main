@@ -10,6 +10,8 @@
 #include <sstream>
 #include <fstream>
 #include <vector>
+#include <ctime>  
+#include <cstdlib>
 
 
 #include "stdio.h"
@@ -28,12 +30,10 @@ stringstream date;
 string log_file_dir = "../target/logs/";
 stringstream log_file_path;
 
-//Function declarations
-void create_workers(Library*);
 
-
-int main()
+int main(int argc, char** argv)
 {
+  srand (unsigned (time(0)));
   //1. Create logfile
   // date << "_" << timedate->tm_year + 1900 << "_" << timedate->tm_mon+1 << "_" << timedate->tm_mday << ":" << timedate->tm_hour << "-" << timedate->tm_min+1 << "-"<< timedate->tm_sec+1;
   // log_file_path << log_file_dir << "logfile" << date.str() << ".dat"; 
@@ -50,13 +50,9 @@ int main()
   try{
     //2. Create library
     Library library;
-    //library.read_demand();
-    //library.print_demand();
-
-    //3. Create workers
-    //library.create_workers();
-
-    //library.cost_avail_demand_diff();
+    
+    //3. Create initial solution
+    library.create_initial_solution();    
 
     //4. Destroy and repair weekends
     /*****************************************/
@@ -85,7 +81,6 @@ int main()
 
     // Repair according to some principle 
 
-    TaskClass a; 
     return 0;
 
     // Error handling 
