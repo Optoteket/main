@@ -20,6 +20,7 @@ public:
 	int getDemand(int, int, int, int) const;
 	int getNum_blocks() const;
 	int getTask_avail(int, int, int) const;
+	int getNum_day_combinations() const;
 	
 	//Mutator functions
 	void setDemand(int, int, int, int, int);
@@ -30,6 +31,7 @@ public:
 	void createWorkers();
 	void createBlocks();
 	void setNum_blocks(int);
+	void setNum_day_combinations(int);
 	vector <string> get_info_vector();
 	
 	void setAvail_worker(Worker[39]);
@@ -37,7 +39,12 @@ public:
 	void setTask_avail();
 	void printTask_avail();
 	//void createBlockpool();
-	
+	//int calculate_num_combinations(int);
+	bool is_day_blocked(vector<int>, int);
+	void create_all_day_combinations(int, int);
+	void create_combinations(int, int);
+	void print_comb_vector(const vector<int>&);
+	void calculate_combinations(const vector<int>&);
 
 private:
 	//Member variables
@@ -46,13 +53,17 @@ private:
 	static const int NUM_DAYS = 7;
 	static const int NUM_SHIFTS = 4;
 	static const int NUM_TASKS = 5;
-	int num_blocks;
+	int num_blocks; //Number of blocks created
 	int demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
 	//int demand_differ[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
 	enum task_type{Exp, Info, PL, HB, BokB};
 	Worker myworkers[39]; //Create 39 workers in library class. Array is from 0->38
 	int task_assign_avail[NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
 	vector<Block> block_vector;
+	int num_day_combinations; //Number of combinations found when num_tasks_to_assign tasks are considered
+	vector<int> days; //a vector with all days, [1 2 3 4 5] if looking at 5 days.
+	vector<int> combination; //a vector that is num_tasks_to_assign long and a combination of those days
+	
 };
 
 
