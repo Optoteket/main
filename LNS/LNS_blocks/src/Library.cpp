@@ -10,6 +10,7 @@
 #include <iomanip>
 
 Library::Library() {
+	num_day_combinations = 0;
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int d=0; d<NUM_DAYS; d++){
 			for (int s=0; s<NUM_SHIFTS; s++){
@@ -381,18 +382,18 @@ Worker Library::getWorker(int i) const{
 	return myworkers[i-1];
 }
 
-//change output to vector<Block>
+// //change output to vector<Block>
 // void Library::createBlockpool(){
 // 	int b_ID = 1;
 // 	//vector<int> days_assigned;
 // 	//vector<...> all_combination_vector;
 // 	//num_tasks should be from 0 to 5. 0 to 7 if weekends are included
-// 	for(int num_tasks_to_assign = 1; num_tasks_to_assign<=5; num_tasks_to_assign++){
+// 	for(int num_tasks_to_assign = 1; num_tasks_to_assign<=2; num_tasks_to_assign++){
 // 		//do {
 // 		all_combination_vector = create_all_unique_task_combinations(num_tasks_to_assign);
 // 		for(int x=0; x<all_combination_vector.size(); x++){
 // 			//Create class
-// 			Block block(b_ID); //Create block nr: b_ID. Note: destroys after the for-loop. Add to vector?
+// 			Block block(b_ID); //Create block nr: b_ID. Note: destroys after the for-loop. Add to vector existing in Library: private?
 // 			b_ID++;
 // 			cout << b_ID << endl;
 // 			//Assign task combination
@@ -408,6 +409,8 @@ Worker Library::getWorker(int i) const{
 // 	int d_start = 1;
 // 	int s_start = 1;
 // 	int tasks_assigned = 0;
+// 	int* list[]; //Need to know the exact size?
+// 	int task_list[num_tasks_to_assign,3]; //Matrices to store in an array
 // 	vector<matrix[int][int][int]> combination_matrix;
 // 	vector<int> days_busy;
 // 	//Case statement selecting end of loop iteration? e.g. if num_tasks_to_assign == 1, then blocks_to_create = 
@@ -439,12 +442,119 @@ Worker Library::getWorker(int i) const{
 // 	}
 // 		//} until tasks_assigned_to_block == num_tasks_to_assign;
 // }
+ 
 
+
+//Creates vectors containing combinations of days
+void Library::create_all_day_combinations(int num_tasks_to_assign, int num_days){
+	//int day_vector[num_tasks_to_assign]; //[d1=0, d2=0, ...]
+	if(num_days < num_tasks_to_assign){
+		cerr << "ERROR: num_days must be greater or equal to num_tasks_to_assign" << endl;
+		return;
+	}
+	int k = num_tasks_to_assign;
+	for(int i=0; i<num_days; ++i){
+		days.push_back(i+1);
+	}
+	create_combinations(0,k);
+	num_day_combinations = combination.size();
+}
+
+void Library::create_combinations(int offset, int k){
+	if (k == 0){
+		//in here after each combination has been created
+		num_day_combinations++;
+		calculate_combinations(combination);
+		print_comb_vector(combination);
+		cout << "number of day combinations are: " << num_day_combinations << endl;
+		return;
+	}
+	for (unsigned int i = offset; i <= days.size() - k; ++i) {
+		combination.push_back(days[i]);
+		create_combinations(i+1, k-1);
+		combination.pop_back();
+	}
+}
+
+void Library::print_comb_vector(const vector<int>& v) {
+  static int count = 0;
+  cout << "combination no " << (++count) << ": [ ";
+  for (unsigned int i = 0; i < v.size(); ++i) { cout << v[i] << " "; }
+  cout << "] " << endl;
+}
+//add days as inargument?
+void Library::calculate_combinations(const vector<int>& vect){
+	vector<int> days_in_vector;
+	days_in_vector = vect.size();
+	//int shifts_avail_day[d] = 0;
+	cout << "Number of days in vector are: " << days_in_vector << endl;
+	for(d=0; d<days_in_vector; d++){
+		for(s=0; s<NUM_SHIFTS; s++){
+			if(task_assign_avail[d][s][1] == 1){ //Only assign if avail
+				//shifts_avail_day[d]++;
+				//block day 1 and check avail for task 2 and 3
+				
+				
+			}
+		}
+	}
+}
+
+
+// int Library::calculate_num_combinations(int num_tasks_to_assign){
+// 	int num_combinations = 0;
+// 	int s_start = 0;
+// 	int j_start = 0;
+// 	int d_start = 0;
+// 	vector<int> days_blocked;
+// 	int tasks_assigned = 0;
+// 	
+// 	while(tasks_assigned < num_tasks_to_assign){
+// 		for (int s=s_start; s< 4; s++){
+// 			for (int d=d_start; d< 5; d++){
+// 				if(!is_day_blocked(days_blocked, d))
+// 				{
+// 					
+// 					set_task();
+// 					if(task_assign_avail[d][s][1] == 1){
+// 						num_combinations++;
+// 						days_blocked.push_back(d); //Block that day
+// 					}
+// 				}
+// 				
+// 			}
+// 		}
+// 	}
+// 	return num_combinations;
+// }
+
+
+
+bool Library::is_day_blocked(vector<int> blocked_vector, int day){ //Return true if day is blocked
+	int day_to_check = 0;
+	for(unsigned int i=0; i<blocked_vector.size(); i++){
+		day_to_check = blocked_vector.back();
+		blocked_vector.pop_back();
+		if(day == day_to_check){
+			return true;
+		}
+	}
+	return false;
+}
 
 int Library::getNum_blocks() const{
 	return num_blocks;
 }
 
+int Library::getNum_day_combinations() const{
+	return num_day_combinations;
+}
+
+
 void Library::setNum_blocks(int num) {
 	num_blocks = num;
+}
+
+void Library::setNum_day_combinations(int num) {
+	num_day_combinations = num;
 }
