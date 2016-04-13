@@ -63,7 +63,6 @@ int main(int argc, char** argv)
 
     /*****************************************/
 
-    //create_workers(&library);
     //library.print_workers();
 
     // 2. Create resultfile

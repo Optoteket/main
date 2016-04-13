@@ -20,14 +20,13 @@ Library::Library() {
 	  worker_demand[i][j][k][l] = 0;
 	  temp_demand[i][j][k][l] = 0;
 	  //Reset num avail workers
-	  for (int m=0; m<=bokb; m++){
+	  for (int m=0; m<=Bokb; m++){
 	    num_avail_workers[m][i][j][k] = 0;
 	  }
 	}
       }
     }
   }
-
 
   //Read demand from demand file
   read_demand();
@@ -39,6 +38,10 @@ Library::Library() {
 
   //Categorize workers
   find_weekend_workers();
+  find_lib_workers();
+  find_ass_workers();
+
+
 }
 
 /********* Library function: create initial solution ********/
@@ -59,13 +62,27 @@ void Library::create_initial_solution(){
   //display_worker_avail();
 
   //Distribute tasks
-  //set_weekend_tasks();
+  set_weekend_tasks();
   
 
  }
 
 
 void Library::set_weekend_tasks(){
+  
+  //Set HB
+  for(int i=0; i<NUM_WEEKS; i++){
+    for (int j=0; j<get_demand(0,5,0,HB);j++){
+      //for (int i= 0; i < 1; i++){
+      Worker* worker = subset.weekend_lib[i+j*NUM_WEEKS];
+      worker->set_weekend_task(HB);
+      worker->display_tasks();
+    }
+  }
+
+  
+
+ 
 
   // for(int i = 0; i < subset.weekend_workers.size(); i++){
   //   Worker* worker = subset.weekend_workers[i];
@@ -96,9 +113,6 @@ void Library::set_weekend_tasks(){
   //   worker->display_tasks();
   //   worker->display_avail();
   // }
-
-
-
 }
 
 
@@ -199,18 +213,25 @@ void Library::create_a_worker(vector<string>& input_vector){
   worker_list.push_back(worker);
   input_vector.clear();
 
-  worker.display_tasks();
+  //worker.display_tasks();
 }
 
 
 
-/************ Library function: num weekend workers *****/
+/************ Library function: weekend workers *****/
 
 void Library::find_weekend_workers(){
   for(int i = 0; i < (int) worker_list.size(); i++){
     Worker worker = worker_list[i];
     //cout << worker.get_avail(w,d,s) << endl;
     if (worker.get_weekend().compare("weekend") != (int) worker.get_weekend().npos){
+      if (worker.get_pos().find("lib",0,3) == 0){
+	subset.weekend_lib.push_back(&worker_list[i]);
+      }
+      else if(worker.get_pos().find("ass",0,3) == 0){
+	subset.weekend_ass.push_back(&worker_list[i]);	
+      }
+      else cout << "Error: in find_weekend_workers. No worker type." << endl;
       subset.weekend_workers.push_back(&worker_list[i]); 
       //cout << "Weekend worker ID: " << worker.get_ID() << endl;
     }
@@ -224,9 +245,34 @@ void Library::find_weekend_workers(){
   // }
 
   cout << "Num of weekend workers: " << subset.weekend_workers.size() << endl;
+  cout << "Num of lib weekend workers: " << subset.weekend_lib.size() << endl;
+  cout << "Num of ass weekend workers: " << subset.weekend_ass.size() << endl;
+}
 
-  //shuffle_workers();
+/************ Library function: lib workers *****/
 
+void Library::find_lib_workers(){
+  for(int i = 0; i < (int) worker_list.size(); i++){
+    Worker worker = worker_list[i];
+    if (worker.get_pos().find("lib",0,3) == 0){
+      subset.lib_workers.push_back(&worker_list[i]); 
+    }
+  }
+
+  cout << "Num of lib workers: " << subset.lib_workers.size() << endl;
+}
+
+/************ Library function: ass workers *****/
+
+void Library::find_ass_workers(){
+  for(int i = 0; i < (int) worker_list.size(); i++){
+    Worker worker = worker_list[i];
+    if (worker.get_pos().find("ass",0,3) == 0){
+      subset.ass_workers.push_back(&worker_list[i]); 
+    }
+  }
+
+  cout << "Num of ass workers: " << subset.ass_workers.size() << endl;
 }
 
 /****************** Library function: check_weekend_demand ***/
@@ -238,7 +284,7 @@ int Library::check_weekend_demand(){
   for (int i=0; i < NUM_WEEKS; i++){
     for (int j=0; j < NUM_SHIFTS; j++){
       for (int k=Exp; k <= BokB; k++){
-	weekend_demand += worker_demand[i][6][j][k];
+	weekend_demand += worker_demand[i][5][j][k];
       }
     }
   }
@@ -253,15 +299,31 @@ int Library::check_weekend_demand(){
 int myrandom (int i) {return rand()%i;}
 
 void Library::shuffle_workers(){
-  //int weekends_to_distribute = 0;
-  vector<Worker*> shuffled_list;
-  shuffled_list = subset.weekend_workers;
-  random_shuffle(shuffled_list.begin(), shuffled_list.end(), myrandom);
+  // vector<Worker*> shuffled_list;
+  // shuffled_list = subset.weekend_workers;
+  // random_shuffle(shuffled_list.begin(), shuffled_list.end(), myrandom);
 
+  //vector<Worker*> shuffled_list_lib;
+  //shuffled_list_lib = subset.weekend_lib;
+  random_shuffle(subset.weekend_lib.begin(), subset.weekend_lib.end(), myrandom);
+
+  vector<Worker*> shuffled_list_ass;
+  shuffled_list_ass = subset.weekend_ass;
+  random_shuffle(shuffled_list_ass.begin(), shuffled_list_ass.end(), myrandom);
 
   //Redistribute weekends
   for (int i=0; i < check_weekend_demand(); i++){
-    shuffled_list[i]->set_weekend((i % NUM_WEEKS) + 1);
+    int index;
+    //Distribute librarian weekends first
+    if (i < (int) subset.weekend_lib.size()){
+      index = i;
+      subset.weekend_lib[index]->set_weekend((i % NUM_WEEKS) + 1);
+    }
+    //Distribute assistant weekend second
+    else{
+      index=i-subset.weekend_lib.size();
+      shuffled_list_ass[index]->set_weekend((i % NUM_WEEKS) + 1);
+    }
     //cout << subset.weekend_workers[i]->get_weekend() << endl;
   }
 
@@ -272,6 +334,7 @@ void Library::shuffle_workers(){
 
 void Library::find_num_avail_workers(){
 
+  //Reset available workers
   for(int t = Exp; t <= Info; t++){
     for(int w = 0; w < NUM_WEEKS; w++){
       for(int d = 0; d < NUM_DAYS; d++){
@@ -282,17 +345,17 @@ void Library::find_num_avail_workers(){
     }
   } 
  
-  for(int i = 0; i < (int) worker_list.size(); i++){
-	
+  //Add available workers
+  for(int i = 0; i < (int) worker_list.size(); i++){	
     for(int w = 0; w < NUM_WEEKS; w++){
       for(int d = 0; d < NUM_DAYS; d++){
 	for(int s = 0; s < NUM_SHIFTS; s++){
 	  //cout << worker.get_avail(w,d,s) << endl;
-	  if (worker_list[i].get_avail(w,d,s) == lib){
-	    num_avail_workers[lib][w][d][s] += 1; 
+	  if (worker_list[i].get_avail(w,d,s) == Lib){
+	    num_avail_workers[Lib][w][d][s]++; 
 	  }
-	  else if (worker_list[i].get_avail(w,d,s) == ass){
-	    num_avail_workers[ass][w][d][s] += 1; 
+	  else if (worker_list[i].get_avail(w,d,s) == Ass){
+	    num_avail_workers[Ass][w][d][s]++; 
 	  }
 	}
       }
@@ -303,25 +366,34 @@ void Library::find_num_avail_workers(){
 /************ Library function: cost, avail demand *****/
 
 bool Library::demand_filled(){
-  bool return_var = true;
   find_num_avail_workers();
 
-  //Find diff between avail and demand
+  //Find diff between avail and demand for librarians
   for(int w = 0; w < NUM_WEEKS; w++){
     for(int d = 0; d < NUM_DAYS; d++){
       for(int s = 0; s < NUM_SHIFTS; s++){
-	avail_demand_diff[w][d][s] =  num_avail_workers[lib][w][d][s] - worker_demand[w][d][s][Info] - worker_demand[w][d][s][HB]; 	
+	avail_demand_diff[w][d][s] =  num_avail_workers[Lib][w][d][s] - worker_demand[w][d][s][Info] - worker_demand[w][d][s][HB]; 	
 	if (avail_demand_diff[w][d][s] < 0) {
 	  return false;
 	}  
-	avail_demand_diff[w][d][s] +=  num_avail_workers[ass][w][d][s] - worker_demand[w][d][s][Exp] - worker_demand[w][d][s][PL];
+      }
+    }
+  }
+
+  //Find diff between avail and demand for assistants
+  for(int w = 0; w < NUM_WEEKS; w++){
+    for(int d = 0; d < NUM_DAYS; d++){
+      for(int s = 0; s < NUM_SHIFTS; s++){
+	avail_demand_diff[w][d][s] +=  num_avail_workers[Ass][w][d][s] - worker_demand[w][d][s][Exp] - worker_demand[w][d][s][PL];
 	if (avail_demand_diff[w][d][s] < 0) {
 	   return false;
 	 }
       }
     }
   }
-  return return_var;
+
+
+  return true;
 }
 
 
@@ -361,7 +433,21 @@ void Library::read_demand(){
     // }
 
     if (input_vector.size() == 5){
-      set_demand(atoi(input_vector[0].c_str())-1, atoi(input_vector[1].c_str())-1, atoi(input_vector[2].c_str())-1,  input_vector[3], atoi(input_vector[4].c_str()));
+      try{
+	int week = atoi(input_vector[0].c_str())-1;
+	int day = atoi(input_vector[1].c_str())-1;
+	int shift =  atoi(input_vector[2].c_str())-1;
+	string task = input_vector[3];
+	int num_workers = atoi(input_vector[4].c_str());
+
+	set_demand(week, day, shift, task, num_workers);
+      }    catch(invalid_argument&) {
+	cout << "Error: avail argument not of right type" << endl;
+      }
+      catch(out_of_range&) {
+	cout << "Error: avail argument out of range" << endl;
+      }
+      //set_demand(atoi(input_vector[0].c_str())-1, atoi(input_vector[1].c_str())-1, atoi(input_vector[2].c_str())-1,  input_vector[3], atoi(input_vector[4].c_str()));
     }
     else cout << "Error: wrong number of values from demand file."<< endl;
   }
@@ -405,10 +491,15 @@ void Library::set_demand(int week, int day, int shift, string task, int value){
   else if (task == "HB"){
     enum_task = HB; 
   }
-  else {
+  else if (task == "BokB"){
     enum_task = BokB;
     //Not added feature yet.
   }
+  else {
+    cout << "Error: invalid task type in set_demand." << endl;
+    enum_task = no_task;
+  }
+
   worker_demand[week][day][shift][enum_task] = value;
 } 
 
@@ -418,11 +509,11 @@ void Library::set_demand(int week, int day, int shift, string task, int value){
 void Library::print_demand(
 ){
   cout << "Library demand of workers" << endl;
-  cout << "Tasks: Exp, Info, PL, HB, BokB" << endl;
+  cout << "Tasks: Exp, Info, PL, HB, BokB (without no_task)" << endl;
   for (int i=0; i< NUM_WEEKS; i++){
     for (int j=0; j< NUM_SHIFTS; j++){
       for (int k=0; k< NUM_DAYS; k++){
-    	for (int l=0; l< NUM_TASKS; l++){
+    	for (int l=Exp; l< NUM_TASKS; l++){
 	  cout << worker_demand[i][k][j][l] << " ";
 	}
 	cout << "   ";
@@ -447,7 +538,7 @@ void Library::print_avail_demand_diff(){
   
   for (int i=0; i< NUM_WEEKS; i++){
     for (int j=0; j< NUM_SHIFTS; j++){
-      for(int m = ass; m<=lib; m++){
+      for(int m = Ass; m<=Lib; m++){
 	for (int k=0; k< NUM_DAYS; k++){
 	  cout << num_avail_workers[m][i][k][j] << " ";
 	  //cout << avail_demand_diff[i][k][j] << " ";

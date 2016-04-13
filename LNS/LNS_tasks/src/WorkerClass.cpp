@@ -44,7 +44,7 @@ Worker::Worker(string pos, int ID, string name, string department, string weeken
     for (int i=0; i<NUM_WEEKS; i++){      
       for (int j=0; j<NUM_DAYS; j++){
     	for (int k=0; k<NUM_SHIFTS; k++){
-    	  tasks[i][j][k] = 0;
+    	  tasks[i][j][k] = no_task;
     	}
       }
     }  
@@ -65,7 +65,7 @@ void Worker::print_modulo(){
 
 Worker::Worker(const Worker &obj){
   
-  cout << "Worker copy constructor" << endl;
+  //cout << "Worker copy constructor" << endl;
 
   identity.pos = obj.identity.pos; 
   identity.ID = obj.identity.ID;
@@ -142,9 +142,20 @@ void Worker::set_rotation(int rot){
 }
 
 void Worker::set_task(int w,int d,int s,int val){
-  tasks[w][d][s] = val;
+  if(get_avail(w,d,s) != 0){
+    tasks[w][d][s] = val;
+  }
+  else cout << "Error: in set_task, worker not available." << endl;
 }
 
+void Worker::set_weekend_task(enum task_type task){
+  set_task(get_current_weekend()-1, 5, 0, task);
+  set_task(get_current_weekend()-1, 6, 0, task);
+
+  if (task != HB){
+    set_task(get_current_weekend()-1, 4, 3, task);
+  }
+}
 
 /************* Worker functions: print ***********/
 
