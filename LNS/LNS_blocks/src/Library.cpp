@@ -396,23 +396,27 @@ void Library::createBlockpool(){
 		combs = get_all_day_combinations(tasks, NUM_DAYS-2); //Only looking at 5 days!
 		cout << "Number of combinations for " << tasks << " tasks are: " << combs << endl;
 		existing_comb_on_day.push_back(combs); //save in vector
-// 		task_array3D.resize(combs); //Set number of rows in 3D array
-// 		for (int i = 0; i < combs; ++i) {
-// 			array3D[i].resize(tasks); //Set number of rows in 2D sub-array
-// 			for (int j = 0; j < tasks; ++j){
-// 				array3D[i][j].resize(3); //Set number of columns in 2D sub-array = [d s j]
-// 			}
-// 		}
+		task_array3D.resize(combs); //Set number of rows in 3D array
+		for (int i = 0; i < combs; ++i) {
+			task_array3D[i].resize(tasks); //Set number of rows in 2D sub-array
+			for (int j = 0; j < tasks; ++j){
+				task_array3D[i][j].resize(3); //Set number of columns in 2D sub-array = [d s j]
+			}
+		}
+// 		task_array3D[combs-1][tasks-1][0] = 314;
+// 		cout << task_array3D[combs-1][tasks-1][0] << endl;
 // 		task_array3D = create_all_unique_task_combinations(tasks);
-// 		for(int x=0; x<task_array3D.size(); x++){
-// 			//Create class
-// 			Block block(b_ID); //Create block nr: b_ID. Note: destroys after the for-loop. Add to vector existing in Library: private?
-// 			b_ID++;
-// 			cout << b_ID << endl;
-// 			//Assign task combination
+		//Create combs number of block objects
+		for(int x=0; x<combs; x++){
+			//Create class
+			Block block(b_ID); //Create block nr: b_ID. Note: destroys after the for-loop. Add to vector existing in Library: private?
+			cout << b_ID << endl;
+			b_ID++;
+			
+			//Assign task combination
 // 			assign_unique_task_combination();
 // 			block_vector.push_back(block);
-// 		}
+		}
 	}
 	//Print the vector
 	cout << "existing_comb_on_day = [ ";
