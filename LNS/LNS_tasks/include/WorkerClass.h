@@ -36,8 +36,8 @@ class Worker{
   } current;
  
 
-  //Change made 2016-04-11: avail one more param
-  int avail[NUM_ROTATIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];  
+  int avail[NUM_ROTATIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+  int tasks[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
 
  public:
 
@@ -45,13 +45,15 @@ class Worker{
   Worker(string, int, string, string, string, string, string, string, string, int[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]);
   Worker(const Worker &obj);
   //void print_avail();
+
   void print_modulo();
   void display_avail();
+  void display_tasks();
  
   //Set functions
-  //void set_avail(int,int,int,int,int);
   void set_weekend(int);
   void set_rotation(int);
+  void set_task(int, int, int, int);
 
   //Get functions
   int get_avail(int, int, int);

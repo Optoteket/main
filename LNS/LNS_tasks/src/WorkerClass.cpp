@@ -41,6 +41,13 @@ Worker::Worker(string pos, int ID, string name, string department, string weeken
     }    
   }
 
+    for (int i=0; i<NUM_WEEKS; i++){      
+      for (int j=0; j<NUM_DAYS; j++){
+    	for (int k=0; k<NUM_SHIFTS; k++){
+    	  tasks[i][j][k] = 0;
+    	}
+      }
+    }  
 }
 
 
@@ -82,6 +89,15 @@ Worker::Worker(const Worker &obj){
       }
     }
   }
+
+  for (int i=0; i<NUM_WEEKS; i++){      
+    for (int j=0; j<NUM_DAYS; j++){
+      for (int k=0; k<NUM_SHIFTS; k++){
+  	tasks[i][j][k] = obj.tasks[i][j][k];
+      }
+    }
+  } 
+  
 }
 
 
@@ -125,11 +141,10 @@ void Worker::set_rotation(int rot){
   current.rotation = rot;
 }
 
-//void Worker::set_avail(int rotation, int week, int day, int shift, int value){
-//avail[rotation][week][day][shift] = value;
-//}
+void Worker::set_task(int w,int d,int s,int val){
+  tasks[w][d][s] = val;
+}
 
-/************* Worker function: shift avail ************/
 
 /************* Worker functions: print ***********/
 
@@ -175,3 +190,15 @@ void Worker::display_avail(){
   }
 }
 
+ void Worker::display_tasks(){
+  cout << "Current tasks for worker " << get_ID() << ", current rotation " << get_rotation() << endl;
+  for (int j=0; j< NUM_SHIFTS; j++){
+    for (int i=0; i< NUM_WEEKS; i++){
+      for (int k=0; k< NUM_DAYS; k++){
+	cout << tasks[i][k][j] << " ";
+      }
+      cout << "   ";
+    }
+    cout << endl;
+  }
+}
