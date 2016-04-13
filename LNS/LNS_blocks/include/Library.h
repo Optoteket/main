@@ -38,7 +38,7 @@ public:
 	Worker getWorker(int i) const;
 	void setTask_avail();
 	void printTask_avail();
-	//void createBlockpool();
+	void createBlockpool();
 	//int calculate_num_combinations(int);
 	bool is_day_blocked(vector<int>, int);
 	int get_all_day_combinations(int, int);
@@ -63,8 +63,8 @@ private:
 	int num_day_combinations; //#combinations found when num_tasks_to_assign tasks are considered
 	vector<int> days; //a vector with all days, [1 2 3 4 5] if looking at 5 days.
 	vector<int> combination; //'num_tasks_to_assign' long and a combination of those days e.g. [1 2 4]
-	int num_combinations_total; //#combinations for all day combinations of a fixed number e.g. 3 days (=3 tasks)
-	
+	int num_combinations_total; //#combinations for all day combinations of a fix number e.g. 3 days (=3 tasks)
+	vector<vector<vector<int> > > task_array3D; //3D array with all task combinations for a fix number of days
 };
 
 
