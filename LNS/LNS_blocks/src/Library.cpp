@@ -11,6 +11,8 @@
 
 Library::Library() {
 	num_day_combinations = 0;
+	num_combinations_total = 0;
+	num_blocks = 0;
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int d=0; d<NUM_DAYS; d++){
 			for (int s=0; s<NUM_SHIFTS; s++){
@@ -382,15 +384,17 @@ Worker Library::getWorker(int i) const{
 	return myworkers[i-1];
 }
 
-// //change output to vector<Block>
+//change output to vector<Block>
 // void Library::createBlockpool(){
 // 	int b_ID = 1;
+// 	vector<int> existing_comb_on_day;
 // 	//vector<int> days_assigned;
 // 	//vector<...> all_combination_vector;
 // 	//num_tasks should be from 0 to 5. 0 to 7 if weekends are included
-// 	for(int num_tasks_to_assign = 1; num_tasks_to_assign<=2; num_tasks_to_assign++){
+// 	for(int tasks = 1; tasks<=5; tasks++){
 // 		//do {
-// 		all_combination_vector = create_all_unique_task_combinations(num_tasks_to_assign);
+// 		
+// 		all_combination_vector = create_all_unique_task_combinations(tasks);
 // 		for(int x=0; x<all_combination_vector.size(); x++){
 // 			//Create class
 // 			Block block(b_ID); //Create block nr: b_ID. Note: destroys after the for-loop. Add to vector existing in Library: private?
@@ -446,27 +450,39 @@ Worker Library::getWorker(int i) const{
 
 
 //Creates vectors containing combinations of days
-void Library::create_all_day_combinations(int num_tasks_to_assign, int num_days){
+int Library::get_all_day_combinations(int num_tasks_to_assign, int num_days){
+	//reset the 'private' variable when function call
+	num_combinations_total = 0;
 	//int day_vector[num_tasks_to_assign]; //[d1=0, d2=0, ...]
 	if(num_days < num_tasks_to_assign){
 		cerr << "ERROR: num_days must be greater or equal to num_tasks_to_assign" << endl;
-		return;
+		return 1;
 	}
-	int k = num_tasks_to_assign;
-	for(int i=0; i<num_days; ++i){
-		days.push_back(i+1);
+	if(num_tasks_to_assign == 0){
+		num_combinations_total = 1;
+		cout << "The total number of combinations are here: " << num_combinations_total << endl; 
+		return num_combinations_total;
 	}
-	create_combinations(0,k);
-	num_day_combinations = combination.size();
+	else{
+		int k = num_tasks_to_assign;
+		for(int i=0; i<num_days; ++i){
+			days.push_back(i+1);
+		}
+		create_combinations(0,k);
+		cout << "The total number of combinations are here: " << num_combinations_total << endl;
+		num_day_combinations = combination.size();
+		return num_combinations_total;
+	}
 }
 
 void Library::create_combinations(int offset, int k){
 	if (k == 0){
 		//in here after each combination has been created
 		num_day_combinations++;
-		calculate_combinations(combination);
+		num_combinations_total += calculate_combinations(combination); //num_combinations_total private in Lib. Does this one update?
 		print_comb_vector(combination);
 		cout << "number of day combinations are: " << num_day_combinations << endl;
+		cout << "number of combinations in total are: " << num_combinations_total << endl;
 		return;
 	}
 	for (unsigned int i = offset; i <= days.size() - k; ++i) {
@@ -483,21 +499,44 @@ void Library::print_comb_vector(const vector<int>& v) {
   cout << "] " << endl;
 }
 //add days as inargument?
-void Library::calculate_combinations(const vector<int>& vect){
-	vector<int> days_in_vector;
+int Library::calculate_combinations(const vector<int>& vect){
+	int days_in_vector;
+	vector<int> daily_avail_vect;
+	int avail_day_num = 0;
+	int num_combinations = 0;
 	days_in_vector = vect.size();
 	//int shifts_avail_day[d] = 0;
 	cout << "Number of days in vector are: " << days_in_vector << endl;
-	for(d=0; d<days_in_vector; d++){
-		for(s=0; s<NUM_SHIFTS; s++){
-			if(task_assign_avail[d][s][1] == 1){ //Only assign if avail
-				//shifts_avail_day[d]++;
-				//block day 1 and check avail for task 2 and 3
-				
-				
+	for(int d=0; d<days_in_vector; d++){
+		avail_day_num = 0;
+		for(int s=0; s<NUM_SHIFTS; s++){
+			for(int j=0; j<3; j++){
+				if(task_assign_avail[d][s][j] == 1){ //Only assign if avail. j = 0,1,2 (exp,info,pl)
+					//shifts_avail_day[d]++;
+					avail_day_num++;
+					cout << "avail_day_num = " << avail_day_num << endl;
+				}
 			}
 		}
+		daily_avail_vect.push_back(avail_day_num);
 	}
+	cout << "daily_avail_vect has: " << daily_avail_vect.size() << " elements" << endl;
+	unsigned int loop_iteration_number = daily_avail_vect.size();
+	cout << "daily_avail_vect has: " << loop_iteration_number << " elements" << endl;
+	//Calculate the number of combinations
+	for(unsigned int i=0; i<loop_iteration_number; i++){
+		//cout << "in here" << endl;
+		if(i==0){
+			num_combinations = daily_avail_vect.back();
+			daily_avail_vect.pop_back();
+		}
+		else{
+			num_combinations = num_combinations*daily_avail_vect.back();
+			daily_avail_vect.pop_back();
+		}
+	}
+	cout << "Number of combinations of a combination vector are: " << num_combinations << endl;
+	return num_combinations;
 }
 
 

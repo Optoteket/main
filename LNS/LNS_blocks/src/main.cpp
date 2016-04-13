@@ -29,7 +29,7 @@ int main() {
 	}
 	cout << "Last value of the vector is: " << blocked_day_vector.back() << endl;
 	cout << "The day is blocked: " << lib.is_day_blocked(blocked_day_vector, 7) << endl;
-	lib.create_all_day_combinations(2,5);
+	lib.setNum_day_combinations(lib.get_all_day_combinations(1,5));
 	cout << "Number of day combinations found are: " << lib.getNum_day_combinations() << endl;
 	
 	//vector<int> v(2);

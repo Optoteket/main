@@ -41,10 +41,10 @@ public:
 	//void createBlockpool();
 	//int calculate_num_combinations(int);
 	bool is_day_blocked(vector<int>, int);
-	void create_all_day_combinations(int, int);
+	int get_all_day_combinations(int, int);
 	void create_combinations(int, int);
 	void print_comb_vector(const vector<int>&);
-	void calculate_combinations(const vector<int>&);
+	int calculate_combinations(const vector<int>&);
 
 private:
 	//Member variables
@@ -60,9 +60,10 @@ private:
 	Worker myworkers[39]; //Create 39 workers in library class. Array is from 0->38
 	int task_assign_avail[NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
 	vector<Block> block_vector;
-	int num_day_combinations; //Number of combinations found when num_tasks_to_assign tasks are considered
+	int num_day_combinations; //#combinations found when num_tasks_to_assign tasks are considered
 	vector<int> days; //a vector with all days, [1 2 3 4 5] if looking at 5 days.
-	vector<int> combination; //a vector that is num_tasks_to_assign long and a combination of those days
+	vector<int> combination; //'num_tasks_to_assign' long and a combination of those days e.g. [1 2 4]
+	int num_combinations_total; //#combinations for all day combinations of a fixed number e.g. 3 days (=3 tasks)
 	
 };
 
