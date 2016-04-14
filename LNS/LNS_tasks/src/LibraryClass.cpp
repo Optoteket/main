@@ -72,10 +72,37 @@ void Library::create_initial_solution(){
 /************* Library function: set evening tasks ************/
 
 void Library::set_tasks(){
-
+  
+  
     //Find cost_remaining_tasks
     //
 
+}
+
+void Library::find_shift_costs(int type){
+  
+  int w1 = 1;
+  int w2 = 2;
+
+  for(int w=0; w<NUM_WEEKS; w++){
+     for(int d=0; d<NUM_DAYS; d++){
+        for(int s=0; s<NUM_SHIFTS; s++){
+	  if(type == Lib){
+	    if(worker_demand[w][d][s][Info] > 0){
+	      Shift shift;
+	      shift.week = w;
+	      shift.day = d;
+	      shift.time = s;
+	      shift.cost_demand = w1*worker_demand[w][d][s][Info];
+	      shift.cost_avail_diff = w2*num_avail_workers[Lib][w][d][s] - current_worker_demand[w][d][s][Info] - current_worker_demand[w][d][s][HB];
+	      shift_cost_vector.push_back(shift);
+	    }
+	  }
+	}  
+     }
+  }
+  //Cost 1: Avail demand diff
+  //Cost 2: Total demand
 }
 
 /************* Library function: update avail demand ************/

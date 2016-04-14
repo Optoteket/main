@@ -33,9 +33,11 @@ class Library{
     int week;
     int day;
     int time;
-    int cost;
+    int cost_demand;
+    int cost_avail_diff;
   };
-  vector<Shift> shift_costs; 
+
+  vector<Shift> shift_cost_vector; 
  
   int worker_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
   int current_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
@@ -82,6 +84,9 @@ class Library{
   //Update
   void weekend_update_avail_demand(int, int, int);
   void dec_num_avail_workers(int, int, int, int);
+
+  //Costs
+  void find_shift_costs(int);
 
   //Print functions
   void print_demand();
