@@ -25,3 +25,10 @@ enum position_type {
   Bokb,
   NUM_POSITIONS
 };
+
+
+/*********** Library Rules ***********/
+// Activated if a person who works a weekend works at the same task Friday afternoon, Saturday morning and Sunday morning
+const bool staff_work_whole_weekends = true;
+// All staff can only be assigned one task per day
+const bool one_task_per_day = true;
