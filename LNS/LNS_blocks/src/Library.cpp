@@ -10,7 +10,9 @@
 #include <iomanip>
 
 Library::Library() {
-	num_day_combinations = 0;
+	for(int d=0; d<NUM_DAYS; d++){
+		num_day_combinations[d-1] = 0;
+	}
 	num_combinations_total = 0;
 	num_blocks = 0;
 	for (int w=0; w< NUM_WEEKS; w++){
@@ -384,38 +386,49 @@ Worker Library::getWorker(int i) const{
 	return myworkers[i-1];
 }
 
-//change output to vector<Block>
+//change output to vector<Block>?
+//Copy constructor needed here??
 void Library::createBlockpool(){
 	int b_ID = 1;
 	vector<int> existing_comb_on_day;
 	int combs = 0;
+	block_vector.clear();
 	//vector<int> days_assigned;
-	//num_tasks should be from 0 to 5. 0 to 7 if weekends are included
-	for(int tasks = 0; tasks<=5; tasks++){
+	//num_tasks should be from 0 to 5. 0 to 7 if weekends are included. PROBLEM: when tasks == 0.
+	for(int tasks = 1; tasks<=1; tasks++){
 		//Need to reset vectors here?
 		combs = get_all_day_combinations(tasks, NUM_DAYS-2); //Only looking at 5 days!
 		cout << "Number of combinations for " << tasks << " tasks are: " << combs << endl;
 		existing_comb_on_day.push_back(combs); //save in vector
-		task_array3D.resize(combs); //Set number of rows in 3D array
-		for (int i = 0; i < combs; ++i) {
-			task_array3D[i].resize(tasks); //Set number of rows in 2D sub-array
-			for (int j = 0; j < tasks; ++j){
-				task_array3D[i][j].resize(3); //Set number of columns in 2D sub-array = [d s j]
+		if(tasks != 0){
+			task_array3D.resize(combs); //Set number of rows in 3D array
+			for (int i = 0; i < combs; ++i) {
+				task_array3D[i].resize(tasks); //Set number of rows in 2D sub-array
+				for (int j = 0; j < tasks; ++j){
+					task_array3D[i][j].resize(3); //Set number of columns in 2D sub-array = [d s j]
+				}
 			}
+			//assign_task_array3D(combs, tasks, task_array3D);
+// 			task_array3D[combs-1][tasks-1][0] = 314;
+// 			cout << task_array3D[combs-1][tasks-1][0] << endl;
 		}
-// 		task_array3D[combs-1][tasks-1][0] = 314;
-// 		cout << task_array3D[combs-1][tasks-1][0] << endl;
-// 		task_array3D = create_all_unique_task_combinations(tasks);
 		//Create combs number of block objects
+		int col1 = 0, col2 = 0, col3 = 0;
 		for(int x=0; x<combs; x++){
 			//Create class
 			Block block(b_ID); //Create block nr: b_ID. Note: destroys after the for-loop. Add to vector existing in Library: private?
-			cout << b_ID << endl;
+			for(int row=0; row<tasks; row++){
+				col1 = task_array3D[x][row][0];
+				col2 = task_array3D[x][row][1];
+				col3 = task_array3D[x][row][2];
+				block.setTask(col1, col2, col3, 1);
+			}
+			block.setnum_tasks(tasks);
 			b_ID++;
 			
 			//Assign task combination
-// 			assign_unique_task_combination();
-// 			block_vector.push_back(block);
+// 			assign_unique_task_combination(block);
+			block_vector.push_back(block);
 		}
 	}
 	//Print the vector
@@ -425,6 +438,8 @@ void Library::createBlockpool(){
 	}
 	cout << "]" << endl;
 	setNum_blocks(b_ID-1); //Set num_blocks in library class to the number of blocks created
+	cout << "#Blocks created: " << getNum_blocks() << endl;
+	cout << "Size of block_vector in Library.cpp is: " << block_vector.size() << endl;
 	return;
 }			
 
@@ -464,42 +479,41 @@ void Library::createBlockpool(){
 
 //Creates vectors containing combinations of days
 int Library::get_all_day_combinations(int num_tasks_to_assign, int num_days){
-	//reset the 'private' variable when function call
-	num_combinations_total = 0;
-	num_day_combinations = 0;
-	days.clear();
-	combination.clear();
-	//int day_vector[num_tasks_to_assign]; //[d1=0, d2=0, ...]
-	if(num_tasks_to_assign == 0){
+	if(num_tasks_to_assign == 0){ //Only one combination exists when assigning 0 tasks
 		num_combinations_total = 1;
 		cout << "The total number of combinations are here: " << num_combinations_total << endl; 
 		return num_combinations_total;
 	}
 	else{
+		//reset the variables when function call
+		num_combinations_total = 0;
+		num_day_combinations[num_tasks_to_assign-1] = 0;
+		days.clear();
+		combination.clear();
 		int k = num_tasks_to_assign;
 		for(int i=0; i<num_days; ++i){
 			days.push_back(i+1);
 		}
-		create_combinations(0,k);
+		create_combinations(0,k, num_tasks_to_assign);
 		cout << "The total number of combinations are here: " << num_combinations_total << endl;
-		num_day_combinations = combination.size();
+		num_day_combinations[num_tasks_to_assign-1] = combination.size();
 		return num_combinations_total;
 	}
 }
 
-void Library::create_combinations(int offset, int k){ //k=num_tasks_to_assign
+void Library::create_combinations(int offset, int k, int num_tasks_to_assign){ //k=num_tasks_to_assign
 	if (k == 0){
 		//in here after each combination has been created
-		num_day_combinations++;
+		num_day_combinations[num_tasks_to_assign-1]++;
 		num_combinations_total += calculate_combinations(combination); //num_combinations_total private in Lib. Does this one update?
 		print_comb_vector(combination);
-		cout << "number of day combinations are: " << num_day_combinations << endl;
+		cout << "number of day combinations are: " << num_day_combinations[num_tasks_to_assign-1] << endl;
 		cout << "number of combinations in total are: " << num_combinations_total << endl;
 		return;
 	}
 	for (unsigned int i = offset; i <= days.size() - k; ++i) {
 		combination.push_back(days[i]);
-		create_combinations(i+1, k-1);
+		create_combinations(i+1, k-1, num_tasks_to_assign);
 		combination.pop_back();
 	}
 }
@@ -548,33 +562,6 @@ int Library::calculate_combinations(const vector<int>& vect){
 }
 
 
-// int Library::calculate_num_combinations(int num_tasks_to_assign){
-// 	int num_combinations = 0;
-// 	int s_start = 0;
-// 	int j_start = 0;
-// 	int d_start = 0;
-// 	vector<int> days_blocked;
-// 	int tasks_assigned = 0;
-// 	
-// 	while(tasks_assigned < num_tasks_to_assign){
-// 		for (int s=s_start; s< 4; s++){
-// 			for (int d=d_start; d< 5; d++){
-// 				if(!is_day_blocked(days_blocked, d))
-// 				{
-// 					
-// 					set_task();
-// 					if(task_assign_avail[d][s][1] == 1){
-// 						num_combinations++;
-// 						days_blocked.push_back(d); //Block that day
-// 					}
-// 				}
-// 				
-// 			}
-// 		}
-// 	}
-// 	return num_combinations;
-// }
-
 
 
 bool Library::is_day_blocked(vector<int> blocked_vector, int day){ //Return true if day is blocked
@@ -593,8 +580,8 @@ int Library::getNum_blocks() const{
 	return num_blocks;
 }
 
-int Library::getNum_day_combinations() const{
-	return num_day_combinations;
+int Library::getNum_day_combinations(int num) const{
+	return num_day_combinations[num-1];
 }
 
 
@@ -602,6 +589,9 @@ void Library::setNum_blocks(int num) {
 	num_blocks = num;
 }
 
-void Library::setNum_day_combinations(int num) {
-	num_day_combinations = num;
+void Library::setNum_day_combinations(int day, int num) {
+	num_day_combinations[day-1] = num;
+}
+vector<Block> Library::get_block_vector(){
+	return block_vector;
 }
