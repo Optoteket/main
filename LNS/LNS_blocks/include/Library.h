@@ -20,7 +20,7 @@ public:
 	int getDemand(int, int, int, int) const;
 	int getNum_blocks() const;
 	int getTask_avail(int, int, int) const;
-	int getNum_day_combinations(int) const;
+	int getNum_day_combinations() const;
 	
 	//Mutator functions
 	void setDemand(int, int, int, int, int);
@@ -31,7 +31,7 @@ public:
 	void createWorkers();
 	void createBlocks();
 	void setNum_blocks(int);
-	void setNum_day_combinations(int, int);
+	void setNum_day_combinations(int);
 	vector <string> get_info_vector();
 	vector <Block> get_block_vector();
 	
@@ -43,9 +43,12 @@ public:
 	//int calculate_num_combinations(int);
 	bool is_day_blocked(vector<int>, int);
 	int get_all_day_combinations(int, int);
-	void create_combinations(int, int, int);
+	void create_combinations(int, int);
 	void print_comb_vector(const vector<int>&);
 	int calculate_combinations(const vector<int>&);
+	void assign_task_array3D(int, int, vector<vector<vector<int> > >);
+	void get_day_comb_nr(int, int);
+	void create_combinations_as_vect(int, int, int, int*);
 
 private:
 	//Member variables
@@ -61,9 +64,11 @@ private:
 	Worker myworkers[39]; //Create 39 workers in library class. Array is from 0->38
 	int task_assign_avail[NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
 	vector<Block> block_vector;
-	int num_day_combinations[NUM_DAYS]; //#combinations found when num_tasks_to_assign tasks are considered
 	vector<int> days; //a vector with all days, [1 2 3 4 5] if looking at 5 days.
 	vector<int> combination; //'num_tasks_to_assign' long and a combination of those days e.g. [1 2 4]
+	vector<int> combination_nr; //a specific combination that was found using a number
+	int num_day_combinations; //#combinations found when num_tasks_to_assign tasks are considered
+	int num_day_combinations_array[NUM_DAYS+1]; //An array with [1 5 10 10 5 1] = combinations of days possible. (Assign to 0 in constructor?)
 	int num_combinations_total; //#combinations for all day combinations of a fix number e.g. 3 days (=3 tasks)
 	vector<vector<vector<int> > > task_array3D; //3D array with all task combinations for a fix number of days
 };
