@@ -9,6 +9,9 @@ public:
 	//Default Constructor
 	Block();
 	
+	//Copy Constructor
+	Block(const Block&);
+	
 	//Overload Constructors
 	Block(int, string, string);
 	Block(int);
@@ -18,6 +21,13 @@ public:
 	
 	//Accessor Functions
 	int getID() const;
+	int getnum_tasks() const;
+	int getnum_Exp() const;
+	int getnum_Info() const;
+	int getnum_PL() const;
+	int getnum_HB() const;
+
+	
 		//Returns the ID of the worker
 	string getWeektype() const;
 		//Returns 
@@ -26,19 +36,18 @@ public:
 	void getTask_matrix() const;
 		//prints out the entire task matrix to the terminal
 	int getTask(int, int, int) const;
-		
+	
 	
 	//Mutator functions
 	void setID(int);
+	void setnum_tasks(int);
+	void setnum_Exp(int);
+	void setnum_Info(int);
+	void setnum_PL(int);
+	void setnum_HB(int);
 	void setWeektype(string);
 	void setHB(string);
 	void setTask(int, int, int, int); //Input: w, d, s, j and A = assigned value (0/1)
-	
-	int num_tasks; //a number of tasks the block contains
-	int num_Exp; //a number of Exp the block contains
-	int num_Info; //a number of Info the block contains
-	int num_PL; //a number of PL the block contains
-	int num_HB; //a number of HB the block contains
 
 private:
 	//Member variables
@@ -53,6 +62,11 @@ private:
 	int tasks_assigned[NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
 	//int tasks_assigned_block[NUM_DAYS][NUM_SHIFTS];
 	//vector<int> tasks_assigned_block;
+	int num_tasks; //number of tasks the block contains
+	int num_Exp; //number of Exp the block contains
+	int num_Info; //number of Info the block contains
+	int num_PL; //number of PL the block contains
+	int num_HB; //number of HB the block contains
 	
 };
 

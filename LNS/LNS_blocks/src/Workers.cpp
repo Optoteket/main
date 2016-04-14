@@ -7,6 +7,7 @@
 #include <sstream>
 #include <iomanip>
 
+//Default Constructor
 Worker::Worker() {
 	newID = 0;
 	newName = " ";
@@ -19,6 +20,10 @@ Worker::Worker() {
 	newFreeday = " ";
 }
 
+//Copy Constructor
+
+
+//Overload Constructor
 Worker::Worker(int id, string name, string boss, string qualification, string department, string pl, string weekend, string hb, string free_day) {
 	newID = id;
 	newName = name;
@@ -31,6 +36,7 @@ Worker::Worker(int id, string name, string boss, string qualification, string de
 	newFreeday = free_day;
 }
 
+//Destructor
 Worker::~Worker() {
 	
 }

@@ -50,12 +50,14 @@ int main() {
 
 	
 	lib.createBlockpool();
+	cout << "Blocks created in main are: " << lib.getNum_blocks() << endl;
+	cout << "Size of block_vector is: " << lib.get_block_vector().size() << endl;
 // 	int nr = lib.get_all_day_combinations(1,5);
 // 	cout << "Number of day combinations found are123: " << nr << endl;
 // 	lib.setNum_day_combinations(lib.get_all_day_combinations(1,5));
 // 	cout << "Number of day combinations found are: " << lib.getNum_day_combinations() << endl;
 	
-	
+
 	
 // 	vector<vector<vector<int> > > array3D;
 // 	int HEIGHT = 5, WIDTH = 3, DEPTH = 7;
