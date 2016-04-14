@@ -22,13 +22,17 @@ class Library{
 
   struct{
     vector<Worker*> weekend_workers;
+    vector<Worker*> weekend_lib;
+    vector<Worker*> weekend_ass;
+    vector<Worker*> lib_workers;
+    vector<Worker*> ass_workers;
   } subset;
  
   int worker_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
   int temp_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
 
   //Avail variables
-  int num_avail_workers[NUM_POSITIONS+1][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+  int num_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   int avail_demand_diff[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
 
   vector<Worker> worker_list;
@@ -50,10 +54,12 @@ class Library{
 
   //Avail compare functions
   void find_num_avail_workers();
-  void find_weekend_workers();
   bool demand_filled();
 
   //Initial solution
+  void find_weekend_workers();
+  void find_lib_workers();
+  void find_ass_workers();
   void shuffle_workers();
   int check_weekend_demand();
   void create_initial_solution();

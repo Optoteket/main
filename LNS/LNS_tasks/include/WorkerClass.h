@@ -54,6 +54,7 @@ class Worker{
   void set_weekend(int);
   void set_rotation(int);
   void set_task(int, int, int, int);
+  void set_weekend_task(enum task_type);
 
   //Get functions
   int get_avail(int, int, int);
