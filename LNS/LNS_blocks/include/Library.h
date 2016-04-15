@@ -46,7 +46,7 @@ public:
 	void create_combinations(int, int);
 	void print_comb_vector(const vector<int>&);
 	int calculate_combinations(const vector<int>&);
-	void assign_task_array3D(int, int, vector<vector<vector<int> > >);
+	void assign_task_array3D(int, int);
 	void get_day_comb_nr(int, int);
 	void create_combinations_as_vect(int, int, int);
 

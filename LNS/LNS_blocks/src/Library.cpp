@@ -393,7 +393,7 @@ void Library::createBlockpool(){
 	block_vector.clear();
 	//vector<int> days_assigned;
 	//num_tasks should be from 0 to 5. 0 to 7 if weekends are included. PROBLEM: when tasks == 0.
-	for(int tasks = 3; tasks<=3; tasks++){ //combs any nr of [1 45 810 7290 32805 59049]
+	for(int tasks = 2; tasks<=2; tasks++){ //combs any nr of [1 45 810 7290 32805 59049]
 		//Need to reset vectors here?
 		combs = get_all_day_combinations(tasks, NUM_DAYS-2); //Only looking at 5 days!
 		cout << "Number of combinations for " << tasks << " tasks are: " << combs << endl;
@@ -406,7 +406,7 @@ void Library::createBlockpool(){
 					task_array3D[i][j].resize(3); //Set number of columns in 2D sub-array = [d s j]
 				}
 			}
-			assign_task_array3D(combs, tasks, task_array3D);
+			assign_task_array3D(combs, tasks);
 		}
 		//Create combs number of block objects
 		int col1 = 0, col2 = 0, col3 = 0;
@@ -439,7 +439,7 @@ void Library::createBlockpool(){
 	return;
 }
 
-void Library::assign_task_array3D(int combs, int tasks, vector<vector<vector<int> > > task_array3D){
+void Library::assign_task_array3D(int combs, int tasks){
 	int combinations_created = 0;
 	vector<int> one_day_comb_vect;
 	int day_combs; //Number of combinations possible with 'tasks' days e.g. [1 2 3], [1 2 4] etc if tasks==3
@@ -454,42 +454,98 @@ void Library::assign_task_array3D(int combs, int tasks, vector<vector<vector<int
 			cout << one_day_comb_vect[i] << " ";
 		}
 		cout << endl;
-		//calculate_combinations(one_day_comb_vect); //Calculate all possible combs for the given days
-		for(int m=1; m<=calculate_combinations(one_day_comb_vect); m++){
-			for(int s=1; s<=NUM_SHIFTS; s++){
-				for(int j=0; j<2; j++){ //Only 'Exp' and 'Info'
-					for(int d=0; d<tasks; d++){
-						if(task_assign_avail[one_day_comb_vect[d]-1][s-1][j] == 1){
-							for(int x=0; x<3; x++){
-								switch(x){
-									case 0:
-										task_array3D[m+m*n-1][d][x] = one_day_comb_vect[d]; //task_array3D[combs][d][x]
-										cout << "Assigning task_array3D[element=" << m+m*n-1 << "][row=" << d << "][x=" << x << "] = " << one_day_comb_vect[d] << " (day)" << endl;
-										break;
-									case 1:
-										task_array3D[m+m*n-1][d][x] = s;
-										cout << "Assigning task_array3D[element=" << m+m*n-1 << "][row=" << d << "][x=" << x << "] = " << s << " (shift)" << endl;
-										break;
-									case 2:
-										task_array3D[m+m*n-1][d][x] = j;
-										cout << "Assigning task_array3D[element=" << m+m*n-1 << "][row=" << d << "][x=" << x << "] = " << j << " (task type, 0 = 'Exp', 1 = 'Info)\n" << endl;
-										break;
-								}
-							}
-						}
-					}
-					//combinations_created++;
-				}
-			}
-			combinations_created++;
-		}
+// 		for(int m=1; m<=calculate_combinations(one_day_comb_vect); m++){
+		assign_all_combinations(0,tasks); //Each function call shall produce 81 assignments (when tasks==2)
+// 			for(int s=1; s<=NUM_SHIFTS; s++){
+// 				for(int j=0; j<1; j++){ //Only 'Exp'
+// 					for(int d=0; d<tasks; d++){
+// 						if(task_assign_avail[one_day_comb_vect[d]-1][s-1][j] == 1){
+// 							for(int x=0; x<3; x++){
+// 								switch(x){
+// 									case 0:
+// 										task_array3D[m+m*n-1][d][x] = one_day_comb_vect[d]; //task_array3D[combs][d][x]
+// 										cout << "Assigning task_array3D[element=" << m+m*n-1 << "][row=" << d << "][x=" << x << "] = " << one_day_comb_vect[d] << " (day)" << endl;
+// 										break;
+// 									case 1:
+// 										task_array3D[m+m*n-1][d][x] = s;
+// 										cout << "Assigning task_array3D[element=" << m+m*n-1 << "][row=" << d << "][x=" << x << "] = " << s << " (shift)" << endl;
+// 										break;
+// 									case 2:
+// 										task_array3D[m+m*n-1][d][x] = j;
+// 										cout << "Assigning task_array3D[element=" << m+m*n-1 << "][row=" << d << "][x=" << x << "] = " << j << " (task type, 0 = 'Exp', 1 = 'Info)\n" << endl;
+// 										break;
+// 								}
+// 							}
+// 						}
+// 					}
+// 					//combinations_created++;
+// 				}
+// 			}
+// 		}
 	}
 	cout << "***Combinations created are: " << combinations_created << " ***" << endl;
 }
 
-void Library::assign_element(){
+void Library::assign_all_combinations(int tasks_num, vector<int> one_day_comb_vect, int current_day){ //tasks_num decides number of recursive calls
+	global_iteration_counter++;
+	rec_count++;
+	//Assign a task that day
+	for(int s=1; s<=2; s++){
+		for(int j=0; j<2; j++){ //Only 'Exp' and 'Info'
+			if(task_assign_avail[one_day_comb_vect[current_day]-1][s-1][j] == 1){
+				for(x=0; x<3; x++){
+					switch(x){
+						case 0:
+							task_vect[rec_count-1][current_day][0][x] = one_day_comb_vect[current_day];
+							break;
+						case 1:
+							task_vect[rec_count-1][current_day][0][x] = s;
+							break;
+						case 2:
+							task_vect[rec_count-1][current_day][0][x] = j;
+							break;
+					}
+				}
+			}
+		}
+	}
+	
+	//if tasks_num is 1, then first iteration has already been made
+	if(tasks_num == 1){
+		assign_the_3D_array(); //using pushbacks on int vectors
+		return;
+	}
+	
+	//Call again for next day until tasks_num == 1
+	for(int n=1; n<=tasks_num-1; n++){//Number of times calling recursively
+		assign_all_combinations(tasks_num-1, one_day_comb_vect, day+1);
+	}
+	
+	
 	
 }
+
+// for(int d=0; d<tasks; d++){
+// 	if(task_assign_avail[one_day_comb_vect[d]-1][s-1][j] == 1){
+// 		for(int x=0; x<3; x++){
+// 			switch(x){
+// 				case 0:
+// 					task_array3D[m+m*n-1][d][x] = one_day_comb_vect[d]; //task_array3D[combs][d][x]
+// 					cout << "Assigning task_array3D[element=" << m+m*n-1 << "][row=" << d << "][x=" << x << "] = " << one_day_comb_vect[d] << " (day)" << endl;
+// 					break;
+// 				case 1:
+// 					task_array3D[m+m*n-1][d][x] = s;
+// 					cout << "Assigning task_array3D[element=" << m+m*n-1 << "][row=" << d << "][x=" << x << "] = " << s << " (shift)" << endl;
+// 					break;
+// 				case 2:
+// 					task_array3D[m+m*n-1][d][x] = j;
+// 					cout << "Assigning task_array3D[element=" << m+m*n-1 << "][row=" << d << "][x=" << x << "] = " << j << " (task type, 0 = 'Exp', 1 = 'Info)\n" << endl;
+// 					break;
+// 			}
+// 		}
+// 	}
+// }
+// //combinations_created++;
 
 //function to assign 'combination_nr' in the class Library
 void Library::get_day_comb_nr(int tasks, int num_comb){ //tasks == 0 gives empty vector
