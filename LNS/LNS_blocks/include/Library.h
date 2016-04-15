@@ -48,7 +48,7 @@ public:
 	int calculate_combinations(const vector<int>&);
 	void assign_task_array3D(int, int, vector<vector<vector<int> > >);
 	void get_day_comb_nr(int, int);
-	void create_combinations_as_vect(int, int, int, int*);
+	void create_combinations_as_vect(int, int, int);
 
 private:
 	//Member variables
@@ -71,6 +71,7 @@ private:
 	int num_day_combinations_array[NUM_DAYS+1]; //An array with [1 5 10 10 5 1] = combinations of days possible. (Assign to 0 in constructor?)
 	int num_combinations_total; //#combinations for all day combinations of a fix number e.g. 3 days (=3 tasks)
 	vector<vector<vector<int> > > task_array3D; //3D array with all task combinations for a fix number of days
+	int times_in_fcn;
 };
 
 
