@@ -20,16 +20,27 @@ class Library{
 
  private:
 
-  struct{
-    vector<Worker*> weekend_workers;
-    vector<Worker*> weekend_lib;
-    vector<Worker*> weekend_ass;
-    vector<Worker*> lib_workers;
-    vector<Worker*> ass_workers;
-  } subset;
+  // All subsets of workers
+  vector<Worker*> weekend_workers;
+  vector<Worker*> weekend_lib;
+  vector<Worker*> weekend_ass;
+  vector<Worker*> lib_workers;
+  vector<Worker*> ass_workers;
+
+
+  // Shifts
+  struct Shift {
+    int week;
+    int day;
+    int time;
+    int cost_demand;
+    int cost_avail_diff;
+  };
+
+  vector<Shift> shift_cost_vector; 
  
   int worker_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
-  int temp_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
+  int current_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
 
   //Avail variables
   int num_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
@@ -46,7 +57,13 @@ class Library{
   void read_demand();
   void set_demand(int,int,int,string,int);
   void set_demand(int,int,int,int,int);
+  void set_weekend_tasks();
+  void set_tasks();
+
+  void dec_current_demand(int, int, int, int);
+  void dec_current_weekend_demand(int, int);
   int get_demand(int, int, int, int);
+  int get_current_demand(int, int, int, int);
 
   //Create worker functions
   void create_workers();
@@ -63,7 +80,13 @@ class Library{
   void shuffle_workers();
   int check_weekend_demand();
   void create_initial_solution();
-  void set_weekend_tasks();
+
+  //Update
+  void weekend_update_avail_demand(int, int, int);
+  void dec_num_avail_workers(int, int, int, int);
+
+  //Costs
+  void find_shift_costs(int);
 
   //Print functions
   void print_demand();
@@ -71,5 +94,6 @@ class Library{
   void display_worker_avail();
   void print_worker_avail(int,int[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]);
   void print_avail_demand_diff();
+  void print_current_demand();
 };
 

@@ -33,8 +33,8 @@ class Worker{
   struct{
     int weekend;
     int rotation;
+    int avail[NUM_ROTATIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   } current;
- 
 
   int avail[NUM_ROTATIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   int tasks[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
@@ -49,12 +49,14 @@ class Worker{
   void print_modulo();
   void display_avail();
   void display_tasks();
+  void display_all_current_avail();
  
   //Set functions
   void set_weekend(int);
   void set_rotation(int);
   void set_task(int, int, int, int);
-  void set_weekend_task(enum task_type);
+  void set_weekend_task(int);
+  void set_current_avail(string, int, int, int);
 
   //Get functions
   int get_avail(int, int, int);
