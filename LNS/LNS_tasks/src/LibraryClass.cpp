@@ -43,6 +43,7 @@ Library::Library() {
 
   // worker_list = vector<Worker>();
   //weekend_workers = vector<Worker*>();
+
 }
 
 /********* Library function: create initial solution ********/
@@ -64,7 +65,9 @@ void Library::create_initial_solution(){
 
   //Distribute tasks
   set_weekend_tasks();
-  //set_tasks();
+  print_avail_demand_diff();
+  //print_current_demand();
+  set_tasks();
 
  }
 
@@ -73,36 +76,57 @@ void Library::create_initial_solution(){
 
 void Library::set_tasks(){
   
-  
+  find_task_costs(Lib);
     //Find cost_remaining_tasks
     //
 
 }
 
-void Library::find_shift_costs(int type){
-  
-  int w1 = 1;
-  int w2 = 2;
+// void Library::find_avail_lib(int week, int day, int shift, Shift* shift){
 
+//   for (int i =0; i < (int) lib_workers.size(); i++){
+//     if (lib_workers[i]->get_avail() < 0 ){
+//       shift->shift_worker->worker->lib_workers[i];
+//       shift->avail_workers.push_back(&shift_workerlib_workers[i]);
+//     }
+//   }
+// }
+
+void Library::print_task_costs(){
+  for (int i=0; i < (int) task_list.size(); i++){
+    cout << task_list[i].get_cost() << endl;
+  }
+}
+
+void min_cost_element(){
+  
+}
+
+void Library::find_task_costs(int type){
+  
   for(int w=0; w<NUM_WEEKS; w++){
-     for(int d=0; d<NUM_DAYS; d++){
-        for(int s=0; s<NUM_SHIFTS; s++){
+    for(int d=0; d<NUM_DAYS-2; d++){
+      for(int s=0; s<NUM_SHIFTS; s++){
+	if(!(s == 3 && d == 4)){
 	  if(type == Lib){
-	    if(worker_demand[w][d][s][Info] > 0){
-	      Shift shift;
-	      shift.week = w;
-	      shift.day = d;
-	      shift.time = s;
-	      shift.cost_demand = w1*worker_demand[w][d][s][Info];
-	      shift.cost_avail_diff = w2*num_avail_workers[Lib][w][d][s] - current_worker_demand[w][d][s][Info] - current_worker_demand[w][d][s][HB];
-	      shift_cost_vector.push_back(shift);
+	    int demand = worker_demand[w][d][s][Info];
+	    if(demand > 0){
+	      //cout << "Demand of librarians!" << endl;
+	      int avail_demand_diff = num_avail_workers[Lib][w][d][s] - current_demand[w][d][s][Info];
+
+	      //Create a task, push to list
+	      Task task {Lib,w,d,s,demand,avail_demand_diff,&lib_workers};
+	      task_list.push_back(task);
+
+	      //Sort tasks according to cheapest
+	      //Print cost of tasks
 	    }
 	  }
-	}  
-     }
+	}
+      }  
+    } 
   }
-  //Cost 1: Avail demand diff
-  //Cost 2: Total demand
+  print_task_costs();
 }
 
 /************* Library function: update avail demand ************/
@@ -131,32 +155,32 @@ void Library::set_weekend_tasks(){
   if(staff_work_whole_weekends){
     //Set librarian weekends
     int demand;
-    int start_next_worker = 0;
-    vector<Worker*> worker_list = weekend_lib;
-    int num_workers = (int) worker_list.size();
+    int next_worker = 0;
+    vector<Worker*> list = weekend_lib;
+    int num_workers = (int) list.size();
 
     for (int j=Lib; j > no_worker; --j){
       for(int i = NUM_TASKS; i >=0; --i){
 	//If done with librarians, start with assistants
-	if (start_next_worker >= num_workers){
-	  worker_list = weekend_ass;
-	  start_next_worker = 0;
-	  num_workers =  (int) worker_list.size();
+	if (next_worker >= num_workers){
+	  list = weekend_ass;
+	  next_worker = 0;
+	  num_workers =  (int) list.size();
 	  break;
 	}
 	for(int w=0; w<NUM_WEEKS; w++){
-	  if (start_next_worker >= num_workers){
+	  if (next_worker >= num_workers){
 	    break;
 	  }
 	  demand = get_current_demand(w,5,0,i);
 	  for (int d=0; d<demand; d++){
-	    Worker* worker = worker_list[start_next_worker];
+	    Worker* worker = list[next_worker];
 	    worker->set_weekend_task(i);
 	    weekend_update_avail_demand(j, w, i);
 	    worker->display_tasks();
-	    worker->display_all_current_avail();
-	    start_next_worker++;
-	    if (start_next_worker >= num_workers){
+	    //worker->display_all_current_avail();
+	    next_worker++;
+	    if (next_worker >= num_workers){
 	      break;
 	    }
 	  }
@@ -175,7 +199,6 @@ void Library::set_weekend_tasks(){
  // for (int i=0; i < (int) changed_schedule.size(); i++){
  //   cout << changed_schedule[i]->get_ID() << endl;
  //  }
-
 
 }
 

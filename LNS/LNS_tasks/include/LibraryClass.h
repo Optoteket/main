@@ -20,35 +20,57 @@ class Library{
 
  private:
 
-  // All subsets of workers
+  /************* NESTED CLASS: Task **************/
+  class Task {
+  private:
+    int qualification;
+    int week;
+    int day;
+    int shift;
+    int cost_demand;
+    int cost_avail_diff;
+    int total_cost;
+    struct Task_worker {
+      Worker* worker;
+      //Cost depending on avail_day
+      int worker_cost;
+    };
+    // All available workers and their costs
+    vector<Task_worker> avail_workers;
+    vector<Worker*>* qual_workers;
+  public:
+    Task(int,int,int,int,int,int, vector<Worker*>*);
+    void find_avail_workers();
+    void set_costs(int,int);
+    int get_cost();
+
+
+    //bool operator<(Obj const & L, Obj const & R) { // The operator takes const references - it can compare const objects
+    //return L.total_cost < R.total_cost;
+    //}
+  };
+
+  //Tasks to be distributed
+  vector<Task> task_list;
+
+  /********** Worker vectors *********/
+  vector<Worker> worker_list;
   vector<Worker*> weekend_workers;
   vector<Worker*> weekend_lib;
   vector<Worker*> weekend_ass;
   vector<Worker*> lib_workers;
   vector<Worker*> ass_workers;
 
-
-  // Shifts
-  struct Shift {
-    int week;
-    int day;
-    int time;
-    int cost_demand;
-    int cost_avail_diff;
-  };
-
-  vector<Shift> shift_cost_vector; 
- 
+  //Demand arrays 
   int worker_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
   int current_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
 
-  //Avail variables
+  //Avail arrays
   int num_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   int avail_demand_diff[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
 
-  vector<Worker> worker_list;
-
  public:
+
   //Constructor
   Library(); 
 
@@ -86,7 +108,7 @@ class Library{
   void dec_num_avail_workers(int, int, int, int);
 
   //Costs
-  void find_shift_costs(int);
+  void find_task_costs(int);
 
   //Print functions
   void print_demand();
@@ -95,5 +117,6 @@ class Library{
   void print_worker_avail(int,int[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]);
   void print_avail_demand_diff();
   void print_current_demand();
+  void print_task_costs();
 };
 

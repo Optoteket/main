@@ -34,6 +34,7 @@ class Worker{
     int weekend;
     int rotation;
     int avail[NUM_ROTATIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+    //int avail_day[NUM_ROTATIONS][NUM_WEEKS][NUM_DAYS];
   } current;
 
   int avail[NUM_ROTATIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
