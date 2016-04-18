@@ -40,7 +40,8 @@ public:
 	void setTask_avail();
 	void printTask_avail();
 	void create_all_blocks();
-	
+	void assign_tasks_to_block(Block&, int, int, int, int, int, int, int, int, int, int, int, int);
+	void assign_blocks_to_workers();
 	
 
 private:

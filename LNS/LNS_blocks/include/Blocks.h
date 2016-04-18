@@ -22,6 +22,7 @@ public:
 	//Accessor Functions
 	int getID() const;
 	int getnum_tasks() const;
+	int getnum_Blocks() const;
 	int getnum_Exp() const;
 	int getnum_Info() const;
 	int getnum_PL() const;
@@ -41,6 +42,7 @@ public:
 	//Mutator functions
 	void setID(int);
 	void setnum_tasks(int);
+	void setnum_Blocks(int);
 	void setnum_Exp(int);
 	void setnum_Info(int);
 	void setnum_PL(int);
@@ -63,10 +65,12 @@ private:
 	//int tasks_assigned_block[NUM_DAYS][NUM_SHIFTS];
 	//vector<int> tasks_assigned_block;
 	int num_tasks; //number of tasks the block contains
+	int num_Blocks; //number of 'Exp' and 'Info' the block contains
 	int num_Exp; //number of Exp the block contains
 	int num_Info; //number of Info the block contains
 	int num_PL; //number of PL the block contains
 	int num_HB; //number of HB the block contains
+	void init();
 	
 };
 
