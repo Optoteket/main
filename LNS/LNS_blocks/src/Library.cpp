@@ -386,63 +386,55 @@ Worker Library::getWorker(int i) const{
 
 void Library::create_all_blocks() {
 	int num_shifts[NUM_SHIFTS]; //Only for weekdays
-	int num_PL = 0, num_evenings_no_friday = 0, num_blocks_to_create = 0;
-	int PL_prev = 0;
+	int num_blocks_to_create = 0;
+	int sum_PL = 0, sum_evenings = 0, shift_flag = 0;
 	for(int s1=1; s1<=NUM_SHIFTS; s1++){
 		for(int j1=0; j1<3; j1++){
 			if(task_assign_avail[1-1][s1-1][j1] == 1){
-				//Add assignments
-				if(j1 != 0){ //j == 0 means no task
-					num_shifts[s1-1]++;
-					if(s1 == 4){ //Only count if task is not "no task"
-						num_evenings_no_friday = 1;
-					}
-				}
-				if(j1 == 2){ //j == 2 means PL
-					num_PL = 1;
-				}
 				//Loop another day
 				for(int s2=1; s2<=NUM_SHIFTS; s2++){
 					for(int j2=0; j2<3; j2++){
 						if(task_assign_avail[2-1][s2-1][j2] == 1){
-							if(!(s2 == 4 && num_evenings_no_friday == 1 && j2 != 0)){ //Check amount of evenings
-								cout << "s1=" << s1 << " j1=" << j1 << " s2=" << s2 << " j2=" << j2 << endl;
-								if(!(j2 == 2 && num_PL ==1)){ //Check amount of PL
-									//Add assignments
-									if(j2 != 0){ //no task
-										num_shifts[s2-1]++;
-										if(s2 == 4){
-											num_evenings_no_friday = 1;
+							//Loop another day
+							for(int s3=1; s3<=NUM_SHIFTS; s3++){
+								for(int j3=0; j3<3; j3++){
+									if(task_assign_avail[3-1][s3-1][j3] == 1){
+										//Loop another day
+										for(int s4=1; s4<=NUM_SHIFTS; s4++){
+											for(int j4=0; j4<3; j4++){
+												if(task_assign_avail[4-1][s4-1][j4] == 1){
+													//Loop another day
+													for(int s5=1; s5<=NUM_SHIFTS; s5++){ //Does NOT include friday afternoons!
+														for(int j5=0; j5<3; j5++){
+															if(task_assign_avail[5-1][s5-1][j5] == 1){
+																//Calculate the sums
+																if(j1 == 2 || j2 == 2 || j3 == 2 || j4 == 2 || j5 == 2){sum_PL++;}
+																if((j1 != 0 && s1 == 4) || (j2 != 0 && s2 == 4) || (j3 != 0 && s3 == 4) || (j4 != 0 && s4 == 4)){sum_evenings++;} //Does not include fridays
+																num_shifts[s1]++; num_shifts[s2]++; num_shifts[s3]++; num_shifts[s4]++; num_shifts[s5]++; //Only for weekdays
+																//Set flag for num_shifts
+																for(int i=0; i<NUM_SHIFTS; i++){
+																	if(num_shifts[i] > 2){shift_flag = 1;}
+																}
+																//Create blocks
+																if(!(sum_PL > 1) && !(sum_evenings > 1)){
+																	num_blocks_to_create++;
+																}
+																sum_PL = 0;
+																sum_evenings = 0;
+																shift_flag = 0;
+																for(int i=0; i<NUM_SHIFTS; i++){
+																	num_shifts[i] = 0;
+																}
+															}
+														}
+													}
+												}
+											}
 										}
 									}
-									if(j2 == 2){
-										num_PL = 1;
-									}
-									num_blocks_to_create++;
-									//Loop another day
-// 									for(int s3=0; s3<NUM_SHIFTS; s3++){
-// 										for(int j3=0; j3<3; j3++){
-// 											if(task_assign_avail[3-1][s3][j3] == 1){
-// 												if(j3 != 0){
-// 													num_shifts[s3]++;
-// 													if(s3 == 4){
-// 														num_evenings_no_friday++;
-// 													}
-// 												}
-// 												if(j3 == 2){
-// 													num_PL++;
-// 												}
-// 												
-// 											}
-// 										}
-// 									}
 								}
-								else{cout << "blocked due to multiple PL for s1=" << s1 << " j1=" << j1 << " s2=" << s2 << " j2=" << j2 << endl;}
 							}
-							else{cout << "blocked due to multiple evenings for s1=" << s1 << " j1=" << j1 << " s2=" << s2 << " j2=" << j2 << endl;}
 						}
-						if(j2 == 2){num_PL--;}
-						if(s2 == 4 && j2 != 0){num_evenings_no_friday--;}
 					}
 				}
 			}
