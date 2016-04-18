@@ -76,13 +76,14 @@ int Worker::getAvail(int week, int day, int shift) const{
 
 void Worker::getAvail_matrix() const{
 	for (int w=0; w< NUM_WEEKS; w++){
+		cout << "Week " << w << endl;
 		for (int s=0; s< NUM_SHIFTS; s++){
 			for (int d=0; d< NUM_DAYS; d++){
 				cout << worker_avail[w][d][s] << " ";
 			}
 		cout << endl;
 		}
-		cout << endl << endl;
+		cout << endl;
 	}
 }
 

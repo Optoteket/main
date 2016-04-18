@@ -8,10 +8,17 @@
 #include <iomanip>
 //Default constructor
 Block::Block() {
+	this->init();
+	
+}
+
+//Body of the default constructor
+void Block::init(){
 	newID = 0;
 	newWeektype = " ";
 	newHB = " ";
 	num_tasks = 0;
+	num_Blocks = 0;
 	num_Exp = 0;
 	num_Info = 0;
 	num_PL = 0;
@@ -31,6 +38,7 @@ Block::Block(const Block& obj) {
 	newWeektype = obj.newWeektype;
 	newHB = obj.newHB;
 	num_tasks = obj.num_tasks;
+	num_Blocks = obj.num_Blocks;
 	num_Exp = obj.num_Exp;
 	num_Info = obj.num_Info;
 	num_PL = obj.num_PL;
@@ -53,8 +61,10 @@ Block::Block(int id, string weektype, string hb) {
 
 //Overload Constructor #2
 Block::Block(int id) {
+	this->init();
 	newID = id;
 }
+
 //Destructor
 Block::~Block() {
 	
@@ -72,6 +82,9 @@ string Block::getHB() const{
 int Block::getnum_tasks() const{
 	return num_tasks;
 }
+int Block::getnum_Blocks() const{
+	return num_Blocks;
+}
 int Block::getnum_Exp() const{
 	return num_Exp;
 }
@@ -88,6 +101,7 @@ int Block::getTask(int day, int shift, int tasks) const{ //1 if assigned the tas
 	return tasks_assigned[day][shift][tasks];
 }
 void Block::getTask_matrix() const{
+	cout << "The matrices represent the following: No tasks, Block, PL, HB respectively" << endl;
 	for (int s=0; s< NUM_SHIFTS; s++){
 		for (int j=0; j<NUM_TASKS; j++){
 			for (int d=0; d< NUM_DAYS; d++){
@@ -104,6 +118,9 @@ void Block::setID(int id) {
 }
 void Block::setnum_tasks(int tasks) {
 	num_tasks = tasks;
+}
+void Block::setnum_Blocks(int blocks) {
+	num_Blocks = blocks;
 }
 void Block::setnum_Exp(int exp) {
 	num_Exp = exp;
@@ -125,7 +142,7 @@ void Block::setHB(string hb) {
 	newHB = hb;
 }
 void Block::setTask(int d, int s, int j, int A) {
-	tasks_assigned[d][s][j] = A;
+	tasks_assigned[d-1][s-1][j] = A;
 }
 
 

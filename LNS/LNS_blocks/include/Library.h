@@ -29,7 +29,7 @@ public:
 	void readDemand();
 	void printDemand();
 	void createWorkers();
-	void createBlocks();
+// 	void createBlocks();
 	void setNum_blocks(int);
 	void setNum_day_combinations(int);
 	vector <string> get_info_vector();
@@ -39,16 +39,10 @@ public:
 	Worker getWorker(int i) const;
 	void setTask_avail();
 	void printTask_avail();
-	void createBlockpool();
-	//int calculate_num_combinations(int);
-	bool is_day_blocked(vector<int>, int);
-	int get_all_day_combinations(int, int);
-	void create_combinations(int, int);
-	void print_comb_vector(const vector<int>&);
-	int calculate_combinations(const vector<int>&);
-	void assign_task_array3D(int, int);
-	void get_day_comb_nr(int, int);
-	void create_combinations_as_vect(int, int, int);
+	void create_all_blocks();
+	void assign_tasks_to_block(Block&, int, int, int, int, int, int, int, int, int, int, int, int);
+	void assign_blocks_to_workers();
+	
 
 private:
 	//Member variables
