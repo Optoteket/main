@@ -7,6 +7,7 @@ const int NUM_SHIFTS = 4;
 //const int NUM_TASKS = 5;
 const int NUM_ROTATIONS = NUM_WEEKS;
 //const int NUM_POSITIONS = 3;
+const int MAX_TASKS_PER_DAY = 1;
 
  enum task_type {
    no_task=0,
