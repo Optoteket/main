@@ -52,6 +52,7 @@ public:
 	void setTask(int, int, int, int); //Input: w, d, s, j and A = assigned value (0/1)
 
 private:
+	void init(); //Used in default constructor and Overload constructor
 	//Member variables
 	int newID;
 	string newWeektype;
@@ -70,7 +71,7 @@ private:
 	int num_Info; //number of Info the block contains
 	int num_PL; //number of PL the block contains
 	int num_HB; //number of HB the block contains
-	void init();
+	
 	
 };
 
