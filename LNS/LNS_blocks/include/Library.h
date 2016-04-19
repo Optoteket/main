@@ -35,15 +35,14 @@ public:
 	vector <string> get_info_vector();
 	vector <Block> get_block_vector();
 	
-	void setAvail_worker(Worker[39]);
+	void setAvail_worker();
 	Worker getWorker(int i) const;
 	void setTask_avail();
 	void printTask_avail();
 	void create_all_blocks();
 	void assign_tasks_to_block(Block&, int, int, int, int, int, int, int, int, int, int, int, int);
-	void assign_blocks_to_workers();
-	
-
+	void assign_blocks_to_workers(vector<Block>);
+	void assign_block(Block, int);
 private:
 	//Member variables
 // 	string avail_file = "./src/data/workers5W.txt";

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include "Blocks.h"
 using namespace std;
 
 class Worker {
@@ -38,6 +39,9 @@ public:
 	string getFreeday() const;
 		//Returns "no_freeday" or "freeday". "freeday" means 1 freeday with no tasks per week(?)
 	void getAvail_matrix() const;
+	vector<Block> getweekend_vect() const;
+	vector<Block> getweekday_vect() const;
+	vector<Block> getweekrest_vect() const;
 	
 	//Mutator functions
 	void setID(int);
@@ -50,6 +54,10 @@ public:
 	void setWeekend(string);
 	void setHB(string);
 	void setFreeday(string);
+	
+// 	void setweekend_vect(vector<int>); //vector<Block> !
+// 	void setweekday_vect(vector<int>);
+// 	void setweekrest_vect(vector<int>);
 	
 	void createBlocks();
 	
@@ -78,9 +86,9 @@ private:
 	static const int NUM_SHIFTS = 4;
 	int worker_avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
 	int stand_in[NUM_WEEKS][NUM_DAYS-2]; //stand_in[w,s] = 1 if stand-in, 0 else
-	vector<int> weekend_blocks_avail; //weekend_blocks_avail: [2, 3, 5, 9, 13 ...] i.e. blocks a worker is avail for
-	vector<int> weekday_blocks_avail; //blocks available are dependent on availability, weekend worker, pl-demand etc.
-	vector<int> week_rest_blocks_avail; //All blocks that are available for a workers second week
+	vector<Block> weekend_blocks_avail; //weekend_blocks_avail: [2, 3, 5, 9, 13 ...] i.e. blocks a worker is avail for
+	vector<Block> weekday_blocks_avail; //blocks available are dependent on availability, weekend worker, pl-demand etc.
+	vector<Block> weekrest_blocks_avail; //All blocks that are available for a workers second week
 	
 };
 

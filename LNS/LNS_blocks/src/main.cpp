@@ -30,10 +30,27 @@ int main() {
 
 
 	lib.get_block_vector().back().getTask_matrix();
-	lib.createWorkers();
-
+	lib.createWorkers(); //Creating myworkers[39]
+	
+	
 	cout << "Worker 1's availability matrix is: "<< endl;
-	lib.getWorker(3).getAvail_matrix();
+	lib.getWorker(1).getAvail_matrix();
+	
+	//Assign all the blocks to workers. Note: does apparently not assign them correctly (only copies?)
+	lib.assign_blocks_to_workers(lib.get_block_vector());
+	
+	//***Print weekend, weekday and weekrest vect for all 39 workers***
+// 	vector<Block> test_output;
+// 	for(int i=1; i<=39; i++){
+// 		test_output = lib.getWorker(i).getweekrest_vect();
+// 		cout << "Worker " << i << " has the following weekend blocks assigned to it: ";
+// 		for(unsigned int m=0; m<test_output.size(); m++){
+// 			cout << test_output.back().getID() << " ";
+// 			test_output.pop_back();
+// 		}
+// 		cout << endl;
+// 	}
+	
 	//***Get number of blocks***
 // 	int num = 0;
 // // 	string type = " ";
