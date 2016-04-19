@@ -518,37 +518,49 @@ void Library::assign_tasks_to_block(Block& block, int s1, int j1, int s2, int j2
 	if(j6 == 2){block.setnum_HB(1);}
 }
 
-void Library::assign_blocks_to_workers(vector<Block> copy_block_vector){ //using Worker myworkers[39], vector<Block> block_vector. Need a copy of block_vector so it isnt ruined for each worker
-	cout << "here " << copy_block_vector.size() << endl;
+void Library::assign_blocks_to_workers(){ //using Worker myworkers[39], vector<Block> block_vector. Need a copy of block_vector so it isnt ruined for each worker
+	cout << "here " << block_vector.size() << endl;
+	vector<Block> copy_block_vector;
 	for(int i=0; i<39; i++){
-		cout << "and here " << copy_block_vector.size() << endl;
-		for(unsigned int n=0; n<copy_block_vector.size(); n++){
+		copy_block_vector = block_vector; //Make a new copy of all the created blocks
+// 		cout << "and here " << copy_block_vector.size() << endl;
+		while(copy_block_vector.size()>0){
 			assign_block(copy_block_vector.back(), i+1);
-// 			cout << n << endl;
+// 			cout << "The number of tasks the block has is: " << copy_block_vector.back().getnum_tasks() << endl;
 			copy_block_vector.pop_back();
 		}
+		cout << "Worker: " << i+1 << " has " << myworkers[i].getweekend_vect().size() << " " << myworkers[i].getweekday_vect().size() << " " << myworkers[i].getweekrest_vect().size() << " in sizes" << endl;
 	}
+	
 }
 
 void Library::assign_block(Block block, int worker_id){
+// 	cout << "The number of tasks the block has is: " << block.getnum_tasks() << endl;
 	int is_lib = 0;
-	int w_check_error[3];
-	for(int w=0; w<3; w++){w_check_error[w] = 0;} //Necessary to initialize as 0?
-	if(getWorker(worker_id).getQual() == "lib"){is_lib = 1;}
+	int w_check_error[3]; //0 for week w if no errors are found 
+// 	for(int w=0; w<3; w++){w_check_error[w] = 0;} //Necessary to initialize as 0?
+	if(myworkers[worker_id-1].getQual().compare(0,3,"lib") == 0){
+		is_lib = 1;
+		//cout << "an lib is found" << endl;
+	}
 	else{is_lib = 0;}
 	for (int w=0; w<3; w++){ //Check for weekend week, weekday week and week_rest week (w=0,1,2)
+		w_check_error[w] = 0; //Reset when looking at a new week
 		for (int d=0; d< NUM_DAYS; d++){
 			for (int s=0; s< NUM_SHIFTS; s++){
 				for (int j=1; j<=3; j++){ //Only checking for Block, PL and HB
 					if(j == 1){ //Block
-						if(getWorker(worker_id).getAvail(w,d,s) < block.getTask(d,s,j)){
+						if(myworkers[worker_id-1].getAvail(w,d,s) < block.getTask(d,s,j)){
+// 							cout << "Found error: 1" << endl;
 							w_check_error[w] = 1;
+// 							for(int w=0; w<3; w++){cout << w_check_error[w] << " ";}
+// 							cout << endl;
 						}
 					}
 					else if(j == 2){ //PL
 						if(block.getTask(d,s,j) == 1){ //A PL is assigned to block
 							//check the three consecutive shifts, s = 1, 2, 3
-							if(!(getWorker(worker_id).getAvail(w,d,s) == 1 && getWorker(worker_id).getAvail(w,d,s+1) == 1 && getWorker(worker_id).getAvail(w,d,s+2) == 1)){
+							if(!(myworkers[worker_id-1].getAvail(w,d,s) == 1 && myworkers[worker_id-1].getAvail(w,d,s+1) == 1 && getWorker(worker_id).getAvail(w,d,s+2) == 1)){
 								w_check_error[w] = 1;
 							}
 						}
@@ -558,7 +570,7 @@ void Library::assign_block(Block block, int worker_id){
 							if(is_lib == 0){
 								w_check_error[w] = 1; //Error for all weeks, due to being "ass"
 							}
-							else if(getWorker(worker_id).getAvail(w,d,s) < block.getTask(d,s,j)){
+							else if(myworkers[worker_id-1].getAvail(w,d,s) < block.getTask(d,s,j)){
 								w_check_error[w] = 1;
 							}
 						}
@@ -567,16 +579,27 @@ void Library::assign_block(Block block, int worker_id){
 			}
 		}
 		if(w_check_error[w] == 0){
+			//cout << "Pushing back a block!!! Never here :(" << endl;
 			//Need to know for which w (if all or just some) that are okay.
 			if(w == 0){ //for the worker: Access the vector with weekend blocks and add the block to it
-				getWorker(worker_id).getweekend_vect().push_back(block);
+				myworkers[worker_id-1].add_block("weekend",block);
+// 				myworkers[worker_id-1].getweekend_vect().push_back(block);
+// 				cout << "Pushing back a weekend block!!!" << endl;
+// 				cout << "Size is now: " << myworkers[worker_id-1].getweekend_vect().size() << endl;
 			} else if(w == 1){
-				getWorker(worker_id).getweekday_vect().push_back(block);
+// 				myworkers[worker_id-1].getweekday_vect().push_back(block);
+				myworkers[worker_id-1].add_block("weekday",block);
+// 				cout << "Pushing back a weekday block!!!" << endl;
+// 				cout << "Size is now: " << myworkers[worker_id-1].getweekday_vect().size() << endl;
 			} else if(w == 2){
-				getWorker(worker_id).getweekrest_vect().push_back(block);
+// 				myworkers[worker_id-1].getweekrest_vect().push_back(block);
+				myworkers[worker_id-1].add_block("weekrest",block);
+// 				cout << "Pushing back a weekrest block!!!" << endl;
+// 				cout << "Size is now: " << myworkers[worker_id-1].getweekrest_vect().size() << endl;
 			}
 		}
 	}
+// 	cout << "Worker: " << worker_id << " has " << myworkers[worker_id-1].getweekend_vect().size() << " " << myworkers[worker_id-1].getweekday_vect().size() << " " << myworkers[worker_id-1].getweekrest_vect().size() << " in sizes" << endl;
 	return; //Block has been assigned to the available vectors for the worker
 }
 

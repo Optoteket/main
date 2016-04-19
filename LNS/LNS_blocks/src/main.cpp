@@ -37,12 +37,14 @@ int main() {
 	lib.getWorker(1).getAvail_matrix();
 	
 	//Assign all the blocks to workers. Note: does apparently not assign them correctly (only copies?)
-	lib.assign_blocks_to_workers(lib.get_block_vector());
+	lib.assign_blocks_to_workers();
+// 	lib.assign_blocks_to_workers(lib.get_block_vector());
 	
 	//***Print weekend, weekday and weekrest vect for all 39 workers***
 // 	vector<Block> test_output;
+// 	//cout << lib.getWorker(1).getName() << endl;
 // 	for(int i=1; i<=39; i++){
-// 		test_output = lib.getWorker(i).getweekrest_vect();
+// 		test_output = lib.getWorker(i).getweekend_vect();
 // 		cout << "Worker " << i << " has the following weekend blocks assigned to it: ";
 // 		for(unsigned int m=0; m<test_output.size(); m++){
 // 			cout << test_output.back().getID() << " ";
@@ -67,6 +69,18 @@ int main() {
 	//myblocks[1].getTask_matrix();
    	//myworkers[38].getAvail_matrix();
 
+	
+	//***Test of string compare***
+	string type1;
+	string type2;
+	string type3;
+	type1 = "weekend";
+	type2 = "weekday";
+	type3 = "weekrest";
+	if (type1 == "weekend"){
+		cout << "Its identical" << endl;
+	}
+	
 	return 0;
 }
 

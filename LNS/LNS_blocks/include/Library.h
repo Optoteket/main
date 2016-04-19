@@ -41,7 +41,8 @@ public:
 	void printTask_avail();
 	void create_all_blocks();
 	void assign_tasks_to_block(Block&, int, int, int, int, int, int, int, int, int, int, int, int);
-	void assign_blocks_to_workers(vector<Block>);
+	void assign_blocks_to_workers();
+	//void assign_blocks_to_workers(vector<Block>);
 	void assign_block(Block, int);
 private:
 	//Member variables
