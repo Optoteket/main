@@ -61,12 +61,8 @@ public:
 	
 	void createBlocks();
 	
-
-	int rotation; //a number between 1-5 (0-4?) saying how many rotations have been allowed
-	int weekend_element; //a number between 1-5 stating where the weekend occurs
-	int weekend_week; //a number representing the index of the weekend block
-	int tasks_assigned; //the number of tasks a worker is assigned in total. (max 4/v)
-// 	vector<int> blocks_assigned;
+	void add_block(string, Block);
+	
 
 
 private:
@@ -86,9 +82,14 @@ private:
 	static const int NUM_SHIFTS = 4;
 	int worker_avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
 	int stand_in[NUM_WEEKS][NUM_DAYS-2]; //stand_in[w,s] = 1 if stand-in, 0 else
-	vector<Block> weekend_blocks_avail; //weekend_blocks_avail: [2, 3, 5, 9, 13 ...] i.e. blocks a worker is avail for
+	vector<Block> weekend_blocks_avail; //weekend_blocks_avail: [block.ID(1) block.ID(8) block.ID(36)] i.e. blocks a worker is avail for
 	vector<Block> weekday_blocks_avail; //blocks available are dependent on availability, weekend worker, pl-demand etc.
-	vector<Block> weekrest_blocks_avail; //All blocks that are available for a workers second week
+	vector<Block> weekrest_blocks_avail; //Note: Create vector<Block*> instead of new blocks assigned to vectors?
+	int rotation; //a number between 1-5 (0-4?) saying how many rotations have been allowed
+	int weekend_element; //a number between 1-5 stating where the weekend occurs
+	int weekend_week; //a number representing the index of the weekend block
+	int tasks_assigned; //the number of tasks a worker is assigned in total. (max 4/v)
+// 	vector<int> blocks_assigned;
 	
 };
 
