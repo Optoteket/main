@@ -24,16 +24,19 @@ class Task {
 
   struct Task_worker {
     Worker* worker;
-    int worker_cost;
+    Worker temp_worker;
+    int temp_worker_cost;
 
-    bool operator<(Task_worker const & worker) const{ 
-      return this->worker_cost < worker.worker_cost;
+    bool operator<(Task_worker const & task_worker) const{
+      return this->temp_worker_cost < task_worker.temp_worker_cost;
     }
+    
   };
 
   // All available workers and their costs
   vector<Task_worker> avail_workers;
-  vector<Worker>* qual_workers;
+  vector<Worker>* workers;
+  vector<Worker> temp_workers;
 
  public:
 
@@ -47,6 +50,7 @@ class Task {
   int get_day() const;
   int get_shift() const;
   int get_type() const;
+  int get_qualification() const;
 
   void place_cheapest_worker();
   void print_worker_costs(); 

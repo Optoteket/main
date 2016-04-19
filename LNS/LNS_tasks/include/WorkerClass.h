@@ -28,6 +28,8 @@ class Worker{
     string PL_type;
     string HB_type;
     string freeday;
+    int avail_day[NUM_ROTATIONS][NUM_WEEKS][NUM_DAYS];
+    int avail[NUM_ROTATIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   } identity;
 
   struct{
@@ -40,11 +42,13 @@ class Worker{
     int num_tasks_day[NUM_WEEKS][NUM_DAYS];
     int avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
     int avail_day[NUM_WEEKS][NUM_DAYS];
+    int tasks[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   } current;
 
   struct{
-    static const int num_tasks_weight = 1;
-    static const int stand_in_weight = 1;
+    //static const int num_tasks_weight = 1;
+    //static const int stand_in_weight = 1;
+    int weights[2]; //TODO: update to NUM_COSTS
     int num_tasks_day_cost[NUM_WEEKS][NUM_DAYS];
     int stand_in_cost[NUM_WEEKS][NUM_DAYS];
 
@@ -53,19 +57,16 @@ class Worker{
     int total_cost[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   } costs;
 
-  int avail_day[NUM_ROTATIONS][NUM_WEEKS][NUM_DAYS];
-  int avail[NUM_ROTATIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
-  int tasks[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
-
 
  public:
 
   //Worker(string, int, string, string, string, string, string, string, string);
   Worker(string, int, string, string, string, string, string, string, string, int[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]);
   Worker(const Worker &obj);
+  Worker();
   //void print_avail();
 
-  void print_modulo();
+  //void print_modulo();
   void display_avail();
   void display_avail_day();
   void display_tasks();
@@ -79,6 +80,7 @@ class Worker{
   void set_current_avail(string, int, int, int);
   void set_current_avail_day(string, int, int);
   void reset_current_avail();
+  void reset_current_avail_day();
 
   //Get functions
   int get_avail(int, int, int);
