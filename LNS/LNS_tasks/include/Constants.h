@@ -20,10 +20,10 @@ const int MAX_TASKS_PER_DAY = 1;
  };  
 
 enum position_type {
-  no_worker,
+  no_position,
   Ass,
   Lib,
-  Bokb,
+  BBlib,
   NUM_POSITIONS
 };
 

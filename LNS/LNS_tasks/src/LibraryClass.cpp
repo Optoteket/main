@@ -20,8 +20,9 @@ Library::Library() {
 	  worker_demand[i][j][k][l] = 0;
 	  current_demand[i][j][k][l] = 0;
 	  //Reset num avail workers
-	  for (int m=0; m<=Bokb; m++){
+	  for (int m=no_position; m < NUM_POSITIONS; m++){
 	    num_avail_workers[m][i][j][k] = 0;
+	    avail_demand_diff[m][i][j][k] = 0;
 	  }
 	}
       }
@@ -30,19 +31,10 @@ Library::Library() {
 
   //Read demand from demand file
   read_demand();
-  print_demand();
+  //print_demand();
   
   //Create workers in library from worker file
   create_workers();
-  //display_worker_avail();
-
-  //Categorize workers
-  find_weekend_workers();
-  find_lib_workers();
-  find_ass_workers();
-
-  // worker_list = vector<Worker>();
-  //weekend_workers = vector<Worker*>();
 
 }
 
@@ -50,25 +42,39 @@ Library::Library() {
 
 void Library::create_initial_solution(){
 
-  //Shuffle weekend workers
-  shuffle_workers();
+  //Weekend distribution:
+  find_weekend_workers();
+  shuffle_worker_weekends();
 
-  //Loop through schedule until feasible availability found
-  while(!demand_filled()){
-    shuffle_workers();
+  //Find statistics about workers
+  //find_num_avail_workers();
+  
+  //Shuffle weekends until feasible availability found
+  while(!compare_avail_demand()){
+    shuffle_worker_weekends();
     cout << "Demand not filled." << endl;
   }
 
+  //Print results
+  print_num_avail_workers();
+  find_avail_demand_diff();
   print_avail_demand_diff();
+
   cout << "Demand filled!" << endl;
   //display_worker_avail();
 
   //Distribute tasks
   set_weekend_tasks();
+  print_num_avail_workers();
   print_avail_demand_diff();
   
   //Set tasks for all other times
   set_tasks();
+
+  //find_num_avail_workers();
+  print_num_avail_workers();
+  print_avail_demand_diff();
+  print_current_demand();
 
  }
 
@@ -79,17 +85,19 @@ void Library::set_tasks(){
   
   for (int type=Lib; type >=Ass; --type){
     cout << "Type: " << type << endl;
-    find_tasks(type);
-    //Find cost_remaining_tasks
-    cout << "Number of tasks: " << task_list.size() << endl;
 
-    print_task_costs();
+    //Find library tasks to be distributed
+    find_tasks(type);
+    cout << "Number of tasks: " << task_list.size() << endl;
 
     //Sort tasks according to cheapest
     sort(task_list.begin(),task_list.end());
+
+    //Print sorted
     cout << "Sorted tasks:" << endl;
     print_task_costs();
 
+    //Fill all worker demand at all tasks
     int list_size = (int)task_list.size();
     for (int i=0; i < list_size; i++) {
       Task* current_task = &task_list[0];
@@ -97,36 +105,25 @@ void Library::set_tasks(){
       //Place cheapest worker at current task
       for (int j=0; j < (int) current_task->get_demand(); j++){
 	current_task->place_cheapest_worker();
-	dec_current_demand(current_task->get_week(), current_task->get_day(),current_task->get_shift(), current_task->get_type());
+	dec_current_demand
+	  (current_task->get_week(), current_task->get_day(),current_task->get_shift(), current_task->get_type());
+	dec_num_avail_workers
+	  (current_task->get_qualification(), current_task->get_week(), current_task->get_day(), 
+	   current_task->get_shift());
       }
 
-      //Erase from list of tasks
+      //Erase task from list of tasks
       task_list.erase(task_list.begin());
-       
-      print_task_costs();
-      print_avail_demand_diff();
-      print_current_demand();
-
     }
   }
+
+  //Print results
+  //print_task_costs();
+  //print_avail_demand_diff();
+  //print_current_demand();
 }
 
-// void Library::find_avail_lib(int week, int day, int shift, Shift* shift){
-
-//   for (int i =0; i < (int) lib_workers.size(); i++){
-//     if (lib_workers[i]->get_avail() < 0 ){
-//       shift->shift_worker->worker->lib_workers[i];
-//       shift->avail_workers.push_back(&shift_workerlib_workers[i]);
-//     }
-//   }
-// }
-
-
-
-
-// bool Library::cost_compare(const Task& task1, const Task& task2){
-//   return (task1.get_cost() < task2.get_cost());
-// }
+/*********** Library function: find tasks ************/
 
 void Library::find_tasks(int type){
   
@@ -195,8 +192,8 @@ void Library::set_weekend_tasks(){
     vector<Worker*> list = weekend_lib;
     int num_workers = (int) list.size();
 
-    for (int j=Lib; j > no_worker; --j){
-      for(int i = NUM_TASKS; i >=0; --i){
+    for (int j=Lib; j >= no_position; j--){
+      for(int i = NUM_TASKS; i >= no_task; i--){
 	//If done with librarians, start with assistants
 	if (next_worker >= num_workers){
 	  list = weekend_ass;
@@ -418,21 +415,13 @@ int Library::check_weekend_demand(){
 
 }
 
-/************ Library function: shuffle workers  *****/
+/************ Library function: shuffle worker weekends  *****/
 
 int myrandom (int i) {return rand()%i;}
 
-void Library::shuffle_workers(){
-  // vector<Worker*> shuffled_list;
-  // shuffled_list = weekend_workers;
-  // random_shuffle(shuffled_list.begin(), shuffled_list.end(), myrandom);
-
-  //vector<Worker*> shuffled_list_lib;
-  //shuffled_list_lib = weekend_lib;
+void Library::shuffle_worker_weekends(){
+ 
   random_shuffle(weekend_lib.begin(), weekend_lib.end(), myrandom);
-
-  //vector<Worker*> shuffled_list_ass;
-  //shuffled_list_ass = weekend_ass;
   random_shuffle(weekend_ass.begin(), weekend_ass.end(), myrandom);
 
   //Redistribute weekends
@@ -448,9 +437,7 @@ void Library::shuffle_workers(){
       index=i-weekend_lib.size();
       weekend_ass[index]->set_weekend((i % NUM_WEEKS) + 1);
     }
-    //cout << weekend_workers[i]->get_weekend() << endl;
   }
-
 }
 
 
@@ -490,63 +477,92 @@ void Library::find_num_avail_workers(){
 
 /************ Library function: avail demand diff  *****/
 
-void Library::find_avail_demand_diff(int type){
-  find_num_avail_workers();
+// void Library::find_avail_demand_diff(int type){
+//   find_num_avail_workers();
 
-  //Find diff between avail and demand for librarians
-  if(type == Lib){
+//   //Find diff between avail and demand for librarians
+//   if(type == Lib){
+//     for(int w = 0; w < NUM_WEEKS; w++){
+//       for(int d = 0; d < NUM_DAYS; d++){
+// 	for(int s = 0; s < NUM_SHIFTS; s++){
+// 	  avail_demand_diff[w][d][s] =  num_avail_workers[Lib][w][d][s] - current_demand[w][d][s][Info] - current_demand[w][d][s][HB]; 	
+
+// 	}
+//       }
+//     }
+//   }
+
+//   // Find diff between avail and demand for assistants
+//   else if (type == Ass){
+//     for(int w = 0; w < NUM_WEEKS; w++){
+//       for(int d = 0; d < NUM_DAYS; d++){
+// 	for(int s = 0; s < NUM_SHIFTS; s++){
+// 	  avail_demand_diff[w][d][s] =  num_avail_workers[Lib][w][d][s] + num_avail_workers[Ass][w][d][s] - current_demand[w][d][s][Exp] - current_demand[w][d][s][PL];
+
+// 	}
+//       }
+//     }
+//   }
+// }
+
+
+void Library::find_avail_demand_diff(){
+
+  for(int t=Lib; t>=Ass; t--){
     for(int w = 0; w < NUM_WEEKS; w++){
       for(int d = 0; d < NUM_DAYS; d++){
 	for(int s = 0; s < NUM_SHIFTS; s++){
-	  avail_demand_diff[w][d][s] =  num_avail_workers[Lib][w][d][s] - current_demand[w][d][s][Info] - current_demand[w][d][s][HB]; 	
-
+	  if(t == Lib){
+	    avail_demand_diff[t][w][d][s] =  
+	      num_avail_workers[Lib][w][d][s] 
+	      - worker_demand[w][d][s][Info] - worker_demand[w][d][s][HB]; 	
+	  }
+	  else if (t == Ass){
+	    avail_demand_diff[t][w][d][s] = 
+	      avail_demand_diff[Lib][w][d][s] + num_avail_workers[Ass][w][d][s] 
+	      - worker_demand[w][d][s][Exp] - worker_demand[w][d][s][PL];
+	  }
 	}
       }
     }
   }
 
-  // Find diff between avail and demand for assistants
-  else if (type == Ass){
-    for(int w = 0; w < NUM_WEEKS; w++){
-      for(int d = 0; d < NUM_DAYS; d++){
-	for(int s = 0; s < NUM_SHIFTS; s++){
-	  avail_demand_diff[w][d][s] =  num_avail_workers[Lib][w][d][s] + num_avail_workers[Ass][w][d][s] - current_demand[w][d][s][Exp] - current_demand[w][d][s][PL];
-
-	}
-      }
-    }
-  }
 }
 
 /************ Library function: cost, avail demand *****/
 
-bool Library::demand_filled(){
+bool Library::compare_avail_demand(){
+  
+  //Find available workers
   find_num_avail_workers();
+  int diff[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
 
   //Find diff between avail and demand for librarians
   for(int w = 0; w < NUM_WEEKS; w++){
     for(int d = 0; d < NUM_DAYS; d++){
       for(int s = 0; s < NUM_SHIFTS; s++){
-	avail_demand_diff[w][d][s] =  num_avail_workers[Lib][w][d][s] - worker_demand[w][d][s][Info] - worker_demand[w][d][s][HB]; 	
-	if (avail_demand_diff[w][d][s] < 0) {
+	diff[w][d][s] =  num_avail_workers[Lib][w][d][s] - worker_demand[w][d][s][Info] - worker_demand[w][d][s][HB]; 	
+	if (diff[w][d][s] < 0) {
 	  return false;
 	}  
       }
     }
   }
 
-  //Find diff between avail and demand for assistants
+  //Find diff between avail and demand for assistants and rest of librarians
   for(int w = 0; w < NUM_WEEKS; w++){
     for(int d = 0; d < NUM_DAYS; d++){
       for(int s = 0; s < NUM_SHIFTS; s++){
-	avail_demand_diff[w][d][s] +=  num_avail_workers[Ass][w][d][s] - worker_demand[w][d][s][Exp] - worker_demand[w][d][s][PL];
-	if (avail_demand_diff[w][d][s] < 0) {
+	diff[w][d][s] +=  num_avail_workers[Ass][w][d][s] - worker_demand[w][d][s][Exp] - worker_demand[w][d][s][PL];
+	if (diff[w][d][s] < 0) {
 	   return false;
 	 }
       }
     }
   }
 
+  //Set:
+  //avail_demand_diff = diff;
   return true;
 }
 
@@ -644,14 +660,14 @@ void Library::dec_current_demand(int week, int day, int shift, int task){
   else cout << "Error: in dec_current_demand, not enough demand!" << endl;
 }
 
-void Library::dec_current_weekend_demand(int weekend, int task){
-  dec_current_demand(weekend, 5, 0, task);
-  dec_current_demand(weekend, 6, 0, task);
+// void Library::dec_current_weekend_demand(int weekend, int task){
+//   dec_current_demand(weekend, 5, 0, task);
+//   dec_current_demand(weekend, 6, 0, task);
 
-  if (task != HB){
-     dec_current_demand(weekend, 4, 3, task);
-  }
-}
+//   if (task != HB){
+//      dec_current_demand(weekend, 4, 3, task);
+//   }
+// }
 
 void Library::set_demand(int week, int day, int shift, int task, int value){
   worker_demand[week][day][shift][task] = value;
@@ -729,9 +745,7 @@ void Library::print_workers(){
   }
 }
 
-void Library::print_avail_demand_diff(){
-  find_num_avail_workers();
-
+void Library::print_num_avail_workers(){
   cout << "Total num of available workers (lib and ass):" << endl;
   cout << "Tasks:( Exp,) Info, (PL, HB, BokB)" << endl;
   
@@ -748,37 +762,22 @@ void Library::print_avail_demand_diff(){
     }
     cout << endl << endl;
   }
+}
 
 
- //Find diff between avail and demand for librarians
-  for(int w = 0; w < NUM_WEEKS; w++){
-    for(int d = 0; d < NUM_DAYS; d++){
-      for(int s = 0; s < NUM_SHIFTS; s++){
-	avail_demand_diff[w][d][s] =  num_avail_workers[Lib][w][d][s] - current_demand[w][d][s][Info] - current_demand[w][d][s][HB]; 	
-
-      }
-    }
-  }
-
-  // //Find diff between avail and demand for assistants
-  // for(int w = 0; w < NUM_WEEKS; w++){
-  //   for(int d = 0; d < NUM_DAYS; d++){
-  //     for(int s = 0; s < NUM_SHIFTS; s++){
-  // 	avail_demand_diff[w][d][s] +=  num_avail_workers[Ass][w][d][s] - current_demand[w][d][s][Exp] - current_demand[w][d][s][PL];
-
-  //     }
-  // }
-  //}
-
-
+void Library::print_avail_demand_diff(){
   cout << "Avail demand diff:" << endl;
-  cout << "Tasks:( Exp,) Info, (PL, HB, BokB)" << endl;
-  
+  //cout << "Tasks:( Exp,) Info, (PL, HB, BokB)" << endl;
+  cout << "Tasks: Ass tasks (Exp, PL),    Lib tasks (Info, HB)" << endl;
+ 
   for (int i=0; i< NUM_WEEKS; i++){
     for (int j=0; j< NUM_SHIFTS; j++){
-      for (int k=0; k< NUM_DAYS; k++){
-	//cout << num_avail_workers[m][i][k][j] << " ";
-	cout << avail_demand_diff[i][k][j] << "  ";
+      for (int t=Ass; t<=Lib; t++){
+	for (int k=0; k< NUM_DAYS; k++){
+	  //cout << num_avail_workers[m][i][k][j] << " ";
+	  cout << avail_demand_diff[t][i][k][j] << " ";
+	}
+	cout << "    ";
       }
       cout << endl;
     }

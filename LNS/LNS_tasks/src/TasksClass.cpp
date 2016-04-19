@@ -3,10 +3,11 @@
 #include "WorkerClass.h"
 #include "TaskClass.h"
 
+/*********** Task: Constructor ***********/
 
 Task::Task(int q, int w, int d, int t, int worker_demand, int avail_diff, int task_type, vector<Worker>*  w_list){
   type = task_type;
-  qual_workers = w_list;
+  workers = w_list;
   qualification = q;
   week= w;
   day = d;
@@ -19,12 +20,16 @@ Task::Task(int q, int w, int d, int t, int worker_demand, int avail_diff, int ta
 
 }
 
+/*********** Task function: Update worker costs ******/
+
 void Task::update_worker_costs(){
   for (int i=0; i < (int) avail_workers.size(); i++){
-    //Task_worker* task_worker = &avail_worker[i];
-    avail_workers[i].worker_cost = avail_workers[i].worker->find_costs(week,day,shift);
+    avail_workers[i].temp_worker.set_task(week,day,shift,type);
+    avail_workers[i].temp_worker_cost = avail_workers[i].temp_worker.find_costs(week,day,shift);
   }
 }
+
+/*********** Task function: Place cheapest worker ****/
 
 void Task::place_cheapest_worker(){ 
   
@@ -36,7 +41,7 @@ void Task::place_cheapest_worker(){
   print_worker_costs();
 
  
-  cout << "Placed worker " << avail_workers[0].worker->get_ID() << " at task w:" << week << " d:" << day << " s:" << shift << endl;
+  cout << "Placed worker " << avail_workers[0].temp_worker.get_ID() << " at task w:" << week << " d:" << day << " s:" << shift << endl;
 
   //Choose cheapest
   avail_workers[0].worker->set_task(week,day,shift,type);
@@ -44,20 +49,18 @@ void Task::place_cheapest_worker(){
 
 }
 
+/********* Task function: find available workers ********/
+
 void Task::find_avail_workers(){
-  for (int i=0; i < (int) qual_workers->size(); i++){
-    //cout << "Availability of task worker: " << (*qual_workers)[i]->get_avail(week,day,shift) << endl;
-    if ((*qual_workers)[i].get_avail(week,day,shift) > 0 && (*qual_workers)[i].get_pos() >= qualification){
+  for (int i=0; i < (int) workers->size(); i++){
+    //cout << "Availability of task worker: " << (*workers)[i]->get_avail(week,day,shift) << endl;
+    if ((*workers)[i].get_avail(week,day,shift) > 0 && (*workers)[i].get_pos() >= qualification){
       Task_worker task_worker;
-      //Worker* worker = (*qual_workers)[i];
-      task_worker.worker = &(*qual_workers)[i];
-      task_worker.worker_cost = task_worker.worker->find_costs(week,day,shift);
-      //cout << "Worker cost: " << task_worker.worker-> find_costs(week,day,shift) << endl; //TO DO: function, get cost
+      task_worker.worker = &(*workers)[i];
+      task_worker.temp_worker = (*workers)[i];
+      task_worker.temp_worker_cost = task_worker.worker->find_costs(week,day,shift);
       avail_workers.push_back(task_worker);
-      //cout << "Avail worker id: " << avail_workers[avail_workers.size()-1].worker->get_ID() << endl;
-      //cout << "In task: available workers:" << (*qual_workers)[i]->get_ID() << endl;
-      //task_worker.worker->display_avail();
-      //task_worker.worker->display_avail_day();
+
     }
   }
 
@@ -97,13 +100,18 @@ int Task::get_type() const{
   return type;
 }
 
+int Task::get_qualification() const{
+  return qualification;
+}
+
 /*********** Print functions ***********/
 
 void Task::print_worker_costs() {
   cout << "Available workers: " << endl;
   for (int i=0; i < (int) avail_workers.size(); i++){
-    cout << avail_workers[i].worker_cost << endl;
+    cout << avail_workers[i].temp_worker_cost << " ";
   }
+  cout << endl;
 }
 
 int Task::num_avail_workers(){

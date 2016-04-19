@@ -51,7 +51,6 @@ class Library{
   void set_weekend_tasks();
   void set_tasks();
 
-
   //void dec_current_weekend_demand(int, int);
   int get_demand(int, int, int, int);
   int get_current_demand(int, int, int, int);
