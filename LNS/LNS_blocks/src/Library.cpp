@@ -235,12 +235,12 @@ void Library::createWorkers() {
 		Worker aworker(ID, Name, Boss, Qual, Dep, PL, Weekend, HB, Freeday);
 		myworkers[i] = aworker;
 	}
-	setAvail_worker(myworkers);
+	setAvail_worker();
 }
 
 
 //Assigns avail for all workers
-void Library::setAvail_worker(Worker myworkers[39]) {
+void Library::setAvail_worker() {
 	ifstream inFile("./src/data/workers5W.txt");
 	
 	//Checking for open Error
@@ -357,7 +357,7 @@ void Library::setTask_avail(){
 }
 
 void Library::printTask_avail(){
-	cout << "The matrices represent task assignment availability for: Exp, Info, PL, HB, BokB" << endl;
+	cout << "The matrices represent task assignment availability for: No task, Block, PL, HB, BokB" << endl;
 	for (int s=0; s< NUM_SHIFTS; s++){
 		for (int j=0; j<NUM_TASKS; j++){
 			for (int d=0; d< NUM_DAYS; d++){
@@ -518,8 +518,66 @@ void Library::assign_tasks_to_block(Block& block, int s1, int j1, int s2, int j2
 	if(j6 == 2){block.setnum_HB(1);}
 }
 
-void Library::assign_blocks_to_workers(){
-	
+void Library::assign_blocks_to_workers(vector<Block> copy_block_vector){ //using Worker myworkers[39], vector<Block> block_vector. Need a copy of block_vector so it isnt ruined for each worker
+	cout << "here " << copy_block_vector.size() << endl;
+	for(int i=0; i<39; i++){
+		cout << "and here " << copy_block_vector.size() << endl;
+		for(unsigned int n=0; n<copy_block_vector.size(); n++){
+			assign_block(copy_block_vector.back(), i+1);
+// 			cout << n << endl;
+			copy_block_vector.pop_back();
+		}
+	}
+}
+
+void Library::assign_block(Block block, int worker_id){
+	int is_lib = 0;
+	int w_check_error[3];
+	for(int w=0; w<3; w++){w_check_error[w] = 0;} //Necessary to initialize as 0?
+	if(getWorker(worker_id).getQual() == "lib"){is_lib = 1;}
+	else{is_lib = 0;}
+	for (int w=0; w<3; w++){ //Check for weekend week, weekday week and week_rest week (w=0,1,2)
+		for (int d=0; d< NUM_DAYS; d++){
+			for (int s=0; s< NUM_SHIFTS; s++){
+				for (int j=1; j<=3; j++){ //Only checking for Block, PL and HB
+					if(j == 1){ //Block
+						if(getWorker(worker_id).getAvail(w,d,s) < block.getTask(d,s,j)){
+							w_check_error[w] = 1;
+						}
+					}
+					else if(j == 2){ //PL
+						if(block.getTask(d,s,j) == 1){ //A PL is assigned to block
+							//check the three consecutive shifts, s = 1, 2, 3
+							if(!(getWorker(worker_id).getAvail(w,d,s) == 1 && getWorker(worker_id).getAvail(w,d,s+1) == 1 && getWorker(worker_id).getAvail(w,d,s+2) == 1)){
+								w_check_error[w] = 1;
+							}
+						}
+					}
+					else if(j == 3){ //HB
+						if(d == 5 || d == 6){ //HB only occuring on weekends. ('optimizing' code)
+							if(is_lib == 0){
+								w_check_error[w] = 1; //Error for all weeks, due to being "ass"
+							}
+							else if(getWorker(worker_id).getAvail(w,d,s) < block.getTask(d,s,j)){
+								w_check_error[w] = 1;
+							}
+						}
+					}
+				}
+			}
+		}
+		if(w_check_error[w] == 0){
+			//Need to know for which w (if all or just some) that are okay.
+			if(w == 0){ //for the worker: Access the vector with weekend blocks and add the block to it
+				getWorker(worker_id).getweekend_vect().push_back(block);
+			} else if(w == 1){
+				getWorker(worker_id).getweekday_vect().push_back(block);
+			} else if(w == 2){
+				getWorker(worker_id).getweekrest_vect().push_back(block);
+			}
+		}
+	}
+	return; //Block has been assigned to the available vectors for the worker
 }
 
 

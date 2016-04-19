@@ -41,6 +41,7 @@ Worker::~Worker() {
 	
 }
 
+// *** GET Functions ***
 int Worker::getID() const{
 	return newID;
 }
@@ -68,12 +69,9 @@ string Worker::getHB() const{
 string Worker::getFreeday() const{
 	return newFreeday;
 }
-
-
 int Worker::getAvail(int week, int day, int shift) const{
 	return worker_avail[week][day][shift];
 }
-
 void Worker::getAvail_matrix() const{
 	for (int w=0; w< NUM_WEEKS; w++){
 		cout << "Week " << w << endl;
@@ -86,7 +84,17 @@ void Worker::getAvail_matrix() const{
 		cout << endl;
 	}
 }
+vector<Block> Worker::getweekend_vect() const{
+	return weekend_blocks_avail;
+}
+vector<Block> Worker::getweekday_vect() const{
+	return weekday_blocks_avail;
+}
+vector<Block> Worker::getweekrest_vect() const{
+	return weekrest_blocks_avail;
+}
 
+// *** SET Functions ***
 void Worker::setID(int id) {
 	newID = id;
 }
@@ -117,6 +125,7 @@ void Worker::setFreeday(string free_day) {
 void Worker::setAvail(int w, int d, int s, int A) {
 	worker_avail[w][d][s] = A;
 }
+
 
 
 

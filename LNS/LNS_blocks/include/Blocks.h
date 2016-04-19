@@ -28,8 +28,6 @@ public:
 	int getnum_PL() const;
 	int getnum_HB() const;
 
-	
-		//Returns the ID of the worker
 	string getWeektype() const;
 		//Returns 
 	string getHB() const;
