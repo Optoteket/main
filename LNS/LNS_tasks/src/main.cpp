@@ -15,7 +15,6 @@
 
 
 #include "stdio.h"
-#include "task.h" 
 #include "LibraryClass.h"
 #include "WorkerClass.h"
 #include "Constants.h"
@@ -29,7 +28,6 @@ stringstream date;
 //File names
 string log_file_dir = "../target/logs/";
 stringstream log_file_path;
-
 
 int main(int argc, char** argv)
 {

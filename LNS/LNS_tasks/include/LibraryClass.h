@@ -10,8 +10,8 @@
 #include <ctime>  
 #include <cstdlib>
 
-
 #include "WorkerClass.h"
+#include "TaskClass.h"
 #include "Constants.h"
 
 using namespace std;
@@ -19,36 +19,6 @@ using namespace std;
 class Library{
 
  private:
-
-  /************* NESTED CLASS: Task **************/
-  class Task {
-  private:
-    int qualification;
-    int week;
-    int day;
-    int shift;
-    int cost_demand;
-    int cost_avail_diff;
-    int total_cost;
-    struct Task_worker {
-      Worker* worker;
-      //Cost depending on avail_day
-      int worker_cost;
-    };
-    // All available workers and their costs
-    vector<Task_worker> avail_workers;
-    vector<Worker*>* qual_workers;
-  public:
-    Task(int,int,int,int,int,int, vector<Worker*>*);
-    void find_avail_workers();
-    void set_costs(int,int);
-    int get_cost();
-
-
-    //bool operator<(Obj const & L, Obj const & R) { // The operator takes const references - it can compare const objects
-    //return L.total_cost < R.total_cost;
-    //}
-  };
 
   //Tasks to be distributed
   vector<Task> task_list;
@@ -75,7 +45,6 @@ class Library{
   Library(); 
 
   //Demand functions
-
   void read_demand();
   void set_demand(int,int,int,string,int);
   void set_demand(int,int,int,int,int);
@@ -102,13 +71,15 @@ class Library{
   void shuffle_workers();
   int check_weekend_demand();
   void create_initial_solution();
+  void find_avail_demand_diff(int);
 
   //Update
   void weekend_update_avail_demand(int, int, int);
   void dec_num_avail_workers(int, int, int, int);
 
   //Costs
-  void find_task_costs(int);
+  void find_tasks(int);
+  //bool cost_compare(const Task&, const Task&);
 
   //Print functions
   void print_demand();
@@ -118,5 +89,6 @@ class Library{
   void print_avail_demand_diff();
   void print_current_demand();
   void print_task_costs();
+
 };
 
