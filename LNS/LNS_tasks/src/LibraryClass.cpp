@@ -7,9 +7,10 @@
 using namespace std;
 
 /************* Library constructor **************/
-Library::Library() {
+Library::Library(ofstream* r_file) {
 
   //TODO: take files as input
+  resfile = r_file;
 
   cout << "Library constructor" << endl;
   for (int i=0; i< NUM_WEEKS; i++){
@@ -35,7 +36,6 @@ Library::Library() {
   
   //Create workers in library from worker file
   create_workers();
-
 }
 
 /********* Library function: create initial solution ********/
@@ -83,7 +83,7 @@ void Library::create_initial_solution(){
 
 void Library::set_tasks(){
   
-  for (int type=Lib; type >=Ass; --type){
+  for (int type=Lib; type >=Ass; type--){
     cout << "Type: " << type << endl;
 
     //Find library tasks to be distributed
@@ -94,19 +94,21 @@ void Library::set_tasks(){
     sort(task_list.begin(),task_list.end());
 
     //Print sorted
-    cout << "Sorted tasks:" << endl;
-    print_task_costs();
+    //cout << "Sorted tasks:" << endl;
+    //print_task_costs();
 
     //Fill all worker demand at all tasks
     int list_size = (int)task_list.size();
     for (int i=0; i < list_size; i++) {
       Task* current_task = &task_list[0];
+      cout << "Demand at task: " << current_task->get_demand() << " at task type " << current_task->get_type() << endl;
 
       //Place cheapest worker at current task
       for (int j=0; j < (int) current_task->get_demand(); j++){
 	current_task->place_cheapest_worker();
 	dec_current_demand
 	  (current_task->get_week(), current_task->get_day(),current_task->get_shift(), current_task->get_type());
+	cout << num_avail_workers[current_task->get_qualification()][current_task->get_week()][current_task->get_day()][current_task->get_shift()] << endl;
 	dec_num_avail_workers
 	  (current_task->get_qualification(), current_task->get_week(), current_task->get_day(), 
 	   current_task->get_shift());
@@ -117,10 +119,6 @@ void Library::set_tasks(){
     }
   }
 
-  //Print results
-  //print_task_costs();
-  //print_avail_demand_diff();
-  //print_current_demand();
 }
 
 /*********** Library function: find tasks ************/
@@ -146,7 +144,7 @@ void Library::find_tasks(int type){
 	else if(type == Ass){
 	  for (int task_type=Exp; task_type <=PL; task_type+=2){
 	    int demand = current_demand[w][d][s][task_type];
-	    cout << demand << endl;
+	    //cout << demand << endl;
 	    if(demand > 0){
 	      //cout << "Demand of librarians!" << endl;
 	      int avail_demand_diff = num_avail_workers[Ass][w][d][s] + num_avail_workers[Lib][w][d][s] - current_demand[w][d][s][task_type];
@@ -161,6 +159,28 @@ void Library::find_tasks(int type){
     } 
   }
 }
+
+/************* Library function: write results ******************/
+void Library::write_results(){
+  if((*resfile).is_open())
+    {
+      for(int h=0; h < (int) worker_list.size(); h++){
+	//worker_list[i].get_current_tasks();  
+	*resfile << "Worker_tasks for worker " << worker_list[h].get_ID() << endl;	
+	for (int j=0; j< NUM_SHIFTS; j++){
+	  for (int i=0; i< NUM_WEEKS; i++){
+	    for (int k=0; k< NUM_DAYS; k++){
+	      *resfile << worker_list[h].get_current_tasks(i,k,j) << " ";
+	    }
+	    *resfile << "   ";
+	  }
+	  *resfile << endl; 
+	}
+	*resfile << endl << endl;
+      }
+    }
+}
+
 
 /************* Library function: update avail demand ************/
 
@@ -329,7 +349,10 @@ void Library::create_a_worker(vector<string>& input_vector){
   }
 
   //Create worker
-  Worker worker {worker_position, worker_ID, worker_name, worker_department, worker_weekend, worker_boss, worker_PL_type, worker_HB_type, worker_freeday, worker_avail};
+  Worker worker 
+  {worker_position, worker_ID, worker_name, worker_department, 
+      worker_weekend, worker_boss, worker_PL_type, worker_HB_type, 
+      worker_freeday, worker_avail};
   worker_list.push_back(worker);
   input_vector.clear();
 

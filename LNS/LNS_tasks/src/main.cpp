@@ -25,15 +25,17 @@ time_t current_time = time(0);
 tm* timedate = localtime(&current_time);
 stringstream date;
 
-//File names
+//File locations
 string log_file_dir = "../target/logs/";
+string res_file_dir = "../target/results/";
 stringstream log_file_path;
+stringstream res_file_path;
 
 int main(int argc, char** argv)
 {
   srand (unsigned (time(0)));
   //1. Create logfile
-  // date << "_" << timedate->tm_year + 1900 << "_" << timedate->tm_mon+1 << "_" << timedate->tm_mday << ":" << timedate->tm_hour << "-" << timedate->tm_min+1 << "-"<< timedate->tm_sec+1;
+  date << "_" << timedate->tm_year + 1900 << "_" << timedate->tm_mon+1 << "_" << timedate->tm_mday << ":" << timedate->tm_hour << ":" << timedate->tm_min+1 << ":"<< timedate->tm_sec+1;
   // log_file_path << log_file_dir << "logfile" << date.str() << ".dat"; 
 
   // ofstream log_file (log_file_path.str().c_str());
@@ -45,19 +47,32 @@ int main(int argc, char** argv)
   // }
   // else cout << "Unable to open file";
 
+  //Create result file
+  res_file_path << res_file_dir << "resfile" << ".dat"; 
+  ofstream res_file (res_file_path.str().c_str());
+  
+  if(res_file.is_open())
+  {
+    res_file << date.str().c_str() << endl;
+    res_file << "These are the results:" << endl;
+  }
+
   try{
     //2. Create library
-    Library library;
+    Library library {&res_file};
     
     //3. Create initial solution
-    library.create_initial_solution();    
+    library.create_initial_solution();
+    
+    //Write results to resfile
+    library.write_results();
 
     //4. Destroy and repair weekends
     /*****************************************/
     
-    // library.fn_destroy_repair(weekend, 10);
+    // library.fn_destroy_repair("weekend", 10);
     
-    // library.fn_destroy_repair(tasks, 10);
+    // library.fn_destroy_repair("tasks", 10);
 
     /*****************************************/
 

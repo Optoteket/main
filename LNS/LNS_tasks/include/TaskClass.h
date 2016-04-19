@@ -54,7 +54,7 @@ class Task {
 
   void place_cheapest_worker();
   void print_worker_costs(); 
-  void update_worker_costs();
+  void update_temp_worker_costs();
 
   int num_avail_workers();
 

@@ -222,26 +222,6 @@ Worker::Worker(const Worker &obj){
     }
   } 
 
-  // for (int h=0; h<NUM_ROTATIONS; h++){
-  //   for (int i=0; i< NUM_WEEKS; i++){
-  //     for (int j=0; j<NUM_DAYS; j++){
-  // 	avail_day[h][i][j]=obj.avail_day[h][i][j];
-  // 	for (int k=0; k<NUM_SHIFTS; k++){
-  // 	  avail[h][i][j][k] = obj.avail[h][i][j][k];	  
-  // 	}
-  //     }
-  //   }
-  // }
-
-  // for (int i=0; i<NUM_WEEKS; i++){      
-  //   for (int j=0; j<NUM_DAYS; j++){
-  //     for (int k=0; k<NUM_SHIFTS; k++){
-  // 	tasks[i][j][k] = obj.tasks[i][j][k];
-  // 	current.avail[i][j][k] = obj.current.avail[i][j][k];
-  //     }
-  //     current.avail_day[i][j] = obj.current.avail_day[i][j];
-  //   }
-  // }  
 }
 
 /***************** Worker cost functions ************/
@@ -250,8 +230,8 @@ int Worker::find_costs(int w, int d, int s){
   find_num_tasks_cost(w,d);
 
   costs.total_cost[w][d][s] =  
-    costs.weights[0]*costs.stand_in_cost[w][d] 
-    + costs.weights[1]* costs.num_tasks_day_cost[w][d];
+    costs.weights[0]*costs.num_tasks_day_cost[w][d]
+    + costs.weights[1]*costs.stand_in_cost[w][d];
   
   return costs.total_cost[w][d][s];
 }
@@ -300,6 +280,10 @@ int Worker::get_avail(int week, int day, int shift){
 
 int Worker::get_current_avail(int week, int day, int shift){
   return current.avail[week][day][shift];
+}
+
+int Worker::get_current_tasks(int week, int day, int shift){
+  return current.tasks[week][day][shift];
 }
 
 int Worker::get_avail_day(int week, int day){

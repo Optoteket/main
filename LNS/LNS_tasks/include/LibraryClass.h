@@ -19,6 +19,7 @@ using namespace std;
 class Library{
 
  private:
+  ofstream* resfile;
 
   //Tasks to be distributed
   vector<Task> task_list;
@@ -42,7 +43,7 @@ class Library{
  public:
 
   //Constructor
-  Library(); 
+  Library(ofstream*); 
 
   //Demand functions
   void read_demand();
@@ -50,7 +51,6 @@ class Library{
   void set_demand(int,int,int,int,int);
   void set_weekend_tasks();
   void set_tasks();
-
 
   //void dec_current_weekend_demand(int, int);
   int get_demand(int, int, int, int);
@@ -96,6 +96,9 @@ class Library{
   void print_avail_demand_diff();
   void print_current_demand();
   void print_task_costs();
+
+  //Write functions
+  void write_results();
 
 };
 

@@ -85,6 +85,7 @@ class Worker{
   //Get functions
   int get_avail(int, int, int);
   int get_current_avail(int, int, int);
+  int get_current_tasks(int,int,int);
   int get_ID();
   int get_rotation();
   string get_weekend();
