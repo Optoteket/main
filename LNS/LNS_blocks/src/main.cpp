@@ -28,16 +28,28 @@ int main() {
 // 		lib.get_block_vector().at(i).getTask_matrix();
 // 	}
 
-
-	lib.get_block_vector().back().getTask_matrix();
+	
+	
+	
+	
+	//***Test of block_assignment if correct***
+	int j = 1;
+	int b_id = 2;
+	cout << "here" << endl;
+	lib.get_block_vector().at(b_id).getTask_matrix();
+// 	lib.get_block_vector().back().getTask_matrix();
+	cout << "here" << endl;
 	lib.createWorkers(); //Creating myworkers[39]
+	cout << "Worker: " << j << " has " << lib.getWorker(j).getweekend_vect().size() << " " << lib.getWorker(j).getweekday_vect().size() << " " << lib.getWorker(j).getweekrest_vect().size() << " in sizes" << endl;
+	cout << "Qualification for worker " << j << " is: " << lib.getWorker(j).getID() << endl;
+	cout << "Worker " << j << "'s availability matrix is: "<< endl;
+	lib.getWorker(j).getAvail_matrix();
+	lib.assign_block(lib.get_block_vector().at(b_id), j);
+	cout << "Worker: " << j << " has " << lib.getWorker(j).getweekend_vect().size() << " " << lib.getWorker(j).getweekday_vect().size() << " " << lib.getWorker(j).getweekrest_vect().size() << " in sizes" << endl;
 	
-	
-	cout << "Worker 1's availability matrix is: "<< endl;
-	lib.getWorker(1).getAvail_matrix();
 	
 	//Assign all the blocks to workers. Note: does apparently not assign them correctly (only copies?)
-	lib.assign_blocks_to_workers();
+// 	lib.assign_blocks_to_workers();
 // 	lib.assign_blocks_to_workers(lib.get_block_vector());
 	
 	//***Print weekend, weekday and weekrest vect for all 39 workers***
