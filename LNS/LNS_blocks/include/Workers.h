@@ -38,10 +38,12 @@ public:
 		//Returns "standard_HB", "no_HB" or "only_HB". "standard_HB" means max 1 per 5 weeks(10 weeks)
 	string getFreeday() const;
 		//Returns "no_freeday" or "freeday". "freeday" means 1 freeday with no tasks per week(?)
+	int getRot() const;
+	int getWeekend_week() const;
 	void getAvail_matrix() const;
-	vector<Block> getweekend_vect() const;
-	vector<Block> getweekday_vect() const;
-	vector<Block> getweekrest_vect() const;
+	vector<Block*> getweekend_vect() const;
+	vector<Block*> getweekday_vect() const;
+	vector<Block*> getweekrest_vect() const;
 	
 	//Mutator functions
 	void setID(int);
@@ -54,14 +56,15 @@ public:
 	void setWeekend(string);
 	void setHB(string);
 	void setFreeday(string);
-	
+	void setRot(int);
+	void setWeekend_week(int);
 // 	void setweekend_vect(vector<int>); //vector<Block> !
 // 	void setweekday_vect(vector<int>);
 // 	void setweekrest_vect(vector<int>);
 	
 	void createBlocks();
 	
-	void add_block(string, Block);
+	void add_block(string, Block*);
 	
 
 
@@ -76,20 +79,23 @@ private:
 	string newWeekend;
 	string newHB;
 	string newFreeday;
+	int newRot; //a number between 1-5 (0-4?) saying how many rotations have been allowed
+	int newWeekend_week; //a number between 1-5 stating where the weekend occurs
+	//int weekend_element; //a number representing the index of the weekend block
+
+	int tasks_assigned; //the number of tasks a worker is assigned in total. (max 4/v)
 // 	string avail_file = "./src/data/workers5W.txt";
 	static const int NUM_WEEKS = 5;
 	static const int NUM_DAYS = 7;
 	static const int NUM_SHIFTS = 4;
 	int worker_avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
 	int stand_in[NUM_WEEKS][NUM_DAYS-2]; //stand_in[w,s] = 1 if stand-in, 0 else
-	vector<Block> weekend_blocks_avail; //weekend_blocks_avail: [block.ID(1) block.ID(8) block.ID(36)] i.e. blocks a worker is avail for
-	vector<Block> weekday_blocks_avail; //blocks available are dependent on availability, weekend worker, pl-demand etc.
-	vector<Block> weekrest_blocks_avail; //Note: Create vector<Block*> instead of new blocks assigned to vectors?
-	int rotation; //a number between 1-5 (0-4?) saying how many rotations have been allowed
-	int weekend_element; //a number between 1-5 stating where the weekend occurs
-	int weekend_week; //a number representing the index of the weekend block
-	int tasks_assigned; //the number of tasks a worker is assigned in total. (max 4/v)
-// 	vector<int> blocks_assigned;
+	vector<Block*> weekend_blocks_avail; //weekend_blocks_avail: [block.ID(1) block.ID(8) block.ID(36)] i.e. blocks a worker is avail for
+	vector<Block*> weekday_blocks_avail; //blocks available are dependent on availability, weekend worker, pl-demand etc.
+	vector<Block*> weekrest_blocks_avail; //Note: Create vector<Block*> instead of new blocks assigned to vectors?
+	
+	vector<Block*> blocks_assigned; //Vector with the blocks assigned to the person starting with weekend block (then weekrest, weekday)
+	
 	
 };
 

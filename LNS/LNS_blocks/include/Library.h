@@ -42,8 +42,10 @@ public:
 	void create_all_blocks();
 	void assign_tasks_to_block(Block&, int, int, int, int, int, int, int, int, int, int, int, int);
 	void assign_blocks_to_workers();
-	//void assign_blocks_to_workers(vector<Block>);
-	void assign_block(Block, int);
+	void assign_block(Block*, int);
+	bool is_empty_of_tasks(Block*);
+	void print_weekblocks_assigned_worker(int, string);
+	void assign_rot_to_workers();
 private:
 	//Member variables
 // 	string avail_file = "./src/data/workers5W.txt";
@@ -52,20 +54,13 @@ private:
 	static const int NUM_SHIFTS = 4;
 	static const int NUM_TASKS = 5;
 	int num_blocks; //Number of blocks created
+	int num_workers;
 	int demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
 	//int demand_differ[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
 	enum task_type{Exp, Info, PL, HB, BokB};
 	Worker myworkers[39]; //Create 39 workers in library class. Array is from 0->38
 	int task_assign_avail[NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
-	vector<Block> block_vector;
-	vector<int> days; //a vector with all days, [1 2 3 4 5] if looking at 5 days.
-	vector<int> combination; //'num_tasks_to_assign' long and a combination of those days e.g. [1 2 4]
-	vector<int> combination_nr; //a specific combination that was found using a number
-	int num_day_combinations; //#combinations found when num_tasks_to_assign tasks are considered
-	int num_day_combinations_array[NUM_DAYS+1]; //An array with [1 5 10 10 5 1] = combinations of days possible. (Assign to 0 in constructor?)
-	int num_combinations_total; //#combinations for all day combinations of a fix number e.g. 3 days (=3 tasks)
-	vector<vector<vector<int> > > task_array3D; //3D array with all task combinations for a fix number of days
-	int times_in_fcn;
+	vector<Block> block_vector; //A vector with all the blocks created
 };
 
 
