@@ -29,29 +29,28 @@ int main() {
 // 	}
 
 	
-	
+	lib.createWorkers(); //Creating myworkers[39]
 	
 	
 	//***Test of block_assignment if correct***
-	int j = 2;
-	int b_id = 1;
-	cout << "here" << endl;
-	lib.get_block_vector().at(b_id).getTask_matrix();
-// 	lib.get_block_vector().back().getTask_matrix();
-	cout << "here" << endl;
-	lib.createWorkers(); //Creating myworkers[39]
-	cout << "Worker: " << j << " has " << lib.getWorker(j).getweekend_vect().size() << " " << lib.getWorker(j).getweekday_vect().size() << " " << lib.getWorker(j).getweekrest_vect().size() << " in sizes" << endl;
-	cout << "Qualification for worker " << j << " is: " << lib.getWorker(j).getQual() << endl;
-	cout << "Weekend type for the worker is: " << lib.getWorker(j).getWeekend() << endl;
-	cout << "Worker " << j << "'s availability matrix is: "<< endl;
-	lib.getWorker(j).getAvail_matrix();
-	lib.assign_block(lib.get_block_vector().at(b_id), j);
-	cout << "Worker: " << j << " has " << lib.getWorker(j).getweekend_vect().size() << " " << lib.getWorker(j).getweekday_vect().size() << " " << lib.getWorker(j).getweekrest_vect().size() << " in sizes" << endl;
+// 	int j = 23;
+// 	int b_id = 0;
+// 	cout << "here" << endl;
+// 	lib.get_block_vector().at(b_id).getTask_matrix();
+// // 	lib.get_block_vector().back().getTask_matrix();
+// 	cout << "here" << endl;
+// 	cout << "Worker: " << j << " has " << lib.getWorker(j).getweekend_vect().size() << " " << lib.getWorker(j).getweekday_vect().size() << " " << lib.getWorker(j).getweekrest_vect().size() << " in sizes" << endl;
+// 	cout << "Qualification for worker " << j << " is: " << lib.getWorker(j).getQual() << endl;
+// 	cout << "Weekend type for the worker is: " << lib.getWorker(j).getWeekend() << endl;
+// 	cout << "Worker " << j << "'s availability matrix is: "<< endl;
+// 	lib.getWorker(j).getAvail_matrix();
+// 	lib.assign_block(lib.get_block_vector().at(b_id), j);
+// 	cout << "Worker: " << j << " has " << lib.getWorker(j).getweekend_vect().size() << " " << lib.getWorker(j).getweekday_vect().size() << " " << lib.getWorker(j).getweekrest_vect().size() << " in sizes" << endl;
 	
 	
 	//Assign all the blocks to workers. Note: does apparently not assign them correctly (only copies?)
-// 	lib.assign_blocks_to_workers();
-// 	lib.assign_blocks_to_workers(lib.get_block_vector());
+	lib.assign_blocks_to_workers();
+	lib.print_weekblocks_assigned_worker(36, "weekend");
 	
 	//***Print weekend, weekday and weekrest vect for all 39 workers***
 // 	vector<Block> test_output;

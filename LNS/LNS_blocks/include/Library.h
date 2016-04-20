@@ -44,6 +44,8 @@ public:
 	void assign_blocks_to_workers();
 	//void assign_blocks_to_workers(vector<Block>);
 	void assign_block(Block, int);
+	bool is_empty_of_tasks(Block);
+	void print_weekblocks_assigned_worker(int, string);
 private:
 	//Member variables
 // 	string avail_file = "./src/data/workers5W.txt";
