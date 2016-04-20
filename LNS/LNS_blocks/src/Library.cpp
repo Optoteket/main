@@ -8,9 +8,11 @@
 #include <stdlib.h> //Might be needed for exit(1) on some compilers!
 #include <sstream>
 #include <iomanip>
+#include <cstdlib>
 
 Library::Library() {
 	num_blocks = 0;
+	num_workers = 39;
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int d=0; d<NUM_DAYS; d++){
 			for (int s=0; s<NUM_SHIFTS; s++){
@@ -207,7 +209,7 @@ vector <string> Library::get_info_vector() { //1 = ID, 2 = Name, 3 = Boss, 4 = Q
 void Library::createWorkers() {
 	vector <string> info_vector;
 	info_vector = get_info_vector();
-	int ID, num_workers = 39;
+	int ID = 0;
 	string Name, Boss, Qual, Dep, PL, Weekend, HB, Freeday;
 	for (int i=num_workers-1; i>=0; i--)
 	{
@@ -256,7 +258,6 @@ void Library::setAvail_worker() {
 	//string wID;
 	int line_read_num = 0;
 	int workers_counted = 0;
-// 	int number_of_workers_in_total = 39;
  	int week, day, shift;
 	while( inFile.good() )
 	{
@@ -526,7 +527,7 @@ void Library::assign_tasks_to_block(Block& block, int s1, int j1, int s2, int j2
 void Library::assign_blocks_to_workers(){ //using Worker myworkers[39], vector<Block> block_vector. Need a copy of block_vector so it isnt ruined for each worker
 	cout << "here " << block_vector.size() << endl;
 // 	vector<Block> copy_block_vector;
-	for(int i=0; i<39; i++){
+	for(int i=0; i<num_workers; i++){
 // 		copy_block_vector = block_vector; //Make a new copy of all the created blocks
 // 		cout << "and here " << copy_block_vector.size() << endl;
 		for(unsigned int n = 0; n<block_vector.size(); n++){
@@ -619,7 +620,6 @@ void Library::assign_block(Block* block, int worker_id){ //worker_id a number be
 	return; //Block has been assigned to the available vectors for the worker
 }
 
-//CHECK THIS FUNCTION FOR * and &
 void Library::print_weekblocks_assigned_worker(int worker_id, string str){
 	if(str == "weekend"){
 		for(unsigned int n=0; n<getWorker(worker_id).getweekend_vect().size(); n++){
@@ -654,12 +654,39 @@ bool Library::is_empty_of_tasks(Block* block){
 int Library::getNum_blocks() const{
 	return num_blocks;
 }
-
-
 void Library::setNum_blocks(int num) {
 	num_blocks = num;
 }
-
 vector<Block> Library::get_block_vector(){
 	return block_vector;
 }
+
+void Library::assign_rot_to_workers(){
+	int workers_per_rot[5];
+	for(int w=0; w<NUM_WEEKS; w++){workers_per_rot[w] = 0;} //initialize as 0
+	int min_worker_per_rot = 0;
+	int rand_week = 0;
+	for(int i=0; i<num_workers; i++){
+		while(false){
+			rand_week = rand() % 5; //generates a random number between 0 to 4
+			if(workers_per_rot[rand_week] == min_worker_per_rot){
+				getWorker(i).setRot(rand_week);
+				workers_per_rot[rand_week]++;
+				//Update min_worker_per_rot
+				for(int w=0; w<NUM_WEEKS; w++){
+					if(min_worker_per_rot <= workers_per_rot[w]){
+						min_worker_per_rot = workers_per_rot[w];
+					}
+				}
+				break;
+			}
+		}
+	}
+	cout << "The random array is: ";
+	for(int w=0; w<NUM_WEEKS; w++){
+		cout << workers_per_rot[w] << " ";
+	}
+	cout << endl;
+}
+
+

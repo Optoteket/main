@@ -52,6 +52,8 @@ int main() {
 	lib.assign_blocks_to_workers();
 	lib.print_weekblocks_assigned_worker(36, "weekend");
 	
+	lib.assign_rot_to_workers();
+	
 	//***Print weekend, weekday and weekrest vect for all 39 workers***
 // 	vector<Block> test_output;
 // 	//cout << lib.getWorker(1).getName() << endl;

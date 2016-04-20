@@ -18,6 +18,8 @@ Worker::Worker() {
 	newWeekend = " ";
 	newHB = " ";
 	newFreeday = " ";
+	newRot = 0;
+	newWeekend_week = 0;
 }
 
 //Copy Constructor
@@ -93,9 +95,12 @@ vector<Block*> Worker::getweekday_vect() const{
 vector<Block*> Worker::getweekrest_vect() const{
 	return weekrest_blocks_avail;
 }
-// vector<Block>* Worker::getweekend_vect() const{
-// 	return &weekend_blocks_avail;
-// }
+int Worker::getRot() const{
+	return newRot;
+}
+int Worker::getWeekend_week() const{
+	return newWeekend_week;
+}
 
 // *** SET Functions ***
 void Worker::setID(int id) {
@@ -127,6 +132,14 @@ void Worker::setFreeday(string free_day) {
 }
 void Worker::setAvail(int w, int d, int s, int A) {
 	worker_avail[w][d][s] = A;
+}
+
+void Worker::setRot(int rot){
+	newRot = rot;
+}
+
+void Worker::setWeekend_week(int weekend){
+	newWeekend_week = weekend;
 }
 
 void Worker::add_block(string type, Block* block) { //type == "weekend", "weekday" or "weekrest". Function: Adds a block to block vectors

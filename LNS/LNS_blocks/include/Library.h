@@ -45,6 +45,7 @@ public:
 	void assign_block(Block*, int);
 	bool is_empty_of_tasks(Block*);
 	void print_weekblocks_assigned_worker(int, string);
+	void assign_rot_to_workers();
 private:
 	//Member variables
 // 	string avail_file = "./src/data/workers5W.txt";
@@ -53,6 +54,7 @@ private:
 	static const int NUM_SHIFTS = 4;
 	static const int NUM_TASKS = 5;
 	int num_blocks; //Number of blocks created
+	int num_workers;
 	int demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
 	//int demand_differ[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
 	enum task_type{Exp, Info, PL, HB, BokB};
