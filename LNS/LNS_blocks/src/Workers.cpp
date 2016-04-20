@@ -84,13 +84,13 @@ void Worker::getAvail_matrix() const{
 		cout << endl;
 	}
 }
-vector<Block> Worker::getweekend_vect() const{
+vector<Block*> Worker::getweekend_vect() const{
 	return weekend_blocks_avail;
 }
-vector<Block> Worker::getweekday_vect() const{
+vector<Block*> Worker::getweekday_vect() const{
 	return weekday_blocks_avail;
 }
-vector<Block> Worker::getweekrest_vect() const{
+vector<Block*> Worker::getweekrest_vect() const{
 	return weekrest_blocks_avail;
 }
 // vector<Block>* Worker::getweekend_vect() const{
@@ -129,7 +129,7 @@ void Worker::setAvail(int w, int d, int s, int A) {
 	worker_avail[w][d][s] = A;
 }
 
-void Worker::add_block(string type, Block block) { //type == "weekend", "weekday" or "weekrest". Function: Adds a block to block vectors
+void Worker::add_block(string type, Block* block) { //type == "weekend", "weekday" or "weekrest". Function: Adds a block to block vectors
 	if(type == "weekend"){
 		weekend_blocks_avail.push_back(block);
 	} else if(type == "weekday"){

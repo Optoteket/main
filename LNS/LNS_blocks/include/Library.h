@@ -42,8 +42,8 @@ public:
 	void create_all_blocks();
 	void assign_tasks_to_block(Block&, int, int, int, int, int, int, int, int, int, int, int, int);
 	void assign_blocks_to_workers();
-	void assign_block(Block, int);
-	bool is_empty_of_tasks(Block);
+	void assign_block(Block*, int);
+	bool is_empty_of_tasks(Block*);
 	void print_weekblocks_assigned_worker(int, string);
 private:
 	//Member variables

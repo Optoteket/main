@@ -80,18 +80,6 @@ int main() {
 // 	cout << block1.getWeektype() << endl;
 	//myblocks[1].getTask_matrix();
    	//myworkers[38].getAvail_matrix();
-
-	
-	//***Test of string compare***
-	string type1;
-	string type2;
-	string type3;
-	type1 = "weekend";
-	type2 = "weekday";
-	type3 = "weekrest";
-	if (type1 == "weekend"){
-		cout << "Its identical" << endl;
-	}
 	
 	return 0;
 }

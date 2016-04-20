@@ -39,9 +39,9 @@ public:
 	string getFreeday() const;
 		//Returns "no_freeday" or "freeday". "freeday" means 1 freeday with no tasks per week(?)
 	void getAvail_matrix() const;
-	vector<Block> getweekend_vect() const;
-	vector<Block> getweekday_vect() const;
-	vector<Block> getweekrest_vect() const;
+	vector<Block*> getweekend_vect() const;
+	vector<Block*> getweekday_vect() const;
+	vector<Block*> getweekrest_vect() const;
 	
 	//Mutator functions
 	void setID(int);
@@ -61,7 +61,7 @@ public:
 	
 	void createBlocks();
 	
-	void add_block(string, Block);
+	void add_block(string, Block*);
 	
 
 
@@ -82,9 +82,9 @@ private:
 	static const int NUM_SHIFTS = 4;
 	int worker_avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
 	int stand_in[NUM_WEEKS][NUM_DAYS-2]; //stand_in[w,s] = 1 if stand-in, 0 else
-	vector<Block> weekend_blocks_avail; //weekend_blocks_avail: [block.ID(1) block.ID(8) block.ID(36)] i.e. blocks a worker is avail for
-	vector<Block> weekday_blocks_avail; //blocks available are dependent on availability, weekend worker, pl-demand etc.
-	vector<Block> weekrest_blocks_avail; //Note: Create vector<Block*> instead of new blocks assigned to vectors?
+	vector<Block*> weekend_blocks_avail; //weekend_blocks_avail: [block.ID(1) block.ID(8) block.ID(36)] i.e. blocks a worker is avail for
+	vector<Block*> weekday_blocks_avail; //blocks available are dependent on availability, weekend worker, pl-demand etc.
+	vector<Block*> weekrest_blocks_avail; //Note: Create vector<Block*> instead of new blocks assigned to vectors?
 	int rotation; //a number between 1-5 (0-4?) saying how many rotations have been allowed
 	int weekend_element; //a number between 1-5 stating where the weekend occurs
 	int weekend_week; //a number representing the index of the weekend block
