@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <algorithm>
 
 #include "Constants.h"
 #include "WorkerClass.h"
@@ -12,13 +13,13 @@
 using namespace std;
 
 class Task {
- private:
+ protected:
   int type;
   int qualification;
   int week;
-  int day;
+  int day; //In child class?
   int shift;
-  int demand;
+  int cost_demand;
   int cost_avail_diff;
   int total_cost;
 
@@ -39,11 +40,7 @@ class Task {
   vector<Worker> temp_workers;
 
  public:
-
   Task(int,int,int,int,int,int,int, vector<Worker>*);
-  void find_avail_workers();
-  void set_costs(int,int);
-
   int get_cost() const;
   int get_demand() const;
   int get_week() const;
@@ -51,12 +48,17 @@ class Task {
   int get_shift() const;
   int get_type() const;
   int get_qualification() const;
+  int num_avail_workers();
 
-  void place_cheapest_worker();
-  void print_worker_costs(); 
+  virtual int place_cheapest_worker();  
+  virtual void find_avail_workers();
+  void set_costs();
+  //void set_costs(int[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS], int[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]);
+
   void update_temp_worker_costs();
 
-  int num_avail_workers();
+  //Print functions
+  void print_worker_costs(); 
 
   bool operator<(Task const & task) const{ 
     return this->get_cost() < task.get_cost();

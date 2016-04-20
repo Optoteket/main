@@ -16,7 +16,6 @@
 
 #include "stdio.h"
 #include "LibraryClass.h"
-#include "WorkerClass.h"
 #include "Constants.h"
 
 using namespace std;
@@ -31,21 +30,25 @@ string res_file_dir = "../target/results/";
 stringstream log_file_path;
 stringstream res_file_path;
 
+int myrandom (int i) {return rand()%i;}
+
 int main(int argc, char** argv)
 {
   srand (unsigned (time(0)));
   //1. Create logfile
-  date << "_" << timedate->tm_year + 1900 << "_" << timedate->tm_mon+1 << "_" << timedate->tm_mday << ":" << timedate->tm_hour << ":" << timedate->tm_min+1 << ":"<< timedate->tm_sec+1;
-  // log_file_path << log_file_dir << "logfile" << date.str() << ".dat"; 
+  date << timedate->tm_year + 1900 << "_" << timedate->tm_mon+1 << "_" << timedate->tm_mday << ":" << timedate->tm_hour << ":" << timedate->tm_min+1 << ":"<< timedate->tm_sec+1;
+  log_file_path << log_file_dir << "logfile" << ".dat"; 
 
-  // ofstream log_file (log_file_path.str().c_str());
-  // if (log_file.is_open())
-  // {
-  //   log_file << date.str().c_str() << "\n";
-  //   log_file << "This is another line.\n";
-  //   log_file.close();
-  // }
-  // else cout << "Unable to open file";
+  ofstream log_file (log_file_path.str().c_str());
+  if (log_file.is_open())
+  {
+    log_file << date.str().c_str() << endl;;
+    log_file << "The logs are:" << endl;
+    log_file.close();
+  }
+  else cout << "Unable to open file";
+
+  freopen(log_file_path.str().c_str(), "a", stderr);
 
   //Create result file
   res_file_path << res_file_dir << "resfile" << ".dat"; 
@@ -54,7 +57,7 @@ int main(int argc, char** argv)
   if(res_file.is_open())
   {
     res_file << date.str().c_str() << endl;
-    res_file << "These are the results:" << endl;
+    res_file << "The results are:" << endl;
   }
 
   try{

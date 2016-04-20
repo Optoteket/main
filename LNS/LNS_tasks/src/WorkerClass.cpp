@@ -311,7 +311,7 @@ void Worker::set_rotation(int rot){
 }
 
 void Worker::set_task(int w,int d,int s,int val){
-  if(get_avail(w,d,s) != 0){
+  if(get_current_avail(w,d,s) != 0){
     current.tasks[w][d][s] = val;
     //Increment number of tasks that day
     current.num_tasks_day[w][d]++;
@@ -319,7 +319,8 @@ void Worker::set_task(int w,int d,int s,int val){
     set_current_avail_day("add_task",w,d);
     set_current_avail("add_task",w,d,s);
   }
-  else cout << "Error: in set_task, worker not available." << endl;
+  else cerr << "Error: in set_task, week: "<< w << " day: " << d
+	    << " shift: " << s << ". Worker " << get_ID() << " not available." << endl;
 }
 
 

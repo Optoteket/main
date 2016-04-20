@@ -72,6 +72,8 @@ void Library::create_initial_solution(){
   set_tasks();
 
   //find_num_avail_workers();
+  find_num_avail_workers();
+  find_avail_demand_diff();
   print_num_avail_workers();
   print_avail_demand_diff();
   print_current_demand();
@@ -93,33 +95,40 @@ void Library::set_tasks(){
     //Sort tasks according to cheapest
     sort(task_list.begin(),task_list.end());
 
-    //Print sorted
-    //cout << "Sorted tasks:" << endl;
-    //print_task_costs();
-
-    //Fill all worker demand at all tasks
-    int list_size = (int)task_list.size();
-    for (int i=0; i < list_size; i++) {
+    while((int) task_list.size() !=0 ){
       Task* current_task = &task_list[0];
       cout << "Demand at task: " << current_task->get_demand() << " at task type " << current_task->get_type() << endl;
 
       //Place cheapest worker at current task
-      for (int j=0; j < (int) current_task->get_demand(); j++){
-	current_task->place_cheapest_worker();
-	dec_current_demand
-	  (current_task->get_week(), current_task->get_day(),current_task->get_shift(), current_task->get_type());
-	cout << num_avail_workers[current_task->get_qualification()][current_task->get_week()][current_task->get_day()][current_task->get_shift()] << endl;
-	dec_num_avail_workers
-	  (current_task->get_qualification(), current_task->get_week(), current_task->get_day(), 
-	   current_task->get_shift());
-      }
+      int worker_type = current_task->place_cheapest_worker();
+      cout << "Type of worker placed: " << worker_type << endl;      
 
-      //Erase task from list of tasks
-      task_list.erase(task_list.begin());
+      dec_current_demand
+     	(current_task->get_week(), current_task->get_day(),current_task->get_shift(), current_task->get_type());
+      dec_num_avail_workers
+      	(worker_type,  current_task->get_week(), current_task->get_day(), 
+      	 current_task->get_shift());
+
+      //Erase task from list of tasks, otherwise sort to get cheapest
+      if (current_task->get_demand() == 0){
+	task_list.erase(task_list.begin());
+      }
+      else sort(task_list.begin(),task_list.end());
     }
   }
-
 }
+
+/*********** Library function: destroy weekends ******/
+
+/*********** Library function: update task costs ******/
+
+// void Library::update_task_costs(){
+//   for (int i=0; i <  (int)task_list.size(); i++) {
+//     task_list[i].set_costs(avail_demand_diff,current_demand);  
+//   }
+//   random_shuffle(task_list.begin(), task_list.end(), myrandom);
+//   sort(task_list.begin(),task_list.end());
+// }
 
 /*********** Library function: find tasks ************/
 
@@ -131,21 +140,22 @@ void Library::find_tasks(int type){
 	if(type == Lib){
 	  int demand = current_demand[w][d][s][Info];
 	  //find_avail_demand_diff(int type);
-	  if(demand > 0){
-	    //cout << "Demand of librarians!" << endl;
-	    int avail_demand_diff = num_avail_workers[Lib][w][d][s] - current_demand[w][d][s][Info];
+	  //for(int dem = demand; dem>0; dem--){
+	    if(demand > 0){
+	      //cout << "Demand of librarians!" << endl;
+	      int avail_demand_diff = num_avail_workers[Lib][w][d][s] - current_demand[w][d][s][Info];
 
-	    //Create a task, push to list
-	    Task task {Lib,w,d,s,demand,avail_demand_diff,Info,&worker_list};
-	    task_list.push_back(task);
-
+	      //Create a task, push to list
+	      Task task {Lib,w,d,s,demand,avail_demand_diff,Info,&worker_list};
+	      task_list.push_back(task);
 	  }
 	}
 	else if(type == Ass){
 	  for (int task_type=Exp; task_type <=PL; task_type+=2){
 	    int demand = current_demand[w][d][s][task_type];
 	    //cout << demand << endl;
-	    if(demand > 0){
+	    //for(int dem = demand; dem>0; dem--){
+	      if(demand > 0){
 	      //cout << "Demand of librarians!" << endl;
 	      int avail_demand_diff = num_avail_workers[Ass][w][d][s] + num_avail_workers[Lib][w][d][s] - current_demand[w][d][s][task_type];
 
@@ -162,7 +172,7 @@ void Library::find_tasks(int type){
 
 /************* Library function: write results ******************/
 void Library::write_results(){
-  if((*resfile).is_open())
+  if(resfile->is_open())
     {
       for(int h=0; h < (int) worker_list.size(); h++){
 	//worker_list[i].get_current_tasks();  
@@ -440,7 +450,7 @@ int Library::check_weekend_demand(){
 
 /************ Library function: shuffle worker weekends  *****/
 
-int myrandom (int i) {return rand()%i;}
+//int myrandom (int i) {return rand()%i;}
 
 void Library::shuffle_worker_weekends(){
  
@@ -538,12 +548,12 @@ void Library::find_avail_demand_diff(){
 	  if(t == Lib){
 	    avail_demand_diff[t][w][d][s] =  
 	      num_avail_workers[Lib][w][d][s] 
-	      - worker_demand[w][d][s][Info] - worker_demand[w][d][s][HB]; 	
+	      -current_demand[w][d][s][Info] - current_demand[w][d][s][HB]; 	
 	  }
 	  else if (t == Ass){
 	    avail_demand_diff[t][w][d][s] = 
 	      avail_demand_diff[Lib][w][d][s] + num_avail_workers[Ass][w][d][s] 
-	      - worker_demand[w][d][s][Exp] - worker_demand[w][d][s][PL];
+	      - current_demand[w][d][s][Exp] - current_demand[w][d][s][PL];
 	  }
 	}
       }
@@ -551,6 +561,7 @@ void Library::find_avail_demand_diff(){
   }
 
 }
+
 
 /************ Library function: cost, avail demand *****/
 
@@ -673,14 +684,33 @@ void Library::dec_num_avail_workers(int pos, int week, int day, int shift){
   if (num_avail_workers[pos][week][day][shift]-1 >= 0){
     num_avail_workers[pos][week][day][shift]--;
   }
-  else cout << "Error: in dec_num_avail_workers, not enough available workers!" << endl;
+  else {
+    cerr << "Error: in dec_num_avail_workers, week: "<< week << " day: " << day
+	 << " shift: " << shift << ". Not enough available workers!" << endl;
+  }
 }
 
 void Library::dec_current_demand(int week, int day, int shift, int task){
   if (current_demand[week][day][shift][task]-1 >= 0){
     current_demand[week][day][shift][task]--;
   }
-  else cout << "Error: in dec_current_demand, not enough demand!" << endl;
+  else {
+    cerr << "Error: in dec_current_demand, week: "<< week << " day: " << day
+	 << " shift: " << shift << ". Not enough demand workers!" << endl;
+  }
+}
+
+void Library::update_avail_demand_diff(int week, int day, int shift, int pos){
+  if(pos == Lib){
+    avail_demand_diff[Lib][week][day][shift] = num_avail_workers[Lib][week][day][shift] 
+      - current_demand[week][day][shift][Info] - current_demand[week][day][shift][HB]; 
+  }
+  else if (pos == Ass){
+    avail_demand_diff[Ass][week][day][shift] = 
+      avail_demand_diff[Lib][week][day][shift] + num_avail_workers[Ass][week][day][shift] 
+      - current_demand[week][day][shift][Exp] - current_demand[week][day][shift][PL];
+  }
+
 }
 
 // void Library::dec_current_weekend_demand(int weekend, int task){
@@ -716,7 +746,7 @@ void Library::set_demand(int week, int day, int shift, string task, int value){
     //Not added feature yet.
   }
   else {
-    cout << "Error: invalid task type in set_demand." << endl;
+    cerr << "Error: invalid task type in set_demand." << endl;
     enum_task = no_task;
   }
 

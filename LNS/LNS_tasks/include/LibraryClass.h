@@ -12,6 +12,7 @@
 
 #include "WorkerClass.h"
 #include "TaskClass.h"
+#include "WeekendTaskClass.h"
 #include "Constants.h"
 
 using namespace std;
@@ -23,6 +24,7 @@ class Library{
 
   //Tasks to be distributed
   vector<Task> task_list;
+  vector<WeekendTask> weekend_task_list;
 
   // Worker vectors
   vector<Worker> worker_list;
@@ -82,9 +84,11 @@ class Library{
   void weekend_update_avail_demand(int, int, int);
   void dec_current_demand(int, int, int, int);
   void dec_num_avail_workers(int, int, int, int);
+  void update_avail_demand_diff(int, int, int, int);
 
   //Costs
   void find_tasks(int);
+  void update_task_costs();
   //bool cost_compare(const Task&, const Task&);
 
   //Print functions
@@ -99,6 +103,8 @@ class Library{
 
   //Write functions
   void write_results();
+
+  //int myrandom(int);
 
 };
 

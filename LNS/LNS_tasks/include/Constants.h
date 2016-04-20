@@ -27,6 +27,8 @@ enum position_type {
   NUM_POSITIONS
 };
 
+int myrandom (int);
+
 
 /*********** Library Rules ***********/
 // Activated if a person who works a weekend works at the same task Friday afternoon, Saturday morning and Sunday morning
