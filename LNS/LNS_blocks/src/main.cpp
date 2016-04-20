@@ -33,15 +33,16 @@ int main() {
 	
 	
 	//***Test of block_assignment if correct***
-	int j = 1;
-	int b_id = 2;
+	int j = 2;
+	int b_id = 1;
 	cout << "here" << endl;
 	lib.get_block_vector().at(b_id).getTask_matrix();
 // 	lib.get_block_vector().back().getTask_matrix();
 	cout << "here" << endl;
 	lib.createWorkers(); //Creating myworkers[39]
 	cout << "Worker: " << j << " has " << lib.getWorker(j).getweekend_vect().size() << " " << lib.getWorker(j).getweekday_vect().size() << " " << lib.getWorker(j).getweekrest_vect().size() << " in sizes" << endl;
-	cout << "Qualification for worker " << j << " is: " << lib.getWorker(j).getID() << endl;
+	cout << "Qualification for worker " << j << " is: " << lib.getWorker(j).getQual() << endl;
+	cout << "Weekend type for the worker is: " << lib.getWorker(j).getWeekend() << endl;
 	cout << "Worker " << j << "'s availability matrix is: "<< endl;
 	lib.getWorker(j).getAvail_matrix();
 	lib.assign_block(lib.get_block_vector().at(b_id), j);

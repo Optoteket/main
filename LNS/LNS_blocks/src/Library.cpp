@@ -549,13 +549,17 @@ void Library::assign_block(Block block, int worker_id){ //worker_id a number bet
 		w_check_error[w] = 0; //Reset when looking at a new week
 		for (int d=0; d< NUM_DAYS; d++){
 			for (int s=0; s< NUM_SHIFTS; s++){
+				if(w == 0 && myworkers[worker_id-1].getWeekend().compare(0,7,"weekend") == 0 && (d == 5 || d == 6) && s == 0){ //weekend worker on a weekend
+					if(block.getTask(d,s,1) == 0 && block.getTask(d,s,3) == 0){
+						cout << "Found error: 0 for week: " << w << endl;
+						w_check_error[w] = 1;
+					}
+				}
 				for (int j=1; j<=3; j++){ //Only checking for Block, PL and HB
 					if(j == 1){ //Block
 						if(myworkers[worker_id-1].getAvail(w,d,s) < block.getTask(d,s,j)){
 							cout << "Found error: 1 for week: " << w << endl;
 							w_check_error[w] = 1;
-// 							for(int x=0; x<3; x++){cout << w_check_error[x] << " ";}
-// 							cout << endl;
 						}
 					}
 					else if(j == 2){ //PL
