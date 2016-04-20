@@ -10,8 +10,6 @@
 #include <iomanip>
 
 Library::Library() {
-	num_day_combinations = 0;
-	num_combinations_total = 0;
 	num_blocks = 0;
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int d=0; d<NUM_DAYS; d++){
@@ -474,7 +472,6 @@ void Library::create_all_blocks() {
 	num_blocks = num_blocks_to_create; //Assign the "global variable" in the Library class
 }
 
-//need to send in a pointer Block* ?
 void Library::assign_tasks_to_block(Block& block, int s1, int j1, int s2, int j2, int s3, int j3, int s4, int j4, int s5, int j5, int j6, int j7){
 // 	for(int i=0; i<5; i++){
 // 		block.setTask(i,s[i],j[i],1);

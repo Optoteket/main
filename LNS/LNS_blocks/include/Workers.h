@@ -89,7 +89,6 @@ private:
 	int weekend_element; //a number between 1-5 stating where the weekend occurs
 	int weekend_week; //a number representing the index of the weekend block
 	int tasks_assigned; //the number of tasks a worker is assigned in total. (max 4/v)
-// 	vector<int> blocks_assigned;
 	
 };
 
