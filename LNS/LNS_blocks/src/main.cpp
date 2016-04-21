@@ -12,9 +12,6 @@ using namespace std;
 //Felkällor: input_vector{}, copy constructor
 
 int main() {
-	//create a list of worker objects. myworkers[0], myworkers[1] etc.
-// 	Worker aworker(1, "Ben", "not_boss", "lib", "Child", "Normal_PL", "No_weekends", "HB", "No");
-// 	cout << aworker.getName() << endl;
 	Library lib;
 	lib.printDemand();
 	lib.printTask_avail();
@@ -22,7 +19,7 @@ int main() {
 	cout << "Blocks created in main are: " << lib.getNum_blocks() << endl;
 	cout << "Size of block_vector is: " << lib.get_block_vector().size() << endl;
 	lib.create_all_blocks();
-	cout << lib.get_block_vector().size() << endl;
+	cout << "block_vector size is: " << lib.get_block_vector().size() << endl;
 	 //***Print all combinations of schedules***
 // 	for (unsigned int i=0; i<lib.get_block_vector().size(); i++){
 // 		lib.get_block_vector().at(i).getTask_matrix();
@@ -33,27 +30,31 @@ int main() {
 	
 	
 	//***Test of block_assignment if correct***
-// 	int j = 23;
-// 	int b_id = 0;
-// 	cout << "here" << endl;
-// 	lib.get_block_vector().at(b_id).getTask_matrix();
-// // 	lib.get_block_vector().back().getTask_matrix();
-// 	cout << "here" << endl;
-// 	cout << "Worker: " << j << " has " << lib.getWorker(j).getweekend_vect().size() << " " << lib.getWorker(j).getweekday_vect().size() << " " << lib.getWorker(j).getweekrest_vect().size() << " in sizes" << endl;
-// 	cout << "Qualification for worker " << j << " is: " << lib.getWorker(j).getQual() << endl;
-// 	cout << "Weekend type for the worker is: " << lib.getWorker(j).getWeekend() << endl;
-// 	cout << "Worker " << j << "'s availability matrix is: "<< endl;
-// 	lib.getWorker(j).getAvail_matrix();
-// 	lib.assign_block(lib.get_block_vector().at(b_id), j);
-// 	cout << "Worker: " << j << " has " << lib.getWorker(j).getweekend_vect().size() << " " << lib.getWorker(j).getweekday_vect().size() << " " << lib.getWorker(j).getweekrest_vect().size() << " in sizes" << endl;
+	int j = 36;
+	int b_id = 0;
+	cout << "here" << endl;
+	lib.get_block_vector().at(b_id).getTask_matrix();
+// 	lib.get_block_vector().back().getTask_matrix();
+	cout << "here" << endl;
+	cout << "Worker: " << j << " has " << lib.getWorker(j).getweekend_vect().size() << " " << lib.getWorker(j).getweekday_vect().size() << " " << lib.getWorker(j).getweekrest_vect().size() << " in sizes" << endl;
+	cout << "Qualification for worker " << j << " is: " << lib.getWorker(j).getQual() << endl;
+	cout << "Weekend type for the worker is: " << lib.getWorker(j).getWeekend() << endl;
+	cout << "Worker " << j << "'s availability matrix is: "<< endl;
+	lib.getWorker(j).getAvail_matrix();
+	lib.assign_block(&lib.get_block_vector().at(b_id), j);
+	cout << "Worker: " << j << " has " << lib.getWorker(j).getweekend_vect().size() << " " << lib.getWorker(j).getweekday_vect().size() << " " << lib.getWorker(j).getweekrest_vect().size() << " in sizes" << endl;
 	
 	
-	//Assign all the blocks to workers. Note: does apparently not assign them correctly (only copies?)
+	//***Assign all the blocks to workers***
 	lib.assign_blocks_to_workers();
-	lib.print_weekblocks_assigned_worker(36, "weekend");
+ 	lib.print_weekblocks_avail_worker(36, "weekrest");
 	
+	//***Assign rotation to the workers***
 	lib.assign_rot_to_workers();
-	
+// 	for(int i=0; i<4; i++){
+// 		lib.get_block_vector().at(i).getTask_matrix();
+// 		cout << "num tasks for block nr " << i << " is: " << lib.get_block_vector().at(i).getnum_tasks() << endl;
+// 	}
 	//***Print weekend, weekday and weekrest vect for all 39 workers***
 // 	vector<Block> test_output;
 // 	//cout << lib.getWorker(1).getName() << endl;
@@ -76,13 +77,27 @@ int main() {
 // 	}
 	
 	
-	
-	// 	Block block1(3);
-// 	block1.setWeektype("Weekend");
-// 	cout << block1.getWeektype() << endl;
-	//myblocks[1].getTask_matrix();
-   	//myworkers[38].getAvail_matrix();
-	
+// 	//***Calculate and print tasks_filled matrix***
+// 	lib.calculate_tasks_filled();
+// 	lib.print_tasks_filled();
+// 	//***Add a few blocks to some workers and calculate tasks_filled again***
+// 	cout << "worker number 3 has " << lib.getWorker(3).getblocks_assigned().size() << " blocks assigned" << endl;
+// 	cout << "worker number 3 has weekend week at index: " << lib.getWorker(3).getWeekend_week() << endl;
+// 	cout << "worker number 3 has " << lib.getWorker(3).getweekend_vect().size() << " weekend blocks avail" << endl;
+// 	cout << "worker number 3 has " << lib.getWorker(3).getweekrest_vect().size() << " weekrest blocks avail" << endl;
+// 	cout << "worker number 3 has " << lib.getWorker(3).getweekday_vect().size() << " weekday blocks avail" << endl;
+// 	lib.getWorker(3).add_block_to_worker("weekend", 1);
+// 	lib.getWorker(3).add_block_to_worker("weekrest", 2);
+// 	lib.getWorker(3).add_block_to_worker("weekday", 4);
+// 	lib.getWorker(3).add_block_to_worker("weekday", 5);
+// 	lib.getWorker(3).add_block_to_worker("weekday", 6);
+// 	cout << "worker number 3 has now " << lib.getWorker(3).getblocks_assigned().size() << " blocks assigned" << endl;
+// 	cout << "Worker 3 has been assigned following blocks" << endl;
+// 	lib.print_weekblocks_assigned_worker(3, "weekend"); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
+// 	lib.print_weekblocks_assigned_worker(3, "weekrest"); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
+// 	lib.print_weekblocks_assigned_worker(3, "weekday"); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
+// // 	lib.calculate_tasks_filled();
+// // 	lib.print_tasks_filled();
 	return 0;
 }
 

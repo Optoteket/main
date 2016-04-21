@@ -11,6 +11,9 @@ public:
 	//Default Constructor
 	Worker();
 	
+	//Copy Constructor
+	Worker(const Worker&);
+	
 	//Overload Constructors
 	Worker(int, string, string, string, string, string, string, string, string);
 	
@@ -44,6 +47,7 @@ public:
 	vector<Block*> getweekend_vect() const;
 	vector<Block*> getweekday_vect() const;
 	vector<Block*> getweekrest_vect() const;
+	vector<Block*> getblocks_assigned() const;
 	
 	//Mutator functions
 	void setID(int);
@@ -58,17 +62,17 @@ public:
 	void setFreeday(string);
 	void setRot(int);
 	void setWeekend_week(int);
-// 	void setweekend_vect(vector<int>); //vector<Block> !
-// 	void setweekday_vect(vector<int>);
-// 	void setweekrest_vect(vector<int>);
 	
 	void createBlocks();
 	
-	void add_block(string, Block*);
+	void add_block_avail(string, Block*);
+	void add_block_to_worker(string, int);
 	
 
 
 private:
+	//Body of Default Constructor
+	void init();
 	//Member variables
 	int newID;
 	string newName;
@@ -80,7 +84,7 @@ private:
 	string newHB;
 	string newFreeday;
 	int newRot; //a number between 1-5 (0-4?) saying how many rotations have been allowed
-	int newWeekend_week; //a number between 1-5 stating where the weekend occurs
+	int newWeekend_week; //a number between 0-4 stating where the weekend occurs
 	//int weekend_element; //a number representing the index of the weekend block
 
 	int tasks_assigned; //the number of tasks a worker is assigned in total. (max 4/v)
@@ -95,7 +99,6 @@ private:
 	vector<Block*> weekrest_blocks_avail; //Note: Create vector<Block*> instead of new blocks assigned to vectors?
 	
 	vector<Block*> blocks_assigned; //Vector with the blocks assigned to the person starting with weekend block (then weekrest, weekday)
-	
 	
 };
 

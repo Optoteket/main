@@ -54,12 +54,20 @@ Block::Block(const Block& obj) {
 
 //Overload Constructor #1
 Block::Block(int id, string weektype, string hb) {
+	this->init();
 	newID = id;
 	newWeektype = weektype;
 	newHB = hb;
 }
 
 //Overload Constructor #2
+Block::Block(int id, string weektype) {
+	this->init();
+	newID = id;
+	newWeektype = weektype;
+}
+
+//Overload Constructor #3
 Block::Block(int id) {
 	this->init();
 	newID = id;
@@ -101,7 +109,7 @@ int Block::getTask(int day, int shift, int tasks) const{ //1 if assigned the tas
 	return tasks_assigned[day][shift][tasks];
 }
 void Block::getTask_matrix() const{
-	cout << "The matrices represent the following: No tasks, Block, PL, HB respectively" << endl;
+	cout << "Block: " << getID() << " The matrices represent the following: No tasks, Block, PL, HB respectively" << endl;
 	for (int s=0; s< NUM_SHIFTS; s++){
 		for (int j=0; j<NUM_TASKS; j++){
 			for (int d=0; d< NUM_DAYS; d++){
@@ -116,8 +124,18 @@ void Block::getTask_matrix() const{
 void Block::setID(int id) {
 	newID = id;
 }
-void Block::setnum_tasks(int tasks) {
-	num_tasks = tasks;
+void Block::setnum_tasks() { //Calculate the tasks_assigned matrix.
+	int task_count = 0;
+	for(int d=0; d<5; d++){ //Only calculating weekday tasks (evenings excluded as well)
+		for(int s=0; s<NUM_SHIFTS-1; s++){
+			for(int j=1; j<=2; j++){
+				if(tasks_assigned[d][s][j] == 1){
+					task_count++;
+				}
+			}
+		}
+	}
+	num_tasks = task_count;
 }
 void Block::setnum_Blocks(int blocks) {
 	num_Blocks = blocks;
