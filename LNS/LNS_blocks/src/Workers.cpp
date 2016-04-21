@@ -26,9 +26,63 @@ void Worker::init(){
 	newFreeday = " ";
 	newRot = 0;
 	newWeekend_week = 0;
+	tasks_assigned = 0;
+	for (int w=0; w<NUM_WEEKS; w++){
+		for (int d=0; d<NUM_DAYS; d++){
+			for (int s=0; s<NUM_SHIFTS; s++){
+				worker_avail[w][d][s] = 0;
+			}
+		}
+	}
+	for (int w=0; w< NUM_WEEKS; w++){
+		for (int d=0; d<NUM_DAYS-2; d++){
+			stand_in[w][d] = 0;
+		}
+	}
+	weekend_blocks_avail = vector<Block*>();
+	weekday_blocks_avail = vector<Block*>();
+	weekrest_blocks_avail = vector<Block*>();
 }
-//Copy Constructor
 
+//Copy Constructor
+Worker::Worker(const Worker& obj){
+	init();
+	newID = obj.newID;
+	newName = obj.newName;
+	newBoss = obj.newBoss;
+	newQual = obj.newQual;
+	newDep = obj.newDep;
+	newPL = obj.newPL;
+	newWeekend = obj.newWeekend;
+	newHB = obj.newHB;
+	newFreeday = obj.newFreeday;
+	newRot = obj.newRot;
+	newWeekend_week = obj.newWeekend_week;
+	tasks_assigned = obj.tasks_assigned;
+	for (int w=0; w<NUM_WEEKS; w++){
+		for (int d=0; d<NUM_DAYS; d++){
+			for (int s=0; s<NUM_SHIFTS; s++){
+				worker_avail[w][d][s] = obj.worker_avail[w][d][s];
+			}
+		}
+	}
+	for (int w=0; w< NUM_WEEKS; w++){
+		for (int d=0; d<NUM_DAYS-2; d++){
+			stand_in[w][d] = obj.stand_in[w][d];
+		}
+	}
+	weekend_blocks_avail.reserve(obj.weekend_blocks_avail.size());
+	for(unsigned int i=0; i<obj.weekend_blocks_avail.size(); i++){
+		weekend_blocks_avail.push_back(obj.weekend_blocks_avail.at(i));
+	}
+	for(unsigned int i=0; i<obj.weekday_blocks_avail.size(); i++){
+		weekday_blocks_avail.push_back(obj.weekday_blocks_avail.at(i));
+	}
+	for(unsigned int i=0; i<obj.weekrest_blocks_avail.size(); i++){
+		weekrest_blocks_avail.push_back(obj.weekrest_blocks_avail.at(i));
+	}
+	cout << "A copy of worker has been initialized" << endl;
+}
 
 //Overload Constructor
 Worker::Worker(int id, string name, string boss, string qualification, string department, string pl, string weekend, string hb, string free_day) {
@@ -101,6 +155,9 @@ vector<Block*> Worker::getweekday_vect() const{
 vector<Block*> Worker::getweekrest_vect() const{
 	return weekrest_blocks_avail;
 }
+vector<Block*> Worker::getblocks_assigned() const{
+	return blocks_assigned;
+}
 int Worker::getRot() const{
 	return newRot;
 }
@@ -148,14 +205,24 @@ void Worker::setWeekend_week(int weekend){
 	newWeekend_week = weekend;
 }
 
-void Worker::add_block(string type, Block* block) { //type == "weekend", "weekday" or "weekrest". Function: Adds a block to block vectors
+void Worker::add_block_avail(string type, Block* block) { //type == "weekend", "weekday" or "weekrest". Function: Adds a block to block vectors
 	if(type == "weekend"){
 		weekend_blocks_avail.push_back(block);
 	} else if(type == "weekday"){
 		weekday_blocks_avail.push_back(block);
 	} else if(type == "weekrest"){
 		weekrest_blocks_avail.push_back(block);
-	} else {cout << "No match were found in 'add_block'" << endl;}
+	} else {cout << "No match were found in 'add_block_avail'" << endl;}
+}
+
+void Worker::add_block_to_worker(string type, int week_id){
+	if(type == "weekend"){
+		blocks_assigned.push_back(weekend_blocks_avail.at(week_id)); //should use insert at Weekend_week instead of push_back.
+	} else if(type == "weekday"){
+		blocks_assigned.push_back(weekday_blocks_avail.at(week_id));
+	} else if(type == "weekrest"){
+		blocks_assigned.push_back(weekrest_blocks_avail.at(week_id));
+	} else {cout << "No match were found in 'add_block_to_worker'" << endl;}
 }
 
 

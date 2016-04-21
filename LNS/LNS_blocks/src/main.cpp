@@ -50,14 +50,14 @@ int main() {
 	
 	//***Assign all the blocks to workers***
 	lib.assign_blocks_to_workers();
-// 	lib.print_weekblocks_assigned_worker(2, "weekend");
+// 	lib.print_weekblocks_avail_worker(2, "weekend");
 	
 	//***Assign rotation to the workers***
 	lib.assign_rot_to_workers();
-	for(int i=0; i<4; i++){
-	lib.get_block_vector().at(i).getTask_matrix();
-	cout << "num tasks for block nr " << i << " is: " << lib.get_block_vector().at(i).getnum_tasks() << endl;
-	}
+// 	for(int i=0; i<4; i++){
+// 		lib.get_block_vector().at(i).getTask_matrix();
+// 		cout << "num tasks for block nr " << i << " is: " << lib.get_block_vector().at(i).getnum_tasks() << endl;
+// 	}
 	//***Print weekend, weekday and weekrest vect for all 39 workers***
 // 	vector<Block> test_output;
 // 	//cout << lib.getWorker(1).getName() << endl;
@@ -80,13 +80,26 @@ int main() {
 // 	}
 	
 	
-	
-	// 	Block block1(3);
-// 	block1.setWeektype("Weekend");
-// 	cout << block1.getWeektype() << endl;
-	//myblocks[1].getTask_matrix();
-   	//myworkers[38].getAvail_matrix();
-	
+	//***Calculate and print tasks_filled matrix***
+	lib.calculate_tasks_filled();
+	lib.print_tasks_filled();
+	//***Add a few blocks to some workers and calculate tasks_filled again***
+	cout << "worker number 2 has " << lib.getWorker(2).getblocks_assigned().size() << " blocks assigned" << endl;
+	cout << "worker number 2 has weekend week at index: " << lib.getWorker(2).getWeekend_week() << endl;
+	cout << "worker number 2 has " << lib.getWorker(2).getweekend_vect().size() << " weekend blocks avail" << endl;
+	cout << "worker number 2 has " << lib.getWorker(2).getweekrest_vect().size() << " weekrest blocks avail" << endl;
+	cout << "worker number 2 has " << lib.getWorker(2).getweekday_vect().size() << " weekday blocks avail" << endl;
+	lib.getWorker(2).add_block_to_worker("weekend", 1);
+	lib.getWorker(2).add_block_to_worker("weekrest", 2);
+	lib.getWorker(2).add_block_to_worker("weekday", 4);
+	lib.getWorker(2).add_block_to_worker("weekday", 5);
+	lib.getWorker(2).add_block_to_worker("weekday", 6);
+	cout << "worker number 2 has now " << lib.getWorker(2).getblocks_assigned().size() << " blocks assigned" << endl;
+	return 0;
+	cout << "Worker " << 2 << " has been assigned" << endl;
+	lib.print_weekblocks_assigned_worker(2, "weekend"); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
+	lib.calculate_tasks_filled();
+	lib.print_tasks_filled();
 	return 0;
 }
 
