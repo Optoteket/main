@@ -9,6 +9,12 @@
 
 //Default Constructor
 Worker::Worker() {
+	this->init();
+	
+}
+
+//Body of the default constructor
+void Worker::init(){
 	newID = 0;
 	newName = " ";
 	newBoss = " ";
@@ -21,12 +27,12 @@ Worker::Worker() {
 	newRot = 0;
 	newWeekend_week = 0;
 }
-
 //Copy Constructor
 
 
 //Overload Constructor
 Worker::Worker(int id, string name, string boss, string qualification, string department, string pl, string weekend, string hb, string free_day) {
+	this->init();
 	newID = id;
 	newName = name;
 	newBoss = boss;

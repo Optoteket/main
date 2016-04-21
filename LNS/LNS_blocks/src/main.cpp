@@ -22,7 +22,7 @@ int main() {
 	cout << "Blocks created in main are: " << lib.getNum_blocks() << endl;
 	cout << "Size of block_vector is: " << lib.get_block_vector().size() << endl;
 	lib.create_all_blocks();
-	cout << lib.get_block_vector().size() << endl;
+	cout << "block_vector size is: " << lib.get_block_vector().size() << endl;
 	 //***Print all combinations of schedules***
 // 	for (unsigned int i=0; i<lib.get_block_vector().size(); i++){
 // 		lib.get_block_vector().at(i).getTask_matrix();
@@ -48,12 +48,16 @@ int main() {
 // 	cout << "Worker: " << j << " has " << lib.getWorker(j).getweekend_vect().size() << " " << lib.getWorker(j).getweekday_vect().size() << " " << lib.getWorker(j).getweekrest_vect().size() << " in sizes" << endl;
 	
 	
-	//Assign all the blocks to workers. Note: does apparently not assign them correctly (only copies?)
+	//***Assign all the blocks to workers***
 	lib.assign_blocks_to_workers();
-	lib.print_weekblocks_assigned_worker(36, "weekend");
+// 	lib.print_weekblocks_assigned_worker(2, "weekend");
 	
+	//***Assign rotation to the workers***
 	lib.assign_rot_to_workers();
-	
+	for(int i=0; i<4; i++){
+	lib.get_block_vector().at(i).getTask_matrix();
+	cout << "num tasks for block nr " << i << " is: " << lib.get_block_vector().at(i).getnum_tasks() << endl;
+	}
 	//***Print weekend, weekday and weekrest vect for all 39 workers***
 // 	vector<Block> test_output;
 // 	//cout << lib.getWorker(1).getName() << endl;

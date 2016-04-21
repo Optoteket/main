@@ -269,7 +269,6 @@ void Library::setAvail_worker() {
 		{
 			//Assign the ID of the worker that is being read (not in order)
 			wID = atoi(readline.c_str());
-			//cout << wID << endl;
 		}
 		
 		//update workers_counted if "avail:" is found
@@ -304,7 +303,6 @@ void Library::setAvail_worker() {
 			input_vector.pop_back();
 			//Assign the availability to the workers
 			int AVAIL = atoi(avail_string.c_str());
-			//cout << "Trying to type in: " << week << " " << day << " " << shift << " " << AVAIL << endl;
 			myworkers[wID-1].setAvail(week-1, day-1, shift-1, AVAIL);
 		}
 	}
@@ -437,10 +435,13 @@ void Library::create_all_blocks() {
 																				}
 																				//Create blocks
 																				if(!(sum_PL > 1) && !(sum_evenings > 1) && shift_flag == 0){
-																					Block a_block(num_blocks_to_create+1); //Create the object with ID
+																					Block a_block(block_vector.size()); //Create the object with ID, starting at 0
 																					//cout << s1 << ", " << j1 << ", " <<  s2 << ", " << j2 << ", " << s3 << ", " << j3 << ", " << s4 << ", " << j4 << ", " << s5 << ", " << j5 << ", " << j6 << ", " << j7 << endl;
 																					assign_tasks_to_block(a_block, s1, j1, s2, j2, s3, j3, s4, j4, s5, j5, j6, j7);
+																					a_block.setnum_tasks();
 																					block_vector.push_back(a_block);
+																					cout << "block_vector size is: " << block_vector.size() << endl;
+																					cout << "num_blocks_to_create is: " << num_blocks_to_create << endl;
 																					num_blocks_to_create++;
 																				}
 																				sum_PL = 0;
@@ -515,7 +516,7 @@ void Library::assign_tasks_to_block(Block& block, int s1, int j1, int s2, int j2
 	else if(j5 == 2){
 		num_of_PL++;}
 	//Set the number of tasks assigned
-	block.setnum_tasks(num_of_blocks+num_of_PL);
+// 	block.setnum_tasks(num_of_blocks+num_of_PL);
 	block.setnum_Blocks(num_of_blocks);
 	block.setnum_PL(num_of_PL);
 	//Weekend assigned?
@@ -666,27 +667,35 @@ void Library::assign_rot_to_workers(){
 	for(int w=0; w<NUM_WEEKS; w++){workers_per_rot[w] = 0;} //initialize as 0
 	int min_worker_per_rot = 0;
 	int rand_week = 0;
-	for(int i=0; i<num_workers; i++){
-		while(false){
+	int temp_min = 0;
+	for(int i=1; i<=num_workers; i++){
+		while(true){
 			rand_week = rand() % 5; //generates a random number between 0 to 4
 			if(workers_per_rot[rand_week] == min_worker_per_rot){
-				getWorker(i).setRot(rand_week);
-				workers_per_rot[rand_week]++;
-				//Update min_worker_per_rot
-				for(int w=0; w<NUM_WEEKS; w++){
-					if(min_worker_per_rot <= workers_per_rot[w]){
-						min_worker_per_rot = workers_per_rot[w];
+				myworkers[i-1].setWeekend_week(rand_week);
+				if(myworkers[i-1].getWeekend().compare(0,7,"weekend") == 0){ //Only count if a weekend worker
+					workers_per_rot[rand_week]++;
+				}
+				temp_min = workers_per_rot[0];
+				for(int w=1; w<NUM_WEEKS; w++){ //Update min_worker_per_rot
+					if(workers_per_rot[w] < temp_min){
+						temp_min = workers_per_rot[w];
 					}
 				}
+				min_worker_per_rot = temp_min;
 				break;
 			}
 		}
+		
 	}
-	cout << "The random array is: ";
+	cout << "workers_per_rot = ";
 	for(int w=0; w<NUM_WEEKS; w++){
 		cout << workers_per_rot[w] << " ";
 	}
 	cout << endl;
+	return;
 }
+
+
 
 

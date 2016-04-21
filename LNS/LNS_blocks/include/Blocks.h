@@ -39,7 +39,7 @@ public:
 	
 	//Mutator functions
 	void setID(int);
-	void setnum_tasks(int);
+	void setnum_tasks();
 	void setnum_Blocks(int);
 	void setnum_Exp(int);
 	void setnum_Info(int);

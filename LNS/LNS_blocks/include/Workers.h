@@ -69,6 +69,8 @@ public:
 
 
 private:
+	//Body of Default Constructor
+	void init();
 	//Member variables
 	int newID;
 	string newName;
