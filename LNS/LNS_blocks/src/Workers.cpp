@@ -75,9 +75,11 @@ Worker::Worker(const Worker& obj){
 	for(unsigned int i=0; i<obj.weekend_blocks_avail.size(); i++){
 		weekend_blocks_avail.push_back(obj.weekend_blocks_avail.at(i));
 	}
+	weekday_blocks_avail.reserve(obj.weekday_blocks_avail.size());
 	for(unsigned int i=0; i<obj.weekday_blocks_avail.size(); i++){
 		weekday_blocks_avail.push_back(obj.weekday_blocks_avail.at(i));
 	}
+	weekrest_blocks_avail.reserve(obj.weekrest_blocks_avail.size());
 	for(unsigned int i=0; i<obj.weekrest_blocks_avail.size(); i++){
 		weekrest_blocks_avail.push_back(obj.weekrest_blocks_avail.at(i));
 	}
