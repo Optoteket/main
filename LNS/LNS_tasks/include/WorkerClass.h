@@ -55,8 +55,8 @@ class Worker{
     //int PL[NUM_WEEKS][NUM_DAYS];
 
     int total_cost[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+    int cost_sum;
   } costs;
-
 
  public:
 
@@ -73,19 +73,25 @@ class Worker{
   void display_all_current_avail();
  
   //Set functions
+  void set_cost_sum();
+  void set_stand_in_cost(int, int);
+  void set_num_tasks_cost(int, int);
+  void set_total_cost(int, int, int);
   void set_weekend(int);
   void set_rotation(int);
   void set_task(int, int, int, int);
   void set_weekend_task(int);
-  void set_current_avail(string, int, int, int);
-  void set_current_avail_day(string, int, int);
+  //void set_weekend_task(string);
+  void set_current_avail(int, int, int, int);
+  void set_current_avail_day(int, int, int);
   void reset_current_avail();
   void reset_current_avail_day();
+  void set_no_weekend_avail(); //Set worker avail as if no weekend or rest
 
   //Get functions
   int get_avail(int, int, int);
   int get_current_avail(int, int, int);
-  int get_current_tasks(int,int,int);
+  int get_current_task(int,int,int);
   int get_ID();
   int get_rotation();
   string get_weekend();
@@ -94,11 +100,21 @@ class Worker{
   int get_current_weekend();
   int get_avail_day(int, int);
   int get_current_avail_day(int, int);
+  int get_cost_sum () const;
 
   //Cost functions
   int find_costs(int, int, int);
-  void find_stand_in_cost(int, int);
-  void find_num_tasks_cost(int, int);
-    
+  int find_stand_in_cost(int, int);
+  int find_num_tasks_cost(int, int);
+
+  bool operator<(Worker const & worker) const{
+    return this->get_cost_sum() < worker.get_cost_sum();
+  }
+
+  struct p_comp {
+    bool operator()(Worker const* lhs, Worker const* rhs) const{
+       return lhs->get_cost_sum() < rhs->get_cost_sum();
+    } 
+  };    
 };
 
