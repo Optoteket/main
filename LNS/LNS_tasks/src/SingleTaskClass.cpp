@@ -1,0 +1,55 @@
+#include "SingleTaskClass.h"
+
+SingleTask::SingleTask(int q, int w, int d, int s, int worker_demand, int avail_diff, int task_type, vector<Worker>*  w_list)  : Task (q, w, d, s, worker_demand, avail_diff, task_type, w_list) {
+
+  day = d;
+}
+
+
+void SingleTask::find_avail_workers(){
+  avail_workers.clear();
+
+  for (int i=0; i < (int) workers->size(); i++){   
+    if ((*workers)[i].get_current_avail(week,day,shift) > 0 && (*workers)[i].get_pos() >= qualification){
+      Task_worker task_worker;
+      task_worker.worker = &(*workers)[i];
+      task_worker.temp_worker = (*workers)[i];
+      task_worker.temp_worker_cost = task_worker.temp_worker.find_costs(week,day,shift);
+      avail_workers.push_back(task_worker);
+    }
+  }
+  //cout << "In task: available workers:" << endl;
+}
+
+void SingleTask::update_temp_worker_costs(){
+  for (int i=0; i < (int) avail_workers.size(); i++){
+    avail_workers[i].temp_worker.set_task(week,day,shift,type);
+    avail_workers[i].temp_worker_cost = avail_workers[i].temp_worker.find_costs(week,day,shift);
+  }
+}
+
+int SingleTask::place_cheapest_worker(){
+
+  find_avail_workers();
+  
+  //Find cost for workers if task is placed
+  update_temp_worker_costs();
+
+  //Sort according to cheapest
+  random_shuffle(avail_workers.begin(), avail_workers.end(), myrandom);
+  sort(avail_workers.begin(), avail_workers.end());
+  print_worker_costs();
+ 
+  cout << "Placed worker " << avail_workers[0].temp_worker.get_ID() << " at task w:" << week << " d:" << day << " s:" << shift << endl;
+
+  //Choose cheapest worker
+  avail_workers[0].worker->set_task(week,day,shift,type);
+
+  //Recalculate task cost
+  demand--;
+  set_costs();
+  return avail_workers[0].worker->get_pos();
+  cerr << "In here!" << endl;
+
+}
+

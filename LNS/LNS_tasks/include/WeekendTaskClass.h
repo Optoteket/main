@@ -22,6 +22,5 @@ class WeekendTask : public Task {
   }; 
 
   virtual void find_avail_workers();
-  int get_something();
 };
 

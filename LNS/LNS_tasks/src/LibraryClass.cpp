@@ -78,6 +78,8 @@ void Library::create_initial_solution(){
   print_avail_demand_diff();
   print_current_demand();
 
+  destroy_weekend(25);
+
  }
 
 
@@ -113,12 +115,45 @@ void Library::set_tasks(){
       if (current_task->get_demand() == 0){
 	task_list.erase(task_list.begin());
       }
-      else sort(task_list.begin(),task_list.end());
+      // OBS cost innefficient!
+      //else sort(task_list.begin(),task_list.end());
     }
   }
 }
 
 /*********** Library function: destroy weekends ******/
+
+void Library::destroy_weekend(int percent){
+  //Sort according to worker costs
+  vector<Worker*> temp_list = weekend_workers;
+  sort(temp_list.begin(),temp_list.end(),Worker::p_comp());
+  
+  //Print sorted workers
+  for(int h=0; h < (int) temp_list.size(); h++){
+    cout << temp_list[h]->get_cost_sum() << " ID: " <<temp_list[h]->get_ID() << endl;
+  }
+
+  //Delete weekend task
+  //int destroy_amount = (int) ceil(percent*0.01*temp_list.size());
+  double val = (double)temp_list.size();
+  double num_tasks = 0.01*(double)percent*(double)temp_list.size();
+  //cout << 1.0*(double)temp_list.size() << endl;
+  cout << num_tasks << endl;
+  int destroy_amount = (((int)(num_tasks + (double)NUM_WEEKS/2.0)/NUM_WEEKS) *NUM_WEEKS);
+  cout << destroy_amount << endl;
+  for(int i = 0; i<destroy_amount; i++){
+    cout << temp_list.back()->get_ID() << endl;;
+    destroy_a_weekend(temp_list.back());
+    temp_list.pop_back();
+
+    //Add weekend task
+  }
+
+}
+
+void Library::destroy_a_weekend(Worker* worker){
+  worker->set_weekend_task(no_task);
+}
 
 /*********** Library function: update task costs ******/
 
@@ -146,7 +181,7 @@ void Library::find_tasks(int type){
 	      int avail_demand_diff = num_avail_workers[Lib][w][d][s] - current_demand[w][d][s][Info];
 
 	      //Create a task, push to list
-	      Task task {Lib,w,d,s,demand,avail_demand_diff,Info,&worker_list};
+	      SingleTask task {Lib,w,d,s,demand,avail_demand_diff,Info,&worker_list};
 	      task_list.push_back(task);
 	  }
 	}
@@ -160,7 +195,7 @@ void Library::find_tasks(int type){
 	      int avail_demand_diff = num_avail_workers[Ass][w][d][s] + num_avail_workers[Lib][w][d][s] - current_demand[w][d][s][task_type];
 
 	      //Create a task, push to list
-	      Task task {Ass,w,d,s,demand,avail_demand_diff,task_type,&worker_list};
+	      SingleTask task {Ass,w,d,s,demand,avail_demand_diff,task_type,&worker_list};
 	      task_list.push_back(task);
 	    }
 	  }
@@ -180,7 +215,7 @@ void Library::write_results(){
 	for (int j=0; j< NUM_SHIFTS; j++){
 	  for (int i=0; i< NUM_WEEKS; i++){
 	    for (int k=0; k< NUM_DAYS; k++){
-	      *resfile << worker_list[h].get_current_tasks(i,k,j) << " ";
+	      *resfile << worker_list[h].get_current_task(i,k,j) << " ";
 	    }
 	    *resfile << "   ";
 	  }
@@ -251,7 +286,7 @@ void Library::set_weekend_tasks(){
       }
     }
   }
-  else cout << "Error: in set_weekend_tasks. Not implemented feature!" << endl;
+  else cerr << "Error: in set_weekend_tasks. Not implemented feature!" << endl;
 
   //print_current_demand();
   //print_avail_demand_diff();

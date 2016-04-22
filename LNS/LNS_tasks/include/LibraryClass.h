@@ -9,10 +9,12 @@
 #include <stdexcept>
 #include <ctime>  
 #include <cstdlib>
+#include <cmath>
 
 #include "WorkerClass.h"
 #include "TaskClass.h"
 #include "WeekendTaskClass.h"
+#include "SingleTaskClass.h"
 #include "Constants.h"
 
 using namespace std;
@@ -33,6 +35,7 @@ class Library{
   vector<Worker*> weekend_ass;
   vector<Worker*> lib_workers;
   vector<Worker*> ass_workers;
+  //vector<Worker*> destroyed_workers;
 
   //Demand arrays 
   int worker_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
@@ -41,6 +44,8 @@ class Library{
   //Avail statistics
   int num_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   int avail_demand_diff[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+
+  //int num_avail_stand_ins[POS][WEEKS][DAYS] //Available stand ins for a certain day
 
  public:
 
@@ -100,6 +105,10 @@ class Library{
   void print_avail_demand_diff();
   void print_current_demand();
   void print_task_costs();
+
+  //Destroy functions
+  void destroy_weekend(int);
+  void destroy_a_weekend(Worker*);
 
   //Write functions
   void write_results();

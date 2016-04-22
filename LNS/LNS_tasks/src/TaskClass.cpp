@@ -9,8 +9,8 @@ Task::Task(int q, int w, int d, int s, int worker_demand, int avail_diff, int ta
   week= w;
   day = d;
   shift = s;
-  cost_demand = worker_demand;
-  cost_avail_diff = avail_diff;
+  demand = worker_demand;
+  avail_diff = avail_diff;
   set_costs();
 
 }
@@ -45,7 +45,7 @@ int Task::place_cheapest_worker(){
   avail_workers[0].worker->set_task(week,day,shift,type);
 
   //Recalculate task cost
-  cost_demand--;
+  demand--;
   set_costs();
   return avail_workers[0].worker->get_pos();
 
@@ -61,7 +61,7 @@ void Task::find_avail_workers(){
       Task_worker task_worker;
       task_worker.worker = &(*workers)[i];
       task_worker.temp_worker = (*workers)[i];
-      task_worker.temp_worker_cost = task_worker.temp_worker.find_costs(week,day,shift);
+      task_worker.temp_worker_cost = 0;
       avail_workers.push_back(task_worker);
     }
   }
@@ -71,7 +71,7 @@ void Task::find_avail_workers(){
 /*********** Set functions **********/
 
 void Task::set_costs(){
-  total_cost = 3*cost_avail_diff - cost_demand;
+  total_cost = 3*avail_diff - demand;
 }
 
 // void Task::set_costs(int  avail_demand[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS], 
@@ -87,7 +87,7 @@ int Task::get_cost() const{
 }
 
 int Task::get_demand() const{
-  return cost_demand;
+  return demand;
 }
 
 int Task::get_week() const{
