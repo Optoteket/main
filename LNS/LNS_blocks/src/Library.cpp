@@ -83,14 +83,14 @@ void Library::setDemand(int week, int day, int shift, string task, int amount) {
 	
 	if (week == 1)
 	{
-		demand[week-1][day-1][shift-1][task_enum] += amount;
-		demand[week+1][day-1][shift-1][task_enum] += amount;
-		demand[week+3][day-1][shift-1][task_enum] += amount;
+		demand[week-1][day-1][shift-1][task_enum-1] += amount;
+		demand[week+1][day-1][shift-1][task_enum-1] += amount;
+		demand[week+3][day-1][shift-1][task_enum-1] += amount;
 	}
 	else if(week == 2)
 	{
-		demand[week-1][day-1][shift-1][task_enum] += amount;
-		demand[week+1][day-1][shift-1][task_enum] += amount;
+		demand[week-1][day-1][shift-1][task_enum-1] += amount;
+		demand[week+1][day-1][shift-1][task_enum-1] += amount;
 	}
 	else{
 		cerr << "Error in inserting weeks in demand. Only week = 1 or week = 2 allowed" << endl;
@@ -156,7 +156,7 @@ void Library::printDemand() {
 	cout << "The big columns represent demand for: block (Exp+Info), PL, HB, BokB" << endl;
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int s=0; s< NUM_SHIFTS; s++){
-			for (int j=1; j<NUM_TASKS; j++){
+			for (int j=0; j<NUM_TASKS; j++){
 				for (int d=0; d< NUM_DAYS; d++){
 					cout << demand[w][d][s][j] << " ";
 				}
@@ -759,8 +759,8 @@ void Library::calculate_demand_differ(){ //Calculate the difference between Libr
 	for(int w=0; w<NUM_WEEKS; w++){
 		for(int d=0; d<NUM_DAYS; d++){
 			for(int s=0; s<NUM_SHIFTS; s++){
-				for(int j=1; j<NUM_TASKS; j++){
-					demand_differ[w][d][s][j] = demand[w][d][s][j] - tasks_filled[w][d][s][j];
+				for(int j=0; j<NUM_TASKS; j++){
+					demand_differ[w][d][s][j] = demand[w][d][s][j] - tasks_filled[w][d][s][(j+1) % 4];
 				}
 			}
 		}
@@ -771,7 +771,7 @@ void Library::print_demand_differ(){
 	cout << "Represenation of demand difference in the library for: No task, block, PL, HB" << endl;
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int s=0; s< NUM_SHIFTS; s++){
-			for (int j=1; j<NUM_TASKS; j++){
+			for (int j=0; j<NUM_TASKS; j++){
 				for (int d=0; d< NUM_DAYS; d++){
 					cout << demand_differ[w][d][s][j] << " ";
 				}

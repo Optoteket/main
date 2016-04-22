@@ -106,8 +106,9 @@ int main() {
 	lib.print_weekblocks_assigned_worker(k, "weekrest"); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
 	lib.print_weekblocks_assigned_worker(k, "weekday"); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
 	lib.calculate_tasks_filled();
+	cout << "printing tasks_filled" << endl;
 	lib.print_tasks_filled();
-	
+// 	return 0;
 	lib.calculate_demand_differ();
 	lib.print_demand_differ();
 
