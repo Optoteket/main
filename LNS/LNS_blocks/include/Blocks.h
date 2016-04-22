@@ -60,7 +60,7 @@ private:
 	static const int NUM_WEEKS = 5;
 	static const int NUM_DAYS = 7;
 	static const int NUM_SHIFTS = 4;
-	static const int NUM_TASKS = 4;
+	static const int NUM_TASKS = 4; //No task, Block, PL, HB, (BokB)
 	int tasks_assigned[NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
 	//int tasks_assigned_block[NUM_DAYS][NUM_SHIFTS];
 	//vector<int> tasks_assigned_block;

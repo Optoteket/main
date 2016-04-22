@@ -156,9 +156,9 @@ void Library::printDemand() {
 	cout << "The big columns represent demand for: block (Exp+Info), PL, HB, BokB" << endl;
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int s=0; s< NUM_SHIFTS; s++){
-			for (int t=0; t<NUM_TASKS; t++){
+			for (int j=0; j<NUM_TASKS; j++){
 				for (int d=0; d< NUM_DAYS; d++){
-					cout << demand[w][d][s][t] << " ";
+					cout << demand[w][d][s][j] << " ";
 				}
 				cout << "\t";
 			}
@@ -732,12 +732,12 @@ void Library::calculate_tasks_filled(){ //Calculate which tasks has been assigne
 }
 
 void Library::print_tasks_filled(){
-	cout << "These matrices represent the all tasks with the filled worker amount at: block, PL, HB, BokB" << endl;
+	cout << "These matrices represent the all tasks with the filled worker amount at: No task, block, PL, HB" << endl;
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int s=0; s< NUM_SHIFTS; s++){
-			for (int t=0; t<NUM_TASKS; t++){
+			for (int j=0; j<NUM_TASKS; j++){
 				for (int d=0; d< NUM_DAYS; d++){
-					cout << tasks_filled[w][d][s][t] << " ";
+					cout << tasks_filled[w][d][s][j] << " ";
 				}
 				cout << "\t";
 			}
@@ -747,6 +747,13 @@ void Library::print_tasks_filled(){
 	}
 }
 
+void Library::initial_add_blocks_to_workers(){ //Add empty weeks to all workers
+	for(int i=0; i<39; i++){
+		for(int n=0; n<5; n++){ //add 5 empty blocks per worker
+			myworkers[i].init_add_block_to_worker();
+		}
+	}
+}
 
 
 

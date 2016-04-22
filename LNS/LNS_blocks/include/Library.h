@@ -49,13 +49,14 @@ public:
 	void assign_rot_to_workers();
 	void calculate_tasks_filled();
 	void print_tasks_filled();
+	void initial_add_blocks_to_workers();
 private:
 	//Member variables
 // 	string avail_file = "./src/data/workers5W.txt";
 	static const int NUM_WEEKS = 5;
 	static const int NUM_DAYS = 7;
 	static const int NUM_SHIFTS = 4;
-	static const int NUM_TASKS = 4; //Block, PL, HB, BokB
+	static const int NUM_TASKS = 4; //No task, Block, PL, HB, (BokB)
 	int num_blocks; //Number of blocks created
 	int num_workers;
 	int demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
