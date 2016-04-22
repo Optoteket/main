@@ -553,11 +553,11 @@ void Library::assign_block(Block* block, int worker_id){ //worker_id a number be
 		for (int d=0; d< NUM_DAYS; d++){
 			for (int s=0; s< NUM_SHIFTS; s++){
 				if(w == 0 && myworkers[worker_id-1].getWeekend().compare(0,7,"weekend") == 0 && (d == 5 || d == 6) && s == 0){ //weekend worker on a weekend
-					if(block->getTask(d,s,1) == 0 && block->getTask(d,s,3) == 0 && !is_empty_of_tasks(block)){ //if wend worker and no weekend assigned to the block
+					if(block->getTask(d,s,1) == 0 && block->getTask(d,s,3) == 0){ //if wend worker and no weekend assigned to the block
 // 						cout << "Found error: 0 for week: " << w << endl;
 						w_check_error[w] = 1;
 					}
-				}
+				}else if(w == 0 && week_empty_of_tasks(block)){w_check_error[w] = 0;}
 				for (int j=1; j<=3; j++){ //Only checking for Block, PL and HB
 					if(j == 1){ //Block
 						if(myworkers[worker_id-1].getAvail(w,d,s) < block->getTask(d,s,j)){
@@ -660,12 +660,12 @@ void Library::print_weekblocks_assigned_worker(int worker_id, string str){
 
 
 
-bool Library::is_empty_of_tasks(Block* block){
+bool Library::week_empty_of_tasks(Block* block){ //Returns true if there are "no tasks" Monday - Sunday
 	int num_ones = 0;
-	for(int d = 4; d<NUM_DAYS; d++){
+	for(int d = 0; d<NUM_DAYS; d++){
 		num_ones += block->getTask(d,0,0);
 	}
-	if(num_ones == 3){
+	if(num_ones == 7){
 		return true;
 	}
 	else{

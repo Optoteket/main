@@ -99,6 +99,7 @@ private:
 	vector<Block*> weekrest_blocks_avail; //Note: Create vector<Block*> instead of new blocks assigned to vectors?
 	
 	vector<Block*> blocks_assigned; //Vector with the blocks assigned to the person starting with weekend block (then weekrest, weekday)
+	int day_blocks_added; //Add to constructor etc!
 	
 };
 
