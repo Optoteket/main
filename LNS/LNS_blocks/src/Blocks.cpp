@@ -111,7 +111,7 @@ int Block::getTask(int day, int shift, int tasks) const{ //1 if assigned the tas
 void Block::getTask_matrix() const{
 	cout << "Block: " << getID() << " The matrices represent the following: No tasks, Block, PL, HB respectively" << endl;
 	for (int s=0; s< NUM_SHIFTS; s++){
-		for (int j=0; j<NUM_TASKS; j++){
+		for (int j=0; j<NUM_TASKS-1; j++){
 			for (int d=0; d< NUM_DAYS; d++){
 				cout << tasks_assigned[d][s][j] << " ";
 			}

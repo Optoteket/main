@@ -222,7 +222,7 @@ void Worker::init_add_block_to_worker(){
 	return;
 }
 
-void Worker::add_block_to_worker(string type, int week_id){
+void Worker::add_block_to_worker(string type, int week_id, int day){
 // 	vector<Block*>::iterator it;
 	if(type == "weekend"){
 // 		it = weekend_blocks_avail.begin();
@@ -233,7 +233,13 @@ void Worker::add_block_to_worker(string type, int week_id){
 		blocks_assigned.at((newWeekend_week+1) % 5) = weekrest_blocks_avail.at(week_id);
 	} else if(type == "weekday"){ //Need to know if weekday 1, 2 or 3 shall be inserted!
 // 		it = weekday_blocks_avail.begin();
-		blocks_assigned.push_back(weekday_blocks_avail.at(week_id));
+		if(day == 1){
+			blocks_assigned.at((newWeekend_week+2) % 5) = weekday_blocks_avail.at(week_id);
+		} else if(day == 2){
+			blocks_assigned.at((newWeekend_week+3) % 5) = weekday_blocks_avail.at(week_id);
+		} else if(day == 3){
+			blocks_assigned.at((newWeekend_week+4) % 5) = weekday_blocks_avail.at(week_id);
+		}
 	} else {cout << "No match were found in 'add_block_to_worker'" << endl;}
 	return;
 }

@@ -47,7 +47,7 @@ int Library::getDemand(int week, int day, int shift, int task) const{
 	return demand[week-1][day-1][shift-1][task-1];
 }
 
-void Library::setDemand(int week, int day, int shift, int task, int amount) { //Exp: task = 1, Info: task = 2 etc
+void Library::setDemand(int week, int day, int shift, int task, int amount) { //Block: task = 1, PL: task = 2, HB: task = 3, BoKB: task = 4
 	if (week == 1)
 	{
 		demand[week-1][day-1][shift-1][task] += amount;
@@ -156,7 +156,7 @@ void Library::printDemand() {
 	cout << "The big columns represent demand for: block (Exp+Info), PL, HB, BokB" << endl;
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int s=0; s< NUM_SHIFTS; s++){
-			for (int j=0; j<NUM_TASKS; j++){
+			for (int j=1; j<NUM_TASKS; j++){
 				for (int d=0; d< NUM_DAYS; d++){
 					cout << demand[w][d][s][j] << " ";
 				}
@@ -754,6 +754,36 @@ void Library::initial_add_blocks_to_workers(){ //Add empty weeks to all workers
 		}
 	}
 }
+
+void Library::calculate_demand_differ(){ //Calculate the difference between Library demand vs tasks filled by workers
+	for(int w=0; w<NUM_WEEKS; w++){
+		for(int d=0; d<NUM_DAYS; d++){
+			for(int s=0; s<NUM_SHIFTS; s++){
+				for(int j=1; j<NUM_TASKS; j++){
+					demand_differ[w][d][s][j] = demand[w][d][s][j] - tasks_filled[w][d][s][j];
+				}
+			}
+		}
+	}
+}
+
+void Library::print_demand_differ(){
+	cout << "Represenation of demand difference in the library for: No task, block, PL, HB" << endl;
+	for (int w=0; w< NUM_WEEKS; w++){
+		for (int s=0; s< NUM_SHIFTS; s++){
+			for (int j=1; j<NUM_TASKS; j++){
+				for (int d=0; d< NUM_DAYS; d++){
+					cout << demand_differ[w][d][s][j] << " ";
+				}
+				cout << "\t";
+			}
+			cout << endl;
+		}
+		cout << endl << endl;
+	}
+}
+
+
 
 
 
