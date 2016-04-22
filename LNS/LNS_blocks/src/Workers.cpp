@@ -39,9 +39,9 @@ void Worker::init(){
 			stand_in[w][d] = 0;
 		}
 	}
-	weekend_blocks_avail = vector<Block*>();
-	weekday_blocks_avail = vector<Block*>();
-	weekrest_blocks_avail = vector<Block*>();
+// 	weekend_blocks_avail = vector<Block*>();
+// 	weekday_blocks_avail = vector<Block*>();
+// 	weekrest_blocks_avail = vector<Block*>();
 }
 
 //Copy Constructor

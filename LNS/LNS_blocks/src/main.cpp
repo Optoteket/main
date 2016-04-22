@@ -30,19 +30,19 @@ int main() {
 	
 	
 	//***Test of block_assignment if correct***
-	int j = 36;
-	int b_id = 0;
-	cout << "here" << endl;
-	lib.get_block_vector().at(b_id).getTask_matrix();
-// 	lib.get_block_vector().back().getTask_matrix();
-	cout << "here" << endl;
-	cout << "Worker: " << j << " has " << lib.getWorker(j).getweekend_vect().size() << " " << lib.getWorker(j).getweekday_vect().size() << " " << lib.getWorker(j).getweekrest_vect().size() << " in sizes" << endl;
-	cout << "Qualification for worker " << j << " is: " << lib.getWorker(j).getQual() << endl;
-	cout << "Weekend type for the worker is: " << lib.getWorker(j).getWeekend() << endl;
-	cout << "Worker " << j << "'s availability matrix is: "<< endl;
-	lib.getWorker(j).getAvail_matrix();
-	lib.assign_block(&lib.get_block_vector().at(b_id), j);
-	cout << "Worker: " << j << " has " << lib.getWorker(j).getweekend_vect().size() << " " << lib.getWorker(j).getweekday_vect().size() << " " << lib.getWorker(j).getweekrest_vect().size() << " in sizes" << endl;
+// 	int j = 36;
+// 	int b_id = 1;
+// 	cout << "here" << endl;
+// 	lib.get_block_vector().at(b_id).getTask_matrix();
+// // 	lib.get_block_vector().back().getTask_matrix();
+// 	cout << "here" << endl;
+// 	cout << "Worker: " << j << " has " << lib.getWorker(j).getweekend_vect().size() << " " << lib.getWorker(j).getweekday_vect().size() << " " << lib.getWorker(j).getweekrest_vect().size() << " in sizes" << endl;
+// 	cout << "Qualification for worker " << j << " is: " << lib.getWorker(j).getQual() << endl;
+// 	cout << "Weekend type for the worker is: " << lib.getWorker(j).getWeekend() << endl;
+// 	cout << "Worker " << j << "'s availability matrix is: "<< endl;
+// 	lib.getWorker(j).getAvail_matrix();
+// 	lib.assign_block(&lib.get_block_vector().at(b_id), j);
+// 	cout << "Worker: " << j << " has " << lib.getWorker(j).getweekend_vect().size() << " " << lib.getWorker(j).getweekday_vect().size() << " " << lib.getWorker(j).getweekrest_vect().size() << " in sizes" << endl;
 	
 	
 	//***Assign all the blocks to workers***

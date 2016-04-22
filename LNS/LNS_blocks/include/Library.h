@@ -33,7 +33,7 @@ public:
 	void setNum_blocks(int);
 	void setNum_day_combinations(int);
 	vector <string> get_info_vector();
-	vector <Block> get_block_vector();
+	vector <Block>& get_block_vector();
 	
 	void setAvail_worker();
 	Worker& getWorker(int i);

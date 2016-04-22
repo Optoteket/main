@@ -679,7 +679,7 @@ int Library::getNum_blocks() const{
 void Library::setNum_blocks(int num) {
 	num_blocks = num;
 }
-vector<Block> Library::get_block_vector(){
+vector<Block>& Library::get_block_vector(){
 	return block_vector;
 }
 
