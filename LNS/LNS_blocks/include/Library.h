@@ -58,7 +58,7 @@ private:
 	static const int NUM_WEEKS = 5;
 	static const int NUM_DAYS = 7;
 	static const int NUM_SHIFTS = 4;
-	static const int NUM_TASKS = 5; //No task, Block, PL, HB, (BokB)
+	static const int NUM_TASKS = 4; //No task, Block, PL, HB, (BokB)
 	int num_blocks; //Number of blocks created
 	int num_workers;
 	int demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];

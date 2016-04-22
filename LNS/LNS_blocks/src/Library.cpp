@@ -83,14 +83,14 @@ void Library::setDemand(int week, int day, int shift, string task, int amount) {
 	
 	if (week == 1)
 	{
-		demand[week-1][day-1][shift-1][task_enum] += amount; //enum: block = 1, PL = 2, HB = 3, BokB = 4 (no_task = 0)
-		demand[week+1][day-1][shift-1][task_enum] += amount;
-		demand[week+3][day-1][shift-1][task_enum] += amount;
+		demand[week-1][day-1][shift-1][task_enum-1] += amount;
+		demand[week+1][day-1][shift-1][task_enum-1] += amount;
+		demand[week+3][day-1][shift-1][task_enum-1] += amount;
 	}
 	else if(week == 2)
 	{
-		demand[week-1][day-1][shift-1][task_enum] += amount;
-		demand[week+1][day-1][shift-1][task_enum] += amount;
+		demand[week-1][day-1][shift-1][task_enum-1] += amount;
+		demand[week+1][day-1][shift-1][task_enum-1] += amount;
 	}
 	else{
 		cerr << "Error in inserting weeks in demand. Only week = 1 or week = 2 allowed" << endl;
@@ -356,9 +356,9 @@ void Library::setTask_avail(){
 }
 
 void Library::printTask_avail(){
-	cout << "The matrices represent task assignment availability for: No task, Block, PL, HB(, BokB)" << endl;
+	cout << "The matrices represent task assignment availability for: No task, Block, PL, HB, BokB" << endl;
 	for (int s=0; s< NUM_SHIFTS; s++){
-		for (int j=0; j<NUM_TASKS-1; j++){
+		for (int j=0; j<NUM_TASKS; j++){
 			for (int d=0; d< NUM_DAYS; d++){
 				cout << task_assign_avail[d][s][j] << " ";
 			}
@@ -722,7 +722,7 @@ void Library::calculate_tasks_filled(){ //Calculate which tasks has been assigne
 		for(unsigned int element=0; element<myworkers[i].getblocks_assigned().size(); element++){
 			for(int d=0; d<NUM_DAYS; d++){
 				for(int s=0; s<NUM_SHIFTS; s++){
-					for(int j=0; j<NUM_TASKS-1; j++){
+					for(int j=0; j<NUM_TASKS; j++){
 						tasks_filled[element][d][s][j] += myworkers[i].getblocks_assigned().at(element)->getTask(d,s,j);
 					}
 				}
@@ -732,7 +732,7 @@ void Library::calculate_tasks_filled(){ //Calculate which tasks has been assigne
 }
 
 void Library::print_tasks_filled(){
-	cout << "These matrices represent all the tasks with the filled worker amount for: No task, block, PL, HB" << endl;
+	cout << "These matrices represent the all tasks with the filled worker amount at: No task, block, PL, HB" << endl;
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int s=0; s< NUM_SHIFTS; s++){
 			for (int j=0; j<NUM_TASKS; j++){
@@ -760,7 +760,7 @@ void Library::calculate_demand_differ(){ //Calculate the difference between Libr
 		for(int d=0; d<NUM_DAYS; d++){
 			for(int s=0; s<NUM_SHIFTS; s++){
 				for(int j=0; j<NUM_TASKS; j++){
-					demand_differ[w][d][s][j] = demand[w][d][s][j] - tasks_filled[w][d][s][j];
+					demand_differ[w][d][s][j] = demand[w][d][s][j] - tasks_filled[w][d][s][(j+1) % 4];
 				}
 			}
 		}
