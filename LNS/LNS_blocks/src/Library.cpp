@@ -44,20 +44,20 @@ Library::~Library() {
 }
 
 int Library::getDemand(int week, int day, int shift, int task) const{
-	return demand[week-1][day-1][shift-1][task-1];
+	return demand[week][day][shift][task];
 }
 
-void Library::setDemand(int week, int day, int shift, int task, int amount) { //Block: task = 1, PL: task = 2, HB: task = 3, BoKB: task = 4
+void Library::setDemand(int week, int day, int shift, int task, int amount) {
 	if (week == 1)
 	{
-		demand[week-1][day-1][shift-1][task] += amount;
-		demand[week+1][day-1][shift-1][task] += amount;
-		demand[week+3][day-1][shift-1][task] += amount;
+		demand[week-1][day-1][shift-1][task-1] += amount;
+		demand[week+1][day-1][shift-1][task-1] += amount;
+		demand[week+3][day-1][shift-1][task-1] += amount;
 	}
 	else if(week == 2)
 	{
-		demand[week-1][day-1][shift-1][task] += amount;
-		demand[week+1][day-1][shift-1][task] += amount;
+		demand[week-1][day-1][shift-1][task-1] += amount;
+		demand[week+1][day-1][shift-1][task-1] += amount;
 	}
 	else{
 		cerr << "Error in inserting weeks in demand. Only week = 1 or week = 2 allowed" << endl;
@@ -377,7 +377,7 @@ Worker& Library::getWorker(int i){
 }
 
 void Library::create_all_blocks() {
-	int num_shifts[NUM_SHIFTS]; //Only for weekdays
+	int num_shifts[NUM_SHIFTS]; //Only for weekdays (max 2 shifts at the same hour per week)
 	for(int i=0; i<NUM_SHIFTS; i++){
 		num_shifts[i] = 0;
 	}
@@ -386,7 +386,7 @@ void Library::create_all_blocks() {
 	int blocks = 0;
 	//int s[NUM_DAYS];
 	for(int s1=1; s1<=NUM_SHIFTS; s1++){
-		for(int j1=0; j1<3; j1++){
+		for(int j1=0; j1<3; j1++){ //if avail for no task, block or PL, not checking BokB
 			if(task_assign_avail[1-1][s1-1][j1] == 1){
 				//Loop another day
 				for(int s2=1; s2<=NUM_SHIFTS; s2++){
@@ -446,6 +446,7 @@ void Library::create_all_blocks() {
 // 																					cout << "num_blocks_to_create is: " << num_blocks_to_create << endl;
 																					num_blocks_to_create++;
 																				}
+																				//Reset all the variables for next iteration
 																				sum_PL = 0;
 																				sum_evenings = 0;
 																				shift_flag = 0;
@@ -719,11 +720,11 @@ void Library::assign_rot_to_workers(){
 
 void Library::calculate_tasks_filled(){ //Calculate which tasks has been assigned to workers for specific weeks
 	for(int i=0; i<num_workers; i++){ //element should represent week when assigned 5 elements
-		for(unsigned int element=0; element<myworkers[i].getblocks_assigned().size(); element++){
+		for(int w=0; w<NUM_WEEKS; w++){
 			for(int d=0; d<NUM_DAYS; d++){
 				for(int s=0; s<NUM_SHIFTS; s++){
 					for(int j=0; j<NUM_TASKS; j++){
-						tasks_filled[element][d][s][j] += myworkers[i].getblocks_assigned().at(element)->getTask(d,s,j);
+						tasks_filled[w][d][s][j] += myworkers[i].getblocks_assigned().at(w)->getTask(d,s,j+1);
 					}
 				}
 			}
@@ -732,14 +733,14 @@ void Library::calculate_tasks_filled(){ //Calculate which tasks has been assigne
 }
 
 void Library::print_tasks_filled(){
-	cout << "These matrices represent the all tasks with the filled worker amount at: No task, block, PL, HB" << endl;
+	cout << "These matrices represent all tasks filled with workers: block, PL, HB, BokB" << endl;
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int s=0; s< NUM_SHIFTS; s++){
 			for (int j=0; j<NUM_TASKS; j++){
 				for (int d=0; d< NUM_DAYS; d++){
 					cout << tasks_filled[w][d][s][j] << " ";
 				}
-				cout << "\t";
+				cout << "  \t";
 			}
 			cout << endl;
 		}
@@ -760,7 +761,12 @@ void Library::calculate_demand_differ(){ //Calculate the difference between Libr
 		for(int d=0; d<NUM_DAYS; d++){
 			for(int s=0; s<NUM_SHIFTS; s++){
 				for(int j=0; j<NUM_TASKS; j++){
-					demand_differ[w][d][s][j] = demand[w][d][s][j] - tasks_filled[w][d][s][(j+1) % 4];
+					if(j != 3){ //not BokB
+						demand_differ[w][d][s][j] = demand[w][d][s][j] - tasks_filled[w][d][s][j];
+					}
+					else{ //if BokB. When BokB is added, change this one
+						demand_differ[w][d][s][j] = demand[w][d][s][j];
+					}
 				}
 			}
 		}
@@ -768,14 +774,14 @@ void Library::calculate_demand_differ(){ //Calculate the difference between Libr
 }
 
 void Library::print_demand_differ(){
-	cout << "Represenation of demand difference in the library for: No task, block, PL, HB" << endl;
+	cout << "Representation of demand difference in the library for: block, PL, HB, BokB" << endl;
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int s=0; s< NUM_SHIFTS; s++){
 			for (int j=0; j<NUM_TASKS; j++){
 				for (int d=0; d< NUM_DAYS; d++){
 					cout << demand_differ[w][d][s][j] << " ";
 				}
-				cout << "\t";
+				cout << "  \t";
 			}
 			cout << endl;
 		}
