@@ -29,7 +29,6 @@ void SingleTask::update_temp_worker_costs(){
 }
 
 int SingleTask::place_cheapest_worker(){
-
   find_avail_workers();
   
   //Find cost for workers if task is placed
@@ -49,7 +48,4 @@ int SingleTask::place_cheapest_worker(){
   demand--;
   set_costs();
   return avail_workers[0].worker->get_pos();
-  cerr << "In here!" << endl;
-
 }
-

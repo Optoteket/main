@@ -15,8 +15,6 @@ using namespace std;
 class SingleTask : public Task {
  public:
   int day; 
-  int shift; 
-  int avail_diff;
 
   SingleTask(int q, int w, int d, int s, int worker_demand, int avail_diff, int task_type, vector<Worker>*  w_list);
 

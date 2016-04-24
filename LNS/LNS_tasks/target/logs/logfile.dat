@@ -1,217 +1,54 @@
-2016_4_21:17:5:44
+2016_4_24:14:30:13
 The logs are:
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
-Single task
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: cannot change weekend of non-weekend worker.
+Error: in dec_num_avail_workers, week: 0 day: 5 shift: 0. Not enough available workers!
+Error: in dec_num_avail_workers, week: 0 day: 6 shift: 0. Not enough available workers!
+Error: in dec_num_avail_workers, week: 0 day: 5 shift: 0. Not enough available workers!
+Error: in dec_num_avail_workers, week: 0 day: 6 shift: 0. Not enough available workers!
+Error: in dec_num_avail_workers, week: 0 day: 4 shift: 3. Not enough available workers!
+Error: in dec_num_avail_workers, week: 0 day: 5 shift: 0. Not enough available workers!
+Error: in dec_num_avail_workers, week: 0 day: 6 shift: 0. Not enough available workers!
+Error: in dec_num_avail_workers, week: 0 day: 4 shift: 3. Not enough available workers!
+Error: in dec_num_avail_workers, week: 1 day: 5 shift: 0. Not enough available workers!
+Error: in dec_num_avail_workers, week: 1 day: 6 shift: 0. Not enough available workers!
+Error: in dec_num_avail_workers, week: 1 day: 4 shift: 3. Not enough available workers!
+Error: cannot change weekend of non-weekend worker.

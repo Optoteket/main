@@ -28,7 +28,6 @@ void Task::update_temp_worker_costs(){
 
 
 int Task::place_cheapest_worker(){
-
   find_avail_workers();
   
   //Find cost for workers if task is placed

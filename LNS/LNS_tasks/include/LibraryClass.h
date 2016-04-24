@@ -10,6 +10,7 @@
 #include <ctime>  
 #include <cstdlib>
 #include <cmath>
+#include <memory>
 
 #include "WorkerClass.h"
 #include "TaskClass.h"
@@ -25,7 +26,7 @@ class Library{
   ofstream* resfile;
 
   //Tasks to be distributed
-  vector<Task> task_list;
+  vector<shared_ptr<Task>> task_list;
   vector<WeekendTask> weekend_task_list;
 
   // Worker vectors

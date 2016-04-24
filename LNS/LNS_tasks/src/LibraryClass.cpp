@@ -11,6 +11,7 @@ Library::Library(ofstream* r_file) {
 
   //TODO: take files as input
   resfile = r_file;
+  task_list = vector<shared_ptr<Task>> ();
 
   cout << "Library constructor" << endl;
   for (int i=0; i< NUM_WEEKS; i++){
@@ -98,11 +99,14 @@ void Library::set_tasks(){
     sort(task_list.begin(),task_list.end());
 
     while((int) task_list.size() !=0 ){
-      Task* current_task = &task_list[0];
+      cout << "Task List Size: " << task_list.size() << endl;
+      shared_ptr<Task> current_task = task_list[0];
       cout << "Demand at task: " << current_task->get_demand() << " at task type " << current_task->get_type() << endl;
 
       //Place cheapest worker at current task
+      cout << "Current task shift: " << current_task->get_shift() << endl;
       int worker_type = current_task->place_cheapest_worker();
+      cout << "Current task shift: " << current_task->get_shift() << endl;
       cout << "Type of worker placed: " << worker_type << endl;      
 
       dec_current_demand
@@ -181,7 +185,7 @@ void Library::find_tasks(int type){
 	      int avail_demand_diff = num_avail_workers[Lib][w][d][s] - current_demand[w][d][s][Info];
 
 	      //Create a task, push to list
-	      SingleTask task {Lib,w,d,s,demand,avail_demand_diff,Info,&worker_list};
+	      shared_ptr<Task> task {new SingleTask{Lib,w,d,s,demand,avail_demand_diff,Info,&worker_list}};
 	      task_list.push_back(task);
 	  }
 	}
@@ -195,7 +199,7 @@ void Library::find_tasks(int type){
 	      int avail_demand_diff = num_avail_workers[Ass][w][d][s] + num_avail_workers[Lib][w][d][s] - current_demand[w][d][s][task_type];
 
 	      //Create a task, push to list
-	      SingleTask task {Ass,w,d,s,demand,avail_demand_diff,task_type,&worker_list};
+	      shared_ptr<Task> task {new SingleTask{Ass,w,d,s,demand,avail_demand_diff,task_type,&worker_list}};
 	      task_list.push_back(task);
 	    }
 	  }
@@ -895,7 +899,7 @@ void Library::display_worker_avail(){
 
 void Library::print_task_costs(){
   for (int i=0; i < (int) task_list.size(); i++){
-    cout << "Cost of task: " << i << ": "<< task_list[i].get_cost() << ". "<< task_list[i].num_avail_workers() << " avail workers" << endl;
+    cout << "Cost of task: " << i << ": "<< task_list[i]->get_cost() << ". "<< task_list[i]->num_avail_workers() << " avail workers" << endl;
   }
 }
 
