@@ -66,7 +66,10 @@ public:
 	void createBlocks();
 	
 	void add_block_avail(string, Block*);
-	void add_block_to_worker(string, int);
+	void add_block_to_worker(string, int, int = 0);
+	void init_add_block_to_worker();
+// 	void add_block_to_worker(int, string type = ""); //or " "?
+	
 	
 
 
