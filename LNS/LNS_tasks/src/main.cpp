@@ -30,7 +30,19 @@ string res_file_dir = "../target/results/";
 stringstream log_file_path;
 stringstream res_file_path;
 
+/************* Function myrandom ***********/
 int myrandom (int i) {return rand()%i;}
+
+/************ Function find_position_req *******/
+int find_position_req(int task_type){
+  if (task_type <= PL)
+    return Ass;
+  else if (task_type <= HB)
+    return Lib;
+  //TODO: add bokbussen
+  else return no_position;
+}
+
 
 int main(int argc, char** argv)
 {

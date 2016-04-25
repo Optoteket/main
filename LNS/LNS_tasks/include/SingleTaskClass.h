@@ -14,12 +14,18 @@ using namespace std;
 
 class SingleTask : public Task {
  public:
-  int day; 
+  int day;
+  int shift;
 
-  SingleTask(int q, int w, int d, int s, int worker_demand, int avail_diff, int task_type, vector<Worker>*  w_list);
+  SingleTask(int, int, int, int, int, int, int, vector<Worker>*);
 
   virtual void find_avail_workers();
-  virtual void update_temp_worker_costs();
+  virtual void temp_place_workers();
   virtual int place_cheapest_worker();
+  virtual void set_costs();
+
+  int get_day() const;
+  int get_shift() const; 
+
 };
 

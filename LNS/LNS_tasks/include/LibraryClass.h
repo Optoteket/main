@@ -26,7 +26,7 @@ class Library{
   ofstream* resfile;
 
   //Tasks to be distributed
-  vector<shared_ptr<Task>> task_list;
+  vector<shared_ptr<SingleTask>> task_list;
   vector<WeekendTask> weekend_task_list;
 
   // Worker vectors
@@ -36,7 +36,7 @@ class Library{
   vector<Worker*> weekend_ass;
   vector<Worker*> lib_workers;
   vector<Worker*> ass_workers;
-  //vector<Worker*> destroyed_workers;
+  vector<Worker*> dest_wend_workers;
 
   //Demand arrays 
   int worker_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
@@ -57,7 +57,7 @@ class Library{
   void read_demand();
   void set_demand(int,int,int,string,int);
   void set_demand(int,int,int,int,int);
-  void set_weekend_tasks();
+  void init_weekend_tasks();
   void set_tasks();
 
   //void dec_current_weekend_demand(int, int);
@@ -77,6 +77,8 @@ class Library{
   void find_ass_workers();
 
   //Create initial solution
+  void set_all_weekend_tasks();
+  void find_all_weekend_tasks();
   void shuffle_worker_weekends();
   int check_weekend_demand();
   void create_initial_solution();
@@ -110,6 +112,9 @@ class Library{
   //Destroy functions
   void destroy_weekend(int);
   void destroy_a_weekend(Worker*);
+
+  //Repair functions
+  void repair_weekend();
 
   //Write functions
   void write_results();

@@ -60,7 +60,7 @@ class Worker{
 
  public:
 
-  //Worker(string, int, string, string, string, string, string, string, string);
+  
   Worker(string, int, string, string, string, string, string, string, string, int[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]);
   Worker(const Worker &obj);
   Worker();
@@ -77,7 +77,8 @@ class Worker{
   void set_stand_in_cost(int, int);
   void set_num_tasks_cost(int, int);
   void set_total_cost(int, int, int);
-  void set_weekend(int);
+  void set_current_weekend(int);
+  void set_current_weekend(int,int);
   void set_rotation(int);
   void set_task(int, int, int, int);
   void set_weekend_task(int);
@@ -86,7 +87,10 @@ class Worker{
   void set_current_avail_day(int, int, int);
   void reset_current_avail();
   void reset_current_avail_day();
-  void set_no_weekend_avail(); //Set worker avail as if no weekend or rest
+
+  void remove_week_rest();
+  void remove_weekend_task();
+  void remove_weekrest_tasks();
 
   //Get functions
   int get_avail(int, int, int);
@@ -101,6 +105,7 @@ class Worker{
   int get_avail_day(int, int);
   int get_current_avail_day(int, int);
   int get_cost_sum () const;
+  int get_weekend_task();
 
   //Cost functions
   int find_costs(int, int, int);

@@ -12,8 +12,8 @@ const int MAX_TASKS_PER_DAY = 1;
  enum task_type {
    no_task=0,
    Exp=1,
-   Info=2,
-   PL=3,
+   PL=2,
+   Info=3,
    HB=4,
    BokB=5,
    NUM_TASKS
@@ -27,11 +27,20 @@ enum position_type {
   NUM_POSITIONS
 };
 
-int myrandom (int);
 
+enum days{
+  fri = 4,
+  sat = 5,
+  sun= 6
+}; 
+
+int myrandom (int);
+int find_position_req(int);
 
 /*********** Library Rules ***********/
 // Activated if a person who works a weekend works at the same task Friday afternoon, Saturday morning and Sunday morning
 const bool staff_work_whole_weekends = true;
 // All staff can only be assigned one task per day
 const bool one_task_per_day = true;
+const bool no_friday_when_HB = true;
+
