@@ -36,7 +36,10 @@ public:
 	void getTask_matrix() const;
 		//prints out the entire task matrix to the terminal
 	int getTask(int, int, int) const;
-	
+	int getNUM_WEEKS() const;
+	int getNUM_DAYS() const;
+	int getNUM_SHIFTS() const;
+	int getNUM_TASKS() const;
 	
 	//Mutator functions
 	void setID(int);
@@ -49,6 +52,7 @@ public:
 	void setWeektype(string);
 	void setHB(string);
 	void setTask(int, int, int, int); //Input: w, d, s, j and A = assigned value (0/1)
+	int not_assigned(int);
 
 private:
 	void init(); //Used in default constructor and Overload constructor
