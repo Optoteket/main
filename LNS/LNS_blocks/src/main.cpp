@@ -47,7 +47,7 @@ int main() {
 	
 	//***Assign all the blocks to workers***
 	lib.assign_blocks_to_workers();
- 	lib.print_weekblocks_avail_worker(23, "weekend");
+//  	lib.print_weekblocks_avail_worker(23, "weekend");
 	
 	//***Assign rotation to the workers***
 	lib.assign_rot_to_workers();
@@ -83,7 +83,7 @@ int main() {
 // 	lib.calculate_tasks_filled();
 // 	lib.print_tasks_filled();
 
-	int k = 3;
+	int k = 24;
 // 	//***Add a few blocks to some workers and calculate tasks_filled again***
 	cout << "worker number " << k << " has " << lib.getWorker(k).getblocks_assigned().size() << " blocks assigned" << endl;
 	cout << "worker number " << k << " has weekend week at index: " << lib.getWorker(k).getWeekend_week() << endl;
@@ -92,12 +92,12 @@ int main() {
 	cout << "worker number " << k << " has " << lib.getWorker(k).getweekday_vect().size() << " weekday blocks avail" << endl;
 // 	
 // 	int wend_week = lib.getWorker(k).getWeekend_week();
-	for(int k=1; k<=21; k++){
-		lib.getWorker(k).add_block_to_worker("weekend", 1); //[type, weekblock in vector, weekday to add] (only for "weekday")
-		lib.getWorker(k).add_block_to_worker("weekrest", 9);
-		lib.getWorker(k).add_block_to_worker("weekday", 6,1);
-		lib.getWorker(k).add_block_to_worker("weekday", 7,2);
-		lib.getWorker(k).add_block_to_worker("weekday", 8,3);
+	for(int m=1; m<=21; m++){
+		lib.getWorker(m).add_block_to_worker("weekend", 1); //[type, weekblock in vector, weekday to add] (only for "weekday")
+		lib.getWorker(m).add_block_to_worker("weekrest", 5);
+		lib.getWorker(m).add_block_to_worker("weekday", 6,1);
+		lib.getWorker(m).add_block_to_worker("weekday", 7,2);
+		lib.getWorker(m).add_block_to_worker("weekday", 6,3);
 	}
 	
 // 	cout << "worker number " << k << " has now " << lib.getWorker(k).getblocks_assigned().size() << " blocks assigned" << endl;
@@ -111,6 +111,8 @@ int main() {
 // 	return 0;
 	lib.calculate_demand_differ();
 	lib.print_demand_differ();
+	
+	lib.print_weekblocks_avail_worker(23, "weekend");
 
 	return 0;
 }

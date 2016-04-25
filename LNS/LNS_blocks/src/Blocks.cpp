@@ -120,7 +120,20 @@ void Block::getTask_matrix() const{
 		cout << endl;
 	}
 }
+int Block::getNUM_WEEKS() const{
+	return NUM_DAYS;
+}
+int Block::getNUM_DAYS() const{
+	return NUM_DAYS;
+}
+int Block::getNUM_SHIFTS() const{
+	return NUM_SHIFTS;
+}
+int Block::getNUM_TASKS() const{
+	return NUM_TASKS;
+}
 
+//Mutator functions
 void Block::setID(int id) {
 	newID = id;
 }
@@ -163,5 +176,8 @@ void Block::setTask(int d, int s, int j, int A) {
 	tasks_assigned[d-1][s-1][j] = A;
 }
 
-
+int Block::not_assigned(int d){ //Checking if there are "no task" at day d
+	if(tasks_assigned[d][0][0] == 1){return 1;}
+	else{return 0;}
+}
 
