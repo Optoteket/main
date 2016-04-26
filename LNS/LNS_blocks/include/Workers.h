@@ -7,6 +7,63 @@
 using namespace std;
 
 class Worker {
+
+private:
+	//Body of Default Constructor
+	void init();
+	//Member variables
+	int newID;
+	string newName;
+	string newBoss;
+	string newQual;
+	string newDep;
+	string newPL;
+	string newWeekend;
+	string newHB;
+	string newFreeday;
+	int newRot; //a number between 1-5 (0-4?) saying how many rotations have been allowed
+	int newWeekend_week; //a number between 0-4 stating where the weekend occurs
+	//int weekend_element; //a number representing the index of the weekend block
+
+	int tasks_assigned; //the number of tasks a worker is assigned in total. (max 4/v)
+// 	string avail_file = "./src/data/workers5W.txt";
+	static const int NUM_WEEKS = 5;
+	static const int NUM_DAYS = 7;
+	static const int NUM_SHIFTS = 4;
+	static const int PL_AMOUNT_COST = 5;
+	static const int DEMAND_COST_OVERQUAL = 5; //when more libs are assigned a task than necessary
+	static const int DEMAND_COST_OVERSTAFF = 5*DEMAND_COST_OVERQUAL; //when more ass are assigned a task than necessary
+	static const int STAND_IN_COST = 200;
+	int worker_avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+	int stand_in[NUM_WEEKS][NUM_DAYS-2]; //stand_in[w,s] = 1 if stand-in, 0 else
+	int stand_in_avail[NUM_WEEKS-2][NUM_DAYS-2]; //1 if avail is 1 for shift 1-3 on a day d, 0 else. 3 weeks (weekend, weekrest and weekday week)
+	vector<Block*> weekend_blocks_avail; //weekend_blocks_avail: [block.ID(1) block.ID(8) block.ID(36)] i.e. blocks a worker is avail for
+	vector<Block*> weekday_blocks_avail; //blocks available are dependent on availability, weekend worker, pl-demand etc.
+	vector<Block*> weekrest_blocks_avail; //Note: Create vector<Block*> instead of new blocks assigned to vectors?
+	
+	
+	int num_PL; //Amount of PL assigned to a worker. no_PL => 0, standard_PL => 0-2(?), many_PL => 3-4(?)
+	vector<Block*> blocks_assigned; //Vector with the blocks assigned to the person starting with weekend block (then weekrest, weekday)
+// 	int day_blocks_added; //Add to constructor etc!
+	
+	
+	struct Weekend_cost{
+		int wend_cost;
+		Block* block ;
+	};
+	struct Weekrest_cost{
+		int wrest_cost;
+		Block* block;
+	};
+	struct Weekday_cost{
+		int wday_cost;
+		Block* block;
+	};
+	
+	vector<Weekday_cost> weekday_cost_vector;
+	vector<Weekend_cost> weekend_cost_vector;
+	vector<Weekrest_cost> weekrest_cost_vector;
+	
 public:
 	//Default Constructor
 	Worker();
@@ -83,63 +140,9 @@ public:
 	void calculate_weekend_cost(Block*, int[5][7][4][5],int[5][7][4],int[5][7][4]);
 	
 
-
-private:
-	//Body of Default Constructor
-	void init();
-	//Member variables
-	int newID;
-	string newName;
-	string newBoss;
-	string newQual;
-	string newDep;
-	string newPL;
-	string newWeekend;
-	string newHB;
-	string newFreeday;
-	int newRot; //a number between 1-5 (0-4?) saying how many rotations have been allowed
-	int newWeekend_week; //a number between 0-4 stating where the weekend occurs
-	//int weekend_element; //a number representing the index of the weekend block
-
-	int tasks_assigned; //the number of tasks a worker is assigned in total. (max 4/v)
-// 	string avail_file = "./src/data/workers5W.txt";
-	static const int NUM_WEEKS = 5;
-	static const int NUM_DAYS = 7;
-	static const int NUM_SHIFTS = 4;
-	static const int PL_AMOUNT_COST = 5;
-	static const int DEMAND_COST_OVERQUAL = 5; //when more libs are assigned a task than necessary
-	static const int DEMAND_COST_OVERSTAFF = 5*DEMAND_COST_OVERQUAL; //when more ass are assigned a task than necessary
-	static const int STAND_IN_COST = 200;
-	int worker_avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
-	int stand_in[NUM_WEEKS][NUM_DAYS-2]; //stand_in[w,s] = 1 if stand-in, 0 else
-	int stand_in_avail[NUM_WEEKS-2][NUM_DAYS-2]; //1 if avail is 1 for shift 1-3 on a day d, 0 else. 3 weeks (weekend, weekrest and weekday week)
-	vector<Block*> weekend_blocks_avail; //weekend_blocks_avail: [block.ID(1) block.ID(8) block.ID(36)] i.e. blocks a worker is avail for
-	vector<Block*> weekday_blocks_avail; //blocks available are dependent on availability, weekend worker, pl-demand etc.
-	vector<Block*> weekrest_blocks_avail; //Note: Create vector<Block*> instead of new blocks assigned to vectors?
-	
-	
-	int num_PL; //Amount of PL assigned to a worker. no_PL => 0, standard_PL => 0-2(?), many_PL => 3-4(?)
-	vector<Block*> blocks_assigned; //Vector with the blocks assigned to the person starting with weekend block (then weekrest, weekday)
-// 	int day_blocks_added; //Add to constructor etc!
-	
-	
-	struct Weekend_cost{
-		int wend_cost;
-		Block* block ;
-	};
-	struct Weekrest_cost{
-		int wrest_cost;
-		Block* block;
-	};
-	struct Weekday_cost{
-		int wday_cost;
-		Block* block;
-	};
-	
-	vector<Weekday_cost> Weekday_cost_vector;
-	vector<Weekend_cost> Weekend_cost_vector;
-	vector<Weekrest_cost> Weekrest_cost_vector;
-	
+	vector<Weekend_cost> getWeekend_cost_vector();
+	vector<Weekrest_cost> getWeekrest_cost_vector() const;
+	vector<Weekday_cost> getWeekday_cost_vector() const;
 	
 };
 

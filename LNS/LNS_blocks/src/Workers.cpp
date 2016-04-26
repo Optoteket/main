@@ -44,9 +44,9 @@ void Worker::init(){
 	weekend_blocks_avail = vector<Block*>();
 	weekday_blocks_avail = vector<Block*>();
 	weekrest_blocks_avail = vector<Block*>();
-	Weekday_cost_vector = vector<Weekday_cost>();
-	Weekend_cost_vector = vector<Weekend_cost>();
-	Weekrest_cost_vector = vector<Weekrest_cost>();
+	weekday_cost_vector = vector<Weekday_cost>();
+	weekend_cost_vector = vector<Weekend_cost>();
+	weekrest_cost_vector = vector<Weekrest_cost>();
 }
 
 //Copy Constructor
@@ -172,6 +172,16 @@ int Worker::getRot() const{
 int Worker::getWeekend_week() const{
 	return newWeekend_week;
 }
+vector<Worker::Weekend_cost> Worker::getWeekend_cost_vector(){
+	return weekend_cost_vector;
+}
+vector<Worker::Weekrest_cost> Worker::getWeekrest_cost_vector() const{
+	return weekrest_cost_vector;
+}
+vector<Worker::Weekday_cost> Worker::getWeekday_cost_vector() const{
+	return weekday_cost_vector;
+}
+
 
 // *** SET Functions ***
 void Worker::setID(int id) {
@@ -257,7 +267,8 @@ void Worker::add_block_to_worker(string type, int week_id, int day){
 	} else {cout << "No match were found in 'add_block_to_worker'" << endl;}
 	return;
 }
-//int demand_differ[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS+1]
+
+
 void Worker::calculate_week_cost(Block* blockobj, string type, int diff_in_demand[5][7][4][5],int assigned_libs[5][7][4],int assigned_ass[5][7][4]){ //Create one struct object from this function
 	int total_cost = 0;
 	int PL_cost = 0;
@@ -269,17 +280,18 @@ void Worker::calculate_week_cost(Block* blockobj, string type, int diff_in_deman
 	demand_cost = calculate_demand_cost(blockobj, diff_in_demand, assigned_libs, assigned_ass);
 	stand_in_cost = calculate_stand_in_cost(blockobj);
 	total_cost = PL_cost + demand_cost + stand_in_cost;
-	if(type == "weekday"){
-		Weekday_cost weekday_block;
-		weekday_block.wday_cost = total_cost;
-		weekday_block.block = blockobj;
-		Weekday_cost_vector.push_back(weekday_block);
-	} else if(type == "weekrest"){
+	if(type == "weekrest"){
 		Weekrest_cost weekrest_block;
 		weekrest_block.wrest_cost = total_cost;
 		weekrest_block.block = blockobj;
-		Weekrest_cost_vector.push_back(weekrest_block);
-	} else{cerr << "\n\nWrong 'type' as argument in calculate_week_cost. Either 'weekday' or 'weekrest' availabile \n\n" << endl;} 
+		weekrest_cost_vector.push_back(weekrest_block);
+	} else if(type == "weekday"){
+		Weekday_cost weekday_block;
+		weekday_block.wday_cost = total_cost;
+		weekday_block.block = blockobj;
+		weekday_cost_vector.push_back(weekday_block);
+		
+	} else{cerr << "\n\nWrong 'type' as argument in calculate_week_cost. Either 'weekday' or 'weekrest' availabile \n\n" << endl;return;} 
 }
 
 int Worker::calculate_PL_cost(Block* block){
@@ -343,7 +355,7 @@ void Worker::calculate_weekend_cost(Block* blockobj, int diff_in_demand[5][7][4]
 	Weekend_cost weekend_block;
 	weekend_block.wend_cost = total_cost;
 	weekend_block.block = blockobj;
-	Weekend_cost_vector.push_back(weekend_block);
+	weekend_cost_vector.push_back(weekend_block);
 }
 
 

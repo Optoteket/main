@@ -115,6 +115,12 @@ int main() {
 	//*** Print all available blocks for a worker ***
 // 	lib.print_weekblocks_avail_worker(36, "weekday");
 	cout << "#libs assigned for given shift is: " << lib.getNum_lib_assigned(0,3,0) << " #ass is: " << lib.getNum_ass_assigned(0,3,0) << endl;
+	
+	//*** Try to print cost for a weekday block ***
+	int p = 11;
+	lib.calculate_all_week_costs_for_worker("weekrest",p);
+	cout << "The cost is: " << lib.getWorker(p).getWeekrest_cost_vector().back().wrest_cost << endl;
+	
 	return 0;
 }
 

@@ -854,7 +854,17 @@ void Library::print_demand_differ(){
 	}
 }
 
-
+void Library::calculate_all_week_costs_for_worker(string type, int w_id){
+	if(type == "weekrest"){
+		for(unsigned int n=0; n<myworkers[w_id-1].getweekrest_vect().size(); n++){
+			myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekrest_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned);
+		}
+	} else if(type == "weekday"){
+		for(unsigned int n=0; n<myworkers[w_id-1].getweekrest_vect().size(); n++){
+			myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekday_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned);
+		}
+	} else{cerr << "\n\nWrong 'type' as argument in calculate_all_week_costs_for_worker\n\n" << endl; return;}
+}
 
 
 

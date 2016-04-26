@@ -8,6 +8,30 @@
 using namespace std;
 
 class Library {
+private:
+	//Member variables
+// 	string avail_file = "./src/data/workers5W.txt";
+	static const int NUM_WEEKS = 5;
+	static const int NUM_DAYS = 7;
+	static const int NUM_SHIFTS = 4;
+	static const int NUM_TASKS = 4; //No task, Block, PL, HB, (BokB)
+	int num_blocks; //Number of blocks created
+	int num_workers; //39 workers in the library
+	int demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
+	
+	int tasks_filled[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS+1];
+	enum task_type{no_task, block, PL, HB, BokB};
+	Worker myworkers[39]; //Create 39 workers in library class. Array is from 0->38
+	int task_assign_avail[NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
+	vector<Block> block_vector; //A vector with all the blocks created
+	
+	
+	int demand_differ[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS+1]; //OK as public? only one Library object
+	int num_lib_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]; //initialize as 0 and add to constructor
+	int num_ass_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+
+// 	bool HB_assigned[NUM_WEEKS];
+
 public:
 	//Default Constructor
 	Library();
@@ -18,6 +42,7 @@ public:
 	
 	//Accessor Functions
 	int getDemand(int, int, int, int) const;
+// 	int getDemand_differ(
 	int getNum_blocks() const;
 	int getTask_avail(int, int, int) const;
 	int getNum_day_combinations() const;
@@ -56,30 +81,9 @@ public:
 	void initial_add_blocks_to_workers();
 	void calculate_demand_differ();
 	void print_demand_differ();
+	void calculate_all_week_costs_for_worker(string, int); //"weekrest" or "weekday" and worker_id as arguments
 
-private:
-	//Member variables
-// 	string avail_file = "./src/data/workers5W.txt";
-	static const int NUM_WEEKS = 5;
-	static const int NUM_DAYS = 7;
-	static const int NUM_SHIFTS = 4;
-	static const int NUM_TASKS = 4; //No task, Block, PL, HB, (BokB)
-	int num_blocks; //Number of blocks created
-	int num_workers; //39 workers in the library
-	int demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
-	
-	int tasks_filled[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS+1];
-	enum task_type{no_task, block, PL, HB, BokB};
-	Worker myworkers[39]; //Create 39 workers in library class. Array is from 0->38
-	int task_assign_avail[NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
-	vector<Block> block_vector; //A vector with all the blocks created
-	
-	
-	int demand_differ[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS+1]; //OK as public? only one Library object
-	int num_lib_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]; //initialize as 0 and add to constructor
-	int num_ass_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
 
-// 	bool HB_assigned[NUM_WEEKS];
 
 
 };
