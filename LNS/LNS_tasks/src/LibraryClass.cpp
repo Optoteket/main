@@ -11,7 +11,7 @@ Library::Library(ofstream* r_file) {
 
   //TODO: take files as input
   resfile = r_file;
-  task_list = vector<shared_ptr<SingleTask>> ();
+  task_list = vector<SingleTask> ();
 
   cout << "Library constructor" << endl;
   for (int i=0; i< NUM_WEEKS; i++){
@@ -65,19 +65,14 @@ void Library::create_initial_solution(){
   //display_worker_avail();
 
   //Distribute weekend tasks
-  //init_weekend_tasks();
   find_all_weekend_tasks();
   set_all_weekend_tasks();
 
-  print_num_avail_workers();
-  print_avail_demand_diff();
-  
-  //Set tasks for all other times
+  //Distribute rest of tasks
   set_tasks();
 
   //find_num_avail_workers();
-  find_num_avail_workers();
-  find_avail_demand_diff();
+
   print_num_avail_workers();
   print_avail_demand_diff();
   print_current_demand();
@@ -104,7 +99,7 @@ void Library::set_tasks(){
 
     while((int) task_list.size() !=0 ){
       cout << "Task List Size: " << task_list.size() << endl;
-      shared_ptr<SingleTask> current_task = task_list[0];
+      SingleTask* current_task = &task_list[0];
       cout << "Demand at task: " << current_task->get_demand() << " at task type " 
 	   << current_task->get_type() << endl;
 
@@ -126,6 +121,8 @@ void Library::set_tasks(){
       //else sort(task_list.begin(),task_list.end());
     }
   }
+  find_num_avail_workers();
+  find_avail_demand_diff();
 }
 
 /*********** Library function: destroy weekends ******/
@@ -161,7 +158,7 @@ void Library::destroy_a_weekend(Worker* worker){
   weekend_task_list.push_back(WeekendTask{worker->get_pos(),worker->get_current_weekend(),1,0,worker->get_weekend_task(), &worker_list});
   
   //Remove task from worker
-  worker->remove_weekend_task();
+  worker->remove_weekend();
   //worker->set_weekend_task(no_task);
 
   //Collect destroyed worker
@@ -173,7 +170,7 @@ void Library::destroy_a_weekend(Worker* worker){
 
 void Library::repair_weekend(){
 
-  //Worker* worker = dets_wend_workers[0];
+  int total_weekday_avail[NUM_WEEKS][NUM_DAYS-2][NUM_SHIFTS];
 
   WeekendTask current_task = weekend_task_list[0];
   current_task.place_cheapest_worker(&dest_wend_workers);
@@ -215,12 +212,12 @@ void Library::find_tasks(int type){
 	      int avail_demand_diff = num_avail_workers[Lib][w][d][s] - current_demand[w][d][s][Info];
 
 	      //Create a task, push to list
-	      shared_ptr<SingleTask> task {new SingleTask{Lib,w,d,s,demand,avail_demand_diff,Info,&worker_list}};
+	      SingleTask task {Lib,w,d,s,demand,avail_demand_diff,Info,&worker_list};
 	      task_list.push_back(task);
 	  }
 	}
 	else if(type == Ass){
-	  for (int task_type=Exp; task_type <=PL; task_type+=2){
+	  for (int task_type=Exp; task_type <=PL; task_type++){
 	    int demand = current_demand[w][d][s][task_type];
 	    //cout << demand << endl;
 	    //for(int dem = demand; dem>0; dem--){
@@ -229,7 +226,7 @@ void Library::find_tasks(int type){
 	      int avail_demand_diff = num_avail_workers[Ass][w][d][s] + num_avail_workers[Lib][w][d][s] - current_demand[w][d][s][task_type];
 
 	      //Create a task, push to list
-	      shared_ptr<SingleTask> task {new SingleTask{Ass,w,d,s,demand,avail_demand_diff,task_type,&worker_list}};
+	      SingleTask task {Ass,w,d,s,demand,avail_demand_diff,task_type,&worker_list};
 	      task_list.push_back(task);
 	    }
 	  }
@@ -297,37 +294,55 @@ void Library::weekend_update_avail_demand(int pos, int weekend, int task){
 
 
 void Library::find_all_weekend_tasks(){
-  for (int w=0; w < NUM_WEEKS; w++){
+
+  for (int i=0; i< (int) weekend_workers.size(); i++){
+    weekend_workers[i]->remove_weekend();
+  }
+
+  //Find statistical information for task cost
+  find_num_avail_workers();
+  find_avail_demand_diff();
+
+  for (int w=0; w <NUM_WEEKS; w++){
     for (int t=Exp; t<NUM_TASKS; t++){
+      //Find demand for task
       int weekend_demand = get_current_demand(w,sat,0,t);
-      //for (int d=0; d<weekend_demand; d++){
+      if(weekend_demand > 0){
 
-      //Find statistical information for task cost
-      find_num_avail_workers();
-      find_avail_demand_diff();
-      int avail_diff = avail_demand_diff[find_position_req(t)][w][sat][0];
+	//Find avail diff for task
+	int avail_diff = avail_demand_diff[find_position_req(t)][w][sat][0];
 
-      cout << "Weekend task not added" << endl;
-
-      weekend_task_list.push_back(WeekendTask 
-				  {find_position_req(t), w, weekend_demand, avail_diff, t, &worker_list});
-      cout << "Weekend task added" << endl;
-      //}
+	weekend_task_list.push_back(WeekendTask 
+				    {find_position_req(t), w, weekend_demand, avail_diff, t, &worker_list});
+      }
     } 
   }
 }
 
 void Library::set_all_weekend_tasks(){
-  //while((int) weekend_task_list.size() !=0 ){
-    cout << "Weekend task not distributed" << endl;
+  int count=0;
+  //Sort tasks according to cheapest task
+  sort(weekend_task_list.begin(),weekend_task_list.end());
+
+  while((int) weekend_task_list.size() !=0 ){
+
+    //Place cheapest worker at task
     WeekendTask* current_task = &weekend_task_list[0];
     current_task->place_cheapest_worker(&weekend_workers);
+    weekend_update_avail_demand(current_task->get_qualification(), current_task->get_week(), current_task->get_type());
+    cout << "Weekend task distributed" << endl;
+    count++;
 
     //Erase task from list of tasks
-    // if (current_task->get_demand() == 0){
-    //   weekend_task_list.erase(weekend_task_list.begin());
-    // }
-    //}
+    if (current_task->get_demand() == 0){
+      weekend_task_list.erase(weekend_task_list.begin());
+    }
+  }
+  cout << count << " weekend tasks placed" << endl;
+
+  //Find statistical information for task cost
+  find_num_avail_workers();
+  find_avail_demand_diff();
 }
 
 
@@ -981,7 +996,7 @@ void Library::display_worker_avail(){
 
 void Library::print_task_costs(){
   for (int i=0; i < (int) task_list.size(); i++){
-    cout << "Cost of task: " << i << ": "<< task_list[i]->get_cost() << ". "<< task_list[i]->num_avail_workers() << " avail workers" << endl;
+    cout << "Cost of task: " << i << ": "<< task_list[i].get_cost() << ". "<< task_list[i].num_avail_workers() << " avail workers" << endl;
   }
 }
 

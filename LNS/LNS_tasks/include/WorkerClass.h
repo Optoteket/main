@@ -58,6 +58,14 @@ class Worker{
     int cost_sum;
   } costs;
 
+  struct Task_to_remove{
+    int week;
+    int day;
+    int shift;
+  };
+
+  vector<Task_to_remove> tasks_to_remove;
+
  public:
 
   
@@ -89,7 +97,7 @@ class Worker{
   void reset_current_avail_day();
 
   void remove_week_rest();
-  void remove_weekend_task();
+  void remove_weekend();
   void remove_weekrest_tasks();
 
   //Get functions
