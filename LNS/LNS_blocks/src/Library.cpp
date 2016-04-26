@@ -34,14 +34,14 @@ Library::Library() {
 			}
 		}
 	}
-// 	for (int w=0; w< NUM_WEEKS; w++){
-// 		for (int d=0; d<NUM_DAYS; d++){
-// 			for (int s=0; s<NUM_SHIFTS; s++){
-// 				num_lib_assigned[w][d][s] = 0; //used to see if more are needed to be assigned a shift
-// 				num_ass_assigned[w][d][s] = 0;
-// 			}
-// 		}
-// 	}
+	for (int w=0; w< NUM_WEEKS; w++){
+		for (int d=0; d<NUM_DAYS; d++){
+			for (int s=0; s<NUM_SHIFTS; s++){
+				num_lib_assigned[w][d][s] = 0; //used to see if more are needed to be assigned a shift
+				num_ass_assigned[w][d][s] = 0;
+			}
+		}
+	}
 	setTask_avail();
 	//printTask_avail();
 
@@ -51,6 +51,14 @@ Library::Library() {
 Library::~Library() {
 	
 }
+
+int Library::getNum_lib_assigned(int w, int d, int s) const{
+	return num_lib_assigned[w][d][s];
+}
+int Library::getNum_ass_assigned(int w, int d, int s) const{
+	return num_ass_assigned[w][d][s];
+}
+
 
 int Library::getDemand(int week, int day, int shift, int task) const{
 	return demand[week][day][shift][task];
@@ -543,7 +551,7 @@ void Library::assign_blocks_to_workers(){ //using Worker myworkers[39], vector<B
 		for(unsigned int n = 0; n<block_vector.size(); n++){
 			assign_block(&block_vector.at(n), i+1);
 		}
-		cout << "Worker: " << i+1 << " has " << myworkers[i].getweekend_vect().size() << " " << myworkers[i].getweekday_vect().size() << " " << myworkers[i].getweekrest_vect().size() << " in sizes" << endl;
+		cout << "Worker: " << i+1 << " has " << myworkers[i].getweekend_vect().size() << " " << myworkers[i].getweekrest_vect().size() << " " << myworkers[i].getweekday_vect().size() << " in sizes" << endl;
 	}
 	
 }
@@ -765,13 +773,23 @@ void Library::assign_rot_to_workers(){
 	return;
 }
 
-void Library::calculate_tasks_filled(){ //Calculate which tasks has been assigned to workers for specific weeks
-	for(int i=0; i<num_workers; i++){ //element should represent week when assigned 5 elements
+void Library::calculate_tasks_filled(){
+//Calculate which tasks has been assigned to workers for specific weeks
+//Also calculating #libs and #ass per shift that is assigned
+	for(int i=0; i<num_workers; i++){
 		for(int w=0; w<NUM_WEEKS; w++){
 			for(int d=0; d<NUM_DAYS; d++){
 				for(int s=0; s<NUM_SHIFTS; s++){
-					for(int j=0; j<NUM_TASKS; j++){
+					for(int j=0; j<NUM_TASKS; j++){ //For Block, PL, HB (BokB not added here)
 						tasks_filled[w][d][s][j] += myworkers[i].getblocks_assigned().at(w)->getTask(d,s,j+1);
+						if(myworkers[i].getblocks_assigned().at(w)->getTask(d,s,j+1) == 1){
+							if(myworkers[i].getQual().compare(0,3,"lib") == 0){
+								num_lib_assigned[w][d][s]++;
+							}
+							else{
+								num_ass_assigned[w][d][s]++;
+							}
+						}
 					}
 				}
 			}
