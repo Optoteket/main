@@ -12,6 +12,7 @@ Task::Task(int q, int w, int worker_demand, int avail_diff, int task_type, vecto
   demand = worker_demand;
   avail_diff = avail_diff;
   set_costs();
+
   avail_workers = vector<Task_worker> (); 
 
 }
@@ -28,7 +29,7 @@ void Task::temp_place_workers(){
 /*********** Task function: Place cheapest worker ****/
 
 
-int Task::place_cheapest_worker(){
+void Task::place_cheapest_worker(){
   find_avail_workers();
   
   //Find cost for workers if task is placed
@@ -47,7 +48,6 @@ int Task::place_cheapest_worker(){
   //Recalculate task cost
   demand--;
   set_costs();
-  return avail_workers[0].worker->get_pos();
 
 }
 
@@ -74,6 +74,9 @@ void Task::set_costs(){
   total_cost = 3*avail_diff - demand;
 }
 
+void Task::set_placed_worker(Worker* worker){
+  placed_worker = worker;
+}
 
 /*********** Get functions *********/
 
@@ -95,6 +98,10 @@ int Task::get_type() const{
 
 int Task::get_qualification() const{
   return qualification;
+}
+
+int Task::get_placed_worker_pos(){
+  return placed_worker->get_pos();
 }
 
 /*********** Print functions ***********/

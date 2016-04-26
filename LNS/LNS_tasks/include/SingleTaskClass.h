@@ -21,7 +21,7 @@ class SingleTask : public Task {
 
   virtual void find_avail_workers();
   virtual void temp_place_workers();
-  virtual int place_cheapest_worker();
+  virtual void place_cheapest_worker();
   virtual void set_costs();
 
   int get_day() const;
