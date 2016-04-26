@@ -34,7 +34,7 @@ void WeekendTask::find_avail_workers(vector<Worker*>* a_workers){
 
 /********** WeekendTask: Place cheapest worker ************/
 
-int WeekendTask::place_cheapest_worker(vector<Worker*>* a_workers){
+void WeekendTask::place_cheapest_worker(vector<Worker*>* a_workers){
   find_avail_workers(a_workers);
  
   //Find cost for workers if task is placed
@@ -54,15 +54,15 @@ int WeekendTask::place_cheapest_worker(vector<Worker*>* a_workers){
   cout << "Placed worker " << avail_workers[0].temp_worker.get_ID() << " at weekend task w:" << week << " type " <<
     type << endl;
 
-  //Choose cheapest worker SEGFAULT!
+  //Choose cheapest worker
   avail_workers[0].worker->set_current_weekend(week+1,type);
+  set_placed_worker(avail_workers[0].worker);
 
   //Recalculate task cost
   demand--;
   set_costs();
   //return avail_workers[0].worker->get_pos();
 
-  return 1;
 }
 
 /********** WeekendTask: Temp place workers ************/
@@ -99,7 +99,7 @@ void WeekendTask::temp_place_workers(){
 /*********** Set functions **********/
 
 void WeekendTask::set_costs(){
-  total_cost = 3*avail_diff - demand - 5*qualification;
+  total_cost = - qualification;
 }
 
 

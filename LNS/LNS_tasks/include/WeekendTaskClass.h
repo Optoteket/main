@@ -32,14 +32,14 @@ class WeekendTask : public Task {
   //Worker* worker_to_place;
   vector<Task_worker> avail_workers;
   WeekendTask(int, int, int, int, int, vector<Worker>*);
-
+  
   //int num_avail_stand_ins[Num_workers][DAY], for week rest week
   //For weekends: total num stand in avail, coordinated with library
   //int min_stand_cost[Num_workers]; //Min num_avail_stand_ins
   //int total_cost; //Max of min
 
   virtual void find_avail_workers(vector<Worker*>*);
-  virtual int place_cheapest_worker(vector<Worker*>*);
+  virtual void place_cheapest_worker(vector<Worker*>*);
   virtual void temp_place_workers();
   virtual void set_costs();
   void print_worker_costs_local();

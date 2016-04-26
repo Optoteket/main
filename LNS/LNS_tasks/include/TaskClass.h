@@ -44,7 +44,7 @@ class Task {
   // All available workers and their costs
   vector<Task_worker> avail_workers;
   vector<Worker>* workers;
-
+  Worker* placed_worker;
 
  public:
   Task(int,int,int,int,int, vector<Worker>*);
@@ -53,10 +53,13 @@ class Task {
   int get_week() const;
   int get_type() const;
   int get_qualification() const;
+  int get_placed_worker_pos();
   int num_avail_workers();
 
+  void set_placed_worker(Worker*);
+  
   //Find and place workers
-  virtual int place_cheapest_worker();  
+  virtual void place_cheapest_worker();  
   virtual void find_avail_workers();
   virtual void set_costs();
   virtual void temp_place_workers();

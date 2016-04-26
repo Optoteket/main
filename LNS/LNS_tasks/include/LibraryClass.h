@@ -48,6 +48,11 @@ class Library{
 
   //int num_avail_stand_ins[POS][WEEKS][DAYS] //Available stand ins for a certain day
 
+  //Weekend cost related
+  int max_weekend_cost;
+  int weekend_cost;
+  int num_avail_day_workers[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS];
+
  public:
 
   //Constructor
@@ -97,6 +102,8 @@ class Library{
   //Costs
   void find_tasks(int);
   void update_task_costs();
+  void find_sum_stand_ins();
+  int find_min_stand_ins(int);
   //bool cost_compare(const Task&, const Task&);
 
   //Print functions

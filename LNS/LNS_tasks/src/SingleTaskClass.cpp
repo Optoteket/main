@@ -42,7 +42,7 @@ void SingleTask::temp_place_workers(){
 
 /********** SingleTask: Place cheapest worker ************/
 
-int SingleTask::place_cheapest_worker(){
+void SingleTask::place_cheapest_worker(){
   find_avail_workers();
   
   //Find cost for workers if task is placed
@@ -57,11 +57,11 @@ int SingleTask::place_cheapest_worker(){
 
   //Choose cheapest worker
   avail_workers[0].worker->set_task(week,day,shift,type);
+  set_placed_worker(avail_workers[0].worker);
 
   //Recalculate task cost
   demand--;
   set_costs();
-  return avail_workers[0].worker->get_pos();
 }
 
 /*********** SingleTask: get functions *********/
