@@ -112,8 +112,9 @@ int main() {
 	lib.calculate_demand_differ();
 	lib.print_demand_differ();
 	
-	lib.print_weekblocks_avail_worker(23, "weekend");
-
+	//*** Print all available blocks for a worker ***
+// 	lib.print_weekblocks_avail_worker(36, "weekday");
+	cout << "#libs assigned for given shift is: " << lib.getNum_lib_assigned(0,3,0) << " #ass is: " << lib.getNum_ass_assigned(0,3,0) << endl;
 	return 0;
 }
 

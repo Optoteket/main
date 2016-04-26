@@ -40,6 +40,7 @@ public:
 	int getNUM_DAYS() const;
 	int getNUM_SHIFTS() const;
 	int getNUM_TASKS() const;
+	int getWday_block_number() const;
 	
 	//Mutator functions
 	void setID(int);
@@ -52,12 +53,14 @@ public:
 	void setWeektype(string);
 	void setHB(string);
 	void setTask(int, int, int, int); //Input: w, d, s, j and A = assigned value (0/1)
+	void setWday_block_number(int);
 	int not_assigned(int);
 
 private:
 	void init(); //Used in default constructor and Overload constructor
 	//Member variables
 	int newID;
+	int wday_block_number; //A number between 0-3, 0 if not a weekday block. 1 if 1st wdayblock, 2 if 2nd, 3 if 3rd
 	string newWeektype;
 	string newHB;
 // 	string avail_file = "./src/data/workers5W.txt";

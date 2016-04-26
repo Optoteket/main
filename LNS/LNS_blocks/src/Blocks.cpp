@@ -15,6 +15,7 @@ Block::Block() {
 //Body of the default constructor
 void Block::init(){
 	newID = 0;
+	wday_block_number = 0;
 	newWeektype = " ";
 	newHB = " ";
 	num_tasks = 0;
@@ -35,6 +36,7 @@ void Block::init(){
 //Copy constructor
 Block::Block(const Block& obj) {
 	newID = obj.newID;
+	wday_block_number = obj.wday_block_number;
 	newWeektype = obj.newWeektype;
 	newHB = obj.newHB;
 	num_tasks = obj.num_tasks;
@@ -132,6 +134,9 @@ int Block::getNUM_SHIFTS() const{
 int Block::getNUM_TASKS() const{
 	return NUM_TASKS;
 }
+int Block::getWday_block_number() const{
+	return wday_block_number;
+}
 
 //Mutator functions
 void Block::setID(int id) {
@@ -174,6 +179,9 @@ void Block::setHB(string hb) {
 }
 void Block::setTask(int d, int s, int j, int A) {
 	tasks_assigned[d-1][s-1][j] = A;
+}
+void Block::setWday_block_number(int wday) {
+	wday_block_number = wday;
 }
 
 int Block::not_assigned(int d){ //Checking if there are "no task" at day d
