@@ -44,8 +44,13 @@ int find_position_req(int task_type){
 }
 
 
+
+/***************** Main loop *****************/
 int main(int argc, char** argv)
 {
+  //Timer start
+  clock_t begin = clock();
+
   srand (unsigned (time(0)));
   //1. Create logfile
   date << timedate->tm_year + 1900 << "_" << timedate->tm_mon+1 << "_" << timedate->tm_mday << ":" << timedate->tm_hour << ":" << timedate->tm_min+1 << ":"<< timedate->tm_sec+1;
@@ -108,11 +113,19 @@ int main(int argc, char** argv)
 
     // Repair according to some principle 
 
-    return 0;
+ 
+
 
     // Error handling 
   } catch (const char* msg){ 
     cerr << msg << endl;
     //fprintf(log_file, msg);
   }
+
+  //Timer end
+  clock_t end = clock();
+  double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+  res_file << "Time of program: " << elapsed_secs << " s." << endl;
+  return 0;
+
 }

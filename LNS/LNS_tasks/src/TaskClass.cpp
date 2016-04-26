@@ -12,6 +12,7 @@ Task::Task(int q, int w, int worker_demand, int avail_diff, int task_type, vecto
   demand = worker_demand;
   avail_diff = avail_diff;
   set_costs();
+  avail_workers = vector<Task_worker> (); 
 
 }
 

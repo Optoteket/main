@@ -48,7 +48,7 @@ class Task {
 
  public:
   Task(int,int,int,int,int, vector<Worker>*);
-  int get_cost() const;
+  virtual int get_cost() const;
   int get_demand() const;
   int get_week() const;
   int get_type() const;
@@ -62,7 +62,7 @@ class Task {
   virtual void temp_place_workers();
 
   //Print functions
-  void print_worker_costs(); 
+  virtual void print_worker_costs(); 
 
   bool operator<(Task const & task) const{ 
     return this->get_cost() < task.get_cost();

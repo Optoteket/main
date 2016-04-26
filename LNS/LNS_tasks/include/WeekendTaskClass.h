@@ -19,8 +19,8 @@ class WeekendTask : public Task {
     Worker* worker;
     Worker temp_worker;
     int temp_cost;
-    int temp_avail[2][NUM_DAYS-2][NUM_SHIFTS];
-    int temp_stand_in_avail[2][NUM_DAYS-2];
+    int temp_avail[NUM_WEEKS][NUM_DAYS-2][NUM_SHIFTS];
+    int temp_stand_in_avail[NUM_WEEKS][NUM_DAYS-2];
     //For weekends: cost for weekrest (what happend if availability and tasks is removed? 
     //stand in cost for those those days)
 
@@ -42,6 +42,9 @@ class WeekendTask : public Task {
   virtual int place_cheapest_worker(vector<Worker*>*);
   virtual void temp_place_workers();
   virtual void set_costs();
+  void print_worker_costs_local();
+
+
 
 };
 

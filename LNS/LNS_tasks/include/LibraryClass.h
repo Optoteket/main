@@ -26,7 +26,7 @@ class Library{
   ofstream* resfile;
 
   //Tasks to be distributed
-  vector<shared_ptr<SingleTask>> task_list;
+  vector<SingleTask> task_list;
   vector<WeekendTask> weekend_task_list;
 
   // Worker vectors

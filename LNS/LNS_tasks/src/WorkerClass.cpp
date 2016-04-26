@@ -353,7 +353,7 @@ void Worker::set_cost_sum(){
   }
 }
 
-void Worker::set_current_weekend(int wend){
+ void Worker::set_current_weekend(int wend){
   if (identity.weekend.find("no_weekend",0,10) == 0){
     cerr << "Error: cannot change weekend of non-weekend worker." << endl;
   }
@@ -379,7 +379,7 @@ void Worker::set_current_weekend(int wend, int task){
   }
   //If weekend is removed, set avail with no weekend rest
   else if (wend == 0){
-    cerr << "Error: use remove_weekend_task() instead" << endl;
+    cerr << "Error: in set_current_weekend use remove_weekend_task() instead" << endl;
     remove_week_rest();
     current.weekend = wend;
   }
@@ -446,23 +446,33 @@ void Worker::reset_current_avail(){
   for (int i=0; i<NUM_WEEKS; i++){      
     for (int j=0; j<NUM_DAYS; j++){
       for (int k=0; k<NUM_SHIFTS; k++){
-	//current.avail[i][j][k] = identity.avail[current.rotation-1][i][j][k];
+	//If there is no task at a shift, place avail
 	if(get_current_task(i,j,k) == no_task)
 	  current.avail[i][j][k] = identity.avail[current.rotation-1][i][j][k];
-	//set_current_avail(i,j,k,no_task);
+
 	//If there is a task but there is no availability, remove task
 	else if (get_current_task(i,j,k) != no_task && identity.avail[current.rotation-1][i][j][k] == no_task){
-	  //removed_tasks.push_back(SingleTask(get_current_task(i,j,k),i ,j ,k, 1, 0, get_current_task(i,j,k), get_pos(), )
 	  count++;
 	  //current.avail[i][j][k] = no_task;
+	  
+	  Task_to_remove task;
+	  task.week = i;
+	  task.day = j;
+	  task.shift = k;
+	  tasks_to_remove.push_back(task);
 
+	  cout << "Task removed at ID " << get_ID() << ": " << count << endl; 
+	  
 	  //Remove task
 	  set_task(i,j,k, no_task);
+
+	  //Set avail
+	  current.avail[i][j][k] = identity.avail[current.rotation-1][i][j][k];
 	}
       }
     }
   }
-  cout << "Num of tasks removed at ID " << get_ID() << ": " << count << endl; 
+ 
 }
 
 // void Worker::redistribute_tasks(){
@@ -524,7 +534,7 @@ void Worker::set_weekend_task(int task){
   // }
 }
 
-void Worker::remove_weekend_task(){
+void Worker::remove_weekend(){
   set_weekend_task(no_task);
   //set_current_weekend(no_task);
   remove_week_rest();
