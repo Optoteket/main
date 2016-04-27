@@ -49,8 +49,11 @@ class Library{
   //int num_avail_stand_ins[POS][WEEKS][DAYS] //Available stand ins for a certain day
 
   //Weekend cost related
-  int max_weekend_cost;
-  int weekend_cost;
+  struct {
+    int val;
+    int count;
+  } cost_total_stand_ins;
+
   int num_avail_day_workers[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS];
 
  public:

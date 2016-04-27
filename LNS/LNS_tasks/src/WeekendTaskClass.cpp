@@ -40,19 +40,18 @@ void WeekendTask::place_cheapest_worker(vector<Worker*>* a_workers){
   //Find cost for workers if task is placed
   temp_place_workers();
 
-  //  //Sort according to cheapest
+  //Shuffle, sort according to lib/ass qualfication
   random_shuffle(avail_workers.begin(), avail_workers.end(), myrandom);
   sort(avail_workers.begin(), avail_workers.end());
-  print_worker_costs_local();
+  //print_worker_costs();
 
   //Print available workers
-  cout << "Available workers: " << endl;
-  for (int i=0; i < (int) avail_workers.size(); i++){
-    cout << avail_workers[i].worker->get_ID() << endl;
-  }
+  // cout << "Available workers: " << endl;
+  // for (int i=0; i < (int) avail_workers.size(); i++){
+  //   cout << avail_workers[i].worker->get_ID() << endl;
+  // }
  
-  cout << "Placed worker " << avail_workers[0].temp_worker.get_ID() << " at weekend task w:" << week << " type " <<
-    type << endl;
+  //cout << "Placed worker " << avail_workers[0].temp_worker.get_ID() << " at weekend task w:" << week << " type " <<
 
   //Choose cheapest worker
   avail_workers[0].worker->set_current_weekend(week+1,type);
@@ -103,7 +102,7 @@ void WeekendTask::set_costs(){
 }
 
 
-void WeekendTask::print_worker_costs_local() {
+void WeekendTask::print_worker_costs() {
   cout << "Worker costs: " << endl;
   for (int i=0; i < (int) avail_workers.size(); i++){
     cout << avail_workers[i].temp_cost << " ";

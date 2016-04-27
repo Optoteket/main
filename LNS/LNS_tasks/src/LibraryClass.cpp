@@ -12,8 +12,9 @@ Library::Library(ofstream* r_file) {
   //TODO: take files as input
   resfile = r_file;
   task_list = vector<SingleTask> ();
-  weekend_cost = 0;
-  max_weekend_cost = 0;
+
+  cost_total_stand_ins.val = 0;
+  cost_total_stand_ins.count = 0;
 
   for(int p=0; p<NUM_POSITIONS; p++){
     for(int w=0; w<NUM_WEEKS; w++){
@@ -41,8 +42,6 @@ Library::Library(ofstream* r_file) {
     }
   }
 
- 
-
   //Read demand from demand file
   read_demand();
   //print_demand();
@@ -55,31 +54,38 @@ Library::Library(ofstream* r_file) {
 
 void Library::create_initial_solution(){
 
-  //Weekend distribution:
+  //Find weekend workers
   find_weekend_workers();
-  //shuffle_worker_weekends();
 
-  //Find statistics about workers
-  //find_num_avail_workers();
-  
-  //Shuffle weekends until feasible availability found
-  while(!compare_avail_demand()){
-    cout << "Demand not filled." << endl;
+  //Loop until a feasible and pseudo-optimal solution is found
+    while(cost_total_stand_ins.count < 10){
 
-    while(weekend_cost < 17){
-      cout << "Too large cost!" << endl;
+      //Find new random solution
       find_all_weekend_tasks();
       set_all_weekend_tasks();
     
-      find_sum_stand_ins();
-      int lowest_num_ass = find_min_stand_ins(Ass);
-      cout << "Minimum num of assistants: " << lowest_num_ass << endl;
-      int lowest_num_lib = find_min_stand_ins(Lib);
-      cout << "Minimum num of librarians: " << lowest_num_lib << endl;
-      //shuffle_worker_weekends();
-      weekend_cost = lowest_num_ass + lowest_num_lib;
+      //Find lowest number of stand ins day at library
+      if (compare_avail_demand()){
+	find_sum_stand_ins();
+	int lowest_num_ass = find_min_stand_ins(Ass);
+	cout << "Minimum num of assistants: " << lowest_num_ass << endl;
+	int lowest_num_lib = find_min_stand_ins(Lib);
+	cout << "Minimum num of librarians: " << lowest_num_lib << endl;
+	int cost_min_num_stand_ins =  2*lowest_num_lib + lowest_num_ass;
+
+	//Check if a new maximum num of stand ins is found
+	if (cost_min_num_stand_ins > cost_total_stand_ins.val){
+	  cost_total_stand_ins.val = cost_min_num_stand_ins;
+	  cost_total_stand_ins.count = 0;
+	}
+	//If the same as before, increment count
+	else if (cost_min_num_stand_ins == cost_total_stand_ins.val)
+	  cost_total_stand_ins.count++;
+      }
     }
-  }
+
+    cout << cost_total_stand_ins.val << endl;
+    //}
 
   // //Print results
   // print_num_avail_workers();
@@ -95,10 +101,12 @@ void Library::create_initial_solution(){
   // //Distribute rest of tasks
   // set_tasks();
 
-  // //find_num_avail_workers();
+  // find_num_avail_workers();
 
   // print_num_avail_workers();
   // print_avail_demand_diff();
+
+  // print_workers();
   // print_current_demand();
 
   // destroy_weekend(25);
@@ -126,13 +134,24 @@ void Library::find_sum_stand_ins(){
 }
 
 int Library::find_min_stand_ins(int type){
+  int temp_max = 100;
   int return_val=100;
+  int week = 0;
+  int day = 0;
   for(int w=0; w<NUM_WEEKS; w++){
     for(int d=0; d<NUM_WEEKDAYS; d++){
-	if(num_avail_day_workers[type][w][d]< return_val)
-	  return_val = num_avail_day_workers[type][w][d];
+      //Temporary cost of stand ins
+      int temp_val = 2*num_avail_day_workers[Lib][w][d] + num_avail_day_workers[Ass][w][d];
+      //Find minimum cost of stand ins
+      if(temp_val < temp_max){
+	temp_max = temp_val;
+	return_val = num_avail_day_workers[type][w][d];
+	week = w;
+	day = d;
+      }
     }
   }
+  cout << type << " type min stand ins for week: " << week << " day: " << day << "." << endl;
   return return_val;
 }
 
@@ -296,7 +315,8 @@ void Library::write_results(){
     {
       for(int h=0; h < (int) worker_list.size(); h++){
 	//worker_list[i].get_current_tasks();  
-	*resfile << "Worker_tasks for worker " << worker_list[h].get_ID() << endl;	
+	*resfile << "Worker:" << worker_list[h].get_ID() << endl;
+	*resfile << "Weekend:" << worker_list[h].get_current_weekend() << endl;
 	for (int j=0; j< NUM_SHIFTS; j++){
 	  for (int i=0; i< NUM_WEEKS; i++){
 	    for (int k=0; k< NUM_DAYS; k++){
@@ -309,17 +329,17 @@ void Library::write_results(){
 	*resfile << endl << endl;
       
 
-      	*resfile << "Availability for worker " << worker_list[h].get_ID() << endl;	
-	for (int j=0; j< NUM_SHIFTS; j++){
-	  for (int i=0; i< NUM_WEEKS; i++){
-	    for (int k=0; k< NUM_DAYS; k++){
-	      *resfile << worker_list[h].get_current_avail(i,k,j) << " ";
-	    }
-	    *resfile << "   ";
-	  }
-	  *resfile << endl; 
-	}
-	*resfile << endl << endl;
+	//   	*resfile << "Availability for worker " << worker_list[h].get_ID() << endl;	
+	// 	for (int j=0; j< NUM_SHIFTS; j++){
+	// 	  for (int i=0; i< NUM_WEEKS; i++){
+	// 	    for (int k=0; k< NUM_DAYS; k++){
+	// 	      *resfile << worker_list[h].get_current_avail(i,k,j) << " ";
+	// 	    }
+	// 	    *resfile << "   ";
+	// 	  }
+	// 	  *resfile << endl; 
+	// 	}
+	// 	*resfile << endl << endl;
       }
     }
 }
@@ -403,7 +423,7 @@ void Library::set_all_weekend_tasks(){
     current_task->place_cheapest_worker(&weekend_workers);
     weekend_update_avail_demand
       (current_task->get_placed_worker_pos(), current_task->get_week(), current_task->get_type());
-    cout << "Weekend task distributed" << endl;
+    //cout << "Weekend task distributed" << endl;
     count++;
 
     //Erase task from list of tasks
@@ -411,7 +431,7 @@ void Library::set_all_weekend_tasks(){
       weekend_task_list.erase(weekend_task_list.begin());
     }
   }
-  cout << count << " weekend tasks placed" << endl;
+  //cout << count << " weekend tasks placed" << endl;
 
   //Find statistical information for task cost
   find_num_avail_workers();
