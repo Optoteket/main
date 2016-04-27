@@ -27,8 +27,8 @@ private:
 	
 	
 	int demand_differ[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS+1]; //OK as public? only one Library object
-	int num_lib_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]; //initialize as 0 and add to constructor
-	int num_ass_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+	int num_lib_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; //Tasks: Block, PL, HB, BokB
+	int num_ass_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; //initialize as 0 and add to constructor
 
 // 	bool HB_assigned[NUM_WEEKS];
 
@@ -47,8 +47,8 @@ public:
 	int getTask_avail(int, int, int) const;
 	int getNum_day_combinations() const;
 	
-	int getNum_lib_assigned(int, int, int) const;
-	int getNum_ass_assigned(int, int, int) const;
+	int getNum_lib_assigned(int, int, int, int) const;
+	int getNum_ass_assigned(int, int, int, int) const;
 	
 	//Mutator functions
 	void setDemand(int, int, int, int, int);

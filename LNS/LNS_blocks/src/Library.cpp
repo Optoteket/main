@@ -37,8 +37,10 @@ Library::Library() {
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int d=0; d<NUM_DAYS; d++){
 			for (int s=0; s<NUM_SHIFTS; s++){
-				num_lib_assigned[w][d][s] = 0; //used to see if more are needed to be assigned a shift
-				num_ass_assigned[w][d][s] = 0;
+				for (int j=0; j<NUM_TASKS; j++){
+					num_lib_assigned[w][d][s][j] = 0; //used to see if more are needed to be assigned a shift
+					num_ass_assigned[w][d][s][j] = 0;
+				}
 			}
 		}
 	}
@@ -52,11 +54,11 @@ Library::~Library() {
 	
 }
 
-int Library::getNum_lib_assigned(int w, int d, int s) const{
-	return num_lib_assigned[w][d][s];
+int Library::getNum_lib_assigned(int w, int d, int s, int j) const{
+	return num_lib_assigned[w][d][s][j];
 }
-int Library::getNum_ass_assigned(int w, int d, int s) const{
-	return num_ass_assigned[w][d][s];
+int Library::getNum_ass_assigned(int w, int d, int s, int j) const{
+	return num_ass_assigned[w][d][s][j];
 }
 
 
@@ -633,16 +635,16 @@ void Library::assign_block(Block* block, int worker_id){ //worker_id a number be
 	return; //Block has been assigned to the available vectors for the worker
 }
 
-void Library::print_weekblocks_avail_worker(int worker_id, string str){
-	if(str == "weekend"){
+void Library::print_weekblocks_avail_worker(int worker_id, string type){
+	if(type == "weekend"){
 		for(unsigned int n=0; n<myworkers[worker_id-1].getweekend_vect().size(); n++){
 			myworkers[worker_id-1].getweekend_vect().at(n)->getTask_matrix();
 		}
-	} else if(str == "weekday"){
+	} else if(type == "weekday"){
 		for(unsigned int n=0; n<myworkers[worker_id-1].getweekday_vect().size(); n++){
 			myworkers[worker_id-1].getweekday_vect().at(n)->getTask_matrix();
 		}
-	} else if(str == "weekrest"){
+	} else if(type == "weekrest"){
 		for(unsigned int n=0; n<myworkers[worker_id-1].getweekrest_vect().size(); n++){
 			myworkers[worker_id-1].getweekrest_vect().at(n)->getTask_matrix();
 		}
@@ -784,10 +786,10 @@ void Library::calculate_tasks_filled(){
 						tasks_filled[w][d][s][j] += myworkers[i].getblocks_assigned().at(w)->getTask(d,s,j+1);
 						if(myworkers[i].getblocks_assigned().at(w)->getTask(d,s,j+1) == 1){
 							if(myworkers[i].getQual().compare(0,3,"lib") == 0){
-								num_lib_assigned[w][d][s]++;
+								num_lib_assigned[w][d][s][j+1]++;
 							}
 							else{
-								num_ass_assigned[w][d][s]++;
+								num_ass_assigned[w][d][s][j+1]++;
 							}
 						}
 					}
@@ -860,7 +862,7 @@ void Library::calculate_all_week_costs_for_worker(string type, int w_id){
 			myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekrest_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned);
 		}
 	} else if(type == "weekday"){
-		for(unsigned int n=0; n<myworkers[w_id-1].getweekrest_vect().size(); n++){
+		for(unsigned int n=0; n<myworkers[w_id-1].getweekday_vect().size(); n++){
 			myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekday_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned);
 		}
 	} else{cerr << "\n\nWrong 'type' as argument in calculate_all_week_costs_for_worker\n\n" << endl; return;}

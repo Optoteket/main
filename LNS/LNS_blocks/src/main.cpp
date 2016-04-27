@@ -12,6 +12,7 @@ using namespace std;
 //Felkällor: input_vector{}, copy constructor
 
 int main() {
+// 	int num_workers = 39;
 	Library lib;
 	lib.printDemand();
 	lib.printTask_avail();
@@ -76,6 +77,12 @@ int main() {
 // 		cout << "#Blocks: " << num << endl;
 // 	}
 	
+	//***Set stand_in_avail***
+	for(int i=1; i<=39; i++){
+		lib.getWorker(i).setStand_in_avail();
+	}
+	
+	
 	//***Create initial solution: Empty weeks for all workers***
 	lib.initial_add_blocks_to_workers();
 	
@@ -114,12 +121,27 @@ int main() {
 	
 	//*** Print all available blocks for a worker ***
 // 	lib.print_weekblocks_avail_worker(36, "weekday");
-	cout << "#libs assigned for given shift is: " << lib.getNum_lib_assigned(0,3,0) << " #ass is: " << lib.getNum_ass_assigned(0,3,0) << endl;
+	cout << "#libs assigned for given shift is: " << lib.getNum_lib_assigned(0,3,0,1) << " #ass is: " << lib.getNum_ass_assigned(0,3,0,1) << endl;
 	
 	//*** Try to print cost for a weekday block ***
-	int p = 11;
+	int p = 8;
+	//WEEKREST
 	lib.calculate_all_week_costs_for_worker("weekrest",p);
-	cout << "The cost is: " << lib.getWorker(p).getWeekrest_cost_vector().back().wrest_cost << endl;
+// 	lib.print_weekblocks_avail_worker(p, "weekrest");
+	cout << "The costs for worker " << p << " is: " << endl;
+	unsigned int num = lib.getWorker(p).getWeekrest_cost_vector().size();
+	for(unsigned int n=0; n<num; n++){
+		cout << lib.getWorker(p).getWeekrest_cost_vector().at(n).wrest_cost << endl;
+	}
+	//WEEKDAY
+// 	lib.calculate_all_week_costs_for_worker("weekday",p);
+// 	cout << "The costs for worker " << p << " is: " << endl;
+// 	unsigned int num = lib.getWorker(p).getWeekday_cost_vector().size();
+// 	for(unsigned int n=0; n<num; n++){
+// 		cout << lib.getWorker(p).getWeekday_cost_vector().at(n).wday_cost << endl;
+// 	}
+	lib.print_weekblocks_avail_worker(p, "weekrest");
+	lib.getWorker(p).getStand_in_matrix();
 	
 	return 0;
 }
