@@ -36,8 +36,8 @@ class Worker{
     int weekend;
     int rotation;
 
-    //int num_PL[NUM_WEEKS][NUM_DAYS];
-    //int total_num_PL;
+    int num_PL_week[NUM_WEEKS];
+    int num_PL;
 
     int num_tasks_day[NUM_WEEKS][NUM_DAYS];
     int avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
@@ -46,17 +46,17 @@ class Worker{
   } current;
 
   struct{
-    //static const int num_tasks_weight = 1;
-    //static const int stand_in_weight = 1;
-    int weights[2]; //TODO: update to NUM_COSTS
+    static const int NUM_COSTS = 4;
+    int weights[NUM_COSTS];
     int num_tasks_day_cost[NUM_WEEKS][NUM_DAYS];
     int stand_in_cost[NUM_WEEKS][NUM_DAYS];
-
-    //int PL[NUM_WEEKS][NUM_DAYS];
+    int PL_week_cost[NUM_WEEKS];
+    int PL_cost;
 
     int total_cost[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
     int cost_sum;
   } costs;
+
 
   struct Task_to_remove{
     int week;
@@ -81,6 +81,7 @@ class Worker{
   void display_all_current_avail();
  
   //Set functions
+  void set_PL_costs(int);
   void set_cost_sum();
   void set_stand_in_cost(int, int);
   void set_num_tasks_cost(int, int);
@@ -101,6 +102,9 @@ class Worker{
   void remove_weekrest_tasks();
 
   //Get functions
+  bool get_HB_type();
+  int get_PL_type();
+  int get_cost(int,int);
   int get_avail(int, int, int);
   int get_current_avail(int, int, int);
   int get_current_task(int,int,int);
@@ -116,7 +120,7 @@ class Worker{
   int get_weekend_task();
 
   //Cost functions
-  int find_costs(int, int, int);
+  int find_temp_costs(int, int, int);
   int find_stand_in_cost(int, int);
   int find_num_tasks_cost(int, int);
 

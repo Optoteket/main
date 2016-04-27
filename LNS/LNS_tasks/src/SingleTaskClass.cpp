@@ -24,7 +24,7 @@ void SingleTask::find_avail_workers(){
       Task_worker task_worker;
       task_worker.worker = &(*workers)[i];
       task_worker.temp_worker = (*workers)[i];
-      task_worker.temp_worker_cost = task_worker.temp_worker.find_costs(week,day,shift);
+      task_worker.temp_worker_cost = task_worker.temp_worker.get_cost(week,day);
       avail_workers.push_back(task_worker);
     }
   }
@@ -36,7 +36,8 @@ void SingleTask::find_avail_workers(){
 void SingleTask::temp_place_workers(){
   for (int i=0; i < (int) avail_workers.size(); i++){
     avail_workers[i].temp_worker.set_task(week,day,shift,type);
-    avail_workers[i].temp_worker_cost = avail_workers[i].temp_worker.find_costs(week,day,shift);
+    avail_workers[i].temp_worker_cost = 
+       avail_workers[i].temp_worker.get_cost(week,day) - avail_workers[i].temp_worker_cost;
   }
 }
 
