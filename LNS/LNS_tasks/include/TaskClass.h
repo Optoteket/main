@@ -18,10 +18,7 @@ class Task {
   struct Task_worker {
     Worker* worker;
     Worker temp_worker;
-    int temp_worker_cost; //Singel class?
-    //int stand_in_avail[NUM_DAYS]
-    //For weekends: cost for weekrest (what happend if availability and tasks is removed? 
-    //stand in cost for those those days)
+    int temp_worker_cost; 
 
     bool operator<(Task_worker const & task_worker) const{
       return this->temp_worker_cost < task_worker.temp_worker_cost; //Singel class?
@@ -31,14 +28,9 @@ class Task {
   int type;
   int qualification;
   int week;
-
-  //int day; //In single class?
-  //int shift; //Singel class?
-
   int demand;
-  int avail_diff; //Single class?
+  int avail_diff;
   Task_worker* worker_to_place;
-  //Total cost becomes smallest of these
   int total_cost;
 
   // All available workers and their costs

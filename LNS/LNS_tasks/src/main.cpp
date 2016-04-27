@@ -53,7 +53,7 @@ int main(int argc, char** argv)
 
   srand (unsigned (time(0)));
   //1. Create logfile
-  date << timedate->tm_year + 1900 << "_" << timedate->tm_mon+1 << "_" << timedate->tm_mday << ":" << timedate->tm_hour << ":" << timedate->tm_min+1 << ":"<< timedate->tm_sec+1;
+  date << timedate->tm_year + 1900 << "_" << timedate->tm_mon+1 << "_" << timedate->tm_mday << " " << timedate->tm_hour << ":" << timedate->tm_min+1 << ":"<< timedate->tm_sec+1;
   log_file_path << log_file_dir << "logfile" << ".dat"; 
 
   ofstream log_file (log_file_path.str().c_str());
@@ -70,6 +70,7 @@ int main(int argc, char** argv)
   //Create result file
   res_file_path << res_file_dir << "resfile" << ".dat"; 
   ofstream res_file (res_file_path.str().c_str());
+  //res_file.open(res_file_path.str().c_str());
   
   if(res_file.is_open())
   {
@@ -126,6 +127,7 @@ int main(int argc, char** argv)
   clock_t end = clock();
   double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
   res_file << "Time of program: " << elapsed_secs << " s." << endl;
+  //res_file.close();
   return 0;
 
 }

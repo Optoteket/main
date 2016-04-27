@@ -7,8 +7,6 @@ Task::Task(int q, int w, int worker_demand, int avail_diff, int task_type, vecto
   workers = w_list;
   qualification = q;
   week= w;
-  //day = d;
-  //shift = s;
   demand = worker_demand;
   avail_diff = avail_diff;
   set_costs();
