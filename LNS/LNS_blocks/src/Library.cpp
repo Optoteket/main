@@ -166,7 +166,7 @@ void Library::readDemand() {
 			input_vector.pop_back();
 			
 			setDemand(week,day,shift,task,amount);
-			cout << "For w,d,s,j the demand is: " << week << " " << day << " " << shift << " " << task << " = " << demand_string << endl;
+			//cout << "For w,d,s,j the demand is: " << week << " " << day << " " << shift << " " << task << " = " << demand_string << endl;
 		}
 	}
 }
@@ -548,7 +548,6 @@ void Library::assign_tasks_to_block(Block& block, int s1, int j1, int s2, int j2
 }
 
 void Library::assign_blocks_to_workers(){ //using Worker myworkers[39], vector<Block> block_vector. 
-	cout << "here " << block_vector.size() << endl;
 	for(int i=0; i<num_workers; i++){
 		for(unsigned int n = 0; n<block_vector.size(); n++){
 			assign_block(&block_vector.at(n), i+1);

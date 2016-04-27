@@ -311,6 +311,7 @@ void Worker::calculate_week_cost(Block* blockobj, string type, int diff_in_deman
 
 int Worker::calculate_PL_cost(Block* block){
 	int temp_cost = 0;
+	//Assign cost if too many or too few PL are assigned to the worker
 	if(newPL.compare(0,11,"standard_PL") == 0 && num_PL+block->getnum_PL() > 3){ //getnum_PL <= 1, num_PL <= 4(?)
 		temp_cost += PL_AMOUNT_COST*(num_PL+block->getnum_PL()-3);
 	}else if(newPL.compare(0,7,"many_PL") == 0 && num_PL+block->getnum_PL() > 4){ //getnum_PL <= 1, num_PL <= 4(?)
@@ -328,49 +329,79 @@ int Worker::calculate_demand_cost(Block* block, int diff_in_demand[5][7][4][5], 
 		for(int s=0; s<block->getNUM_SHIFTS(); s++){
 			if(block->getTask(d,s,1) == 1){ //get all "Block" tasks
 				int w = (newWeekend_week+block->getWday_block_number()+1) % 5; //The week in consideration
-				if(diff_in_demand[w][d][s][1] <= 0){ //Checking "Block" tasks. If diff <= 0, give cost
+				if(diff_in_demand[w][d][s][1]-1 < 0){ //Add small cost when negative demand_differ (too many workers assigned)
 					if(s == 0){ //certain demand first shift
-						if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][1] >= 2){ //optimally 2 lib (2 at B)
-							temp_cost += DEMAND_COST_OVERQUAL*(assigned_libs[w][d][s][1]+1-2); //+1 since there are another task in the block obj.
-// 						} else if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][1] < 2){
-// 							temp_cost += DEMAND_COST_OVERSTAFF*(assigned_libs[w][d][s][1]+1-2);
-						}
-						else if(newQual.compare(0,3,"ass") == 0 && assigned_ass[w][d][s][1] >= 2){//optimally 2 ass (2 at B)
-							temp_cost += DEMAND_COST_OVERSTAFF*(assigned_ass[w][d][s][1]+1-2); //+1 since there are another task in the block obj.
-						}
+						temp_cost += calc_temp_cost(2,w,d,s,assigned_libs,assigned_ass);
+						//Costs for TOO MANY WORKERS
+						temp_cost += abs(assigned_libs[w][d][s][1]+assigned_ass[w][d][s][1]+1-4)*DEMAND_MANY_TOT;
 					}
 					else{ //regular demand all other shifts
-						if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][1] >= 3){ //optimally 3 lib (3 at B)
-							temp_cost += DEMAND_COST_OVERQUAL*(assigned_libs[w][d][s][1]+1-3); //+1 since there are another task in the block obj.
-						}
-						else if(newQual.compare(0,3,"ass") == 0 && assigned_ass[w][d][s][1] >= 3){//optimally 3 ass (3 at B)
-							temp_cost += DEMAND_COST_OVERSTAFF*(assigned_ass[w][d][s][1]+1-3); //+1 since there are another task in the block obj.
-						}
+						temp_cost += calc_temp_cost(3,w,d,s,assigned_libs,assigned_ass);
+						//Costs for TOO MANY WORKERS
+						temp_cost += abs(assigned_libs[w][d][s][1]+assigned_ass[w][d][s][1]+1-6)*DEMAND_MANY_TOT;
+					}
+				}
+				else if(diff_in_demand[w][d][s][1]-1 > 0){ //Add big cost when positive demand_differ (too few workers assigned)
+					if(s == 0){ //certain demand first shift
+						temp_cost += calc_temp_cost(2,w,d,s,assigned_libs,assigned_ass);
+						//Costs for TOO FEW WORKERS
+						temp_cost += abs(assigned_libs[w][d][s][1]+assigned_ass[w][d][s][1]+1-4)*DEMAND_FEW_TOT;
+					}
+					else{ //regular demand all other shifts
+						temp_cost += calc_temp_cost(3,w,d,s,assigned_libs,assigned_ass);
+						//Costs for TOO FEW WORKERS
+						temp_cost += abs(assigned_libs[w][d][s][1]+assigned_ass[w][d][s][1]+1-6)*DEMAND_FEW_TOT;
 					}
 				}
 			}
 			if(block->getTask(d,s,2) == 1){ //get all "PL" tasks
 				int w = (newWeekend_week+block->getWday_block_number()+1) % 5; //The week in consideration
-				if(diff_in_demand[w][d][s][2] <= 0){
+				if(diff_in_demand[w][d][s][2]-1 < 0){ //Add another cost for > 0?
 					//Add different costs for 'lib' and 'ass'?
 					temp_cost += DEMAND_COST_OVERSTAFF*abs(diff_in_demand[w][d][s][2]-1);
 				}
 			}
+			if(block->getTask(d,s,0) == 1){ //get all "no task" tasks
+				//Add a lower cost if diff_in_demand for all shifts and tasks that day is < 0
+				//Add a higher cost if diff_in_demand for all shifts and tasks that day is > 0
+			}
+			
 		}
 	}
 	if(temp_cost != 0){cout << "in calculate_demand_cost. Temp_cost is: " << temp_cost << endl;}
 	return temp_cost;
 }
 
+int Worker::calc_temp_cost(int demand, int w, int d, int s, int assigned_libs[5][7][4][4], int assigned_ass[5][7][4][4]){
+	int tmp_cst = 0;
+	//Costs for LIBRARIANS
+	if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][1]+1 > demand){
+		tmp_cst += DEMAND_MANY_LIBS*(assigned_libs[w][d][s][1]+1 - demand);
+	}
+	else if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][1]+1 < demand){
+		tmp_cst += DEMAND_FEW_LIBS*abs(assigned_libs[w][d][s][1]+1 - demand);
+	}
+	//Costs for ASSISTANTS
+	if(newQual.compare(0,3,"ass") == 0 && assigned_ass[w][d][s][1]+1 > demand){
+		tmp_cst += DEMAND_MANY_ASS*(assigned_ass[w][d][s][1]+1 - demand);
+	}
+	else if(newQual.compare(0,3,"ass") == 0 && assigned_ass[w][d][s][1]+1 < demand){
+		tmp_cst += DEMAND_FEW_ASS*abs(assigned_ass[w][d][s][1]+1 - demand);
+	}
+	return tmp_cst;
+}
+
 int Worker::calculate_stand_in_cost(Block* block, string type){
 	int temp_cost = 0;
 	for(int d=0; d<block->getNUM_DAYS()-2; d++){
 		if(type == "weekday"){
-			if(block->not_assigned(d) == 1 && stand_in_avail[2][d] == 1){ //week == 2 means weekday week
+			//Assign cost if 'ruining' a stand-in
+			if(block->not_assigned(d) == 0 && stand_in_avail[2][d] == 1){ //week == 2 means weekday week
 				temp_cost += STAND_IN_COST;
 			}
 		} else if(type == "weekrest"){
-			if(block->not_assigned(d) == 1 && stand_in_avail[1][d] == 1){ //week == 1 means weekrest week
+			//Assign cost if 'ruining' a stand-in
+			if(block->not_assigned(d) == 0 && stand_in_avail[1][d] == 1){ //week == 1 means weekrest week
 				temp_cost += STAND_IN_COST;
 			}
 		}

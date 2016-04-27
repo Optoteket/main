@@ -32,6 +32,12 @@ private:
 	static const int NUM_SHIFTS = 4;
 	static const int PL_AMOUNT_COST = 20; //When amount of PL assigned to a worker differs from availability
 	static const int DEMAND_COST_OVERSTAFF = 5; //when more libs/ass are assigned a task than necessary
+	static const int DEMAND_FEW_LIBS = 100;
+	static const int DEMAND_MANY_LIBS = 50;
+	static const int DEMAND_FEW_ASS = 10;
+	static const int DEMAND_MANY_ASS = 5;
+	static const int DEMAND_FEW_TOT = 1000;
+	static const int DEMAND_MANY_TOT = 200;
 	static const int DEMAND_COST_OVERQUAL = 5*DEMAND_COST_OVERSTAFF; //when more libs are assigned a task than necessary
 	static const int STAND_IN_COST = 5;
 	int worker_avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
@@ -139,6 +145,7 @@ public:
 	int calculate_demand_cost(Block*, int[5][7][4][5], int[5][7][4][4], int[5][7][4][4]);
 	int calculate_stand_in_cost(Block*, string);
 	void calculate_weekend_cost(Block*, int[5][7][4][5],int[5][7][4][4],int[5][7][4][4]);
+	int calc_temp_cost(int,int,int,int, int[5][7][4][4], int[5][7][4][4]);
 	
 
 	vector<Weekend_cost> getWeekend_cost_vector();
