@@ -54,6 +54,9 @@ class Library{
     int count;
   } cost_total_stand_ins;
 
+  //Cost weights
+  int weight[2];
+
   int num_avail_day_workers[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS];
 
  public:

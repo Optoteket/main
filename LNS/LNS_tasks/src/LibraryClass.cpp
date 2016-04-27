@@ -16,6 +16,9 @@ Library::Library(ofstream* r_file) {
   cost_total_stand_ins.val = 0;
   cost_total_stand_ins.count = 0;
 
+  weight[0] = 2;
+  weight[1] = 1;
+
   for(int p=0; p<NUM_POSITIONS; p++){
     for(int w=0; w<NUM_WEEKS; w++){
       for(int d=0; d<NUM_WEEKDAYS; d++){
@@ -48,60 +51,86 @@ Library::Library(ofstream* r_file) {
   
   //Create workers in library from worker file
   create_workers();
+
+  //Find weekend workers
+  find_weekend_workers();
+
 }
 
 /********* Library function: create initial solution ********/
 
 void Library::create_initial_solution(){
 
-  //Find weekend workers
-  find_weekend_workers();
+  /**************** TESTING **************/
 
-  //Loop until a feasible and pseudo-optimal solution is found
-    while(cost_total_stand_ins.count < 10){
+  // //Set weekends
+  // find_all_weekend_tasks();
+  // set_all_weekend_tasks();
 
-      //Find new random solution
-      find_all_weekend_tasks();
-      set_all_weekend_tasks();
-    
-      //Find lowest number of stand ins day at library
-      if (compare_avail_demand()){
-	find_sum_stand_ins();
-	int lowest_num_ass = find_min_stand_ins(Ass);
-	cout << "Minimum num of assistants: " << lowest_num_ass << endl;
-	int lowest_num_lib = find_min_stand_ins(Lib);
-	cout << "Minimum num of librarians: " << lowest_num_lib << endl;
-	int cost_min_num_stand_ins =  2*lowest_num_lib + lowest_num_ass;
-
-	//Check if a new maximum num of stand ins is found
-	if (cost_min_num_stand_ins > cost_total_stand_ins.val){
-	  cost_total_stand_ins.val = cost_min_num_stand_ins;
-	  cost_total_stand_ins.count = 0;
-	}
-	//If the same as before, increment count
-	else if (cost_min_num_stand_ins == cost_total_stand_ins.val)
-	  cost_total_stand_ins.count++;
-      }
-    }
-
-    cout << cost_total_stand_ins.val << endl;
-    //}
-
-  // //Print results
+  // while(!compare_avail_demand()){
+  //   find_all_weekend_tasks();
+  //   set_all_weekend_tasks();
+  // }
+  
   // print_num_avail_workers();
-  // find_avail_demand_diff();
   // print_avail_demand_diff();
 
-  cout << "Demand filled!" << endl;
-  //display_worker_avail();
+  // exit(0);
 
-  //Distribute weekend tasks
+  /**************** END TESTING **************/
+
+  //Loop until a feasible and pseudo-optimal solution is found
+
+  int MAX_WEEKEND_IT = 10;
+
+  while(cost_total_stand_ins.count < MAX_WEEKEND_IT){
+
+    //Find new random solution
+    find_all_weekend_tasks();
+    set_all_weekend_tasks();
+    
+    //Find lowest number of stand ins day at library
+    if (compare_avail_demand()){
+
+      //Find min num of assistants and librarians
+      find_sum_stand_ins();
+      int lowest_num_ass = find_min_stand_ins(Ass);
+      cout << "Minimum num of assistants: " << lowest_num_ass << endl;
+      int lowest_num_lib = find_min_stand_ins(Lib);
+      cout << "Minimum num of librarians: " << lowest_num_lib << endl;
+
+      //Find cost for stand ins
+      int cost_min_num_stand_ins =  weight[0]*lowest_num_lib + weight[1]*lowest_num_ass;
+
+      //Check if a new maximum num of stand ins is found
+      if (cost_min_num_stand_ins > cost_total_stand_ins.val){
+	cost_total_stand_ins.val = cost_min_num_stand_ins;
+	cost_total_stand_ins.count = 0;
+      }
+      //If the same as before, increment count
+      else if (cost_min_num_stand_ins == cost_total_stand_ins.val)
+	cost_total_stand_ins.count++;
+    }
+  }
+
+  cout << "Total max min cost: " << cost_total_stand_ins.val << endl;
+    //}
+
+    // //Print results
+    // print_num_avail_workers();
+    // find_avail_demand_diff();
+    // print_avail_demand_diff();
+
+    cout << "Demand filled!" << endl;
+    //display_worker_avail();
+
+    //Distribute weekend tasks
 
 
-  // //Distribute rest of tasks
-  // set_tasks();
+    // //Distribute rest of tasks
+    set_tasks();
 
-  // find_num_avail_workers();
+    // find_num_avail_workers();
 
   // print_num_avail_workers();
   // print_avail_demand_diff();
@@ -135,13 +164,13 @@ void Library::find_sum_stand_ins(){
 
 int Library::find_min_stand_ins(int type){
   int temp_max = 100;
-  int return_val=100;
+  int return_val=0;
   int week = 0;
   int day = 0;
   for(int w=0; w<NUM_WEEKS; w++){
     for(int d=0; d<NUM_WEEKDAYS; d++){
       //Temporary cost of stand ins
-      int temp_val = 2*num_avail_day_workers[Lib][w][d] + num_avail_day_workers[Ass][w][d];
+      int temp_val = weight[0]*num_avail_day_workers[Lib][w][d] + weight[1]*num_avail_day_workers[Ass][w][d];
       //Find minimum cost of stand ins
       if(temp_val < temp_max){
 	temp_max = temp_val;
@@ -278,13 +307,8 @@ void Library::find_tasks(int type){
       for(int s=0; s<NUM_SHIFTS; s++){
 	if(type == Lib){
 	  int demand = current_demand[w][d][s][Info];
-	  //find_avail_demand_diff(int type);
-	  //for(int dem = demand; dem>0; dem--){
 	    if(demand > 0){
-	      //cout << "Demand of librarians!" << endl;
 	      int avail_demand_diff = num_avail_workers[Lib][w][d][s] - current_demand[w][d][s][Info];
-
-	      //Create a task, push to list
 	      SingleTask task {Lib,w,d,s,demand,avail_demand_diff,Info,&worker_list};
 	      task_list.push_back(task);
 	  }
@@ -292,11 +316,9 @@ void Library::find_tasks(int type){
 	else if(type == Ass){
 	  for (int task_type=Exp; task_type <=PL; task_type++){
 	    int demand = current_demand[w][d][s][task_type];
-	    //cout << demand << endl;
-	    //for(int dem = demand; dem>0; dem--){
 	      if(demand > 0){
-	      //cout << "Demand of librarians!" << endl;
-	      int avail_demand_diff = num_avail_workers[Ass][w][d][s] + num_avail_workers[Lib][w][d][s] - current_demand[w][d][s][task_type];
+	      int avail_demand_diff = num_avail_workers[Ass][w][d][s] + num_avail_workers[Lib][w][d][s] 
+		- current_demand[w][d][s][task_type];
 
 	      //Create a task, push to list
 	      SingleTask task {Ass,w,d,s,demand,avail_demand_diff,task_type,&worker_list};
@@ -708,7 +730,7 @@ void Library::shuffle_worker_weekends(){
 void Library::find_num_avail_workers(){
 
   //Reset available workers
-  for(int t = Exp; t <= Info; t++){
+  for(int t = Ass; t < NUM_POSITIONS; t++){
     for(int w = 0; w < NUM_WEEKS; w++){
       for(int d = 0; d < NUM_DAYS; d++){
 	for(int s = 0; s < NUM_SHIFTS; s++){
@@ -724,6 +746,9 @@ void Library::find_num_avail_workers(){
       for(int d = 0; d < NUM_DAYS; d++){
 	for(int s = 0; s < NUM_SHIFTS; s++){
 	  //cout << worker.get_avail(w,d,s) << endl;
+	   if (worker_list[i].get_current_avail(w,d,s) == BBlib){
+	    num_avail_workers[BBlib][w][d][s]++; 
+	  }
 	  if (worker_list[i].get_current_avail(w,d,s) == Lib){
 	    num_avail_workers[Lib][w][d][s]++; 
 	  }
@@ -741,18 +766,23 @@ void Library::find_num_avail_workers(){
 
 void Library::find_avail_demand_diff(){
 
-  for(int t=Lib; t>=Ass; t--){
+  for(int t=BBlib; t>=Ass; t--){
     for(int w = 0; w < NUM_WEEKS; w++){
       for(int d = 0; d < NUM_DAYS; d++){
 	for(int s = 0; s < NUM_SHIFTS; s++){
-	  if(t == Lib){
+	  if(t == BBlib){
 	    avail_demand_diff[t][w][d][s] =  
-	      num_avail_workers[Lib][w][d][s] 
+	      num_avail_workers[BBlib][w][d][s] 
+	      -current_demand[w][d][s][BokB]; 	
+	  }
+	  else if(t == Lib){
+	    avail_demand_diff[t][w][d][s] =  
+	      num_avail_workers[BBlib][w][d][s] + num_avail_workers[Lib][w][d][s] 
 	      -current_demand[w][d][s][Info] - current_demand[w][d][s][HB]; 	
 	  }
 	  else if (t == Ass){
 	    avail_demand_diff[t][w][d][s] = 
-	      avail_demand_diff[Lib][w][d][s] + num_avail_workers[Ass][w][d][s] 
+	      num_avail_workers[BBlib][w][d][s] + avail_demand_diff[Lib][w][d][s] + num_avail_workers[Ass][w][d][s] 
 	      - current_demand[w][d][s][Exp] - current_demand[w][d][s][PL];
 	  }
 	}
@@ -771,17 +801,31 @@ bool Library::compare_avail_demand(){
   find_num_avail_workers();
   int diff[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
 
-  //Find diff between avail and demand for librarians
+  //Find diff between avail and demand for BBlibrarians
   for(int w = 0; w < NUM_WEEKS; w++){
     for(int d = 0; d < NUM_DAYS; d++){
       for(int s = 0; s < NUM_SHIFTS; s++){
-	diff[w][d][s] =  num_avail_workers[Lib][w][d][s] - current_demand[w][d][s][Info] - current_demand[w][d][s][HB]; 	
+	diff[w][d][s] =  num_avail_workers[BBlib][w][d][s] - current_demand[w][d][s][BokB];
 	if (diff[w][d][s] < 0) {
 	  return false;
 	}  
       }
     }
   }
+
+  //Find diff between avail and demand for librarians
+  for(int w = 0; w < NUM_WEEKS; w++){
+    for(int d = 0; d < NUM_DAYS; d++){
+      for(int s = 0; s < NUM_SHIFTS; s++){
+	diff[w][d][s] +=  num_avail_workers[Lib][w][d][s] - current_demand[w][d][s][Info] - current_demand[w][d][s][HB]; 	
+	if (diff[w][d][s] < 0) {
+	  return false;
+	}  
+      }
+    }
+  }
+
+
 
   //Find diff between avail and demand for assistants and rest of librarians
   for(int w = 0; w < NUM_WEEKS; w++){
@@ -795,8 +839,7 @@ bool Library::compare_avail_demand(){
     }
   }
 
-  //Set:
-  //avail_demand_diff = diff;
+  find_avail_demand_diff();
   return true;
 }
 
@@ -999,15 +1042,13 @@ void Library::print_workers(){
 }
 
 void Library::print_num_avail_workers(){
-  cout << "Total num of available workers (lib and ass):" << endl;
-  cout << "Tasks:( Exp,) Info, (PL, HB, BokB)" << endl;
+  cout << "Total num of available workers (Ass, Lib, BBlib):" << endl;
   
   for (int i=0; i< NUM_WEEKS; i++){
     for (int j=0; j< NUM_SHIFTS; j++){
-      for(int m = Ass; m<=Lib; m++){
+      for(int m = Ass; m< NUM_POSITIONS; m++){
 	for (int k=0; k< NUM_DAYS; k++){
 	  cout << num_avail_workers[m][i][k][j] << " ";
-	  //cout << avail_demand_diff[i][k][j] << " ";
 	}
 	cout << "    ";
       }
@@ -1020,14 +1061,12 @@ void Library::print_num_avail_workers(){
 
 void Library::print_avail_demand_diff(){
   cout << "Avail demand diff:" << endl;
-  //cout << "Tasks:( Exp,) Info, (PL, HB, BokB)" << endl;
-  cout << "Tasks: Ass tasks (Exp, PL),    Lib tasks (Info, HB)" << endl;
+  cout << "Tasks: Ass tasks (Exp, PL),    Lib tasks (Info, HB),     BBlib tasks (BokB)" << endl;
  
   for (int i=0; i< NUM_WEEKS; i++){
     for (int j=0; j< NUM_SHIFTS; j++){
-      for (int t=Ass; t<=Lib; t++){
+      for (int t=Ass; t<=BBlib; t++){
 	for (int k=0; k< NUM_DAYS; k++){
-	  //cout << num_avail_workers[m][i][k][j] << " ";
 	  cout << avail_demand_diff[t][i][k][j] << " ";
 	}
 	cout << "    ";

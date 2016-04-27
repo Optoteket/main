@@ -21,12 +21,15 @@ void WeekendTask::find_avail_workers(vector<Worker*>* a_workers){
 
   for (int i=0; i < (int) a_workers->size(); i++){
     Worker* worker = (*a_workers)[i];
-    if (worker->get_current_weekend() == 0 && worker->get_pos() >= qualification){
-      Task_worker task_worker;
-      task_worker.worker = worker;
-      task_worker.temp_worker = *worker;
-      task_worker.temp_cost = task_worker.temp_worker.find_costs(week,sat,0);
-      avail_workers.push_back(task_worker);
+    if((type == HB && worker->get_HB_type())|| type != HB){
+      if (worker->get_current_weekend() == 0 && worker->get_pos() >= qualification){
+	Task_worker task_worker;
+	task_worker.worker = worker;
+	task_worker.temp_worker = *worker;
+	task_worker.temp_cost = task_worker.temp_worker.get_cost(week,sat);      
+	//task_worker.temp_cost = task_worker.temp_worker.find_temp_costs(week,sat,0);
+	avail_workers.push_back(task_worker);
+      }
     }
   }
 }

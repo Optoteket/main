@@ -24,19 +24,30 @@ Worker::Worker(){
   current.rotation = 1;
 
 
+  //Init num_PL_week
+  for (int w=0; w <NUM_WEEKS; w++){
+    current.num_PL_week[w] = 0;
+  }
+  current.num_PL = 0;
+  
+ 
+
   // Init all costs  
   costs.weights[0] = 0; //Num_tasks_day weight
   costs.weights[1] = 0;
   costs.cost_sum = 0;
+  costs.PL_cost = 0;
 
-  for (int i=0; i<NUM_WEEKS; i++){      
+
+  for (int w=0; w<NUM_WEEKS; w++){      
     for (int j=0; j<NUM_DAYS; j++){
-      costs.num_tasks_day_cost[i][j] = 0;
-      costs.stand_in_cost[i][j] = 0;
+      costs.num_tasks_day_cost[w][j] = 0;
+      costs.stand_in_cost[w][j] = 0;
       for (int k=0; k<NUM_SHIFTS; k++){
-	costs.total_cost[i][j][k] = 0;
+	costs.total_cost[w][j][k] = 0;
       }
     }
+    costs.PL_week_cost[w] = 0;
   }
 
   //Init all avail
@@ -89,6 +100,12 @@ Worker::Worker(string pos, int ID, string name, string department, string weeken
   identity.HB_type = HB_type;
   identity.freeday = freeday;
 
+  //Init current num_PL_week
+  for (int w=0; w <NUM_WEEKS; w++){
+    current.num_PL_week[w] = 0;
+  }
+  current.num_PL = 0;
+
   //Init current weekend and rotation
   if (identity.weekend.compare("weekend") != (int) identity.weekend.npos){
     current.weekend = 1;
@@ -100,20 +117,25 @@ Worker::Worker(string pos, int ID, string name, string department, string weeken
   }
 
   // Init all costs  
-  costs.weights[0] = 5; //Num_tasks_day weight
+  costs.weights[0] = 100; //Num_tasks_day weight
   if (get_pos() == Lib)
     costs.weights[1] = 2; //Stand_in weight
   else costs.weights[1] = 1;
+  costs.weights[2] = 5;//PL per week cost
+  costs.weights[3] = 5;//Num_PL cost
+
+  costs.PL_cost = 0;
   costs.cost_sum = 0;
 
-  for (int i=0; i<NUM_WEEKS; i++){      
+  for (int w=0; w<NUM_WEEKS; w++){      
     for (int j=0; j<NUM_DAYS; j++){
-      costs.num_tasks_day_cost[i][j] = 0;
-      costs.stand_in_cost[i][j] = 0;
+      costs.num_tasks_day_cost[w][j] = 0;
+      costs.stand_in_cost[w][j] = 0;
       for (int k=0; k<NUM_SHIFTS; k++){
-	costs.total_cost[i][j][k] = 0;
+	costs.total_cost[w][j][k] = 0;
       }
     }
+    costs.PL_week_cost[w] = 0;
   }
 
   //Init all avail
@@ -185,19 +207,28 @@ Worker::Worker(const Worker &obj){
   current.weekend = obj.current.weekend;
   current.rotation = obj.current.rotation;  
 
+  //Init num_PL_week
+  for (int w=0; w <NUM_WEEKS; w++){
+    current.num_PL_week[w] = obj.current.num_PL_week[w];
+  }
+  current.num_PL = obj.current.num_PL;
+  
+
   // Init all costs
   costs.weights[0] = obj.costs.weights[0];
   costs.weights[1] = obj.costs.weights[1];
   costs.cost_sum = obj.costs.cost_sum;
+  costs.PL_cost = obj.costs.PL_cost;
 
-  for (int i=0; i<NUM_WEEKS; i++){      
+  for (int w=0; w<NUM_WEEKS; w++){      
     for (int j=0; j<NUM_DAYS; j++){
-      costs.num_tasks_day_cost[i][j] = obj.costs.num_tasks_day_cost[i][j];
-      costs.stand_in_cost[i][j] = obj.costs.stand_in_cost[i][j];
+      costs.num_tasks_day_cost[w][j] = obj.costs.num_tasks_day_cost[w][j];
+      costs.stand_in_cost[w][j] = obj.costs.stand_in_cost[w][j];
       for (int k=0; k<NUM_SHIFTS; k++){
-	costs.total_cost[i][j][k] = obj.costs.total_cost[i][j][k];
+	costs.total_cost[w][j][k] = obj.costs.total_cost[w][j][k];
       }
     }
+    costs.PL_week_cost[w] = obj.costs.PL_week_cost[w];
   }
 
  //Init all avail
@@ -227,39 +258,62 @@ Worker::Worker(const Worker &obj){
 
 }
 
-/***************** Worker cost functions ************/
-int Worker::find_costs(int w, int d, int s){
-  int cost1 = find_stand_in_cost(w,d);
-  int cost2 = find_num_tasks_cost(w,d);
+// /***************** Worker cost functions ************/
+// int Worker::find_temp_costs(int w, int d, int s){
+//   int cost1 = find_num_tasks_cost(w,d);
+//   int cost2 = find_stand_in_cost(w,d);
+//   int cost =  costs.weights[0]*cost1 + costs.weights[1]*cost2;
 
-  int cost=
-    //costs.total_cost[w][d][s] =  
-    costs.weights[0]*cost1
-    //costs.num_tasks_day_cost[w][d]
-    + costs.weights[1]*cost2;
-    //*costs.stand_in_cost[w][d];
+//   return cost;
+// }
 
-  //return costs.total_cost[w][d][s];
-  return cost;
-}
+// int Worker::find_stand_in_cost(int w, int d){
+//   return get_avail_day(w,d) - get_current_avail_day(w,d);
+// }
 
-int Worker::find_stand_in_cost(int w, int d){
-  return get_avail_day(w,d) - get_current_avail_day(w,d);
-  //costs.stand_in_cost[w][d] = get_avail_day(w,d) - get_current_avail_day(w,d);
-}
-
-int Worker::find_num_tasks_cost(int w, int d){
-  int cost;
-  if (current.num_tasks_day[w][d] > MAX_TASKS_PER_DAY){
-    cost = current.num_tasks_day[w][d] - MAX_TASKS_PER_DAY;
-    //costs.num_tasks_day_cost[w][d] = current.num_tasks_day[w][d] - MAX_TASKS_PER_DAY;
-  }
-  //else costs.num_tasks_day_cost[w][d] = 0;
-  else cost = 0;
-  return cost;
-}
+// int Worker::find_num_tasks_cost(int w, int d){
+//   int cost;
+//   if (current.num_tasks_day[w][d] > MAX_TASKS_PER_DAY){
+//     cost = current.num_tasks_day[w][d] - MAX_TASKS_PER_DAY;
+//   }
+//   else cost = 0;
+//   return cost;
+// }
 
 /************** Worker functions: get **********/
+int Worker::get_cost(int w, int d){
+  return costs.weights[0]*costs.num_tasks_day_cost[w][d] + costs.weights[1]*costs.stand_in_cost[w][d];
+}
+
+bool Worker::get_HB_type(){
+   if (identity.HB_type.find("standard_HB",0,11) == 0){
+     return true;
+  }
+    else if (identity.HB_type.find("no_HB",0,5) == 0){
+      return false;
+  }
+  else {
+    cerr << "Error: in get_PL_type. No valid PL type found" << endl;
+    return false;
+  }
+}
+
+int Worker::get_PL_type(){
+  if (identity.PL_type.find("standard_PL",0,11) == 0){
+    return standard_PL;
+  }
+  else if (identity.PL_type.find("many_PL",0,7) == 0){
+    return many_PL;
+  }
+  else if (identity.PL_type.find("no_PL",0,5) == 0){
+    return no_PL;
+  }
+  else {
+    cerr << "Error: in get_PL_type. No valid PL type found" << endl;
+    return no_PL_type;
+  }
+}
+
 int Worker::get_ID(){
   return identity.ID;
 }
@@ -271,7 +325,10 @@ int Worker::get_pos(){
   else if (identity.pos.find("ass",0,3) == 0){
     return Ass;
   }
-  else return no_position;
+  else {
+    cerr << "Error: in get_pos. No valid pos found" << endl;
+    return no_position;
+  }
 }
 
 string Worker::get_weekend(){
@@ -317,6 +374,27 @@ int Worker::get_cost_sum() const{
 }
 
 /************** Worker functions: set **********/
+void Worker::set_PL_costs(int w){
+  //Set PL cost per week
+  if(current.num_PL_week[w] >  MAX_PL_PER_WEEK)
+    costs.PL_week_cost[w] = current.num_PL_week[w]- MAX_PL_PER_WEEK;
+  else costs.PL_week_cost[w] = 0;
+
+  //Set total PL cost
+  if(get_PL_type() == no_PL){
+     costs.PL_cost = current.num_PL;
+  }
+  else if (get_PL_type() == standard_PL){
+    if(current.num_PL > MAX_PL_10W_STANDARD)
+      costs.PL_cost = current.num_PL - MAX_PL_10W_STANDARD;
+    else costs.PL_cost = 0;
+  }
+  else if (get_PL_type() == many_PL){
+    if(current.num_PL > MAX_PL_10W_MANY)
+      costs.PL_cost = current.num_PL - MAX_PL_10W_MANY;
+    else costs.PL_cost = 0;
+  } 
+}
 
 void Worker::set_stand_in_cost(int w, int d){
   costs.stand_in_cost[w][d] = get_avail_day(w,d) - get_current_avail_day(w,d);
@@ -332,10 +410,13 @@ void Worker::set_num_tasks_cost(int w, int d){
 void Worker::set_total_cost(int w, int d, int s){
   set_stand_in_cost(w,d);
   set_num_tasks_cost(w,d);
+  set_PL_costs(w);
 
   costs.total_cost[w][d][s] =  
     costs.weights[0]*costs.num_tasks_day_cost[w][d]
-    + costs.weights[1]*costs.stand_in_cost[w][d];
+    + costs.weights[1]*costs.stand_in_cost[w][d]
+    + costs.weights[2]*costs.PL_week_cost[w]
+    + costs.weights[3]*costs.PL_cost;
 }
 
 
@@ -413,6 +494,12 @@ void Worker::set_task(int w,int d,int s,int task){
     }
     else if (task == no_task && get_current_task(w,d,s) != no_task) 
       current.num_tasks_day[w][d]--;
+
+    //Adjust number of PL that week
+    if(task == PL){
+      current.num_PL_week[w]++;
+      current.num_PL++;
+    }
 
     //Add task
     current.tasks[w][d][s] = task;
