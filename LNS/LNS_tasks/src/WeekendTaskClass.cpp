@@ -75,7 +75,7 @@ void WeekendTask::temp_place_workers(){
     Task_worker task_worker = avail_workers[i];
 
     //Set weekend task
-    task_worker.temp_worker.set_current_weekend(week+1);
+    task_worker.temp_worker.set_current_weekend(week+1,type);
     task_worker.temp_worker.set_weekend_task(type);
 
     //Remove weekrest tasks

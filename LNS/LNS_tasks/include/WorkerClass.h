@@ -100,6 +100,7 @@ class Worker{
   void remove_week_rest();
   void remove_weekend();
   void remove_weekrest_tasks();
+  void remove_task(int, int, int);
 
   //Get functions
   int get_HB_type();
