@@ -21,7 +21,8 @@ void WeekendTask::find_avail_workers(vector<Worker*>* a_workers){
 
   for (int i=0; i < (int) a_workers->size(); i++){
     Worker* worker = (*a_workers)[i];
-    if((type == HB && worker->get_HB_type())|| type != HB){
+    //if((type == HB && worker->get_HB_type()!= no_HB) 
+    //   || (type != HB &&worker->get_HB_type()!= only_HB)){
       if (worker->get_current_weekend() == 0 && worker->get_pos() >= qualification){
 	Task_worker task_worker;
 	task_worker.worker = worker;
@@ -30,7 +31,7 @@ void WeekendTask::find_avail_workers(vector<Worker*>* a_workers){
 	//task_worker.temp_cost = task_worker.temp_worker.find_temp_costs(week,sat,0);
 	avail_workers.push_back(task_worker);
       }
-    }
+      //}
   }
 }
 
@@ -78,7 +79,7 @@ void WeekendTask::temp_place_workers(){
     task_worker.temp_worker.set_weekend_task(type);
 
     //Remove weekrest tasks
-    task_worker.temp_worker.remove_weekrest_tasks();
+    //task_worker.temp_worker.remove_weekrest_tasks();
     
     //TODO: check if right week
     //Find new availability and stand in availability

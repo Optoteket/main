@@ -47,6 +47,7 @@ enum PL_types {
 enum HB_types {
   no_HB_type,
   no_HB,
+  only_HB,
   standard_HB
 };
 

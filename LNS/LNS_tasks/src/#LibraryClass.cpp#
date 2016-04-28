@@ -257,7 +257,6 @@ void Library::destroy_weekend(int percent){
 
     //Add weekend task
   }
-
 }
 
 /*********** Library function: destroy a weekend ******/
