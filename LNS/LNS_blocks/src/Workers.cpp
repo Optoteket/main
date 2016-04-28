@@ -294,7 +294,7 @@ void Worker::calculate_week_cost(Block* blockobj, string type, int diff_in_deman
 		PL_cost = calculate_PL_cost(blockobj); //check if PL already assigned that day and if worker avail for more PL assignments
 	}
 	if(blockobj->getnum_Blocks() > 0){
-		demand_cost = calculate_demand_cost(blockobj, diff_in_demand, assigned_libs, assigned_ass);
+		demand_cost = calculate_demand_cost(blockobj, type, diff_in_demand, assigned_libs, assigned_ass);
 	}
 	stand_in_cost = calculate_stand_in_cost(blockobj, type);
 	num_wends_five_weeks_cost = calculate_num_wends_cost(blockobj);
@@ -342,18 +342,20 @@ int Worker::calculate_PL_cost(Block* block){
 	return temp_cost;
 }
 
-int Worker::calculate_demand_cost(Block* block, int diff_in_demand[5][7][4][5], int assigned_libs[5][7][4][4], int assigned_ass[5][7][4][4]){
+int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[5][7][4][5], int assigned_libs[5][7][4][4], int assigned_ass[5][7][4][4]){
 	int temp_cost = 0;
 	for(int d=0; d<block->getNUM_DAYS()-2; d++){ //Only weekdays
 		for(int s=0; s<block->getNUM_SHIFTS(); s++){
-			int w = (newWeekend_week+block->getWday_block_number()+1) % 5; //The week in consideration. WORKS FOR WEEKEND?
+			if(type == "weekrest" || type == "weekday"){int w = (newWeekend_week+block->getWday_block_number()+1) % 5;} //The week in consideration
+			else if(type == "weekend"){int w = newWeekend_week;}
 			if(block->getTask(d,s,1) == 1){ //get all "Block" tasks (j = 1 here)
 				cout << "here i am d = " << d << " s = " << s << endl;
 				//if type == "weekend"
 				cout << "diff_in_demand = " << diff_in_demand[w][d][s][0]-1 << endl;
 				if(diff_in_demand[w][d][s][0]-1 > 0){ //Add negative cost when positive demand_differ (too few workers assigned)
 					if(s == 0){ //certain demand first shift
-						temp_cost += calc_temp_cost(2,w,d,s,assigned_libs,assigned_ass);
+						if(type == "weekrest" || type == "weekday"){temp_cost += calc_temp_cost(2,w,d,s,assigned_libs,assigned_ass);}
+						else if(type == "weekend"){temp_cost += calc_temp_cost(2,w,d,s,assigned_libs,assigned_ass);}
 						//Costs for TOO FEW WORKERS (negative)
 						temp_cost += -DEMAND_FEW_TOT; //*(assigned_libs[w][d][s][1]+assigned_ass[w][d][s][1]+1-4);
 					}

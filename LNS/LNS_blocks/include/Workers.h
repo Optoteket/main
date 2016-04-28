@@ -150,7 +150,7 @@ public:
 	int get_tot_cost() const; //Calculates the cost of inserting a week block to the current solution
 	void calculate_week_cost(Block*, string, int[5][7][4][5], int[5][7][4][4], int[5][7][4][4], int[5]);
 	int calculate_PL_cost(Block*);
-	int calculate_demand_cost(Block*, int[5][7][4][5], int[5][7][4][4], int[5][7][4][4]);
+	int calculate_demand_cost(Block*, string, int[5][7][4][5], int[5][7][4][4], int[5][7][4][4]);
 	int calculate_stand_in_cost(Block*, string);
 	int calc_temp_cost(int,int,int,int, int[5][7][4][4], int[5][7][4][4]);
 	int calculate_num_wends_cost(Block*);
