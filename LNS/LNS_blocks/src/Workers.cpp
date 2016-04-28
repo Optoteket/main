@@ -48,6 +48,9 @@ void Worker::init(){
 	weekday_cost_vector = vector<Weekday_cost>();
 	weekend_cost_vector = vector<Weekend_cost>();
 	weekrest_cost_vector = vector<Weekrest_cost>();
+	for (int i=0; i<3; i++){
+		block_types_added[i] = 0; //initially no blocks added to person, [0 0 0]. [1 0 0] means Wends added
+	}
 }
 
 //Copy Constructor
@@ -181,6 +184,10 @@ vector<Worker::Weekrest_cost> Worker::getWeekrest_cost_vector() const{
 }
 vector<Worker::Weekday_cost> Worker::getWeekday_cost_vector() const{
 	return weekday_cost_vector;
+}
+
+int Worker::get_block_types_added(int block_nr) const{
+	return block_types_added[block_nr];
 }
 
 
@@ -349,7 +356,7 @@ int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[
 			else if(type == "weekend"){w = newWeekend_week;}
 			if(block->getTask(d,s,1) == 1){ //get all "Block" tasks (j = 1 here)
 				//if type == "weekend"
-				cout << "diff_in_demand = " << diff_in_demand[w][d][s][0]-1 << endl;
+				//cout << "diff_in_demand = " << diff_in_demand[w][d][s][0]-1 << endl;
 				if(diff_in_demand[w][d][s][0]-1 > 0){ //Add negative cost when positive demand_differ (too few workers assigned)
 					if(s == 0){ //certain demand first shift
 						if(type == "weekrest" || type == "weekday"){temp_cost += calc_temp_cost(2,2,w,d,s,assigned_libs,assigned_ass);}

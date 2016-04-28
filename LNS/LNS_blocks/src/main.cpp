@@ -15,7 +15,7 @@ using namespace std;
 
 
 int main() {
-// 	int num_workers = 39;
+	int num_workers = 39;
 	Library lib;
 	lib.printDemand();
 	lib.printTask_avail();
@@ -118,26 +118,28 @@ int main() {
 	cout << "#libs assigned for given shift is: " << lib.getNum_lib_assigned(0,3,0,1) << " #ass is: " << lib.getNum_ass_assigned(0,3,0,1) << endl;
 	
 	//*** Try to print cost for a weekday block ***
-	int p = 10; //p = 8 or 9 good test subjects, 36 good for wend HB, 23 for only HB, 24 for PL and stand-ins
-	string mytype = "weekend";
-
-	lib.calculate_all_week_costs_for_worker(mytype,p);
+// 	int p = 9; //p = 8 or 9 good test subjects, 36 good for wend HB, 23 for only HB, 24 for PL and stand-ins
+// 	string mytype = "weekend";
+// 
+// 	lib.calculate_all_week_costs_for_worker(mytype,p);
+// 	//***Find the lowest cost in the vector***'
+// // 	lib.print_cost_vector(mytype,p);
+// 	lib.find_lowest_cost_in_vector(mytype,p);
+	
+	
+	
+// 	cout << "Weekrest for this worker occurs at week: " << (lib.getWorker(p).getWeekend_week()+1) % 5 << endl;
+// 	cout << "Weekend occurs at: " << lib.getWorker(p).getWeekend_week() << endl;
 // 	lib.print_weekblocks_avail_worker(p, mytype);
-	//***Find the lowest cost in the vector***'
-// 	lib.print_cost_vector(mytype,p);
-	lib.find_lowest_cost_in_vector(mytype,p);
+// 	lib.getWorker(p).getStand_in_matrix();
 	
-
-	return 0;
 	
+	//***Create initial solution!***
+	lib.create_initial_solution();
 	
 	
 	
 	
-	cout << "Weekrest for this worker occurs at week: " << (lib.getWorker(p).getWeekend_week()+1) % 5 << endl;
-	cout << "Weekend occurs at: " << lib.getWorker(p).getWeekend_week() << endl;
-	lib.print_weekblocks_avail_worker(p, "weekend");
-	lib.getWorker(p).getStand_in_matrix();
 	return 0;
 }
 

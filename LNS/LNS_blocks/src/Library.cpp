@@ -949,3 +949,54 @@ void Library::print_cost_vector(string type, int w_id){
 		}
 	}
 }
+
+
+void Library::create_initial_solution(){
+	calculate_all_week_costs_for_worker("weekend",6); //REMOVE THIS ONE LATER
+	vector<int> worker_vector;
+	for(int i=0; i<num_workers; i++){
+		worker_vector.push_back(i+1);
+	}
+	cout << "work_vect is: " << worker_vector.at(0) << endl;
+	cout << "size is: " << worker_vector.size() << endl;
+	int current_worker_index = 0;
+	int current_worker = 0;
+	int block_type_to_add = 0;
+	int block_index_to_add = 0;
+// 	while(worker_vector.size() != 0){
+		current_worker_index = rand() % worker_vector.size(); //A number between 0-[size()-1]
+		cout << "current_worker_index is: " << current_worker_index << endl;
+		current_worker = worker_vector.at(current_worker_index);
+		cout << "Current worker at that index is: " << current_worker << endl;
+		block_type_to_add = rand() % 3; //A number between 0-2
+		cout << "block_type_to_add is: " << block_type_to_add << endl;
+		cout << "shall it be added? 0 = yes, 1 = no: " << myworkers[current_worker-1].get_block_types_added(block_type_to_add) << endl;
+		while(myworkers[current_worker-1].get_block_types_added(block_type_to_add) == 1){ //Find a block-type to add
+			cout << "inside the while!" << endl;
+			block_type_to_add = rand() % 3; //Note: only workers that still need blocks added are still in vector.
+		}
+		
+		if(block_type_to_add == 0){ //Add for "weekend"
+			//Calculate the best one
+			//calculate_all_week_costs_for_worker("weekend",current_worker); //ADD THIS ONE
+			find_lowest_cost_in_vector("weekend",current_worker);
+			cout << "lowest cost found is: " << lowest_cost << endl;
+			//pick a random ID if multiple index give same cost
+			block_index_to_add = lowest_cost_IDs.at(rand() % lowest_cost_IDs.size());
+			cout << "block index to add is: " << block_index_to_add << endl;
+			return;
+			//Add the best one
+			myworkers[current_worker-1].add_block_to_worker("weekend",block_index_to_add);
+			//check this assignment! It takes block number, not index in the vector. Need to loop through the weekend_blocks_avail vector in search of that block.
+			//Tag that this has been assigned by new fcn myworkers[current_worker-1].set_block_types_added(block_type_to_add, 1);
+		}/*else if(block_type_to_add == 1){
+			myworkers[current_worker-1].add_block_to_worker(
+		}else if(block_type_to_add == 2){ //Do this one three times for all weekdays!
+			myworkers[current_worker-1].add_block_to_worker(
+		}*/
+		
+// 	}
+}
+
+// lib.getWorker(m).add_block_to_worker("weekrest", rand() % num_wrest);
+// lib.getWorker(m).add_block_to_worker("weekday", rand() % num_wday,1);

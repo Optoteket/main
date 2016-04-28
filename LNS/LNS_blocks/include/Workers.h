@@ -78,6 +78,8 @@ private:
 	vector<Weekend_cost> weekend_cost_vector;
 	vector<Weekrest_cost> weekrest_cost_vector;
 	
+	int block_types_added[3]; //An array with ones and zeros stating if added. Eg [1 0 1] means Wend added, wrest not added, wdays added
+	
 public:
 	//Default Constructor
 	Worker();
@@ -120,6 +122,8 @@ public:
 	vector<Block*> getweekday_vect() const;
 	vector<Block*> getweekrest_vect() const;
 	vector<Block*> getblocks_assigned() const;
+	int get_block_types_added(int) const;
+	
 	
 	//Mutator functions
 	void setID(int);

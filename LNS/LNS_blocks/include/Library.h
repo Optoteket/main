@@ -92,6 +92,7 @@ public:
 	void find_lowest_cost_in_vector(string, int);
 	void print_cost_vector(string, int);
 
+	void create_initial_solution();
 
 
 
