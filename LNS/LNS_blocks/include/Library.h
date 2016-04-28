@@ -30,7 +30,7 @@ private:
 	int num_lib_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; //Tasks: Block, PL, HB, BokB
 	int num_ass_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; //initialize as 0 and add to constructor
 
-// 	bool HB_assigned[NUM_WEEKS];
+ 	int HB_assigned[NUM_WEEKS]; //1 if assigned week w, 0 else
 
 public:
 	//Default Constructor
@@ -82,6 +82,8 @@ public:
 	void calculate_demand_differ();
 	void print_demand_differ();
 	void calculate_all_week_costs_for_worker(string, int); //"weekrest" or "weekday" and worker_id as arguments
+	
+	void calculate_HB_assigned();
 
 
 
