@@ -29,8 +29,7 @@ Worker::Worker(){
     current.num_PL_week[w] = 0;
   }
   current.num_PL = 0;
-  
- 
+
 
   // Init all costs  
   costs.weights[0] = 0; //Num_tasks_day weight
@@ -174,18 +173,7 @@ Worker::Worker(string pos, int ID, string name, string department, string weeken
       current.num_tasks_day[i][j] = no_task;
     }
   } 
-
 }
-
-
-// void Worker::print_modulo(){
-//   for (int h=0; h<NUM_ROTATIONS; h++){
-//     for (int i=0; i< NUM_WEEKS; i++){
-//       cout << ((NUM_WEEKS + i-h) % NUM_WEEKS) +1;
-//     }
-//     cout << endl;
-//   }
-// }
 
 
 /************ Worker copy constructor ***********/
@@ -439,36 +427,31 @@ void Worker::set_cost_sum(){
   }
 }
 
- void Worker::set_current_weekend(int wend){
-  if (identity.weekend.find("no_weekend",0,10) == 0){
-    cerr << "Error: cannot change weekend of non-weekend worker." << endl;
-  }
-  //If weekend is removed, set avail with no weekend rest
-  else if (wend == 0){
-    current.weekend = wend;
-  }
-  //If weekend is added, set avail with current rotation
-  else {
-    current.weekend = wend;
-    current.rotation = wend;
+//  void Worker::set_current_weekend(int wend){
+//   if (identity.weekend.find("no_weekend",0,10) == 0){
+//     cerr << "Error: cannot change weekend of non-weekend worker." << endl;
+//   }
+//   //If weekend is removed, set avail with no weekend rest
+//   else if (wend == 0){
+//     current.weekend = wend;
+//   }
+//   //If weekend is added, set avail with current rotation
+//   else {
+//     current.weekend = wend;
+//     current.rotation = wend;
 
-    set_weekend_task(no_task);
+//     set_weekend_task(no_task);
 
-    //TODO: take tasks into consideration
-    reset_current_avail();
-    reset_current_avail_day();
-  }
-}
+//     //TODO: take tasks into consideration
+//     reset_current_avail();
+//     reset_current_avail_day();
+//   }
+// }
 
 void Worker::set_current_weekend(int wend, int task){
   if (identity.weekend.find("no_weekend",0,10) == 0){
     cerr << "Error: cannot change weekend of non-weekend worker." << endl;
   }
-  //If weekend is removed, set avail with no weekend rest
-  else if (wend == 0){
-    cerr << "Error: in set_current_weekend use remove_weekend_task() instead" << endl;
-  }
-  //If weekend is added, set avail with current rotation
   else {
     //Set weekend and rotation variables
     current.weekend = wend;
@@ -476,10 +459,6 @@ void Worker::set_current_weekend(int wend, int task){
 
     //Set weekend task
     set_weekend_task(task);
-
-    //Reset avail varaibles
-    reset_current_avail();
-    reset_current_avail_day();
   }
 }
 
@@ -490,8 +469,6 @@ void Worker::set_rotation(int rot){
 }
 
 void Worker::set_task(int w,int d,int s,int task){
-  //if(get_current_task(w,d,s) != task){
-
     //Adjust number of tasks that day
     if(task != no_task && get_current_task(w,d,s) == no_task){
       current.num_tasks_day[w][d]++;
@@ -521,6 +498,31 @@ void Worker::set_task(int w,int d,int s,int task){
     //	    << " shift: " << s << ". Worker " << get_ID() << " already at task." << endl;
 }
 
+void Worker::remove_task(int w, int d, int s){
+  //Get task to be removed
+  int task = current.tasks[w][d][s];
+
+  //Adjust num tasks that day
+  current.num_tasks_day[w][d]--;
+
+  //Adjust number of PL that week
+  if(task == PL){
+    current.num_PL_week[w]--;
+    current.num_PL--;
+  }
+
+  //Set as available
+  set_current_avail_day(w,d,no_task);
+  set_current_avail(w,d,s,no_task);
+
+  //Remove task
+  current.tasks[w][d][s] = no_task;
+
+  //Set task costs
+  set_total_cost(w,d,s);
+  set_cost_sum();
+}
+
 
 
 void Worker::set_current_avail(int w, int d, int s, int added_task){
@@ -533,13 +535,13 @@ void Worker::set_current_avail(int w, int d, int s, int added_task){
 }
 
 void Worker::reset_current_avail(){
-  int count=0;
   for (int i=0; i<NUM_WEEKS; i++){      
     for (int j=0; j<NUM_DAYS; j++){
       for (int k=0; k<NUM_SHIFTS; k++){
 	//If there is no task at a shift, place avail
-	//if(get_current_task(i,j,k) == no_task)
+	if(get_current_task(i,j,k) == no_task)
 	current.avail[i][j][k] = identity.avail[current.rotation-1][i][j][k];
+	else current.avail[i][j][k] = no_task;
 
 	//If there is a task but there is no availability, remove task
 	//else if (get_current_task(i,j,k) != no_task && identity.avail[current.rotation-1][i][j][k] == no_task){
@@ -608,33 +610,34 @@ void Worker::reset_current_avail_day(){
 void Worker::set_weekend_task(int task){
 
   //Saturday
-  set_task(get_current_weekend()-1, 5, 0, task);
+  set_task(current.weekend-1, sat, 0, task);
 
   //Sunday
-  set_task(get_current_weekend()-1, 6, 0, task);
+  set_task(current.weekend-1, sun, 0, task);
 
   //Friday
   if (task != HB || !no_friday_when_HB){
-    set_task(get_current_weekend()-1, 4, 3, task);
+    set_task(current.weekend-1, fri, 3, task);
   }
 
-  // if (task == no_task){
-  //   //
-  //   set_current_weekend(no_task);
-  // }
+  reset_current_avail();
+  reset_current_avail_day();
+
 }
 
 void Worker::remove_weekend(){
+  int task = current.tasks[current.weekend-1][sat][0];
 
-  //Set as available at weekend   
-  current.avail[current.weekend-1][fri][3] = identity.avail[current.rotation-1][current.weekend-1][fri][3];
-  current.avail[current.weekend-1][sat][0] = identity.avail[current.rotation-1][current.weekend-1][sat][0];
-  current.avail[current.weekend-1][sun][0] = identity.avail[current.rotation-1][current.weekend-1][sun][0];
+  //Saturday
+  remove_task(current.weekend-1, sat, 0);
 
-  //Remove weekend task
-  current.tasks[current.weekend-1][fri][3] = no_task;
-  current.tasks[current.weekend-1][sat][0] = no_task;
-  current.tasks[current.weekend-1][sun][0] = no_task;
+  //Sunday
+  remove_task(current.weekend-1, sun, 0);
+
+  //Friday
+  if (task != HB || !no_friday_when_HB){
+    remove_task(current.weekend-1, fri, 3);
+  }
 
   //Set current weekend to 0
   current.weekend = 0;

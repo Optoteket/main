@@ -45,6 +45,7 @@ class Library{
   //Avail statistics
   int num_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   int avail_demand_diff[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+  int num_avail_day_workers[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS];
 
   //int num_avail_stand_ins[POS][WEEKS][DAYS] //Available stand ins for a certain day
 
@@ -57,60 +58,54 @@ class Library{
   //Cost weights
   int weight[2];
 
-  int num_avail_day_workers[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS];
-
  public:
 
   //Constructor
-  Library(ofstream*); 
+  Library(ofstream*);
+  void create_initial_solution();
 
-  //Demand functions
-  void read_demand();
-  void set_demand(int,int,int,string,int);
-  void set_demand(int,int,int,int,int);
-  void init_weekend_tasks();
+  //Stand in avail
+  void find_sum_stand_ins();
+  int find_min_stand_ins(int);
+
+  //Weekend related
+  void find_all_weekend_tasks(); 
+  void set_all_weekend_tasks();
+  void destroy_weekend(int);
+  void destroy_a_weekend(Worker*);
+  void repair_weekend();
+  //void weekend_update_avail_demand(int, int, int); //Not working properly, not possible to keep updated
+
+  //Weekday related
+  void find_tasks(int);
   void set_tasks();
 
-  //void dec_current_weekend_demand(int, int);
+  //Init related
+  void create_workers();
+  void create_a_worker(vector<string>&);
+  void find_weekend_workers();
+  void read_demand();
+
+  //Output related
+  void write_results();
+
+  //Demand related
+  void find_num_avail_workers();
+  void find_avail_demand_diff();
+  bool compare_avail_demand();
+
+  //Get
   int get_demand(int, int, int, int);
   int get_current_demand(int, int, int, int);
 
-  //Create worker functions
-  void create_workers();
-  void create_a_worker(vector<string>&);
-
-  //Avail compare functions  
-  bool compare_avail_demand();
-
-  //Find workers
-  void find_weekend_workers();
-  void find_lib_workers();
-  void find_ass_workers();
-
-  //Create initial solution
-  void set_all_weekend_tasks();
-  void find_all_weekend_tasks();
-  void shuffle_worker_weekends();
-  int check_weekend_demand();
-  void create_initial_solution();
-  //void find_avail_demand_diff(int);
-
-  //Statistical variables
-  void find_num_avail_workers();
-  void find_avail_demand_diff();
-
-  //Update
-  void weekend_update_avail_demand(int, int, int);
+  //Dec
   void dec_current_demand(int, int, int, int);
   void dec_num_avail_workers(int, int, int, int);
-  void update_avail_demand_diff(int, int, int, int);
 
-  //Costs
-  void find_tasks(int);
-  void update_task_costs();
-  void find_sum_stand_ins();
-  int find_min_stand_ins(int);
-  //bool cost_compare(const Task&, const Task&);
+  //Set
+  void set_demand(int,int,int,string,int);
+  void set_demand(int,int,int,int,int);
+  void init_weekend_tasks();  
 
   //Print functions
   void print_demand();
@@ -121,18 +116,6 @@ class Library{
   void print_avail_demand_diff();
   void print_current_demand();
   void print_task_costs();
-
-  //Destroy functions
-  void destroy_weekend(int);
-  void destroy_a_weekend(Worker*);
-
-  //Repair functions
-  void repair_weekend();
-
-  //Write functions
-  void write_results();
-
-  //int myrandom(int);
 
 };
 
