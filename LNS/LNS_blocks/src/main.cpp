@@ -127,7 +127,7 @@ int main() {
 	cout << "#libs assigned for given shift is: " << lib.getNum_lib_assigned(0,3,0,1) << " #ass is: " << lib.getNum_ass_assigned(0,3,0,1) << endl;
 	
 	//*** Try to print cost for a weekday block ***
-	int p = 23; //p = 8 or 9 good test subjects
+	int p = 36; //p = 8 or 9 good test subjects, 36 good for wend HB, 23 for only HB
 	//WEEKREST
 // 	lib.calculate_all_week_costs_for_worker("weekrest",p);
 // // 	lib.print_weekblocks_avail_worker(p, "weekrest");
@@ -153,6 +153,7 @@ int main() {
 // 		cout << lib.getWorker(p).getWeekday_cost_vector().at(n).wday_cost << endl;
 // 	}
 	cout << "Weekrest for this worker occurs at week: " << (lib.getWorker(p).getWeekend_week()+1) % 5 << endl;
+	cout << "Weekend occurs at: " << lib.getWorker(p).getWeekend_week() << endl;
 	lib.print_weekblocks_avail_worker(p, "weekend");
 	lib.getWorker(p).getStand_in_matrix();
 	return 0;
