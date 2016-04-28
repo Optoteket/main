@@ -13,7 +13,6 @@
 Library::Library() {
 	num_blocks = 0;
 	num_workers = 39;
-	//HB_assigned = false;
 	for (int w=0; w<NUM_WEEKS; w++){
 		for (int d=0; d<NUM_DAYS; d++){
 			for (int s=0; s<NUM_SHIFTS; s++){
@@ -47,6 +46,8 @@ Library::Library() {
 	for (int w=0; w<NUM_WEEKS; w++){
 		HB_assigned[w] = 0;
 	}
+	lowest_cost_IDs = vector<int>();
+	lowest_cost = 0;
 	setTask_avail();
 	//printTask_avail();
 
@@ -884,7 +885,67 @@ void Library::calculate_all_week_costs_for_worker(string type, int w_id){
 	
 	else{cerr << "\n\nWrong 'type' as argument in calculate_all_week_costs_for_worker\n\n" << endl; return;}
 }
-
-
-
-
+void Library::find_lowest_cost_in_vector(string type, int w_id){
+	if(type == "weekend"){
+		for(unsigned int n=0; n<myworkers[w_id-1].getWeekend_cost_vector().size(); n++){
+			//Check if lower
+			if(myworkers[w_id-1].getWeekend_cost_vector().at(n).wend_cost < lowest_cost){
+				lowest_cost = myworkers[w_id-1].getWeekend_cost_vector().at(n).wend_cost;
+				lowest_cost_IDs.clear();
+				lowest_cost_IDs.push_back(myworkers[w_id-1].getWeekend_cost_vector().at(n).block->getID());
+			//Check if equal (then add to vector or equals)
+			}else if(myworkers[w_id-1].getWeekend_cost_vector().at(n).wend_cost == lowest_cost){
+				lowest_cost_IDs.push_back(myworkers[w_id-1].getWeekend_cost_vector().at(n).block->getID());
+			}
+		}
+	}else if(type == "weekday"){
+		for(unsigned int n=0; n<myworkers[w_id-1].getWeekday_cost_vector().size(); n++){
+			//Check if lower
+			if(myworkers[w_id-1].getWeekday_cost_vector().at(n).wday_cost < lowest_cost){
+				lowest_cost = myworkers[w_id-1].getWeekday_cost_vector().at(n).wday_cost;
+				lowest_cost_IDs.clear();
+				lowest_cost_IDs.push_back(myworkers[w_id-1].getWeekday_cost_vector().at(n).block->getID());
+			//Check if equal (then add to vector or equals)
+			}else if(myworkers[w_id-1].getWeekday_cost_vector().at(n).wday_cost == lowest_cost){
+				lowest_cost_IDs.push_back(myworkers[w_id-1].getWeekday_cost_vector().at(n).block->getID());
+			}
+		}
+	}else if(type == "weekrest"){
+		for(unsigned int n=0; n<myworkers[w_id-1].getWeekrest_cost_vector().size(); n++){
+			//Check if lower
+			if(myworkers[w_id-1].getWeekrest_cost_vector().at(n).wrest_cost < lowest_cost){
+				lowest_cost = myworkers[w_id-1].getWeekrest_cost_vector().at(n).wrest_cost;
+				lowest_cost_IDs.clear();
+				lowest_cost_IDs.push_back(myworkers[w_id-1].getWeekrest_cost_vector().at(n).block->getID());
+			//Check if equal (then add to vector or equals)
+			}else if(myworkers[w_id-1].getWeekrest_cost_vector().at(n).wrest_cost == lowest_cost){
+				lowest_cost_IDs.push_back(myworkers[w_id-1].getWeekrest_cost_vector().at(n).block->getID());
+			}
+		}
+	}
+	cout << "The lowest cost found is: " << lowest_cost << endl;
+	cout << "It occured for block ID(s): ";
+	for(unsigned int j=0; j<lowest_cost_IDs.size(); j++){
+		cout << lowest_cost_IDs.at(j) << " ";
+	}
+	cout << endl;
+}
+void Library::print_cost_vector(string type, int w_id){
+	cout << "The costs for worker " << w_id << " is: " << endl;
+	if(type == "weekend"){
+		for(unsigned int n=0; n<myworkers[w_id-1].getWeekend_cost_vector().size(); n++){
+			//Print each value to terminal
+			cout << myworkers[w_id-1].getWeekend_cost_vector().at(n).wend_cost << endl;
+		}
+	}else if(type == "weekday"){
+		for(unsigned int n=0; n<myworkers[w_id-1].getWeekday_cost_vector().size(); n++){
+			//Print each value to terminal
+			cout << myworkers[w_id-1].getWeekday_cost_vector().at(n).wday_cost << endl;
+		}
+	}else if(type == "weekrest"){
+		for(unsigned int n=0; n<myworkers[w_id-1].getWeekrest_cost_vector().size(); n++){
+			//Print each value to terminal
+			cout << myworkers[w_id-1].getWeekrest_cost_vector().at(n).wrest_cost << endl;
+		}
+	}
+}

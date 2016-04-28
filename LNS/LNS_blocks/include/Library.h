@@ -31,6 +31,10 @@ private:
 	int num_ass_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; //initialize as 0 and add to constructor
 
  	int HB_assigned[NUM_WEEKS]; //1 if assigned week w, 0 else
+ 	
+ 	//Find lowest block cost in vector
+	vector<int> lowest_cost_IDs;
+	int lowest_cost;
 
 public:
 	//Default Constructor
@@ -84,6 +88,9 @@ public:
 	void calculate_all_week_costs_for_worker(string, int); //"weekrest" or "weekday" and worker_id as arguments
 	
 	void calculate_HB_assigned();
+	
+	void find_lowest_cost_in_vector(string, int);
+	void print_cost_vector(string, int);
 
 
 

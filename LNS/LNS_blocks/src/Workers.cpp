@@ -425,12 +425,17 @@ int Worker::calculate_stand_in_cost(Block* block, string type){
 	for(int d=0; d<block->getNUM_DAYS()-2; d++){
 		if(type == "weekday"){
 			//Assign cost if 'ruining' a stand-in
-			if(block->not_assigned(d) == 0 && stand_in_avail[2][d] == 1){ //week == 2 means weekday week
+			if(block->not_assigned(d) == 0 && stand_in_avail[1+block->getWday_block_number()][d] == 1){ //week == 2,3 and 4 means weekday week
 				temp_cost += STAND_IN_COST;
 			}
 		} else if(type == "weekrest"){
 			//Assign cost if 'ruining' a stand-in
 			if(block->not_assigned(d) == 0 && stand_in_avail[1][d] == 1){ //week == 1 means weekrest week
+				temp_cost += STAND_IN_COST;
+			}
+		} else if(type == "weekend"){
+			//Assign cost if 'ruining' a stand-in
+			if(block->not_assigned(d) == 0 && stand_in_avail[0][d] == 1){ //week == 0 means weekend week
 				temp_cost += STAND_IN_COST;
 			}
 		}
@@ -443,7 +448,7 @@ int Worker::calculate_num_wends_cost(Block* block){ //Add a cost to first block 
 	int temp_cost = 0;
 	int count = 0;
 	if(newWeekend.compare(0,7,"weekend") == 0){
-		for(int d=5; d<6; d++){
+		for(int d=5; d<7; d++){
 			if(block->getTask(d,0,0) == 1){count++;} //Count if empty task
 		}
 		if(count == 2){temp_cost = NO_WEEKEND_COST;}
