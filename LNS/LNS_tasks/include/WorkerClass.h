@@ -102,7 +102,7 @@ class Worker{
   void remove_weekrest_tasks();
 
   //Get functions
-  bool get_HB_type();
+  int get_HB_type();
   int get_PL_type();
   int get_cost(int,int);
   int get_avail(int, int, int);
