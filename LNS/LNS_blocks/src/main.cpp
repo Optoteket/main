@@ -10,7 +10,9 @@
 #include "Blocks.h"
 #include "Library.h"
 using namespace std;
-//Felkällor: input_vector{}, copy constructor
+
+
+
 
 int main() {
 // 	int num_workers = 39;
@@ -50,10 +52,6 @@ int main() {
 	
 	//***Assign rotation to the workers***
 	lib.assign_rot_to_workers();
-// 	for(int i=0; i<4; i++){
-// 		lib.get_block_vector().at(i).getTask_matrix();
-// 		cout << "num tasks for block nr " << i << " is: " << lib.get_block_vector().at(i).getnum_tasks() << endl;
-// 	}
 	//***Print weekend, weekday and weekrest vect for all 39 workers***
 // 	vector<Block> test_output;
 // 	//cout << lib.getWorker(1).getName() << endl;
@@ -67,13 +65,6 @@ int main() {
 // 		cout << endl;
 // 	}
 	
-	//***Get number of blocks***
-// 	int num = 0;
-// // 	string type = " ";
-// 	for (unsigned int i=0; i<lib.get_block_vector().size(); i++){
-// 		num = lib.get_block_vector().at(i).getnum_Blocks();
-// 		cout << "#Blocks: " << num << endl;
-// 	}
 	
 	//***Set stand_in_avail***
 	for(int i=1; i<=39; i++){
@@ -127,31 +118,22 @@ int main() {
 	cout << "#libs assigned for given shift is: " << lib.getNum_lib_assigned(0,3,0,1) << " #ass is: " << lib.getNum_ass_assigned(0,3,0,1) << endl;
 	
 	//*** Try to print cost for a weekday block ***
-	int p = 36; //p = 8 or 9 good test subjects, 36 good for wend HB, 23 for only HB
-	//WEEKREST
-// 	lib.calculate_all_week_costs_for_worker("weekrest",p);
-// // 	lib.print_weekblocks_avail_worker(p, "weekrest");
-// 	cout << "The costs for worker " << p << " is: " << endl;
-// 	unsigned int num = lib.getWorker(p).getWeekrest_cost_vector().size();
-// 	for(unsigned int n=0; n<num; n++){
-// 		cout << lib.getWorker(p).getWeekrest_cost_vector().at(n).wrest_cost << endl;
-// 	}
-	//WEEKEND
-	lib.calculate_all_week_costs_for_worker("weekend",p);
-// 	lib.print_weekblocks_avail_worker(p, "weekend");
-	cout << "The costs for worker " << p << " is: " << endl;
-	unsigned int num = lib.getWorker(p).getWeekend_cost_vector().size();
-	for(unsigned int n=0; n<num; n++){
-		cout << lib.getWorker(p).getWeekend_cost_vector().at(n).wend_cost << endl;
-	}
+	int p = 10; //p = 8 or 9 good test subjects, 36 good for wend HB, 23 for only HB, 24 for PL and stand-ins
+	string mytype = "weekend";
+
+	lib.calculate_all_week_costs_for_worker(mytype,p);
+// 	lib.print_weekblocks_avail_worker(p, mytype);
+	//***Find the lowest cost in the vector***'
+// 	lib.print_cost_vector(mytype,p);
+	lib.find_lowest_cost_in_vector(mytype,p);
 	
-	//WEEKDAY
-// 	lib.calculate_all_week_costs_for_worker("weekday",p);
-// 	cout << "The costs for worker " << p << " is: " << endl;
-// 	unsigned int num = lib.getWorker(p).getWeekday_cost_vector().size();
-// 	for(unsigned int n=0; n<num; n++){
-// 		cout << lib.getWorker(p).getWeekday_cost_vector().at(n).wday_cost << endl;
-// 	}
+
+	return 0;
+	
+	
+	
+	
+	
 	cout << "Weekrest for this worker occurs at week: " << (lib.getWorker(p).getWeekend_week()+1) % 5 << endl;
 	cout << "Weekend occurs at: " << lib.getWorker(p).getWeekend_week() << endl;
 	lib.print_weekblocks_avail_worker(p, "weekend");
