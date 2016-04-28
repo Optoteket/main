@@ -14,7 +14,7 @@ Library::Library() {
 	num_blocks = 0;
 	num_workers = 39;
 	//HB_assigned = false;
-	for (int w=0; w< NUM_WEEKS; w++){
+	for (int w=0; w<NUM_WEEKS; w++){
 		for (int d=0; d<NUM_DAYS; d++){
 			for (int s=0; s<NUM_SHIFTS; s++){
 				for (int j=0; j<NUM_TASKS; j++){
@@ -34,7 +34,7 @@ Library::Library() {
 			}
 		}
 	}
-	for (int w=0; w< NUM_WEEKS; w++){
+	for (int w=0; w<NUM_WEEKS; w++){
 		for (int d=0; d<NUM_DAYS; d++){
 			for (int s=0; s<NUM_SHIFTS; s++){
 				for (int j=0; j<NUM_TASKS; j++){
@@ -43,6 +43,9 @@ Library::Library() {
 				}
 			}
 		}
+	}
+	for (int w=0; w<NUM_WEEKS; w++){
+		HB_assigned[w] = 0;
 	}
 	setTask_avail();
 	//printTask_avail();
@@ -774,6 +777,15 @@ void Library::assign_rot_to_workers(){
 	return;
 }
 
+void Library::calculate_HB_assigned(){
+//assign the variable HB_assigned[NUM_WEEKS] if tasks_filled for weekend is greater than 0.
+	for(int w=0; w<NUM_WEEKS; w++){
+		if(tasks_filled[w][5][0][2] > 0 && tasks_filled[w][6][0][2] > 0){
+			HB_assigned[w] = 1;
+		}
+	}
+}
+
 void Library::calculate_tasks_filled(){
 //Calculate which tasks has been assigned to workers for specific weeks
 //Also calculating #libs and #ass per shift that is assigned
@@ -858,13 +870,19 @@ void Library::print_demand_differ(){
 void Library::calculate_all_week_costs_for_worker(string type, int w_id){
 	if(type == "weekrest"){
 		for(unsigned int n=0; n<myworkers[w_id-1].getweekrest_vect().size(); n++){
-			myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekrest_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned);
+			myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekrest_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned);
 		}
 	} else if(type == "weekday"){
 		for(unsigned int n=0; n<myworkers[w_id-1].getweekday_vect().size(); n++){
-			myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekday_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned);
+			myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekday_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned);
 		}
-	} else{cerr << "\n\nWrong 'type' as argument in calculate_all_week_costs_for_worker\n\n" << endl; return;}
+	} else if(type == "weekend"){
+		for(unsigned int n=0; n<myworkers[w_id-1].getweekend_vect().size(); n++){
+			myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekend_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned);
+		}
+	}
+	
+	else{cerr << "\n\nWrong 'type' as argument in calculate_all_week_costs_for_worker\n\n" << endl; return;}
 }
 
 

@@ -5,6 +5,7 @@
 #include <stdlib.h> //Might be needed for exit(1) on some compilers!
 #include <sstream>
 #include <iomanip>
+#include <cstdlib> //rand() function
 #include "Workers.h"
 #include "Blocks.h"
 #include "Library.h"
@@ -96,12 +97,16 @@ int main() {
 	cout << "worker number " << k << " has " << lib.getWorker(k).getweekday_vect().size() << " weekday blocks avail" << endl;
 // 	
 // 	int wend_week = lib.getWorker(k).getWeekend_week();
-	for(int m=1; m<=21; m++){
-		lib.getWorker(m).add_block_to_worker("weekend", 1); //[type, weekblock in vector, weekday to add] (only for "weekday")
-		lib.getWorker(m).add_block_to_worker("weekrest", 5);
-		lib.getWorker(m).add_block_to_worker("weekday", 6,1);
-		lib.getWorker(m).add_block_to_worker("weekday", 7,2);
-		lib.getWorker(m).add_block_to_worker("weekday", 6,3);
+	for(int m=1; m<=39; m++){
+		unsigned int num_wend = lib.getWorker(m).getweekend_vect().size();
+		unsigned int num_wrest = lib.getWorker(m).getweekrest_vect().size();
+		unsigned int num_wday = lib.getWorker(m).getweekday_vect().size();
+		
+		lib.getWorker(m).add_block_to_worker("weekend", rand() % num_wend); //[type, weekblock in vector, weekday to add] (only for "weekday")
+		lib.getWorker(m).add_block_to_worker("weekrest", rand() % num_wrest);
+		lib.getWorker(m).add_block_to_worker("weekday", rand() % num_wday,1);
+		lib.getWorker(m).add_block_to_worker("weekday", rand() % num_wday,2);
+		lib.getWorker(m).add_block_to_worker("weekday", rand() % num_wday,3);
 	}
 	
 // 	cout << "worker number " << k << " has now " << lib.getWorker(k).getblocks_assigned().size() << " blocks assigned" << endl;
@@ -110,6 +115,7 @@ int main() {
 	lib.print_weekblocks_assigned_worker(k, "weekrest"); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
 	lib.print_weekblocks_assigned_worker(k, "weekday"); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
 	lib.calculate_tasks_filled();
+	lib.calculate_HB_assigned();
 	cout << "printing tasks_filled" << endl;
 	lib.print_tasks_filled();
 // 	return 0;
@@ -121,15 +127,24 @@ int main() {
 	cout << "#libs assigned for given shift is: " << lib.getNum_lib_assigned(0,3,0,1) << " #ass is: " << lib.getNum_ass_assigned(0,3,0,1) << endl;
 	
 	//*** Try to print cost for a weekday block ***
-	int p = 8; //p = 8 or 9 good test subjects
+	int p = 23; //p = 8 or 9 good test subjects
 	//WEEKREST
-	lib.calculate_all_week_costs_for_worker("weekrest",p);
-// 	lib.print_weekblocks_avail_worker(p, "weekrest");
+// 	lib.calculate_all_week_costs_for_worker("weekrest",p);
+// // 	lib.print_weekblocks_avail_worker(p, "weekrest");
+// 	cout << "The costs for worker " << p << " is: " << endl;
+// 	unsigned int num = lib.getWorker(p).getWeekrest_cost_vector().size();
+// 	for(unsigned int n=0; n<num; n++){
+// 		cout << lib.getWorker(p).getWeekrest_cost_vector().at(n).wrest_cost << endl;
+// 	}
+	//WEEKEND
+	lib.calculate_all_week_costs_for_worker("weekend",p);
+// 	lib.print_weekblocks_avail_worker(p, "weekend");
 	cout << "The costs for worker " << p << " is: " << endl;
-	unsigned int num = lib.getWorker(p).getWeekrest_cost_vector().size();
+	unsigned int num = lib.getWorker(p).getWeekend_cost_vector().size();
 	for(unsigned int n=0; n<num; n++){
-		cout << lib.getWorker(p).getWeekrest_cost_vector().at(n).wrest_cost << endl;
+		cout << lib.getWorker(p).getWeekend_cost_vector().at(n).wend_cost << endl;
 	}
+	
 	//WEEKDAY
 // 	lib.calculate_all_week_costs_for_worker("weekday",p);
 // 	cout << "The costs for worker " << p << " is: " << endl;
@@ -138,9 +153,8 @@ int main() {
 // 		cout << lib.getWorker(p).getWeekday_cost_vector().at(n).wday_cost << endl;
 // 	}
 	cout << "Weekrest for this worker occurs at week: " << (lib.getWorker(p).getWeekend_week()+1) % 5 << endl;
-	lib.print_weekblocks_avail_worker(p, "weekrest");
+	lib.print_weekblocks_avail_worker(p, "weekend");
 	lib.getWorker(p).getStand_in_matrix();
-	
 	return 0;
 }
 
