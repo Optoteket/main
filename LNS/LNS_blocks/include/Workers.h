@@ -63,7 +63,7 @@ private:
 	
 	struct Weekend_cost{
 		int wend_cost;
-		Block* block ;
+		Block* block;
 	};
 	struct Weekrest_cost{
 		int wrest_cost;
@@ -121,8 +121,10 @@ public:
 	vector<Block*> getweekend_vect() const;
 	vector<Block*> getweekday_vect() const;
 	vector<Block*> getweekrest_vect() const;
+	vector<Block*> getblock_avail_vect(string) const;
 	vector<Block*> getblocks_assigned() const;
 	int get_block_types_added(int) const;
+	int check_all_block_types_added() const;
 	
 	
 	//Mutator functions
@@ -139,6 +141,7 @@ public:
 	void setRot(int);
 	void setWeekend_week(int);
 	void setStand_in_avail();
+	void set_block_types_added(int,int);
 	
 	void createBlocks();
 	
@@ -146,12 +149,12 @@ public:
 	void add_block_to_worker(string, int, int = 0);
 	void init_add_block_to_worker();
 // 	void add_block_to_worker(int, string type = ""); //or " "?
-	struct cost_comp{
-		bool operator()(Worker const* lhs, Worker const* rhs) const{
-			return lhs->get_tot_cost() < rhs->get_tot_cost();
-		}
-	};
-	int get_tot_cost() const; //Calculates the cost of inserting a week block to the current solution
+// 	struct cost_comp{
+// 		bool operator()(Worker const* lhs, Worker const* rhs) const{
+// 			return lhs->get_tot_cost() < rhs->get_tot_cost();
+// 		}
+// 	};
+// 	int get_tot_cost() const; //Calculates the cost of inserting a week block to the current solution
 	void calculate_week_cost(Block*, string, int[5][7][4][5], int[5][7][4][4], int[5][7][4][4], int[5]);
 	int calculate_PL_cost(Block*);
 	int calculate_demand_cost(Block*, string, int[5][7][4][5], int[5][7][4][4], int[5][7][4][4]);
@@ -161,7 +164,7 @@ public:
 	int calculate_HB_assign_cost(Block*, int[5]);
 	
 
-	vector<Weekend_cost> getWeekend_cost_vector();
+	vector<Weekend_cost> getWeekend_cost_vector() const;
 	vector<Weekrest_cost> getWeekrest_cost_vector() const;
 	vector<Weekday_cost> getWeekday_cost_vector() const;
 	

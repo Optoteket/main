@@ -93,6 +93,7 @@ public:
 	void print_cost_vector(string, int);
 
 	void create_initial_solution();
+	void add_best_blocks_to_initial_solution(string, int, int, int = 0); //Type, current_worker, block_type_to_add, count (optiona)
 
 
 

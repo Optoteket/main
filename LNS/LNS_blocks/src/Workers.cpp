@@ -167,6 +167,14 @@ vector<Block*> Worker::getweekday_vect() const{
 vector<Block*> Worker::getweekrest_vect() const{
 	return weekrest_blocks_avail;
 }
+vector<Block*> Worker::getblock_avail_vect(string type) const{
+	vector<Block*> empty_vect;
+	if(type == "weekend"){return weekend_blocks_avail;}
+	else if(type == "weekrest"){return weekrest_blocks_avail;}
+	else if(type == "weekday"){return weekday_blocks_avail;}
+	else{cerr << "Wrong inargument in getblock_avail_vect" << endl; return empty_vect;}
+}
+
 vector<Block*> Worker::getblocks_assigned() const{
 	return blocks_assigned;
 }
@@ -176,7 +184,7 @@ int Worker::getRot() const{
 int Worker::getWeekend_week() const{
 	return newWeekend_week;
 }
-vector<Worker::Weekend_cost> Worker::getWeekend_cost_vector(){
+vector<Worker::Weekend_cost> Worker::getWeekend_cost_vector() const{
 	return weekend_cost_vector;
 }
 vector<Worker::Weekrest_cost> Worker::getWeekrest_cost_vector() const{
@@ -188,6 +196,16 @@ vector<Worker::Weekday_cost> Worker::getWeekday_cost_vector() const{
 
 int Worker::get_block_types_added(int block_nr) const{
 	return block_types_added[block_nr];
+}
+int Worker::check_all_block_types_added() const{
+	int count = 0;
+	for(int n=0; n<3; n++){
+		if(block_types_added[n] == 1){
+			count++;
+		}
+	}
+	if(count == 3){return 1;}
+	else{return 0;}
 }
 
 
@@ -229,6 +247,10 @@ void Worker::setRot(int rot){
 
 void Worker::setWeekend_week(int weekend){
 	newWeekend_week = weekend;
+}
+
+void Worker::set_block_types_added(int block_type_to_add, int value){
+	block_types_added[block_type_to_add] = value;
 }
 
 void Worker::setStand_in_avail(){
@@ -312,7 +334,6 @@ void Worker::calculate_week_cost(Block* blockobj, string type, int diff_in_deman
 		weekrest_block.wrest_cost = total_cost;
 		weekrest_block.block = blockobj;
 		weekrest_cost_vector.push_back(weekrest_block);
-		cout << "size is now: " << weekrest_cost_vector.size() << endl;
 	} else if(type == "weekday"){
 		total_cost = PL_cost + demand_cost + stand_in_cost;
 		cout << "Total_cost: " << total_cost << endl;
@@ -320,7 +341,6 @@ void Worker::calculate_week_cost(Block* blockobj, string type, int diff_in_deman
 		weekday_block.wday_cost = total_cost;
 		weekday_block.block = blockobj;
 		weekday_cost_vector.push_back(weekday_block);
-		cout << "size is now: " << weekday_cost_vector.size() << endl;
 	} else if(type == "weekend"){
 		total_cost = PL_cost + demand_cost + stand_in_cost + num_wends_five_weeks_cost + HB_assigned_cost;
 		cout << "Total_cost: " << total_cost << endl;
@@ -328,7 +348,6 @@ void Worker::calculate_week_cost(Block* blockobj, string type, int diff_in_deman
 		weekend_block.wend_cost = total_cost;
 		weekend_block.block = blockobj;
 		weekend_cost_vector.push_back(weekend_block);
-		cout << "size is now: " << weekend_cost_vector.size() << endl;
 	}
 	else{cerr << "\n\nWrong 'type' as argument in calculate_week_cost. Either 'weekday' or 'weekrest' availabile \n\n" << endl;return;} 
 }
@@ -464,7 +483,7 @@ int Worker::calculate_num_wends_cost(Block* block){ //Add a cost to first block 
 	return temp_cost;
 }
 
-int Worker::calculate_HB_assign_cost(Block* block, int HB_assigned[5]){ //add cost if avail for HB and is weekend worker for blocks with HB.
+int Worker::calculate_HB_assign_cost(Block* block, int HB_assigned[5]){ //add cost if avail for HB and is weekend worker for blocks with HB. Add negative otherwise
 	int temp_cost = 0;
 	if(newQual.compare(0,3,"lib") == 0 && newWeekend.compare(0,7,"weekend") == 0 && (newHB.compare(0,11,"standard_HB") == 0 || newHB.compare(0,7,"only_HB") == 0) ){
 		if(block->getTask(5,0,3) == 1 && block->getTask(6,0,3) == 1){ //checking if HB assigned to block
@@ -472,6 +491,8 @@ int Worker::calculate_HB_assign_cost(Block* block, int HB_assigned[5]){ //add co
 			if(HB_assigned[w] == 1){
 				//Add cost if librarian, weekend worker, available for HB and HB already assigned that week.
 				temp_cost = HB_ASSIGNED_COST;
+			}else if(HB_assigned[w] == 0){
+				temp_cost = -HB_ASSIGNED_COST;
 			}
 		}
 	}
