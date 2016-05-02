@@ -301,7 +301,7 @@ void Library::set_all_weekend_tasks(){
 
 /*********** Library function: destroy weekends ******/
 void Library::destroy_weekend(int percent){
-  //Sort according to worker costs
+
   vector<Worker*> temp_list = weekend_workers;
 
   /*************************************************/
@@ -311,28 +311,39 @@ void Library::destroy_weekend(int percent){
     Task_worker a_worker;
     a_worker.worker = weekend_workers[i];
     a_worker.temp_worker = *weekend_workers[i];
-    a_worker.temp_cost = 0;
+    a_worker.temp_cost = a_worker.worker->get_cost_sum();
     task_worker_list.push_back(a_worker);
   }
   /************************************************/
 
+  //Sort according to worker costs
+  sort(task_worker_list.begin(), task_worker_list.end());
+
   //Print sorted workers
-  for(int h=0; h < (int) temp_list.size(); h++){
-    cout << temp_list[h]->get_cost_sum() << " ID: " <<temp_list[h]->get_ID() << endl;
+  // for(int h=0; h < (int) temp_list.size(); h++){
+  //   cout << temp_list[h]->get_cost_sum() << " ID: " <<temp_list[h]->get_ID() << endl;
+  // }
+  for(int h=0; h < (int) task_worker_list.size(); h++){
+    cout << task_worker_list[h].temp_cost << " ID: " << task_worker_list[h].worker->get_ID() << endl;
   }
 
+
   //Delete weekend task, multiple of 5 of the work force
-  double num_tasks = 0.01*(double)percent*(double)temp_list.size();
+  double num_tasks = 0.01*(double)percent*(double)task_worker_list.size();
   int destroy_amount = (((int)(num_tasks + (double)NUM_WEEKS/2.0)/NUM_WEEKS) *NUM_WEEKS);
   cout << "Num tasks to destroy: "<< destroy_amount << endl;
 
   //Remove weekends for workers
   for(int i = 0; i<destroy_amount; i++){
-    cout << "Destroyed worker: " << temp_list.back()->get_ID() << " Weekend: " 
-	 << temp_list.back()->get_current_weekend() << endl;;
-    destroy_a_weekend(temp_list.back());
-    temp_list.pop_back();
+    cout << "Destroyed worker: " << task_worker_list.back().worker->get_ID() << " Weekend: " 
+	 << task_worker_list.back().worker->get_current_weekend() << endl;;
+    destroy_a_weekend(task_worker_list.back());
+    task_worker_list.pop_back();
   }
+
+  // for(int i=0; i < (int)destroyed_wend_workers.size(); i++){
+  //   cout <<  " ID: " << destroyed_wend_workers[i]->get_ID() << endl;
+  // }
 
   //Find and push all free weekends
   for (int w=0; w <NUM_WEEKS; w++){
@@ -354,8 +365,10 @@ void Library::destroy_weekend(int percent){
 
 /*********** Library function: destroy a weekend ******/
 
-void Library::destroy_a_weekend(Worker* worker){
-
+void Library::destroy_a_weekend(Task_worker& t_worker){
+  Worker* worker = t_worker.worker;
+  Worker temp_worker = t_worker.temp_worker;
+  
   //If weekend task is to be removed, increase demand at library
   if(worker->has_weekend_task()){
     current_demand[worker->get_current_weekend()-1][sat][0][worker->get_weekend_task_type()]++;
@@ -364,13 +377,9 @@ void Library::destroy_a_weekend(Worker* worker){
     if(worker->get_weekend_task_type() != HB){
       current_demand[worker->get_current_weekend()-1][fri][3][worker->get_weekend_task_type()]++;
     }
-  //Remove task from worker
-  worker->remove_weekend();
-
+    //Remove task from worker
+    worker->remove_weekend();
   }
-
-  // //Remove task from worker
-  // worker->remove_weekend();
 
   //Collect destroyed worker
   destroyed_wend_workers.push_back(worker);

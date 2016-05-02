@@ -83,7 +83,7 @@ class Library{
   void find_all_weekend_tasks(); 
   void set_all_weekend_tasks();
   void destroy_weekend(int);
-  void destroy_a_weekend(Worker*);
+  void destroy_a_weekend(Task_worker&);
   void repair_weekend();
   //void weekend_update_avail_demand(int, int, int); //Not working properly, not possible to keep updated
 
