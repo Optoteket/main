@@ -93,6 +93,16 @@ Worker::Worker(const Worker& obj){
 	for(unsigned int i=0; i<obj.weekrest_blocks_avail.size(); i++){
 		weekrest_blocks_avail.push_back(obj.weekrest_blocks_avail.at(i));
 	}
+	for(unsigned int i=0; i<obj.weekend_cost_vector.size(); i++){
+		weekend_cost_vector.push_back(obj.weekend_cost_vector.at(i));
+	}
+	for(unsigned int i=0; i<obj.weekrest_cost_vector.size(); i++){
+		weekrest_cost_vector.push_back(obj.weekrest_cost_vector.at(i));
+	}
+	for(unsigned int i=0; i<obj.weekday_cost_vector.size(); i++){
+		weekday_cost_vector.push_back(obj.weekday_cost_vector.at(i));
+	}
+	
 	cout << "\n\n\n\n A copy of worker has been initialized, make sure everything is copied! \n\n\n\n\n" << endl;
 }
 
@@ -194,6 +204,8 @@ vector<Worker::Weekday_cost> Worker::getWeekday_cost_vector() const{
 	return weekday_cost_vector;
 }
 
+
+
 int Worker::get_block_types_added(int block_nr) const{
 	return block_types_added[block_nr];
 }
@@ -272,6 +284,12 @@ void Worker::getStand_in_matrix() const{
 	}
 }
 
+void Worker::clear_cost_vector(string type){
+	if(type == "weekend"){weekend_cost_vector.clear();}
+	else if(type == "weekrest"){weekrest_cost_vector.clear();}
+	else if(type == "weekday"){weekday_cost_vector.clear();}
+}
+
 
 void Worker::add_block_avail(string type, Block* block) { //type == "weekend", "weekday" or "weekrest". Function: Adds a block to block vectors
 	if(type == "weekend"){
@@ -290,19 +308,19 @@ void Worker::init_add_block_to_worker(){
 
 void Worker::add_block_to_worker(string type, int week_id, int day){
 	if(type == "weekend"){
-		blocks_assigned.at(newWeekend_week) = weekend_blocks_avail.at(week_id); //should use insert at Weekend_week instead of push_back.
+		blocks_assigned.at(newWeekend_week) = weekend_blocks_avail.at(week_id); //add wend block nr 'week_id' to the worker at its wend week
 	} else if(type == "weekrest"){
 		blocks_assigned.at((newWeekend_week+1) % 5) = weekrest_blocks_avail.at(week_id);
 	} else if(type == "weekday"){ //Need to know if weekday 1, 2 or 3 shall be inserted!
 		if(day == 1){
 			blocks_assigned.at((newWeekend_week+2) % 5) = weekday_blocks_avail.at(week_id);
-			blocks_assigned.at((newWeekend_week+2) % 5)->setWday_block_number(day);
+			blocks_assigned.at((newWeekend_week+2) % 5)->setWday_block_number(day); //What if same block multiple times here?
 		} else if(day == 2){
 			blocks_assigned.at((newWeekend_week+3) % 5) = weekday_blocks_avail.at(week_id);
-			blocks_assigned.at((newWeekend_week+3) % 5)->setWday_block_number(day);
+			blocks_assigned.at((newWeekend_week+3) % 5)->setWday_block_number(day); //What if same block multiple times here?
 		} else if(day == 3){
 			blocks_assigned.at((newWeekend_week+4) % 5) = weekday_blocks_avail.at(week_id);
-			blocks_assigned.at((newWeekend_week+4) % 5)->setWday_block_number(day);
+			blocks_assigned.at((newWeekend_week+4) % 5)->setWday_block_number(day); //What if same block multiple times here?
 		}
 	} else {cout << "No match were found in 'add_block_to_worker'" << endl;}
 	return;
@@ -329,21 +347,21 @@ void Worker::calculate_week_cost(Block* blockobj, string type, int diff_in_deman
 	HB_assigned_cost = calculate_HB_assign_cost(blockobj, HB_asgn);
 	if(type == "weekrest"){
 		total_cost = PL_cost + demand_cost + stand_in_cost;
-		cout << "Total_cost: " << total_cost << endl;
+// 		cout << "Total_cost: " << total_cost << endl;
 		Weekrest_cost weekrest_block;
 		weekrest_block.wrest_cost = total_cost;
 		weekrest_block.block = blockobj;
 		weekrest_cost_vector.push_back(weekrest_block);
 	} else if(type == "weekday"){
 		total_cost = PL_cost + demand_cost + stand_in_cost;
-		cout << "Total_cost: " << total_cost << endl;
+// 		cout << "Total_cost: " << total_cost << endl;
 		Weekday_cost weekday_block;
 		weekday_block.wday_cost = total_cost;
 		weekday_block.block = blockobj;
 		weekday_cost_vector.push_back(weekday_block);
 	} else if(type == "weekend"){
 		total_cost = PL_cost + demand_cost + stand_in_cost + num_wends_five_weeks_cost + HB_assigned_cost;
-		cout << "Total_cost: " << total_cost << endl;
+// 		cout << "Total_cost: " << total_cost << endl;
 		Weekend_cost weekend_block;
 		weekend_block.wend_cost = total_cost;
 		weekend_block.block = blockobj;
@@ -362,7 +380,7 @@ int Worker::calculate_PL_cost(Block* block){
 	}else if(newPL.compare(0,7,"many_PL") == 0 && num_PL+block->getnum_PL() < 3){ //getnum_PL <= 1, num_PL <= 4(?)
 		temp_cost += -PL_GOOD_COST*block->getnum_PL(); //Negative cost!
 	}
-	if(temp_cost != 0){cout << "in calculate_PL_cost. Temp_cost is: " << temp_cost << endl;}
+// 	if(temp_cost != 0){cout << "in calculate_PL_cost. Temp_cost is: " << temp_cost << endl;}
 	return temp_cost;
 }
 
@@ -378,28 +396,26 @@ int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[
 				//cout << "diff_in_demand = " << diff_in_demand[w][d][s][0]-1 << endl;
 				if(diff_in_demand[w][d][s][0]-1 > 0){ //Add negative cost when positive demand_differ (too few workers assigned)
 					if(s == 0){ //certain demand first shift
-						if(type == "weekrest" || type == "weekday"){temp_cost += calc_temp_cost(2,2,w,d,s,assigned_libs,assigned_ass);}
-						else if(type == "weekend"){temp_cost += calc_temp_cost(4,3,w,d,s,assigned_libs,assigned_ass);
-						cout << "inside calc_temp_cost in a weekend" << endl;}
+						if(type == "weekrest" || type == "weekday"){temp_cost += calc_temp_cost(1,1,w,d,s,assigned_libs,assigned_ass);}
+						else if(type == "weekend"){temp_cost += calc_temp_cost(1,1,w,d,s,assigned_libs,assigned_ass);}
 						//Costs for TOO FEW WORKERS (negative)
 						temp_cost += -DEMAND_FEW_TOT; //*(assigned_libs[w][d][s][1]+assigned_ass[w][d][s][1]+1-4);
 					}
 					else{ //regular demand all other shifts
-						temp_cost += calc_temp_cost(3,3,w,d,s,assigned_libs,assigned_ass);
+						temp_cost += calc_temp_cost(1,1,w,d,s,assigned_libs,assigned_ass);
 						//Costs for TOO FEW WORKERS
 						temp_cost += -DEMAND_FEW_TOT; //*(assigned_libs[w][d][s][1]+assigned_ass[w][d][s][1]+1-6);
 					}
 				}
 				else if(diff_in_demand[w][d][s][0]-1 < 0){ //Add cost when negative demand_differ (too many workers assigned)
 					if(s == 0){ //certain demand first shift
-						if(type == "weekrest" || type == "weekday"){temp_cost += calc_temp_cost(2,2,w,d,s,assigned_libs,assigned_ass);}
-						else if(type == "weekend"){temp_cost += calc_temp_cost(4,3,w,d,s,assigned_libs,assigned_ass);
-						cout << "inside calc_temp_cost in a weekend" << endl;}
+						if(type == "weekrest" || type == "weekday"){temp_cost += calc_temp_cost(1,1,w,d,s,assigned_libs,assigned_ass);}
+						else if(type == "weekend"){temp_cost += calc_temp_cost(1,1,w,d,s,assigned_libs,assigned_ass);}
 						//Costs for TOO MANY WORKERS
 						temp_cost += DEMAND_MANY_TOT; //*(assigned_libs[w][d][s][1]+assigned_ass[w][d][s][1]+1-4);
 					}
 					else{ //regular demand all other shifts
-						temp_cost += calc_temp_cost(3,3,w,d,s,assigned_libs,assigned_ass);
+						temp_cost += calc_temp_cost(1,1,w,d,s,assigned_libs,assigned_ass);
 						//Costs for TOO MANY WORKERS
 						temp_cost += DEMAND_MANY_TOT; //*(assigned_libs[w][d][s][1]+assigned_ass[w][d][s][1]+1-6);
 					}
@@ -423,24 +439,24 @@ int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[
 			
 		}
 	}
-	if(temp_cost != 0){cout << "in calculate_demand_cost. Temp_cost is: " << temp_cost << endl;}
+// 	if(temp_cost != 0){cout << "in calculate_demand_cost. Temp_cost is: " << temp_cost << endl;}
 	return temp_cost;
 }
 
 int Worker::calc_temp_cost(int demand_lib, int demand_ass, int w, int d, int s, int assigned_libs[5][7][4][4], int assigned_ass[5][7][4][4]){
 	int tmp_cst = 0;
 	//Costs for LIBRARIANS
-	if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][1]+1 < demand_lib){
+	if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][0]+1 < demand_lib){
 		tmp_cst = -DEMAND_FEW_LIBS;  //*(demand-assigned_libs[w][d][s][1]) added if steeper steps if further away from demand
 	}
-	else if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][1]+1 > demand_lib){
+	else if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][0]+1 > demand_lib){
 		tmp_cst = DEMAND_MANY_LIBS;
 	}
 	//Costs for ASSISTANTS
-	if(newQual.compare(0,3,"ass") == 0 && assigned_ass[w][d][s][1]+1 < demand_ass){
+	if(newQual.compare(0,3,"ass") == 0 && assigned_ass[w][d][s][0]+1 < demand_ass){
 		tmp_cst = -DEMAND_FEW_ASS;
 	}
-	else if(newQual.compare(0,3,"ass") == 0 && assigned_ass[w][d][s][1]+1 > demand_ass){
+	else if(newQual.compare(0,3,"ass") == 0 && assigned_ass[w][d][s][0]+1 > demand_ass){
 		tmp_cst = DEMAND_MANY_ASS;
 	}
 	return tmp_cst;
@@ -466,7 +482,7 @@ int Worker::calculate_stand_in_cost(Block* block, string type){
 			}
 		}
 	}
-	if(temp_cost != 0){cout << "in calculate_stand_in_cost. Temp_cost is: " << temp_cost << endl;}
+// 	if(temp_cost != 0){cout << "in calculate_stand_in_cost. Temp_cost is: " << temp_cost << endl;}
 	return temp_cost;
 }
 
@@ -479,7 +495,7 @@ int Worker::calculate_num_wends_cost(Block* block){ //Add a cost to first block 
 		}
 		if(count == 2){temp_cost = NO_WEEKEND_COST;}
 	}
-	if(temp_cost != 0){cout << "in calculate_num_wends_cost. Temp_cost is: " << temp_cost << endl;}
+// 	if(temp_cost != 0){cout << "in calculate_num_wends_cost. Temp_cost is: " << temp_cost << endl;}
 	return temp_cost;
 }
 
@@ -496,7 +512,7 @@ int Worker::calculate_HB_assign_cost(Block* block, int HB_assigned[5]){ //add co
 			}
 		}
 	}
-	if(temp_cost != 0){cout << "in calculate_HB_assign_cost. Temp_cost is: " << temp_cost << endl;}
+// 	if(temp_cost != 0){cout << "in calculate_HB_assign_cost. Temp_cost is: " << temp_cost << endl;}
 	return temp_cost;
 }
 
