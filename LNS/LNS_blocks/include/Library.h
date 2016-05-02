@@ -87,7 +87,7 @@ public:
 	void initial_add_blocks_to_workers();
 	void calculate_demand_differ();
 	void print_demand_differ();
-	void calculate_all_week_costs_for_worker(string, int); //"weekrest" or "weekday" and worker_id as arguments
+	void calculate_all_week_costs_for_worker(string, int, int); //"weekrest" or "weekday" and worker_id as arguments
 	
 	void calculate_HB_assigned();
 	

@@ -35,11 +35,12 @@ private:
 	static const int PL_VIOLATE_COST = 400; //When a block is containing a PL that will violate that workers demand
 	static const int PL_GOOD_COST = 2000; //A worker who needs more PL is assigned a PL
 	static const int DEMAND_FEW_LIBS = 200;
-	static const int DEMAND_MANY_LIBS = 500000;
+	static const int DEMAND_MANY_LIBS = 500;
 	static const int DEMAND_FEW_ASS = 15;
-	static const int DEMAND_MANY_ASS = 150000;
+	static const int DEMAND_MANY_ASS = 150;
 	static const int DEMAND_FEW_TOT = 500;
-	static const int DEMAND_MANY_TOT = 400000; //Same relation to PL_VIOLATE_COST
+	static const int DEMAND_MANY_TOT = 400; //Same relation to PL_VIOLATE_COST
+	static const int DEMAND_HB_OVERSTAFF = 500000;
 	static const int DEMAND_PL_OVERSTAFF_LIB = 500;
 	static const int DEMAND_PL_OVERSTAFF_ASS = 400; 
 	static const int STAND_IN_COST = 5;
@@ -157,10 +158,10 @@ public:
 // 		}
 // 	};
 // 	int get_tot_cost() const; //Calculates the cost of inserting a week block to the current solution
-	void calculate_week_cost(Block*, string, int[5][7][4][5], int[5][7][4][4], int[5][7][4][4], int[5]);
+	void calculate_week_cost(Block*, string, int[5][7][4][5], int[5][7][4][4], int[5][7][4][4], int[5], int);
 	int calculate_PL_cost(Block*);
-	int calculate_demand_cost(Block*, string, int[5][7][4][5], int[5][7][4][4], int[5][7][4][4]);
-	int calculate_stand_in_cost(Block*, string);
+	int calculate_demand_cost(Block*, string, int[5][7][4][5], int[5][7][4][4], int[5][7][4][4], int);
+	int calculate_stand_in_cost(Block*, string, int);
 	int calc_temp_cost(int,int,int,int,int, int[5][7][4][4], int[5][7][4][4]);
 	int calculate_num_wends_cost(Block*);
 	int calculate_HB_assign_cost(Block*, int[5]);

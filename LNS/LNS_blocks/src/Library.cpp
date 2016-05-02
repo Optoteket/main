@@ -916,13 +916,13 @@ void Library::print_demand_differ(){
 	}
 }
 
-void Library::calculate_all_week_costs_for_worker(string type, int w_id){
+void Library::calculate_all_week_costs_for_worker(string type, int w_id, int count){
 	if(type == "weekrest"){
 		//Clear vector
 		myworkers[w_id-1].clear_cost_vector(type);
 		//Calculate costs
 		for(unsigned int n=0; n<myworkers[w_id-1].getweekrest_vect().size(); n++){
-			myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekrest_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned);
+			myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekrest_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned, count);
 		}
 	} else if(type == "weekday"){
 		//Clear vector
@@ -930,14 +930,14 @@ void Library::calculate_all_week_costs_for_worker(string type, int w_id){
 		//Calculate costs
 		for(unsigned int n=0; n<myworkers[w_id-1].getweekday_vect().size(); n++){
 			//Add a count to calculate_week_cost if wday?
-			myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekday_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned);
+			myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekday_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned, count);
 		}
 	} else if(type == "weekend"){
 		//Clear vector
 		myworkers[w_id-1].clear_cost_vector(type);
 		//Calculate costs
 		for(unsigned int n=0; n<myworkers[w_id-1].getweekend_vect().size(); n++){
-			myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekend_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned);
+			myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekend_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned, count);
 		}
 	}
 	
@@ -1027,15 +1027,22 @@ void Library::create_initial_solution(){
 	int current_worker = 0;
 	int block_type_to_add = 0;
 	string type = " ";
-// 	while(worker_vector.size() != 0){
+	while(worker_vector.size() != 0){
 		current_worker_index = rand() % worker_vector.size(); //A number between 0-[size()-1]
 		cout << "current_worker_index is: " << current_worker_index << endl;
 		current_worker = worker_vector.at(current_worker_index);
-		current_worker = 36;
+// 		current_worker = 36;
+// 		if(current_worker == 36){
+// 			add_best_blocks_to_initial_solution("weekend", current_worker);
+// 			calculate_all_week_costs_for_worker("weekend",current_worker, 0); //Add count here??
+// 			find_lowest_cost_in_vector("weekend",current_worker);
+// 			print_cost_vector(type,current_worker);
+// 			return;
+// 		}
 		cout << "Current worker at that index is: " << current_worker << endl;
 // 		while(myworkers[current_worker-1].check_all_block_types_added() == 0){ //ADD ALL BLOCKS FOR ONE WORKER -Remove later
 			block_type_to_add = rand() % 3; //A number between 0-2, 0 means wend, 1 weekrest and 2 weekday
-			block_type_to_add = 2;
+// 			block_type_to_add = 2;
 			cout << "block_type_to_add is: " << block_type_to_add << endl;
 			cout << "shall it be added? 0 = yes, 1 = no: " << myworkers[current_worker-1].get_block_types_added(block_type_to_add) << endl;
 			while(myworkers[current_worker-1].get_block_types_added(block_type_to_add) == 1){ //Find a block-type to add
@@ -1079,7 +1086,7 @@ void Library::create_initial_solution(){
 			//Remove current_worker-1 from the vector worker_vector i.e. remove current_worker_index from vector			
 				worker_vector.erase(worker_vector.begin()+current_worker_index);
 			}
-// 		}
+		}
 		//CHECK IF ERASE WORKS CORRECTLY - it did
 // 		cout << "Size of worker_vector is now: " << worker_vector.size() << endl;
 // 		cout << "worker_vector contains: ";
@@ -1099,13 +1106,13 @@ void Library::create_initial_solution(){
 // 	print_num_workers("lib");
 // 	print_num_workers("ass");
 
-	//Print assigned weekblocks
+// 	Print assigned weekblocks
 // 	for (int k = 1; k<40; k++){
 // 	// 	int k=2;
 // 		cout << "\nWorker = " << k << " has the following blocks:" << endl;
-// 	// 	print_weekblocks_assigned_worker(k, "weekend"); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
+// 		print_weekblocks_assigned_worker(k, "weekend"); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
 // 	// 	print_weekblocks_assigned_worker(k, "weekrest"); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
-// 		print_weekblocks_assigned_worker(k, "weekday"); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
+// // 		print_weekblocks_assigned_worker(k, "weekday"); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
 // 	}
 }
 
@@ -1114,7 +1121,7 @@ void Library::add_best_blocks_to_initial_solution(string type, int current_worke
 	//Add best block for block type "type"
 	//Calculate the best block to add
 	int block_index_to_add = 0;
-	calculate_all_week_costs_for_worker(type,current_worker); //Add count here??
+	calculate_all_week_costs_for_worker(type,current_worker, count); //Add count here??
 	find_lowest_cost_in_vector(type,current_worker);
 	
 	//pick a random ID if multiple index give same cost
@@ -1125,7 +1132,7 @@ void Library::add_best_blocks_to_initial_solution(string type, int current_worke
 	for(unsigned int element=0; element<myworkers[current_worker-1].getblock_avail_vect(type).size(); element++){
 		if(myworkers[current_worker-1].getblock_avail_vect(type).at(element)->getID() == block_index_to_add){
 			//Check if correct by printing cost vector and available blocks!
-					print_cost_vector(type,current_worker);
+// 					print_cost_vector(type,current_worker);
 					cout << "element = " << element << endl;
 					
 // 					print_weekblocks_avail_worker(current_worker, type);
