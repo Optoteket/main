@@ -103,6 +103,7 @@ class Worker{
   void remove_task(int, int, int);
 
   //Get functions
+  int get_weekend_task_type();
   int get_HB_type();
   int get_PL_type();
   int get_cost(int,int);
@@ -119,6 +120,8 @@ class Worker{
   int get_current_avail_day(int, int);
   int get_cost_sum () const;
   int get_weekend_task();
+
+  bool has_weekend_task();
 
   //Cost functions
   int find_temp_costs(int, int, int);

@@ -390,6 +390,10 @@ int Worker::get_cost_sum() const{
   return costs.cost_sum;
 }
 
+int Worker::get_weekend_task_type(){
+  return current.tasks[current.weekend-1][sat][0];
+}
+
 /************** Worker functions: set **********/
 void Worker::set_PL_costs(int w){
   //Set PL cost per week
@@ -579,8 +583,6 @@ void Worker::remove_task(int w, int d, int s){
     set_total_cost(w,d,s);
     set_cost_sum();
   }
-  else cerr << "Error: in remove_task, week: "<< w << " day: " << d
-  	    << " shift: " << s << ". Worker " << get_ID() << " has no task to remove." << endl;
 }
 
 
@@ -671,6 +673,10 @@ void Worker::remove_weekend(){
     remove_task(current.weekend-1, fri, 3);
   }
 
+}
+
+bool Worker::has_weekend_task(){
+  return (current.tasks[current.weekend-1][sat][0] != 0);
 }
 
 // void Worker::remove_week_rest(){

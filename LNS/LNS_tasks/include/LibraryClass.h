@@ -45,7 +45,7 @@ class Library{
   //Avail statistics
   int num_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   int avail_demand_diff[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
-  int num_avail_day_workers[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS];
+  //int num_avail_day_workers[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS];
 
   //int num_avail_stand_ins[POS][WEEKS][DAYS] //Available stand ins for a certain day
 
@@ -54,6 +54,17 @@ class Library{
     int val;
     int count;
   } cost_total_stand_ins;
+
+  struct Task_worker {
+    Worker* worker;
+    Worker temp_worker;
+    int temp_cost;
+
+    bool operator<(Task_worker const & rhs) const{
+      return this->temp_cost < rhs.temp_cost;
+    }  
+  };
+
 
   //Cost weights
   int weight[2];
@@ -65,8 +76,8 @@ class Library{
   void create_initial_solution();
 
   //Stand in avail
-  void find_sum_stand_ins();
-  int find_min_stand_ins(int);
+  void find_sum_stand_ins(int[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS]);
+  int find_min_stand_ins(int[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS],int);
 
   //Weekend related
   void find_all_weekend_tasks(); 
