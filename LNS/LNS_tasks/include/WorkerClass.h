@@ -5,6 +5,8 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <iterator>
+#include <algorithm>
 
 #include "Constants.h"
 
@@ -38,33 +40,29 @@ class Worker{
 
     int num_PL_week[NUM_WEEKS];
     int num_PL;
-
     int num_tasks_day[NUM_WEEKS][NUM_DAYS];
-    int avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+    int num_tasks_week[NUM_WEEKS];
     int avail_day[NUM_WEEKS][NUM_DAYS];
+    int num_same_shifts_week[NUM_WEEKS][NUM_SHIFTS];
+    
+    int avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
     int tasks[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   } current;
 
   struct{
-    static const int NUM_COSTS = 4;
+    static const int NUM_COSTS = 6;
     int weights[NUM_COSTS];
     int num_tasks_day_cost[NUM_WEEKS][NUM_DAYS];
+    int num_tasks_week_cost[NUM_WEEKS];
     int stand_in_cost[NUM_WEEKS][NUM_DAYS];
     int PL_week_cost[NUM_WEEKS];
     int PL_cost;
+    int num_same_shifts_week_cost[NUM_WEEKS][NUM_SHIFTS];
 
     int total_cost[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
     int cost_sum;
   } costs;
 
-
-  struct Task_to_remove{
-    int week;
-    int day;
-    int shift;
-  };
-
-  vector<Task_to_remove> tasks_to_remove;
 
  public:
 
@@ -84,7 +82,7 @@ class Worker{
   void set_PL_costs(int);
   void set_cost_sum();
   void set_stand_in_cost(int, int);
-  void set_num_tasks_cost(int, int);
+  void set_num_tasks_costs(int, int);
   void set_total_cost(int, int, int);
   void set_current_weekend(int);
   void set_current_weekend(int,int);
@@ -92,10 +90,12 @@ class Worker{
   void set_task(int, int, int, int);
   void set_weekend_task(int);
   //void set_weekend_task(string);
-  void set_current_avail(int, int, int, int);
-  void set_current_avail_day(int, int, int);
-  void reset_current_avail();
-  void reset_current_avail_day();
+
+  void set_current_avail(int, int, int);
+  void set_current_avail_day(int, int);
+
+  void rotate_current_avail();
+  void rotate_current_avail_day();
 
   void remove_week_rest();
   void remove_weekend();

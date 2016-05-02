@@ -30,23 +30,28 @@ Worker::Worker(){
   }
   current.num_PL = 0;
 
-
   // Init all costs  
   costs.weights[0] = 0; //Num_tasks_day weight
   costs.weights[1] = 0;
+  costs.weights[2] = 0;
+  costs.weights[3] = 0;
+  costs.weights[4] = 0;
+  costs.weights[5] = 0;
   costs.cost_sum = 0;
   costs.PL_cost = 0;
 
 
   for (int w=0; w<NUM_WEEKS; w++){      
-    for (int j=0; j<NUM_DAYS; j++){
-      costs.num_tasks_day_cost[w][j] = 0;
-      costs.stand_in_cost[w][j] = 0;
-      for (int k=0; k<NUM_SHIFTS; k++){
-	costs.total_cost[w][j][k] = 0;
+    for (int d=0; d<NUM_DAYS; d++){
+      costs.num_tasks_day_cost[w][d] = 0;
+      costs.stand_in_cost[w][d] = 0;
+      for (int s=0; s<NUM_SHIFTS; s++){
+	costs.total_cost[w][d][s] = 0;
+	costs.num_same_shifts_week_cost[w][s] = 0;
       }
     }
     costs.PL_week_cost[w] = 0;
+    costs.num_tasks_week_cost[w] = 0;
   }
 
   //Init all avail
@@ -76,10 +81,12 @@ Worker::Worker(){
       for (int k=0; k<NUM_SHIFTS; k++){
 	current.tasks[i][j][k] = no_task;
 	current.avail[i][j][k] = 0;
+	current.num_same_shifts_week[i][k] = 0;
       }
       current.avail_day[i][j] = 0;
       current.num_tasks_day[i][j] = no_task;
     }
+    current.num_tasks_week[i] = 0; 
   } 
 
 }
@@ -115,26 +122,35 @@ Worker::Worker(string pos, int ID, string name, string department, string weeken
     current.rotation = 1;
   }
 
-  // Init all costs  
+  // Init all costs
+  //High prio weight
   costs.weights[0] = 100; //Num_tasks_day weight
+
+  //Stand in librarians cost more
   if (get_pos() == Lib)
     costs.weights[1] = 2; //Stand_in weight
   else costs.weights[1] = 1;
+
+  //Mid prio weights
   costs.weights[2] = 5;//PL per week cost
   costs.weights[3] = 5;//Num_PL cost
+  costs.weights[4] = 5;//Num_tasks_week cost
+  costs.weights[5] = 4;//Num_tasks_week cost
 
   costs.PL_cost = 0;
   costs.cost_sum = 0;
 
   for (int w=0; w<NUM_WEEKS; w++){      
-    for (int j=0; j<NUM_DAYS; j++){
-      costs.num_tasks_day_cost[w][j] = 0;
-      costs.stand_in_cost[w][j] = 0;
-      for (int k=0; k<NUM_SHIFTS; k++){
-	costs.total_cost[w][j][k] = 0;
+    for (int d=0; d<NUM_DAYS; d++){
+      costs.num_tasks_day_cost[w][d] = 0;
+      costs.stand_in_cost[w][d] = 0;
+      for (int s=0; s<NUM_SHIFTS; s++){
+	costs.total_cost[w][d][s] = 0;
+	costs.num_same_shifts_week_cost[w][s] = 0;
       }
     }
     costs.PL_week_cost[w] = 0;
+    costs.num_tasks_week_cost[w] = 0;
   }
 
   //Init all avail
@@ -168,10 +184,12 @@ Worker::Worker(string pos, int ID, string name, string department, string weeken
       for (int k=0; k<NUM_SHIFTS; k++){
 	current.tasks[i][j][k] = no_task;
 	current.avail[i][j][k] = identity.avail[current.rotation-1][i][j][k];
+	current.num_same_shifts_week[i][k] = 0;
       }
       current.avail_day[i][j] = identity.avail_day[current.rotation-1][i][j];
       current.num_tasks_day[i][j] = no_task;
     }
+    current.num_tasks_week[i] = 0; 
   } 
 }
 
@@ -207,18 +225,22 @@ Worker::Worker(const Worker &obj){
   costs.weights[1] = obj.costs.weights[1];
   costs.weights[2] = obj.costs.weights[2];
   costs.weights[3] = obj.costs.weights[3];
+  costs.weights[4] = obj.costs.weights[4];
+  costs.weights[5] = obj.costs.weights[5];
   costs.cost_sum = obj.costs.cost_sum;
   costs.PL_cost = obj.costs.PL_cost;
 
   for (int w=0; w<NUM_WEEKS; w++){      
-    for (int j=0; j<NUM_DAYS; j++){
-      costs.num_tasks_day_cost[w][j] = obj.costs.num_tasks_day_cost[w][j];
-      costs.stand_in_cost[w][j] = obj.costs.stand_in_cost[w][j];
-      for (int k=0; k<NUM_SHIFTS; k++){
-	costs.total_cost[w][j][k] = obj.costs.total_cost[w][j][k];
+    for (int d=0; d<NUM_DAYS; d++){
+      costs.num_tasks_day_cost[w][d] = obj.costs.num_tasks_day_cost[w][d];
+      costs.stand_in_cost[w][d] = obj.costs.stand_in_cost[w][d];
+      for (int s=0; s<NUM_SHIFTS; s++){
+	costs.total_cost[w][d][s] = obj.costs.total_cost[w][d][s];
+	costs.num_same_shifts_week_cost[w][s] = obj.costs.num_same_shifts_week_cost[w][s];
       }
     }
     costs.PL_week_cost[w] = obj.costs.PL_week_cost[w];
+    costs.num_tasks_week_cost[w] = obj.costs.num_tasks_week_cost[w];
   }
 
  //Init all avail
@@ -240,10 +262,12 @@ Worker::Worker(const Worker &obj){
       for (int k=0; k<NUM_SHIFTS; k++){
 	current.tasks[i][j][k] = obj.current.tasks[i][j][k];
 	current.avail[i][j][k] = obj.current.avail[i][j][k];
+	current.num_same_shifts_week[i][k] = obj.current.num_same_shifts_week[i][k];
       }
       current.avail_day[i][j] = obj.current.avail_day[i][j];
       current.num_tasks_day[i][j] = obj.current.num_tasks_day[i][j];
     }
+    current.num_tasks_week[i] = obj.current.num_tasks_week[i]; 
   } 
 
 }
@@ -393,23 +417,41 @@ void Worker::set_stand_in_cost(int w, int d){
   costs.stand_in_cost[w][d] = get_avail_day(w,d) - get_current_avail_day(w,d);
 }
 
-void Worker::set_num_tasks_cost(int w, int d){
-   if (current.num_tasks_day[w][d] > MAX_TASKS_PER_DAY){
+void Worker::set_num_tasks_costs(int w, int d){
+  //Set num tasks costs per day
+  if (current.num_tasks_day[w][d] > MAX_TASKS_PER_DAY){
     costs.num_tasks_day_cost[w][d] = current.num_tasks_day[w][d] - MAX_TASKS_PER_DAY;
   }
   else costs.num_tasks_day_cost[w][d] = 0;
+
+  //Set num tasks costs per week
+  if (current.num_tasks_week[w] > MAX_TASKS_PER_WEEK 
+      &&   !find(no_shift_num_restriction, 
+		 no_shift_num_restriction + (sizeof(no_shift_num_restriction)/sizeof(int)),
+		 get_ID())){
+    costs.num_tasks_week_cost[w] = current.num_tasks_week[w] - MAX_TASKS_PER_WEEK;
+  }
+  else costs.num_tasks_week_cost[w] = 0;
 }
+
 
 void Worker::set_total_cost(int w, int d, int s){
   set_stand_in_cost(w,d);
-  set_num_tasks_cost(w,d);
+  set_num_tasks_costs(w,d);
   set_PL_costs(w);
 
   costs.total_cost[w][d][s] =  
+    //Hight prio
     costs.weights[0]*costs.num_tasks_day_cost[w][d]
+
+    //Stand in (soft constraint)
     + costs.weights[1]*costs.stand_in_cost[w][d]
+
+    //Mid prio
     + costs.weights[2]*costs.PL_week_cost[w]
-    + costs.weights[3]*costs.PL_cost;
+    + costs.weights[3]*costs.PL_cost
+    + costs.weights[4]*costs.num_tasks_week_cost[w]
+    + costs.weights[5]*costs.num_same_shifts_week_cost[w][s];
 }
 
 
@@ -418,10 +460,10 @@ void Worker::set_cost_sum(){
   costs.cost_sum=0;
 
   //Find cost sum
-  for (int i=0; i<NUM_WEEKS; i++){      
-    for (int j=0; j<NUM_DAYS; j++){
-      for (int k=0; k<NUM_SHIFTS; k++){
-	costs.cost_sum += costs.total_cost[i][j][k];
+  for (int w=0; w<NUM_WEEKS; w++){      
+    for (int d=0; d<NUM_DAYS; d++){
+      for (int s=0; s<NUM_SHIFTS; s++){
+	costs.cost_sum += costs.total_cost[w][d][s];
       }
     }
   }
@@ -454,12 +496,17 @@ void Worker::set_current_weekend(int wend, int task){
   }
   else {
     //Set weekend and rotation variables
-    current.weekend = wend;
-    current.rotation = wend;
+    current.weekend = wend+1;
+    current.rotation = wend+1;
+
+    //Rotate avail - OBS: used when no tasks are distributed
+    rotate_current_avail();
+    rotate_current_avail_day();
 
     //Set weekend task
     set_weekend_task(task);
   }
+
 }
 
 
@@ -469,64 +516,77 @@ void Worker::set_rotation(int rot){
 }
 
 void Worker::set_task(int w,int d,int s,int task){
+  //Add task, if not a task is already present
+  if(get_current_task(w,d,s) == no_task){
     //Adjust number of tasks that day
-    if(task != no_task && get_current_task(w,d,s) == no_task){
-      current.num_tasks_day[w][d]++;
+    current.num_tasks_day[w][d]++;
+
+    //Adjust number of weekday tasks that week
+    if(d <= fri){
+      current.num_tasks_week[w]++;
     }
-    else if (task == no_task && get_current_task(w,d,s) != no_task) 
-      current.num_tasks_day[w][d]--;
 
     //Adjust number of PL that week
     if(task == PL){
       current.num_PL_week[w]++;
       current.num_PL++;
     }
-
-    //Add task
+ 
+    //1. Add task - before updating avail and cost!
     current.tasks[w][d][s] = task;
-    
-    //Set as unavailable
-    set_current_avail_day(w,d,task);
-    set_current_avail(w,d,s,task);
 
-    //Set task costs
+    //2. Set as unavailable
+    set_current_avail(w,d,s);
+    set_current_avail_day(w,d);
+
+    //3. Set task costs
     set_total_cost(w,d,s);
     set_cost_sum();
-    
-    // }
-    //else cerr << "Error: in set_task, week: "<< w << " day: " << d
-    //	    << " shift: " << s << ". Worker " << get_ID() << " already at task." << endl;
+  }
+  else cerr << "Error: in set_task, week: "<< w << " day: " << d
+  	    << " shift: " << s << ". Worker " << get_ID() << " already has a task." << endl;
+
 }
 
 void Worker::remove_task(int w, int d, int s){
   //Get task to be removed
   int task = current.tasks[w][d][s];
 
-  //Adjust num tasks that day
-  current.num_tasks_day[w][d]--;
+  //Remove task if task exists
+  if(task != no_task){
+    //Adjust num tasks that day
+    current.num_tasks_day[w][d]--;
 
-  //Adjust number of PL that week
-  if(task == PL){
-    current.num_PL_week[w]--;
-    current.num_PL--;
+    //Adjust number of weekday tasks that week
+    if(d <= fri){
+      current.num_tasks_week[w]--;
+    }
+
+    //Adjust number of PL that week
+    if(task == PL){
+      current.num_PL_week[w]--;
+      current.num_PL--;
+    }
+
+    //1. Remove task - before updating avail and cost!
+    current.tasks[w][d][s] = no_task;
+
+    //2. Set as available
+    set_current_avail(w,d,s);
+    set_current_avail_day(w,d);
+
+    //3. Set task costs
+    set_total_cost(w,d,s);
+    set_cost_sum();
   }
-
-  //Set as available
-  set_current_avail_day(w,d,no_task);
-  set_current_avail(w,d,s,no_task);
-
-  //Remove task
-  current.tasks[w][d][s] = no_task;
-
-  //Set task costs
-  set_total_cost(w,d,s);
-  set_cost_sum();
+  else cerr << "Error: in remove_task, week: "<< w << " day: " << d
+  	    << " shift: " << s << ". Worker " << get_ID() << " has no task to remove." << endl;
 }
 
 
 
-void Worker::set_current_avail(int w, int d, int s, int added_task){
- if (added_task == no_task){
+void Worker::set_current_avail(int w, int d, int s){
+  if (get_current_task(w,d,s) == no_task){
     current.avail[w][d][s] = identity.avail[current.rotation-1][w][d][s];
   }
  else {
@@ -534,33 +594,12 @@ void Worker::set_current_avail(int w, int d, int s, int added_task){
   }
 }
 
-void Worker::reset_current_avail(){
-  for (int i=0; i<NUM_WEEKS; i++){      
-    for (int j=0; j<NUM_DAYS; j++){
-      for (int k=0; k<NUM_SHIFTS; k++){
-	//If there is no task at a shift, place avail
-	if(get_current_task(i,j,k) == no_task)
-	current.avail[i][j][k] = identity.avail[current.rotation-1][i][j][k];
-	else current.avail[i][j][k] = no_task;
-
-	//If there is a task but there is no availability, remove task
-	//else if (get_current_task(i,j,k) != no_task && identity.avail[current.rotation-1][i][j][k] == no_task){
-	// count++;
-	// //current.avail[i][j][k] = no_task;
-	  
-	// Task_to_remove task;
-	// task.week = i;
-	// task.day = j;
-	// task.shift = k;
-	// tasks_to_remove.push_back(task);
-
-	// cout << "Task removed at ID " << get_ID() << ": " << count << endl; 
-	  
-	//Remove task
-	//set_task(i,j,k, no_task);
-
-	//Set avail
-	//current.avail[i][j][k] = identity.avail[current.rotation-1][i][j][k];
+void Worker::rotate_current_avail(){
+  for (int w=0; w<NUM_WEEKS; w++){      
+    for (int d=0; d<NUM_DAYS; d++){
+      for (int s=0; s<NUM_SHIFTS; s++){
+	//Set current avail to new rotation of avail
+	current.avail[w][d][s] = identity.avail[current.rotation-1][w][d][s];
       }
     }
   }
@@ -587,22 +626,19 @@ void Worker::reset_current_avail(){
 //   //cout << "Num of tasks removed at ID " << get_ID() << ": " << count << endl; 
 // }
 
-void Worker::set_current_avail_day(int w, int d, int added_task){
-  if (added_task == no_task){
-    current.avail_day[w][d] = identity.avail_day[current.rotation-1][w][d];
+void Worker::set_current_avail_day(int w, int d){
+  if(get_current_task(w,d,0) == no_task && get_current_task(w,d,1) == no_task 
+     && get_current_task(w,d,2) == no_task && get_current_task(w,d,3) == no_task){
+    current.avail_day[w][d] = 1;
   }
-  else current.avail_day[w][d] = no_task;
+  else current.avail_day[w][d] = 0;
 }
 
-void Worker::reset_current_avail_day(){
-  for (int i=0; i<NUM_WEEKS; i++){      
-    for (int j=0; j<NUM_DAYS; j++){
-      for (int k=0; k<NUM_SHIFTS; k++){
-	if(get_current_task(i,j,0) == no_task && get_current_task(i,j,1) == no_task 
-	   && get_current_task(i,j,2) == no_task && get_current_task(i,j,3) == no_task)
-	  current.avail_day[i][j] = identity.avail_day[current.rotation-1][i][j];
-	//set_current_avail_day(i,j,no_task);
-      }
+void Worker::rotate_current_avail_day(){
+  for (int w=0; w<NUM_WEEKS; w++){      
+    for (int d=0; d<NUM_DAYS; d++){
+      //Set current avail day to rotaion of avail day
+      current.avail_day[w][d] = identity.avail_day[current.rotation-1][w][d];
     }
   }
 }
@@ -619,10 +655,6 @@ void Worker::set_weekend_task(int task){
   if (task != HB || !no_friday_when_HB){
     set_task(current.weekend-1, fri, 3, task);
   }
-
-  reset_current_avail();
-  reset_current_avail_day();
-
 }
 
 void Worker::remove_weekend(){
@@ -639,8 +671,6 @@ void Worker::remove_weekend(){
     remove_task(current.weekend-1, fri, 3);
   }
 
-  //Set current weekend to 0
-  current.weekend = 0;
 }
 
 // void Worker::remove_week_rest(){

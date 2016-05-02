@@ -102,7 +102,7 @@ subject to task_assign_amount_weekends{w in W, d in 6..7,s in S[d], j in J[d]}:
 subject to task_assign_amount_library_on_wheels{w in W, d in 1..5 ,s in S[d]}:
 	sum{i in I} x[i,w,d,s,'LOW'] = LOW_demand[w,d,s];
 
-######################## Shifts worked constraints #########################################
+######################## Maximum 4 shifts per week #########################################
 
 subject to max_four_shifts_per_week{i in I diff {36}, w in W}:
 	sum{d in 1..5}(sum{s in S[d]}(sum{j in J[d]} x[i,w,d,s,j])) <= 4;
