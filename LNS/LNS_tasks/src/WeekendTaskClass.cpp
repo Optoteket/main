@@ -14,16 +14,16 @@ WeekendTask::WeekendTask(int q, int w, int worker_demand, int avail_diff, int ta
 void WeekendTask::find_avail_workers(vector<Worker*>* a_workers){
   avail_workers.clear();
 
-  // cout << "Available workers: " << endl;
-  // for (int i=0; i < (int) a_workers->size(); i++){
-  //   cout << (*a_workers)[i]->get_ID() << endl;
-  // }
+  cout << "Available workers: " << endl;
+  for (int i=0; i < (int) a_workers->size(); i++){
+    cout << (*a_workers)[i]->get_ID() << endl;
+  }
 
   for (int i=0; i < (int) a_workers->size(); i++){
     Worker* worker = (*a_workers)[i];
     //if((type == HB && worker->get_HB_type()!= no_HB) 
     //   || (type != HB &&worker->get_HB_type()!= only_HB)){
-      if (worker->get_current_weekend() == 0 && worker->get_pos() >= qualification){
+      if (worker->get_pos() >= qualification){
 	Task_worker task_worker;
 	task_worker.worker = worker;
 	task_worker.temp_worker = *worker;
@@ -58,7 +58,7 @@ void WeekendTask::place_cheapest_worker(vector<Worker*>* a_workers){
   //cout << "Placed worker " << avail_workers[0].temp_worker.get_ID() << " at weekend task w:" << week << " type " <<
 
   //Choose cheapest worker
-  avail_workers[0].worker->set_current_weekend(week+1,type);
+  avail_workers[0].worker->set_current_weekend(week,type);
   set_placed_worker(avail_workers[0].worker);
 
   //Recalculate task cost
@@ -67,6 +67,33 @@ void WeekendTask::place_cheapest_worker(vector<Worker*>* a_workers){
   //return avail_workers[0].worker->get_pos();
 
 }
+
+
+/********** WeekendTask: Place a worker ************/
+
+void WeekendTask::place_a_worker(vector<Worker*>* a_workers){
+  find_avail_workers(a_workers);
+
+  //Shuffle, sort according to lib/ass qualfication
+  random_shuffle(avail_workers.begin(), avail_workers.end(), myrandom);
+  //print_worker_costs();
+
+  //Print available workers
+  // cout << "Available workers: " << endl;
+  // for (int i=0; i < (int) avail_workers.size(); i++){
+  //   cout << avail_workers[i].worker->get_ID() << endl;
+  // }
+ 
+  //cout << "Placed worker " << avail_workers[0].temp_worker.get_ID() << " at weekend task w:" << week << " type " <<
+
+  //Choose cheapest worker
+  avail_workers[0].worker->set_current_weekend(week,type);
+  set_placed_worker(avail_workers[0].worker);
+
+}
+
+
+
 
 /********** WeekendTask: Temp place workers ************/
 

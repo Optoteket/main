@@ -11,6 +11,8 @@ const int MAX_TASKS_PER_DAY = 1;
 const int MAX_PL_PER_WEEK = 1;
 const int MAX_PL_10W_STANDARD = 3;
 const int MAX_PL_10W_MANY = 4;
+const int MAX_TASKS_PER_WEEK = 4;
+const int MAX_TASKS_SAME_SHIFT = 2;
 
  enum task_type {
    no_task=0,
@@ -60,3 +62,4 @@ const bool staff_work_whole_weekends = true; //NOT USED
 // All staff can only be assigned one task per day
 const bool one_task_per_day = true; //Used?
 const bool no_friday_when_HB = true; //Used
+const int no_shift_num_restriction[1] = {36}; //Workers with no shift restrictions

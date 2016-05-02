@@ -36,7 +36,7 @@ class Library{
   vector<Worker*> weekend_ass;
   vector<Worker*> lib_workers;
   vector<Worker*> ass_workers;
-  vector<Worker*> dest_wend_workers;
+  vector<Worker*> destroyed_wend_workers;
 
   //Demand arrays 
   int worker_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 

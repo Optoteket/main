@@ -64,69 +64,72 @@ void Library::create_initial_solution(){
 
   /**************** TESTING **************/
 
-  //Set weekends
-  find_all_weekend_tasks();
-  cout << "Task list size: " << weekend_task_list.size() << endl;
-  for(int h=0; h < (int) weekend_task_list.size(); h++){
-    cout << weekend_task_list[h].get_week() << endl;
-  }
-  print_num_avail_workers();
-  set_all_weekend_tasks();
+  destroy_weekend(100);
+  repair_weekend();
 
-  exit(0);
+  // //Set weekends
+  // find_all_weekend_tasks();
+  // cout << "Task list size: " << weekend_task_list.size() << endl;
+  // for(int h=0; h < (int) weekend_task_list.size(); h++){
+  //   cout << weekend_task_list[h].get_week() << endl;
+  // }
+  // print_num_avail_workers();
+  // set_all_weekend_tasks();
 
-  while(!compare_avail_demand()){
-    cerr << "Demand not filled." << endl;
-    find_all_weekend_tasks();
-    set_all_weekend_tasks();
-  }
+  // exit(0);
+
+  // while(!compare_avail_demand()){
+  //   cerr << "Demand not filled." << endl;
+  //   find_all_weekend_tasks();
+  //   set_all_weekend_tasks();
+  // }
   
-  print_num_avail_workers();
-  print_avail_demand_diff();
+  // print_num_avail_workers();
+  // print_avail_demand_diff();
 
-  exit(0);
+  // exit(0);
 
-  /**************** END TESTING **************/
+  // /**************** END TESTING **************/
 
-  //Loop until a feasible and pseudo-optimal solution is found
+  // //Loop until a feasible and pseudo-optimal solution is found
 
-  int MAX_WEEKEND_IT = 10;
+  // int MAX_WEEKEND_IT = 10;
 
-  while(cost_total_stand_ins.count < MAX_WEEKEND_IT){
+  // while(cost_total_stand_ins.count < MAX_WEEKEND_IT){
 
-    //Find new random solution
-    find_all_weekend_tasks();
-    set_all_weekend_tasks();
+  //   //Find new random solution
+  //   find_all_weekend_tasks();
+  //   set_all_weekend_tasks();
     
-    //Find lowest number of stand ins day at library
-    if (compare_avail_demand()){
+  //   //Find lowest number of stand ins day at library
+  //   if (compare_avail_demand()){
 
-      //Find min num of assistants and librarians
-      find_sum_stand_ins();
-      int lowest_num_ass = find_min_stand_ins(Ass);
-      cout << "Minimum num of assistants: " << lowest_num_ass << endl;
-      int lowest_num_lib = find_min_stand_ins(Lib);
-      cout << "Minimum num of librarians: " << lowest_num_lib << endl;
+  //     //Find min num of assistants and librarians
+  //     find_sum_stand_ins();
+  //     int lowest_num_ass = find_min_stand_ins(Ass);
+  //     cout << "Minimum num of assistants: " << lowest_num_ass << endl;
+  //     int lowest_num_lib = find_min_stand_ins(Lib);
+  //     cout << "Minimum num of librarians: " << lowest_num_lib << endl;
 
-      //Find cost for stand ins
-      int cost_min_num_stand_ins =  weight[0]*lowest_num_lib + weight[1]*lowest_num_ass;
+  //     //Find cost for stand ins
+  //     int cost_min_num_stand_ins =  weight[0]*lowest_num_lib + weight[1]*lowest_num_ass;
 
-      //Check if a new maximum num of stand ins is found
-      if (cost_min_num_stand_ins > cost_total_stand_ins.val){
-  	cost_total_stand_ins.val = cost_min_num_stand_ins;
-  	cost_total_stand_ins.count = 0;
-      }
-      //If the same as before, increment count
-      else if (cost_min_num_stand_ins == cost_total_stand_ins.val)
-  	cost_total_stand_ins.count++;
-    }
-  }
+  //     //Check if a new maximum num of stand ins is found
+  //     if (cost_min_num_stand_ins > cost_total_stand_ins.val){
+  // 	cost_total_stand_ins.val = cost_min_num_stand_ins;
+  // 	cost_total_stand_ins.count = 0;
+  //     }
+  //     //If the same as before, increment count
+  //     else if (cost_min_num_stand_ins == cost_total_stand_ins.val)
+  // 	cost_total_stand_ins.count++;
+  //   }
+  // }
 
-  // Distribute rest of tasks
-  set_tasks();
+  // // Distribute rest of tasks
+  // set_tasks();
 
-  //destroy_weekend(25);
-  //repair_weekend();
+  // //destroy_weekend(25);
+  // //repair_weekend();
 
 }
 
@@ -270,10 +273,11 @@ void Library::destroy_weekend(int percent){
     cout << temp_list[h]->get_cost_sum() << " ID: " <<temp_list[h]->get_ID() << endl;
   }
 
-  //Delete weekend task
+  //Delete weekend task, multiple of 5 of the work force
   double num_tasks = 0.01*(double)percent*(double)temp_list.size();
   int destroy_amount = (((int)(num_tasks + (double)NUM_WEEKS/2.0)/NUM_WEEKS) *NUM_WEEKS);
   cout << "Num tasks to destroy: "<< destroy_amount << endl;
+
   for(int i = 0; i<destroy_amount; i++){
     cout << "Destroyed worker: " << temp_list.back()->get_ID() << " Weekend: " << temp_list.back()->get_current_weekend() << endl;;
     destroy_a_weekend(temp_list.back());
@@ -293,7 +297,7 @@ void Library::destroy_a_weekend(Worker* worker){
   worker->remove_weekend();
 
   //Collect destroyed worker
-  dest_wend_workers.push_back(worker);
+  destroyed_wend_workers.push_back(worker);
   
 }
 
@@ -303,10 +307,15 @@ void Library::destroy_a_weekend(Worker* worker){
 void Library::repair_weekend(){
 
   //int total_avail[NUM_WEEKS][NUM_DAYS-2][NUM_SHIFTS];
+  while(weekend_task_list.size() != 0){
+    WeekendTask* current_task = &weekend_task_list[0];
 
-  WeekendTask* current_task = &weekend_task_list[0];
-  current_task->place_cheapest_worker(&dest_wend_workers);
+    //Place a worker at random
+    current_task->place_a_worker(&destroyed_wend_workers);
 
+    //Erase task from task list
+    weekend_task_list.erase(weekend_task_list.end());
+  }
   //Send destroyed workers to weekend_tasks
   //Find cheapest worker for all tasks
   
