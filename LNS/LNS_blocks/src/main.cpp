@@ -122,15 +122,14 @@ int main() {
 	cout << "#libs assigned for given shift is: " << lib.getNum_lib_assigned(0,3,0,1) << " #ass is: " << lib.getNum_ass_assigned(0,3,0,1) << endl;
 	
 	//*** Try to print cost for a weekday block ***
-	int p = 23; //p = 8 or 9 good test subjects, 36 good for wend HB, 23 for only HB, 24 for PL and stand-ins
-	string mytype = "weekend";
+// 	int p = 23; //p = 8 or 9 good test subjects, 36 good for wend HB, 23 for only HB, 24 for PL and stand-ins
+// 	string mytype = "weekend";
 // 
-	lib.calculate_all_week_costs_for_worker(mytype,p);
-	lib.print_cost_vector(mytype,p);
-	lib.calculate_all_week_costs_for_worker(mytype,p);
+// 	lib.calculate_all_week_costs_for_worker(mytype,p);
+// 	lib.print_cost_vector(mytype,p);
 // 	//***Find the lowest cost in the vector***'
-	lib.print_cost_vector(mytype,p);
-	lib.find_lowest_cost_in_vector(mytype,p);
+// 	lib.print_cost_vector(mytype,p);
+// 	lib.find_lowest_cost_in_vector(mytype,p);
 	
 	
 	

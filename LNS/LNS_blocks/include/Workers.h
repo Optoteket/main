@@ -32,20 +32,21 @@ private:
 	static const int NUM_SHIFTS = 4;
 	
 	//*** COSTS ***
-	static const int PL_VIOLATE_COST = 400; //When a block is considered containing a PL that will violate the demand
-	static const int PL_GOOD_COST = 200;
+	static const int PL_VIOLATE_COST = 400; //When a block is containing a PL that will violate that workers demand
+	static const int PL_GOOD_COST = 2000; //A worker who needs more PL is assigned a PL
 	static const int DEMAND_FEW_LIBS = 200;
-	static const int DEMAND_MANY_LIBS = 50;
+	static const int DEMAND_MANY_LIBS = 500;
 	static const int DEMAND_FEW_ASS = 15;
 	static const int DEMAND_MANY_ASS = 150;
 	static const int DEMAND_FEW_TOT = 500;
 	static const int DEMAND_MANY_TOT = 400; //Same relation to PL_VIOLATE_COST
+	static const int DEMAND_HB_OVERSTAFF = 500000;
 	static const int DEMAND_PL_OVERSTAFF_LIB = 500;
 	static const int DEMAND_PL_OVERSTAFF_ASS = 400; 
 	static const int STAND_IN_COST = 5;
 	//*Weekend costs*
-	static const int NO_WEEKEND_COST = 500; //No weekend assigned to a weekend worker
-	static const int HB_ASSIGNED_COST = 250; //If HB is already assigned when being assigned to the worker
+	static const int NO_WEEKEND_COST = 500; //No weekend assigned to a weekend worker, should never occur (35 wend workers and need 35)
+	static const int HB_ASSIGNED_COST = 2500; //If HB is already assigned when being assigned to the worker
 	
 	
 	int worker_avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
@@ -127,6 +128,7 @@ public:
 	int check_all_block_types_added() const;
 	
 	
+	
 	//Mutator functions
 	void setID(int);
 	void setName(string);
@@ -142,6 +144,7 @@ public:
 	void setWeekend_week(int);
 	void setStand_in_avail();
 	void set_block_types_added(int,int);
+	void clear_cost_vector(string); //type as argument "weekend" etc
 	
 	void createBlocks();
 	
@@ -155,10 +158,10 @@ public:
 // 		}
 // 	};
 // 	int get_tot_cost() const; //Calculates the cost of inserting a week block to the current solution
-	void calculate_week_cost(Block*, string, int[5][7][4][5], int[5][7][4][4], int[5][7][4][4], int[5]);
+	void calculate_week_cost(Block*, string, int[5][7][4][5], int[5][7][4][4], int[5][7][4][4], int[5], int);
 	int calculate_PL_cost(Block*);
-	int calculate_demand_cost(Block*, string, int[5][7][4][5], int[5][7][4][4], int[5][7][4][4]);
-	int calculate_stand_in_cost(Block*, string);
+	int calculate_demand_cost(Block*, string, int[5][7][4][5], int[5][7][4][4], int[5][7][4][4], int);
+	int calculate_stand_in_cost(Block*, string, int);
 	int calc_temp_cost(int,int,int,int,int, int[5][7][4][4], int[5][7][4][4]);
 	int calculate_num_wends_cost(Block*);
 	int calculate_HB_assign_cost(Block*, int[5]);
