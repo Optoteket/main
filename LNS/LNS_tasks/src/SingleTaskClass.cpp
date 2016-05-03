@@ -21,10 +21,10 @@ void SingleTask::find_avail_workers(){
 
   for (int i=0; i < (int) workers->size(); i++){   
     if ((*workers)[i].get_current_avail(week,day,shift) > 0 && (*workers)[i].get_pos() >= qualification){
-      Task_worker task_worker;
+      TaskWorker task_worker;
       task_worker.worker = &(*workers)[i];
       task_worker.temp_worker = (*workers)[i];
-      task_worker.temp_worker_cost = task_worker.temp_worker.get_cost(week,day);
+      task_worker.temp_cost = task_worker.temp_worker.get_cost(week,day);
       avail_workers.push_back(task_worker);
     }
   }
@@ -36,8 +36,8 @@ void SingleTask::find_avail_workers(){
 void SingleTask::temp_place_workers(){
   for (int i=0; i < (int) avail_workers.size(); i++){
     avail_workers[i].temp_worker.set_task(week,day,shift,type);
-    avail_workers[i].temp_worker_cost = 
-       avail_workers[i].temp_worker.get_cost(week,day) - avail_workers[i].temp_worker_cost;
+    avail_workers[i].temp_cost = 
+       avail_workers[i].temp_worker.get_cost(week,day) - avail_workers[i].temp_cost;
   }
 }
 
@@ -58,7 +58,7 @@ void SingleTask::place_cheapest_worker(){
 
   //Choose cheapest worker
   avail_workers[0].worker->set_task(week,day,shift,type);
-  set_placed_worker(avail_workers[0].worker);
+  //set_placed_worker(avail_workers[0]);
 
   //Recalculate task cost
   demand--;

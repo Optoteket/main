@@ -11,7 +11,9 @@ Task::Task(int q, int w, int worker_demand, int avail_diff, int task_type, vecto
   avail_diff = avail_diff;
   set_costs();
 
-  avail_workers = vector<Task_worker> (); 
+  avail_workers = vector<TaskWorker> ();
+  placed_workers = vector<TaskWorker*> ();
+  placed_workers.clear();
 
 }
 
@@ -20,7 +22,7 @@ Task::Task(int q, int w, int worker_demand, int avail_diff, int task_type, vecto
 void Task::temp_place_workers(){
   for (int i=0; i < (int) avail_workers.size(); i++){
     //avail_workers[i].temp_worker.set_task(week,day,shift,type);
-    //avail_workers[i].temp_worker_cost = avail_workers[i].temp_worker.find_costs(week,day,shift);
+    //avail_workers[i].temp_cost = avail_workers[i].temp_worker.find_costs(week,day,shift);
   }
 }
 
@@ -56,10 +58,10 @@ void Task::find_avail_workers(){
 
   for (int i=0; i < (int) workers->size(); i++){   
     if ((*workers)[i].get_pos() >= qualification){
-      Task_worker task_worker;
+      TaskWorker task_worker;
       task_worker.worker = &(*workers)[i];
       task_worker.temp_worker = (*workers)[i];
-      task_worker.temp_worker_cost = 0;
+      task_worker.temp_cost = 0;
       avail_workers.push_back(task_worker);
     }
   }
@@ -72,9 +74,14 @@ void Task::set_costs(){
   total_cost = 3*avail_diff - demand;
 }
 
-void Task::set_placed_worker(Worker* worker){
+void Task::set_placed_worker(TaskWorker* worker){
   placed_worker = worker;
 }
+
+void Task::set_placed_workers(TaskWorker* worker){
+  placed_workers.push_back(worker);
+}
+
 
 /*********** Get functions *********/
 
@@ -99,7 +106,15 @@ int Task::get_qualification() const{
 }
 
 int Task::get_placed_worker_pos(){
-  return placed_worker->get_pos();
+  return placed_worker->worker->get_pos();
+}
+
+TaskWorker* Task::get_placed_worker(){
+  return placed_worker;
+}
+
+vector<TaskWorker*>* Task::get_placed_workers(){
+  return &placed_workers;
 }
 
 /*********** Print functions ***********/
@@ -107,7 +122,7 @@ int Task::get_placed_worker_pos(){
 void Task::print_worker_costs() {
   cout << "Available workers: " << endl;
   for (int i=0; i < (int) avail_workers.size(); i++){
-    cout << avail_workers[i].temp_worker_cost << " ";
+    cout << avail_workers[i].temp_cost << " ";
   }
   cout << endl;
 }

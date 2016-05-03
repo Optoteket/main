@@ -12,11 +12,13 @@
 #include <cmath>
 #include <memory>
 
+#include "Constants.h"
 #include "WorkerClass.h"
+#include "TaskWorkerClass.h"
 #include "TaskClass.h"
 #include "WeekendTaskClass.h"
 #include "SingleTaskClass.h"
-#include "Constants.h"
+
 
 using namespace std;
 
@@ -36,11 +38,14 @@ class Library{
   vector<Worker*> weekend_ass;
   vector<Worker*> lib_workers;
   vector<Worker*> ass_workers;
-  vector<Worker*> destroyed_wend_workers;
+
+  //Destroyed workers
+  vector<TaskWorker> destroyed_wend_workers;
 
   //Demand arrays 
   int worker_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
   int current_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
+  int temp_current_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
 
   //Avail statistics
   int num_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
@@ -54,16 +59,6 @@ class Library{
     int val;
     int count;
   } cost_total_stand_ins;
-
-  struct Task_worker {
-    Worker* worker;
-    Worker temp_worker;
-    int temp_cost;
-
-    bool operator<(Task_worker const & rhs) const{
-      return this->temp_cost < rhs.temp_cost;
-    }  
-  };
 
 
   //Cost weights
@@ -82,9 +77,10 @@ class Library{
   //Weekend related
   void find_all_weekend_tasks(); 
   void set_all_weekend_tasks();
-  void destroy_weekend(int);
-  void destroy_a_weekend(Task_worker&);
-  void repair_weekend();
+  void destroy_weekend(int, string);
+  void destroy_a_weekend(TaskWorker&, string);
+  void repair_weekend(string);
+  void repair_temp_weekend();
   //void weekend_update_avail_demand(int, int, int); //Not working properly, not possible to keep updated
 
   //Weekday related

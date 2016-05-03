@@ -1,8 +1,8 @@
 // Library class
 
-#include "Constants.h"
+//#include "Constants.h"
 #include "LibraryClass.h"
-#include "WorkerClass.h"
+//#include "WorkerClass.h"
 
 using namespace std;
 
@@ -64,9 +64,34 @@ void Library::create_initial_solution(){
 
   /**************** TESTING **************/
   print_current_demand();
-  destroy_weekend(100);
-  repair_weekend();
+  destroy_weekend(100, "perm");
+  repair_weekend("perm");
 
+  destroy_weekend(20, "temp");
+  repair_weekend("temp");
+
+  destroy_weekend(20, "use_temp");
+  repair_weekend("use_temp");
+
+  /******************* PSEUDO CODE: destroy repair weekends *************/
+  /*int percent = 20;
+  for(iterations){
+    destroy_weekend(percent, "temp");
+    repair_weekend("temp");
+
+    set_temp_library_cost();
+  
+    if(library_cost < min_library_cost 
+       || random_function_0_1()*cost_diff(library_cost, min_library_cost)  > 0.5){
+
+       destroy_weekend(percent, "use_temp");
+       repair_weekend("use_temp");
+
+      set_library_cost();
+    }  
+  }
+  */
+  /************************************************************/
   //destroy_repair_weekend_loop(10,5);
 
   // //Set weekends
@@ -222,189 +247,344 @@ int Library::find_min_stand_ins(int num_avail_day_workers[NUM_POSITIONS][NUM_WEE
 
 
 
-/*********** Library function: find all weekend tasks ************/
+// /*********** Library function: find all weekend tasks ************/
 
-void Library::find_all_weekend_tasks(){
+// void Library::find_all_weekend_tasks(){
 
-  //Remove all weekends for workers
-  for (int i=0; i< (int) weekend_workers.size(); i++){
-    weekend_workers[i]->remove_weekend();
-  }
+//   //Remove all weekends for workers
+//   for (int i=0; i< (int) weekend_workers.size(); i++){
+//     weekend_workers[i]->remove_weekend();
+//   }
 
-  //Reset worker demand
-  for(int w=0; w <NUM_WEEKS; w++){
-    for(int d=0; d <NUM_DAYS; d++){
-      for(int s=0; s <NUM_SHIFTS; s++){
-	for (int t=Exp; t<NUM_TASKS; t++){
-	  current_demand[w][d][s][t] = worker_demand[w][d][s][t];
-	}
-      }
-    }
-  }
+//   //Reset worker demand
+//   for(int w=0; w <NUM_WEEKS; w++){
+//     for(int d=0; d <NUM_DAYS; d++){
+//       for(int s=0; s <NUM_SHIFTS; s++){
+// 	for (int t=Exp; t<NUM_TASKS; t++){
+// 	  current_demand[w][d][s][t] = worker_demand[w][d][s][t];
+// 	}
+//       }
+//     }
+//   }
 
-  //Find statistical information for task cost
-  find_num_avail_workers();
-  find_avail_demand_diff();
+//   //Find statistical information for task cost
+//   find_num_avail_workers();
+//   find_avail_demand_diff();
 
-  //Push all weekend tasks to weekend_task_list
-  for (int w=0; w <NUM_WEEKS; w++){
-    for (int t=Exp; t<NUM_TASKS; t++){
-      //Find demand for task
-      int weekend_demand = worker_demand[w][sat][0][t];
-      //int weekend_demand = get_current_demand(w,sat,0,t);
-      if(weekend_demand > 0){
+//   //Push all weekend tasks to weekend_task_list
+//   for (int w=0; w <NUM_WEEKS; w++){
+//     for (int t=Exp; t<NUM_TASKS; t++){
+//       //Find demand for task
+//       int weekend_demand = worker_demand[w][sat][0][t];
+//       //int weekend_demand = get_current_demand(w,sat,0,t);
+//       if(weekend_demand > 0){
 
-	//Find avail diff for task
-	int avail_diff = avail_demand_diff[find_position_req(t)][w][sat][0];
+// 	//Find avail diff for task
+// 	int avail_diff = avail_demand_diff[find_position_req(t)][w][sat][0];
 
-	weekend_task_list.push_back(WeekendTask 
-				    {find_position_req(t), w, weekend_demand, avail_diff, t, &worker_list});
-      }
-    } 
-  }
-}
+// 	weekend_task_list.push_back(WeekendTask 
+// 				    {find_position_req(t), w, weekend_demand, avail_diff, t, &worker_list});
+//       }
+//     } 
+//   }
+// }
 
-/***************** Library function: set all weekend tasks **************/
-void Library::set_all_weekend_tasks(){
-  int count=0;
-  //Sort tasks according to cheapest task
-  random_shuffle(weekend_task_list.begin(),weekend_task_list.end());
-  sort(weekend_task_list.begin(),weekend_task_list.end());
+// /***************** Library function: set all weekend tasks **************/
+// void Library::set_all_weekend_tasks(){
+//   int count=0;
+//   //Sort tasks according to cheapest task
+//   random_shuffle(weekend_task_list.begin(),weekend_task_list.end());
+//   sort(weekend_task_list.begin(),weekend_task_list.end());
 
-  while((int) weekend_task_list.size() !=0 ){
+//   while((int) weekend_task_list.size() !=0 ){
 
-    //Place cheapest worker at task
-    WeekendTask* current_task = &weekend_task_list[0];
-    current_task->place_cheapest_worker(&weekend_workers);
-    //cout << "Weekend placed. Position " << current_task->get_placed_worker_pos() << " task type: " << current_task->get_type() << endl;
+//     //Place cheapest worker at task
+//     WeekendTask* current_task = &weekend_task_list[0];
+//     current_task->place_cheapest_worker(&weekend_workers);
+//     //cout << "Weekend placed. Position " << current_task->get_placed_worker_pos() << " task type: " << current_task->get_type() << endl;
 
-    //TODO: fix this
-    //weekend_update_avail_demand
-    //(current_task->get_placed_worker_pos(), current_task->get_week(), current_task->get_type());
-    //cerr << count << endl;
-    //cout << "Weekend task distributed" << endl;
-    count++;
+//     //TODO: fix this
+//     //weekend_update_avail_demand
+//     //(current_task->get_placed_worker_pos(), current_task->get_week(), current_task->get_type());
+//     //cerr << count << endl;
+//     //cout << "Weekend task distributed" << endl;
+//     count++;
 
-    //Erase task from list of tasks
-    if (current_task->get_demand() == 0){
-      weekend_task_list.erase(weekend_task_list.begin());
-    }
-  }
-  cout << count << " weekend tasks placed" << endl;
+//     //Erase task from list of tasks
+//     if (current_task->get_demand() == 0){
+//       weekend_task_list.erase(weekend_task_list.begin());
+//     }
+//   }
+//   cout << count << " weekend tasks placed" << endl;
 
-  //Find statistical information for task cost
-  find_num_avail_workers();
-  find_avail_demand_diff();
-}
-
+//   //Find statistical information for task cost
+//   find_num_avail_workers();
+//   find_avail_demand_diff();
+// }
 
 
 /*********** Library function: destroy weekends ******/
-void Library::destroy_weekend(int percent){
+void Library::destroy_weekend(int percent, string mode){
 
-  vector<Worker*> temp_list = weekend_workers;
-
-  /*************************************************/
-  vector<Task_worker> task_worker_list;
-
-  for(int i=0; i < (int) weekend_workers.size(); i++){
-    Task_worker a_worker;
-    a_worker.worker = weekend_workers[i];
-    a_worker.temp_worker = *weekend_workers[i];
-    a_worker.temp_cost = a_worker.worker->get_cost_sum();
-    task_worker_list.push_back(a_worker);
-  }
-  /************************************************/
-
-  //Sort according to worker costs
-  sort(task_worker_list.begin(), task_worker_list.end());
-
-  //Print sorted workers
-  // for(int h=0; h < (int) temp_list.size(); h++){
-  //   cout << temp_list[h]->get_cost_sum() << " ID: " <<temp_list[h]->get_ID() << endl;
-  // }
-  for(int h=0; h < (int) task_worker_list.size(); h++){
-    cout << task_worker_list[h].temp_cost << " ID: " << task_worker_list[h].worker->get_ID() << endl;
+  //"Use temp": Apply destroy on real workers
+  if (mode == "use_temp"){
+    for(int i=0; i < (int) destroyed_wend_workers.size(); i++){
+      //Get the real worker
+      TaskWorker* task_worker = &destroyed_wend_workers[i];
+      Worker* worker = task_worker->worker;
+      
+      //Remove its weekends
+      worker->remove_weekend();
+    }
   }
 
-
-  //Delete weekend task, multiple of 5 of the work force
-  double num_tasks = 0.01*(double)percent*(double)task_worker_list.size();
-  int destroy_amount = (((int)(num_tasks + (double)NUM_WEEKS/2.0)/NUM_WEEKS) *NUM_WEEKS);
-  cout << "Num tasks to destroy: "<< destroy_amount << endl;
-
-  //Remove weekends for workers
-  for(int i = 0; i<destroy_amount; i++){
-    cout << "Destroyed worker: " << task_worker_list.back().worker->get_ID() << " Weekend: " 
-	 << task_worker_list.back().worker->get_current_weekend() << endl;;
-    destroy_a_weekend(task_worker_list.back());
-    task_worker_list.pop_back();
-  }
-
-  // for(int i=0; i < (int)destroyed_wend_workers.size(); i++){
-  //   cout <<  " ID: " << destroyed_wend_workers[i]->get_ID() << endl;
-  // }
-
-  //Find and push all free weekends
-  for (int w=0; w <NUM_WEEKS; w++){
-    for (int t=Exp; t<NUM_TASKS; t++){
-      //Find demand for task
-      int weekend_demand = current_demand[w][sat][0][t];
-      if(weekend_demand > 0){
-
-	//Find avail diff for task
-	int avail_diff = avail_demand_diff[find_position_req(t)][w][sat][0];
-
-	weekend_task_list.push_back(WeekendTask 
-				    {find_position_req(t), w, weekend_demand, avail_diff, t, &worker_list});
+  //Else destroy temporarily or permanently
+  else {
+    //Set temporary demand
+    if(mode == "temp"){
+      for(int w = 0; w < NUM_WEEKS; w++){
+	for(int d = 0; d < NUM_WEEKDAYS; d++){
+	  for(int s = 0; s < NUM_SHIFTS; s++){
+	    for(int t = 0; t < NUM_TASKS; t++){
+	      temp_current_demand[w][d][s][t] = current_demand[w][d][s][t];
+	    }
+	  }
+	}
       }
-    } 
+    }
+
+    //Create task workers
+    vector<TaskWorker> task_worker_list;
+
+    for(int i=0; i < (int) weekend_workers.size(); i++){
+      TaskWorker a_worker;
+      a_worker.worker = weekend_workers[i];
+      a_worker.temp_worker = *weekend_workers[i];
+      a_worker.temp_cost = a_worker.worker->get_cost_sum();
+      task_worker_list.push_back(a_worker);
+    }
+
+    //Sort according to worker costs
+    sort(task_worker_list.begin(), task_worker_list.end());
+
+    //Print sorted workers
+    cout << "Task workers in destroy: " << endl;
+    for(int h=0; h < (int) task_worker_list.size(); h++){
+      cout << task_worker_list[h].temp_cost << " ID: " << task_worker_list[h].worker->get_ID() << endl;
+    }
+
+    //Delete weekend task, multiple of 5 of the work force
+    double num_tasks = 0.01*(double)percent*(double)task_worker_list.size();
+    int destroy_amount = (((int)(num_tasks + (double)NUM_WEEKS/2.0)/NUM_WEEKS) *NUM_WEEKS);
+    cout << "Num tasks to destroy: "<< destroy_amount << endl;
+
+    //Remove weekends for workers
+    for(int i = 0; i<destroy_amount; i++){
+      cout << "Destroyed worker: " << task_worker_list.back().worker->get_ID() << " Weekend: " 
+	   << task_worker_list.back().worker->get_current_weekend() << endl;
+
+      //Destroy a workers weekend
+      destroy_a_weekend(task_worker_list.back(), mode);
+
+      //Remove worker from worker list
+      task_worker_list.pop_back();
+    }
+
+    // for(int i=0; i < (int)destroyed_wend_workers.size(); i++){
+    //   cout <<  " ID: " << destroyed_wend_workers[i]->get_ID() << endl;
+    // }
+
+    //Find and push all free weekends
+    for (int w=0; w <NUM_WEEKS; w++){
+      for (int t=Exp; t<NUM_TASKS; t++){
+	//Find demand for task
+	int weekend_demand = current_demand[w][sat][0][t];
+	if(weekend_demand > 0){
+
+	  //Find avail diff for task
+	  int avail_diff = avail_demand_diff[find_position_req(t)][w][sat][0];
+
+	  weekend_task_list.push_back(WeekendTask 
+				      {find_position_req(t), w, weekend_demand, avail_diff, t, &worker_list});
+	}
+      } 
+    }
   }
 }
 
 
 /*********** Library function: destroy a weekend ******/
 
-void Library::destroy_a_weekend(Task_worker& t_worker){
-  Worker* worker = t_worker.worker;
-  Worker temp_worker = t_worker.temp_worker;
+void Library::destroy_a_weekend(TaskWorker& t_worker, string mode){
+  //Worker* worker = t_worker.worker;
+  //Worker* temp_worker = t_worker->temp_worker;
   
-  //If weekend task is to be removed, increase demand at library
-  if(worker->has_weekend_task()){
-    current_demand[worker->get_current_weekend()-1][sat][0][worker->get_weekend_task_type()]++;
-    current_demand[worker->get_current_weekend()-1][sun][0][worker->get_weekend_task_type()]++;
+  //Destroy worker weekend permanently
+  if (mode == "perm"){
+    Worker* worker = t_worker.worker;
+    //If weekend task is to be removed, increase demand at library
+    if(worker->has_weekend_task()){
+      current_demand[worker->get_current_weekend()-1][sat][0][worker->get_weekend_task_type()]++;
+      current_demand[worker->get_current_weekend()-1][sun][0][worker->get_weekend_task_type()]++;
 
-    if(worker->get_weekend_task_type() != HB){
-      current_demand[worker->get_current_weekend()-1][fri][3][worker->get_weekend_task_type()]++;
+      if(worker->get_weekend_task_type() != HB){
+	current_demand[worker->get_current_weekend()-1][fri][3][worker->get_weekend_task_type()]++;
+      }
+      //Remove task from worker
+      worker->remove_weekend();
     }
-    //Remove task from worker
-    worker->remove_weekend();
+
+    //Collect destroyed worker
+    destroyed_wend_workers.push_back(t_worker);
   }
 
-  //Collect destroyed worker
-  destroyed_wend_workers.push_back(worker);
+  //Destroy worker weekend temporarily
+  else if (mode == "temp"){
+    Worker* temp_worker = &t_worker.temp_worker;
+    //If weekend task is to be removed, increase demand at library
+    if(temp_worker->has_weekend_task()){
+      temp_current_demand[temp_worker->get_current_weekend()-1][sat][0][temp_worker->get_weekend_task_type()]++;
+      temp_current_demand[temp_worker->get_current_weekend()-1][sun][0][temp_worker->get_weekend_task_type()]++;
 
+      if(temp_worker->get_weekend_task_type() != HB){
+	temp_current_demand[temp_worker->get_current_weekend()-1][fri][3][temp_worker->get_weekend_task_type()]++;
+      }
+      //Remove task from worker
+      temp_worker->remove_weekend();
+    }
+
+    //Collect destroyed worker
+    destroyed_wend_workers.push_back(t_worker);
+  }
 }
 
 
+// /*********** Library function: repair temp weekned ******/
+
+// void Library::repair_temp_weekend(){
+
+//   //Sort tasks according to cheapest task, ie librarian qualification tasks first
+//   random_shuffle(weekend_task_list.begin(),weekend_task_list.end());
+//   sort(weekend_task_list.begin(),weekend_task_list.end());
+
+//   while(weekend_task_list.size() > 0){
+//     WeekendTask* current_task = &weekend_task_list[0];
+
+//     //Place a worker at random
+//     current_task->place_a_worker(&destroyed_wend_workers);
+
+ 
+
+//     //Remove weekend task
+//     weekend_task_list.erase(weekend_task_list.begin());
+    
+//   }
+// }
+
 /*********** Library function: repair weekend tasks ******/
 
-void Library::repair_weekend(){
+void Library::repair_weekend(string mode){
 
   //Sort tasks according to cheapest task, ie librarian qualification tasks first
-  random_shuffle(weekend_task_list.begin(),weekend_task_list.end());
-  sort(weekend_task_list.begin(),weekend_task_list.end());
+ 
 
-  while(weekend_task_list.size() > 0){
-    WeekendTask* current_task = &weekend_task_list[0];
+  //Permanently repair the weekend
+  if(mode == "perm"){
+    //Sort tasks according to cheapest task, ie librarian qualification tasks first
+    random_shuffle(weekend_task_list.begin(),weekend_task_list.end());
+    sort(weekend_task_list.begin(),weekend_task_list.end());
 
-    //Place a worker at random
-    current_task->place_a_worker(&destroyed_wend_workers);
+    while(weekend_task_list.size() > 0){
+      WeekendTask* current_task = &weekend_task_list[0];
 
-    //Remove weekend task
-    weekend_task_list.erase(weekend_task_list.begin());
-    
+      //Place a worker at random
+      current_task->place_a_worker(&destroyed_wend_workers);
+
+      //Get the placed worker
+      TaskWorker* task_worker = current_task->get_placed_worker();
+      Worker* worker = task_worker->worker;
+
+      //Depending on placed weekend, reduce demand
+      if(worker->has_weekend_task()){
+	current_demand[worker->get_current_weekend()-1][sat][0][worker->get_weekend_task_type()]--;
+	current_demand[worker->get_current_weekend()-1][sun][0][worker->get_weekend_task_type()]--;
+
+	if(worker->get_weekend_task_type() != HB){
+	  current_demand[worker->get_current_weekend()-1][fri][3][worker->get_weekend_task_type()]--;
+	}
+      }
+      //Remove weekend task
+      weekend_task_list.erase(weekend_task_list.begin());  
+    }
   }
+
+  //Temporarily repair the weekend
+  else if (mode == "temp"){
+    //Sort tasks according to cheapest task, ie librarian qualification tasks first
+    random_shuffle(weekend_task_list.begin(),weekend_task_list.end());
+    sort(weekend_task_list.begin(),weekend_task_list.end());
+
+    while(weekend_task_list.size() > 0){
+      WeekendTask* current_task = &weekend_task_list[0];
+
+      //Place a worker at random
+      current_task->place_a_worker(&destroyed_wend_workers);
+
+      //Get the placed worker
+      TaskWorker* task_worker = current_task->get_placed_worker();
+      Worker* worker = &task_worker->temp_worker;
+
+      //Depending on placed weekend, reduce demand
+      if(worker->has_weekend_task()){
+	temp_current_demand[worker->get_current_weekend()-1][sat][0][worker->get_weekend_task_type()]--;
+	temp_current_demand[worker->get_current_weekend()-1][sun][0][worker->get_weekend_task_type()]--;
+
+	if(worker->get_weekend_task_type() != HB){
+	  temp_current_demand[worker->get_current_weekend()-1][fri][3][worker->get_weekend_task_type()]--;
+	}
+      }
+      //Remove weekend task
+      //weekend_task_list.erase(weekend_task_list.begin());  
+    }
+  }
+
+  //Use temporary solution as permanent
+  else if (mode == "use_temp"){
+
+    //Set current demand
+    if(mode == "temp"){
+      for(int w = 0; w < NUM_WEEKS; w++){
+	for(int d = 0; d < NUM_WEEKDAYS; d++){
+	  for(int s = 0; s < NUM_SHIFTS; s++){
+	    for(int t = 0; t < NUM_TASKS; t++){
+	      current_demand[w][d][s][t] = temp_current_demand[w][d][s][t];
+	    }
+	  }
+	}
+      }
+    }
+
+    //Set all weekend tasks
+    while(weekend_task_list.size() > 0){
+      WeekendTask* current_task = &weekend_task_list[0];
+
+      //Get the placed workers at current task
+      vector<TaskWorker*>* task_workers = current_task->get_placed_workers();
+
+      for(int i=0; i < (int) task_workers->size(); i++){
+	//TaskWorker* task_worker = current_task->get_placed_worker();
+	Worker* worker = (*task_workers)[i]->worker;
+	Worker* temp_worker = &(*task_workers)[i]->temp_worker;
+      
+	//Set weekend for real worker
+	worker->set_current_weekend(temp_worker->get_current_weekend()-1,temp_worker->get_weekend_task());
+      }
+
+      //Remove weekend task when all workers are permanently placed
+      weekend_task_list.erase(weekend_task_list.begin());  
+    }
+  }
+
 }
 
 // /************* Library function: update avail demand ************/
