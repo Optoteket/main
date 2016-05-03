@@ -40,13 +40,13 @@ private:
 	static const int DEMAND_MANY_ASS = 150;
 	static const int DEMAND_FEW_TOT = 500;
 	static const int DEMAND_MANY_TOT = 400; //Same relation to PL_VIOLATE_COST
-	static const int DEMAND_HB_OVERSTAFF = 500000;
 	static const int DEMAND_PL_OVERSTAFF_LIB = 500;
 	static const int DEMAND_PL_OVERSTAFF_ASS = 400; 
 	static const int STAND_IN_COST = 5;
 	//*Weekend costs*
 	static const int NO_WEEKEND_COST = 500; //No weekend assigned to a weekend worker, should never occur (35 wend workers and need 35)
 	static const int HB_ASSIGNED_COST = 2500; //If HB is already assigned when being assigned to the worker
+	static const int DEMAND_HB_OVERSTAFF = 1000;
 	
 	
 	int worker_avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
@@ -55,6 +55,8 @@ private:
 	vector<Block*> weekend_blocks_avail; //weekend_blocks_avail: [block.ID(1) block.ID(8) block.ID(36)] i.e. blocks a worker is avail for
 	vector<Block*> weekday_blocks_avail; //blocks available are dependent on availability, weekend worker, pl-demand etc.
 	vector<Block*> weekrest_blocks_avail; //Note: Create vector<Block*> instead of new blocks assigned to vectors?
+	
+	int LOW_assigned[NUM_WEEKS][NUM_DAYS-2][NUM_SHIFTS]; //1 if assigned LOW that day, 0 else
 	
 	
 	int num_PL; //Amount of PL assigned to a worker. no_PL => 0, standard_PL => 0-2(?), many_PL => 3-4(?)
@@ -126,7 +128,8 @@ public:
 	vector<Block*> getblocks_assigned() const;
 	int get_block_types_added(int) const;
 	int check_all_block_types_added() const;
-	
+	int get_LOW_assigned(int, int, int) const;
+	void print_assigned_LOW() const;
 	
 	
 	//Mutator functions
@@ -144,6 +147,7 @@ public:
 	void setWeekend_week(int);
 	void setStand_in_avail();
 	void set_block_types_added(int,int);
+	void set_LOW_assigned(int,int,int,int);
 	void clear_cost_vector(string); //type as argument "weekend" etc
 	
 	void createBlocks();

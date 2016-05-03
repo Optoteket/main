@@ -138,11 +138,13 @@ int main() {
 // 	lib.print_weekblocks_avail_worker(p, mytype);
 // 	lib.getWorker(p).getStand_in_matrix();
 	
-	
+	//***Assign Library On Wheels for the regarding workers***
+	lib.assign_LOW();
 	//***Create initial solution!***
 	lib.create_initial_solution();
 	
-	
+	lib.getWorker(36).print_assigned_LOW();
+// 	lib.print_weekblocks_avail_worker(36, "weekrest");
 	
 	
 	return 0;
