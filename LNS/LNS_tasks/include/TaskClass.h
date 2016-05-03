@@ -9,34 +9,26 @@
 
 #include "Constants.h"
 #include "WorkerClass.h"
+#include "TaskWorkerClass.h"
 
 using namespace std;
 
 class Task {
  protected:
 
-  struct Task_worker {
-    Worker* worker;
-    Worker temp_worker;
-    int temp_worker_cost; 
-
-    bool operator<(Task_worker const & task_worker) const{
-      return this->temp_worker_cost < task_worker.temp_worker_cost; //Singel class?
-    }  
-  };
-
   int type;
   int qualification;
   int week;
   int demand;
   int avail_diff;
-  Task_worker* worker_to_place;
   int total_cost;
 
   // All available workers and their costs
-  vector<Task_worker> avail_workers;
+  vector<TaskWorker> avail_workers;
   vector<Worker>* workers;
-  Worker* placed_worker;
+
+  vector<TaskWorker*> placed_workers;
+  TaskWorker* placed_worker;
 
  public:
   Task(int,int,int,int,int, vector<Worker>*);
@@ -46,10 +38,14 @@ class Task {
   int get_type() const;
   int get_qualification() const;
   int get_placed_worker_pos();
+  TaskWorker* get_placed_worker();
+  vector<TaskWorker*>* get_placed_workers();
+
   int num_avail_workers();
 
-  void set_placed_worker(Worker*);
-  
+  void set_placed_worker(TaskWorker*);
+  void set_placed_workers(TaskWorker*);
+
   //Find and place workers
   virtual void place_cheapest_worker();  
   virtual void find_avail_workers();
