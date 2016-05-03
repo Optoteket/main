@@ -309,7 +309,7 @@ subject to max_two_shifts_at_same_hours_per_week{i in I, w in W, s in 1..3}:
 	sum{d in 1..5} y[i,w,d,s] <= 2;
 
 ######################## Lib on Wheels constraints #########################
-#Worker 25 works on LOW all available Wednesdays
+#Worker 25 works on LOW all available Thursdays
 subject to 25_works_all_Thursdays:
 	sum{w in W} x[25,w,4,4,'LOW'] = 8;
 

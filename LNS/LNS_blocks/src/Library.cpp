@@ -639,22 +639,25 @@ void Library::assign_block(Block* block, int worker_id){ //worker_id a number be
 }
 
 void Library::print_weekblocks_avail_worker(int worker_id, string type){
+	cout << "Weekblocks available for worker " << worker_id << " is:" << endl;
 	if(type == "weekend"){
-		for(unsigned int n=0; n<myworkers[worker_id-1].getweekend_vect().size(); n++){
-			myworkers[worker_id-1].getweekend_vect().at(n)->getTask_matrix();
+		for(unsigned int n=0; n<myworkers[worker_id-1].getWeekend_cost_vector().size(); n++){
+			myworkers[worker_id-1].getWeekend_cost_vector().at(n).block->getTask_matrix();
 		}
 	} else if(type == "weekday"){
-		for(unsigned int n=0; n<myworkers[worker_id-1].getweekday_vect().size(); n++){
-			myworkers[worker_id-1].getweekday_vect().at(n)->getTask_matrix();
+		for(unsigned int n=0; n<myworkers[worker_id-1].getWeekday_cost_vector().size(); n++){
+			myworkers[worker_id-1].getWeekday_cost_vector().at(n).block->getTask_matrix();
 		}
 	} else if(type == "weekrest"){
-		for(unsigned int n=0; n<myworkers[worker_id-1].getweekrest_vect().size(); n++){
-			myworkers[worker_id-1].getweekrest_vect().at(n)->getTask_matrix();
+		for(unsigned int n=0; n<myworkers[worker_id-1].getWeekrest_cost_vector().size(); n++){
+			myworkers[worker_id-1].getWeekrest_cost_vector().at(n).block->getTask_matrix();
 		}
 	} else{
 		cerr << "Not a valid string as inargument" << endl;
 	}
 }
+
+
 
 void Library::print_weekblocks_assigned_worker(int worker_id, string str){
 	int weekend_week = 0;
@@ -917,32 +920,68 @@ void Library::print_demand_differ(){
 }
 
 void Library::calculate_all_week_costs_for_worker(string type, int w_id, int count){
+	int calculate = 1;
 	if(type == "weekrest"){
 		//Clear vector
 		myworkers[w_id-1].clear_cost_vector(type);
-		//Calculate costs
+		//Calculate costs iff the block does not overlap with assigned LOW
+		int w = (myworkers[w_id-1].getWeekend_week()+1) % 5; //due to weekrest
 		for(unsigned int n=0; n<myworkers[w_id-1].getweekrest_vect().size(); n++){
-			myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekrest_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned, count);
+			calculate = check_if_collision(n,w_id,w,type); //returns 0 if a task collides with LOW
+			if(calculate == 1){
+				myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekrest_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned, count);
+			}else{
+				cout << "Collision with LOW!" << endl;
+// 				return;
+			}
 		}
 	} else if(type == "weekday"){
 		//Clear vector
 		myworkers[w_id-1].clear_cost_vector(type);
 		//Calculate costs
+		int w = (myworkers[w_id-1].getWeekend_week()+1+count) % 5; //due to weekday
 		for(unsigned int n=0; n<myworkers[w_id-1].getweekday_vect().size(); n++){
-			//Add a count to calculate_week_cost if wday?
-			myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekday_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned, count);
+			calculate = check_if_collision(n,w_id,w,type); //returns 0 if a task collides with LOW
+			if(calculate == 1){
+				myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekday_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned, count);
+			}else{
+				cout << "Collision with LOW!" << endl;
+// 				return;
+			}
 		}
 	} else if(type == "weekend"){
 		//Clear vector
 		myworkers[w_id-1].clear_cost_vector(type);
 		//Calculate costs
+		int w = myworkers[w_id-1].getWeekend_week(); //due to weekend
 		for(unsigned int n=0; n<myworkers[w_id-1].getweekend_vect().size(); n++){
-			myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekend_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned, count);
+			calculate = check_if_collision(n,w_id,w,type); //returns 0 if a task collides with LOW
+			if(calculate == 1){
+				myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekend_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned, count);
+			}else{
+				cout << "Collision with LOW!" << endl;
+// 				return;
+			}
 		}
 	}
 	
 	else{cerr << "\n\nWrong 'type' as argument in calculate_all_week_costs_for_worker\n\n" << endl; return;}
 }
+
+int Library::check_if_collision(unsigned int n, int worker, int week, string type){
+	int calc = 1;
+	for(int d=0; d<NUM_DAYS-2; d++){
+		for(int s=0; s<NUM_SHIFTS; s++){
+			for(int j=1; j<=2; j++){
+				if(myworkers[worker-1].getblock_avail_vect(type).at(n)->getTask(d,s,j)==1 && myworkers[worker-1].get_LOW_assigned(week,d,s) == 1){
+					calc = 0;
+				}
+			}
+		}
+	}
+	return calc;
+}
+
 void Library::find_lowest_cost_in_vector(string type, int w_id){
 	lowest_cost = 999999; //initialize as a high number after each function call
 	lowest_cost_IDs.clear(); //Clear vector containing indices of block with lowest cost
@@ -1032,13 +1071,6 @@ void Library::create_initial_solution(){
 		cout << "current_worker_index is: " << current_worker_index << endl;
 		current_worker = worker_vector.at(current_worker_index);
 // 		current_worker = 36;
-// 		if(current_worker == 36){
-// 			add_best_blocks_to_initial_solution("weekend", current_worker);
-// 			calculate_all_week_costs_for_worker("weekend",current_worker, 0); //Add count here??
-// 			find_lowest_cost_in_vector("weekend",current_worker);
-// 			print_cost_vector(type,current_worker);
-// 			return;
-// 		}
 		cout << "Current worker at that index is: " << current_worker << endl;
 // 		while(myworkers[current_worker-1].check_all_block_types_added() == 0){ //ADD ALL BLOCKS FOR ONE WORKER -Remove later
 			block_type_to_add = rand() % 3; //A number between 0-2, 0 means wend, 1 weekrest and 2 weekday
@@ -1058,6 +1090,15 @@ void Library::create_initial_solution(){
 				type = "weekday";
 			}
 			cout << "type is: " << type << endl;
+			if(current_worker == 36 && type == "weekend"){
+				add_best_blocks_to_initial_solution(type, current_worker);
+				calculate_all_week_costs_for_worker(type,current_worker, 0);
+				find_lowest_cost_in_vector(type,current_worker);
+				print_cost_vector(type,current_worker);
+				print_weekblocks_avail_worker(current_worker, type);
+				print_weekblocks_assigned_worker(current_worker, type);
+				return;
+			}
 			
 			//Add for week type: "type"
 			if(type != "weekday"){
@@ -1121,7 +1162,7 @@ void Library::add_best_blocks_to_initial_solution(string type, int current_worke
 	//Add best block for block type "type"
 	//Calculate the best block to add
 	int block_index_to_add = 0;
-	calculate_all_week_costs_for_worker(type,current_worker, count); //Add count here??
+	calculate_all_week_costs_for_worker(type,current_worker, count);
 	find_lowest_cost_in_vector(type,current_worker);
 	
 	//pick a random ID if multiple index give same cost
@@ -1140,3 +1181,43 @@ void Library::add_best_blocks_to_initial_solution(string type, int current_worke
 		}
 	}
 }
+
+void Library::assign_LOW(){ //Assign library on wheels to the workers in question: 14, 17, 25, 36, 37
+	for(int i=1; i<=num_workers; i++){
+		for(int w=0; w<NUM_WEEKS; w++){
+			for(int d=0; d<5; d++){
+				for(int s=0; s<NUM_SHIFTS; s++){
+					//Monday morning
+					if(i == 25 && d == 0 && s == 0 && w%2 == 1){//odd weeks
+						myworkers[i-1].set_LOW_assigned(w,d,s,1);
+					}else if(i == 36 && d == 0 && s == 0 && w%2 == 0){//even weeks
+						myworkers[i-1].set_LOW_assigned(w,d,s,1);
+					}
+					//Wednesday noon
+					if(i == 14 && d == 2 && s == 3 && w%2 == 0){//even weeks
+						myworkers[i-1].set_LOW_assigned(w,d,s,1);
+					}else if(i == 37 && d == 2 && s == 3 && w%2 == 1){//odd weeks (compensate for 36. not all LOW same week)
+						myworkers[i-1].set_LOW_assigned(w,d,s,1);
+					}
+					//Thursday noon
+					if(i == 25 && d == 3 && s == 3 && w != (myworkers[i-1].getWeekend_week()+1)%5){//All weeks except its weekrest week
+						myworkers[i-1].set_LOW_assigned(w,d,s,1);
+					}else if(i == 36 && d == 3 && s == 3 && w == (myworkers[25-1].getWeekend_week()+1)%5){//only when worker 25 has weekrest
+						myworkers[i-1].set_LOW_assigned(w,d,s,1);
+					}
+					//Friday morning
+					if(i == 17 && d == 4 && s == 0 && w%2 == 0 && w != (myworkers[i-1].getWeekend_week()+1) % 5){//even weeks and not weekrest
+						myworkers[i-1].set_LOW_assigned(w,d,s,1);
+					}else if(i == 36 && d == 4 && s == 0 && w%2 == 1 && (w != (myworkers[i-1].getWeekend_week()+1) % 5 || w != myworkers[i-1].getWeekend_week()) ){ //odd and not weekend or weekrest week
+						myworkers[i-1].set_LOW_assigned(w,d,s,1);
+					}
+					//Rest
+					if(i == 36 && ((d == 0 && s == 3)  || (d == 2 && s == 0) || (d == 3 && s == 0)) ){
+						myworkers[i-1].set_LOW_assigned(w,d,s,1);
+					}
+				}
+			}
+		}
+	}
+}
+

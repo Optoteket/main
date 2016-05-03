@@ -40,6 +40,9 @@ void Worker::init(){
 		for (int d=0; d<NUM_DAYS-2; d++){
 			stand_in[w][d] = 0;
 			stand_in_avail[w][d] = 0;
+			for(int s=0; s<NUM_SHIFTS; s++){
+				LOW_assigned[w][d][s] = 0;
+			}
 		}
 	}
 	weekend_blocks_avail = vector<Block*>();
@@ -79,6 +82,10 @@ Worker::Worker(const Worker& obj){
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int d=0; d<NUM_DAYS-2; d++){
 			stand_in[w][d] = obj.stand_in[w][d];
+			stand_in_avail[w][d] = obj.stand_in[w][d];
+			for(int s=0; s<NUM_SHIFTS; s++){
+				LOW_assigned[w][d][s] = obj.LOW_assigned[w][d][s];
+			}
 		}
 	}
 	weekend_blocks_avail.reserve(obj.weekend_blocks_avail.size());
@@ -168,6 +175,19 @@ void Worker::getAvail_matrix() const{
 		cout << endl;
 	}
 }
+void Worker::print_assigned_LOW() const{
+	cout << "weekend for worker " << newID << " occurs at week " << newWeekend_week << endl;
+	for (int w=0; w< NUM_WEEKS; w++){
+		cout << "LOW assigned week " << w << " for worker " << newID << endl;
+		for (int s=0; s< NUM_SHIFTS; s++){
+			for (int d=0; d< NUM_DAYS-2; d++){
+				cout << LOW_assigned[(newWeekend_week+w)%5][d][s] << " ";
+			}
+		cout << endl;
+		}
+		cout << endl;
+	}
+}
 vector<Block*> Worker::getweekend_vect() const{
 	return weekend_blocks_avail;
 }
@@ -220,6 +240,10 @@ int Worker::check_all_block_types_added() const{
 	else{return 0;}
 }
 
+int Worker::get_LOW_assigned(int w, int d, int s) const{
+	return LOW_assigned[w][d][s];
+}
+
 
 // *** SET Functions ***
 void Worker::setID(int id) {
@@ -263,6 +287,10 @@ void Worker::setWeekend_week(int weekend){
 
 void Worker::set_block_types_added(int block_type_to_add, int value){
 	block_types_added[block_type_to_add] = value;
+}
+
+void Worker::set_LOW_assigned(int w, int d, int s, int value){
+	LOW_assigned[w][d][s] = value;
 }
 
 void Worker::setStand_in_avail(){
@@ -336,12 +364,8 @@ void Worker::calculate_week_cost(Block* blockobj, string type, int diff_in_deman
 	int num_wends_five_weeks_cost = 0; //add cost if weekend worker and not assigned any wend
 	int HB_assigned_cost = 0; //add cost if HB already assigned that weekend (rotation dependent)
 	
-	if(blockobj->getnum_PL() > 0){
-		PL_cost = calculate_PL_cost(blockobj); //check if PL already assigned that day and if worker avail for more PL assignments
-	}
-	if(blockobj->getnum_Blocks() > 0){
-		demand_cost = calculate_demand_cost(blockobj, type, diff_in_demand, assigned_libs, assigned_ass, count);
-	}
+	PL_cost = calculate_PL_cost(blockobj);
+	demand_cost = calculate_demand_cost(blockobj, type, diff_in_demand, assigned_libs, assigned_ass, count);
 	stand_in_cost = calculate_stand_in_cost(blockobj, type, count);
 	num_wends_five_weeks_cost = calculate_num_wends_cost(blockobj);
 	HB_assigned_cost = calculate_HB_assign_cost(blockobj, HB_asgn);
@@ -432,7 +456,7 @@ int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[
 					}
 				}
 			}
-			if(block->getTask(d,s,3) == 1){ //get all "HB" tasks
+			if(s == 0 && d == 6 && block->getTask(d,s,3) == 1){ //get all "HB" tasks
 				if(diff_in_demand[w][d][s][2]-1 < 0){
 					temp_cost += DEMAND_HB_OVERSTAFF;
 				}
@@ -506,20 +530,20 @@ int Worker::calculate_num_wends_cost(Block* block){ //Add a cost to first block 
 }
 
 int Worker::calculate_HB_assign_cost(Block* block, int HB_assigned[5]){ //add cost if avail for HB and is weekend worker for blocks with HB. Add negative otherwise
-	int temp_cost = 0;
+	int cost = 0;
 	if(newQual.compare(0,3,"lib") == 0 && newWeekend.compare(0,7,"weekend") == 0 && (newHB.compare(0,11,"standard_HB") == 0 || newHB.compare(0,7,"only_HB") == 0) ){
 		if(block->getTask(5,0,3) == 1 && block->getTask(6,0,3) == 1){ //checking if HB assigned to block
 			int w = newWeekend_week; //the week where the weekend work occurs (after rotation)
 			if(HB_assigned[w] == 1){
 				//Add cost if librarian, weekend worker, available for HB and HB already assigned that week.
-				temp_cost = HB_ASSIGNED_COST;
+				cost += HB_ASSIGNED_COST;
 			}else if(HB_assigned[w] == 0){
-				temp_cost = -HB_ASSIGNED_COST;
+				cost += -HB_ASSIGNED_COST;
 			}
 		}
 	}
 // 	if(temp_cost != 0){cout << "in calculate_HB_assign_cost. Temp_cost is: " << temp_cost << endl;}
-	return temp_cost;
+	return cost;
 }
 
 
