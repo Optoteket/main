@@ -22,6 +22,7 @@ class Task {
   int demand;
   int avail_diff;
   int total_cost;
+  int orig_demand;
 
   // All available workers and their costs
   vector<TaskWorker> avail_workers;

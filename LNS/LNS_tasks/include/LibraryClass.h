@@ -123,6 +123,7 @@ class Library{
   void print_avail_demand_diff();
   void print_current_demand();
   void print_task_costs();
+  void print_temp_current_demand();
 
 };
 

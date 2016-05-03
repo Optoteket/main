@@ -8,6 +8,7 @@ Task::Task(int q, int w, int worker_demand, int avail_diff, int task_type, vecto
   qualification = q;
   week= w;
   demand = worker_demand;
+  orig_demand = worker_demand;
   avail_diff = avail_diff;
   set_costs();
 
@@ -90,7 +91,7 @@ int Task::get_cost() const{
 }
 
 int Task::get_demand() const{
-  return demand;
+  return orig_demand;
 }
 
 int Task::get_week() const{

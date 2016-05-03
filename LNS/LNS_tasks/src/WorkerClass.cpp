@@ -168,7 +168,7 @@ Worker::Worker(string pos, int ID, string name, string department, string weeken
   for (int h=0; h<NUM_ROTATIONS; h++){
     for (int i=0; i<NUM_WEEKS; i++){      
       for (int j=0; j<NUM_DAYS; j++){
-	if (identity.avail[h][i][j][0] > 0 && identity.avail[h][i][j][1] > 0 &&  identity.avail[h][i][j][2] > 0){
+	if (identity.avail[h][i][j][0] > 0 && identity.avail[h][i][j][1] > 0 && identity.avail[h][i][j][2] > 0){
 	 identity.avail_day[h][i][j] = 1;
 	}
 	else {
@@ -417,7 +417,7 @@ void Worker::set_PL_costs(int w){
   } 
 }
 
-void Worker::set_stand_in_cost(int w, int d){
+void Worker::set_stand_in_cost(int w, int d){ 
   costs.stand_in_cost[w][d] = get_avail_day(w,d) - get_current_avail_day(w,d);
 }
 
@@ -510,7 +510,6 @@ void Worker::set_current_weekend(int wend, int task){
     //Set weekend task
     set_weekend_task(task);
   }
-
 }
 
 
@@ -630,7 +629,8 @@ void Worker::rotate_current_avail(){
 
 void Worker::set_current_avail_day(int w, int d){
   if(get_current_task(w,d,0) == no_task && get_current_task(w,d,1) == no_task 
-     && get_current_task(w,d,2) == no_task && get_current_task(w,d,3) == no_task){
+     && get_current_task(w,d,2) == no_task && get_current_task(w,d,3) == no_task
+     && get_avail_day(w, d) == 1){
     current.avail_day[w][d] = 1;
   }
   else current.avail_day[w][d] = 0;
