@@ -122,15 +122,6 @@ void Block::getTask_matrix() const{
 		cout << endl;
 	}
 }
-int Block::getNUM_WEEKS() const{
-	return NUM_DAYS;
-}
-int Block::getNUM_DAYS() const{
-	return NUM_DAYS;
-}
-int Block::getNUM_SHIFTS() const{
-	return NUM_SHIFTS;
-}
 int Block::getNUM_TASKS() const{
 	return NUM_TASKS;
 }

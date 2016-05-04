@@ -3,17 +3,16 @@
 
 #include <iostream>
 #include <vector>
+#include "Constants.h"
 #include "Workers.h"
 #include "Blocks.h"
+
 using namespace std;
 
 class Library {
 private:
 	//Member variables
 // 	string avail_file = "./src/data/workers5W.txt";
-	static const int NUM_WEEKS = 5;
-	static const int NUM_DAYS = 7;
-	static const int NUM_SHIFTS = 4;
 	static const int NUM_TASKS = 4; //No task, Block, PL, HB, (BokB)
 	int num_blocks; //Number of blocks created
 	int num_workers; //39 workers in the library
@@ -46,7 +45,6 @@ public:
 	
 	//Accessor Functions
 	int getDemand(int, int, int, int) const;
-// 	int getDemand_differ(
 	int getNum_blocks() const;
 	int getTask_avail(int, int, int) const;
 	int getNum_day_combinations() const;
@@ -58,8 +56,8 @@ public:
 	void setDemand(int, int, int, int, int);
 	void setDemand(int, int, int, string, int);
 	
-	void readDemand();
-	void printDemand();
+	void readDemand(); //Reads demand from file
+	void printDemand(); //Prints the demand to terminal
 	void createWorkers();
 // 	void createBlocks();
 	void setNum_blocks(int);
@@ -78,6 +76,7 @@ public:
 	void assign_block(Block*, int);
 	bool week_empty_of_tasks(Block*);
 	void print_weekblocks_avail_worker(int, string);
+	void print_all_weekblocks_avail_worker(int, string);
 	void print_weekblocks_assigned_worker(int, string);
 	void assign_rot_to_workers();
 	void calculate_tasks_filled();
@@ -99,6 +98,8 @@ public:
 	
 	void assign_LOW();
 	int check_if_collision(unsigned int, int, int, string);
+	
+	int evaluate_solution();
 
 
 
