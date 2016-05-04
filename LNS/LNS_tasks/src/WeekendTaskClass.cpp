@@ -94,7 +94,7 @@ void WeekendTask::place_a_worker(vector<TaskWorker>* a_workers, string mode){
     //Place permanent workers
     if(mode == "perm"){
       //Print available workers
-      print_avail_workers();
+      //print_avail_workers();
 
       //cout << "Placed worker " << avail_workers[0].temp_worker.get_ID() 
       // << " at weekend task w:" << week << " type " << endl;
@@ -109,7 +109,7 @@ void WeekendTask::place_a_worker(vector<TaskWorker>* a_workers, string mode){
     //Place temporary workers
     else if (mode == "temp"){
       //Print available workers
-      print_avail_workers();
+      //print_avail_workers();
 
       //cout << "Placed worker " << avail_workers[0].temp_worker.get_ID() 
       //<< " at weekend task w:" << week << " type " << endl;

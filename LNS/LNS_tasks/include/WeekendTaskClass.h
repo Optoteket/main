@@ -28,7 +28,7 @@ class WeekendTask : public Task {
   virtual void set_costs();
   virtual void print_worker_costs();
   void place_a_worker(vector<TaskWorker>*, string);
-
+  
   void print_avail_workers();
 
 };

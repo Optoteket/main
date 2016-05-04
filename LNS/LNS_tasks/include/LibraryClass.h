@@ -49,17 +49,19 @@ class Library{
 
   //Avail statistics
   int num_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+  int temp_num_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   int avail_demand_diff[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   //int num_avail_day_workers[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS];
 
   //int num_avail_stand_ins[POS][WEEKS][DAYS] //Available stand ins for a certain day
 
-  //Weekend cost related
-  struct {
-    int val;
-    int count;
-  } cost_total_stand_ins;
-
+  int library_temp_cost;
+  int library_max_cost;
+  int library_cost;
+  int avail_day_cost; //Maximize in objective function
+  int temp_avail_day_cost;
+  int avail_contribution_cost;
+  int temp_avail_contribution_cost;
 
   //Cost weights
   int weight[2];
@@ -71,7 +73,10 @@ class Library{
   void create_initial_solution();
 
   //Stand in avail
-  void find_sum_stand_ins(int[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS]);
+  void set_library_cost(string);
+  void set_avail_contribution_cost(string);
+  void set_avail_day_cost(string);
+  //void find_sum_stand_ins(string);
   int find_min_stand_ins(int[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS],int);
 
   //Weekend related
@@ -98,8 +103,9 @@ class Library{
 
   //Demand related
   void find_num_avail_workers();
-  void find_avail_demand_diff();
-  bool compare_avail_demand();
+  void find_temp_num_avail_workers();
+  void find_avail_demand_diff(string);
+  bool compare_avail_demand(string);
 
   //Get
   int get_demand(int, int, int, int);
@@ -120,6 +126,7 @@ class Library{
   void display_worker_avail();
   void print_worker_avail(int,int[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]);
   void print_num_avail_workers();
+  void print_temp_num_avail_workers();
   void print_avail_demand_diff();
   void print_current_demand();
   void print_task_costs();
