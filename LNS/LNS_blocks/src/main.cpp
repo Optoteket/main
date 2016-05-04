@@ -114,7 +114,6 @@ int main() {
 	cout << "printing tasks_filled" << endl;
 	lib.print_tasks_filled();
 // 	return 0;
-	lib.calculate_demand_differ();
 	lib.print_demand_differ();
 	
 	//*** Print all available blocks for a worker ***
@@ -141,12 +140,29 @@ int main() {
 	//***Assign Library On Wheels for the regarding workers***
 	lib.assign_LOW();
 	//***Create initial solution!***
-	lib.create_initial_solution();
-	
-	lib.getWorker(36).print_assigned_LOW();
+// 	lib.create_initial_solution();
+// 	lib.getWorker(14).print_assigned_LOW();
+// 	lib.getWorker(17).print_assigned_LOW();
+// 	lib.getWorker(25).print_assigned_LOW();
+// 	lib.getWorker(36).print_assigned_LOW();
+// 	lib.getWorker(37).print_assigned_LOW();
 // 	lib.print_weekblocks_avail_worker(36, "weekrest");
+// 	lib.printDemand();
+// 	cout << lib.getWorker(1).getblocks_assigned().at(lib.getWorker(1).getWeekend_week())->getID() << endl;
+// 	lib.print_weekblocks_assigned_worker(1, "weekend");
+
+// 	for(int k=16;k<=20;k++){
+// 	cout << "Worker " << k << " has been assigned following blocks" << endl;
+// 	lib.print_weekblocks_assigned_worker(k, "weekend"); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
+// 	lib.print_weekblocks_assigned_worker(k, "weekrest"); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
+// 	lib.print_weekblocks_assigned_worker(k, "weekday"); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
+// 	cout << "\n" << endl;
+// 	}
 	
+// 	cout << "The total cost after the new solution is: " << lib.evaluate_solution() << endl;
 	
+	lib.print_all_weekblocks_avail_worker(21, "weekrest");
+	cout << "End of main" << endl;
 	return 0;
 }
 

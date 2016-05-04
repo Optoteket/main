@@ -1,6 +1,6 @@
 #ifndef __BLOCKS_H_INCLUDED__
 #define __BLOCKS_H_INCLUDED__
-
+#include "Constants.h"
 #include <iostream>
 using namespace std;
 
@@ -13,9 +13,6 @@ private:
 	string newWeektype;
 	string newHB;
 // 	string avail_file = "./src/data/workers5W.txt";
-	static const int NUM_WEEKS = 5;
-	static const int NUM_DAYS = 7;
-	static const int NUM_SHIFTS = 4;
 	static const int NUM_TASKS = 5; //No task, Block, PL, HB, (BokB)
 	int tasks_assigned[NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; //No task, Block, PL, HB, BoKB
 	//int tasks_assigned_block[NUM_DAYS][NUM_SHIFTS];
@@ -58,9 +55,6 @@ public:
 	void getTask_matrix() const;
 		//prints out the entire task matrix to the terminal
 	int getTask(int, int, int) const;
-	int getNUM_WEEKS() const;
-	int getNUM_DAYS() const;
-	int getNUM_SHIFTS() const;
 	int getNUM_TASKS() const;
 	int getWday_block_number() const;
 	

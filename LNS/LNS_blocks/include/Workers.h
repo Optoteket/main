@@ -3,7 +3,9 @@
 
 #include <iostream>
 #include <vector>
+#include "Constants.h"
 #include "Blocks.h"
+
 using namespace std;
 
 class Worker {
@@ -27,26 +29,7 @@ private:
 
 	int tasks_assigned; //the number of tasks a worker is assigned in total. (max 4/v)
 // 	string avail_file = "./src/data/workers5W.txt";
-	static const int NUM_WEEKS = 5;
-	static const int NUM_DAYS = 7;
-	static const int NUM_SHIFTS = 4;
 	
-	//*** COSTS ***
-	static const int PL_VIOLATE_COST = 400; //When a block is containing a PL that will violate that workers demand
-	static const int PL_GOOD_COST = 2000; //A worker who needs more PL is assigned a PL
-	static const int DEMAND_FEW_LIBS = 200;
-	static const int DEMAND_MANY_LIBS = 500;
-	static const int DEMAND_FEW_ASS = 15;
-	static const int DEMAND_MANY_ASS = 150;
-	static const int DEMAND_FEW_TOT = 500;
-	static const int DEMAND_MANY_TOT = 400; //Same relation to PL_VIOLATE_COST
-	static const int DEMAND_PL_OVERSTAFF_LIB = 500;
-	static const int DEMAND_PL_OVERSTAFF_ASS = 400; 
-	static const int STAND_IN_COST = 5;
-	//*Weekend costs*
-	static const int NO_WEEKEND_COST = 500; //No weekend assigned to a weekend worker, should never occur (35 wend workers and need 35)
-	static const int HB_ASSIGNED_COST = 2500; //If HB is already assigned when being assigned to the worker
-	static const int DEMAND_HB_OVERSTAFF = 1000;
 	
 	
 	int worker_avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
@@ -129,6 +112,7 @@ public:
 	int get_block_types_added(int) const;
 	int check_all_block_types_added() const;
 	int get_LOW_assigned(int, int, int) const;
+	int get_num_PL_assigned();
 	void print_assigned_LOW() const;
 	
 	
@@ -175,6 +159,9 @@ public:
 	vector<Weekrest_cost> getWeekrest_cost_vector() const;
 	vector<Weekday_cost> getWeekday_cost_vector() const;
 	
+	
+	
+
 };
 
 
