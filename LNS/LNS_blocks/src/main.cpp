@@ -9,13 +9,13 @@
 #include "Workers.h"
 #include "Blocks.h"
 #include "Library.h"
+#include "Constants.h"
 using namespace std;
 
 
 
 
 int main() {
-	int num_workers = 39;
 	Library lib;
 	lib.printDemand();
 	lib.printTask_avail();
@@ -140,7 +140,7 @@ int main() {
 	//***Assign Library On Wheels for the regarding workers***
 	lib.assign_LOW();
 	//***Create initial solution!***
-// 	lib.create_initial_solution();
+	lib.create_initial_solution();
 // 	lib.getWorker(14).print_assigned_LOW();
 // 	lib.getWorker(17).print_assigned_LOW();
 // 	lib.getWorker(25).print_assigned_LOW();
@@ -159,9 +159,9 @@ int main() {
 // 	cout << "\n" << endl;
 // 	}
 	
-// 	cout << "The total cost after the new solution is: " << lib.evaluate_solution() << endl;
+	cout << "The total cost after the new solution is: " << lib.evaluate_solution() << endl;
 	
-	lib.print_all_weekblocks_avail_worker(21, "weekrest");
+// 	lib.print_all_weekblocks_avail_worker(21, "weekrest");
 	cout << "End of main" << endl;
 	return 0;
 }

@@ -12,7 +12,6 @@
 
 Library::Library() {
 	num_blocks = 0;
-	num_workers = 39;
 	for (int w=0; w<NUM_WEEKS; w++){
 		for (int d=0; d<NUM_DAYS; d++){
 			for (int s=0; s<NUM_SHIFTS; s++){
@@ -846,7 +845,7 @@ void Library::calculate_tasks_filled(){
 		for(int w=0; w<NUM_WEEKS; w++){
 			for(int d=0; d<NUM_DAYS; d++){
 				for(int s=0; s<NUM_SHIFTS; s++){
-					for(int j=0; j<NUM_TASKS; j++){ //For Block, PL, HB (BokB not added here)
+					for(int j=0; j<NUM_TASKS-1; j++){ //For Block, PL, HB (BokB not added here)
 						tasks_filled[w][d][s][j] += myworkers[i].getblocks_assigned().at(w)->getTask(d,s,j+1);
 						if(myworkers[i].getblocks_assigned().at(w)->getTask(d,s,j+1) == 1){
 							if(myworkers[i].getQual().compare(0,3,"lib") == 0){
@@ -1136,15 +1135,15 @@ void Library::create_initial_solution(){
 				type = "weekday";
 			}
 			cout << "type is: " << type << endl;
-			if(current_worker == 19 && type == "weekrest"){
-				add_best_blocks_to_initial_solution(type, current_worker);
-				calculate_all_week_costs_for_worker(type,current_worker, 0);
-				find_lowest_cost_in_vector(type,current_worker);
-				print_cost_vector(type,current_worker);
-				print_weekblocks_avail_worker(current_worker, type);
-				print_weekblocks_assigned_worker(current_worker, type);
-				return;
-			}
+// 			if(current_worker == 19 && type == "weekrest"){
+// 				add_best_blocks_to_initial_solution(type, current_worker);
+// 				calculate_all_week_costs_for_worker(type,current_worker, 0);
+// 				find_lowest_cost_in_vector(type,current_worker);
+// 				print_cost_vector(type,current_worker);
+// 				print_weekblocks_avail_worker(current_worker, type);
+// 				print_weekblocks_assigned_worker(current_worker, type);
+// 				return;
+// 			}
 			
 			//Add for week type: "type"
 			if(type != "weekday"){
@@ -1266,6 +1265,19 @@ void Library::assign_LOW(){ //Assign library on wheels to the workers in questio
 	}
 }
 
+// void Library::sum_LOW(){ //Sum all LOW assigned to the workers to see if filling demand
+// 	for(int i=0; i<num_workers; i++){
+// 		for(int w=0; w<NUM_WEEKS; w++){
+// 			for(int d=0; d<NUM_DAYS; d++){
+// 				for(int s=0; s<NUM_SHIFTS; s++){
+// 					
+// 					myworkers[i].get_LOW_assigned(w,d,s);
+// 				}
+// 			}
+// 		}
+// 	}
+// }
+
 int Library::evaluate_solution(){//Add all costs together and return the total cost. Stand-ins not included here
 	int total_cost = 0;
 	int demand_tot_cost = 0;
@@ -1310,6 +1322,7 @@ int Library::evaluate_solution(){//Add all costs together and return the total c
 				demand_PL_cost += demand_differ[w][d][0][1]*(int)(DEMAND_PL_BAD_LIB+DEMAND_PL_BAD_ASS)/2;
 			}
 			if(demand_differ[w][d][0][1] < 0){ //Overstaffing PL
+				//1 assistant is what is preferred
 				demand_PL_cost += num_lib_assigned[w][d][0][1]*DEMAND_PL_BAD_LIB + (num_ass_assigned[w][d][0][1]-1)*DEMAND_PL_BAD_ASS;
 			}
 			
@@ -1330,11 +1343,13 @@ int Library::evaluate_solution(){//Add all costs together and return the total c
 		//Calculate costs
 		if(myworkers[i].get_num_PL_assigned() < lower_limit){
 			PL_amount_cost += (lower_limit - myworkers[i].get_num_PL_assigned())*PL_VIOLATE_COST;
+			cout << "lower limit for worker: " << i+1 << " " << lower_limit - myworkers[i].get_num_PL_assigned() << endl;
 		}else if(myworkers[i].get_num_PL_assigned() > upper_limit){
 			PL_amount_cost += (myworkers[i].get_num_PL_assigned() - upper_limit)*PL_VIOLATE_COST;
+			cout << "upper limit for worker: " << i+1 << " " << myworkers[i].get_num_PL_assigned() - upper_limit << endl;
 		}
 		
-// 		cout << "#PL for worker " << i+1 << " is: " << myworkers[i].get_num_PL_assigned() << endl;
+		cout << "#PL for worker " << i+1 << " is: " << myworkers[i].get_num_PL_assigned() << endl;
 		
 		//***EMPTY WEEKEND COSTS***
 		//Check if weekend block is 0
