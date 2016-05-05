@@ -363,7 +363,7 @@ void Worker::add_block_to_worker(string type, int week_id, int day){
 }
 
 
-void Worker::calculate_week_cost(Block* blockobj, string type, int diff_in_demand[5][7][4][4],int assigned_libs[5][7][4][4],int assigned_ass[5][7][4][4], int HB_asgn[5], int count){ //Create one struct object from this function
+void Worker::calculate_week_cost(Block* blockobj, string type, int diff_in_demand[5][7][4][5],int assigned_libs[5][7][4][4],int assigned_ass[5][7][4][4], int HB_asgn[5], int count){ //Create one struct object from this function
 	int total_cost = 0;
 	int PL_cost = 0;
 	int demand_cost = 0;
@@ -419,7 +419,7 @@ int Worker::calculate_PL_cost(Block* block){
 	return temp_cost;
 }
 
-int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[5][7][4][4], int assigned_libs[5][7][4][4], int assigned_ass[5][7][4][4], int count){
+int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[5][7][4][5], int assigned_libs[5][7][4][4], int assigned_ass[5][7][4][4], int count){
 	int temp_cost = 0;
 	int w = 0;
 	for(int d=0; d<NUM_DAYS; d++){

@@ -15,17 +15,16 @@ private:
 // 	string avail_file = "./src/data/workers5W.txt";
 	static const int NUM_TASKS = 4; //No task, Block, PL, HB, (BokB)
 	int num_blocks; //Number of blocks created
-	int num_workers; //39 workers in the library
 	int demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
 	
-	int tasks_filled[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; //
+	int tasks_filled[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS+1]; //No tasks
 	enum task_type{no_task, block, PL, HB, BokB};
 	Worker myworkers[39]; //Create 39 workers in library class. Array is from 0->38
 	int task_assign_avail[NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
 	vector<Block> block_vector; //A vector with all the blocks created
 	
 	
-	int demand_differ[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; //OK as public? only one Library object
+	int demand_differ[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS+1]; //OK as public? only one Library object
 	int num_lib_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; //Tasks: Block, PL, HB, BokB
 	int num_ass_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; //initialize as 0 and add to constructor
 

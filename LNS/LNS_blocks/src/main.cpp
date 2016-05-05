@@ -9,13 +9,13 @@
 #include "Workers.h"
 #include "Blocks.h"
 #include "Library.h"
-#include "Constants.h"
 using namespace std;
 
 
 
 
 int main() {
+	int num_workers = 39;
 	Library lib;
 	lib.printDemand();
 	lib.printTask_avail();

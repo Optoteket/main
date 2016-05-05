@@ -845,7 +845,7 @@ void Library::calculate_tasks_filled(){
 		for(int w=0; w<NUM_WEEKS; w++){
 			for(int d=0; d<NUM_DAYS; d++){
 				for(int s=0; s<NUM_SHIFTS; s++){
-					for(int j=0; j<NUM_TASKS-1; j++){ //For Block, PL, HB (BokB not added here)
+					for(int j=0; j<NUM_TASKS; j++){ //For Block, PL, HB (BokB not added here)
 						tasks_filled[w][d][s][j] += myworkers[i].getblocks_assigned().at(w)->getTask(d,s,j+1);
 						if(myworkers[i].getblocks_assigned().at(w)->getTask(d,s,j+1) == 1){
 							if(myworkers[i].getQual().compare(0,3,"lib") == 0){
