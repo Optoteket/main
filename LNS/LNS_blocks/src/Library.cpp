@@ -182,7 +182,7 @@ void Library::printDemand() {
 				for (int d=0; d< NUM_DAYS; d++){
 					cout << demand[w][d][s][j] << " ";
 				}
-				cout << "\t";
+				cout << "  \t";
 			}
 			cout << endl;
 		}
@@ -845,7 +845,7 @@ void Library::calculate_tasks_filled(){
 		for(int w=0; w<NUM_WEEKS; w++){
 			for(int d=0; d<NUM_DAYS; d++){
 				for(int s=0; s<NUM_SHIFTS; s++){
-					for(int j=0; j<NUM_TASKS; j++){ //For Block, PL, HB (BokB not added here)
+					for(int j=0; j<NUM_TASKS-1; j++){ //For Block, PL, HB (BokB not added here)
 						tasks_filled[w][d][s][j] += myworkers[i].getblocks_assigned().at(w)->getTask(d,s,j+1);
 						if(myworkers[i].getblocks_assigned().at(w)->getTask(d,s,j+1) == 1){
 							if(myworkers[i].getQual().compare(0,3,"lib") == 0){
@@ -865,7 +865,7 @@ void Library::clear_tasks_filled(){
 	for(int w=0; w<NUM_WEEKS; w++){
 		for(int d=0; d<NUM_DAYS; d++){
 			for(int s=0; s<NUM_SHIFTS; s++){
-				for(int j=0; j<NUM_TASKS; j++){ //For Block, PL, HB (BokB not added here)
+				for(int j=0; j<NUM_TASKS-1; j++){ //For Block, PL, HB. Dont clear BokB
 					tasks_filled[w][d][s][j] = 0;
 					num_lib_assigned[w][d][s][j] = 0;
 					num_ass_assigned[w][d][s][j] = 0;
@@ -876,6 +876,8 @@ void Library::clear_tasks_filled(){
 }
 
 void Library::print_tasks_filled(){
+	calculate_tasks_filled();
+	calculate_LOW_filled();
 	cout << "These matrices represent all tasks filled with workers: block, PL, HB, BokB" << endl;
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int s=0; s< NUM_SHIFTS; s++){
@@ -937,12 +939,7 @@ void Library::calculate_demand_differ(){ //Calculate the difference between Libr
 		for(int d=0; d<NUM_DAYS; d++){
 			for(int s=0; s<NUM_SHIFTS; s++){
 				for(int j=0; j<NUM_TASKS; j++){
-					if(j != 3){ //not BokB
-						demand_differ[w][d][s][j] = demand[w][d][s][j] - tasks_filled[w][d][s][j];
-					}
-					else{ //if BokB. When BokB is added, change this one
-						demand_differ[w][d][s][j] = demand[w][d][s][j];
-					}
+					demand_differ[w][d][s][j] = demand[w][d][s][j] - tasks_filled[w][d][s][j];
 				}
 			}
 		}
@@ -1151,6 +1148,7 @@ void Library::create_initial_solution(){
 				add_best_blocks_to_initial_solution(type, current_worker);
 				//Update tasks_filled and demand_differ
 				calculate_tasks_filled();
+// 				calculate_LOW_filled();
 				calculate_demand_differ();
 				
 			}else{
@@ -1185,7 +1183,6 @@ void Library::create_initial_solution(){
 		
 // 	}
 	cout << "vector size is now: " << worker_vector.size() << endl;
-	calculate_tasks_filled();
 	print_tasks_filled();
 	print_demand_differ();
 // 	print_num_workers("lib");
@@ -1265,18 +1262,29 @@ void Library::assign_LOW(){ //Assign library on wheels to the workers in questio
 	}
 }
 
-// void Library::sum_LOW(){ //Sum all LOW assigned to the workers to see if filling demand
-// 	for(int i=0; i<num_workers; i++){
-// 		for(int w=0; w<NUM_WEEKS; w++){
-// 			for(int d=0; d<NUM_DAYS; d++){
-// 				for(int s=0; s<NUM_SHIFTS; s++){
-// 					
-// 					myworkers[i].get_LOW_assigned(w,d,s);
-// 				}
-// 			}
-// 		}
-// 	}
-// }
+void Library::calculate_LOW_filled(){ //Sum all LOW assigned to the workers to see if filling demand
+	//Clear calculate_LOW_filled
+	clear_calculate_LOW_filled();
+	for(int i=0; i<num_workers; i++){
+		for(int w=0; w<NUM_WEEKS; w++){
+			for(int d=0; d<NUM_DAYS; d++){
+				for(int s=0; s<NUM_SHIFTS; s++){
+					tasks_filled[w][d][s][3] += myworkers[i].get_LOW_assigned(w,d,s);
+				}
+			}
+		}
+	}
+}
+
+void Library::clear_calculate_LOW_filled(){
+	for(int w=0; w<NUM_WEEKS; w++){
+		for(int d=0; d<NUM_DAYS; d++){
+			for(int s=0; s<NUM_SHIFTS; s++){
+				tasks_filled[w][d][s][3] = 0;
+			}
+		}
+	}
+}
 
 int Library::evaluate_solution(){//Add all costs together and return the total cost. Stand-ins not included here
 	int total_cost = 0;
@@ -1297,22 +1305,27 @@ int Library::evaluate_solution(){//Add all costs together and return the total c
 				//***DEMAND TOT COSTS***
 				if(demand_differ[w][d][s][0] > 0){ //Understaffing Exp/Info
 					demand_tot_cost += demand_differ[w][d][s][0]*DEMAND_FEW_TOT;
-				}else if(demand_differ[w][d][s][0] < 0){ //Overstaffing Exp/Info
-					demand_tot_cost += abs(demand_differ[w][d][s][0])*DEMAND_MANY_TOT;
+				}else if(demand_differ[w][d][s][0] <= 0 && //feasible total amount of workers
+					(num_lib_assigned[w][d][s][0] - demand[w][d][s][0]/2) < 0){ //not enough libs => add cost
+					demand_lib_cost += abs(num_lib_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_FEW_LIBS;
 				}
 				
+				/*else if(demand_differ[w][d][s][0] < 0){ //Overstaffing Exp/Info
+					demand_tot_cost += abs(demand_differ[w][d][s][0])*DEMAND_MANY_TOT;
+				}*/
+				
 				//*** DEMAND LIB COSTS***
-				if(num_lib_assigned[w][d][s][0] - demand[w][d][s][0]/2 < 0){//Too few librarians
-					demand_lib_cost += abs(num_lib_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_FEW_LIBS;
-				}else if(num_lib_assigned[w][d][s][0] - demand[w][d][s][0]/2 > 0){//Too many librarians
-					demand_lib_cost += (num_lib_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_MANY_LIBS;
-				}
-				//*** DEMAND ASS COSTS***
-				if(num_ass_assigned[w][d][s][0] - demand[w][d][s][0]/2 < 0){//Too few assistants
-					demand_ass_cost += abs(num_ass_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_FEW_ASS;
-				}else if(num_ass_assigned[w][d][s][0] - demand[w][d][s][0]/2 > 0){//Too many assistants
-					demand_ass_cost += (num_ass_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_MANY_ASS;
-				}
+// 				if(num_lib_assigned[w][d][s][0] - demand[w][d][s][0]/2 < 0){//Too few librarians
+// 					demand_lib_cost += abs(num_lib_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_FEW_LIBS;
+// 				}/*else if(num_lib_assigned[w][d][s][0] - demand[w][d][s][0]/2 > 0){//Too many librarians
+// 					demand_lib_cost += (num_lib_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_MANY_LIBS;
+// 				}*/
+// 				//*** DEMAND ASS COSTS***
+// 				if(num_ass_assigned[w][d][s][0] - demand[w][d][s][0]/2 < 0){//Too few assistants
+// 					demand_ass_cost += abs(num_ass_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_FEW_ASS;
+// 				}/*else if(num_ass_assigned[w][d][s][0] - demand[w][d][s][0]/2 > 0){//Too many assistants
+// 					demand_ass_cost += (num_ass_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_MANY_ASS;
+// 				}*/
 				
 			}
 			
@@ -1321,14 +1334,14 @@ int Library::evaluate_solution(){//Add all costs together and return the total c
 				//take average of the two as cost
 				demand_PL_cost += demand_differ[w][d][0][1]*(int)(DEMAND_PL_BAD_LIB+DEMAND_PL_BAD_ASS)/2;
 			}
-			if(demand_differ[w][d][0][1] < 0){ //Overstaffing PL
-				//1 assistant is what is preferred
-				demand_PL_cost += num_lib_assigned[w][d][0][1]*DEMAND_PL_BAD_LIB + (num_ass_assigned[w][d][0][1]-1)*DEMAND_PL_BAD_ASS;
-			}
+// 			if(demand_differ[w][d][0][1] < 0){ //Overstaffing PL
+// 				//1 assistant is what is preferred
+// 				demand_PL_cost += num_lib_assigned[w][d][0][1]*DEMAND_PL_BAD_LIB + (num_ass_assigned[w][d][0][1]-1)*DEMAND_PL_BAD_ASS;
+// 			}
 			
 			
 			//***DEMAND HB COSTS***
-			if(demand_differ[w][d][0][2] != 0){ //Wrong demand at HB (only librarians in HB)
+			if(demand_differ[w][d][0][2] > 0){ //Wrong demand at HB (only librarians in HB. Checking only understaffing)
 				demand_HB_cost += abs(demand_differ[w][d][0][2])*HB_ASSIGNED_COST;
 			}
 			
@@ -1343,10 +1356,10 @@ int Library::evaluate_solution(){//Add all costs together and return the total c
 		//Calculate costs
 		if(myworkers[i].get_num_PL_assigned() < lower_limit){
 			PL_amount_cost += (lower_limit - myworkers[i].get_num_PL_assigned())*PL_VIOLATE_COST;
-			cout << "lower limit for worker: " << i+1 << " " << lower_limit - myworkers[i].get_num_PL_assigned() << endl;
+			cout << "lower limit for worker: " << i+1 << " " << lower_limit - myworkers[i].get_num_PL_assigned() << " too few" << endl;
 		}else if(myworkers[i].get_num_PL_assigned() > upper_limit){
 			PL_amount_cost += (myworkers[i].get_num_PL_assigned() - upper_limit)*PL_VIOLATE_COST;
-			cout << "upper limit for worker: " << i+1 << " " << myworkers[i].get_num_PL_assigned() - upper_limit << endl;
+			cout << "upper limit for worker: " << i+1 << " " << myworkers[i].get_num_PL_assigned() - upper_limit << " too many" << endl;
 		}
 		
 		cout << "#PL for worker " << i+1 << " is: " << myworkers[i].get_num_PL_assigned() << endl;
@@ -1360,7 +1373,7 @@ int Library::evaluate_solution(){//Add all costs together and return the total c
 	}
 	total_cost = demand_tot_cost + demand_lib_cost + demand_ass_cost + demand_PL_cost + demand_HB_cost + PL_amount_cost + no_weekend_cost;
 	cout << "demand_tot_cost = " << demand_tot_cost << endl;
-	cout << "demand_lib_cost = " << demand_lib_cost << endl;
+	cout << "demand_lib_cost (too few or too many) = " << demand_lib_cost << endl;
 	cout << "demand_ass_cost = " << demand_ass_cost << endl;
 	cout << "demand_PL_cost = " << demand_PL_cost << endl;
 	cout << "demand_HB_cost = " << demand_HB_cost << endl;

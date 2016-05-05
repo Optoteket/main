@@ -39,7 +39,7 @@ private:
 	vector<Block*> weekday_blocks_avail; //blocks available are dependent on availability, weekend worker, pl-demand etc.
 	vector<Block*> weekrest_blocks_avail; //Note: Create vector<Block*> instead of new blocks assigned to vectors?
 	
-	int LOW_assigned[NUM_WEEKS][NUM_DAYS-2][NUM_SHIFTS]; //1 if assigned LOW that day, 0 else
+	int LOW_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]; //1 if assigned LOW that day, 0 else
 	
 	
 	int num_PL; //Amount of PL assigned to a worker. no_PL => 0, standard_PL => 0-2(?), many_PL => 3-4(?)

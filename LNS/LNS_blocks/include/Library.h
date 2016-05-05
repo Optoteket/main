@@ -81,6 +81,8 @@ public:
 	void calculate_tasks_filled();
 	void print_tasks_filled();
 	void clear_tasks_filled();
+	void calculate_LOW_filled();
+	void clear_calculate_LOW_filled();
 	void print_num_workers(string);
 	void initial_add_blocks_to_workers();
 	void calculate_demand_differ();

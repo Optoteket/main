@@ -76,7 +76,6 @@ int main() {
 	lib.initial_add_blocks_to_workers();
 	
 	//***Calculate and print tasks_filled matrix***
-// 	lib.calculate_tasks_filled();
 // 	lib.print_tasks_filled();
 
 	
@@ -161,6 +160,10 @@ int main() {
 	
 	cout << "The total cost after the new solution is: " << lib.evaluate_solution() << endl;
 	
+	lib.print_num_workers("lib");
+	lib.print_num_workers("ass");
+// 	lib.printDemand();
+// 	lib.print_tasks_filled();
 // 	lib.print_all_weekblocks_avail_worker(21, "weekrest");
 	cout << "End of main" << endl;
 	return 0;

@@ -33,6 +33,7 @@ void Worker::init(){
 		for (int d=0; d<NUM_DAYS; d++){
 			for (int s=0; s<NUM_SHIFTS; s++){
 				worker_avail[w][d][s] = 0;
+				LOW_assigned[w][d][s] = 0;
 			}
 		}
 	}
@@ -40,9 +41,6 @@ void Worker::init(){
 		for (int d=0; d<NUM_DAYS-2; d++){
 			stand_in[w][d] = 0;
 			stand_in_avail[w][d] = 0;
-			for(int s=0; s<NUM_SHIFTS; s++){
-				LOW_assigned[w][d][s] = 0;
-			}
 		}
 	}
 	weekend_blocks_avail = vector<Block*>();
@@ -428,7 +426,7 @@ int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[
 			else if(type == "weekend"){w = newWeekend_week;}
 			
 			if(block->getTask(d,s,1) == 1){ //get all "Block" tasks (j = 1 here)
-				if(diff_in_demand[w][d][s][0]-1 > 0){ //Add negative cost when positive demand_differ (too few workers assigned)
+				if(diff_in_demand[w][d][s][0]-1 >= 0){ //Add negative cost when positive demand_differ (too few workers assigned)
 					if(s == 0){ //certain demand first shift
 						if(d == 5 || d == 6){temp_cost += calc_temp_cost(4,3,w,d,s,assigned_libs,assigned_ass);}
 						else{temp_cost += calc_temp_cost(2,2,w,d,s,assigned_libs,assigned_ass);}
@@ -500,14 +498,14 @@ int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[
 int Worker::calc_temp_cost(int demand_lib, int demand_ass, int w, int d, int s, int assigned_libs[5][7][4][4], int assigned_ass[5][7][4][4]){
 	int tmp_cst = 0;
 	//Costs for LIBRARIANS
-	if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][0]+1 < demand_lib){
+	if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][0]+1 <= demand_lib){
 		tmp_cst = -DEMAND_FEW_LIBS;  //*(demand-assigned_libs[w][d][s][1]) added if steeper steps if further away from demand
 	}
 	else if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][0]+1 > demand_lib){
 		tmp_cst = DEMAND_MANY_LIBS;
 	}
 	//Costs for ASSISTANTS
-	if(newQual.compare(0,3,"ass") == 0 && assigned_ass[w][d][s][0]+1 < demand_ass){
+	if(newQual.compare(0,3,"ass") == 0 && assigned_ass[w][d][s][0]+1 <= demand_ass){
 		tmp_cst = -DEMAND_FEW_ASS;
 	}
 	else if(newQual.compare(0,3,"ass") == 0 && assigned_ass[w][d][s][0]+1 > demand_ass){
