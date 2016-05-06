@@ -2,6 +2,7 @@
 #pragma once
 
 #include <string>
+#include <sstream>
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -26,6 +27,9 @@ class Library{
 
  private:
   ofstream* resfile;
+  string stat_file_dir;
+  stringstream stat_file_path;
+  //ofstream stat_file;
 
   //Tasks to be distributed
   vector<SingleTask> task_list;
@@ -51,7 +55,8 @@ class Library{
   int num_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   int temp_num_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   int avail_demand_diff[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
-  //int num_avail_day_workers[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS];
+  int num_avail_day_workers[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS];
+  double num_avail_workers_average[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS];
 
   //int num_avail_stand_ins[POS][WEEKS][DAYS] //Available stand ins for a certain day
 
@@ -71,6 +76,7 @@ class Library{
   //Constructor
   Library(ofstream*);
   void create_initial_solution();
+  void optimize_weekends(int,int);
 
   //Stand in avail
   void set_library_cost(string);
@@ -86,6 +92,7 @@ class Library{
   void destroy_a_weekend(TaskWorker&, string);
   void repair_weekend(string);
   void repair_temp_weekend();
+  void use_temp_solution();
   //void weekend_update_avail_demand(int, int, int); //Not working properly, not possible to keep updated
 
   //Weekday related
@@ -100,6 +107,7 @@ class Library{
 
   //Output related
   void write_results();
+  void write_stat();
 
   //Demand related
   void find_num_avail_workers();

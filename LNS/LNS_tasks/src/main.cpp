@@ -59,7 +59,7 @@ int main(int argc, char** argv)
   ofstream log_file (log_file_path.str().c_str());
   if (log_file.is_open())
   {
-    log_file << date.str().c_str() << endl;;
+    log_file << date.str().c_str() << endl;
     log_file << "The logs are:" << endl;
     log_file.close();
   }
@@ -84,6 +84,9 @@ int main(int argc, char** argv)
     
     //3. Create initial solution
     library.create_initial_solution();
+
+    //4. Optimize weekends, input: num iterations, destroy percentage
+    library.optimize_weekends(100, 20);
     
     //Write results to resfile
     library.write_results();
