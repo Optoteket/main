@@ -52,6 +52,7 @@ int main() {
 	
 	//***Assign rotation to the workers***
 	lib.assign_rot_to_workers();
+	return 0;
 	//***Print weekend, weekday and weekrest vect for all 39 workers***
 // 	vector<Block> test_output;
 // 	//cout << lib.getWorker(1).getName() << endl;

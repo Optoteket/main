@@ -30,7 +30,7 @@ private:
 
  	int HB_assigned[NUM_WEEKS]; //1 if assigned week w, 0 else
  	
- 	int lib_per_rot[NUM_WEEKS];
+	int lib_per_rot[NUM_WEEKS];
 	int ass_per_rot[NUM_WEEKS];
  	
  	//Find lowest block cost in vector

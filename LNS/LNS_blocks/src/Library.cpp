@@ -715,22 +715,12 @@ vector<Block>& Library::get_block_vector(){
 
 void Library::assign_rot_to_workers(){
 	cout << "in assign_rot_to_workers" << endl;
-	int min_lib_per_rot = 0;
-	int min_ass_per_rot = 0;
+	int min_lib_per_rot;
+	int min_ass_per_rot;
 	int rand_week = 0;
 	int temp_min = 0;
 	bool not_seven_per_weekend = true;
 	int counter = 0;
-	myworkers[14-1].setWeekend_week(2-1);
-	lib_per_rot[2-1]++; //All are weekend workers
-	myworkers[17-1].setWeekend_week(4-1);
-	lib_per_rot[4-1]++;
-	myworkers[25-1].setWeekend_week(2-1);
-	lib_per_rot[2-1]++;
-	myworkers[36-1].setWeekend_week(3-1);
-	lib_per_rot[3-1]++;
-	myworkers[37-1].setWeekend_week(3-1);
-	lib_per_rot[3-1]++;
 	
 	cout << "lib_per_rot = ";
 	for(int w=0; w<NUM_WEEKS; w++){
@@ -743,21 +733,34 @@ void Library::assign_rot_to_workers(){
 	}
 	cout << endl;
 	while(not_seven_per_weekend){ //Extra function to make sure there are always 7 workers each weekend
+		min_ass_per_rot = 0;
+		min_lib_per_rot = 0;
+		counter = 0;
+		for(int w=0; w<NUM_WEEKS; w++){lib_per_rot[w] = 0; ass_per_rot[w] = 0;} //initialize as 0
+		myworkers[14-1].setWeekend_week(2-1);
+		lib_per_rot[2-1]++; //All are weekend workers
+		myworkers[17-1].setWeekend_week(4-1);
+		lib_per_rot[4-1]++;
+		myworkers[25-1].setWeekend_week(2-1);
+		lib_per_rot[2-1]++;
+		myworkers[36-1].setWeekend_week(3-1);
+		lib_per_rot[3-1]++;
+		myworkers[37-1].setWeekend_week(3-1);
+		lib_per_rot[3-1]++;
+		
 		for(int i=1; i<=num_workers; i++){
 			if(i != 14 && i != 17 && i != 25 && i != 36 && i != 37){
 				while(true){
 					rand_week = rand() % 5; //generates a random number between 0 to 4
-					if(i == 3){rand_week = 0;} //Failsafe. First lib that is wend worker assigned to have a diff of max 1
-					if(i == 4){rand_week = 4;} //Second lib as well.
 					if(myworkers[i-1].getQual().compare(0,3,"lib") == 0){
 						if(lib_per_rot[rand_week] == min_lib_per_rot){
 							myworkers[i-1].setWeekend_week(rand_week);
 							if(myworkers[i-1].getWeekend().compare(0,7,"weekend") == 0){ //Only count if a weekend worker
 								lib_per_rot[rand_week]++;
 							}
-							temp_min = lib_per_rot[0];
-							for(int w=1; w<NUM_WEEKS; w++){ //Update min_worker_per_rot
-								if(lib_per_rot[w] < temp_min){
+							temp_min = 777;
+							for(int w=0; w<NUM_WEEKS; w++){ //Update min_worker_per_rot
+								if(lib_per_rot[w] <= temp_min){
 									temp_min = lib_per_rot[w];
 								}
 							}
@@ -771,9 +774,9 @@ void Library::assign_rot_to_workers(){
 							if(myworkers[i-1].getWeekend().compare(0,7,"weekend") == 0){ //Only count if a weekend worker
 								ass_per_rot[rand_week]++;
 							}
-							temp_min = ass_per_rot[0];
-							for(int w=1; w<NUM_WEEKS; w++){ //Update min_worker_per_rot
-								if(ass_per_rot[w] < temp_min){
+							temp_min = 777;
+							for(int w=0; w<NUM_WEEKS; w++){ //Update min_worker_per_rot
+								if(ass_per_rot[w] <= temp_min){
 									temp_min = ass_per_rot[w];
 								}
 							}
@@ -784,13 +787,30 @@ void Library::assign_rot_to_workers(){
 					break;}
 				}
 			}
+			if(i == 39){
+			cout << "lib_per_rot = ";
+			for(int w=0; w<NUM_WEEKS; w++){
+				cout << lib_per_rot[w] << " ";
+			}
+			cout << endl;
+			cout << "ass_per_rot = ";
+			for(int w=0; w<NUM_WEEKS; w++){
+				cout << ass_per_rot[w] << " ";
+			}
+			cout << endl;
+// 			not_seven_per_weekend = false;
+			}
 		}
+		
+		//Print when 7 workers found
 		for(int w=0; w<NUM_WEEKS; w++){
 			if(lib_per_rot[w] + ass_per_rot[w] == 7){
 				cout << "found 7 workers for week " << w << endl;
 				counter++;
 			}
 		}
+		
+		//Exit while loop
 		if(counter == 5){
 			not_seven_per_weekend = false;
 		}
@@ -809,6 +829,10 @@ void Library::assign_rot_to_workers(){
 	cout << endl;
 	return;
 }
+
+// void Library::assign_a_rot_to_worker(int worker){
+// 	
+// }
 
 
 void Library::calculate_HB_assigned(){
