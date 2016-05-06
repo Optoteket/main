@@ -12,38 +12,26 @@
 
 Library::Library() {
 	num_blocks = 0;
-	for (int w=0; w<NUM_WEEKS; w++){
-		for (int d=0; d<NUM_DAYS; d++){
-			for (int s=0; s<NUM_SHIFTS; s++){
-				for (int j=0; j<NUM_TASKS; j++){
-					demand[w][d][s][j] = 0; //initialize as 0
-					demand_differ[w][d][s][j] = 0; //initialize as 0
-					tasks_filled[w][d][s][j] = 0;
-				}
-			}
-		}
-	}
-	readDemand();
-	//createWorkers();
 	for (int d=0; d<NUM_DAYS; d++){
 		for (int s=0; s<NUM_SHIFTS; s++){
 			for (int j=0; j<NUM_TASKS; j++){
 				task_assign_avail[d][s][j] = 0; //Used to see if task j is available for assignment day d, shift s
-			}
-		}
-	}
-	for (int w=0; w<NUM_WEEKS; w++){
-		for (int d=0; d<NUM_DAYS; d++){
-			for (int s=0; s<NUM_SHIFTS; s++){
-				for (int j=0; j<NUM_TASKS; j++){
+				for (int w=0; w<NUM_WEEKS; w++){
+					demand[w][d][s][j] = 0; //initialize as 0
+					demand_differ[w][d][s][j] = 0; //initialize as 0
+					tasks_filled[w][d][s][j] = 0;
 					num_lib_assigned[w][d][s][j] = 0; //used to see if more are needed to be assigned a shift
 					num_ass_assigned[w][d][s][j] = 0;
 				}
 			}
 		}
 	}
+	readDemand();
+	//createWorkers();
 	for (int w=0; w<NUM_WEEKS; w++){
 		HB_assigned[w] = 0;
+		lib_per_rot[w] = 0;
+		ass_per_rot[w] = 0;
 	}
 	lowest_cost_IDs = vector<int>();
 	lowest_cost = 0;
@@ -567,8 +555,7 @@ void Library::assign_block(Block* block, int worker_id){ //worker_id a number be
 	for (int w=0; w<3; w++){w_check_error[w] = 0;}
 	if(myworkers[worker_id-1].getQual().compare(0,3,"lib") == 0){
 		is_lib = 1;
-	}
-	else{is_lib = 0;}
+	}else{is_lib = 0;}
 // 	cout << "getAvail is: " << myworkers[worker_id-1].getAvail(0,0,3) << " getTask is: " << block.getTask(0,3,1) << endl;
 	for (int w=0; w<3; w++){ //Check for weekend week (w = 0), weekrest week (w = 1) and weekday week (w = 2)
 		w_check_error[w] = 0; //Reset when looking at a new week
@@ -728,9 +715,6 @@ vector<Block>& Library::get_block_vector(){
 
 void Library::assign_rot_to_workers(){
 	cout << "in assign_rot_to_workers" << endl;
-	int lib_per_rot[5];
-	int ass_per_rot[5];
-	for(int w=0; w<NUM_WEEKS; w++){lib_per_rot[w] = 0; ass_per_rot[w] = 0;} //initialize as 0
 	int min_lib_per_rot = 0;
 	int min_ass_per_rot = 0;
 	int rand_week = 0;
@@ -1112,76 +1096,63 @@ void Library::create_initial_solution(){
 		current_worker_index = rand() % worker_vector.size(); //A number between 0-[size()-1]
 		cout << "current_worker_index is: " << current_worker_index << endl;
 		current_worker = worker_vector.at(current_worker_index);
-// 		current_worker = 36;
 		cout << "Current worker at that index is: " << current_worker << endl;
-// 		while(myworkers[current_worker-1].check_all_block_types_added() == 0){ //ADD ALL BLOCKS FOR ONE WORKER -Remove later
-			block_type_to_add = rand() % 3; //A number between 0-2, 0 means wend, 1 weekrest and 2 weekday
-// 			block_type_to_add = 2;
-			cout << "block_type_to_add is: " << block_type_to_add << endl;
-			cout << "shall it be added? 0 = yes, 1 = no: " << myworkers[current_worker-1].get_block_types_added(block_type_to_add) << endl;
-			while(myworkers[current_worker-1].get_block_types_added(block_type_to_add) == 1){ //Find a block-type to add
-	// 			cout << "inside the while!" << endl;
-				block_type_to_add = rand() % 3; //Note: only workers that still need blocks added are still in vector.
-			}
-			cout << "block_type_to_add is after loop: " << block_type_to_add << endl;
-			if(block_type_to_add == 0){ //error due to being 0?
-				type = "weekend";
-			}else if(block_type_to_add == 1){
-				type = "weekrest";
-			}else if(block_type_to_add == 2){
-				type = "weekday";
-			}
-			cout << "type is: " << type << endl;
-// 			if(current_worker == 19 && type == "weekrest"){
+		block_type_to_add = rand() % 3; //A number between 0-2, 0 means wend, 1 weekrest and 2 weekday
+		cout << "block_type_to_add is: " << block_type_to_add << endl;
+		cout << "shall it be added? 0 = yes, 1 = no: " << myworkers[current_worker-1].get_block_types_added(block_type_to_add) << endl;
+		while(myworkers[current_worker-1].get_block_types_added(block_type_to_add) == 1){ //Find a block-type to add
+			block_type_to_add = rand() % 3; //Note: only workers that still need blocks added are still in vector.
+		}
+		cout << "block_type_to_add is after loop: " << block_type_to_add << endl;
+		if(block_type_to_add == 0){ //error due to being 0?
+			type = "weekend";
+		}else if(block_type_to_add == 1){
+			type = "weekrest";
+		}else if(block_type_to_add == 2){
+			type = "weekday";
+		}
+		cout << "type is: " << type << endl;
+		//SEARCH FOR ERRORS!
+// 			if(current_worker == 25 && type == "weekend"){
 // 				add_best_blocks_to_initial_solution(type, current_worker);
 // 				calculate_all_week_costs_for_worker(type,current_worker, 0);
 // 				find_lowest_cost_in_vector(type,current_worker);
-// 				print_cost_vector(type,current_worker);
-// 				print_weekblocks_avail_worker(current_worker, type);
+// // 				print_cost_vector(type,current_worker);
+// // 				print_weekblocks_avail_worker(current_worker, type);
 // 				print_weekblocks_assigned_worker(current_worker, type);
+// 				cout << "The block already added to nr 23 is: " << endl;
+// 				print_weekblocks_assigned_worker(23, type);
 // 				return;
 // 			}
-			
-			//Add for week type: "type"
-			if(type != "weekday"){
-				cout << "Add a " << type << " block" << endl;
-				add_best_blocks_to_initial_solution(type, current_worker);
-				//Update tasks_filled and demand_differ
-				calculate_tasks_filled();
+		
+		//Add for week type: "type"
+		if(type != "weekday"){
+			cout << "Add a " << type << " block" << endl;
+			add_best_blocks_to_initial_solution(type, current_worker);
+			//Update tasks_filled and demand_differ
+			calculate_tasks_filled();
 // 				calculate_LOW_filled();
+			calculate_demand_differ();
+			
+		}else{
+			//Loop three times!
+			for(int count=1; count<=3; count++){
+				add_best_blocks_to_initial_solution(type, current_worker, count);
+				//Update tasks_filled and demand_differ
+				calculate_tasks_filled(); //change to: add_tasks_filled(..)?
 				calculate_demand_differ();
 				
-			}else{
-				//Loop three times!
-				for(int count=1; count<=3; count++){
-					add_best_blocks_to_initial_solution(type, current_worker, count);
-					//Update tasks_filled and demand_differ
-					calculate_tasks_filled(); //change to: add_tasks_filled(..)?
-					calculate_demand_differ();
-					
-				}
-			}
-			//Tag that this week type has been assigned to the worker
-			myworkers[current_worker-1].set_block_types_added(block_type_to_add,1);
-			
-			print_weekblocks_assigned_worker(current_worker, type);
-	// 		return;
-			if(myworkers[current_worker-1].check_all_block_types_added() == 1){
-			//Remove current_worker-1 from the vector worker_vector i.e. remove current_worker_index from vector			
-				worker_vector.erase(worker_vector.begin()+current_worker_index);
 			}
 		}
-		//CHECK IF ERASE WORKS CORRECTLY - it did
-// 		cout << "Size of worker_vector is now: " << worker_vector.size() << endl;
-// 		cout << "worker_vector contains: ";
-// 		for(unsigned int k=0; k<worker_vector.size(); k++){
-// 			cout << worker_vector[k] << " ";
-// 		}
-// 		cout << endl;
-// 		return;
+		//Tag that this week type has been assigned to the worker
+		myworkers[current_worker-1].set_block_types_added(block_type_to_add,1);
 		
-		
-// 	}
+		print_weekblocks_assigned_worker(current_worker, type);
+		if(myworkers[current_worker-1].check_all_block_types_added() == 1){
+		//Remove current_worker-1 from the vector worker_vector i.e. remove current_worker_index from vector			
+			worker_vector.erase(worker_vector.begin()+current_worker_index);
+		}
+	}
 	cout << "vector size is now: " << worker_vector.size() << endl;
 	print_tasks_filled();
 	print_demand_differ();
@@ -1225,36 +1196,36 @@ void Library::add_best_blocks_to_initial_solution(string type, int current_worke
 
 void Library::assign_LOW(){ //Assign library on wheels to the workers in question: 14, 17, 25, 36, 37
 	for(int i=1; i<=num_workers; i++){
-		for(int w=0; w<NUM_WEEKS; w++){
+		for(int w=0; w<NUM_WEEKS; w++){ //w = 0-4
 			for(int d=0; d<5; d++){
 				for(int s=0; s<NUM_SHIFTS; s++){
 					//Monday morning
-					if(i == 25 && d == 0 && s == 0 && w%2 == 1){//odd weeks
-						myworkers[i-1].set_LOW_assigned(w,d,s,1);
-					}else if(i == 36 && d == 0 && s == 0 && w%2 == 0){//even weeks
-						myworkers[i-1].set_LOW_assigned(w,d,s,1);
+					if(i == 25 && d == 0 && s == 0 && (w == 0 || w == 2)){//odd weeks
+						myworkers[i-1].set_LOW_assigned((myworkers[i-1].getWeekend_week()+w)%5,d,s,1); //happening two times: wend_week and wend_week+2
+					}else if(i == 36 && d == 0 && s == 0 && (w == 0 || w == 2 || w == 3)){
+						myworkers[i-1].set_LOW_assigned((myworkers[i-1].getWeekend_week()+w)%5,d,s,1); //three times. wend_week, wend_week+2, wend_week+3
 					}
 					//Wednesday noon
-					if(i == 14 && d == 2 && s == 3 && w%2 == 0){//even weeks
-						myworkers[i-1].set_LOW_assigned(w,d,s,1);
-					}else if(i == 37 && d == 2 && s == 3 && w%2 == 1){//odd weeks (compensate for 36. not all LOW same week)
-						myworkers[i-1].set_LOW_assigned(w,d,s,1);
+					if(i == 14 && d == 2 && s == 3 && (w == 0 || w == 2)){
+						myworkers[i-1].set_LOW_assigned((myworkers[i-1].getWeekend_week()+w)%5,d,s,1);
+					}else if(i == 37 && d == 2 && s == 3 && (w == 0 || w == 2 || w == 3)){
+						myworkers[i-1].set_LOW_assigned((myworkers[i-1].getWeekend_week()+w)%5,d,s,1);
 					}
 					//Thursday noon
-					if(i == 25 && d == 3 && s == 3 && w != (myworkers[25-1].getWeekend_week()+1)%5){//All weeks except its weekrest week
-						myworkers[i-1].set_LOW_assigned(w,d,s,1);
+					if(i == 25 && d == 3 && s == 3 && w != 1){//All weeks except its weekrest week
+						myworkers[i-1].set_LOW_assigned((myworkers[i-1].getWeekend_week()+w)%5,d,s,1);
 					}else if(i == 36 && d == 3 && s == 3 && w == (myworkers[25-1].getWeekend_week()+1)%5){//only when worker 25 has weekrest
-						myworkers[i-1].set_LOW_assigned(w,d,s,1);
+						myworkers[i-1].set_LOW_assigned(w,d,s,1); //Check this one!
 					}
 					//Friday morning
-					if(i == 17 && d == 4 && s == 0 && w%2 == 0 && w != (myworkers[i-1].getWeekend_week()+1) % 5){//even weeks and not weekrest
-						myworkers[i-1].set_LOW_assigned(w,d,s,1);
-					}else if(i == 36 && d == 4 && s == 0 && w%2 == 1 && (w != (myworkers[i-1].getWeekend_week()+1) % 5 || w != myworkers[i-1].getWeekend_week()) ){ //odd and not weekend or weekrest week
-						myworkers[i-1].set_LOW_assigned(w,d,s,1);
+					if(i == 17 && d == 4 && s == 0 && (w == 2 || w == 4)){
+						myworkers[i-1].set_LOW_assigned((myworkers[i-1].getWeekend_week()+w)%5,d,s,1);
+					}else if(i == 36 && d == 4 && s == 0 && w == 2){
+						myworkers[i-1].set_LOW_assigned((myworkers[i-1].getWeekend_week()+w)%5,d,s,1);
 					}
 					//Rest
-					if(i == 36 && ((d == 0 && s == 3)  || (d == 2 && s == 0) || (d == 3 && s == 0)) ){
-						myworkers[i-1].set_LOW_assigned(w,d,s,1);
+					if(i == 36 && (((d == 0 && s == 3) && (w == 0 || w == 2 || w == 4))  || (d == 2 && s == 0) || (d == 3 && s == 0)) ){//mon noon, wed morning and thursday morning
+						myworkers[i-1].set_LOW_assigned((myworkers[i-1].getWeekend_week()+w-2)%5,d,s,1);
 					}
 				}
 			}
@@ -1304,28 +1275,23 @@ int Library::evaluate_solution(){//Add all costs together and return the total c
 			for(int s=0; s<NUM_SHIFTS;s++){
 				//***DEMAND TOT COSTS***
 				if(demand_differ[w][d][s][0] > 0){ //Understaffing Exp/Info
-					demand_tot_cost += demand_differ[w][d][s][0]*DEMAND_FEW_TOT;
-				}else if(demand_differ[w][d][s][0] <= 0 && //feasible total amount of workers
-					(num_lib_assigned[w][d][s][0] - demand[w][d][s][0]/2) < 0){ //not enough libs => add cost
+					if(num_lib_assigned[w][d][s][0] - demand[w][d][s][0]/2 < 0){//not enough libs => add two costs
+						demand_tot_cost += demand_differ[w][d][s][0]*DEMAND_FEW_TOT;
+						demand_lib_cost += abs(num_lib_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_FEW_LIBS;
+					}else{
+						demand_tot_cost += demand_differ[w][d][s][0]*DEMAND_FEW_TOT;
+					}
+				}else if(demand_differ[w][d][s][0] < 0){//Overstaffing Exp/Info
+					if(num_lib_assigned[w][d][s][0] - demand[w][d][s][0]/2 < 0){//not enough libs => add two costs
+						demand_tot_cost += demand_differ[w][d][s][0]*DEMAND_MANY_TOT;
+						demand_lib_cost += abs(num_lib_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_FEW_LIBS;
+					}else{
+						demand_tot_cost += demand_differ[w][d][s][0]*DEMAND_MANY_TOT;
+					}
+				}else if(demand_differ[w][d][s][0] == 0 && //Feasible total amount of workers
+					(num_lib_assigned[w][d][s][0] - demand[w][d][s][0]/2) < 0){ //not enough libs => add one cost
 					demand_lib_cost += abs(num_lib_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_FEW_LIBS;
 				}
-				
-				/*else if(demand_differ[w][d][s][0] < 0){ //Overstaffing Exp/Info
-					demand_tot_cost += abs(demand_differ[w][d][s][0])*DEMAND_MANY_TOT;
-				}*/
-				
-				//*** DEMAND LIB COSTS***
-// 				if(num_lib_assigned[w][d][s][0] - demand[w][d][s][0]/2 < 0){//Too few librarians
-// 					demand_lib_cost += abs(num_lib_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_FEW_LIBS;
-// 				}/*else if(num_lib_assigned[w][d][s][0] - demand[w][d][s][0]/2 > 0){//Too many librarians
-// 					demand_lib_cost += (num_lib_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_MANY_LIBS;
-// 				}*/
-// 				//*** DEMAND ASS COSTS***
-// 				if(num_ass_assigned[w][d][s][0] - demand[w][d][s][0]/2 < 0){//Too few assistants
-// 					demand_ass_cost += abs(num_ass_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_FEW_ASS;
-// 				}/*else if(num_ass_assigned[w][d][s][0] - demand[w][d][s][0]/2 > 0){//Too many assistants
-// 					demand_ass_cost += (num_ass_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_MANY_ASS;
-// 				}*/
 				
 			}
 			
@@ -1334,15 +1300,17 @@ int Library::evaluate_solution(){//Add all costs together and return the total c
 				//take average of the two as cost
 				demand_PL_cost += demand_differ[w][d][0][1]*(int)(DEMAND_PL_BAD_LIB+DEMAND_PL_BAD_ASS)/2;
 			}
-// 			if(demand_differ[w][d][0][1] < 0){ //Overstaffing PL
-// 				//1 assistant is what is preferred
-// 				demand_PL_cost += num_lib_assigned[w][d][0][1]*DEMAND_PL_BAD_LIB + (num_ass_assigned[w][d][0][1]-1)*DEMAND_PL_BAD_ASS;
-// 			}
+			if(demand_differ[w][d][0][1] < 0){ //Overstaffing PL
+				//1 assistant is what is preferred
+				demand_PL_cost += num_lib_assigned[w][d][0][1]*DEMAND_PL_BAD_LIB + (num_ass_assigned[w][d][0][1]-1)*DEMAND_PL_BAD_ASS;
+			}
 			
 			
 			//***DEMAND HB COSTS***
-			if(demand_differ[w][d][0][2] > 0){ //Wrong demand at HB (only librarians in HB. Checking only understaffing)
-				demand_HB_cost += abs(demand_differ[w][d][0][2])*HB_ASSIGNED_COST;
+			if(demand_differ[w][d][0][2] > 0){ //Wrong demand at HB (only librarians in HB, Checking understaffing)
+				demand_HB_cost += demand_differ[w][d][0][2]*DEMAND_HB_OVERSTAFF;
+			}else if(demand_differ[w][d][0][2] < 0){ //Too many workers
+				demand_HB_cost += abs(demand_differ[w][d][0][2])*DEMAND_HB_OVERSTAFF;
 			}
 			
 		}

@@ -165,6 +165,21 @@ int main() {
 // 	lib.printDemand();
 // 	lib.print_tasks_filled();
 // 	lib.print_all_weekblocks_avail_worker(21, "weekrest");
+// 	lib.getWorker(36).print_assigned_LOW();
+
+	////Find the worker with wrongly added weekend! -> worker nr 23 and **25**
+// 	for(int i=1; i<=num_workers; i++){
+// 		if(lib.getWorker(i).getblocks_assigned().at(lib.getWorker(i).getWeekend_week())->getID() == 0){
+// 			cout << "Worker is: " << i << endl;
+// 		}
+// 		
+// 		if(lib.getWorker(i).getQual().compare(0,3,"lib") == 0){
+// 			cout << "Librarian " << i << " is assigned following weekend block at week " << lib.getWorker(i).getWeekend_week() << endl;
+// 			lib.getWorker(i).getblocks_assigned().at(lib.getWorker(i).getWeekend_week())->getTask_matrix();
+// 		}
+// 	}
+	
+
 	cout << "End of main" << endl;
 	return 0;
 }
