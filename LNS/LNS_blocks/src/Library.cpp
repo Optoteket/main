@@ -1292,9 +1292,9 @@ void Library::add_best_blocks_to_worker(string type, int current_worker, int cou
 	for(unsigned int element=0; element<myworkers[current_worker-1].getblock_avail_vect(type).size(); element++){
 		if(myworkers[current_worker-1].getblock_avail_vect(type).at(element)->getID() == block_index_to_add){
 			//Check if correct by printing cost vector and available blocks!
-					if(current_worker == 8 && type == "weekday"){
-					print_cost_vector(type,current_worker);
-					print_weekblocks_avail_worker(current_worker, type);}
+// 					if(current_worker == 24 && type == "weekday"){
+// 					print_cost_vector(type,current_worker);
+// 					print_weekblocks_avail_worker(current_worker, type);}
 			myworkers[current_worker-1].add_block_to_worker(type, element, count);
 		}
 	}
@@ -1560,6 +1560,8 @@ void Library::repair(){ //Repair solution by assigning a new week rotation(only 
 								break;
 							}
 						}
+// 						add_best_blocks_to_worker("weekday",workers_destroyed.at(n),k+1); //If add in order!
+// 						calculate_demand(); //Update demand after new insertion
 					}
 					block_types_added.push_back(weektype_to_add);
 					break;

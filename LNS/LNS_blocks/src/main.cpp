@@ -181,15 +181,16 @@ int main() {
 // 	}
 	
 	
-	int p = 8;
+	int p = 24;
 	cout << "\n\n\nDestroy/Repair test starting here\n\n\n" << endl;
 	lib.print_all_weekblocks_assigned_worker(p);
 	lib.print_demand_differ();
 	cout << "The total cost after the new solution is: " << lib.evaluate_solution() << endl;
 // 	cout << "Worker " << p << " is working weekend at week: " << lib.getWorker(p).getWeekend_week() << endl;
 	lib.destroy(p);
-	lib.calculate_demand(); //Update the tasks_filled and demand_differences
 	cout << "\nAfter destroy!\n" << endl;
+	lib.calculate_demand(); //Update the tasks_filled and demand_differences
+	lib.print_demand_differ();
 	lib.print_weekends_assigned();
 // 	lib.print_tasks_filled();
 	lib.repair(); //need to calculate new demand_differences! Need to calculate new costs ???
@@ -200,6 +201,7 @@ int main() {
 	lib.print_all_weekblocks_assigned_worker(p);
 	lib.print_demand_differ();
 	lib.print_weekends_assigned();
+	cout << "worker " << p << " works weekend at week: " << lib.getWorker(p).getWeekend_week() << endl;
 	
 	
 	
