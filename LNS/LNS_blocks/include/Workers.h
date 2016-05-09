@@ -29,6 +29,7 @@ private:
 
 	int tasks_assigned; //the number of tasks a worker is assigned in total. (max 4/v)
 // 	string avail_file = "./src/data/workers5W.txt";
+	int worker_destroyed;
 	
 	
 	
@@ -116,6 +117,7 @@ public:
 	void print_assigned_LOW() const;
 	
 	
+	
 	//Mutator functions
 	void setID(int);
 	void setName(string);
@@ -158,6 +160,8 @@ public:
 	vector<Weekend_cost> getWeekend_cost_vector() const;
 	vector<Weekrest_cost> getWeekrest_cost_vector() const;
 	vector<Weekday_cost> getWeekday_cost_vector() const;
+	
+	void clear_blocks();
 	
 	
 	

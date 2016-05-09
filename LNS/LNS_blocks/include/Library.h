@@ -36,6 +36,7 @@ private:
  	//Find lowest block cost in vector
 	vector<int> lowest_cost_IDs;
 	int lowest_cost;
+	vector<int> workers_destroyed;
 
 public:
 	//Default Constructor
@@ -80,7 +81,10 @@ public:
 	void print_weekblocks_avail_worker(int, string);
 	void print_all_weekblocks_avail_worker(int, string);
 	void print_weekblocks_assigned_worker(int, string);
+	void print_all_weekblocks_assigned_worker(int);
 	void assign_rot_to_workers();
+	void assign_a_rot_to_worker(int);
+	void print_weekends_assigned();
 	void calculate_tasks_filled();
 	void print_tasks_filled();
 	void clear_tasks_filled();
@@ -90,6 +94,10 @@ public:
 	void initial_add_blocks_to_workers();
 	void calculate_demand_differ();
 	void print_demand_differ();
+	
+	//*** Updates all demands and tasks filled ***
+	void calculate_demand();
+	
 	void calculate_all_week_costs_for_worker(string, int, int); //"weekrest" or "weekday" and worker_id as arguments
 	
 	void calculate_HB_assigned();
@@ -98,13 +106,22 @@ public:
 	void print_cost_vector(string, int);
 
 	void create_initial_solution();
-	void add_best_blocks_to_initial_solution(string, int, int = 0); //Type, current_worker, count (optiona)
+	void add_best_blocks_to_worker(string, int, int = 0); //Type, current_worker, count (optional)
 	
 	void assign_LOW();
 	int check_if_collision(unsigned int, int, int, string);
 	
+	//*** Evaluate solution ***
 	int evaluate_solution();
+	
+	//*** DESTROY AND REPAIR ***
+	void destroy();
+	void destroy(int);
+	void repair();
+	
 
+	
+	
 
 
 };
