@@ -42,6 +42,7 @@ class Library{
   vector<Worker*> weekend_ass;
   vector<Worker*> lib_workers;
   vector<Worker*> ass_workers;
+  vector<Worker> best_sol_workers;
 
   //Destroyed workers
   vector<TaskWorker> destroyed_wend_workers;
@@ -55,7 +56,11 @@ class Library{
   int num_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   int temp_num_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   int avail_demand_diff[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+
+  //Avail day
   int num_avail_day_workers[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS];
+
+  //Num full time equivalents
   double num_avail_workers_average[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS];
 
   //int num_avail_stand_ins[POS][WEEKS][DAYS] //Available stand ins for a certain day
@@ -63,13 +68,16 @@ class Library{
   int library_temp_cost;
   int library_max_cost;
   int library_cost;
+  int temp_library_cost;
   int avail_day_cost; //Maximize in objective function
+  int min_avail[NUM_POSITIONS];
   int temp_avail_day_cost;
   int avail_contribution_cost;
+  double min_contribution[NUM_POSITIONS];
   int temp_avail_contribution_cost;
 
   //Cost weights
-  int weight[2];
+  //int weight[2];
 
  public:
 
@@ -96,6 +104,8 @@ class Library{
   //void weekend_update_avail_demand(int, int, int); //Not working properly, not possible to keep updated
 
   //Weekday related
+  void destroy_tasks(int, string);
+  void repair_tasks(string);
   void find_tasks(int);
   void set_tasks();
 
@@ -142,3 +152,10 @@ class Library{
 
 };
 
+
+//Unused code
+/* double T = pow(2.0, (double)i); */
+/* double cost_diff = abs(library_max_cost - library_cost)+0.1; */
+/* cout << "T:" << T << " Cost diff:" << cost_diff << " Exponential cooling:"  */
+/* 	 << (double) exp(-(cost_diff/1.0*T)) << endl; */
+/* //cerr << (((double)iterations-(double)i)/(double)iterations) << endl; */

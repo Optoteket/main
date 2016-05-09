@@ -86,7 +86,7 @@ int main(int argc, char** argv)
     library.create_initial_solution();
 
     //4. Optimize weekends, input: num iterations, destroy percentage
-    library.optimize_weekends(100, 20);
+    library.optimize_weekends(50, 20);
     
     //Write results to resfile
     library.write_results();

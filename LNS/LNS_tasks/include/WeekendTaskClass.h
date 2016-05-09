@@ -22,8 +22,8 @@ class WeekendTask : public Task {
   WeekendTask(int, int, int, int, int, vector<Worker>*);
 
   //Functions
-  void find_avail_workers(vector<TaskWorker>*, string);
-  void place_cheapest_worker(vector<TaskWorker>*);
+  virtual void find_avail_workers(vector<TaskWorker>*, string);
+  virtual void place_cheapest_worker(vector<TaskWorker>*);
   virtual void temp_place_workers();
   virtual void set_costs();
   virtual void print_worker_costs();

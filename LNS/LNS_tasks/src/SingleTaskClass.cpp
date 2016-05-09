@@ -37,7 +37,7 @@ void SingleTask::temp_place_workers(){
   for (int i=0; i < (int) avail_workers.size(); i++){
     avail_workers[i].temp_worker.set_task(week,day,shift,type);
     avail_workers[i].temp_cost = 
-       avail_workers[i].temp_worker.get_cost(week,day) - avail_workers[i].temp_cost;
+      avail_workers[i].temp_worker.get_cost(week,day) - avail_workers[i].temp_cost;
   }
 }
 
