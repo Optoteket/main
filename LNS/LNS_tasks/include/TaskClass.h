@@ -20,9 +20,9 @@ class Task {
   int qualification;
   int week;
   int demand;
+  int orig_demand;
   int avail_diff;
   int total_cost;
-  int orig_demand;
 
   // All available workers and their costs
   vector<TaskWorker> avail_workers;
@@ -30,6 +30,9 @@ class Task {
 
   vector<TaskWorker*> placed_workers;
   TaskWorker* placed_worker;
+
+  //Available workers
+  vector<TaskWorker*> avail_workers_two;
 
  public:
   Task(int,int,int,int,int, vector<Worker>*);
@@ -59,5 +62,12 @@ class Task {
   bool operator<(Task const & task) const{ 
     return this->get_cost() < task.get_cost();
   }
+
+  struct max_qual_sort{
+    bool operator()(Task const & lhs, Task const & rhs) const{ 
+      return lhs.get_qualification() > rhs.get_qualification();
+    }
+  };
+
 };
 
