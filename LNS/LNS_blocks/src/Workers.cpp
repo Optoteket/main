@@ -52,6 +52,7 @@ void Worker::init(){
 	for (int i=0; i<3; i++){
 		block_types_added[i] = 0; //initially no blocks added to person, [0 0 0]. [1 0 0] means Wends added
 	}
+	
 }
 
 //Copy Constructor
@@ -107,6 +108,7 @@ Worker::Worker(const Worker& obj){
 	for(unsigned int i=0; i<obj.weekday_cost_vector.size(); i++){
 		weekday_cost_vector.push_back(obj.weekday_cost_vector.at(i));
 	}
+	
 	
 	cout << "\n\n\n\n A copy of worker has been initialized, make sure everything is copied! \n\n\n\n\n" << endl;
 }
@@ -437,7 +439,7 @@ int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[
 						temp_cost += calc_temp_cost(3,3,w,d,s,assigned_libs,assigned_ass); //Cost for libs/ass
 						//Costs for TOO FEW WORKERS
 						temp_cost -= DEMAND_FEW_TOT; //*(assigned_libs[w][d][s][1]+assigned_ass[w][d][s][1]+1-6);
-						if(s == 3 && d != 4){ //Fridays excluded in the cost
+						if(s == 3 && d != 4){ //Fridays excluded in the evening cost
 							temp_cost -= DEMAND_EVENING_COST; //More priority on evenings
 						}
 					}
@@ -448,11 +450,17 @@ int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[
 						else{temp_cost += calc_temp_cost(2,2,w,d,s,assigned_libs,assigned_ass);}
 						//Costs for TOO MANY WORKERS
 						temp_cost += DEMAND_MANY_TOT; //*(assigned_libs[w][d][s][1]+assigned_ass[w][d][s][1]+1-4);
+						if(s == 3 && d != 4){ //Fridays excluded in the evening cost
+							temp_cost += DEMAND_EVENING_COST; //More priority on evenings
+						}
 					}
 					else{ //regular demand all other shifts
 						temp_cost += calc_temp_cost(3,3,w,d,s,assigned_libs,assigned_ass);
 						//Costs for TOO MANY WORKERS
 						temp_cost += DEMAND_MANY_TOT; //*(assigned_libs[w][d][s][1]+assigned_ass[w][d][s][1]+1-6);
+						if(s == 3 && d != 4){ //Fridays excluded in the evening cost
+							temp_cost += DEMAND_EVENING_COST; //More priority on evenings
+						}
 					}
 				}
 			}
@@ -574,6 +582,14 @@ int Worker::calculate_HB_assign_cost(Block* block, int HB_assigned[5]){ //add co
 	}
 // 	if(cost != 0){cout << "in calculate_HB_assign_cost. cost is: " << cost << endl;}
 	return cost;
+}
+
+void Worker::clear_blocks(){ //Assign five empty blocks to worker
+	add_block_to_worker("weekend",0);
+	add_block_to_worker("weekrest",0);
+	add_block_to_worker("weekday",0,1);
+	add_block_to_worker("weekday",0,2);
+	add_block_to_worker("weekday",0,3);
 }
 
 
