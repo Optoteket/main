@@ -13,8 +13,8 @@ private:
 	string newWeektype;
 	string newHB;
 // 	string avail_file = "./src/data/workers5W.txt";
-	static const int NUM_TASKS = 5; //No task, Block, PL, HB, (BokB)
-	int tasks_assigned[NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; //No task, Block, PL, HB, BoKB
+	static const int NUM_TASKS = 5; //No task, Block, PL, HB, (LOW)
+	int tasks_assigned[NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; //No task, Block, PL, HB, LOW
 	//int tasks_assigned_block[NUM_DAYS][NUM_SHIFTS];
 	//vector<int> tasks_assigned_block;
 	int num_tasks; //number of tasks the block contains

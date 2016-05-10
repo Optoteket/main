@@ -37,6 +37,16 @@ void Worker::init(){
 			}
 		}
 	}
+	for(int w=0; w<NUM_WEEKS; w++){
+		for(int d=0; d<NUM_DAYS; d++){
+			for(int s=0; s<NUM_SHIFTS; s++){
+				for(int j=0; j<NUM_TASKS; j++){ //Block, PL, HB and LOW
+					tasks_assigned_worker[w][d][s][j] = 0;
+				}
+			}
+		}
+	}
+	
 	for (int w=0; w<NUM_WEEKS; w++){
 		for (int d=0; d<NUM_DAYS-2; d++){
 			stand_in[w][d] = 0;
@@ -301,7 +311,7 @@ void Worker::set_LOW_assigned(int w, int d, int s, int value){
 	LOW_assigned[w][d][s] = value;
 }
 
-void Worker::setStand_in_avail(){
+void Worker::set_stand_in_avail(){
 	for(int w=0; w<NUM_WEEKS; w++){
 		for(int d=0; d<NUM_DAYS-2; d++){
 			if(worker_avail[w][d][0] == 1 && worker_avail[w][d][1] == 1 && worker_avail[w][d][2] == 1){
@@ -310,7 +320,7 @@ void Worker::setStand_in_avail(){
 		}
 	}
 }
-void Worker::getStand_in_matrix() const{
+void Worker::print_stand_in_matrix() const{
 	for (int w=0; w< NUM_WEEKS; w++){
 		cout << "Stand-in available week " << w << endl;
 		for (int d=0; d<NUM_DAYS-2; d++){
@@ -318,6 +328,9 @@ void Worker::getStand_in_matrix() const{
 		}
 		cout << endl;
 	}
+}
+int Worker::get_stand_in_avail(int w, int d) const{
+	return stand_in_avail[w][d];
 }
 
 void Worker::clear_cost_vector(string type){
@@ -387,7 +400,7 @@ void Worker::calculate_week_cost(Block* blockobj, string type, int diff_in_deman
 		weekrest_cost_vector.push_back(weekrest_block);
 	} else if(type == "weekday"){
 		total_cost = PL_cost + demand_cost + stand_in_cost;
-// 		cout << "in weekrest, total_cost = " << total_cost << " PL_cost = " << PL_cost << " demand_cost = " << demand_cost << " stand_in_cost = " << stand_in_cost << endl;
+// 		cout << "in weekday, total_cost = " << total_cost << " PL_cost = " << PL_cost << " demand_cost = " << demand_cost << " stand_in_cost = " << stand_in_cost << endl;
 // 		cout << "Total_cost: " << total_cost << endl;
 		Weekday_cost weekday_block;
 		weekday_block.wday_cost = total_cost;
@@ -395,7 +408,7 @@ void Worker::calculate_week_cost(Block* blockobj, string type, int diff_in_deman
 		weekday_cost_vector.push_back(weekday_block);
 	} else if(type == "weekend"){
 		total_cost = PL_cost + demand_cost + stand_in_cost + num_wends_five_weeks_cost + HB_assigned_cost;
-// 		cout << "in weekrest, total_cost = " << total_cost << " PL_cost = " << PL_cost << " demand_cost = " << demand_cost << " stand_in_cost = " << stand_in_cost << " num_wends_five_weeks_cost = " << num_wends_five_weeks_cost << "HB_assigned_cost = " << HB_assigned_cost << endl;
+// 		cout << "in weekend, total_cost = " << total_cost << " PL_cost = " << PL_cost << " demand_cost = " << demand_cost << " stand_in_cost = " << stand_in_cost << " num_wends_five_weeks_cost = " << num_wends_five_weeks_cost << "HB_assigned_cost = " << HB_assigned_cost << endl;
 // 		cout << "Total_cost: " << total_cost << endl;
 		Weekend_cost weekend_block;
 		weekend_block.wend_cost = total_cost;
@@ -592,8 +605,57 @@ void Worker::clear_blocks(){ //Assign five empty blocks to worker
 	add_block_to_worker("weekday",0,3);
 }
 
+void Worker::set_tasks_assigned_worker(){//Set the int matrix tasks_assigned_worker
+	int count = 0;
+	for(int w=0; w<NUM_WEEKS; w++){
+		for(int d=0; d<NUM_DAYS; d++){
+			for(int s=0; s<NUM_SHIFTS; s++){
+				for(int j=1; j<=NUM_TASKS; j++){ //Block, PL, HB and LOW
+					if(j != 4){
+						tasks_assigned_worker[w][d][s][j-1] = blocks_assigned.at((newWeekend_week+count)%5)->getTask(d,s,j);
+					}else if(j == 4){
+						tasks_assigned_worker[w][d][s][j-1] = get_LOW_assigned(w,d,s);
+					}
+				}
+			}
+		}
+		count++; //Take a new week block
+	}
+}
 
+int Worker::tasks_assigned_day(int w, int d){
+	set_tasks_assigned_worker();
+	int output = 1;
+	int count = 0;
+	for(int s=0; s<NUM_SHIFTS; s++){
+		for(int j=0; j<NUM_TASKS; j++){
+			if(tasks_assigned_worker[w][d][s][j] == 1){
+				count++;
+			}
+		}
+	}
+	if(count == 0){ //No tasks assigned that day
+		output = 0;
+	}
+	return output;
+}
 
+void Worker::print_tasks_assigned_worker(){
+	set_tasks_assigned_worker();
+	cout << "Block (Exp+Info), PL, HB, BokB tasks assigned to the worker:" << endl;
+	for (int w=0; w< NUM_WEEKS; w++){
+		for (int s=0; s< NUM_SHIFTS; s++){
+			for (int j=0; j<NUM_TASKS; j++){
+				for (int d=0; d< NUM_DAYS; d++){
+					cout << tasks_assigned_worker[w][d][s][j] << " ";
+				}
+				cout << "  \t";
+			}
+			cout << endl;
+		}
+		cout << endl << endl;
+	}
+}
 
 
 

@@ -34,14 +34,14 @@ private:
 	
 	
 	int worker_avail[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
-	int stand_in[NUM_WEEKS][NUM_DAYS-2]; //stand_in[w,s] = 1 if stand-in, 0 else
+	int stand_in[NUM_WEEKS][NUM_DAYS-2]; //stand_in[w,d] = 1 if stand-in, 0 else
 	int stand_in_avail[NUM_WEEKS][NUM_DAYS-2]; //1 if avail is 1 for shift 1-3 on a day d, 0 else.
 	vector<Block*> weekend_blocks_avail; //weekend_blocks_avail: [block.ID(1) block.ID(8) block.ID(36)] i.e. blocks a worker is avail for
 	vector<Block*> weekday_blocks_avail; //blocks available are dependent on availability, weekend worker, pl-demand etc.
 	vector<Block*> weekrest_blocks_avail; //Note: Create vector<Block*> instead of new blocks assigned to vectors?
 	
 	int LOW_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]; //1 if assigned LOW that day, 0 else
-	
+	int tasks_assigned_worker[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
 	
 	int num_PL; //Amount of PL assigned to a worker. no_PL => 0, standard_PL => 0-2(?), many_PL => 3-4(?)
 	vector<Block*> blocks_assigned; //Vector with the blocks assigned to the person starting with weekend block (then weekrest, weekday)
@@ -104,7 +104,8 @@ public:
 	int getRot() const;
 	int getWeekend_week() const;
 	void getAvail_matrix() const;
-	void getStand_in_matrix() const;
+	void print_stand_in_matrix() const;
+	int get_stand_in_avail(int, int) const;
 	vector<Block*> getweekend_vect() const;
 	vector<Block*> getweekday_vect() const;
 	vector<Block*> getweekrest_vect() const;
@@ -131,23 +132,17 @@ public:
 	void setFreeday(string);
 	void setRot(int);
 	void setWeekend_week(int);
-	void setStand_in_avail();
+	void set_stand_in_avail();
 	void set_block_types_added(int,int);
 	void set_LOW_assigned(int,int,int,int);
 	void clear_cost_vector(string); //type as argument "weekend" etc
-	
+	void set_tasks_assigned_worker();
 	void createBlocks();
 	
 	void add_block_avail(string, Block*);
 	void add_block_to_worker(string, int, int = 0);
 	void init_add_block_to_worker();
 // 	void add_block_to_worker(int, string type = ""); //or " "?
-// 	struct cost_comp{
-// 		bool operator()(Worker const* lhs, Worker const* rhs) const{
-// 			return lhs->get_tot_cost() < rhs->get_tot_cost();
-// 		}
-// 	};
-// 	int get_tot_cost() const; //Calculates the cost of inserting a week block to the current solution
 	void calculate_week_cost(Block*, string, int[5][7][4][4], int[5][7][4][4], int[5][7][4][4], int[5], int);
 	int calculate_PL_cost(Block*);
 	int calculate_demand_cost(Block*, string, int[5][7][4][4], int[5][7][4][4], int[5][7][4][4], int);
@@ -162,7 +157,8 @@ public:
 	vector<Weekday_cost> getWeekday_cost_vector() const;
 	
 	void clear_blocks();
-	
+	int tasks_assigned_day(int, int); //week and day as argument
+	void print_tasks_assigned_worker();
 	
 	
 

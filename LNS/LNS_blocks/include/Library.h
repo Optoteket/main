@@ -23,6 +23,7 @@ private:
 	int task_assign_avail[NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
 	vector<Block> block_vector; //A vector with all the blocks created
 	
+	int stand_in_amount[NUM_WEEKS][NUM_DAYS-2]; //stand_in_amount[w][d] = num
 	
 	int demand_differ[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; //OK as public? only one Library object
 	int num_lib_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; //Tasks: Block, PL, HB, BokB
@@ -101,6 +102,9 @@ public:
 	void calculate_all_week_costs_for_worker(string, int, int); //"weekrest" or "weekday" and worker_id as arguments
 	
 	void calculate_HB_assigned();
+	
+	void calculate_stand_ins();
+	void print_stand_ins();
 	
 	void find_lowest_cost_in_vector(string, int);
 	void print_cost_vector(string, int);
