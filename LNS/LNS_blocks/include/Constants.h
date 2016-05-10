@@ -5,6 +5,7 @@
 static const int NUM_WEEKS = 5;
 static const int NUM_DAYS = 7;
 static const int NUM_SHIFTS = 4;
+static const int NUM_TASKS = 4; //could be 5. No task, Block, PL, HB, LOW
 
 static const int num_workers = 39;
 

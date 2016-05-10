@@ -107,7 +107,7 @@ int Block::getnum_PL() const{
 int Block::getnum_HB() const{
 	return num_HB;
 }
-int Block::getTask(int day, int shift, int tasks) const{ //1 if assigned the task, 0 else
+int Block::getTask(int day, int shift, int tasks) const{ //No task, Block, PL, HB, LOW
 	return tasks_assigned[day][shift][tasks];
 }
 void Block::getTask_matrix() const{

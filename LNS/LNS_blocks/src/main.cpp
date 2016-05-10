@@ -34,9 +34,9 @@ int main() {
 	
 	//***Set stand_in_avail***
 	for(int i=1; i<=num_workers; i++){
-		lib.getWorker(i).setStand_in_avail();
+		lib.getWorker(i).set_stand_in_avail();
 	}
-// 	lib.getWorker(p).getStand_in_matrix();
+// 	lib.getWorker(p).print_stand_in_matrix();
 	
 	
 	//***Create initially: Empty weeks for all workers***
@@ -105,20 +105,24 @@ int main() {
 // 	}
 	
 	
-	int p = 24;
+	int p = 14;
 	cout << "\n\n\nDestroy/Repair test starting here\n\n\n" << endl;
+	lib.print_weekends_assigned();
 	lib.print_all_weekblocks_assigned_worker(p);
 	lib.print_demand_differ();
 	cout << "The total cost after the new solution is: " << lib.evaluate_solution() << endl;
-// 	cout << "Worker " << p << " is working weekend at week: " << lib.getWorker(p).getWeekend_week() << endl;
+	cout << "Worker " << p << " is working weekend at week: " << lib.getWorker(p).getWeekend_week() << endl;
 	lib.destroy(p);
+// 	lib.destroy();
 	cout << "\nAfter destroy!\n" << endl;
 	lib.calculate_demand(); //Update the tasks_filled and demand_differences
 	lib.print_demand_differ();
 	lib.print_weekends_assigned();
 // 	lib.print_tasks_filled();
+	cout << "before repair" << endl;
 	lib.repair(); //need to calculate new demand_differences! Need to calculate new costs ???
-// 	cout << "Worker " << p << " is working weekend at week (after repair): " << lib.getWorker(p).getWeekend_week() << endl;
+	cout << "After repair" << endl;
+	cout << "Worker " << p << " is working weekend at week (after repair): " << lib.getWorker(p).getWeekend_week() << endl;
 	lib.calculate_demand(); //Update the tasks_filled and demand_differences
 	cout << "The total cost after the new solution is: " << lib.evaluate_solution() << endl;
 	cout << "Weekblocks assigned to the worker is now: " << endl;
@@ -128,6 +132,17 @@ int main() {
 	cout << "worker " << p << " works weekend at week: " << lib.getWorker(p).getWeekend_week() << endl;
 	
 	
+	lib.getWorker(p).print_tasks_assigned_worker();
+// 	lib.getWorker(p).print_assigned_LOW();
+	cout << lib.getWorker(p).tasks_assigned_day(2, 0);
+	cout << lib.getWorker(p).tasks_assigned_day(2, 1);
+	cout << lib.getWorker(p).tasks_assigned_day(2, 2);
+	cout << lib.getWorker(p).tasks_assigned_day(2, 3);
+	cout << lib.getWorker(p).tasks_assigned_day(2, 4);
+	cout << lib.getWorker(p).tasks_assigned_day(2, 5);
+	cout << lib.getWorker(p).tasks_assigned_day(2, 6) << endl;
+	
+	lib.print_stand_ins();
 	
 	cout << "End of main" << endl;
 	return 0;
