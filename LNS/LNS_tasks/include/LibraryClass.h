@@ -46,6 +46,7 @@ class Library{
 
   //Destroyed workers
   vector<TaskWorker> destroyed_wend_workers;
+  vector<TaskWorker> destroyed_task_workers;
 
   //Demand arrays 
   int worker_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
@@ -55,7 +56,12 @@ class Library{
   //Avail statistics
   int num_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   int temp_num_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+
+  //Avail demand diff
   int avail_demand_diff[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+
+  //Num avail_day_workers
+  int num_weekday_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS][NUM_SHIFTS-1];
 
   //Avail day
   int num_avail_day_workers[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS];
@@ -63,18 +69,22 @@ class Library{
   //Num full time equivalents
   double num_avail_workers_average[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS];
 
-  //int num_avail_stand_ins[POS][WEEKS][DAYS] //Available stand ins for a certain day
+  vector<int> weekend_objective_function;
 
   int library_temp_cost;
   int library_max_cost;
   int library_cost;
   int temp_library_cost;
   int avail_day_cost; //Maximize in objective function
-  int min_avail[NUM_POSITIONS];
+  int min_avail_day[NUM_POSITIONS];
   int temp_avail_day_cost;
   int avail_contribution_cost;
   double min_contribution[NUM_POSITIONS];
   int temp_avail_contribution_cost;
+
+  int avail_cost;
+  int temp_avail_cost;
+  int min_avail[NUM_POSITIONS];
 
   //Cost weights
   //int weight[2];
@@ -90,6 +100,7 @@ class Library{
   void set_library_cost(string);
   void set_avail_contribution_cost(string);
   void set_avail_day_cost(string);
+  void set_avail_cost(string);
   //void find_sum_stand_ins(string);
   int find_min_stand_ins(int[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS],int);
 

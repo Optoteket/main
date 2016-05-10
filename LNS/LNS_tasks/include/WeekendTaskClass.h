@@ -23,11 +23,11 @@ class WeekendTask : public Task {
 
   //Functions
   virtual void find_avail_workers(vector<TaskWorker>*, string);
-  virtual void place_cheapest_worker(vector<TaskWorker>*);
-  virtual void temp_place_workers();
+  //virtual void place_cheapest_worker(vector<TaskWorker>*);
+  //virtual void temp_place_workers();
   virtual void set_costs();
   virtual void print_worker_costs();
-  void place_a_worker(vector<TaskWorker>*, string);
+  void place_workers(vector<TaskWorker>*, string);
   
   void print_avail_workers();
 

@@ -39,6 +39,8 @@ int find_position_req(int task_type){
     return Ass;
   else if (task_type <= HB)
     return Lib;
+  else if (task_type == BokB)
+    return BBlib;
   //TODO: add bokbussen
   else return no_position;
 }
@@ -86,7 +88,7 @@ int main(int argc, char** argv)
     library.create_initial_solution();
 
     //4. Optimize weekends, input: num iterations, destroy percentage
-    library.optimize_weekends(50, 20);
+    library.optimize_weekends(1000, 20);
     
     //Write results to resfile
     library.write_results();

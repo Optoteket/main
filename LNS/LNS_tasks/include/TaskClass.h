@@ -63,9 +63,9 @@ class Task {
     return this->get_cost() < task.get_cost();
   }
 
-  struct max_qual_sort{
+  struct max_cost{
     bool operator()(Task const & lhs, Task const & rhs) const{ 
-      return lhs.get_qualification() > rhs.get_qualification();
+      return lhs.get_cost() > rhs.get_cost();
     }
   };
 

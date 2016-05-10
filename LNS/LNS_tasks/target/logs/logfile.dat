@@ -1,11 +1,4448 @@
-2016_5_9 15:56:54
+2016_5_10 16:54:57
 The logs are:
+avail_day_cost: 30
+avail_cost: 34
+Solution not accepted at Lib. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Lib. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Lib. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Lib. Week: 4. Day 3. Shift 3 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
 ************* Solution accepted ************
-************ Saved best solution: 347
-Min avail ass: 7 Min avail lib: 12 Min contrib ass: 9 Min contrib lib: 14.3333
-Library max cost: 347 Library current cost: 347
-Solution not accepted at Ass. Week: 2. Day 3. Shift 3 .
-Solution not accepted at Ass. Week: 2. Day 3. Shift 3 .
-Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+************ Saved best solution: 344
+Min avail day ass: 7 Min avail day lib: 12 Min avail ass: 8 Min avail lib: 13
+Library max cost: 344 Library current cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+Solution not accepted at Lib. Week: 4. Day 3. Shift 3 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
 Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 29
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+temp_avail_day_cost: 30
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 29
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 33
+Iteration: 58 T:3.50275 Cost diff:1 Exponential cooling:0.751646 Random val: 0.17 Library cost: 343
+temp_library_cost: 343
+library_cost: 344
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 33
+library_cost: 343
+temp_avail_day_cost: 31
+temp_avail_cost: 33
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 33
+library_cost: 343
+temp_avail_day_cost: 31
+temp_avail_cost: 33
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 33
+library_cost: 343
+temp_avail_day_cost: 31
+temp_avail_cost: 33
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 33
+library_cost: 343
+temp_avail_day_cost: 31
+temp_avail_cost: 33
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 33
+library_cost: 343
+temp_avail_day_cost: 31
+temp_avail_cost: 33
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 33
+library_cost: 343
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 29
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 29
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 29
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
 Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 29
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 29
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 29
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 29
+temp_avail_cost: 33
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 33
+Iteration: 167 T:1.89081 Cost diff:1 Exponential cooling:0.589268 Random val: 0.44 Library cost: 343
+temp_library_cost: 343
+library_cost: 344
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 33
+library_cost: 343
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+************* Solution accepted ************
+avail_day_cost: 31
+avail_cost: 34
+library_cost: 344
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+************ Saved best solution: 356
+Min avail day ass: 8 Min avail day lib: 12 Min avail ass: 8 Min avail lib: 14
+Library max cost: 356 Library current cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+Iteration: 195 T:1.62682 Cost diff:1 Exponential cooling:0.540806 Random val: 0.27 Library cost: 355
+temp_library_cost: 355
+library_cost: 356
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 29
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+Iteration: 204 T:1.52419 Cost diff:1 Exponential cooling:0.518879 Random val: 0.11 Library cost: 355
+temp_library_cost: 355
+library_cost: 356
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 30
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at Lib. Week: 3. Day 3. Shift 3 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+Iteration: 230 T:1.22866 Cost diff:1 Exponential cooling:0.44313 Random val: 0.03 Library cost: 355
+temp_library_cost: 355
+library_cost: 356
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 30
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 34
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 30
+temp_avail_cost: 35
+temp_avail_day_cost: 29
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+Iteration: 258 T:0.975651 Cost diff:1 Exponential cooling:0.358812 Random val: 0.07 Library cost: 355
+temp_library_cost: 355
+library_cost: 356
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+Iteration: 272 T:0.891476 Cost diff:1 Exponential cooling:0.325714 Random val: 0.13 Library cost: 355
+temp_library_cost: 355
+library_cost: 356
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 30
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 30
+temp_avail_cost: 33
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at Ass. Week: 2. Day 3. Shift 3 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+Iteration: 317 T:0.582199 Cost diff:1 Exponential cooling:0.179492 Random val: 0.08 Library cost: 355
+temp_library_cost: 355
+library_cost: 356
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 35
+library_cost: 355
+temp_avail_day_cost: 30
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at Ass. Week: 2. Day 3. Shift 3 .
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 29
+temp_avail_cost: 34
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at Lib. Week: 3. Day 3. Shift 3 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 34
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at Ass. Week: 2. Day 3. Shift 3 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at Ass. Week: 2. Day 3. Shift 3 .
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 32
+avail_cost: 36
+library_cost: 356
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+************ Saved best solution: 366
+Min avail day ass: 7 Min avail day lib: 13 Min avail ass: 8 Min avail lib: 14
+Library max cost: 366 Library current cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+Solution not accepted at Lib. Week: 0. Day 3. Shift 3 .
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 35
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 34
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 33
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 30
+temp_avail_cost: 34
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+temp_avail_day_cost: 33
+temp_avail_cost: 35
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 35
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 30
+temp_avail_cost: 36
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 36
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+temp_avail_day_cost: 31
+temp_avail_cost: 36
+temp_avail_day_cost: 31
+temp_avail_cost: 34
+temp_avail_day_cost: 32
+temp_avail_cost: 35
+temp_avail_day_cost: 33
+temp_avail_cost: 36
+************* Solution accepted ************
+avail_day_cost: 33
+avail_cost: 36
+library_cost: 366
+Error: in set_task, week: 3 day: 2 shift: 3. Worker 37 already has a task.
+Error: in set_task, week: 4 day: 2 shift: 3. Worker 37 already has a task.
+Error: in set_task, week: 1 day: 2 shift: 3. Worker 37 already has a task.
+Error: in set_task, week: 1 day: 3 shift: 3. Worker 36 already has a task.

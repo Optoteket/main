@@ -17,6 +17,12 @@ class TaskWorker{
   Worker temp_worker;
   int temp_cost;
 
+  struct p_min_cost{
+    bool operator()(TaskWorker const * lhs,TaskWorker const * rhs) const{
+      return lhs->temp_cost < rhs->temp_cost;
+    }
+  };
+
   bool operator<(TaskWorker const & rhs) const{
     return this->temp_cost < rhs.temp_cost;
   }  
