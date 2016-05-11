@@ -14,6 +14,7 @@
 
 Library::Library() {
 	num_blocks = 0;
+	max_min_stand_in = 0;
 	for (int d=0; d<NUM_DAYS; d++){
 		for (int s=0; s<NUM_SHIFTS; s++){
 			for (int j=0; j<NUM_TASKS; j++){
@@ -168,19 +169,19 @@ void Library::readDemand() {
 	}
 }
 
-void Library::printDemand() {
-	cout << "The big columns represent demand for: block (Exp+Info), PL, HB, BokB" << endl;
+void Library::print_demand(ostream& stream) {
+	stream << "The big columns represent demand for: block (Exp+Info), PL, HB, BokB" << endl;
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int s=0; s< NUM_SHIFTS; s++){
 			for (int j=0; j<NUM_TASKS; j++){
 				for (int d=0; d< NUM_DAYS; d++){
-					cout << demand[w][d][s][j] << " ";
+					stream << demand[w][d][s][j] << " ";
 				}
-				cout << "  \t";
+				stream << "  \t";
 			}
-			cout << endl;
+			stream << endl;
 		}
-		cout << endl << endl;
+		stream << endl << endl;
 	}
 }
 
@@ -390,6 +391,10 @@ int Library::getTask_avail(int d, int s, int j) const{
 
 Worker& Library::getWorker(int i){
 	return myworkers[i-1];
+}
+
+int Library::get_max_min_stand_in() const{
+	return max_min_stand_in;
 }
 
 void Library::create_all_blocks() {
@@ -880,6 +885,9 @@ void Library::assign_a_rot_to_worker(int i){ //Assign a new random weekend for t
 	for(int w=0; w<NUM_WEEKS; w++){
 		if(lib_per_rot[w] == 5){five_libs_assigned = 1;}
 	}
+	if(i == 21){
+		cout << "in assign_a_rot_to_worker()" << endl;
+	}
 	
 	while(true){ //Find a week that needs assignments
 // 		srand(time(NULL));
@@ -891,15 +899,21 @@ void Library::assign_a_rot_to_worker(int i){ //Assign a new random weekend for t
 				break;
 			}else if(myworkers[i-1].getQual().compare(0,3,"lib") == 0 && five_libs_assigned == 0 && lib_per_rot[rand_week] < 5){
 				break;
+			}else if(myworkers[i-1].getWeekend().compare(0,10,"no_weekend") == 0){
+				break;
 			}
 		}
 	}
 	cout << "rand_week is: " << rand_week << endl;
 	
+// 	//No weekend worker
+// 	if(myworkers[i-1].getWeekend().compare(0,10,"no_weekend") == 0){ //Assign the rotation regardless, since does not matter
+// 		myworkers[i-1].setWeekend_week(rand_week);}
+	
 	//Librarian
 	if(myworkers[i-1].getQual().compare(0,3,"lib") == 0){
 		if(five_libs_assigned == 1){ //a week has already been assigned 5 libs
-			if(lib_per_rot[rand_week] + ass_per_rot[rand_week] < 7 && lib_per_rot[rand_week] < 4){
+			if((lib_per_rot[rand_week] + ass_per_rot[rand_week] < 7 && lib_per_rot[rand_week] < 4) || myworkers[i-1].getWeekend().compare(0,10,"no_weekend") == 0){
 				//Assign weekend and count
 				myworkers[i-1].setWeekend_week(rand_week);
 				if(myworkers[i-1].getWeekend().compare(0,7,"weekend") == 0){ //Only count if a weekend worker
@@ -908,7 +922,7 @@ void Library::assign_a_rot_to_worker(int i){ //Assign a new random weekend for t
 			}
 		}
 		else if(five_libs_assigned == 0){
-			if(lib_per_rot[rand_week] + ass_per_rot[rand_week] < 7 && lib_per_rot[rand_week] < 5){
+			if((lib_per_rot[rand_week] + ass_per_rot[rand_week] < 7 && lib_per_rot[rand_week] < 5) || myworkers[i-1].getWeekend().compare(0,10,"no_weekend") == 0){
 				//Assign weekend and count
 				myworkers[i-1].setWeekend_week(rand_week);
 				if(myworkers[i-1].getWeekend().compare(0,7,"weekend") == 0){ //Only count if a weekend worker
@@ -920,7 +934,7 @@ void Library::assign_a_rot_to_worker(int i){ //Assign a new random weekend for t
 	
 	//Assistant
 	else if(myworkers[i-1].getQual().compare(0,3,"ass") == 0){
-		if(lib_per_rot[rand_week] + ass_per_rot[rand_week] < 7 && ass_per_rot[rand_week] <= 2){
+		if((lib_per_rot[rand_week] + ass_per_rot[rand_week] < 7 && ass_per_rot[rand_week] <= 2) || myworkers[i-1].getWeekend().compare(0,10,"no_weekend") == 0){
 			//Assign weekend and count
 			myworkers[i-1].setWeekend_week(rand_week);
 			if(myworkers[i-1].getWeekend().compare(0,7,"weekend") == 0){ //Only count if a weekend worker
@@ -930,20 +944,20 @@ void Library::assign_a_rot_to_worker(int i){ //Assign a new random weekend for t
 	}
 	cout << "Assigned a rot to worker " << i << endl;
 	cout << "New weekend assignment is: " << endl;
-	print_weekends_assigned();
+	print_weekends_assigned(cout);
 }
 
-void Library::print_weekends_assigned(){
-	cout << "lib_per_rot = ";
+void Library::print_weekends_assigned(ostream& stream){
+	stream << "lib_per_rot = ";
 	for(int w=0; w<NUM_WEEKS; w++){
-		cout << lib_per_rot[w] << " ";
+		stream << lib_per_rot[w] << " ";
 	}
-	cout << endl;
-	cout << "ass_per_rot = ";
+	stream << endl;
+	stream << "ass_per_rot = ";
 	for(int w=0; w<NUM_WEEKS; w++){
-		cout << ass_per_rot[w] << " ";
+		stream << ass_per_rot[w] << " ";
 	}
-	cout << endl;
+	stream << endl;
 }
 
 void Library::calculate_HB_assigned(){
@@ -994,51 +1008,51 @@ void Library::clear_tasks_filled(){
 	}
 }
 
-void Library::print_tasks_filled(){
+void Library::print_tasks_filled(ostream& stream){
 	calculate_tasks_filled();
 	cout << "These matrices represent all tasks filled with workers: block, PL, HB, BokB" << endl;
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int s=0; s< NUM_SHIFTS; s++){
 			for (int j=0; j<NUM_TASKS; j++){
 				for (int d=0; d< NUM_DAYS; d++){
-					cout << tasks_filled[w][d][s][j] << " ";
+					stream << tasks_filled[w][d][s][j] << " ";
 				}
-				cout << "  \t";
+				stream << "  \t";
 			}
-			cout << endl;
+			stream << endl;
 		}
-		cout << endl << endl;
+		stream << endl << endl;
 	}
 }
 
-void Library::print_num_workers(string type){
+void Library::print_num_workers(string type, ostream& stream){
 	if(type == "lib"){
-		cout << "Number of librarians assigned: block, PL, HB, BokB" << endl;
+		stream << "Number of librarians assigned: block, PL, HB, BokB" << endl;
 		for (int w=0; w< NUM_WEEKS; w++){
 			for (int s=0; s< NUM_SHIFTS; s++){
 				for (int j=0; j<NUM_TASKS; j++){
 					for (int d=0; d< NUM_DAYS; d++){
-						cout << num_lib_assigned[w][d][s][j] << " ";
+						stream << num_lib_assigned[w][d][s][j] << " ";
 					}
-					cout << "  \t";
+					stream << "  \t";
 				}
-				cout << endl;
+				stream << endl;
 			}
-			cout << endl << endl;
+			stream << endl << endl;
 		}
 	}else if(type == "ass"){
-		cout << "Number of assistants assigned: block, PL, HB, BokB" << endl;
+		stream << "Number of assistants assigned: block, PL, HB, BokB" << endl;
 		for (int w=0; w< NUM_WEEKS; w++){
 			for (int s=0; s< NUM_SHIFTS; s++){
 				for (int j=0; j<NUM_TASKS; j++){
 					for (int d=0; d< NUM_DAYS; d++){
-						cout << num_ass_assigned[w][d][s][j] << " ";
+						stream << num_ass_assigned[w][d][s][j] << " ";
 					}
-					cout << "  \t";
+					stream << "  \t";
 				}
-				cout << endl;
+				stream << endl;
 			}
-			cout << endl << endl;
+			stream << endl << endl;
 		}
 	}
 }
@@ -1064,21 +1078,21 @@ void Library::calculate_demand_differ(){ //Calculate the difference between Libr
 	}
 }
 
-void Library::print_demand_differ(){
+void Library::print_demand_differ(ostream& stream){
 	calculate_demand_differ();
-	cout << "Demand difference in the library for: block, PL, HB, BokB" << endl;
-	cout << "Negative values means overstaffing, positive means lack of workers" << endl;
+	stream << "\n*** Demand difference *** in the library for: block, PL, HB, BokB" << endl;
+	stream << "Negative values means overstaffing, positive means lack of workers" << endl;
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int s=0; s< NUM_SHIFTS; s++){
 			for (int j=0; j<NUM_TASKS; j++){
 				for (int d=0; d< NUM_DAYS; d++){
-					cout << demand_differ[w][d][s][j] << " ";
+					stream << demand_differ[w][d][s][j] << " ";
 				}
-				cout << "  \t";
+				stream << "  \t";
 			}
-			cout << endl;
+			stream << endl;
 		}
-		cout << endl << endl;
+		stream << endl << endl;
 	}
 }
 
@@ -1139,8 +1153,22 @@ int Library::check_if_collision(unsigned int n, int worker, int week, string typ
 	for(int d=0; d<NUM_DAYS-2; d++){
 		for(int s=0; s<NUM_SHIFTS; s++){
 			for(int j=1; j<=2; j++){ //Block and PL
-				if(myworkers[worker-1].getblock_avail_vect(type).at(n)->getTask(d,s,j)==1 && myworkers[worker-1].get_LOW_assigned(week,d,s) == 1){
-					calc = 0;
+				if(myworkers[worker-1].get_LOW_assigned(week,d,s) == 1){
+					if(d != 4){
+						if(myworkers[worker-1].getblock_avail_vect(type).at(n)->getTask(d,0,j)==1 ||
+						myworkers[worker-1].getblock_avail_vect(type).at(n)->getTask(d,1,j)==1 ||
+						myworkers[worker-1].getblock_avail_vect(type).at(n)->getTask(d,2,j)==1 ||
+						myworkers[worker-1].getblock_avail_vect(type).at(n)->getTask(d,3,j)==1){
+							calc = 0;
+						}
+					}
+					else if(d == 4){//task on friday evening should be ok!
+						if(myworkers[worker-1].getblock_avail_vect(type).at(n)->getTask(d,0,j)==1 ||
+						myworkers[worker-1].getblock_avail_vect(type).at(n)->getTask(d,1,j)==1 ||
+						myworkers[worker-1].getblock_avail_vect(type).at(n)->getTask(d,2,j)==1){
+							calc = 0;
+						}
+					}
 				}
 			}
 		}
@@ -1232,6 +1260,7 @@ void Library::create_initial_solution(){
 	int block_type_to_add = 0;
 	string type = " ";
 	while(worker_vector.size() != 0){
+// 		srand(time(NULL)); //Change seed to give new random numbers
 		current_worker_index = rand() % worker_vector.size(); //A number between 0-[size()-1]
 		current_worker = worker_vector.at(current_worker_index);
 		block_type_to_add = rand() % 3; //A number between 0-2, 0 means wend, 1 weekrest and 2 weekday
@@ -1289,8 +1318,8 @@ void Library::create_initial_solution(){
 		}
 	}
 	cout << "vector size is now: " << worker_vector.size() << endl;
-	print_tasks_filled();
-	print_demand_differ();
+	print_tasks_filled(cout);
+	print_demand_differ(cout);
 }
 
 
@@ -1309,9 +1338,9 @@ void Library::add_best_blocks_to_worker(string type, int current_worker, int cou
 	for(unsigned int element=0; element<myworkers[current_worker-1].getblock_avail_vect(type).size(); element++){
 		if(myworkers[current_worker-1].getblock_avail_vect(type).at(element)->getID() == block_index_to_add){
 			//Check if correct by printing cost vector and available blocks!
-					if(current_worker == 24 && type == "weekday" && count == 3){
-					print_cost_vector(type,current_worker);
-					print_weekblocks_avail_worker(current_worker, type);}
+// 					if(current_worker == 24 && type == "weekday" && count == 3){
+// 					print_cost_vector(type,current_worker);
+// 					print_weekblocks_avail_worker(current_worker, type);}
 			myworkers[current_worker-1].add_block_to_worker(type, element, count);
 		}
 	}
@@ -1382,14 +1411,16 @@ void Library::clear_calculate_LOW_filled(){
 	}
 }
 
-int Library::evaluate_solution(){//Add all costs together and return the total cost. Stand-ins not included here
-	int total_cost = 0;
+int Library::evaluate_solution(ostream& stream){//Add all costs together and return the total cost. Stand-ins not included here
+	int total_eval_cost = 0;
+	int total_stand_in_cost = 0;
 	int demand_tot_cost = 0;
 	int demand_lib_cost = 0;
 	int demand_ass_cost = 0;
 	int demand_PL_cost = 0;
 	int demand_HB_cost = 0;
 	int demand_evening_cost = 0;
+	int demand_weekend_cost = 0;
 	int PL_amount_cost = 0;
 	int no_weekend_cost = 0;
 	
@@ -1397,26 +1428,26 @@ int Library::evaluate_solution(){//Add all costs together and return the total c
 	int lower_limit = 0;
 	//Demand cost+qualifications, #PL, #HB, (LOW?)
 	for(int w=0; w<NUM_WEEKS; w++){
-		for(int d=0; d<NUM_DAYS; d++){
+		for(int d=0; d<5; d++){
 			for(int s=0; s<NUM_SHIFTS;s++){
-				//***DEMAND TOT COSTS***
+				//***DEMAND TOT COSTS WEEKDAYS***
 				if(demand_differ[w][d][s][0] > 0){ //Understaffing Exp/Info
 					if(num_lib_assigned[w][d][s][0] - demand[w][d][s][0]/2 < 0){//not enough libs => add two costs
-						if(s != 3){demand_tot_cost += demand_differ[w][d][s][0]*DEMAND_FEW_TOT;
-						}else{demand_evening_cost += demand_differ[w][d][s][0]*DEMAND_EVENING_COST;}
+						if(s == 3 && d != 4){demand_evening_cost += demand_differ[w][d][s][0]*DEMAND_EVENING_COST;
+						}else if(s != 3){demand_tot_cost += demand_differ[w][d][s][0]*DEMAND_FEW_TOT;}
 						demand_lib_cost += abs(num_lib_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_FEW_LIBS;
 					}else{
-						if(s != 3){demand_tot_cost += demand_differ[w][d][s][0]*DEMAND_FEW_TOT;
-						}else{demand_evening_cost += demand_differ[w][d][s][0]*DEMAND_EVENING_COST;}
+						if(s == 3 && d != 4){demand_evening_cost += demand_differ[w][d][s][0]*DEMAND_EVENING_COST;
+						}else if(s != 3){demand_tot_cost += demand_differ[w][d][s][0]*DEMAND_FEW_TOT;}
 					}
 				}else if(demand_differ[w][d][s][0] < 0){//Overstaffing Exp/Info
 					if(num_lib_assigned[w][d][s][0] - demand[w][d][s][0]/2 < 0){//not enough libs => add two costs
-						if(s != 3){demand_tot_cost += demand_differ[w][d][s][0]*DEMAND_FEW_TOT;
-						}else{demand_evening_cost += demand_differ[w][d][s][0]*DEMAND_EVENING_COST;}
+						if(s == 3 && d != 4){demand_evening_cost += demand_differ[w][d][s][0]*DEMAND_EVENING_COST;
+						}else if(s != 3){demand_tot_cost += demand_differ[w][d][s][0]*DEMAND_FEW_TOT;}
 						demand_lib_cost += abs(num_lib_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_FEW_LIBS;
 					}else{
-						if(s != 3){demand_tot_cost += demand_differ[w][d][s][0]*DEMAND_FEW_TOT;
-						}else{demand_evening_cost += demand_differ[w][d][s][0]*DEMAND_EVENING_COST;}
+						if(s == 3 && d != 4){demand_evening_cost += demand_differ[w][d][s][0]*DEMAND_EVENING_COST;
+						}else if(s != 3){demand_tot_cost += demand_differ[w][d][s][0]*DEMAND_FEW_TOT;}
 					}
 				}else if(demand_differ[w][d][s][0] == 0 && //Feasible total amount of workers
 					(num_lib_assigned[w][d][s][0] - demand[w][d][s][0]/2) < 0){ //not enough libs => add one cost
@@ -1434,13 +1465,24 @@ int Library::evaluate_solution(){//Add all costs together and return the total c
 				//1 assistant is what is preferred
 				demand_PL_cost += num_lib_assigned[w][d][0][1]*DEMAND_PL_BAD_LIB + (num_ass_assigned[w][d][0][1]-1)*DEMAND_PL_BAD_ASS;
 			}
+		}
+		
+		for(int d=5; d<NUM_DAYS; d++){	
 			
-			
-			//***DEMAND HB COSTS***
-			if(demand_differ[w][d][0][2] > 0){ //Wrong demand at HB (only librarians in HB, Checking understaffing)
-				demand_HB_cost += demand_differ[w][d][0][2]*DEMAND_HB_OVERSTAFF;
-			}else if(demand_differ[w][d][0][2] < 0){ //Too many workers
-				demand_HB_cost += abs(demand_differ[w][d][0][2])*DEMAND_HB_OVERSTAFF;
+			if(d == 5){
+				//***DEMAND TOT COSTS WEEKEND***
+				if(demand_differ[w][d][0][0] > 0){ //Understaffing weekend Block
+					demand_weekend_cost += demand_differ[w][d][0][0]*DEMAND_WEEKEND_COST;
+				}else if(demand_differ[w][d][0][0] < 0){ //Overstaffing weekend Block
+					demand_weekend_cost += abs(demand_differ[w][d][0][0])*DEMAND_WEEKEND_COST;
+				}
+				
+				//***DEMAND HB COSTS***
+				if(demand_differ[w][d][0][2] > 0){ //Understaffing HB(only librarians in HB)
+					demand_HB_cost += demand_differ[w][d][0][2]*DEMAND_HB_OVERSTAFF;
+				}else if(demand_differ[w][d][0][2] < 0){ //Too many workers
+					demand_HB_cost += abs(demand_differ[w][d][0][2])*DEMAND_HB_OVERSTAFF;
+				}
 			}
 			
 		}
@@ -1463,24 +1505,44 @@ int Library::evaluate_solution(){//Add all costs together and return the total c
 // 		cout << "#PL for worker " << i+1 << " is: " << myworkers[i].get_num_PL_assigned() << endl;
 		
 		//***EMPTY WEEKEND COSTS***
-		//Check if weekend block is 0
-		if(myworkers[i].getblocks_assigned().at(myworkers[i].getWeekend_week())->getID() == 0){
+		//Check if weekend block is 0, since the only weekend block without a weekend task assigned for wend worker
+		if(myworkers[i].getblocks_assigned().at(myworkers[i].getWeekend_week())->getID() == 0 && myworkers[i].getWeekend().compare(0,7,"weekend")){
 			//Add cost
 			no_weekend_cost += NO_WEEKEND_COST;
 		}
 	}
-	total_cost = demand_tot_cost + demand_lib_cost + demand_ass_cost + demand_PL_cost + demand_HB_cost + demand_evening_cost + PL_amount_cost + no_weekend_cost;
-	cout << "demand_tot_cost = " << demand_tot_cost << endl;
-	cout << "demand_lib_cost (too few or too many) = " << demand_lib_cost << endl;
-	cout << "demand_ass_cost = " << demand_ass_cost << endl;
-	cout << "demand_PL_cost = " << demand_PL_cost << endl;
-	cout << "demand_HB_cost = " << demand_HB_cost << endl;
-	cout << "demand_evening_cost = " << demand_evening_cost << endl;
-	cout << "PL_amount_cost = " << PL_amount_cost << endl;
-	cout << "no_weekend_cost = " << no_weekend_cost << endl;
-	return total_cost;
+	
+	
+	
+	//***STAND_IN_COSTS***
+	//Evaluate cost for stand-ins - Find min(stand_in[w][d]) give cost - Sum stand_ins give cost
+	//Give negative costs for every new stand-in found! ***Higher cost for librarians!! - double?***
+	total_stand_in_cost -= get_lowest_stand_in()*STAND_IN_COST;
+	cout << "sum stand_ins are: " << get_sum_stand_ins() << endl;
+	total_stand_in_cost -= (int)get_sum_stand_ins()/5; //If 105 stand-ins, then give -floor(105/5) = -21 in cost
+	
+	if(get_lowest_stand_in() > max_min_stand_in){
+		max_min_stand_in = get_lowest_stand_in();
+	}
+	
+	
+	
+	total_eval_cost = demand_tot_cost + demand_lib_cost + demand_ass_cost + demand_PL_cost + demand_HB_cost + demand_evening_cost + demand_weekend_cost + PL_amount_cost + no_weekend_cost;
+	stream << "demand_tot_cost = " << demand_tot_cost << endl;
+	stream << "demand_lib_cost (too few or too many) = " << demand_lib_cost << endl;
+	stream << "demand_ass_cost = " << demand_ass_cost << endl;
+	stream << "demand_PL_cost = " << demand_PL_cost << endl;
+	stream << "demand_HB_cost = " << demand_HB_cost << endl;
+	stream << "demand_evening_cost = " << demand_evening_cost << endl;
+	stream << "demand_weekend_cost = " << demand_weekend_cost << endl;
+	stream << "PL_amount_cost = " << PL_amount_cost << endl;
+	stream << "no_weekend_cost = " << no_weekend_cost << endl;
+	stream << "\ntotal_eval_cost = " << total_eval_cost << endl;
+	stream << "total_stand_in_cost = " << total_stand_in_cost << endl;
+	stream << "*total_cost* = " << total_eval_cost + total_stand_in_cost << endl;
+	
+	return total_eval_cost + total_stand_in_cost;
 }
-// static const int STAND_IN_COST = 5;
 
 void Library::destroy(){ //Destroy blocks for 3 random workers (and give new weekend, in repair?)
 	int worker_to_destroy = 0;
@@ -1605,7 +1667,7 @@ void Library::calculate_stand_ins(){ //calculate stand_in_amount each day. Save 
 	for(int i=1; i<=num_workers; i++){
 		for(int w=0; w<NUM_WEEKS; w++){
 			for(int d=0; d<NUM_DAYS-2; d++){
-				if(myworkers[i-1].get_stand_in_avail(w,d) == 1 && myworkers[i-1].tasks_assigned_day(w,d) == 0){
+				if(myworkers[i-1].get_stand_in_avail(w,d) == 1 && myworkers[i-1].tasks_assigned_day(w,d) == 0){//stand_in unrotated, tasks_assigned unrotated
 					stand_in_amount[w][d]++;
 				}
 			}
@@ -1613,15 +1675,63 @@ void Library::calculate_stand_ins(){ //calculate stand_in_amount each day. Save 
 	}
 }
 
-void Library::print_stand_ins(){
+void Library::print_stand_ins(ostream& stream){ //Printing stand-ins for each day of all weeks
 	calculate_stand_ins();
-	cout << "Number of stand-ins are for each day of the week:\n" << endl;
 	for(int w=0; w<NUM_WEEKS; w++){
-		cout << "Week " << w << endl;
+		stream << "Stand-ins Week " << w << endl;
 		for(int d=0; d<NUM_DAYS-2; d++){
-			cout << stand_in_amount[w][d] << " ";
+			stream << stand_in_amount[w][d] << " ";
 		}
-		cout << endl << endl;
+		stream << endl << endl;
+	}
+}
+
+int Library::get_sum_stand_ins(){ //Return a value with the total sum of stand-ins for all 25 days
+	calculate_stand_ins();
+	int total_stand_in_amount = 0;
+	for(int w=0; w<NUM_WEEKS; w++){
+		for(int d=0; d<NUM_DAYS-2; d++){
+			total_stand_in_amount += stand_in_amount[w][d];
+		}
+	}
+	return total_stand_in_amount;
+}
+
+int Library::get_lowest_stand_in(){ //Find the lowest number of stand-ins out of all 25 days
+	calculate_stand_ins();
+	int lowest_stand_in_amount = 99; //a high default value
+	for(int w=0; w<NUM_WEEKS; w++){
+		for(int d=0; d<NUM_DAYS-2; d++){
+			if(stand_in_amount[w][d] < lowest_stand_in_amount){
+				lowest_stand_in_amount = stand_in_amount[w][d];
+			}
+		}
+	}
+	return lowest_stand_in_amount;
+}
+
+void Library::print_results(ostream& file){
+// 	if(file->is_open()){
+// 		file << 123 << endl;
+// 		
+// 	}
+	
+}
+
+void Library::print_hello(ostream& stream){
+	calculate_tasks_filled();
+	stream << "These matrices represent all tasks filled with workers: block, PL, HB, BokB" << endl;
+	for (int w=0; w< NUM_WEEKS; w++){
+		for (int s=0; s< NUM_SHIFTS; s++){
+			for (int j=0; j<NUM_TASKS; j++){
+				for (int d=0; d< NUM_DAYS; d++){
+					stream << tasks_filled[w][d][s][j] << " ";
+				}
+				stream << "  \t";
+			}
+			stream << endl;
+		}
+		stream << endl << endl;
 	}
 }
 
