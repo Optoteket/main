@@ -38,15 +38,13 @@ class Library{
   // Worker vectors
   vector<Worker> worker_list;
   vector<Worker*> weekend_workers;
-  vector<Worker*> weekend_lib;
-  vector<Worker*> weekend_ass;
-  vector<Worker*> lib_workers;
-  vector<Worker*> ass_workers;
   vector<Worker> best_sol_workers;
 
   //Destroyed workers
   vector<TaskWorker> destroyed_wend_workers;
   vector<TaskWorker> destroyed_task_workers;
+
+  vector<int> weekend_objective_function;
 
   //Demand arrays 
   int worker_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
@@ -69,8 +67,6 @@ class Library{
   //Num full time equivalents
   double num_avail_workers_average[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS];
 
-  vector<int> weekend_objective_function;
-
   int library_temp_cost;
   int library_max_cost;
   int library_cost;
@@ -86,18 +82,15 @@ class Library{
   int temp_avail_cost;
   int min_avail[NUM_POSITIONS];
 
-  //Cost weights
-  //int weight[2];
-
  public:
 
   //Constructor
   Library(ofstream*);
   void create_initial_solution();
-  void optimize_weekends(int,int);
+  void optimize_weekends(int,int, int[3]);
 
   //Stand in avail
-  void set_library_cost(string);
+  void set_library_cost(string, int[3]);
   void set_avail_contribution_cost(string);
   void set_avail_day_cost(string);
   void set_avail_cost(string);
@@ -129,6 +122,7 @@ class Library{
   //Output related
   void write_results();
   void write_stat();
+  void write_weekend_AMPL_data();
 
   //Demand related
   void find_num_avail_workers();

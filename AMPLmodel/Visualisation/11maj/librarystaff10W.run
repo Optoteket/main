@@ -1,0 +1,116 @@
+# -----------------------------------
+# Run file
+# -----------------------------------
+
+# Master Thesis: Work Distribution of a Heterogeneous Library Staff - A Personnel Task Scheduling Problem
+# Master Students: Claes Arvidson and Emelie Karlsson
+# First version: 2016-02-09
+
+reset;                  
+option solver cplexamp;    # Choose solver
+option presolve 0;
+option omit_zero_cols 1;   # No zeros printed in columns
+option omit_zero_rows 1;   # No zeros printed in rows
+option display_1col 10000; # Only one column printed
+option cplex_options "timing 1 mipdisplay 2 time = 237600"; # Time measurement and printing. NOTE: Time = x means the solve breaks after x seconds. 57600 secounds = 17->9. 237'600 = (fr) 15 -> (mon) 9.
+option display_precision 5;
+
+model librarystaff10W.mod;   # Read model file 
+data librarystaff10W.dat;    # Read data file 
+
+#expand > librarystaff.res; # Writes all results to file
+
+############################## Add timer parameters #########################
+param time_elapsed;
+param end;
+let time_elapsed := _ampl_time + _total_solve_elapsed_time;
+
+
+
+################################# Solve ####################################
+solve;
+
+
+
+
+##################### Display number of shift changes ########################
+param shift_change1;
+param shift_change2;
+param shift_change3;
+param shift_change4;
+param shift_change5;
+
+let shift_change1 := sum{i in I}(sum{d in 1..5}(sum{s in 1..3} abs(y[i,1,d,s]-y[i,6,d,s])));
+let shift_change2 := sum{i in I}(sum{d in 1..5}(sum{s in 1..3} abs(y[i,2,d,s]-y[i,7,d,s])));
+let shift_change3 := sum{i in I}(sum{d in 1..5}(sum{s in 1..3} abs(y[i,3,d,s]-y[i,8,d,s])));
+let shift_change4 := sum{i in I}(sum{d in 1..5}(sum{s in 1..3} abs(y[i,4,d,s]-y[i,9,d,s])));
+let shift_change5 := sum{i in I}(sum{d in 1..5}(sum{s in 1..3} abs(y[i,5,d,s]-y[i,10,d,s])));
+
+printf "\n The number of shiftchanges in total were: %d \n", shift_change1;
+printf "\n The number of shiftchanges in total were: %d \n", shift_change2;
+printf "\n The number of shiftchanges in total were: %d \n", shift_change3;
+printf "\n The number of shiftchanges in total were: %d \n", shift_change4;
+printf "\n The number of shiftchanges in total were: %d \n", shift_change5;
+
+
+
+
+###################### Print number of shifts, LOW and PL each worker is assigned #####################
+param number_of_workers := 39;
+let Workers := 1..number_of_workers;
+
+#Loop for the lists{Workers}
+for {i in I}
+{
+	let Shift_list[i] := sum{w in W}(sum{d in 1..5}(sum{s in S[d]}(sum{j in J[d]} x[i,w,d,s,j])))/10;
+	let LOW_list[i] := sum{w in W}(sum{d in 1..5}(sum{s in S[d]} x[i,w,d,s,'LOW'] ));
+	let PL_list[i] := sum{w in W}(sum{d in 1..5}(sum{s in S[d]} x[i,w,d,s,'PL'] ));
+}
+display Shift_list, LOW_list, PL_list;
+
+
+
+
+
+###################### Print number of stand-ins each day #####################
+
+#for {i in I, w in W, d in 1..5}
+#{
+#	if sum{s in 1..3} avail[i,w,d,s] >= 1 && sum{s in 1..3}(sum{j in J[d]} x[i,w,d,s,j]) = 0 then
+#	{
+#		let stand_in_day_d[i,w,d] := 1;
+#	}
+#	else
+#	{
+#		let stand_in_day_d[i,w,d] := 0;
+#	}
+#}
+
+
+########################## Display of variables ###############################
+#display lowest_stand_in_amount;
+display stand_in_lib_min;
+display stand_in_ass_min;
+#display shift_differ_weeks;
+display M_big;
+
+
+#Utskrift av villkor, tex slack
+#display villkorsnamn.slack;
+
+### display the variables ###
+display _varname, _var > librarystaff10W.res;
+for {i in I}
+{
+	printf "Shift_list[%d] = %1g \n", i, Shift_list[i] > librarystaff10W.res;
+}
+for {i in I}
+{
+	printf "LOW_list[%d] = %1g \n", i, LOW_list[i] > librarystaff10W.res;
+}
+for {i in I}
+{
+	printf "PL_list[%d] = %1g \n", i, PL_list[i] > librarystaff10W.res;
+}
+
+###############################################################################

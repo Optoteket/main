@@ -1,0 +1,108 @@
+# -----------------------------------
+# Run file
+# -----------------------------------
+
+# Master Thesis: Work Distribution of a Heterogeneous Library Staff - A Personnel Task Scheduling Problem
+# Master Students: Claes Arvidson and Emelie Karlsson
+# First version: 2016-02-09
+
+reset;                  
+option solver cplexamp;    # Choose solver
+option presolve 0;
+option omit_zero_cols 1;   # No zeros printed in columns
+option omit_zero_rows 1;   # No zeros printed in rows
+option display_1col 10000; # Only one column printed
+option cplex_options "timing 1 mipdisplay 2 time = 237600"; # Time measurement and printing. NOTE: Time = x means the solve breaks after x seconds. 57600 secounds = 17->9. 237'600 = (fr) 15 -> (mon) 9.
+option display_precision 5;
+option log_file "/edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W_log.res";
+model /edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W.mod;   # Read model file 
+data /edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W.dat;    # Read data file 
+
+#expand > /edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff.res; # Writes all results to file
+
+############################## Add timer parameters #########################
+param time_elapsed;
+param end;
+let time_elapsed := _ampl_time + _total_solve_elapsed_time;
+
+################################# Solve ####################################
+solve;
+option log_file '';
+##################### Display number of shift changes ########################
+param shift_change1;
+param shift_change2;
+param shift_change3;
+param shift_change4;
+param shift_change5;
+
+let shift_change1 := sum{i in I}(sum{d in 1..5}(sum{s in 1..3} abs(y[i,1,d,s]-y[i,6,d,s])));
+let shift_change2 := sum{i in I}(sum{d in 1..5}(sum{s in 1..3} abs(y[i,2,d,s]-y[i,7,d,s])));
+let shift_change3 := sum{i in I}(sum{d in 1..5}(sum{s in 1..3} abs(y[i,3,d,s]-y[i,8,d,s])));
+let shift_change4 := sum{i in I}(sum{d in 1..5}(sum{s in 1..3} abs(y[i,4,d,s]-y[i,9,d,s])));
+let shift_change5 := sum{i in I}(sum{d in 1..5}(sum{s in 1..3} abs(y[i,5,d,s]-y[i,10,d,s])));
+
+printf "\n The number of shiftchanges in total were: %d \n", shift_change1;
+printf "\n The number of shiftchanges in total were: %d \n", shift_change2;
+printf "\n The number of shiftchanges in total were: %d \n", shift_change3;
+printf "\n The number of shiftchanges in total were: %d \n", shift_change4;
+printf "\n The number of shiftchanges in total were: %d \n", shift_change5;
+
+
+
+
+###################### Print number of shifts, LOW and PL each worker is assigned #####################
+param number_of_workers := 39;
+let Workers := 1..number_of_workers;
+
+#Loop for the lists{Workers}
+for {i in I}
+{
+	let Shift_list[i] := sum{w in W}(sum{d in 1..5}(sum{s in S[d]}(sum{j in J[d]} x[i,w,d,s,j])))/10;
+	let LOW_list[i] := sum{w in W}(sum{d in 1..5}(sum{s in S[d]} x[i,w,d,s,'LOW'] ));
+	let PL_list[i] := sum{w in W}(sum{d in 1..5}(sum{s in S[d]} x[i,w,d,s,'PL'] ));
+}
+#display Shift_list, LOW_list, PL_list;
+
+
+###################### Print min num stand ins #####################
+let times_same_sol := 0;
+
+for {w in W, d in 1..5}
+{
+	if  N1l*stand_in_lib_tot[w,d] + N1a*stand_in_ass_tot[w,d] = stand_in_min_tot then
+	{
+		let min_lib := stand_in_lib_tot[w,d];
+		let min_ass := stand_in_ass_tot[w,d];
+		let times_same_sol := times_same_sol + 1;
+	}
+}
+printf "\nThe minimal num of ass and lib stand ins is: \n";
+#Write to log file
+option log_file "/edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W_log.res";
+display min_lib, min_ass;
+printf "The same stand in objective function value occurs: %d times. \n\n", times_same_sol;
+option log_file '';
+
+########################## Display of variables ###############################
+display M_big;
+
+### display the variables ###
+display _varname, _var > /edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W.res;
+for {i in I}
+{
+	printf "Shift_list[%d] = %1g \n", i, Shift_list[i] > /edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W.res;
+}
+for {i in I}
+{
+	printf "LOW_list[%d] = %1g \n", i, LOW_list[i] > /edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W.res;
+}
+for {i in I}
+{
+	printf "PL_list[%d] = %1g \n", i, PL_list[i] > /edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W.res;
+}
+
+####################### Print statistics to file ###############################
+
+printf "Min_lib %d\n Min_ass %d\n" > /edu/emeka813/MasterThesis/LNS/LNS_tasks/target/statistics/AMPL_run.res;
+###############################################################################
+close /edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W.res;
