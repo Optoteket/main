@@ -169,19 +169,19 @@ void Library::readDemand() {
 	}
 }
 
-void Library::printDemand() {
-	cout << "The big columns represent demand for: block (Exp+Info), PL, HB, BokB" << endl;
+void Library::print_demand(ostream& stream) {
+	stream << "The big columns represent demand for: block (Exp+Info), PL, HB, BokB" << endl;
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int s=0; s< NUM_SHIFTS; s++){
 			for (int j=0; j<NUM_TASKS; j++){
 				for (int d=0; d< NUM_DAYS; d++){
-					cout << demand[w][d][s][j] << " ";
+					stream << demand[w][d][s][j] << " ";
 				}
-				cout << "  \t";
+				stream << "  \t";
 			}
-			cout << endl;
+			stream << endl;
 		}
-		cout << endl << endl;
+		stream << endl << endl;
 	}
 }
 
@@ -1008,51 +1008,51 @@ void Library::clear_tasks_filled(){
 	}
 }
 
-void Library::print_tasks_filled(){
+void Library::print_tasks_filled(ostream& stream){
 	calculate_tasks_filled();
 	cout << "These matrices represent all tasks filled with workers: block, PL, HB, BokB" << endl;
 	for (int w=0; w< NUM_WEEKS; w++){
 		for (int s=0; s< NUM_SHIFTS; s++){
 			for (int j=0; j<NUM_TASKS; j++){
 				for (int d=0; d< NUM_DAYS; d++){
-					cout << tasks_filled[w][d][s][j] << " ";
+					stream << tasks_filled[w][d][s][j] << " ";
 				}
-				cout << "  \t";
+				stream << "  \t";
 			}
-			cout << endl;
+			stream << endl;
 		}
-		cout << endl << endl;
+		stream << endl << endl;
 	}
 }
 
-void Library::print_num_workers(string type){
+void Library::print_num_workers(string type, ostream& stream){
 	if(type == "lib"){
-		cout << "Number of librarians assigned: block, PL, HB, BokB" << endl;
+		stream << "Number of librarians assigned: block, PL, HB, BokB" << endl;
 		for (int w=0; w< NUM_WEEKS; w++){
 			for (int s=0; s< NUM_SHIFTS; s++){
 				for (int j=0; j<NUM_TASKS; j++){
 					for (int d=0; d< NUM_DAYS; d++){
-						cout << num_lib_assigned[w][d][s][j] << " ";
+						stream << num_lib_assigned[w][d][s][j] << " ";
 					}
-					cout << "  \t";
+					stream << "  \t";
 				}
-				cout << endl;
+				stream << endl;
 			}
-			cout << endl << endl;
+			stream << endl << endl;
 		}
 	}else if(type == "ass"){
-		cout << "Number of assistants assigned: block, PL, HB, BokB" << endl;
+		stream << "Number of assistants assigned: block, PL, HB, BokB" << endl;
 		for (int w=0; w< NUM_WEEKS; w++){
 			for (int s=0; s< NUM_SHIFTS; s++){
 				for (int j=0; j<NUM_TASKS; j++){
 					for (int d=0; d< NUM_DAYS; d++){
-						cout << num_ass_assigned[w][d][s][j] << " ";
+						stream << num_ass_assigned[w][d][s][j] << " ";
 					}
-					cout << "  \t";
+					stream << "  \t";
 				}
-				cout << endl;
+				stream << endl;
 			}
-			cout << endl << endl;
+			stream << endl << endl;
 		}
 	}
 }
@@ -1318,7 +1318,7 @@ void Library::create_initial_solution(){
 		}
 	}
 	cout << "vector size is now: " << worker_vector.size() << endl;
-	print_tasks_filled();
+	print_tasks_filled(cout);
 	print_demand_differ(cout);
 }
 
@@ -1411,7 +1411,7 @@ void Library::clear_calculate_LOW_filled(){
 	}
 }
 
-int Library::evaluate_solution(){//Add all costs together and return the total cost. Stand-ins not included here
+int Library::evaluate_solution(ostream& stream){//Add all costs together and return the total cost. Stand-ins not included here
 	int total_eval_cost = 0;
 	int total_stand_in_cost = 0;
 	int demand_tot_cost = 0;
@@ -1528,18 +1528,18 @@ int Library::evaluate_solution(){//Add all costs together and return the total c
 	
 	
 	total_eval_cost = demand_tot_cost + demand_lib_cost + demand_ass_cost + demand_PL_cost + demand_HB_cost + demand_evening_cost + demand_weekend_cost + PL_amount_cost + no_weekend_cost;
-	cout << "demand_tot_cost = " << demand_tot_cost << endl;
-	cout << "demand_lib_cost (too few or too many) = " << demand_lib_cost << endl;
-	cout << "demand_ass_cost = " << demand_ass_cost << endl;
-	cout << "demand_PL_cost = " << demand_PL_cost << endl;
-	cout << "demand_HB_cost = " << demand_HB_cost << endl;
-	cout << "demand_evening_cost = " << demand_evening_cost << endl;
-	cout << "demand_weekend_cost = " << demand_weekend_cost << endl;
-	cout << "PL_amount_cost = " << PL_amount_cost << endl;
-	cout << "no_weekend_cost = " << no_weekend_cost << endl;
-	cout << "\ntotal_eval_cost = " << total_eval_cost << endl;
-	cout << "total_stand_in_cost = " << total_stand_in_cost << endl;
-	cout << "*total_cost* = " << total_eval_cost + total_stand_in_cost << endl;
+	stream << "demand_tot_cost = " << demand_tot_cost << endl;
+	stream << "demand_lib_cost (too few or too many) = " << demand_lib_cost << endl;
+	stream << "demand_ass_cost = " << demand_ass_cost << endl;
+	stream << "demand_PL_cost = " << demand_PL_cost << endl;
+	stream << "demand_HB_cost = " << demand_HB_cost << endl;
+	stream << "demand_evening_cost = " << demand_evening_cost << endl;
+	stream << "demand_weekend_cost = " << demand_weekend_cost << endl;
+	stream << "PL_amount_cost = " << PL_amount_cost << endl;
+	stream << "no_weekend_cost = " << no_weekend_cost << endl;
+	stream << "\ntotal_eval_cost = " << total_eval_cost << endl;
+	stream << "total_stand_in_cost = " << total_stand_in_cost << endl;
+	stream << "*total_cost* = " << total_eval_cost + total_stand_in_cost << endl;
 	
 	return total_eval_cost + total_stand_in_cost;
 }
@@ -1675,14 +1675,14 @@ void Library::calculate_stand_ins(){ //calculate stand_in_amount each day. Save 
 	}
 }
 
-void Library::print_stand_ins(){
+void Library::print_stand_ins(ostream& stream){ //Printing stand-ins for each day of all weeks
 	calculate_stand_ins();
 	for(int w=0; w<NUM_WEEKS; w++){
-		cout << "Stand-ins Week " << w << endl;
+		stream << "Stand-ins Week " << w << endl;
 		for(int d=0; d<NUM_DAYS-2; d++){
-			cout << stand_in_amount[w][d] << " ";
+			stream << stand_in_amount[w][d] << " ";
 		}
-		cout << endl << endl;
+		stream << endl << endl;
 	}
 }
 

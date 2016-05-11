@@ -62,7 +62,7 @@ public:
 	void setDemand(int, int, int, string, int);
 	
 	void readDemand(); //Reads demand from file
-	void printDemand(); //Prints the demand to terminal
+	void print_demand(ostream&); //Prints the demand to terminal
 	void createWorkers();
 // 	void createBlocks();
 	void setNum_blocks(int);
@@ -89,11 +89,11 @@ public:
 	void assign_a_rot_to_worker(int);
 	void print_weekends_assigned(ostream&);
 	void calculate_tasks_filled();
-	void print_tasks_filled();
+	void print_tasks_filled(ostream&);
 	void clear_tasks_filled();
 	void calculate_LOW_filled();
 	void clear_calculate_LOW_filled();
-	void print_num_workers(string);
+	void print_num_workers(string, ostream&);
 	void initial_add_blocks_to_workers();
 	void calculate_demand_differ();
 	void print_demand_differ(ostream&);
@@ -106,7 +106,7 @@ public:
 	void calculate_HB_assigned();
 	
 	void calculate_stand_ins();
-	void print_stand_ins();
+	void print_stand_ins(ostream&);
 	int get_sum_stand_ins();
 	int get_lowest_stand_in();
 	
@@ -120,7 +120,7 @@ public:
 	int check_if_collision(unsigned int, int, int, string);
 	
 	//*** Evaluate solution ***
-	int evaluate_solution();
+	int evaluate_solution(ostream&);
 	
 	//*** DESTROY AND REPAIR ***
 	void destroy();
