@@ -6,16 +6,27 @@
 #include <sstream>
 #include <iomanip>
 #include <cstdlib> //rand() function
+#include <time.h> //clock_t, clock, CLOCKS_PER_SEC
 #include "Workers.h"
 #include "Blocks.h"
 #include "Library.h"
+#include "Constants.h"
 using namespace std;
 
 
 
 
 int main() {
-	int num_workers = 39;
+	clock_t t;
+	float time = 0;
+	int count_new_sol = 0;
+	int best_solution = 9999999; //Initialized as high value
+	ofstream outFile("./target/results.txt");
+	//Checking for open Error
+	if (outFile.fail()) {
+		cerr << "Error opening the file!" << endl;
+		exit(1);
+	}
 	Library lib;
 	lib.create_all_blocks();
 	cout << "block_vector size is: " << lib.get_block_vector().size() << endl; //Why differ to #blocks to create?
@@ -49,7 +60,7 @@ int main() {
 	cout << "printing tasks_filled" << endl;
 	lib.print_tasks_filled();
 // 	return 0;
-	lib.print_demand_differ();
+	lib.print_demand_differ(cout);
 	
 	//*** Print all available blocks for a worker ***
 // 	lib.print_weekblocks_avail_worker(36, "weekday");
@@ -105,19 +116,19 @@ int main() {
 // 	}
 	
 	
-	int p = 14;
+	int p = 36;
 	cout << "\n\n\nDestroy/Repair test starting here\n\n\n" << endl;
-	lib.print_weekends_assigned();
+	lib.print_weekends_assigned(cout);
 	lib.print_all_weekblocks_assigned_worker(p);
-	lib.print_demand_differ();
+	lib.print_demand_differ(cout);
 	cout << "The total cost after the new solution is: " << lib.evaluate_solution() << endl;
 	cout << "Worker " << p << " is working weekend at week: " << lib.getWorker(p).getWeekend_week() << endl;
 	lib.destroy(p);
 // 	lib.destroy();
 	cout << "\nAfter destroy!\n" << endl;
 	lib.calculate_demand(); //Update the tasks_filled and demand_differences
-	lib.print_demand_differ();
-	lib.print_weekends_assigned();
+// 	lib.print_demand_differ(cout);
+	lib.print_weekends_assigned(cout);
 // 	lib.print_tasks_filled();
 	cout << "before repair" << endl;
 	lib.repair(); //need to calculate new demand_differences! Need to calculate new costs ???
@@ -127,23 +138,47 @@ int main() {
 	cout << "The total cost after the new solution is: " << lib.evaluate_solution() << endl;
 	cout << "Weekblocks assigned to the worker is now: " << endl;
 	lib.print_all_weekblocks_assigned_worker(p);
-	lib.print_demand_differ();
-	lib.print_weekends_assigned();
+	lib.print_demand_differ(cout);
+	lib.print_weekends_assigned(cout);
 	cout << "worker " << p << " works weekend at week: " << lib.getWorker(p).getWeekend_week() << endl;
 	
 	
-	lib.getWorker(p).print_tasks_assigned_worker();
+	lib.getWorker(p).print_tasks_assigned_worker(); //unrotated
 // 	lib.getWorker(p).print_assigned_LOW();
-	cout << lib.getWorker(p).tasks_assigned_day(2, 0);
-	cout << lib.getWorker(p).tasks_assigned_day(2, 1);
-	cout << lib.getWorker(p).tasks_assigned_day(2, 2);
-	cout << lib.getWorker(p).tasks_assigned_day(2, 3);
-	cout << lib.getWorker(p).tasks_assigned_day(2, 4);
-	cout << lib.getWorker(p).tasks_assigned_day(2, 5);
-	cout << lib.getWorker(p).tasks_assigned_day(2, 6) << endl;
 	
 	lib.print_stand_ins();
+	cout << "Total number of stand_ins are: " << lib.get_sum_stand_ins() << endl;
+	cout << "Lowest number of stand_ins are: " << lib.get_lowest_stand_in() << endl;
+// 	lib.getWorker(p).print_stand_in_matrix();
+// 	lib.getWorker(p).getAvail_matrix();
+
+
+// 	return 0;
 	
+	while(time < 8){ //54000 means 17-08
+		t = clock(); //Start counting
+		lib.destroy();
+		lib.calculate_demand();
+		lib.repair();
+		lib.calculate_demand();
+		if(lib.evaluate_solution() < best_solution){
+			best_solution = lib.evaluate_solution();
+			count_new_sol++;
+			//Print best solution to file!
+			//want: stand-in matrix, all costs, demand_differ matrix,
+			
+			lib.print_hello(outFile);
+			
+		}
+		t = clock() - t; //in TICKS
+		time += (float)t/CLOCKS_PER_SEC; //As float value
+		cout << "\n\n\ntime is: " << time << "\n\n" << endl;
+	}
+	outFile.close();
+// 	cout << "it took " << ((float)time)/CLOCKS_PER_SEC << " seconds to execute the program" << endl;
+	cout << "Highest lowest number of stand-in for each day is: " << lib.get_max_min_stand_in() << endl;
+	cout << "Best solution found was: " << best_solution << endl;
+	cout << "Found " << count_new_sol << " new solutions during iteration" << endl;
 	cout << "End of main" << endl;
 	return 0;
 }

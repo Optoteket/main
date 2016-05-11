@@ -24,6 +24,7 @@ static const int DEMAND_PL_GOOD_LIB = 500; //When exact demand
 static const int DEMAND_PL_GOOD_ASS = 700; //When exact demand
 static const int STAND_IN_COST = 5;
 static const int DEMAND_EVENING_COST = 20000;
+static const int DEMAND_WEEKEND_COST = 7000;
 //*Weekend costs*
 static const int NO_WEEKEND_COST = 5000; //No weekend assigned to a weekend worker. Keep decently high (happens if Only_HB-worker can not take HB, since already assigned)
 static const int HB_ASSIGNED_COST = 10000; //If HB is already assigned when being assigned to the worker

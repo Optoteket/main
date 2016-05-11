@@ -518,22 +518,12 @@ int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[
 int Worker::calc_temp_cost(int demand_lib, int demand_ass, int w, int d, int s, int assigned_libs[5][7][4][4], int assigned_ass[5][7][4][4]){
 	int tmp_cst = 0;
 	//Costs for LIBRARIANS
-// 	if(d == 5 || d == 6){
-// 		if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][0]+1 <= demand_lib){
-// 			tmp_cst = -DEMAND_FEW_LIBS;  //*(demand-assigned_libs[w][d][s][1]) added if steeper steps if further away from demand
-// 		}
-// 		else if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][0]+1 > demand_lib+1){
-// 			tmp_cst = DEMAND_MANY_LIBS;
-// 		}
-// 	}
-// 	else{
-		if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][0]+1 <= demand_lib){
-			tmp_cst = -DEMAND_FEW_LIBS;  //*(demand-assigned_libs[w][d][s][1]) added if steeper steps if further away from demand
-		}
-		else if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][0]+1 > demand_lib){
-			tmp_cst = DEMAND_MANY_LIBS;
-		}
-// 	}
+	if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][0]+1 <= demand_lib){
+		tmp_cst = -DEMAND_FEW_LIBS;  //*(demand-assigned_libs[w][d][s][1]) added if steeper steps if further away from demand
+	}
+	else if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][0]+1 > demand_lib){
+		tmp_cst = DEMAND_MANY_LIBS;
+	}
 	//Costs for ASSISTANTS
 	if(newQual.compare(0,3,"ass") == 0 && assigned_ass[w][d][s][0]+1 <= demand_ass){
 		tmp_cst = -DEMAND_FEW_ASS;
@@ -605,7 +595,7 @@ void Worker::clear_blocks(){ //Assign five empty blocks to worker
 	add_block_to_worker("weekday",0,3);
 }
 
-void Worker::set_tasks_assigned_worker(){//Set the int matrix tasks_assigned_worker
+void Worker::set_tasks_assigned_worker(){//Set the int matrix tasks_assigned_worker. Unrotated matrix!
 	int count = 0;
 	for(int w=0; w<NUM_WEEKS; w++){
 		for(int d=0; d<NUM_DAYS; d++){
@@ -614,7 +604,7 @@ void Worker::set_tasks_assigned_worker(){//Set the int matrix tasks_assigned_wor
 					if(j != 4){
 						tasks_assigned_worker[w][d][s][j-1] = blocks_assigned.at((newWeekend_week+count)%5)->getTask(d,s,j);
 					}else if(j == 4){
-						tasks_assigned_worker[w][d][s][j-1] = get_LOW_assigned(w,d,s);
+						tasks_assigned_worker[w][d][s][j-1] = get_LOW_assigned((newWeekend_week+w)%5,d,s);
 					}
 				}
 			}

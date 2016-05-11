@@ -13,7 +13,6 @@ class Library {
 private:
 	//Member variables
 // 	string avail_file = "./src/data/workers5W.txt";
-	static const int NUM_TASKS = 4; //No task, Block, PL, HB, (BokB)
 	int num_blocks; //Number of blocks created
 	int demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
 	
@@ -38,6 +37,8 @@ private:
 	vector<int> lowest_cost_IDs;
 	int lowest_cost;
 	vector<int> workers_destroyed;
+	
+	int max_min_stand_in;
 
 public:
 	//Default Constructor
@@ -68,6 +69,7 @@ public:
 	void setNum_day_combinations(int);
 	vector <string> get_info_vector();
 	vector <Block>& get_block_vector();
+	int get_max_min_stand_in() const;
 	
 	
 	void setAvail_worker();
@@ -85,7 +87,7 @@ public:
 	void print_all_weekblocks_assigned_worker(int);
 	void assign_rot_to_workers();
 	void assign_a_rot_to_worker(int);
-	void print_weekends_assigned();
+	void print_weekends_assigned(ostream&);
 	void calculate_tasks_filled();
 	void print_tasks_filled();
 	void clear_tasks_filled();
@@ -94,7 +96,7 @@ public:
 	void print_num_workers(string);
 	void initial_add_blocks_to_workers();
 	void calculate_demand_differ();
-	void print_demand_differ();
+	void print_demand_differ(ostream&);
 	
 	//*** Updates all demands and tasks filled ***
 	void calculate_demand();
@@ -105,6 +107,8 @@ public:
 	
 	void calculate_stand_ins();
 	void print_stand_ins();
+	int get_sum_stand_ins();
+	int get_lowest_stand_in();
 	
 	void find_lowest_cost_in_vector(string, int);
 	void print_cost_vector(string, int);
@@ -125,8 +129,8 @@ public:
 	
 
 	
-	
-
+	void print_results(ostream&);
+	void print_hello(ostream&);
 
 };
 
