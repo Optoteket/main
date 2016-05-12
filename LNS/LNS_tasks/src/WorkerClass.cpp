@@ -452,10 +452,11 @@ void Worker::set_total_cost(int w, int d, int s){
     + costs.weights[1]*costs.stand_in_cost[w][d]
 
     //Mid prio
-    + costs.weights[2]*costs.PL_week_cost[w]
-    + costs.weights[3]*costs.PL_cost
-    + costs.weights[4]*costs.num_tasks_week_cost[w]
-    + costs.weights[5]*costs.num_same_shifts_week_cost[w][s];
+    //+ costs.weights[2]*costs.PL_week_cost[w]
+    //+ costs.weights[3]*costs.PL_cost
+    //+ costs.weights[4]*costs.num_tasks_week_cost[w]
+    //+ costs.weights[5]*costs.num_same_shifts_week_cost[w][s]
+    ;
 }
 
 

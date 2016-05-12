@@ -2,7 +2,8 @@
 
 /********** SingleTask: Constructor ************/
 
-SingleTask::SingleTask(int q, int w, int d, int s, int worker_demand, int avail_diff, int task_type, vector<Worker>*  w_list)  : Task (q, w, worker_demand, avail_diff, task_type, w_list) {
+SingleTask::SingleTask(int q, int w, int d, int s, int w_demand, int a_diff, int t_type)  
+  : Task (q, w, w_demand, a_diff, t_type){
 
   set_costs();
   day = d;
@@ -12,9 +13,10 @@ SingleTask::SingleTask(int q, int w, int d, int s, int worker_demand, int avail_
 /********** SingleTask: Set costs ************/
 
 void SingleTask::set_costs(){
+  //Tasks with high cost distributed first
   if(type == BokB)
-    total_cost = -10*avail_diff + 500;
-  else total_cost = -10*avail_diff + demand;
+    total_cost = -5*avail_diff + 500;
+  else total_cost = demand + qualification - 5*avail_diff;
 }
 
 /********** SingleTask: Find avail workers ************/
@@ -22,7 +24,7 @@ void SingleTask::set_costs(){
 void SingleTask::find_avail_workers(vector<TaskWorker>* a_workers){
   avail_workers.clear();
 
-  for (int i=0; i < (int) workers->size(); i++){ 
+  for (int i=0; i < (int) a_workers->size(); i++){ 
     TaskWorker* task_worker = &(*a_workers)[i];
     Worker* worker = task_worker->worker;
 
@@ -64,15 +66,14 @@ void SingleTask::place_workers(vector<TaskWorker>* a_workers){
   sort(avail_workers.begin(), avail_workers.end(), TaskWorker::p_min_cost());
 
   //Print avail workers
-  print_worker_costs();
+  //print_worker_costs();
  
-  cout << "Placed worker " << avail_workers[0]->temp_worker.get_ID() << " at task w:" << week << " d:" << day << " s:" << shift << endl;
+  //cout << "Placed worker " << avail_workers[0]->temp_worker.get_ID() << " at task w:" << week << " d:" << day << " s:" << shift << endl;
 
   //Place cheapest workers
   for(int i=0; i< orig_demand; i++){
     avail_workers[i]->worker->set_task(week,day,shift,type);
   }
-  //set_placed_worker(avail_workers[0]);
 
   //Recalculate task cost
   demand--;

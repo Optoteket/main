@@ -1,0 +1,1 @@
+Min_lib %d\n Min_ass %d\n

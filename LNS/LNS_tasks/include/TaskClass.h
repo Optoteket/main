@@ -24,20 +24,18 @@ class Task {
   int avail_diff;
   int total_cost;
 
-  // All available workers and their costs
-  vector<TaskWorker> avail_workers;
-  vector<Worker>* workers;
-
+  //Placed workers
   vector<TaskWorker*> placed_workers;
-  TaskWorker* placed_worker;
+  //TaskWorker* placed_worker;
 
   //Available workers
-  vector<TaskWorker*> avail_workers_two;
+  vector<TaskWorker*> avail_workers;
 
  public:
-  Task(int,int,int,int,int, vector<Worker>*);
+  Task(int,int,int,int,int);
   virtual int get_cost() const;
   int get_demand() const;
+  int get_avail_diff() const;
   int get_week() const;
   int get_type() const;
   int get_qualification() const;
@@ -47,7 +45,7 @@ class Task {
 
   int num_avail_workers();
 
-  void set_placed_worker(TaskWorker*);
+  //void set_placed_worker(TaskWorker*);
   void set_placed_workers(TaskWorker*);
 
   //Find and place workers

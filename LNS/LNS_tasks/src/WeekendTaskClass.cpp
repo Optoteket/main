@@ -2,11 +2,10 @@
 
 /********** WeekendTask: Constructor *********/
 
-WeekendTask::WeekendTask(int q, int w, int worker_demand, int avail_diff, int task_type, vector<Worker>*  w_list)  : Task (q, w, worker_demand, avail_diff, task_type, w_list){
+WeekendTask::WeekendTask(int q, int w, int w_demand, int a_diff, int t_type) 
+  : Task (q, w, w_demand, a_diff, t_type){
 
   set_costs();
-  avail_workers = vector<TaskWorker*> ();
-
 }
 
 /********** WeekendTask: Find avail workers ************/
@@ -61,7 +60,7 @@ void WeekendTask::place_workers(vector<TaskWorker>* a_workers, string mode){
 
       //Choose a random worker
       avail_workers[0]->worker->set_current_weekend(week,type);
-      set_placed_worker(avail_workers[0]);
+      //set_placed_worker(avail_workers[0]);
       set_placed_workers(avail_workers[0]);
       demand--;
     }
@@ -71,7 +70,7 @@ void WeekendTask::place_workers(vector<TaskWorker>* a_workers, string mode){
 
       //Choose random worker
       avail_workers[0]->temp_worker.set_current_weekend(week,type);
-      set_placed_worker(avail_workers[0]);
+      //set_placed_worker(avail_workers[0]);
       set_placed_workers(avail_workers[0]);
       demand--;
     }
