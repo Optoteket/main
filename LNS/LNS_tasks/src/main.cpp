@@ -104,7 +104,7 @@ int main(int argc, char** argv)
   }
   else cout << "Unable to open file";
 
-  //freopen(log_file_path.str().c_str(), "a", stderr);
+  freopen(log_file_path.str().c_str(), "a", stderr);
 
   //Create result file
   res_file_path << res_file_dir << "resfile" << ".dat"; 
@@ -119,19 +119,23 @@ int main(int argc, char** argv)
 
   min_ass.clear();
   min_lib.clear();
-  int max_loops = 320;
-  int weights[3];
+  int max_loops = 1;
+  double weights[3];
 
 
   for(int loop=0; loop < max_loops; loop++){
-    if(loop < 40){
+    if(loop < 80){
       weights[0]=10;
-      weights[1]=2;
-      weights[2]=0;
+      weights[1]=10;
+      weights[2]=weights[1]/10.0;
+      double sum =  weights[0] +  weights[1] +  weights[2];
+      weights[0]/=sum;
+      weights[1]/=sum;
+      weights[2]/=sum;
     }
     else if(loop < 80){
       weights[0]=10;
-      weights[1]=5;
+      weights[1]=40;
       weights[2]=0;
     }
     else if(loop < 120){
@@ -172,16 +176,16 @@ int main(int argc, char** argv)
     library.create_initial_solution();
 
     //4. Optimize weekends, input: num iterations, destroy percentage
-    library.optimize_weekends(1000, 20, weights);
+    library.optimize_weekends(1, 20, weights);
     
     //Write results to resfile
-    //library.write_results();
+    library.write_results();
 
     //Write weekends to AMPL format and run
-    library.write_weekend_AMPL_data();
+    //library.write_weekend_AMPL_data();
     log_file.close();
-    system("../../../AMPLmodel/LNSweekendsAMPL/launchAMPL.sh");
-    collect_AMPL_statistics(&infeasible_count, min_lib, min_ass);
+    //system("../../../AMPLmodel/LNSweekendsAMPL/launchAMPL.sh");
+    //collect_AMPL_statistics(&infeasible_count, min_lib, min_ass);
 
     if(loop == 39 || loop == 79 || loop == 119 || loop == 159 || loop == 199 || loop == 239 || loop == 279 || loop == 319){
       //Print costs to file

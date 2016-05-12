@@ -24,6 +24,7 @@ class SingleTask : public Task {
   virtual void place_workers(vector<TaskWorker>* a_workers);
   virtual void set_costs();
   virtual void print_worker_costs();
+  void place_a_worker(Worker*);
 
   int get_day() const;
   int get_shift() const; 

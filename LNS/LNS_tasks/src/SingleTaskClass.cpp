@@ -15,7 +15,18 @@ SingleTask::SingleTask(int q, int w, int d, int s, int w_demand, int a_diff, int
 void SingleTask::set_costs(){
   //Tasks with high cost distributed first
   if(type == BokB)
-    total_cost = -5*avail_diff + 500;
+    //Thursday evening
+    //if(day==3 && shift==3)
+    //total_cost = 505;
+  //Wednesday evening
+  //else if (day==4 && shift==3)
+  //  total_cost = 504;
+  //Monday morning
+  //else if (day==0 && shift==0)
+  //  total_cost = 503;
+  //else
+  //  total_cost = 500;
+  total_cost = -5*avail_diff + 500;
   else total_cost = demand + qualification - 5*avail_diff;
 }
 
@@ -78,6 +89,10 @@ void SingleTask::place_workers(vector<TaskWorker>* a_workers){
   //Recalculate task cost
   demand--;
   set_costs();
+}
+
+void SingleTask::place_a_worker(Worker* worker){
+  worker->set_task(week,day,shift,type);
 }
 
 

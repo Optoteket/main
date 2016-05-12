@@ -83,7 +83,7 @@ void Library::create_initial_solution(){
 /********* Library function: optimize weekends ********/
 
 
-void Library::optimize_weekends(int iterations, int percent, int weights[3]){
+void Library::optimize_weekends(int iterations, int percent, double weights[3]){
   weekend_objective_function.clear();
 
   //Find library cost
@@ -101,17 +101,20 @@ void Library::optimize_weekends(int iterations, int percent, int weights[3]){
       repair_weekend("temp");
     }
 
+    //Place BokB and evenings
+    place_BokB();
+
     //Calculate library cost of temp solution
     set_library_cost("temp", weights);
 
     //Find exponential cooling
-    double T = 5*pow(0.995, (double)i);
+    double T = pow(0.97, (double)100.0*i/(1.0*iterations));
     double cost_diff = abs(library_cost - temp_library_cost);
     double exp_val = exp(-(cost_diff/(1.0*T)));
     double random_num = (double)(rand() % 100 +1)*0.01;
 
     //Accept a solution
-    if(temp_library_cost >= library_cost || random_num  < exp_val){
+    if(temp_library_cost >= library_cost || random_num < exp_val){
 
       //Deteriorating solutions print
       if(random_num < exp_val && !(temp_library_cost >= library_cost)){
@@ -144,6 +147,7 @@ void Library::optimize_weekends(int iterations, int percent, int weights[3]){
 	}
       }
     }
+    //else remove_BokB();
   }
   
   //Overwrite solution if better solution is saved
@@ -181,7 +185,10 @@ void Library::optimize_weekends(int iterations, int percent, int weights[3]){
   }
 
   //Write statistical information
-  //write_stat();
+  write_stat();
+
+  print_num_avail_workers();
+  print_current_demand();
 
   cout << "Min avail day ass: " << min_avail[Ass] << " Min avail day lib: " << min_avail[Lib] 
        << " Min avail ass: " << min_avail[Ass] << " Min avail lib: " << min_avail[Lib] << endl;
@@ -195,9 +202,9 @@ void Library::optimize_weekends(int iterations, int percent, int weights[3]){
 
 /************ Library function: set library costs ***********/
 
-void Library::set_library_cost(string mode, int weight[3]){
+void Library::set_library_cost(string mode, double weight[3]){
   set_avail_day_cost(mode);
-  set_avail_contribution_cost(mode);
+  //set_avail_contribution_cost(mode);
   set_avail_cost(mode);
   //int weight_[3];
   //weight_[0]=10;
@@ -207,8 +214,9 @@ void Library::set_library_cost(string mode, int weight[3]){
   if(mode == "perm"){
     library_cost = weight[0]*avail_day_cost
       + weight[1]*avail_cost
-      + weight[2]*avail_contribution_cost
       ;
+    
+    //Print cost
     cerr << "avail_day_cost: " << avail_day_cost << endl;
     cerr << "avail_cost: " << avail_cost << endl;
     weekend_objective_function.push_back(library_cost);
@@ -216,7 +224,6 @@ void Library::set_library_cost(string mode, int weight[3]){
   else if(mode == "temp"){
     temp_library_cost = weight[0]*temp_avail_day_cost 
       + weight[1]*temp_avail_cost
-      + weight[2]*temp_avail_contribution_cost
       ;
     //cerr << "temp_avail_day_cost: " << temp_avail_day_cost << endl;
     //cerr << "temp_avail_cost: " << temp_avail_cost << endl;
@@ -1028,11 +1035,260 @@ void Library::repair_weekend(string mode){
 
 /*********** Library function: destroy tasks ************/
 
-//OBS no BokB
+void Library::place_BokB(){
+  //vector<TaskWorker> BB_workers; 
+  find_num_avail_workers();
+  cout << "In place BokB" << endl;
+  
+
+  // //Find all BokB tasks
+  // for(int w=0; w<NUM_WEEKS; w++){
+  //   for(int d=0; d<NUM_WEEKDAYS; d++){
+  //     for(int s=0; s<NUM_SHIFTS; s++){
+  // 	int demand = current_demand[w][d][s][BokB];
+  // 	if(demand > 0){
+  // 	  //Find avail (workers with at least min qualification)
+  // 	  int avail_demand_diff = num_avail_workers[BBlib][w][d][s] - demand;
+  // 	  cout << "Task avail demand diff: " << avail_demand_diff << endl;
+
+  // 	  //Create single task
+  // 	  SingleTask task {find_position_req(BokB),w,d,s,demand,avail_demand_diff,BokB};
+  // 	  task_list.push_back(task);
+  // 	}
+  //     }
+  //   }
+  // }
+
+  //cout << "Number of tasks to repair: " << task_list.size() << endl;
+  //Add all BokB workers
+  // BB_workers.clear();
+  // for(int i=0; i< (int) worker_list.size(); i++){
+  //   if(worker_list[i].get_ID() == 14 || worker_list[i].get_ID() == 17 
+  //      || worker_list[i].get_ID() == 25 || worker_list[i].get_ID() == 36 || worker_list[i].get_ID() == 37){
+  //     TaskWorker task_worker;
+  //     task_worker.worker = &worker_list[i];
+  //     task_worker.temp_worker = worker_list[i];
+  //     BB_workers.push_back(task_worker);
+  //   }
+  // }
+
+  //Find Thursday evening tasks
+ task_list.clear();
+  for(int w=0; w<NUM_WEEKS; w++){
+    int demand = current_demand[w][3][3][BokB];
+    if(demand > 0){
+      //Find avail (workers with at least min qualification)
+      int avail_demand_diff = num_avail_workers[BBlib][w][3][3] - demand;
+      cout << "Task avail demand diff: " << avail_demand_diff << endl;
+      //Create single task
+      SingleTask task {find_position_req(BokB),w,3,3,demand,avail_demand_diff,BokB};
+      task_list.push_back(task);
+    }
+  }
+
+  //Place Thursday evening task
+  for(int i=0; i< (int) worker_list.size(); i++){
+    if(worker_list[i].get_ID() == 25){
+      for(int t=0; t < (int)task_list.size(); t++){
+	Worker* worker = &worker_list[i];
+	SingleTask* current_task = &task_list[t];
+	int week = current_task->get_week();
+	int day = current_task->get_day();
+	int shift = current_task->get_shift();
+
+	cout << "Worker 25, to place at BB: " << worker-> get_current_avail(week, day, shift) <<
+	  current_task->get_qualification() << endl;
+
+	if(worker-> get_current_avail(week, day, shift) == current_task->get_qualification()){
+	  current_task->place_a_worker(worker);
+	  cout << "BokB placed!" << endl;
+	  current_demand[week][day][shift][BokB]--;
+	}
+      }
+    }
+  }
+
+  //Find Wednesday evening tasks
+ task_list.clear();
+  for(int w=0; w<NUM_WEEKS; w++){
+    int demand = current_demand[w][2][3][BokB];
+    if(demand > 0){
+      //Find avail (workers with at least min qualification)
+      int avail_demand_diff = num_avail_workers[BBlib][w][2][3] - demand;
+      cout << "Task avail demand diff: " << avail_demand_diff << endl;
+      //Create single task
+      SingleTask task {find_position_req(BokB),w,2,3,demand,avail_demand_diff,BokB};
+      task_list.push_back(task);
+    }
+  }
+
+  //Place Wednesday evening task
+  Worker* worker14;
+  Worker* worker37;
+
+  for(int i=0; i< (int) worker_list.size(); i++){
+    if(worker_list[i].get_ID() == 14)
+      worker14 = &worker_list[i];
+    else if(worker_list[i].get_ID() == 37)
+      worker37 = &worker_list[i];
+  }
+
+  //while(task_list.size() != 0){
+  int list_size = (int)task_list.size();
+  for(int t=0; t < list_size; t++){
+    SingleTask* current_task = &task_list[t];
+    int week = current_task->get_week();
+    int day = current_task->get_day();
+    int shift = current_task->get_shift();
+
+    //Worker qualified and week before is not BokB
+    if(worker14-> get_current_avail(week, day, shift) == current_task->get_qualification() && 
+       worker14-> get_current_task(((NUM_WEEKS + (week-1)) % NUM_WEEKS),day,shift) != BokB){
+      //Place
+      current_task->place_a_worker(worker14);
+      cout << "BokB placed: " << worker14->get_ID() << endl;
+      current_demand[week][day][shift][BokB]--;
+    }
+    else if (worker37-> get_current_avail(week, day, shift) == current_task->get_qualification() && 
+	     worker37-> get_current_task(((NUM_WEEKS + (week-1)) % NUM_WEEKS),day,shift) != BokB){
+      //Place
+      current_task->place_a_worker(worker37);
+      cout << "BokB placed: " << worker37->get_ID() << endl;
+      current_demand[week][day][shift][BokB]--;
+    }
+  }
+
+ //Find Wednesday evening tasks
+ task_list.clear();
+  for(int w=0; w<NUM_WEEKS; w++){
+    int demand = current_demand[w][0][0][BokB];
+    if(demand > 0){
+      //Find avail (workers with at least min qualification)
+      int avail_demand_diff = num_avail_workers[BBlib][w][0][0] - demand;
+      cout << "Task avail demand diff: " << avail_demand_diff << endl;
+      //Create single task
+      SingleTask task {find_position_req(BokB),w,0,0,demand,avail_demand_diff,BokB};
+      task_list.push_back(task);
+    }
+  }
+
+
+ //Place Monday morning task
+  Worker* worker25;
+  Worker* worker36;
+  Worker* worker17;
+
+  for(int i=0; i< (int) worker_list.size(); i++){
+    if(worker_list[i].get_ID() == 25)
+      worker25 = &worker_list[i];
+    else if(worker_list[i].get_ID() == 17)
+      worker17 = &worker_list[i];
+    else if(worker_list[i].get_ID() == 36)
+      worker36 = &worker_list[i];
+  }
+
+  //while(task_list.size() != 0){
+  for(int t=0; t < (int)task_list.size(); t++){
+    SingleTask* current_task = &task_list[t];
+    int week = current_task->get_week();
+    int day = current_task->get_day();
+    int shift = current_task->get_shift();
+
+    //Worker qualified and week before is not BokB
+    if(worker25-> get_current_avail(week, day, shift) == current_task->get_qualification() && 
+       worker25-> get_current_task(((NUM_WEEKS + (week-1)) % NUM_WEEKS),day,shift) != BokB){
+      //Place
+      current_task->place_a_worker(worker25);
+      cout << "BokB placed: " << worker25->get_ID() << endl;
+      current_demand[week][day][shift][BokB]--;
+    }
+    else if (worker36-> get_current_avail(week, day, shift) == current_task->get_qualification() && 
+	     worker36-> get_current_task(((NUM_WEEKS + (week-1)) % NUM_WEEKS),day,shift) != BokB){
+      //Place
+      current_task->place_a_worker(worker36);
+      cout << "BokB placed: " << worker36->get_ID() << endl;
+      current_demand[week][day][shift][BokB]--;
+    }
+  }
+
+
+ //Find rest BokB tasks
+  task_list.clear();
+  for(int w=0; w<NUM_WEEKS; w++){
+    for(int d=0; d<NUM_WEEKDAYS; d++){
+      for(int s=0; s<NUM_SHIFTS; s++){
+  	int demand = current_demand[w][d][s][BokB];
+  	if(demand > 0){
+  	  //Find avail (workers with at least min qualification)
+  	  int avail_demand_diff = num_avail_workers[BBlib][w][d][s] - demand;
+  	  cout << "Task avail demand diff: " << avail_demand_diff << endl;
+
+  	  //Create single task
+  	  SingleTask task {find_position_req(BokB),w,d,s,demand,avail_demand_diff,BokB};
+  	  task_list.push_back(task);
+  	}
+      }
+    }
+  }
+
+  //Place worker 36 if possible
+  for(int t=0; t < (int)task_list.size(); t++){
+    SingleTask* current_task = &task_list[t];
+    int week = current_task->get_week();
+    int day = current_task->get_day();
+    int shift = current_task->get_shift();
+    
+    if(worker36->get_current_avail(week,day,shift) == current_task->get_qualification()){
+      //Place
+      current_task->place_a_worker(worker36);
+      cout << "BokB placed: " << worker36->get_ID() << endl;
+      current_demand[week][day][shift][BokB]--;
+    }
+    else if (worker17->get_current_avail(week,day,shift) == current_task->get_qualification()){
+      //Place
+      current_task->place_a_worker(worker17);
+      cout << "BokB placed: " << worker17->get_ID() << endl;
+      current_demand[week][day][shift][BokB]--;
+    }
+  }
+
+  print_num_avail_workers();
+  print_current_demand();
+
+
+  
+
+  // for(int i=0; i < (int)BB_workers.size(); i++){
+  //   cout << "BB worker: " << BB_workers[i].worker->get_ID() << endl;
+  // }
+  // // for(int i=0; i < (int)task_list.size(); i++){
+  // //   cout << "BB tasks: " << "Type: "<< task_list[i].get_type() << " Cost: " << task_list[i].get_cost() 
+  // // 	 << " Avail diff: " << task_list[i].get_avail_diff()
+  // // 	 << " W: " 
+  // // 	 << task_list[i].get_week() << " D: " 
+  // // 	 << task_list[i].get_day() << " S: " << task_list[i].get_shift() << endl;
+  // // }
+
+  // random_shuffle(task_list.begin(), task_list.end());
+  // sort(task_list.begin(), task_list.end(), Task::max_cost);
+
+  // //Place worker 25 on Thursdays
+  // for(int i=0; i < (int)BB_workers.size(); i++){
+  //   if(BB_workers[i].worker->get_ID() == 25){
+  //     for(int i=0; i < (int)task_list.size(); i++){
+  // 	void SingleTask::place_workers(vector<TaskWorker>* a_workers)
+  //     }
+  //   }
+  // }
+
+}
+
+
 void Library::destroy_tasks(int percent, string mode){
   find_num_avail_workers();
   print_num_avail_workers();
   print_current_demand();
+  task_list.clear();
 
   //Find all tasks
   //for(int i=0; i<=Lib; i++){

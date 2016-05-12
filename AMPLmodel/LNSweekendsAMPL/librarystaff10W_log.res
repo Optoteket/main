@@ -16,9 +16,9 @@ time = 237600
 Infeasibility row 'c73750':  0  = 1.
 
 Times (seconds):
-Input =  0.05899
-Solve =  0.124981
-Output = 0
+Input =  0.052991
+Solve =  0.123981
+Output = 0.001
 CPLEX 12.5.0.0: integer infeasible.
 0 MIP simplex iterations
 0 branch-and-bound nodes
