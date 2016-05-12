@@ -38,6 +38,7 @@ private:
  	//Find lowest block cost in vector
 	vector<int> lowest_cost_IDs;
 	int lowest_cost;
+	int increment;
 	vector<int> workers_destroyed;
 	
 	int max_min_stand_in;
@@ -72,6 +73,7 @@ public:
 	vector <string> get_info_vector();
 	vector <Block>& get_block_vector();
 	int get_max_min_stand_in() const;
+	int get_increment() const;
 	
 	
 	void setAvail_worker();
@@ -126,7 +128,6 @@ public:
 	
 	//*** DESTROY AND REPAIR ***
 	void destroy(int);
-// 	void destroy(int);
 	void repair();
 	
 
