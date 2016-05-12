@@ -1,0 +1,1132 @@
+Worker: 1 has 532 347 1946 in sizes
+Worker: 2 has 1946 1946 1946 in sizes
+Worker: 3 has 1063 347 1946 in sizes
+Worker: 4 has 557 165 923 in sizes
+Worker: 5 has 261 130 531 in sizes
+Worker: 6 has 532 130 1946 in sizes
+Worker: 7 has 261 130 531 in sizes
+Worker: 8 has 261 29 531 in sizes
+Worker: 9 has 115 12 247 in sizes
+Worker: 10 has 532 130 1946 in sizes
+Worker: 11 has 9 8 8 in sizes
+Worker: 12 has 1063 347 1946 in sizes
+Worker: 13 has 771 130 1448 in sizes
+Worker: 14 has 265 29 543 in sizes
+Worker: 15 has 51 18 126 in sizes
+Worker: 16 has 495 130 960 in sizes
+Worker: 17 has 237 191 285 in sizes
+Worker: 18 has 532 279 1946 in sizes
+Worker: 19 has 495 47 960 in sizes
+Worker: 20 has 532 130 1946 in sizes
+Worker: 21 has 249 249 249 in sizes
+Worker: 22 has 2 1 1 in sizes
+Worker: 23 has 3 2 2 in sizes
+Worker: 24 has 11 5 47 in sizes
+Worker: 25 has 1063 279 1946 in sizes
+Worker: 26 has 5 4 4 in sizes
+Worker: 27 has 213 106 425 in sizes
+Worker: 28 has 2 1 2 in sizes
+Worker: 29 has 426 106 1521 in sizes
+Worker: 30 has 127 126 519 in sizes
+Worker: 31 has 495 130 960 in sizes
+Worker: 32 has 261 29 1946 in sizes
+Worker: 33 has 72 45 306 in sizes
+Worker: 34 has 425 425 425 in sizes
+Worker: 35 has 91 20 236 in sizes
+Worker: 36 has 55 27 101 in sizes
+Worker: 37 has 1063 347 1946 in sizes
+Worker: 38 has 3 1 1 in sizes
+Worker: 39 has 2 1 1 in sizes
+
+
+
+***Best iteration number: 1***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+1 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+upper limit for worker 18: 1 too many
+upper limit for worker 20: 3 too many
+upper limit for worker 30: 2 too many
+lib_per_rot = 4 4 4 4 5 
+ass_per_rot = 3 3 3 3 2 
+Stand-ins Week 0
+6 3 4 6 5 
+Stand-ins Week 1
+1 3 2 2 0 
+Stand-ins Week 2
+5 4 6 4 3 
+Stand-ins Week 3
+5 5 7 4 3 
+Stand-ins Week 4
+4 4 8 7 5 
+Max(min stand-in) for this solution is: 0
+Total number of stand-ins: 106
+demand_tot_cost = 1100
+demand_lib_cost (too few or too many) = 400
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 20000
+demand_weekend_cost = 7000
+PL_amount_cost = 3000
+no_weekend_cost = 5000
+
+total_eval_cost = 36500
+total_stand_in_cost = -21
+*total_cost* = 36479
+Best solution so far is 36479
+Time where new best solution found is: 0.31
+
+
+
+***Best iteration number: 2***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+upper limit for worker 18: 1 too many
+upper limit for worker 20: 3 too many
+upper limit for worker 30: 2 too many
+lib_per_rot = 4 4 4 4 5 
+ass_per_rot = 3 3 3 3 2 
+Stand-ins Week 0
+6 3 4 4 5 
+Stand-ins Week 1
+1 3 2 3 0 
+Stand-ins Week 2
+5 4 6 3 3 
+Stand-ins Week 3
+5 5 7 4 3 
+Stand-ins Week 4
+3 4 8 7 5 
+Max(min stand-in) for this solution is: 0
+Total number of stand-ins: 103
+demand_tot_cost = 0
+demand_lib_cost (too few or too many) = 400
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 20000
+demand_weekend_cost = 7000
+PL_amount_cost = 3000
+no_weekend_cost = 0
+
+total_eval_cost = 30400
+total_stand_in_cost = -20
+*total_cost* = 30380
+Best solution so far is 30380
+Time where new best solution found is: 1.01
+
+
+
+***Best iteration number: 3***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+upper limit for worker 18: 1 too many
+upper limit for worker 20: 3 too many
+upper limit for worker 30: 2 too many
+lib_per_rot = 4 4 4 4 5 
+ass_per_rot = 3 3 3 3 2 
+Stand-ins Week 0
+7 3 3 3 5 
+Stand-ins Week 1
+0 3 3 3 0 
+Stand-ins Week 2
+5 4 7 4 2 
+Stand-ins Week 3
+4 5 8 5 3 
+Stand-ins Week 4
+4 4 7 7 6 
+Max(min stand-in) for this solution is: 0
+Total number of stand-ins: 105
+demand_tot_cost = 0
+demand_lib_cost (too few or too many) = 400
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 20000
+demand_weekend_cost = 7000
+PL_amount_cost = 3000
+no_weekend_cost = 0
+
+total_eval_cost = 30400
+total_stand_in_cost = -21
+*total_cost* = 30379
+Best solution so far is 30379
+Time where new best solution found is: 1.58
+
+
+
+***Best iteration number: 4***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+upper limit for worker 18: 1 too many
+upper limit for worker 30: 2 too many
+lib_per_rot = 4 4 4 4 5 
+ass_per_rot = 3 3 3 3 2 
+Stand-ins Week 0
+6 2 3 5 3 
+Stand-ins Week 1
+0 2 6 1 0 
+Stand-ins Week 2
+6 4 6 5 3 
+Stand-ins Week 3
+4 5 6 5 2 
+Stand-ins Week 4
+4 3 7 6 9 
+Max(min stand-in) for this solution is: 0
+Total number of stand-ins: 103
+demand_tot_cost = 0
+demand_lib_cost (too few or too many) = 1000
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 20000
+demand_weekend_cost = 7000
+PL_amount_cost = 1500
+no_weekend_cost = 0
+
+total_eval_cost = 29500
+total_stand_in_cost = -20
+*total_cost* = 29480
+Best solution so far is 29480
+Time where new best solution found is: 4.4
+
+
+
+***Best iteration number: 5***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+upper limit for worker 1: 3 too many
+upper limit for worker 6: 1 too many
+upper limit for worker 29: 2 too many
+lower limit for worker 35: 2 too few
+lib_per_rot = 4 4 4 5 4 
+ass_per_rot = 3 3 3 2 3 
+Stand-ins Week 0
+5 2 5 3 2 
+Stand-ins Week 1
+3 3 5 1 0 
+Stand-ins Week 2
+3 5 4 6 2 
+Stand-ins Week 3
+5 3 5 2 5 
+Stand-ins Week 4
+4 6 6 3 6 
+Max(min stand-in) for this solution is: 0
+Total number of stand-ins: 94
+demand_tot_cost = 550
+demand_lib_cost (too few or too many) = 1200
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 7000
+PL_amount_cost = 4000
+no_weekend_cost = 5000
+
+total_eval_cost = 17750
+total_stand_in_cost = -18
+*total_cost* = 17732
+Best solution so far is 17732
+Time where new best solution found is: 15.74
+
+
+
+***Best iteration number: 6***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+1 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+upper limit for worker 1: 1 too many
+upper limit for worker 6: 2 too many
+lower limit for worker 8: 1 too few
+lower limit for worker 18: 2 too few
+upper limit for worker 29: 1 too many
+lower limit for worker 35: 1 too few
+lib_per_rot = 4 4 5 4 4 
+ass_per_rot = 3 3 2 3 3 
+Stand-ins Week 0
+6 1 4 6 3 
+Stand-ins Week 1
+3 1 5 1 0 
+Stand-ins Week 2
+2 2 3 5 4 
+Stand-ins Week 3
+4 4 4 3 4 
+Stand-ins Week 4
+0 2 5 5 5 
+Max(min stand-in) for this solution is: 0
+Total number of stand-ins: 82
+demand_tot_cost = 1100
+demand_lib_cost (too few or too many) = 600
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 7000
+PL_amount_cost = 4000
+no_weekend_cost = 5000
+
+total_eval_cost = 17700
+total_stand_in_cost = -16
+*total_cost* = 17684
+Best solution so far is 17684
+Time where new best solution found is: 32.25
+
+
+
+***Best iteration number: 7***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+upper limit for worker 1: 2 too many
+lower limit for worker 8: 2 too few
+lower limit for worker 18: 2 too few
+lower limit for worker 35: 2 too few
+lib_per_rot = 4 4 5 4 4 
+ass_per_rot = 3 3 2 3 3 
+Stand-ins Week 0
+4 1 5 6 3 
+Stand-ins Week 1
+2 3 2 1 0 
+Stand-ins Week 2
+5 4 5 4 4 
+Stand-ins Week 3
+5 3 5 2 4 
+Stand-ins Week 4
+2 2 2 5 2 
+Max(min stand-in) for this solution is: 0
+Total number of stand-ins: 81
+demand_tot_cost = 550
+demand_lib_cost (too few or too many) = 600
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 7000
+PL_amount_cost = 4000
+no_weekend_cost = 5000
+
+total_eval_cost = 17150
+total_stand_in_cost = -16
+*total_cost* = 17134
+Best solution so far is 17134
+Time where new best solution found is: 57.36
+
+
+
+***Best iteration number: 8***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+1 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 1 0 2 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lower limit for worker 35: 1 too few
+lib_per_rot = 5 4 4 4 4 
+ass_per_rot = 2 3 3 3 3 
+Stand-ins Week 0
+6 1 3 2 2 
+Stand-ins Week 1
+5 3 2 0 1 
+Stand-ins Week 2
+4 5 5 6 3 
+Stand-ins Week 3
+2 3 3 5 3 
+Stand-ins Week 4
+3 2 4 5 7 
+Max(min stand-in) for this solution is: 0
+Total number of stand-ins: 85
+demand_tot_cost = 2750
+demand_lib_cost (too few or too many) = 2000
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 500
+no_weekend_cost = 0
+
+total_eval_cost = 5250
+total_stand_in_cost = -17
+*total_cost* = 5233
+Best solution so far is 5233
+Time where new best solution found is: 80.93
+
+
+
+***Best iteration number: 9***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+1 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 1 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lower limit for worker 35: 1 too few
+lib_per_rot = 5 4 4 4 4 
+ass_per_rot = 2 3 3 3 3 
+Stand-ins Week 0
+7 1 5 2 1 
+Stand-ins Week 1
+5 3 3 0 1 
+Stand-ins Week 2
+4 5 5 5 3 
+Stand-ins Week 3
+3 3 3 6 4 
+Stand-ins Week 4
+3 2 6 4 7 
+Max(min stand-in) for this solution is: 0
+Total number of stand-ins: 91
+demand_tot_cost = 2200
+demand_lib_cost (too few or too many) = 2000
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 500
+no_weekend_cost = 0
+
+total_eval_cost = 4700
+total_stand_in_cost = -18
+*total_cost* = 4682
+Best solution so far is 4682
+Time where new best solution found is: 81.26
+
+
+
+***Best iteration number: 10***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+1 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 1 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 1 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lower limit for worker 35: 1 too few
+lib_per_rot = 5 4 4 4 4 
+ass_per_rot = 2 3 3 3 3 
+Stand-ins Week 0
+7 1 5 2 1 
+Stand-ins Week 1
+5 3 3 0 1 
+Stand-ins Week 2
+4 4 6 4 4 
+Stand-ins Week 3
+3 3 3 6 3 
+Stand-ins Week 4
+3 3 6 4 7 
+Max(min stand-in) for this solution is: 0
+Total number of stand-ins: 91
+demand_tot_cost = 2750
+demand_lib_cost (too few or too many) = 1400
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 500
+no_weekend_cost = 0
+
+total_eval_cost = 4650
+total_stand_in_cost = -18
+*total_cost* = 4632
+Best solution so far is 4632
+Time where new best solution found is: 81.62
+
+
+
+***Best iteration number: 11***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 1 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lower limit for worker 35: 1 too few
+lib_per_rot = 5 4 4 4 4 
+ass_per_rot = 2 3 3 3 3 
+Stand-ins Week 0
+6 1 4 2 1 
+Stand-ins Week 1
+5 4 4 0 1 
+Stand-ins Week 2
+4 4 5 4 4 
+Stand-ins Week 3
+3 2 3 6 3 
+Stand-ins Week 4
+3 3 6 4 7 
+Max(min stand-in) for this solution is: 0
+Total number of stand-ins: 89
+demand_tot_cost = 1650
+demand_lib_cost (too few or too many) = 1200
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 500
+no_weekend_cost = 0
+
+total_eval_cost = 3350
+total_stand_in_cost = -17
+*total_cost* = 3333
+Best solution so far is 3333
+Time where new best solution found is: 81.86
+
+
+
+***Best iteration number: 12***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 1 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lower limit for worker 35: 1 too few
+lib_per_rot = 5 4 4 4 4 
+ass_per_rot = 2 3 3 3 3 
+Stand-ins Week 0
+6 1 4 2 1 
+Stand-ins Week 1
+5 3 4 0 0 
+Stand-ins Week 2
+3 4 5 4 3 
+Stand-ins Week 3
+2 2 3 6 3 
+Stand-ins Week 4
+3 3 6 4 7 
+Max(min stand-in) for this solution is: 0
+Total number of stand-ins: 84
+demand_tot_cost = 1100
+demand_lib_cost (too few or too many) = 1000
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 500
+no_weekend_cost = 0
+
+total_eval_cost = 2600
+total_stand_in_cost = -16
+*total_cost* = 2584
+Best solution so far is 2584
+Time where new best solution found is: 82.29
+
+
+
+***Best iteration number: 13***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 1 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lower limit for worker 35: 1 too few
+lib_per_rot = 5 4 4 4 4 
+ass_per_rot = 2 3 3 3 3 
+Stand-ins Week 0
+6 1 4 2 1 
+Stand-ins Week 1
+6 3 4 0 0 
+Stand-ins Week 2
+3 4 5 4 3 
+Stand-ins Week 3
+2 2 3 6 3 
+Stand-ins Week 4
+3 3 6 4 7 
+Max(min stand-in) for this solution is: 0
+Total number of stand-ins: 85
+demand_tot_cost = 1100
+demand_lib_cost (too few or too many) = 1000
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 500
+no_weekend_cost = 0
+
+total_eval_cost = 2600
+total_stand_in_cost = -17
+*total_cost* = 2583
+Best solution so far is 2583
+Time where new best solution found is: 82.63
+
+
+
+***Best iteration number: 14***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+1 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+upper limit for worker 2: 1 too many
+lower limit for worker 35: 1 too few
+lib_per_rot = 5 4 4 4 4 
+ass_per_rot = 2 3 3 3 3 
+Stand-ins Week 0
+7 2 4 4 1 
+Stand-ins Week 1
+5 3 5 1 0 
+Stand-ins Week 2
+4 2 5 3 4 
+Stand-ins Week 3
+3 1 3 5 2 
+Stand-ins Week 4
+3 4 6 3 8 
+Max(min stand-in) for this solution is: 0
+Total number of stand-ins: 88
+demand_tot_cost = 1100
+demand_lib_cost (too few or too many) = 400
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 1000
+no_weekend_cost = 0
+
+total_eval_cost = 2500
+total_stand_in_cost = -17
+*total_cost* = 2483
+Best solution so far is 2483
+Time where new best solution found is: 83.95
+
+
+
+***Best iteration number: 15***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+1 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+upper limit for worker 2: 1 too many
+lower limit for worker 35: 1 too few
+lib_per_rot = 4 5 4 4 4 
+ass_per_rot = 3 2 3 3 3 
+Stand-ins Week 0
+6 2 4 4 1 
+Stand-ins Week 1
+4 3 5 1 0 
+Stand-ins Week 2
+4 2 5 3 4 
+Stand-ins Week 3
+3 1 3 5 2 
+Stand-ins Week 4
+3 4 6 3 7 
+Max(min stand-in) for this solution is: 0
+Total number of stand-ins: 85
+demand_tot_cost = 550
+demand_lib_cost (too few or too many) = 200
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 1000
+no_weekend_cost = 0
+
+total_eval_cost = 1750
+total_stand_in_cost = -17
+*total_cost* = 1733
+Best solution so far is 1733
+Time where new best solution found is: 84.33
+
+
+
+***Best iteration number: 16***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+upper limit for worker 2: 1 too many
+lower limit for worker 35: 1 too few
+lib_per_rot = 4 5 4 4 4 
+ass_per_rot = 3 2 3 3 3 
+Stand-ins Week 0
+4 2 4 3 1 
+Stand-ins Week 1
+4 3 4 1 0 
+Stand-ins Week 2
+5 2 5 4 5 
+Stand-ins Week 3
+3 1 3 5 2 
+Stand-ins Week 4
+4 4 6 3 6 
+Max(min stand-in) for this solution is: 0
+Total number of stand-ins: 84
+demand_tot_cost = 0
+demand_lib_cost (too few or too many) = 0
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 1000
+no_weekend_cost = 0
+
+total_eval_cost = 1000
+total_stand_in_cost = -16
+*total_cost* = 984
+Best solution so far is 984
+Time where new best solution found is: 84.93

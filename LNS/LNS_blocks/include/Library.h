@@ -23,6 +23,8 @@ private:
 	vector<Block> block_vector; //A vector with all the blocks created
 	
 	int stand_in_amount[NUM_WEEKS][NUM_DAYS-2]; //stand_in_amount[w][d] = num
+	int lib_stand_in_amount[NUM_WEEKS][NUM_DAYS-2];
+	int ass_stand_in_amount[NUM_WEEKS][NUM_DAYS-2];
 	
 	int demand_differ[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; //OK as public? only one Library object
 	int num_lib_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; //Tasks: Block, PL, HB, BokB
@@ -78,7 +80,7 @@ public:
 	void printTask_avail();
 	void create_all_blocks();
 	void assign_tasks_to_block(Block&, int, int, int, int, int, int, int, int, int, int, int, int);
-	void assign_blocks_to_workers();
+	void assign_blocks_to_workers(ostream&);
 	void assign_block(Block*, int);
 	bool week_empty_of_tasks(Block*);
 	void print_weekblocks_avail_worker(int, string);
@@ -123,14 +125,13 @@ public:
 	int evaluate_solution(ostream&);
 	
 	//*** DESTROY AND REPAIR ***
-	void destroy();
 	void destroy(int);
+// 	void destroy(int);
 	void repair();
 	
 
 	
-	void print_results(ostream&);
-	void print_hello(ostream&);
+// 	void print_results(ostream&, int, int, int);
 
 };
 

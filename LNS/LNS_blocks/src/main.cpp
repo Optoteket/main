@@ -18,7 +18,9 @@ using namespace std;
 
 int main() {
 	clock_t t;
+// 	clock_t best_t;
 	float time = 0;
+	float time2 = 0;
 	int count_new_sol = 0;
 	int best_solution = 9999999; //Initialized as high value
 	ofstream outFile("./target/results.txt");
@@ -35,8 +37,9 @@ int main() {
 	
 	
 	//***Assign all the blocks to workers***
-	lib.assign_blocks_to_workers();
-//  	lib.print_weekblocks_avail_worker(23, "weekend");
+	lib.assign_blocks_to_workers(outFile); //And print to result file
+ 	lib.print_all_weekblocks_avail_worker(2, "weekend");
+// 	return 0;
 	
 	//***Assign rotation to the workers***
 	lib.assign_rot_to_workers();
@@ -116,65 +119,75 @@ int main() {
 // 	}
 	
 	
-	int p = 36;
+// 	int p = 36;
 	cout << "\n\n\nDestroy/Repair test starting here\n\n\n" << endl;
-	lib.print_weekends_assigned(cout);
-	lib.print_all_weekblocks_assigned_worker(p);
+// 	lib.print_weekends_assigned(cout);
+// 	lib.print_all_weekblocks_assigned_worker(p);
 	lib.print_demand_differ(cout);
 	cout << "The total cost after the new solution is: " << lib.evaluate_solution(cout) << endl;
-	cout << "Worker " << p << " is working weekend at week: " << lib.getWorker(p).getWeekend_week() << endl;
-	lib.destroy(p);
-// 	lib.destroy();
+// 	cout << "Worker " << p << " is working weekend at week: " << lib.getWorker(p).getWeekend_week() << endl;
+// 	lib.destroy(p);
+	lib.destroy(3);
 	cout << "\nAfter destroy!\n" << endl;
 	lib.calculate_demand(); //Update the tasks_filled and demand_differences
+	cout << "The total cost after the new solution is: " << lib.evaluate_solution(cout) << endl;
 // 	lib.print_demand_differ(cout);
-	lib.print_weekends_assigned(cout);
+// 	lib.print_weekends_assigned(cout);
 // 	lib.print_tasks_filled(cout);
 	cout << "before repair" << endl;
 	lib.repair(); //need to calculate new demand_differences! Need to calculate new costs ???
 	cout << "After repair" << endl;
-	cout << "Worker " << p << " is working weekend at week (after repair): " << lib.getWorker(p).getWeekend_week() << endl;
+// 	cout << "Worker " << p << " is working weekend at week (after repair): " << lib.getWorker(p).getWeekend_week() << endl;
 	lib.calculate_demand(); //Update the tasks_filled and demand_differences
 	cout << "The total cost after the new solution is: " << lib.evaluate_solution(cout) << endl;
-	cout << "Weekblocks assigned to the worker is now: " << endl;
-	lib.print_all_weekblocks_assigned_worker(p);
+// 	cout << "Weekblocks assigned to the worker is now: " << endl;
+// 	lib.print_all_weekblocks_assigned_worker(p);
 	lib.print_demand_differ(cout);
-	lib.print_weekends_assigned(cout);
-	cout << "worker " << p << " works weekend at week: " << lib.getWorker(p).getWeekend_week() << endl;
-	
-	
-	lib.getWorker(p).print_tasks_assigned_worker(); //unrotated
-// 	lib.getWorker(p).print_assigned_LOW();
-	
-	lib.print_stand_ins(cout);
-	cout << "Total number of stand_ins are: " << lib.get_sum_stand_ins() << endl;
-	cout << "Lowest number of stand_ins are: " << lib.get_lowest_stand_in() << endl;
-// 	lib.getWorker(p).print_stand_in_matrix();
-// 	lib.getWorker(p).getAvail_matrix();
+// 	lib.print_weekends_assigned(cout);
+// 	cout << "worker " << p << " works weekend at week: " << lib.getWorker(p).getWeekend_week() << endl;
+	return 0;
 
+// 	lib.getWorker(p).print_tasks_assigned_worker(); //unrotated
+// // 	lib.getWorker(p).print_assigned_LOW();
+// 	
+// 	lib.print_stand_ins(cout);
+// 	cout << "Total number of stand_ins are: " << lib.get_sum_stand_ins() << endl;
+// 	cout << "Lowest number of stand_ins are: " << lib.get_lowest_stand_in() << endl;
+// // 	lib.getWorker(p).print_stand_in_matrix();
+// // 	lib.getWorker(p).getAvail_matrix();
 
 // 	return 0;
-	
-	while(time < 5){ //54000 means 17-08
+	int t_updated;
+	int current_solution = 0;
+	//***DESTROY AND REPAIR LOOP!***
+	while(time < 3600){ //54000 means 17-08
+		t_updated = 0;
 		t = clock(); //Start counting
-		lib.destroy();
+// 		best_t = clock(); //Start counting if finding new best sol
+		lib.destroy(3);
 		lib.calculate_demand();
 		lib.repair();
 		lib.calculate_demand();
-		if(lib.evaluate_solution(cout) < best_solution){
-			best_solution = lib.evaluate_solution(cout);
+		current_solution = lib.evaluate_solution(cout); //Cost from objective function
+		if(current_solution < best_solution){
+			best_solution = current_solution;
 			count_new_sol++;
 			//Print best solution to file!
-			//want: stand-in matrix, all costs, demand_differ matrix,
-			
-			lib.print_demand_differ(outFile);
-			lib.print_weekends_assigned(outFile);
-			outFile << "Best solution so far is " << lib.evaluate_solution(outFile) << endl;
-			
+			outFile << "\n\n\n***Best iteration number: " << count_new_sol << "***" << endl;
+			outFile << "Best solution so far is " << lib.evaluate_solution(outFile) << endl;//Print everything with evaluate_solution
+			t = clock() - t;
+			t_updated = 1;
+			time2 = time + (float)t/CLOCKS_PER_SEC;
+			outFile << "Time where new best solution found is: " << time2 << endl;
 		}
-		t = clock() - t; //in TICKS
+		if(t_updated == 0){
+			t = clock() - t; //in TICKS
+		}
 		time += (float)t/CLOCKS_PER_SEC; //As float value
 		cout << "\n\n\ntime is: " << time << "\n\n" << endl;
+// 		if(current_solution < 1000){
+// 			STAND_IN_COST = 2*STAND_IN_COST; //const param though
+// 		}
 	}
 	
 // 	cout << "it took " << ((float)time)/CLOCKS_PER_SEC << " seconds to execute the program" << endl;

@@ -421,11 +421,11 @@ void Worker::calculate_week_cost(Block* blockobj, string type, int diff_in_deman
 int Worker::calculate_PL_cost(Block* block){
 	int temp_cost = 0;
 	//Assign cost if too many or too few PL are assigned to the worker
-	if(newPL.compare(0,11,"standard_PL") == 0 && num_PL+block->getnum_PL() > 3){ //getnum_PL <= 1, num_PL <= 4(?)
+	if(newPL.compare(0,11,"standard_PL") == 0 && num_PL+block->getnum_PL() > 2){ //getnum_PL <= 1, num_PL <= 4(?)
 		temp_cost += PL_VIOLATE_COST*block->getnum_PL();
 	}else if(newPL.compare(0,7,"many_PL") == 0 && num_PL+block->getnum_PL() > 4){ //getnum_PL <= 1, num_PL <= 4(?)
 		temp_cost += PL_VIOLATE_COST*block->getnum_PL();
-	}else if(newPL.compare(0,7,"many_PL") == 0 && num_PL+block->getnum_PL() < 3){ //getnum_PL <= 1, num_PL <= 4(?)
+	}else if(newPL.compare(0,7,"many_PL") == 0 && num_PL+block->getnum_PL() < 2){ //getnum_PL <= 1, num_PL <= 4(?)
 		temp_cost -= PL_GOOD_COST*block->getnum_PL(); //Negative cost!
 	}
 // 	if(temp_cost != 0){cout << "in calculate_PL_cost. Temp_cost is: " << temp_cost << endl;}
