@@ -67,10 +67,10 @@ class Library{
   //Num full time equivalents
   double num_avail_workers_average[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS];
 
-  double library_temp_cost;
   double library_max_cost;
   double library_cost;
-  int temp_library_cost;
+  double temp_library_cost;
+  double orig_library_cost;
 
   int avail_day_cost; //Maximize in objective function
   int min_avail_day[NUM_POSITIONS];

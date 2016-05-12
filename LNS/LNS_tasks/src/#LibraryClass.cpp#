@@ -159,7 +159,7 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
       }
     }
     else {
-      //Take back old solution.
+      //Take back old solution
       worker_list.clear();
       for(int j=0; j<(int) orig_workers.size(); j++){
 	worker_list.push_back(orig_workers[j]); 
