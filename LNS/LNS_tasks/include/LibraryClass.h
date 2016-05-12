@@ -67,13 +67,15 @@ class Library{
   //Num full time equivalents
   double num_avail_workers_average[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS];
 
-  int library_temp_cost;
-  int library_max_cost;
-  int library_cost;
+  double library_temp_cost;
+  double library_max_cost;
+  double library_cost;
   int temp_library_cost;
+
   int avail_day_cost; //Maximize in objective function
   int min_avail_day[NUM_POSITIONS];
   int temp_avail_day_cost;
+
   int avail_contribution_cost;
   double min_contribution[NUM_POSITIONS];
   int temp_avail_contribution_cost;
@@ -87,10 +89,10 @@ class Library{
   //Constructor
   Library(ofstream*);
   void create_initial_solution();
-  void optimize_weekends(int,int, int[3]);
+  void optimize_weekends(int,int, double[3]);
 
   //Stand in avail
-  void set_library_cost(string, int[3]);
+  void set_library_cost(string, double[3]);
   void set_avail_contribution_cost(string);
   void set_avail_day_cost(string);
   void set_avail_cost(string);
@@ -108,6 +110,7 @@ class Library{
   //void weekend_update_avail_demand(int, int, int); //Not working properly, not possible to keep updated
 
   //Weekday related
+  void place_BokB();
   void destroy_tasks(int, string);
   void repair_tasks(string);
   void find_tasks(int);
