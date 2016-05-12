@@ -134,6 +134,7 @@ public:
 	void setWeekend_week(int);
 	void set_stand_in_avail();
 	void set_block_types_added(int,int);
+	void reset_block_types_added();
 	void set_LOW_assigned(int,int,int,int);
 	void clear_cost_vector(string); //type as argument "weekend" etc
 	void set_tasks_assigned_worker();

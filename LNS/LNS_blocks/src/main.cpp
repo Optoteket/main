@@ -119,33 +119,40 @@ int main() {
 // 	}
 	
 	
-// 	int p = 36;
-	cout << "\n\n\nDestroy/Repair test starting here\n\n\n" << endl;
-// 	lib.print_weekends_assigned(cout);
-// 	lib.print_all_weekblocks_assigned_worker(p);
-	lib.print_demand_differ(cout);
-	cout << "The total cost after the new solution is: " << lib.evaluate_solution(cout) << endl;
-// 	cout << "Worker " << p << " is working weekend at week: " << lib.getWorker(p).getWeekend_week() << endl;
-// 	lib.destroy(p);
-	lib.destroy(3);
-	cout << "\nAfter destroy!\n" << endl;
-	lib.calculate_demand(); //Update the tasks_filled and demand_differences
-	cout << "The total cost after the new solution is: " << lib.evaluate_solution(cout) << endl;
+// // 	int p = 36;
+// 	int destroy_cost = 0;
+// 	cout << "\n\n\nDestroy/Repair test starting here\n\n\n" << endl;
+// // 	lib.print_weekends_assigned(cout);
+// // 	lib.print_all_weekblocks_assigned_worker(p);
 // 	lib.print_demand_differ(cout);
-// 	lib.print_weekends_assigned(cout);
-// 	lib.print_tasks_filled(cout);
-	cout << "before repair" << endl;
-	lib.repair(); //need to calculate new demand_differences! Need to calculate new costs ???
-	cout << "After repair" << endl;
-// 	cout << "Worker " << p << " is working weekend at week (after repair): " << lib.getWorker(p).getWeekend_week() << endl;
-	lib.calculate_demand(); //Update the tasks_filled and demand_differences
-	cout << "The total cost after the new solution is: " << lib.evaluate_solution(cout) << endl;
-// 	cout << "Weekblocks assigned to the worker is now: " << endl;
-// 	lib.print_all_weekblocks_assigned_worker(p);
-	lib.print_demand_differ(cout);
-// 	lib.print_weekends_assigned(cout);
-// 	cout << "worker " << p << " works weekend at week: " << lib.getWorker(p).getWeekend_week() << endl;
-	return 0;
+// 	cout << "The total cost after the new solution is: " << lib.evaluate_solution(cout) << endl;
+// // 	cout << "Worker " << p << " is working weekend at week: " << lib.getWorker(p).getWeekend_week() << endl;
+// // 	lib.destroy(p);
+// 	lib.destroy(3);
+// 	cout << "\nAfter destroy!\n" << endl;
+// 	lib.calculate_demand(); //Update the tasks_filled and demand_differences
+// 	destroy_cost = lib.evaluate_solution(cout);
+// 	cout << "The total cost after the new solution is: " << destroy_cost << endl;
+// 	
+// // 	lib.print_demand_differ(cout);
+// // 	lib.print_weekends_assigned(cout);
+// // 	lib.print_tasks_filled(cout);
+// 	cout << "before repair" << endl;
+// 	lib.repair(); //need to calculate new demand_differences! Need to calculate new costs ???
+// 	cout << "After repair" << endl;
+// // 	cout << "Worker " << p << " is working weekend at week (after repair): " << lib.getWorker(p).getWeekend_week() << endl;
+// 	lib.calculate_demand(); //Update the tasks_filled and demand_differences
+// // 	cout << "The total cost after the new solution is: " << lib.evaluate_solution(cout) << endl;
+// 	cout << "Destroy_cost is: " << destroy_cost << endl;
+// 	cout << "Repair-increment is: " << lib.get_increment() << endl;
+// 	cout << "New solution should be: " << destroy_cost+lib.get_increment() << " but it is: " << lib.evaluate_solution(cout) << endl;
+// 	return 0;
+// // 	cout << "Weekblocks assigned to the worker is now: " << endl;
+// // 	lib.print_all_weekblocks_assigned_worker(p);
+// // 	lib.print_demand_differ(cout);
+// // 	lib.print_weekends_assigned(cout);
+// // 	cout << "worker " << p << " works weekend at week: " << lib.getWorker(p).getWeekend_week() << endl;
+// // 	return 0;
 
 // 	lib.getWorker(p).print_tasks_assigned_worker(); //unrotated
 // // 	lib.getWorker(p).print_assigned_LOW();
@@ -160,7 +167,7 @@ int main() {
 	int t_updated;
 	int current_solution = 0;
 	//***DESTROY AND REPAIR LOOP!***
-	while(time < 3600){ //54000 means 17-08
+	while(time < 54000){ //54000 means 17-08
 		t_updated = 0;
 		t = clock(); //Start counting
 // 		best_t = clock(); //Start counting if finding new best sol
