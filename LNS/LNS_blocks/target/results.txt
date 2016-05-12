@@ -1,247 +1,39 @@
-
-*** Demand difference *** in the library for: block, PL, HB, BokB
-Negative values means overstaffing, positive means lack of workers
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-lib_per_rot = 4 4 4 4 5 
-ass_per_rot = 3 3 3 3 2 
-demand_tot_cost = 0
-demand_lib_cost (too few or too many) = 400
-demand_ass_cost = 0
-demand_PL_cost = 0
-demand_HB_cost = 0
-demand_evening_cost = 20000
-demand_weekend_cost = 7000
-PL_amount_cost = 3000
-no_weekend_cost = 5000
-
-total_eval_cost = 35400
-total_stand_in_cost = -20
-*total_cost* = 35380
-Best solution so far is 35380
-
-*** Demand difference *** in the library for: block, PL, HB, BokB
-Negative values means overstaffing, positive means lack of workers
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-lib_per_rot = 4 5 4 4 4 
-ass_per_rot = 3 2 3 3 3 
-demand_tot_cost = 550
-demand_lib_cost (too few or too many) = 1400
-demand_ass_cost = 0
-demand_PL_cost = 0
-demand_HB_cost = 0
-demand_evening_cost = 20000
-demand_weekend_cost = 0
-PL_amount_cost = 3000
-no_weekend_cost = 5000
-
-total_eval_cost = 29950
-total_stand_in_cost = -20
-*total_cost* = 29930
-Best solution so far is 29930
-
-*** Demand difference *** in the library for: block, PL, HB, BokB
-Negative values means overstaffing, positive means lack of workers
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-lib_per_rot = 4 5 4 4 4 
-ass_per_rot = 3 2 3 3 3 
-demand_tot_cost = 550
-demand_lib_cost (too few or too many) = 1400
-demand_ass_cost = 0
-demand_PL_cost = 0
-demand_HB_cost = 0
-demand_evening_cost = 20000
-demand_weekend_cost = 0
-PL_amount_cost = 3000
-no_weekend_cost = 5000
-
-total_eval_cost = 29950
-total_stand_in_cost = -21
-*total_cost* = 29929
-Best solution so far is 29929
-
-*** Demand difference *** in the library for: block, PL, HB, BokB
-Negative values means overstaffing, positive means lack of workers
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-1 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-lib_per_rot = 4 5 4 4 4 
-ass_per_rot = 3 2 3 3 3 
-demand_tot_cost = 1100
-demand_lib_cost (too few or too many) = 1600
-demand_ass_cost = 0
-demand_PL_cost = 0
-demand_HB_cost = 0
-demand_evening_cost = 20000
-demand_weekend_cost = 0
-PL_amount_cost = 3000
-no_weekend_cost = 0
-
-total_eval_cost = 25700
-total_stand_in_cost = -19
-*total_cost* = 25681
-Best solution so far is 25681
-
-*** Demand difference *** in the library for: block, PL, HB, BokB
-Negative values means overstaffing, positive means lack of workers
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-1 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
-
-
-lib_per_rot = 4 5 4 4 4 
-ass_per_rot = 3 2 3 3 3 
-demand_tot_cost = 1100
-demand_lib_cost (too few or too many) = 1400
-demand_ass_cost = 0
-demand_PL_cost = 0
-demand_HB_cost = 0
-demand_evening_cost = 20000
-demand_weekend_cost = 0
-PL_amount_cost = 3000
-no_weekend_cost = 0
-
-total_eval_cost = 25500
-total_stand_in_cost = -19
-*total_cost* = 25481
-Best solution so far is 25481
-Found 5 new solutions during iteration
-Best solution found was: 25481
+Worker: 1 has 532 347 1580 in sizes
+Worker: 2 has 1580 1580 1580 in sizes
+Worker: 3 has 1063 347 1580 in sizes
+Worker: 4 has 557 165 779 in sizes
+Worker: 5 has 261 130 531 in sizes
+Worker: 6 has 532 130 1580 in sizes
+Worker: 7 has 261 130 531 in sizes
+Worker: 8 has 261 29 531 in sizes
+Worker: 9 has 115 12 247 in sizes
+Worker: 10 has 532 130 1580 in sizes
+Worker: 11 has 9 8 8 in sizes
+Worker: 12 has 1063 347 1580 in sizes
+Worker: 13 has 771 130 1190 in sizes
+Worker: 14 has 265 29 489 in sizes
+Worker: 15 has 51 18 120 in sizes
+Worker: 16 has 495 130 843 in sizes
+Worker: 17 has 237 191 267 in sizes
+Worker: 18 has 532 279 1580 in sizes
+Worker: 19 has 495 47 843 in sizes
+Worker: 20 has 532 130 1580 in sizes
+Worker: 21 has 227 227 227 in sizes
+Worker: 22 has 2 1 1 in sizes
+Worker: 23 has 3 2 2 in sizes
+Worker: 24 has 11 5 47 in sizes
+Worker: 25 has 1063 279 1580 in sizes
+Worker: 26 has 5 4 4 in sizes
+Worker: 27 has 213 106 425 in sizes
+Worker: 28 has 2 1 2 in sizes
+Worker: 29 has 426 106 1281 in sizes
+Worker: 30 has 127 126 455 in sizes
+Worker: 31 has 495 130 843 in sizes
+Worker: 32 has 261 29 1580 in sizes
+Worker: 33 has 72 45 306 in sizes
+Worker: 34 has 425 425 425 in sizes
+Worker: 35 has 91 20 221 in sizes
+Worker: 36 has 55 27 101 in sizes
+Worker: 37 has 1063 347 1580 in sizes
+Worker: 38 has 3 1 1 in sizes
+Worker: 39 has 2 1 1 in sizes
