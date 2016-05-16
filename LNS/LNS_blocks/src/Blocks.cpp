@@ -175,8 +175,12 @@ void Block::setWday_block_number(int wday) {
 	wday_block_number = wday;
 }
 
-int Block::not_assigned(int d){ //Checking if there are "no task" at day d
+int Block::not_assigned(int d){ //Return 1 if there are "no task" at day d, i.e. no task assigned
 	if(tasks_assigned[d][0][0] == 1){return 1;}
 	else{return 0;}
+}
+int Block::task_assigned_day(int d){ //Return 0 if there are "no task" at day d, i.e. if a task is assigned
+	if(tasks_assigned[d][0][0] == 1){return 0;}
+	else{return 1;}
 }
 

@@ -1,0 +1,1514 @@
+
+
+
+***Best iteration number: 1***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 4 4 4 4 5 
+ass_per_rot = 3 3 3 3 2 
+Stand-ins Week 0
+6 3 4 6 5 
+Stand-ins Week 1
+1 3 2 2 0 
+Stand-ins Week 2
+5 4 7 5 3 
+Stand-ins Week 3
+4 5 7 4 3 
+Stand-ins Week 4
+4 4 7 5 5 
+demand_tot_cost = 0
+demand_lib_cost (too few or too many) = 400
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 20000
+demand_weekend_cost = 7000
+PL_amount_cost = 3000
+no_weekend_cost = 5000
+
+total_eval_cost = 35400
+total_stand_in_cost = -20
+*total_cost* = 35380
+Best solution so far is 35380
+
+
+
+***Best iteration number: 2***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 4 5 4 4 4 
+ass_per_rot = 3 2 3 3 3 
+Stand-ins Week 0
+5 3 3 6 3 
+Stand-ins Week 1
+1 3 7 3 0 
+Stand-ins Week 2
+5 4 6 5 3 
+Stand-ins Week 3
+4 5 4 5 5 
+Stand-ins Week 4
+6 3 5 5 5 
+demand_tot_cost = 550
+demand_lib_cost (too few or too many) = 1400
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 20000
+demand_weekend_cost = 0
+PL_amount_cost = 3000
+no_weekend_cost = 5000
+
+total_eval_cost = 29950
+total_stand_in_cost = -20
+*total_cost* = 29930
+Best solution so far is 29930
+
+
+
+***Best iteration number: 3***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 4 5 4 4 4 
+ass_per_rot = 3 2 3 3 3 
+Stand-ins Week 0
+5 3 3 6 3 
+Stand-ins Week 1
+1 3 8 3 0 
+Stand-ins Week 2
+5 4 7 5 3 
+Stand-ins Week 3
+4 5 5 5 5 
+Stand-ins Week 4
+6 3 6 5 5 
+demand_tot_cost = 550
+demand_lib_cost (too few or too many) = 1400
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 20000
+demand_weekend_cost = 0
+PL_amount_cost = 3000
+no_weekend_cost = 5000
+
+total_eval_cost = 29950
+total_stand_in_cost = -21
+*total_cost* = 29929
+Best solution so far is 29929
+
+
+
+***Best iteration number: 4***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+1 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 4 5 4 4 4 
+ass_per_rot = 3 2 3 3 3 
+Stand-ins Week 0
+4 3 3 5 3 
+Stand-ins Week 1
+1 3 8 3 0 
+Stand-ins Week 2
+4 4 7 4 3 
+Stand-ins Week 3
+3 5 5 4 4 
+Stand-ins Week 4
+5 3 6 5 4 
+demand_tot_cost = 1100
+demand_lib_cost (too few or too many) = 1600
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 20000
+demand_weekend_cost = 0
+PL_amount_cost = 3000
+no_weekend_cost = 0
+
+total_eval_cost = 25700
+total_stand_in_cost = -19
+*total_cost* = 25681
+Best solution so far is 25681
+
+
+
+***Best iteration number: 5***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+1 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 4 5 4 4 4 
+ass_per_rot = 3 2 3 3 3 
+Stand-ins Week 0
+4 3 3 5 3 
+Stand-ins Week 1
+2 3 8 2 0 
+Stand-ins Week 2
+4 4 7 4 3 
+Stand-ins Week 3
+2 5 5 4 5 
+Stand-ins Week 4
+5 3 6 5 4 
+demand_tot_cost = 1100
+demand_lib_cost (too few or too many) = 1400
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 20000
+demand_weekend_cost = 0
+PL_amount_cost = 3000
+no_weekend_cost = 0
+
+total_eval_cost = 25500
+total_stand_in_cost = -19
+*total_cost* = 25481
+Best solution so far is 25481
+
+
+
+***Best iteration number: 6***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 5 4 4 4 4 
+ass_per_rot = 2 3 3 3 3 
+Stand-ins Week 0
+2 3 6 4 2 
+Stand-ins Week 1
+1 2 4 3 0 
+Stand-ins Week 2
+4 4 5 1 2 
+Stand-ins Week 3
+7 2 5 1 5 
+Stand-ins Week 4
+6 3 7 3 4 
+demand_tot_cost = 1100
+demand_lib_cost (too few or too many) = 600
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 20000
+demand_weekend_cost = 0
+PL_amount_cost = 3500
+no_weekend_cost = 0
+
+total_eval_cost = 25200
+total_stand_in_cost = -17
+*total_cost* = 25183
+Best solution so far is 25183
+
+
+
+***Best iteration number: 7***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 5 4 4 4 4 
+ass_per_rot = 2 3 3 3 3 
+Stand-ins Week 0
+4 2 7 3 3 
+Stand-ins Week 1
+4 3 4 2 0 
+Stand-ins Week 2
+4 1 4 1 3 
+Stand-ins Week 3
+2 2 2 3 5 
+Stand-ins Week 4
+5 2 7 4 3 
+demand_tot_cost = 2200
+demand_lib_cost (too few or too many) = 400
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 20000
+demand_weekend_cost = 0
+PL_amount_cost = 2500
+no_weekend_cost = 0
+
+total_eval_cost = 25100
+total_stand_in_cost = -16
+*total_cost* = 25084
+Best solution so far is 25084
+
+
+
+***Best iteration number: 8***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 1 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 4 4 5 4 4 
+ass_per_rot = 3 3 2 3 3 
+Stand-ins Week 0
+3 4 6 4 3 
+Stand-ins Week 1
+5 2 2 2 0 
+Stand-ins Week 2
+4 1 5 4 5 
+Stand-ins Week 3
+3 7 5 2 3 
+Stand-ins Week 4
+5 0 5 3 6 
+demand_tot_cost = 1650
+demand_lib_cost (too few or too many) = 400
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 7000
+PL_amount_cost = 2500
+no_weekend_cost = 0
+
+total_eval_cost = 11550
+total_stand_in_cost = -17
+*total_cost* = 11533
+Best solution so far is 11533
+
+
+
+***Best iteration number: 9***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 4 4 4 5 4 
+ass_per_rot = 3 3 3 2 3 
+Stand-ins Week 0
+5 3 7 2 5 
+Stand-ins Week 1
+1 4 4 0 0 
+Stand-ins Week 2
+3 1 3 2 5 
+Stand-ins Week 3
+4 3 4 3 2 
+Stand-ins Week 4
+5 1 7 3 4 
+demand_tot_cost = 0
+demand_lib_cost (too few or too many) = 800
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 7000
+PL_amount_cost = 2500
+no_weekend_cost = 0
+
+total_eval_cost = 10300
+total_stand_in_cost = -16
+*total_cost* = 10284
+Best solution so far is 10284
+
+
+
+***Best iteration number: 10***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 4 4 5 4 4 
+ass_per_rot = 3 3 2 3 3 
+Stand-ins Week 0
+3 2 6 2 5 
+Stand-ins Week 1
+3 5 4 2 0 
+Stand-ins Week 2
+6 1 7 1 4 
+Stand-ins Week 3
+3 5 3 4 3 
+Stand-ins Week 4
+5 3 5 3 5 
+demand_tot_cost = 550
+demand_lib_cost (too few or too many) = 600
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 7000
+PL_amount_cost = 2000
+no_weekend_cost = 0
+
+total_eval_cost = 10150
+total_stand_in_cost = -18
+*total_cost* = 10132
+Best solution so far is 10132
+
+
+
+***Best iteration number: 11***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 4 4 5 4 4 
+ass_per_rot = 3 3 2 3 3 
+Stand-ins Week 0
+3 2 6 1 5 
+Stand-ins Week 1
+2 6 4 3 0 
+Stand-ins Week 2
+6 1 7 1 6 
+Stand-ins Week 3
+3 4 4 4 3 
+Stand-ins Week 4
+6 3 4 2 4 
+demand_tot_cost = 550
+demand_lib_cost (too few or too many) = 400
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 7000
+PL_amount_cost = 2000
+no_weekend_cost = 0
+
+total_eval_cost = 9950
+total_stand_in_cost = -18
+*total_cost* = 9932
+Best solution so far is 9932
+
+
+
+***Best iteration number: 12***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 1 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 1 0 0 2 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 4 4 4 5 4 
+ass_per_rot = 3 3 3 2 3 
+Stand-ins Week 0
+4 3 5 4 5 
+Stand-ins Week 1
+3 3 5 2 1 
+Stand-ins Week 2
+5 2 5 2 3 
+Stand-ins Week 3
+2 5 4 3 2 
+Stand-ins Week 4
+3 3 5 4 5 
+demand_tot_cost = 4400
+demand_lib_cost (too few or too many) = 1200
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 2500
+no_weekend_cost = 0
+
+total_eval_cost = 8100
+total_stand_in_cost = -22
+*total_cost* = 8078
+Best solution so far is 8078
+
+
+
+***Best iteration number: 13***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 1 0 0 2 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 4 4 4 5 4 
+ass_per_rot = 3 3 3 2 3 
+Stand-ins Week 0
+5 3 5 4 5 
+Stand-ins Week 1
+3 3 5 2 1 
+Stand-ins Week 2
+5 3 5 2 3 
+Stand-ins Week 3
+2 6 4 3 2 
+Stand-ins Week 4
+3 3 5 4 5 
+demand_tot_cost = 3300
+demand_lib_cost (too few or too many) = 1400
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 2500
+no_weekend_cost = 0
+
+total_eval_cost = 7200
+total_stand_in_cost = -23
+*total_cost* = 7177
+Best solution so far is 7177
+
+
+
+***Best iteration number: 14***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+1 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 1 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 4 4 5 4 4 
+ass_per_rot = 3 3 2 3 3 
+Stand-ins Week 0
+4 4 1 5 4 
+Stand-ins Week 1
+4 3 5 1 0 
+Stand-ins Week 2
+5 1 8 3 3 
+Stand-ins Week 3
+3 3 5 2 4 
+Stand-ins Week 4
+5 4 4 5 3 
+demand_tot_cost = 1650
+demand_lib_cost (too few or too many) = 400
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 4000
+no_weekend_cost = 0
+
+total_eval_cost = 6050
+total_stand_in_cost = -17
+*total_cost* = 6033
+Best solution so far is 6033
+
+
+
+***Best iteration number: 15***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 5 4 4 4 4 
+ass_per_rot = 2 3 3 3 3 
+Stand-ins Week 0
+3 4 1 4 3 
+Stand-ins Week 1
+5 4 6 1 0 
+Stand-ins Week 2
+7 1 6 2 3 
+Stand-ins Week 3
+3 2 5 2 1 
+Stand-ins Week 4
+4 4 5 6 6 
+demand_tot_cost = 550
+demand_lib_cost (too few or too many) = 400
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 5000
+no_weekend_cost = 0
+
+total_eval_cost = 5950
+total_stand_in_cost = -17
+*total_cost* = 5933
+Best solution so far is 5933
+
+
+
+***Best iteration number: 16***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 5 4 4 4 4 
+ass_per_rot = 2 3 3 3 3 
+Stand-ins Week 0
+4 3 4 6 4 
+Stand-ins Week 1
+1 2 4 2 0 
+Stand-ins Week 2
+6 3 5 3 3 
+Stand-ins Week 3
+3 3 4 3 3 
+Stand-ins Week 4
+3 3 3 5 3 
+demand_tot_cost = 0
+demand_lib_cost (too few or too many) = 800
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 5000
+no_weekend_cost = 0
+
+total_eval_cost = 5800
+total_stand_in_cost = -16
+*total_cost* = 5784
+Best solution so far is 5784
+
+
+
+***Best iteration number: 17***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+1 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 5 4 4 4 4 
+ass_per_rot = 2 3 3 3 3 
+Stand-ins Week 0
+5 2 4 2 2 
+Stand-ins Week 1
+1 3 5 3 0 
+Stand-ins Week 2
+3 4 5 2 3 
+Stand-ins Week 3
+5 4 2 5 4 
+Stand-ins Week 4
+1 2 5 2 2 
+demand_tot_cost = 1100
+demand_lib_cost (too few or too many) = 600
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 3000
+no_weekend_cost = 0
+
+total_eval_cost = 4700
+total_stand_in_cost = -15
+*total_cost* = 4685
+Best solution so far is 4685
+
+
+
+***Best iteration number: 18***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 5 4 4 4 4 
+ass_per_rot = 2 3 3 3 3 
+Stand-ins Week 0
+5 2 4 2 2 
+Stand-ins Week 1
+0 3 5 3 0 
+Stand-ins Week 2
+3 4 5 2 3 
+Stand-ins Week 3
+5 4 2 5 4 
+Stand-ins Week 4
+1 2 5 2 2 
+demand_tot_cost = 550
+demand_lib_cost (too few or too many) = 400
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 3000
+no_weekend_cost = 0
+
+total_eval_cost = 3950
+total_stand_in_cost = -15
+*total_cost* = 3935
+Best solution so far is 3935
+
+
+
+***Best iteration number: 19***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+1 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 4 5 4 4 4 
+ass_per_rot = 3 2 3 3 3 
+Stand-ins Week 0
+4 5 5 5 3 
+Stand-ins Week 1
+1 2 6 2 0 
+Stand-ins Week 2
+3 4 8 2 4 
+Stand-ins Week 3
+5 4 7 2 3 
+Stand-ins Week 4
+6 3 4 5 3 
+demand_tot_cost = 1100
+demand_lib_cost (too few or too many) = 800
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 1500
+no_weekend_cost = 0
+
+total_eval_cost = 3400
+total_stand_in_cost = -19
+*total_cost* = 3381
+Best solution so far is 3381
+
+
+
+***Best iteration number: 20***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 4 4 5 4 4 
+ass_per_rot = 3 3 2 3 3 
+Stand-ins Week 0
+5 2 5 4 3 
+Stand-ins Week 1
+3 3 4 2 0 
+Stand-ins Week 2
+3 4 6 2 5 
+Stand-ins Week 3
+4 4 4 4 3 
+Stand-ins Week 4
+4 4 4 4 3 
+demand_tot_cost = 0
+demand_lib_cost (too few or too many) = 200
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 2500
+no_weekend_cost = 0
+
+total_eval_cost = 2700
+total_stand_in_cost = -17
+*total_cost* = 2683
+Best solution so far is 2683
+
+
+
+***Best iteration number: 21***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 4 5 4 4 4 
+ass_per_rot = 3 2 3 3 3 
+Stand-ins Week 0
+4 4 4 4 3 
+Stand-ins Week 1
+3 4 2 0 0 
+Stand-ins Week 2
+3 3 5 2 6 
+Stand-ins Week 3
+4 4 6 0 2 
+Stand-ins Week 4
+4 4 6 4 3 
+demand_tot_cost = 550
+demand_lib_cost (too few or too many) = 600
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 1500
+no_weekend_cost = 0
+
+total_eval_cost = 2650
+total_stand_in_cost = -16
+*total_cost* = 2634
+Best solution so far is 2634
+
+
+
+***Best iteration number: 22***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 4 4 4 5 4 
+ass_per_rot = 3 3 3 2 3 
+Stand-ins Week 0
+3 4 3 1 4 
+Stand-ins Week 1
+2 4 6 2 0 
+Stand-ins Week 2
+4 3 4 4 4 
+Stand-ins Week 3
+8 4 7 4 3 
+Stand-ins Week 4
+1 4 5 1 6 
+demand_tot_cost = 0
+demand_lib_cost (too few or too many) = 600
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 1500
+no_weekend_cost = 0
+
+total_eval_cost = 2100
+total_stand_in_cost = -18
+*total_cost* = 2082
+Best solution so far is 2082
+
+
+
+***Best iteration number: 23***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 4 4 4 5 4 
+ass_per_rot = 3 3 3 2 3 
+Stand-ins Week 0
+4 4 4 2 4 
+Stand-ins Week 1
+2 3 6 2 0 
+Stand-ins Week 2
+4 3 6 3 4 
+Stand-ins Week 3
+7 5 9 4 3 
+Stand-ins Week 4
+3 4 4 2 6 
+demand_tot_cost = 0
+demand_lib_cost (too few or too many) = 200
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 1500
+no_weekend_cost = 0
+
+total_eval_cost = 1700
+total_stand_in_cost = -19
+*total_cost* = 1681
+Best solution so far is 1681
+
+
+
+***Best iteration number: 24***
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+lib_per_rot = 4 4 4 5 4 
+ass_per_rot = 3 3 3 2 3 
+Stand-ins Week 0
+4 4 5 2 4 
+Stand-ins Week 1
+2 3 5 2 0 
+Stand-ins Week 2
+4 3 7 3 4 
+Stand-ins Week 3
+7 5 8 4 3 
+Stand-ins Week 4
+3 4 4 2 6 
+demand_tot_cost = 0
+demand_lib_cost (too few or too many) = 0
+demand_ass_cost = 0
+demand_PL_cost = 0
+demand_HB_cost = 0
+demand_evening_cost = 0
+demand_weekend_cost = 0
+PL_amount_cost = 1500
+no_weekend_cost = 0
+
+total_eval_cost = 1500
+total_stand_in_cost = -19
+*total_cost* = 1481
+Best solution so far is 1481
+Found 24 new solutions during iteration
+Best solution found was: 1481

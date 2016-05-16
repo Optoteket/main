@@ -385,35 +385,35 @@ void Worker::calculate_week_cost(Block* blockobj, string type, int diff_in_deman
 	int total_cost = 0;
 	int PL_cost = 0;
 	int demand_cost = 0;
-	int stand_in_cost = 0;
+	int stand_in_cst = 0;
 	//Weekend specific costs
 	int num_wends_five_weeks_cost = 0; //add cost if weekend worker and not assigned any wend
-	int HB_assigned_cost = 0; //add cost if HB already assigned that weekend (rotation dependent)
+// 	int HB_assigned_cost = 0; //add cost if HB already assigned that weekend (rotation dependent)
 	
 	PL_cost = calculate_PL_cost(blockobj);
 	demand_cost = calculate_demand_cost(blockobj, type, diff_in_demand, assigned_libs, assigned_ass, count);
-	stand_in_cost = calculate_stand_in_cost(blockobj, type, count);
+	stand_in_cst = calculate_stand_in_cost(blockobj, type, count);
 	num_wends_five_weeks_cost = calculate_num_wends_cost(blockobj);
-	HB_assigned_cost = calculate_HB_assign_cost(blockobj, HB_asgn);
+// 	HB_assigned_cost = calculate_HB_assign_cost(blockobj, HB_asgn);
 	if(type == "weekrest"){
-		total_cost = PL_cost + demand_cost + stand_in_cost;
-// 		cout << "in weekrest, total_cost = " << total_cost << " PL_cost = " << PL_cost << " demand_cost = " << demand_cost << " stand_in_cost = " << stand_in_cost << endl;
+		total_cost = PL_cost + demand_cost + stand_in_cst;
+// 		cout << "in weekrest, total_cost = " << total_cost << " PL_cost = " << PL_cost << " demand_cost = " << demand_cost << " stand_in_cst = " << stand_in_cst << endl;
 // 		cout << "Total_cost: " << total_cost << endl;
 		Weekrest_cost weekrest_block;
 		weekrest_block.wrest_cost = total_cost;
 		weekrest_block.block = blockobj;
 		weekrest_cost_vector.push_back(weekrest_block);
 	} else if(type == "weekday"){
-		total_cost = PL_cost + demand_cost + stand_in_cost;
-// 		cout << "in weekday, total_cost = " << total_cost << " PL_cost = " << PL_cost << " demand_cost = " << demand_cost << " stand_in_cost = " << stand_in_cost << endl;
+		total_cost = PL_cost + demand_cost + stand_in_cst;
+// 		cout << "in weekday, total_cost = " << total_cost << " PL_cost = " << PL_cost << " demand_cost = " << demand_cost << " stand_in_cst = " << stand_in_cst << endl;
 // 		cout << "Total_cost: " << total_cost << endl;
 		Weekday_cost weekday_block;
 		weekday_block.wday_cost = total_cost;
 		weekday_block.block = blockobj;
 		weekday_cost_vector.push_back(weekday_block);
 	} else if(type == "weekend"){
-		total_cost = PL_cost + demand_cost + stand_in_cost + num_wends_five_weeks_cost + HB_assigned_cost;
-// 		cout << "in weekend, total_cost = " << total_cost << " PL_cost = " << PL_cost << " demand_cost = " << demand_cost << " stand_in_cost = " << stand_in_cost << " num_wends_five_weeks_cost = " << num_wends_five_weeks_cost << "HB_assigned_cost = " << HB_assigned_cost << endl;
+		total_cost = PL_cost + demand_cost + stand_in_cst + num_wends_five_weeks_cost;
+// 		cout << "in weekend, total_cost = " << total_cost << " PL_cost = " << PL_cost << " demand_cost = " << demand_cost << " stand_in_cst = " << stand_in_cst << " num_wends_five_weeks_cost = " << num_wends_five_weeks_cost << "HB_assigned_cost = " << HB_assigned_cost << endl;
 // 		cout << "Total_cost: " << total_cost << endl;
 		Weekend_cost weekend_block;
 		weekend_block.wend_cost = total_cost;
@@ -426,12 +426,25 @@ void Worker::calculate_week_cost(Block* blockobj, string type, int diff_in_deman
 int Worker::calculate_PL_cost(Block* block){
 	int temp_cost = 0;
 	//Assign cost if too many or too few PL are assigned to the worker
-	if(newPL.compare(0,11,"standard_PL") == 0 && num_PL+block->getnum_PL() > 2){ //getnum_PL <= 1
-		temp_cost += PL_VIOLATE_COST*block->getnum_PL();
-	}else if(newPL.compare(0,7,"many_PL") == 0 && num_PL+block->getnum_PL() > 4){ //getnum_PL <= 1
-		temp_cost += PL_VIOLATE_COST*block->getnum_PL();
-	}else if(newPL.compare(0,7,"many_PL") == 0 && num_PL+block->getnum_PL() < 2){ //getnum_PL <= 1
-		temp_cost -= PL_GOOD_COST*block->getnum_PL(); //Negative cost!
+	if(newPL.compare(0,11,"standard_PL") == 0){
+		if(block->getnum_PL() == 0 && num_PL+block->getnum_PL() >= UPPER_LIMIT_STANDARD){ //getnum_PL <= 1, upper=3 atm
+			//0 addition!
+		} else if(block->getnum_PL() == 1 && num_PL+block->getnum_PL() >= UPPER_LIMIT_STANDARD){ //getnum_PL <= 1, upper=3 atm
+			temp_cost += PL_VIOLATE_COST*block->getnum_PL(); //Positive cost!
+		}
+	}
+	if(newPL.compare(0,7,"many_PL") == 0){
+		if(block->getnum_PL() == 0 && num_PL+block->getnum_PL() < LOWER_LIMIT_MANY){ //getnum_PL <= 1 , lower=1 atm
+			//0 addition!
+		}else if(block->getnum_PL() == 1 && num_PL+block->getnum_PL() < LOWER_LIMIT_MANY){ //getnum_PL <= 1 , lower=1 atm
+			temp_cost -= PL_GOOD_COST*block->getnum_PL(); //Negative cost!
+		}
+		
+		if(block->getnum_PL() == 0 && num_PL+block->getnum_PL() >= UPPER_LIMIT_MANY){ //getnum_PL <= 1, upper=3 atm
+			//0 addition!
+		} else if(block->getnum_PL() == 1 && num_PL+block->getnum_PL() >= UPPER_LIMIT_MANY){ //getnum_PL <= 1, upper=3 atm
+			temp_cost += PL_VIOLATE_COST*block->getnum_PL(); //Positive cost!
+		}
 	}
 // 	if(temp_cost != 0){cout << "in calculate_PL_cost. Temp_cost is: " << temp_cost << endl;}
 	return temp_cost;
@@ -468,9 +481,6 @@ int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[
 						else{temp_cost += calc_temp_cost(2,2,w,d,s,assigned_libs,assigned_ass);}
 						//Costs for TOO MANY WORKERS
 						temp_cost += DEMAND_MANY_TOT; //*(assigned_libs[w][d][s][1]+assigned_ass[w][d][s][1]+1-4);
-						if(s == 3 && d != 4){ //Fridays excluded in the evening cost
-							temp_cost += DEMAND_EVENING_COST; //More priority on evenings
-						}
 					}
 					else{ //regular demand all other shifts
 						temp_cost += calc_temp_cost(3,3,w,d,s,assigned_libs,assigned_ass);
@@ -544,17 +554,17 @@ int Worker::calculate_stand_in_cost(Block* block, string type, int count){
 	for(int d=0; d<NUM_DAYS-2; d++){
 		if(type == "weekday"){
 			//Assign cost if 'ruining' a stand-in
-			if(block->not_assigned(d) == 0 && stand_in_avail[1+count][d] == 1){ //week == 2,3 and 4 means weekday week
+			if(block->task_assigned_day(d) == 1 && stand_in_avail[1+count][d] == 1){ //week == 2,3 and 4 means weekday week
 				temp_cost += STAND_IN_COST;
 			}
 		} else if(type == "weekrest"){
 			//Assign cost if 'ruining' a stand-in
-			if(block->not_assigned(d) == 0 && stand_in_avail[1][d] == 1){ //week == 1 means weekrest week
+			if(block->task_assigned_day(d) == 1 && stand_in_avail[1][d] == 1){ //week == 1 means weekrest week
 				temp_cost += STAND_IN_COST;
 			}
 		} else if(type == "weekend"){
 			//Assign cost if 'ruining' a stand-in
-			if(block->not_assigned(d) == 0 && stand_in_avail[0][d] == 1){ //week == 0 means weekend week
+			if(block->task_assigned_day(d) == 1 && stand_in_avail[0][d] == 1){ //week == 0 means weekend week
 				temp_cost += STAND_IN_COST;
 			}
 		}
@@ -576,21 +586,21 @@ int Worker::calculate_num_wends_cost(Block* block){ //Add a cost to first block 
 	return temp_cost;
 }
 
-int Worker::calculate_HB_assign_cost(Block* block, int HB_assigned[5]){ //add cost if avail for HB and is weekend worker for blocks with HB. Add negative otherwise
-	int cost = 0;
-	if(newQual.compare(0,3,"lib") == 0 && newWeekend.compare(0,7,"weekend") == 0 && (newHB.compare(0,11,"standard_HB") == 0 || newHB.compare(0,7,"only_HB") == 0) ){
-		if(block->getTask(5,0,3) == 1 && block->getTask(6,0,3) == 1){ //checking if HB assigned to block
-			if(HB_assigned[newWeekend_week] == 1){
-				//Add cost if librarian, weekend worker, available for HB and HB already assigned that week.
-				cost += HB_ASSIGNED_COST;
-			}else if(HB_assigned[newWeekend_week] == 0){
-				cost -= HB_ASSIGNED_COST;
-			}
-		}
-	}
-// 	if(cost != 0){cout << "in calculate_HB_assign_cost. cost is: " << cost << endl;}
-	return cost;
-}
+// int Worker::calculate_HB_assign_cost(Block* block, int HB_assigned[5]){ //add cost if avail for HB and is weekend worker for blocks with HB. Add negative otherwise
+// 	int cost = 0;
+// 	if(newQual.compare(0,3,"lib") == 0 && newWeekend.compare(0,7,"weekend") == 0 && (newHB.compare(0,11,"standard_HB") == 0 || newHB.compare(0,7,"only_HB") == 0) ){
+// 		if(block->getTask(5,0,3) == 1 && block->getTask(6,0,3) == 1){ //checking if HB assigned to block
+// 			if(HB_assigned[newWeekend_week] == 1){
+// 				//Add cost if librarian, weekend worker, available for HB and HB already assigned that week.
+// 				cost += HB_ASSIGNED_COST;
+// 			}else if(HB_assigned[newWeekend_week] == 0){
+// 				cost -= HB_ASSIGNED_COST;
+// 			}
+// 		}
+// 	}
+// // 	if(cost != 0){cout << "in calculate_HB_assign_cost. cost is: " << cost << endl;}
+// 	return cost;
+// }
 
 void Worker::clear_blocks(){ //Assign five empty blocks to worker
 	add_block_to_worker("weekend",0);
