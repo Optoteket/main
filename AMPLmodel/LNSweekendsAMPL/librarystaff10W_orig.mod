@@ -108,7 +108,8 @@ subject to task_assign_amount_library_on_wheels{w in W, d in 1..5 ,s in S[d]}:
 ######################## Maximum 4 shifts per week #########################################
 
 subject to max_four_shifts_per_week{i in I diff {36}, w in W}:
-	sum{d in 1..5}(sum{s in S[d]}(sum{j in J[d]} x[i,w,d,s,j])) <= 4;
+#MODIFIED
+	sum{d in 1..5}(sum{s in S[d]}(sum{j in J[d]} x[i,w,d,s,j])) <= 5;
 
 ######################## Big meeting constraints #########################################
 # Big meeting constraints

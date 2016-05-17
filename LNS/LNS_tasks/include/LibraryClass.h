@@ -37,7 +37,7 @@ class Library{
   // Worker vectors
   vector<Worker> worker_list;
   vector<Worker*> weekend_workers;
-  vector<Worker> orig_solution;
+  vector<Worker> orig_workers;
   vector<Worker> best_sol_workers;
 
   //Destroyed workers
@@ -50,6 +50,7 @@ class Library{
   int worker_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
   int current_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
   int temp_current_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
+  int orig_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
 
   //Avail statistics
   int num_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
@@ -67,10 +68,10 @@ class Library{
   //Num full time equivalents
   double num_avail_workers_average[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS];
 
-  double library_temp_cost;
   double library_max_cost;
   double library_cost;
-  int temp_library_cost;
+  double temp_library_cost;
+  double orig_library_cost;
 
   int avail_day_cost; //Maximize in objective function
   int min_avail_day[NUM_POSITIONS];
@@ -79,6 +80,10 @@ class Library{
   int avail_contribution_cost;
   double min_contribution[NUM_POSITIONS];
   int temp_avail_contribution_cost;
+
+  int num_avail_cost;
+  double min_num_avail[NUM_POSITIONS];
+  //int temp_avail_contribution_cost;
 
   int avail_cost;
   int temp_avail_cost;
@@ -92,7 +97,10 @@ class Library{
   void optimize_weekends(int,int, double[3]);
 
   //Stand in avail
+  void remove_weekday_tasks();
+  bool set_evening_tasks();
   void set_library_cost(string, double[3]);
+  void set_num_avail_cost();
   void set_avail_contribution_cost(string);
   void set_avail_day_cost(string);
   void set_avail_cost(string);

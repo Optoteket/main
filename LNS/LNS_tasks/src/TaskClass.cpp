@@ -46,6 +46,15 @@ void Task::set_placed_workers(TaskWorker* worker){
   placed_workers.push_back(worker);
 }
 
+bool Task::check_feasibility(){
+  for(int i=0; i < (int) placed_workers.size(); i++){
+    //If there are several tasks placed the same day, the schedule is infeasible
+    if(placed_workers[i]->temp_cost >= 100)
+      return false;
+  } 
+  return true;
+}
+
 
 /*********** Get functions *********/
 
