@@ -25,6 +25,7 @@ class SingleTask : public Task {
   virtual void set_costs();
   virtual void print_worker_costs();
   void place_a_worker(Worker*);
+  virtual bool check_feasibility();
 
   int get_day() const;
   int get_shift() const; 

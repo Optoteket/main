@@ -80,21 +80,24 @@ int main(int argc, char** argv)
   //Timer start
   clock_t begin = clock();
 
-  //Weekend statistics
+  //Weekend statistics variables and files
   vector<int> min_ass;
   vector<int> min_lib;
   int infeasible_count = 0;
   string wend_AMPL_file_path = "../target/statistics/weekend_AMPL_data.csv";
   ofstream wend_AMPL_file(wend_AMPL_file_path.c_str());
 
+  //Random seeding
   srand (unsigned (time(0)));
-  //1. Create time and date stamp
+
+  //Create time and date stamp for files
   date << timedate->tm_year + 1900 << "_" 
        << timedate->tm_mon+1 << "_" << timedate->tm_mday << " " 
        << timedate->tm_hour << ":" << timedate->tm_min+1 << ":" 
        << timedate->tm_sec+1;
   log_file_path << log_file_dir << "logfile" << ".dat"; 
 
+  //Logfile header
   ofstream log_file (log_file_path.str().c_str());
   if (log_file.is_open())
   {
@@ -104,12 +107,12 @@ int main(int argc, char** argv)
   }
   else cout << "Unable to open file";
 
+  //Std err to logfile
   freopen(log_file_path.str().c_str(), "a", stderr);
 
   //Create result file
   res_file_path << res_file_dir << "resfile" << ".dat"; 
   ofstream res_file (res_file_path.str().c_str());
-  //res_file.open(res_file_path.str().c_str());
   
   if(res_file.is_open())
     {
@@ -119,54 +122,79 @@ int main(int argc, char** argv)
 
   min_ass.clear();
   min_lib.clear();
-  int max_loops = 1;
+  int max_loops = 80;
+  int num_tests = 6;
   double weights[3];
 
+  //AMPL loop
+  for(int loop=0; loop < max_loops*num_tests; loop++){
 
-  for(int loop=0; loop < max_loops; loop++){
-    if(loop < 80){
-      weights[0]=10;
-      weights[1]=10;
-      weights[2]=weights[1]/10.0;
+    //1. Setting and normalizing weights for weekend objective function
+    if(loop < max_loops){
+      weights[0]=10; //Min number of full time avail workers/day
+      weights[1]=10; //Min number of avail workers per shift
+      weights[2]=10; //Min number of avail workers a day
+
+      //Normalizing
       double sum =  weights[0] +  weights[1] +  weights[2];
       weights[0]/=sum;
       weights[1]/=sum;
       weights[2]/=sum;
     }
-    else if(loop < 80){
-      weights[0]=10;
-      weights[1]=40;
-      weights[2]=0;
+    else if(loop < max_loops*2){
+      weights[0]=0; //Min number of full time avail workers/day
+      weights[1]=0; //Min number of avail workers per shift
+      weights[2]=0; //Min number of avail workers a day
+
+      //Normalizing
+      double sum =  weights[0] +  weights[1] +  weights[2] + 0.01;
+      weights[0]/=sum;
+      weights[1]/=sum;
+      weights[2]/=sum;
     }
-    else if(loop < 120){
-      weights[0]=10;
-      weights[1]=10;
-      weights[2]=0;
+    else if(loop < max_loops*3){
+      weights[0]=5; //Min number of full time avail workers/day
+      weights[1]=10; //Min number of avail workers per shift
+      weights[2]=10; //Min number of avail workers a day
+
+      //Normalizing
+      double sum =  weights[0] +  weights[1] +  weights[2];
+      weights[0]/=sum;
+      weights[1]/=sum;
+      weights[2]/=sum;
     }
-    else if(loop < 160){
-      weights[0]=10;
-      weights[1]=5;
-      weights[2]=5;
+    else if(loop < max_loops*4){
+      weights[0]=10; //Min number of full time avail workers/day
+      weights[1]=5; //Min number of avail workers per shift
+      weights[2]=10; //Min number of avail workers a day
+
+      //Normalizing
+      double sum =  weights[0] +  weights[1] +  weights[2];
+      weights[0]/=sum;
+      weights[1]/=sum;
+      weights[2]/=sum;
     }
-   else if(loop < 200){
-      weights[0]=10;
-      weights[1]=0;
-      weights[2]=2;
-   }
-    else if(loop < 240){
-      weights[0]=10;
-      weights[1]=0;
-      weights[2]=5;
+    else if(loop < max_loops*5){
+      weights[0]=10; //Min number of full time avail workers/day
+      weights[1]=10; //Min number of avail workers per shift
+      weights[2]=5; //Min number of avail workers a day
+
+      //Normalizing
+      double sum =  weights[0] +  weights[1] +  weights[2];
+      weights[0]/=sum;
+      weights[1]/=sum;
+      weights[2]/=sum;
     }
-    else if(loop < 280){
-      weights[0]=10;
-      weights[1]=0;
-      weights[2]=10;
-    }
-    else if(loop < 320){
-      weights[0]=10;
-      weights[1]=10;
-      weights[2]=10;
+    else if(loop < max_loops*6){
+      weights[0]=10; //Min number of full time avail workers/day
+      weights[1]=5; //Min number of avail workers per shift
+      weights[2]=5; //Min number of avail workers a day
+
+      //Normalizing
+      double sum =  weights[0] +  weights[1] +  weights[2];
+      weights[0]/=sum;
+      weights[1]/=sum;
+      weights[2]/=sum;
     }
 
     //2. Create library
@@ -176,20 +204,22 @@ int main(int argc, char** argv)
     library.create_initial_solution();
 
     //4. Optimize weekends, input: num iterations, destroy percentage
-    library.optimize_weekends(1, 20, weights);
+    library.optimize_weekends(5000, 20, weights);
     
-    //Write results to resfile
+    //5. Write results to resfile
     library.write_results();
 
-    //Write weekends to AMPL format and run
-    //library.write_weekend_AMPL_data();
+    //6. Write weekends to AMPL format and run
+    library.write_weekend_AMPL_data();
     log_file.close();
-    //system("../../../AMPLmodel/LNSweekendsAMPL/launchAMPL.sh");
-    //collect_AMPL_statistics(&infeasible_count, min_lib, min_ass);
+    system("../../../AMPLmodel/LNSweekendsAMPL/launchAMPL.sh");
+    collect_AMPL_statistics(&infeasible_count, min_lib, min_ass);
 
-    if(loop == 39 || loop == 79 || loop == 119 || loop == 159 || loop == 199 || loop == 239 || loop == 279 || loop == 319){
+    //7. Write AMPL statistics
+    if(loop == max_loops-1 || loop == 2*max_loops-1 || loop == 3*max_loops-1 || loop == 4*max_loops-1 || loop == 5*max_loops-1 || loop == 6*max_loops-1){
       //Print costs to file
       double tot_cost = 0.0;
+      wend_AMPL_file  << date.str().c_str() << endl;
       wend_AMPL_file  << "With weights: " <<  weights[0] << ", "<<  weights[1] << ", "<<  weights[2] << endl;
       cout << "Number of infeasible solutions: " << infeasible_count << endl;
       wend_AMPL_file  << "Number of infeasible solutions:" << infeasible_count << endl;

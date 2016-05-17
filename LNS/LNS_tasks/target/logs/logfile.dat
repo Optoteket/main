@@ -1,4 +1,6261 @@
-2016_5_12 14:37:59
+2016_5_17 16:47:39
 The logs are:
-avail_day_cost: 30
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 31.7242
+************ Saved best solution: 31.7242
+Min avail day ass: 6 Min avail day lib: 8 Min avail ass: 9 Min avail lib: 12
+Library max cost: 31.7242 Library current cost: 31.7242
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.7242
+************* Solution accepted ************
+library_cost: 31.7242
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.7242
+************* Solution accepted ************
+library_cost: 32.0575
+************ Saved best solution: 32.0575
+Min avail day ass: 5 Min avail day lib: 8 Min avail ass: 10 Min avail lib: 12
+Library max cost: 32.0575 Library current cost: 32.0575
+avail_day_cost: 21
 avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.0575
+avail_day_cost: 21
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 32.0575
+avail_day_cost: 19
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.0575
+************* Solution accepted ************
+library_cost: 32.0575
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.0575
+************* Solution accepted ************
+library_cost: 32.0575
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.0575
+************* Solution accepted ************
+library_cost: 32.0575
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.0575
+avail_day_cost: 21
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 32.0575
+************* Solution accepted ************
+library_cost: 32.0575
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.0575
+************* Solution accepted ************
+library_cost: 32.3909
+************ Saved best solution: 32.3909
+Min avail day ass: 4 Min avail day lib: 9 Min avail ass: 10 Min avail lib: 12
+Library max cost: 32.3909 Library current cost: 32.3909
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.3909
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.3909
+************* Solution accepted ************
+library_cost: 32.7242
+************ Saved best solution: 32.7242
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 10 Min avail lib: 12
+Library max cost: 32.7242 Library current cost: 32.7242
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.7242
+Iteration: 13 T:0.411741 Cost diff:0.333333 Exponential cooling:0.445049 Random val: 0.17 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 32.3909
+************* Solution accepted ************
+library_cost: 32.3909
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.3909
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.3909
+************* Solution accepted ************
+library_cost: 32.3909
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.3909
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 32.3909
+************* Solution accepted ************
+library_cost: 33.058
+************ Saved best solution: 33.058
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 8 Min avail lib: 13
+Library max cost: 33.058 Library current cost: 33.058
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.058
+Iteration: 18 T:0.335722 Cost diff:0.000502513 Exponential cooling:0.998504 Random val: 0.05 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 33.0575
+************* Solution accepted ************
+library_cost: 33.0575
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0575
+************* Solution accepted ************
+library_cost: 33.0575
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0575
+************* Solution accepted ************
+library_cost: 33.0575
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0575
+************* Solution accepted ************
+library_cost: 33.0575
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0575
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0575
+************* Solution accepted ************
+library_cost: 33.0575
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0575
+************* Solution accepted ************
+library_cost: 33.0575
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0575
+************* Solution accepted ************
+library_cost: 33.0575
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0575
+************* Solution accepted ************
+library_cost: 33.0575
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0575
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0575
+Iteration: 28 T:0.223199 Cost diff:0.333333 Exponential cooling:0.2246 Random val: 0.19 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 32.7242
+************* Solution accepted ************
+library_cost: 32.7242
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.7242
+************* Solution accepted ************
+library_cost: 33.0575
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0575
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0575
+Iteration: 31 T:0.197472 Cost diff:0.000502513 Exponential cooling:0.997459 Random val: 0.8 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 33.057
+************* Solution accepted ************
+library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+************* Solution accepted ************
+library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+************* Solution accepted ************
+library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+************* Solution accepted ************
+library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Iteration: 37 T:0.154573 Cost diff:0.000834171 Exponential cooling:0.994618 Random val: 0.22 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 33.0562
+************* Solution accepted ************
+library_cost: 33.0562
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0562
+************* Solution accepted ************
+library_cost: 33.0562
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0562
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0562
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0562
+************* Solution accepted ************
+library_cost: 33.0562
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0562
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0562
+************* Solution accepted ************
+library_cost: 33.0562
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0562
+************* Solution accepted ************
+library_cost: 33.0562
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0562
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 33.0562
+avail_day_cost: 21
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 33.0562
+************* Solution accepted ************
+library_cost: 33.0562
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0562
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0562
+************* Solution accepted ************
+library_cost: 33.0565
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0565
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0565
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0565
+************* Solution accepted ************
+library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+************* Solution accepted ************
+library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+************* Solution accepted ************
+library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+************* Solution accepted ************
+library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+************* Solution accepted ************
+library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+avail_day_cost: 22
+avail_cost: 30
+num_avail_cost: 30
+Perm library_cost: 33.057
+************* Solution accepted ************
+library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+************* Solution accepted ************
+library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+************* Solution accepted ************
+library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 33.057
+************* Solution accepted ************
+library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+************* Solution accepted ************
+library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+************* Solution accepted ************
+library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+************* Solution accepted ************
+library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+************* Solution accepted ************
+library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+************* Solution accepted ************
+library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+************* Solution accepted ************
+library_cost: 33.057
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.057
+************* Solution accepted ************
+library_cost: 33.0575
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0575
+************* Solution accepted ************
+library_cost: 33.0575
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0575
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0575
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0575
+************* Solution accepted ************
+library_cost: 33.0582
+************ Saved best solution: 33.0582
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 6 Min avail lib: 14
+Library max cost: 33.0582 Library current cost: 33.0582
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0582
+************* Solution accepted ************
+library_cost: 33.0587
+************ Saved best solution: 33.0587
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 6 Min avail lib: 14
+Library max cost: 33.0587 Library current cost: 33.0587
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0587
+Iteration: 85 T:0.0217848 Cost diff:0.000502513 Exponential cooling:0.977197 Random val: 0.09 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 33.0582
+************* Solution accepted ************
+library_cost: 33.0582
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0582
+************* Solution accepted ************
+library_cost: 33.392
+************ Saved best solution: 33.392
+Min avail day ass: 4 Min avail day lib: 10 Min avail ass: 8 Min avail lib: 13
+Library max cost: 33.392 Library current cost: 33.392
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.392
+************* Solution accepted ************
+library_cost: 33.392
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.392
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.392
+Iteration: 89 T:0.0185028 Cost diff:0.00116918 Exponential cooling:0.938766 Random val: 0.78 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 33.3909
+************* Solution accepted ************
+library_cost: 33.3909
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.3909
+************* Solution accepted ************
+library_cost: 33.3909
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.3909
+************* Solution accepted ************
+library_cost: 33.3909
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.3909
+avail_day_cost: 20
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 33.3909
+************* Solution accepted ************
+library_cost: 33.3909
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.3909
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.3909
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.3909
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.3909
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.3909
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.3909
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.3909
+ILOG AMPL 10.000, licensed to "university-linkoping".
+AMPL Version 20051214 (Linux 2.6.9-5.ELsmp)
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+************* Solution accepted ************
+library_cost: 30.3899
+************ Saved best solution: 30.3899
+Min avail day ass: 4 Min avail day lib: 7 Min avail ass: 9 Min avail lib: 12
+Library max cost: 30.3899 Library current cost: 30.3899
+avail_day_cost: 18
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 30.3899
+************* Solution accepted ************
+library_cost: 31.0565
+************ Saved best solution: 31.0565
+Min avail day ass: 4 Min avail day lib: 8 Min avail ass: 9 Min avail lib: 12
+Library max cost: 31.0565 Library current cost: 31.0565
+avail_day_cost: 20
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.0565
+avail_day_cost: 18
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 31.0565
+************* Solution accepted ************
+library_cost: 31.7232
+************ Saved best solution: 31.7232
+Min avail day ass: 4 Min avail day lib: 8 Min avail ass: 8 Min avail lib: 13
+Library max cost: 31.7232 Library current cost: 31.7232
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7232
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+************* Solution accepted ************
+library_cost: 32.3909
+************ Saved best solution: 32.3909
+Min avail day ass: 5 Min avail day lib: 8 Min avail ass: 8 Min avail lib: 13
+Library max cost: 32.3909 Library current cost: 32.3909
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.3909
+************* Solution accepted ************
+library_cost: 32.3909
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.3909
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.3909
+************* Solution accepted ************
+library_cost: 32.3909
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.3909
+************* Solution accepted ************
+library_cost: 32.7242
+************ Saved best solution: 32.7242
+Min avail day ass: 6 Min avail day lib: 8 Min avail ass: 8 Min avail lib: 13
+Library max cost: 32.7242 Library current cost: 32.7242
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.7242
+Iteration: 9 T:0.484774 Cost diff:0.000502513 Exponential cooling:0.998964 Random val: 0.18 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 32.7237
+************* Solution accepted ************
+library_cost: 32.7237
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.7237
+************* Solution accepted ************
+library_cost: 32.7237
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.7237
+Iteration: 11 T:0.446768 Cost diff:0.666164 Exponential cooling:0.22513 Random val: 0.15 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 32.0575
+************* Solution accepted ************
+library_cost: 32.0575
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.0575
+************* Solution accepted ************
+library_cost: 32.0575
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.0575
+************* Solution accepted ************
+library_cost: 32.7242
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.7242
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.7242
+Iteration: 15 T:0.37946 Cost diff:0.333333 Exponential cooling:0.41543 Random val: 0.37 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 32.3909
+************* Solution accepted ************
+library_cost: 32.3909
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.3909
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.3909
+************* Solution accepted ************
+library_cost: 32.3909
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.3909
+************* Solution accepted ************
+library_cost: 32.7247
+************ Saved best solution: 32.7247
+Min avail day ass: 5 Min avail day lib: 8 Min avail ass: 8 Min avail lib: 13
+Library max cost: 32.7247 Library current cost: 32.7247
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.7247
+************* Solution accepted ************
+library_cost: 33.0587
+************ Saved best solution: 33.0587
+Min avail day ass: 6 Min avail day lib: 8 Min avail ass: 8 Min avail lib: 13
+Library max cost: 33.0587 Library current cost: 33.0587
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0587
+************* Solution accepted ************
+library_cost: 33.0587
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0587
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0587
+************* Solution accepted ************
+library_cost: 33.392
+************ Saved best solution: 33.392
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 8 Min avail lib: 13
+Library max cost: 33.392 Library current cost: 33.392
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.392
+************* Solution accepted ************
+library_cost: 33.392
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.392
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.392
+avail_day_cost: 21
+avail_cost: 36
+num_avail_cost: 36
+Perm library_cost: 33.392
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.392
+avail_day_cost: 21
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 33.392
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.392
+************* Solution accepted ************
+library_cost: 33.392
+avail_day_cost: 21
+avail_cost: 36
+num_avail_cost: 36
+Perm library_cost: 33.392
+avail_day_cost: 21
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.392
+************* Solution accepted ************
+library_cost: 33.392
+avail_day_cost: 21
+avail_cost: 36
+num_avail_cost: 36
+Perm library_cost: 33.392
+avail_day_cost: 21
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.392
+Iteration: 33 T:0.181991 Cost diff:0.333832 Exponential cooling:0.159719 Random val: 0.02 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 33.0582
+************* Solution accepted ************
+library_cost: 33.0582
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0582
+Iteration: 34 T:0.174711 Cost diff:0.000666667 Exponential cooling:0.996191 Random val: 0.01 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 33.0575
+************* Solution accepted ************
+library_cost: 33.0575
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0575
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0575
+************* Solution accepted ************
+library_cost: 33.0575
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0575
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 33.0575
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 33.0575
+************* Solution accepted ************
+library_cost: 33.3904
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.3904
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 33.3904
+************* Solution accepted ************
+library_cost: 33.3904
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.3904
+************* Solution accepted ************
+library_cost: 33.3904
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.3904
+avail_day_cost: 22
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.3904
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.3904
+************* Solution accepted ************
+library_cost: 33.3904
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.3904
+************* Solution accepted ************
+library_cost: 33.3904
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.3904
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.3904
+************* Solution accepted ************
+library_cost: 33.3904
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.3904
+************* Solution accepted ************
+library_cost: 33.3904
+avail_day_cost: 22
+avail_cost: 36
+num_avail_cost: 36
+Perm library_cost: 33.3904
+************* Solution accepted ************
+library_cost: 33.3904
+avail_day_cost: 22
+avail_cost: 36
+num_avail_cost: 36
+Perm library_cost: 33.3904
+avail_day_cost: 20
+avail_cost: 36
+num_avail_cost: 36
+Perm library_cost: 33.3904
+************* Solution accepted ************
+library_cost: 33.3904
+avail_day_cost: 22
+avail_cost: 36
+num_avail_cost: 36
+Perm library_cost: 33.3904
+avail_day_cost: 22
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.3904
+************* Solution accepted ************
+library_cost: 33.7237
+************ Saved best solution: 33.7237
+Min avail day ass: 4 Min avail day lib: 10 Min avail ass: 9 Min avail lib: 13
+Library max cost: 33.7237 Library current cost: 33.7237
+avail_day_cost: 24
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7237
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.7237
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.7237
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7237
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.7237
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7237
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.7237
+avail_day_cost: 24
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 33.7237
+Iteration: 62 T:0.0557076 Cost diff:0.000502513 Exponential cooling:0.99102 Random val: 0.62 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 33.7232
+************* Solution accepted ************
+library_cost: 33.7232
+avail_day_cost: 24
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+************* Solution accepted ************
+library_cost: 33.7232
+avail_day_cost: 24
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+************* Solution accepted ************
+library_cost: 33.7232
+avail_day_cost: 24
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+avail_day_cost: 22
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 33.7232
+avail_day_cost: 24
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 33.7232
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.7232
+************* Solution accepted ************
+library_cost: 33.7232
+avail_day_cost: 24
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+************* Solution accepted ************
+library_cost: 33.7232
+avail_day_cost: 24
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+************* Solution accepted ************
+library_cost: 33.7232
+avail_day_cost: 24
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.7232
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 24
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.7232
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.7232
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+avail_day_cost: 22
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.7232
+avail_day_cost: 24
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.7232
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.7232
+avail_day_cost: 24
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 33.7232
+avail_day_cost: 24
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 33.7232
+avail_day_cost: 22
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+avail_day_cost: 22
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+************* Solution accepted ************
+library_cost: 33.7232
+avail_day_cost: 24
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+************* Solution accepted ************
+library_cost: 33.7232
+avail_day_cost: 24
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+avail_day_cost: 22
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+************* Solution accepted ************
+library_cost: 33.7232
+avail_day_cost: 24
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+avail_day_cost: 22
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+************* Solution accepted ************
+library_cost: 33.7232
+avail_day_cost: 24
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+avail_day_cost: 22
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.7232
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.7232
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+avail_day_cost: 22
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+************* Solution accepted ************
+library_cost: 33.7232
+avail_day_cost: 24
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+avail_day_cost: 22
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+************* Solution accepted ************
+library_cost: 33.7232
+avail_day_cost: 24
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 33.7232
+ILOG AMPL 10.000, licensed to "university-linkoping".
+AMPL Version 20051214 (Linux 2.6.9-5.ELsmp)
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 31
+num_avail_cost: 31
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at Lib. Week: 2. Day 3. Shift 3 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 19
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 0
+Solution not accepted at Lib. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Lib. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Lib. Week: 4. Day 3. Shift 3 .
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 24
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 31
+num_avail_cost: 31
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+ILOG AMPL 10.000, licensed to "university-linkoping".
+AMPL Version 20051214 (Linux 2.6.9-5.ELsmp)
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 19
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+Solution not accepted at Lib. Week: 0. Day 3. Shift 3 .
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+Solution not accepted at Ass. Week: 2. Day 3. Shift 3 .
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+************* Solution accepted ************
+library_cost: 0
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 0
+ILOG AMPL 10.000, licensed to "university-linkoping".
+AMPL Version 20051214 (Linux 2.6.9-5.ELsmp)
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+************* Solution accepted ************
+library_cost: 34.4783
+************ Saved best solution: 34.4783
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 8 Min avail lib: 13
+Library max cost: 34.4783 Library current cost: 34.4783
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.4783
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 34.4783
+************* Solution accepted ************
+library_cost: 34.4783
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.4783
+Iteration: 3 T:0.619315 Cost diff:0.59976 Exponential cooling:0.379681 Random val: 0.12 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 33.8785
+************* Solution accepted ************
+library_cost: 33.8785
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.8785
+************* Solution accepted ************
+library_cost: 34.0784
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.0784
+************* Solution accepted ************
+library_cost: 34.0784
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.0784
+************* Solution accepted ************
+library_cost: 34.0784
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.0784
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.0784
+************* Solution accepted ************
+library_cost: 34.0784
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.0784
+************* Solution accepted ************
+library_cost: 34.0784
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.0784
+************* Solution accepted ************
+library_cost: 34.4783
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.4783
+************* Solution accepted ************
+library_cost: 34.4783
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.4783
+************* Solution accepted ************
+library_cost: 34.4783
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.4783
+************* Solution accepted ************
+library_cost: 34.4783
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.4783
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.4783
+************* Solution accepted ************
+library_cost: 34.4793
+************ Saved best solution: 34.4793
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 8 Min avail lib: 13
+Library max cost: 34.4793 Library current cost: 34.4793
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.4793
+************* Solution accepted ************
+library_cost: 34.4793
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.4793
+************* Solution accepted ************
+library_cost: 34.4793
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.4793
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 34.4793
+************* Solution accepted ************
+library_cost: 34.4793
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.4793
+************* Solution accepted ************
+library_cost: 34.4793
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.4793
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 34.4793
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+************* Solution accepted ************
+library_cost: 34.8801
+************ Saved best solution: 34.8801
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 8 Min avail lib: 13
+Library max cost: 34.8801 Library current cost: 34.8801
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.8801
+************* Solution accepted ************
+library_cost: 34.8801
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.8801
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 34.8801
+************* Solution accepted ************
+library_cost: 34.8801
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.8801
+Iteration: 26 T:0.242187 Cost diff:0.00100261 Exponential cooling:0.995869 Random val: 0.06 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 34.8791
+************* Solution accepted ************
+library_cost: 34.8791
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.8791
+************* Solution accepted ************
+library_cost: 34.8791
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.8791
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 34.8791
+************* Solution accepted ************
+library_cost: 34.8791
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.8791
+************* Solution accepted ************
+library_cost: 34.8791
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.8791
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Iteration: 31 T:0.197472 Cost diff:0.200923 Exponential cooling:0.361508 Random val: 0.1 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 34.6782
+************* Solution accepted ************
+library_cost: 34.6782
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6782
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 34.6782
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6782
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 19
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6782
+************* Solution accepted ************
+library_cost: 34.6782
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6782
+************* Solution accepted ************
+library_cost: 34.8781
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.8781
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.8781
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.8781
+************* Solution accepted ************
+library_cost: 34.8781
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.8781
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.8781
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.8781
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 34.8781
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 34.8781
+************* Solution accepted ************
+library_cost: 34.8781
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.8781
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.8781
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 34.8781
+************* Solution accepted ************
+library_cost: 35.078
+************ Saved best solution: 35.078
+Min avail day ass: 6 Min avail day lib: 9 Min avail ass: 8 Min avail lib: 13
+Library max cost: 35.078 Library current cost: 35.078
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.078
+************* Solution accepted ************
+library_cost: 35.078
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.078
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.078
+************* Solution accepted ************
+library_cost: 35.078
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.078
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.078
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.078
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.078
+************* Solution accepted ************
+library_cost: 35.078
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.078
+Solution not accepted at Lib. Week: 3. Day 3. Shift 3 .
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.078
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.078
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.078
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.078
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.078
+************* Solution accepted ************
+library_cost: 35.078
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.078
+************* Solution accepted ************
+library_cost: 35.079
+************ Saved best solution: 35.079
+Min avail day ass: 6 Min avail day lib: 9 Min avail ass: 8 Min avail lib: 13
+Library max cost: 35.079 Library current cost: 35.079
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+************* Solution accepted ************
+library_cost: 35.079
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+************* Solution accepted ************
+library_cost: 35.079
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+************* Solution accepted ************
+library_cost: 35.079
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+avail_day_cost: 24
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 35.079
+************* Solution accepted ************
+library_cost: 35.079
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+************* Solution accepted ************
+library_cost: 35.079
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+Solution not accepted at Lib. Week: 3. Day 3. Shift 3 .
+Solution not accepted at Lib. Week: 3. Day 3. Shift 3 .
+Solution not accepted at Lib. Week: 3. Day 3. Shift 3 .
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+************* Solution accepted ************
+library_cost: 35.079
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+************* Solution accepted ************
+library_cost: 35.079
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+Solution not accepted at Lib. Week: 3. Day 3. Shift 3 .
+Solution not accepted at Lib. Week: 3. Day 3. Shift 3 .
+Solution not accepted at Lib. Week: 3. Day 3. Shift 3 .
+Solution not accepted at Lib. Week: 3. Day 3. Shift 3 .
+Solution not accepted at Lib. Week: 3. Day 3. Shift 3 .
+Solution not accepted at Lib. Week: 3. Day 3. Shift 3 .
+Solution not accepted at Lib. Week: 3. Day 3. Shift 3 .
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+************* Solution accepted ************
+library_cost: 35.079
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+************* Solution accepted ************
+library_cost: 35.079
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+************* Solution accepted ************
+library_cost: 35.079
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.079
+************* Solution accepted ************
+library_cost: 35.08
+************ Saved best solution: 35.08
+Min avail day ass: 6 Min avail day lib: 9 Min avail ass: 8 Min avail lib: 13
+Library max cost: 35.08 Library current cost: 35.08
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.08
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.08
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.08
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.08
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.08
+************* Solution accepted ************
+library_cost: 35.08
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.08
+************* Solution accepted ************
+library_cost: 35.08
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.08
+************* Solution accepted ************
+library_cost: 35.08
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.08
+************* Solution accepted ************
+library_cost: 35.08
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.08
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.08
+************* Solution accepted ************
+library_cost: 35.08
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.08
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.08
+ILOG AMPL 10.000, licensed to "university-linkoping".
+AMPL Version 20051214 (Linux 2.6.9-5.ELsmp)
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 34.2783
+************ Saved best solution: 34.2783
+Min avail day ass: 6 Min avail day lib: 8 Min avail ass: 8 Min avail lib: 13
+Library max cost: 34.2783 Library current cost: 34.2783
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2783
+************* Solution accepted ************
+library_cost: 34.2783
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2783
+Iteration: 2 T:0.64512 Cost diff:0.00100261 Exponential cooling:0.998447 Random val: 0.85 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 34.2773
+************* Solution accepted ************
+library_cost: 34.2773
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2773
+************* Solution accepted ************
+library_cost: 34.2773
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2773
+************* Solution accepted ************
+library_cost: 34.2773
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2773
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2773
+************* Solution accepted ************
+library_cost: 34.2773
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2773
+************* Solution accepted ************
+library_cost: 34.2773
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2773
+************* Solution accepted ************
+library_cost: 34.2773
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2773
+************* Solution accepted ************
+library_cost: 34.2773
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2773
+************* Solution accepted ************
+library_cost: 34.2773
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2773
+************* Solution accepted ************
+library_cost: 34.2773
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2773
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 34.2773
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2773
+************* Solution accepted ************
+library_cost: 34.2773
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2773
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+avail_day_cost: 23
+avail_cost: 31
+num_avail_cost: 31
+Perm library_cost: 34.2773
+************* Solution accepted ************
+library_cost: 34.2773
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2773
+************* Solution accepted ************
+library_cost: 34.2773
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2773
+************* Solution accepted ************
+library_cost: 34.2773
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2773
+************* Solution accepted ************
+library_cost: 34.2773
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2773
+************* Solution accepted ************
+library_cost: 34.2773
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2773
+************* Solution accepted ************
+library_cost: 34.2773
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2773
+************* Solution accepted ************
+library_cost: 34.2783
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2783
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2783
+************* Solution accepted ************
+library_cost: 34.2783
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2783
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 34.2793
+************ Saved best solution: 34.2793
+Min avail day ass: 6 Min avail day lib: 8 Min avail ass: 8 Min avail lib: 13
+Library max cost: 34.2793 Library current cost: 34.2793
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2793
+************* Solution accepted ************
+library_cost: 35.079
+************ Saved best solution: 35.079
+Min avail day ass: 6 Min avail day lib: 8 Min avail ass: 9 Min avail lib: 13
+Library max cost: 35.079 Library current cost: 35.079
+avail_day_cost: 22
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 35.079
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Iteration: 26 T:0.242187 Cost diff:0.801685 Exponential cooling:0.036509 Random val: 0.01 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 34.2773
+************* Solution accepted ************
+library_cost: 34.2773
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.2773
+************* Solution accepted ************
+library_cost: 34.6782
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6782
+************* Solution accepted ************
+library_cost: 34.6782
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6782
+************* Solution accepted ************
+library_cost: 34.6782
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6782
+Solution not accepted at Ass. Week: 2. Day 3. Shift 3 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 34.6782
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+avail_day_cost: 20
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 34.6782
+************* Solution accepted ************
+library_cost: 34.6782
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6782
+************* Solution accepted ************
+library_cost: 34.6792
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6792
+Solution not accepted at Lib. Week: 1. Day 3. Shift 3 .
+Iteration: 34 T:0.174711 Cost diff:0.00100261 Exponential cooling:0.994278 Random val: 0.94 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 34.6782
+************* Solution accepted ************
+library_cost: 34.6782
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6782
+************* Solution accepted ************
+library_cost: 34.6782
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6782
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6782
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6782
+avail_day_cost: 21
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 34.6782
+************* Solution accepted ************
+library_cost: 34.6792
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6792
+************* Solution accepted ************
+library_cost: 34.6792
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6792
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6792
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6792
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6792
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6792
+************* Solution accepted ************
+library_cost: 34.6792
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6792
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6792
+************* Solution accepted ************
+library_cost: 34.6792
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6792
+************* Solution accepted ************
+library_cost: 34.6792
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6792
+************* Solution accepted ************
+library_cost: 34.6792
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6792
+************* Solution accepted ************
+library_cost: 34.6792
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6792
+************* Solution accepted ************
+library_cost: 34.6792
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6792
+Iteration: 52 T:0.0837919 Cost diff:0.00200523 Exponential cooling:0.976353 Random val: 0.37 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 34.6772
+************* Solution accepted ************
+library_cost: 34.6772
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6772
+************* Solution accepted ************
+library_cost: 34.6772
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6772
+************* Solution accepted ************
+library_cost: 34.6772
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6772
+************* Solution accepted ************
+library_cost: 34.6772
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6772
+************* Solution accepted ************
+library_cost: 34.6772
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6772
+************* Solution accepted ************
+library_cost: 34.6772
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6772
+avail_day_cost: 24
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 34.6772
+************* Solution accepted ************
+library_cost: 34.6772
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6772
+************* Solution accepted ************
+library_cost: 34.6782
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6782
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 34.6782
+************* Solution accepted ************
+library_cost: 34.6792
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6792
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6792
+************* Solution accepted ************
+library_cost: 34.6792
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6792
+************* Solution accepted ************
+library_cost: 34.6792
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6792
+Iteration: 66 T:0.0473151 Cost diff:0.00100261 Exponential cooling:0.979033 Random val: 0.78 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 34.6782
+************* Solution accepted ************
+library_cost: 34.6782
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6782
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 34.6782
+************* Solution accepted ************
+library_cost: 34.6782
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6782
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 34.6782
+************* Solution accepted ************
+library_cost: 35.2779
+************ Saved best solution: 35.2779
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 11 Min avail lib: 12
+Library max cost: 35.2779 Library current cost: 35.2779
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 35.2779
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 21
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 35.2779
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.2779
+avail_day_cost: 22
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 35.2779
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.2779
+************* Solution accepted ************
+library_cost: 35.2793
+************ Saved best solution: 35.2793
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 8 Min avail lib: 13
+Library max cost: 35.2793 Library current cost: 35.2793
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.2793
+************* Solution accepted ************
+library_cost: 35.2793
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.2793
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.2793
+************* Solution accepted ************
+library_cost: 35.2793
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.2793
+************* Solution accepted ************
+library_cost: 35.2793
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.2793
+************* Solution accepted ************
+library_cost: 35.2793
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.2793
+************* Solution accepted ************
+library_cost: 35.8791
+************ Saved best solution: 35.8791
+Min avail day ass: 6 Min avail day lib: 8 Min avail ass: 8 Min avail lib: 14
+Library max cost: 35.8791 Library current cost: 35.8791
+avail_day_cost: 22
+avail_cost: 36
+num_avail_cost: 36
+Perm library_cost: 35.8791
+************* Solution accepted ************
+library_cost: 35.8791
+avail_day_cost: 22
+avail_cost: 36
+num_avail_cost: 36
+Perm library_cost: 35.8791
+avail_day_cost: 22
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 35.8791
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 35.8791
+************* Solution accepted ************
+library_cost: 35.8791
+avail_day_cost: 22
+avail_cost: 36
+num_avail_cost: 36
+Perm library_cost: 35.8791
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.8791
+************* Solution accepted ************
+library_cost: 35.8791
+avail_day_cost: 22
+avail_cost: 36
+num_avail_cost: 36
+Perm library_cost: 35.8791
+************* Solution accepted ************
+library_cost: 35.8791
+avail_day_cost: 22
+avail_cost: 36
+num_avail_cost: 36
+Perm library_cost: 35.8791
+avail_day_cost: 20
+avail_cost: 36
+num_avail_cost: 36
+Perm library_cost: 35.8791
+************* Solution accepted ************
+library_cost: 35.8791
+avail_day_cost: 22
+avail_cost: 36
+num_avail_cost: 36
+Perm library_cost: 35.8791
+************* Solution accepted ************
+library_cost: 35.8791
+avail_day_cost: 22
+avail_cost: 36
+num_avail_cost: 36
+Perm library_cost: 35.8791
+************* Solution accepted ************
+library_cost: 35.8791
+avail_day_cost: 22
+avail_cost: 36
+num_avail_cost: 36
+Perm library_cost: 35.8791
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.8791
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.8791
+************* Solution accepted ************
+library_cost: 35.8791
+avail_day_cost: 22
+avail_cost: 36
+num_avail_cost: 36
+Perm library_cost: 35.8791
+************* Solution accepted ************
+library_cost: 35.8791
+avail_day_cost: 22
+avail_cost: 36
+num_avail_cost: 36
+Perm library_cost: 35.8791
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.8791
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.8791
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 35.8791
+ILOG AMPL 10.000, licensed to "university-linkoping".
+AMPL Version 20051214 (Linux 2.6.9-5.ELsmp)
+************* Solution accepted ************
+library_cost: 31.8717
+************ Saved best solution: 31.8717
+Min avail day ass: 6 Min avail day lib: 8 Min avail ass: 8 Min avail lib: 13
+Library max cost: 31.8717 Library current cost: 31.8717
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8717
+Iteration: 1 T:0.672 Cost diff:0.000602774 Exponential cooling:0.999103 Random val: 0.3 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 31.8711
+************* Solution accepted ************
+library_cost: 31.8711
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8711
+Iteration: 2 T:0.64512 Cost diff:0.39984 Exponential cooling:0.538056 Random val: 0.4 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 31.4712
+************* Solution accepted ************
+library_cost: 31.4712
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.4712
+avail_day_cost: 21
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.4712
+************* Solution accepted ************
+library_cost: 31.4712
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.4712
+************* Solution accepted ************
+library_cost: 31.8711
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8711
+avail_day_cost: 21
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.8711
+************* Solution accepted ************
+library_cost: 32.2706
+************ Saved best solution: 32.2706
+Min avail day ass: 6 Min avail day lib: 8 Min avail ass: 8 Min avail lib: 13
+Library max cost: 32.2706 Library current cost: 32.2706
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.2706
+Iteration: 8 T:0.504973 Cost diff:0.39984 Exponential cooling:0.453026 Random val: 0.26 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 31.8708
+************* Solution accepted ************
+library_cost: 31.8708
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8708
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.8708
+************* Solution accepted ************
+library_cost: 31.8708
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8708
+************* Solution accepted ************
+library_cost: 31.8708
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8708
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.8708
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8708
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8708
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.8708
+************* Solution accepted ************
+library_cost: 31.8708
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8708
+************* Solution accepted ************
+library_cost: 31.8708
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8708
+avail_day_cost: 21
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.8708
+************* Solution accepted ************
+library_cost: 31.8708
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8708
+************* Solution accepted ************
+library_cost: 31.8708
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8708
+************* Solution accepted ************
+library_cost: 31.8708
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8708
+************* Solution accepted ************
+library_cost: 31.8708
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8708
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+avail_day_cost: 19
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8708
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.8708
+************* Solution accepted ************
+library_cost: 32.2706
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.2706
+************* Solution accepted ************
+library_cost: 32.2706
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.2706
+************* Solution accepted ************
+library_cost: 32.2706
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.2706
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 32.2706
+************* Solution accepted ************
+library_cost: 32.6705
+************ Saved best solution: 32.6705
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 8 Min avail lib: 13
+Library max cost: 32.6705 Library current cost: 32.6705
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6705
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6705
+************* Solution accepted ************
+library_cost: 32.6705
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6705
+************* Solution accepted ************
+library_cost: 32.6705
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6705
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 23
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 32.6705
+Iteration: 34 T:0.174711 Cost diff:0.39984 Exponential cooling:0.10141 Random val: 0.1 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 32.2706
+************* Solution accepted ************
+library_cost: 32.2706
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.2706
+************* Solution accepted ************
+library_cost: 32.6705
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6705
+************* Solution accepted ************
+library_cost: 32.6705
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6705
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6705
+************* Solution accepted ************
+library_cost: 32.6705
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6705
+************* Solution accepted ************
+library_cost: 32.6705
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6705
+************* Solution accepted ************
+library_cost: 32.6708
+************ Saved best solution: 32.6708
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 8 Min avail lib: 13
+Library max cost: 32.6708 Library current cost: 32.6708
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6708
+************* Solution accepted ************
+library_cost: 32.6708
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6708
+************* Solution accepted ************
+library_cost: 32.6708
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6708
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6708
+************* Solution accepted ************
+library_cost: 32.6708
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6708
+Iteration: 45 T:0.111507 Cost diff:0.399539 Exponential cooling:0.0277902 Random val: 0.01 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 32.2712
+************* Solution accepted ************
+library_cost: 32.2712
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.2712
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 32.2712
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.2712
+************* Solution accepted ************
+library_cost: 32.2712
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.2712
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Iteration: 49 T:0.0947084 Cost diff:0.000301387 Exponential cooling:0.996823 Random val: 0.57 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 32.2709
+************* Solution accepted ************
+library_cost: 32.2709
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.2709
+************* Solution accepted ************
+library_cost: 32.2709
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.2709
+avail_day_cost: 21
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 32.2709
+Iteration: 52 T:0.0837919 Cost diff:0.000699218 Exponential cooling:0.99169 Random val: 0.87 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 32.2702
+************* Solution accepted ************
+library_cost: 32.2702
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.2702
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.2702
+************* Solution accepted ************
+library_cost: 32.2702
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.2702
+************* Solution accepted ************
+library_cost: 32.6701
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6701
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6701
+************* Solution accepted ************
+library_cost: 32.6701
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6701
+************* Solution accepted ************
+library_cost: 32.6701
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6701
+************* Solution accepted ************
+library_cost: 32.6701
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6701
+************* Solution accepted ************
+library_cost: 32.6701
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6701
+************* Solution accepted ************
+library_cost: 32.6701
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6701
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6701
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6701
+************* Solution accepted ************
+library_cost: 32.6701
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6701
+************* Solution accepted ************
+library_cost: 32.6701
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6701
+************* Solution accepted ************
+library_cost: 32.6701
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6701
+************* Solution accepted ************
+library_cost: 32.6701
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6701
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6701
+************* Solution accepted ************
+library_cost: 32.6701
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6701
+************* Solution accepted ************
+library_cost: 32.6701
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6701
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6701
+************* Solution accepted ************
+library_cost: 32.6701
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6701
+************* Solution accepted ************
+library_cost: 32.6708
+************ Saved best solution: 32.6708
+Min avail day ass: 6 Min avail day lib: 9 Min avail ass: 8 Min avail lib: 13
+Library max cost: 32.6708 Library current cost: 32.6708
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6708
+************* Solution accepted ************
+library_cost: 32.6708
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6708
+************* Solution accepted ************
+library_cost: 33.0706
+************ Saved best solution: 33.0706
+Min avail day ass: 6 Min avail day lib: 9 Min avail ass: 8 Min avail lib: 13
+Library max cost: 33.0706 Library current cost: 33.0706
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+************* Solution accepted ************
+library_cost: 33.0706
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 33.0706
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+************* Solution accepted ************
+library_cost: 33.0706
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+************* Solution accepted ************
+library_cost: 33.0706
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+************* Solution accepted ************
+library_cost: 33.0706
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+************* Solution accepted ************
+library_cost: 33.0706
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+************* Solution accepted ************
+library_cost: 33.0706
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+************* Solution accepted ************
+library_cost: 33.0706
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+avail_day_cost: 24
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 33.0706
+ILOG AMPL 10.000, licensed to "university-linkoping".
+AMPL Version 20051214 (Linux 2.6.9-5.ELsmp)
+************* Solution accepted ************
+library_cost: 30.6712
+************ Saved best solution: 30.6712
+Min avail day ass: 5 Min avail day lib: 7 Min avail ass: 8 Min avail lib: 13
+Library max cost: 30.6712 Library current cost: 30.6712
+avail_day_cost: 19
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 30.6712
+************* Solution accepted ************
+library_cost: 31.071
+************ Saved best solution: 31.071
+Min avail day ass: 6 Min avail day lib: 7 Min avail ass: 8 Min avail lib: 13
+Library max cost: 31.071 Library current cost: 31.071
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.071
+************* Solution accepted ************
+library_cost: 31.071
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.071
+************* Solution accepted ************
+library_cost: 31.0713
+************ Saved best solution: 31.0713
+Min avail day ass: 5 Min avail day lib: 8 Min avail ass: 8 Min avail lib: 13
+Library max cost: 31.0713 Library current cost: 31.0713
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.0713
+************* Solution accepted ************
+library_cost: 31.4711
+************ Saved best solution: 31.4711
+Min avail day ass: 6 Min avail day lib: 8 Min avail ass: 8 Min avail lib: 13
+Library max cost: 31.4711 Library current cost: 31.4711
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.4711
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 4. Day 3. Shift 3 .
+************* Solution accepted ************
+library_cost: 32.2715
+************ Saved best solution: 32.2715
+Min avail day ass: 3 Min avail day lib: 10 Min avail ass: 8 Min avail lib: 13
+Library max cost: 32.2715 Library current cost: 32.2715
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.2715
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 32.2715
+************* Solution accepted ************
+library_cost: 32.2715
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.2715
+************* Solution accepted ************
+library_cost: 32.2715
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.2715
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.2715
+Iteration: 10 T:0.465383 Cost diff:0.400141 Exponential cooling:0.423242 Random val: 0.2 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 31.8714
+************* Solution accepted ************
+library_cost: 31.8714
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8714
+************* Solution accepted ************
+library_cost: 31.8714
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8714
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8714
+************* Solution accepted ************
+library_cost: 31.8714
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8714
+************* Solution accepted ************
+library_cost: 31.8714
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8714
+************* Solution accepted ************
+library_cost: 31.8717
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8717
+************* Solution accepted ************
+library_cost: 31.8717
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8717
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8717
+************* Solution accepted ************
+library_cost: 31.8717
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8717
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.8717
+************* Solution accepted ************
+library_cost: 32.2715
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.2715
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 32.2715
+************* Solution accepted ************
+library_cost: 32.2715
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.2715
+************* Solution accepted ************
+library_cost: 32.2715
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.2715
+************* Solution accepted ************
+library_cost: 32.6714
+************ Saved best solution: 32.6714
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 8 Min avail lib: 13
+Library max cost: 32.6714 Library current cost: 32.6714
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+************* Solution accepted ************
+library_cost: 32.6714
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+************* Solution accepted ************
+library_cost: 32.6714
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+************* Solution accepted ************
+library_cost: 32.6714
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+************* Solution accepted ************
+library_cost: 32.6714
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+************* Solution accepted ************
+library_cost: 32.6714
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+************* Solution accepted ************
+library_cost: 32.6714
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+************* Solution accepted ************
+library_cost: 32.6714
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+************* Solution accepted ************
+library_cost: 32.6714
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+************* Solution accepted ************
+library_cost: 32.6714
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+Iteration: 42 T:0.126035 Cost diff:0.000301387 Exponential cooling:0.997612 Random val: 0.61 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 32.6711
+************* Solution accepted ************
+library_cost: 32.6711
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6711
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 32.6711
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6711
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6711
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6711
+************* Solution accepted ************
+library_cost: 32.6714
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6714
+Iteration: 50 T:0.0909201 Cost diff:0.000301387 Exponential cooling:0.996691 Random val: 0.59 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 32.6711
+************* Solution accepted ************
+library_cost: 32.6711
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6711
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6711
+************* Solution accepted ************
+library_cost: 32.6711
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6711
+************* Solution accepted ************
+library_cost: 32.6711
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6711
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 32.6711
+************* Solution accepted ************
+library_cost: 32.6711
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6711
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.6711
+************* Solution accepted ************
+library_cost: 32.871
+************ Saved best solution: 32.871
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 9 Min avail lib: 13
+Library max cost: 32.871 Library current cost: 32.871
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.871
+************* Solution accepted ************
+library_cost: 32.871
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.871
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.871
+************* Solution accepted ************
+library_cost: 32.871
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.871
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.871
+avail_day_cost: 22
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.871
+Iteration: 63 T:0.0534793 Cost diff:0.000900142 Exponential cooling:0.983309 Random val: 0.09 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 32.8701
+************* Solution accepted ************
+library_cost: 32.8701
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.8701
+************* Solution accepted ************
+library_cost: 32.8701
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.8701
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.8701
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.8701
+avail_day_cost: 22
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.8701
+avail_day_cost: 22
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.8701
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.8701
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.8701
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.8701
+Iteration: 72 T:0.0370362 Cost diff:0.000301387 Exponential cooling:0.991895 Random val: 0.65 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 32.8698
+************* Solution accepted ************
+library_cost: 32.8698
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.8698
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.8698
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.8698
+************* Solution accepted ************
+library_cost: 32.8708
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.8708
+Solution not accepted at Ass. Week: 2. Day 3. Shift 3 .
+avail_day_cost: 21
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 32.8708
+************* Solution accepted ************
+library_cost: 32.8708
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.8708
+************* Solution accepted ************
+library_cost: 32.8708
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.8708
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.8708
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.8708
+************* Solution accepted ************
+library_cost: 32.8708
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.8708
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.8708
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 32.8708
+************* Solution accepted ************
+library_cost: 32.8711
+************ Saved best solution: 32.8711
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 9 Min avail lib: 13
+Library max cost: 32.8711 Library current cost: 32.8711
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.8711
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.8711
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 32.8711
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.8711
+************* Solution accepted ************
+library_cost: 32.8711
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.8711
+************* Solution accepted ************
+library_cost: 32.8711
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.8711
+************* Solution accepted ************
+library_cost: 32.8711
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.8711
+************* Solution accepted ************
+library_cost: 32.8711
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.8711
+************* Solution accepted ************
+library_cost: 32.8711
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.8711
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 32.8711
+************* Solution accepted ************
+library_cost: 32.8711
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.8711
+************* Solution accepted ************
+library_cost: 32.8711
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.8711
+************* Solution accepted ************
+library_cost: 32.8711
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 32.8711
+avail_day_cost: 23
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 32.8711
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 32.8711
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 32.8711
+ILOG AMPL 10.000, licensed to "university-linkoping".
+AMPL Version 20051214 (Linux 2.6.9-5.ELsmp)
+Solution not accepted at Ass. Week: 2. Day 3. Shift 3 .
+Solution not accepted at Lib. Week: 2. Day 3. Shift 3 .
+Solution not accepted at Lib. Week: 2. Day 3. Shift 3 .
+Solution not accepted at Lib. Week: 2. Day 3. Shift 3 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at Lib. Week: 2. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 2. Day 3. Shift 3 .
+************* Solution accepted ************
+library_cost: 31.1834
+************ Saved best solution: 31.1834
+Min avail day ass: 6 Min avail day lib: 8 Min avail ass: 8 Min avail lib: 13
+Library max cost: 31.1834 Library current cost: 31.1834
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.1834
+************* Solution accepted ************
+library_cost: 31.1834
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.1834
+************* Solution accepted ************
+library_cost: 31.1834
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.1834
+************* Solution accepted ************
+library_cost: 31.1834
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.1834
+Iteration: 4 T:0.594543 Cost diff:0.19992 Exponential cooling:0.714438 Random val: 0.03 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 30.9835
+************* Solution accepted ************
+library_cost: 30.9835
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 30.9835
+************* Solution accepted ************
+library_cost: 30.9835
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 30.9835
+Iteration: 6 T:0.54793 Cost diff:0.79968 Exponential cooling:0.232363 Random val: 0.16 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 30.1838
+************* Solution accepted ************
+library_cost: 30.1838
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 30.1838
+************* Solution accepted ************
+library_cost: 30.3835
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 30.3835
+************* Solution accepted ************
+library_cost: 30.3835
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 30.3835
+************* Solution accepted ************
+library_cost: 30.3835
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 30.3835
+avail_day_cost: 21
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 30.3835
+************* Solution accepted ************
+library_cost: 30.3835
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 30.3835
+************* Solution accepted ************
+library_cost: 30.9839
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 30.9839
+************* Solution accepted ************
+library_cost: 31.5836
+************ Saved best solution: 31.5836
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 8 Min avail lib: 13
+Library max cost: 31.5836 Library current cost: 31.5836
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5836
+************* Solution accepted ************
+library_cost: 31.5836
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5836
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5836
+************* Solution accepted ************
+library_cost: 31.5836
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5836
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5836
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5836
+************* Solution accepted ************
+library_cost: 31.5836
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5836
+************* Solution accepted ************
+library_cost: 31.5836
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5836
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.5836
+Iteration: 22 T:0.285145 Cost diff:0.39984 Exponential cooling:0.246046 Random val: 0.03 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 31.1838
+************* Solution accepted ************
+library_cost: 31.1838
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.1838
+************* Solution accepted ************
+library_cost: 31.1838
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.1838
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.1838
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.1838
+avail_day_cost: 20
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.1838
+************* Solution accepted ************
+library_cost: 31.1838
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.1838
+************* Solution accepted ************
+library_cost: 31.5838
+************ Saved best solution: 31.5838
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 8 Min avail lib: 13
+Library max cost: 31.5838 Library current cost: 31.5838
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5838
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5838
+************* Solution accepted ************
+library_cost: 31.5838
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5838
+************* Solution accepted ************
+library_cost: 31.5838
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5838
+************* Solution accepted ************
+library_cost: 31.5838
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5838
+************* Solution accepted ************
+library_cost: 31.5838
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5838
+************* Solution accepted ************
+library_cost: 31.5838
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5838
+************* Solution accepted ************
+library_cost: 31.5838
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5838
+Iteration: 36 T:0.161014 Cost diff:0.200123 Exponential cooling:0.288548 Random val: 0.02 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 31.3837
+************* Solution accepted ************
+library_cost: 31.3837
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.3837
+************* Solution accepted ************
+library_cost: 31.3837
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.3837
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.3837
+Iteration: 39 T:0.142454 Cost diff:0.00100261 Exponential cooling:0.992987 Random val: 0.2 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 31.3827
+************* Solution accepted ************
+library_cost: 31.3827
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.3827
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 31.5826
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+************* Solution accepted ************
+library_cost: 31.5826
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+************* Solution accepted ************
+library_cost: 31.5826
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+avail_day_cost: 23
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 31.5826
+************* Solution accepted ************
+library_cost: 31.5826
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+************* Solution accepted ************
+library_cost: 31.5826
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+avail_day_cost: 23
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 31.5826
+************* Solution accepted ************
+library_cost: 31.5826
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+************* Solution accepted ************
+library_cost: 31.5826
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+************* Solution accepted ************
+library_cost: 31.5826
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+************* Solution accepted ************
+library_cost: 31.5826
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+************* Solution accepted ************
+library_cost: 31.5826
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+************* Solution accepted ************
+library_cost: 31.5828
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+************* Solution accepted ************
+library_cost: 31.5828
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+************* Solution accepted ************
+library_cost: 31.5828
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+************* Solution accepted ************
+library_cost: 31.5828
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+************* Solution accepted ************
+library_cost: 31.5828
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+************* Solution accepted ************
+library_cost: 31.5828
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+************* Solution accepted ************
+library_cost: 31.5828
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 0. Day 3. Shift 3 .
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+************* Solution accepted ************
+library_cost: 31.5828
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+************* Solution accepted ************
+library_cost: 31.5828
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.5828
+************* Solution accepted ************
+library_cost: 31.583
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.583
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.583
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.583
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.583
+************* Solution accepted ************
+library_cost: 31.583
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.583
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+************* Solution accepted ************
+library_cost: 31.7827
+************ Saved best solution: 31.7827
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 9 Min avail lib: 13
+Library max cost: 31.7827 Library current cost: 31.7827
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 31.7827
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7827
+Solution not accepted at Ass. Week: 2. Day 3. Shift 3 .
+avail_day_cost: 21
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.7827
+************* Solution accepted ************
+library_cost: 31.7827
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 31.7827
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7827
+************* Solution accepted ************
+library_cost: 31.7827
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 31.7827
+************* Solution accepted ************
+library_cost: 31.7827
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 31.7827
+************* Solution accepted ************
+library_cost: 31.7827
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 31.7827
+************* Solution accepted ************
+library_cost: 31.7827
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 31.7827
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7827
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7827
+************* Solution accepted ************
+library_cost: 31.7827
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 31.7827
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7827
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7827
+************* Solution accepted ************
+library_cost: 31.7827
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 31.7827
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7827
+************* Solution accepted ************
+library_cost: 31.7827
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 31.7827
+************* Solution accepted ************
+library_cost: 31.7827
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 31.7827
+ILOG AMPL 10.000, licensed to "university-linkoping".
+AMPL Version 20051214 (Linux 2.6.9-5.ELsmp)
+************* Solution accepted ************
+library_cost: 29.5836
+************ Saved best solution: 29.5836
+Min avail day ass: 4 Min avail day lib: 7 Min avail ass: 10 Min avail lib: 12
+Library max cost: 29.5836 Library current cost: 29.5836
+avail_day_cost: 18
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 29.5836
+************* Solution accepted ************
+library_cost: 29.5836
+avail_day_cost: 18
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 29.5836
+************* Solution accepted ************
+library_cost: 30.3833
+************ Saved best solution: 30.3833
+Min avail day ass: 4 Min avail day lib: 8 Min avail ass: 8 Min avail lib: 13
+Library max cost: 30.3833 Library current cost: 30.3833
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 30.3833
+************* Solution accepted ************
+library_cost: 30.3833
+avail_day_cost: 20
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 30.3833
+************* Solution accepted ************
+library_cost: 30.7831
+************ Saved best solution: 30.7831
+Min avail day ass: 5 Min avail day lib: 8 Min avail ass: 8 Min avail lib: 13
+Library max cost: 30.7831 Library current cost: 30.7831
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 30.7831
+************* Solution accepted ************
+library_cost: 30.7831
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 30.7831
+************* Solution accepted ************
+library_cost: 30.7831
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 30.7831
+************* Solution accepted ************
+library_cost: 31.5828
+************ Saved best solution: 31.5828
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 8 Min avail lib: 13
+Library max cost: 31.5828 Library current cost: 31.5828
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+************* Solution accepted ************
+library_cost: 31.5828
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+************* Solution accepted ************
+library_cost: 31.5828
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+Iteration: 11 T:0.446768 Cost diff:0.000202934 Exponential cooling:0.999546 Random val: 0.31 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 31.5826
+************* Solution accepted ************
+library_cost: 31.5826
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+Iteration: 12 T:0.428897 Cost diff:0.39984 Exponential cooling:0.393666 Random val: 0.32 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 31.1828
+************* Solution accepted ************
+library_cost: 31.1828
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.1828
+************* Solution accepted ************
+library_cost: 31.1828
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.1828
+************* Solution accepted ************
+library_cost: 31.5826
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+************* Solution accepted ************
+library_cost: 31.5826
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+************* Solution accepted ************
+library_cost: 31.5826
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+************* Solution accepted ************
+library_cost: 31.5826
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+************* Solution accepted ************
+library_cost: 31.5826
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+************* Solution accepted ************
+library_cost: 31.5826
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5826
+Iteration: 21 T:0.297026 Cost diff:0.400439 Exponential cooling:0.259717 Random val: 0.11 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 31.1822
+************* Solution accepted ************
+library_cost: 31.1822
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.1822
+************* Solution accepted ************
+library_cost: 31.1822
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.1822
+************* Solution accepted ************
+library_cost: 31.1822
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.1822
+************* Solution accepted ************
+library_cost: 31.1822
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.1822
+Iteration: 25 T:0.252278 Cost diff:0.19992 Exponential cooling:0.45273 Random val: 0.38 Library cost: 6.95278e-310
+temp_library_cost: 6.95278e-310
+library_cost: 30.9823
+************* Solution accepted ************
+library_cost: 30.9823
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 30.9823
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 0. Day 4. Shift 0 .
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 30.9823
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 30.9823
+************* Solution accepted ************
+library_cost: 30.9823
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 30.9823
+************* Solution accepted ************
+library_cost: 31.3821
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.3821
+************* Solution accepted ************
+library_cost: 31.3821
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.3821
+Solution not accepted at Lib. Week: 2. Day 3. Shift 3 .
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.3821
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 31.3821
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+Solution not accepted at Ass. Week: 1. Day 3. Shift 3 .
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.3821
+************* Solution accepted ************
+library_cost: 31.5822
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5822
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.5822
+************* Solution accepted ************
+library_cost: 31.5828
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.5828
+************* Solution accepted ************
+library_cost: 31.5828
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+************* Solution accepted ************
+library_cost: 31.5828
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.5828
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+Solution not accepted at Lib. Week: 1. Day 3. Shift 3 .
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.5828
+************* Solution accepted ************
+library_cost: 31.5828
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.5828
+************* Solution accepted ************
+library_cost: 31.7827
+************ Saved best solution: 31.7827
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 8 Min avail lib: 13
+Library max cost: 31.7827 Library current cost: 31.7827
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7827
+************* Solution accepted ************
+library_cost: 31.7829
+************ Saved best solution: 31.7829
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 8 Min avail lib: 13
+Library max cost: 31.7829 Library current cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at Ass. Week: 3. Day 3. Shift 3 .
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.7829
+************* Solution accepted ************
+library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+************* Solution accepted ************
+library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+************* Solution accepted ************
+library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+************* Solution accepted ************
+library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+************* Solution accepted ************
+library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+************* Solution accepted ************
+library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+************* Solution accepted ************
+library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+************* Solution accepted ************
+library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+************* Solution accepted ************
+library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+************* Solution accepted ************
+library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+************* Solution accepted ************
+library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+Solution not accepted at BBlib. Week: 4. Day 4. Shift 0 .
+avail_day_cost: 22
+avail_cost: 32
+num_avail_cost: 32
+Perm library_cost: 31.7829
+************* Solution accepted ************
+library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+************* Solution accepted ************
+library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+************* Solution accepted ************
+library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+************* Solution accepted ************
+library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+avail_day_cost: 21
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+************* Solution accepted ************
+library_cost: 31.7829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.7829
+************* Solution accepted ************
+library_cost: 31.9829
+************ Saved best solution: 31.9829
+Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 9 Min avail lib: 13
+Library max cost: 31.9829 Library current cost: 31.9829
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 31.9829
+************* Solution accepted ************
+library_cost: 31.9829
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 31.9829
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.9829
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+Solution not accepted at BBlib. Week: 2. Day 4. Shift 0 .
+avail_day_cost: 22
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.9829
+************* Solution accepted ************
+library_cost: 31.9829
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 31.9829
+************* Solution accepted ************
+library_cost: 31.9829
+avail_day_cost: 23
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 31.9829
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.9829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.9829
+avail_day_cost: 22
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.9829
+avail_day_cost: 23
+avail_cost: 33
+num_avail_cost: 33
+Perm library_cost: 31.9829
+avail_day_cost: 22
+avail_cost: 35
+num_avail_cost: 35
+Perm library_cost: 31.9829
+avail_day_cost: 23
+avail_cost: 34
+num_avail_cost: 34
+Perm library_cost: 31.9829
+ILOG AMPL 10.000, licensed to "university-linkoping".
+AMPL Version 20051214 (Linux 2.6.9-5.ELsmp)

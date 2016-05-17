@@ -1,0 +1,40 @@
+2016_5_17 16:47:39
+With weights: 0.333333, 0.333333, 0.333333
+Number of infeasible solutions:0
+Min num lib/ass: (0) 2, 0. Cost: 4
+Min num lib/ass: (1) 2, 0. Cost: 4
+
+Average cost:4
+
+2016_5_17 16:47:39
+With weights: 0, 0, 0
+Number of infeasible solutions:0
+Min num lib/ass: (0) 2, 0. Cost: 4
+Min num lib/ass: (1) 1, 2. Cost: 4
+
+Average cost:4
+
+2016_5_17 16:47:39
+With weights: 0.19992, 0.39984, 0.39984
+Number of infeasible solutions:0
+Min num lib/ass: (0) 3, 0. Cost: 6
+Min num lib/ass: (1) 1, 2. Cost: 4
+
+Average cost:5
+
+2016_5_17 16:47:39
+With weights: 0.39984, 0.19992, 0.39984
+Number of infeasible solutions:0
+Min num lib/ass: (0) 1, 0. Cost: 2
+Min num lib/ass: (1) 1, 2. Cost: 4
+
+Average cost:3
+
+2016_5_17 16:47:39
+With weights: 0.39984, 0.39984, 0.19992
+Number of infeasible solutions:0
+Min num lib/ass: (0) 1, 0. Cost: 2
+Min num lib/ass: (1) 2, 0. Cost: 4
+
+Average cost:3
+

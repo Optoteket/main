@@ -53,6 +53,7 @@ class Task {
   virtual void find_avail_workers();
   virtual void set_costs();
   virtual void temp_place_workers();
+  virtual bool check_feasibility();
 
   //Print functions
   virtual void print_worker_costs(); 
@@ -64,6 +65,12 @@ class Task {
   struct max_cost{
     bool operator()(Task const & lhs, Task const & rhs) const{ 
       return lhs.get_cost() > rhs.get_cost();
+    }
+  };
+  
+  struct max_qual{
+    bool operator()(Task const & lhs, Task const & rhs) const{ 
+      return lhs.get_qualification() > rhs.get_qualification();
     }
   };
 

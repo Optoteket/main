@@ -423,6 +423,13 @@ void Worker::set_stand_in_cost(int w, int d){
 
 void Worker::set_num_tasks_costs(int w, int d){
   //Set num tasks costs per day
+  if(d == fri && current.tasks[w][d][0] == BokB && current.tasks[w][d][3] != no_task){
+    //Can have one extra task at fridays if BokB in the morning
+    if (current.num_tasks_day[w][d] > MAX_TASKS_PER_DAY+1){
+      costs.num_tasks_day_cost[w][d] = current.num_tasks_day[w][d] - (MAX_TASKS_PER_DAY+1);
+    }
+    else costs.num_tasks_week_cost[w] = 0;
+  }
   if (current.num_tasks_day[w][d] > MAX_TASKS_PER_DAY){
     costs.num_tasks_day_cost[w][d] = current.num_tasks_day[w][d] - MAX_TASKS_PER_DAY;
   }
@@ -430,9 +437,7 @@ void Worker::set_num_tasks_costs(int w, int d){
 
   //Set num tasks costs per week
   if (current.num_tasks_week[w] > MAX_TASKS_PER_WEEK 
-      &&   !find(no_shift_num_restriction, 
-		 no_shift_num_restriction + (sizeof(no_shift_num_restriction)/sizeof(int)),
-		 get_ID())){
+      &&  get_ID() != 36){
     costs.num_tasks_week_cost[w] = current.num_tasks_week[w] - MAX_TASKS_PER_WEEK;
   }
   else costs.num_tasks_week_cost[w] = 0;

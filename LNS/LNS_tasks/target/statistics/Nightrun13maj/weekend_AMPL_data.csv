@@ -1,0 +1,167 @@
+With weights: 0.5, 0.25, 0.25
+Number of infeasible solutions:53
+Min num lib/ass: (0) 2, 0. Cost: 4
+Min num lib/ass: (1) 2, 0. Cost: 4
+Min num lib/ass: (2) 2, 0. Cost: 4
+Min num lib/ass: (3) 2, 0. Cost: 4
+Min num lib/ass: (4) 1, 2. Cost: 4
+Min num lib/ass: (5) 1, 0. Cost: 2
+Min num lib/ass: (6) 2, 0. Cost: 4
+Min num lib/ass: (7) 0, 0. Cost: 0
+Min num lib/ass: (8) 0, 4. Cost: 4
+Min num lib/ass: (9) 3, 0. Cost: 6
+Min num lib/ass: (10) 2, 0. Cost: 4
+Min num lib/ass: (11) 0, 2. Cost: 2
+Min num lib/ass: (12) 2, 0. Cost: 4
+Min num lib/ass: (13) 1, 2. Cost: 4
+Min num lib/ass: (14) 2, 0. Cost: 4
+Min num lib/ass: (15) 1, 2. Cost: 4
+Min num lib/ass: (16) 1, 2. Cost: 4
+Min num lib/ass: (17) 1, 2. Cost: 4
+Min num lib/ass: (18) 1, 2. Cost: 4
+Min num lib/ass: (19) 2, 0. Cost: 4
+Min num lib/ass: (20) 1, 2. Cost: 4
+Min num lib/ass: (21) 2, 0. Cost: 4
+Min num lib/ass: (22) 1, 0. Cost: 2
+Min num lib/ass: (23) 1, 2. Cost: 4
+Min num lib/ass: (24) 0, 2. Cost: 2
+Min num lib/ass: (25) 1, 0. Cost: 2
+Min num lib/ass: (26) 0, 2. Cost: 2
+Min num lib/ass: (27) 2, 0. Cost: 4
+
+Average cost:3.5
+
+With weights: 0.2, 0.4, 0.4
+Number of infeasible solutions:39
+Min num lib/ass: (0) 2, 0. Cost: 4
+Min num lib/ass: (1) 2, 0. Cost: 4
+Min num lib/ass: (2) 1, 0. Cost: 2
+Min num lib/ass: (3) 0, 2. Cost: 2
+Min num lib/ass: (4) 0, 2. Cost: 2
+Min num lib/ass: (5) 1, 0. Cost: 2
+Min num lib/ass: (6) 1, 2. Cost: 4
+Min num lib/ass: (7) 1, 2. Cost: 4
+Min num lib/ass: (8) 2, 0. Cost: 4
+Min num lib/ass: (9) 1, 0. Cost: 2
+Min num lib/ass: (10) 1, 2. Cost: 4
+Min num lib/ass: (11) 1, 2. Cost: 4
+Min num lib/ass: (12) 2, 0. Cost: 4
+Min num lib/ass: (13) 1, 2. Cost: 4
+Min num lib/ass: (14) 2, 0. Cost: 4
+Min num lib/ass: (15) 0, 2. Cost: 2
+Min num lib/ass: (16) 2, 0. Cost: 4
+Min num lib/ass: (17) 0, 0. Cost: 0
+Min num lib/ass: (18) 2, 0. Cost: 4
+Min num lib/ass: (19) 0, 2. Cost: 2
+Min num lib/ass: (20) 1, 0. Cost: 2
+Min num lib/ass: (21) 1, 2. Cost: 4
+Min num lib/ass: (22) 0, 2. Cost: 2
+Min num lib/ass: (23) 0, 2. Cost: 2
+Min num lib/ass: (24) 1, 0. Cost: 2
+Min num lib/ass: (25) 0, 2. Cost: 2
+Min num lib/ass: (26) 1, 0. Cost: 2
+Min num lib/ass: (27) 1, 2. Cost: 4
+Min num lib/ass: (28) 1, 2. Cost: 4
+Min num lib/ass: (29) 2, 0. Cost: 4
+Min num lib/ass: (30) 1, 2. Cost: 4
+Min num lib/ass: (31) 2, 0. Cost: 4
+Min num lib/ass: (32) 1, 2. Cost: 4
+Min num lib/ass: (33) 1, 2. Cost: 4
+Min num lib/ass: (34) 0, 2. Cost: 2
+Min num lib/ass: (35) 0, 2. Cost: 2
+Min num lib/ass: (36) 1, 0. Cost: 2
+Min num lib/ass: (37) 1, 2. Cost: 4
+Min num lib/ass: (38) 1, 0. Cost: 2
+Min num lib/ass: (39) 1, 0. Cost: 2
+Min num lib/ass: (40) 1, 0. Cost: 2
+
+Average cost:2.97561
+
+With weights: 0.4, 0.4, 0.2
+Number of infeasible solutions:42
+Min num lib/ass: (0) 1, 0. Cost: 2
+Min num lib/ass: (1) 1, 2. Cost: 4
+Min num lib/ass: (2) 0, 0. Cost: 0
+Min num lib/ass: (3) 1, 2. Cost: 4
+Min num lib/ass: (4) 1, 2. Cost: 4
+Min num lib/ass: (5) 0, 2. Cost: 2
+Min num lib/ass: (6) 2, 0. Cost: 4
+Min num lib/ass: (7) 2, 0. Cost: 4
+Min num lib/ass: (8) 2, 0. Cost: 4
+Min num lib/ass: (9) 1, 0. Cost: 2
+Min num lib/ass: (10) 0, 2. Cost: 2
+Min num lib/ass: (11) 0, 0. Cost: 0
+Min num lib/ass: (12) 2, 0. Cost: 4
+Min num lib/ass: (13) 1, 0. Cost: 2
+Min num lib/ass: (14) 0, 2. Cost: 2
+Min num lib/ass: (15) 2, 0. Cost: 4
+Min num lib/ass: (16) 1, 0. Cost: 2
+Min num lib/ass: (17) 0, 2. Cost: 2
+Min num lib/ass: (18) 1, 0. Cost: 2
+Min num lib/ass: (19) 1, 2. Cost: 4
+Min num lib/ass: (20) 1, 2. Cost: 4
+Min num lib/ass: (21) 1, 2. Cost: 4
+Min num lib/ass: (22) 1, 2. Cost: 4
+Min num lib/ass: (23) 2, 0. Cost: 4
+Min num lib/ass: (24) 1, 0. Cost: 2
+Min num lib/ass: (25) 3, 0. Cost: 6
+Min num lib/ass: (26) 2, 0. Cost: 4
+Min num lib/ass: (27) 0, 2. Cost: 2
+Min num lib/ass: (28) 2, 0. Cost: 4
+Min num lib/ass: (29) 1, 0. Cost: 2
+Min num lib/ass: (30) 2, 0. Cost: 4
+Min num lib/ass: (31) 2, 0. Cost: 4
+Min num lib/ass: (32) 0, 0. Cost: 0
+Min num lib/ass: (33) 0, 0. Cost: 0
+Min num lib/ass: (34) 1, 0. Cost: 2
+Min num lib/ass: (35) 1, 0. Cost: 2
+Min num lib/ass: (36) 0, 2. Cost: 2
+Min num lib/ass: (37) 1, 0. Cost: 2
+
+Average cost:2.78947
+
+With weights: 0.4, 0.4, 0.2
+Number of infeasible solutions:40
+Min num lib/ass: (0) 1, 0. Cost: 2
+Min num lib/ass: (1) 1, 0. Cost: 2
+Min num lib/ass: (2) 0, 2. Cost: 2
+Min num lib/ass: (3) 1, 2. Cost: 4
+Min num lib/ass: (4) 2, 0. Cost: 4
+Min num lib/ass: (5) 1, 2. Cost: 4
+Min num lib/ass: (6) 0, 2. Cost: 2
+Min num lib/ass: (7) 1, 0. Cost: 2
+Min num lib/ass: (8) 1, 0. Cost: 2
+Min num lib/ass: (9) 0, 2. Cost: 2
+Min num lib/ass: (10) 1, 0. Cost: 2
+Min num lib/ass: (11) 0, 2. Cost: 2
+Min num lib/ass: (12) 0, 2. Cost: 2
+Min num lib/ass: (13) 2, 0. Cost: 4
+Min num lib/ass: (14) 1, 0. Cost: 2
+Min num lib/ass: (15) 0, 2. Cost: 2
+Min num lib/ass: (16) 1, 2. Cost: 4
+Min num lib/ass: (17) 1, 0. Cost: 2
+Min num lib/ass: (18) 0, 0. Cost: 0
+Min num lib/ass: (19) 2, 0. Cost: 4
+Min num lib/ass: (20) 2, 0. Cost: 4
+Min num lib/ass: (21) 2, 0. Cost: 4
+Min num lib/ass: (22) 1, 2. Cost: 4
+Min num lib/ass: (23) 0, 0. Cost: 0
+Min num lib/ass: (24) 0, 0. Cost: 0
+Min num lib/ass: (25) 0, 2. Cost: 2
+Min num lib/ass: (26) 2, 0. Cost: 4
+Min num lib/ass: (27) 1, 0. Cost: 2
+Min num lib/ass: (28) 3, 0. Cost: 6
+Min num lib/ass: (29) 0, 2. Cost: 2
+Min num lib/ass: (30) 2, 0. Cost: 4
+Min num lib/ass: (31) 0, 2. Cost: 2
+Min num lib/ass: (32) 1, 0. Cost: 2
+Min num lib/ass: (33) 2, 0. Cost: 4
+Min num lib/ass: (34) 2, 0. Cost: 4
+Min num lib/ass: (35) 0, 2. Cost: 2
+Min num lib/ass: (36) 0, 2. Cost: 2
+Min num lib/ass: (37) 1, 2. Cost: 4
+Min num lib/ass: (38) 0, 0. Cost: 0
+Min num lib/ass: (39) 2, 0. Cost: 4
+
+Average cost:2.65
+

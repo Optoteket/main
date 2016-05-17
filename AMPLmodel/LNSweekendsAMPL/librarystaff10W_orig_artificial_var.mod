@@ -61,15 +61,17 @@ param times_same_sol;
 
 #Objective function parameters
 param stand_in_day_d{I, W, 1..5}; #used to print number of stand-ins for each day
-param N1 := 1000; #Prioritize total number of stand ins
+param N1 := 100; #Prioritize total number of stand ins
 param N1l := 2; #The bigger, the more priority to maximize librarian stand-ins
 param N1a := 1; #The bigger, the more priority to maximize assistants stand-ins
 param N2 := 1; #Prioritize similar weeks
+param NA := 100000; #Cost of an artificial worker
 
 #################################### Variables ########################################################################
 var r{i in I, w in W} binary; #1 if person i has a rotation (phase shift) of w weeks, 0 otherwise
 var H{i in I, w in W, h in 1..2} binary; #1 if worker i works weekend h in week w
 var x{i in I, w in W, d in D, s in S[d], j in J[d]} binary; #1 if worker i is assigned task type j in shift s day d week w
+var ax{w in W, d in D, s in S[d], j in J[d]} integer, >=0; #1 if artificial worker i is assigned task type j in shift s day d week w
 var stand_in_lib{i in I_lib, w in W, d in D} binary; #1 if (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) = 1 and x[i,w,d,s,j] = 0. First term is if a worker is working a weekend
 var stand_in_ass{i in I_ass, w in W, d in D} binary; #1 if (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) = 1 and x[i,w,d,s,j] = 0. First term is if a worker is working a weekend
 var y{i in I, w in W, d in 1..5, s in 1..3} binary; #1 if worker i works week w, day d, shift s. No weekends and no evenings
@@ -90,20 +92,21 @@ var shifts_that_differ integer;
 
 maximize objective: #Maximize stand-ins and create schedules with similar weeks for each worker
 	#N1l*stand_in_lib_min + N1a*stand_in_ass_min - N2*shifts_that_differ;
-	N1*stand_in_min_tot - N2*shifts_that_differ;
+	N1*stand_in_min_tot - N2*shifts_that_differ - NA*(sum{w in W} (sum{d in D} (sum{s in S} (sum{j in J} ax[w,d,s,j]))));
 
 #################################### CONSTRAINTS ########################################################################
 
 ######################## Task demand for workers #####################################
 #number of workers to be assigned to different task types at different shifts (shall work for all days 1..7), except when there is a big meeting
 subject to task_assign_amount_weekdays{w in 1..5, d in 1..5,s in S[d], j in J[d] diff {'LOW'}}:
-	sum{i in I} x[i,w,d,s,j] = (1-M_big[w,d,s])*task_demand[d,s,j];
+	(sum{i in I} x[i,w,d,s,j]) + ax[w,d,s,j]= (1-M_big[w,d,s])*task_demand[d,s,j];
 
 subject to task_assign_amount_weekends{w in 1..5, d in 6..7,s in S[d], j in J[d]}:
-	sum{i in I} x[i,w,d,s,j] = task_demand[d,s,j];
+	(sum{i in I} x[i,w,d,s,j]) + ax[w,d,s,j]= task_demand[d,s,j];
 
 subject to task_assign_amount_library_on_wheels{w in 1..5, d in 1..5 ,s in S[d]}:
-	sum{i in I} x[i,w,d,s,'LOW'] = LOW_demand[w,d,s];
+	(sum{i in I} x[i,w,d,s,'LOW']) + ax[w,d,s,'LOW'] = LOW_demand[w,d,s];
+
 
 ######################## Maximum 4 shifts per week #########################################
 

@@ -77,25 +77,41 @@ void SingleTask::place_workers(vector<TaskWorker>* a_workers){
   sort(avail_workers.begin(), avail_workers.end(), TaskWorker::p_min_cost());
 
   //Print avail workers
-  //print_worker_costs();
+  print_worker_costs();
  
   //cout << "Placed worker " << avail_workers[0]->temp_worker.get_ID() << " at task w:" << week << " d:" << day << " s:" << shift << endl;
 
   //Place cheapest workers
   for(int i=0; i< orig_demand; i++){
     avail_workers[i]->worker->set_task(week,day,shift,type);
+    cout << "Placed worker with cost: " << avail_workers[i]->temp_cost 
+	 << "(" << avail_workers[i]->worker->get_ID() <<")" << endl;
+
+    //Add to list of placed workers
+    set_placed_workers(avail_workers[i]);
+
+    //Recalculate task cost
+    demand--;
+    set_costs();
   }
 
   //Recalculate task cost
-  demand--;
-  set_costs();
+  //demand--;
+  //set_costs();
 }
 
 void SingleTask::place_a_worker(Worker* worker){
   worker->set_task(week,day,shift,type);
 }
 
-
+bool SingleTask::check_feasibility(){
+  for(int i=0; i < (int) placed_workers.size(); i++){
+    //If there are several tasks placed the same day, the schedule is infeasible
+    if(placed_workers[i]->temp_cost >= 100)
+      return false;
+  } 
+  return true;
+}
 
 /*********** SingleTask: get functions *********/
 
@@ -108,7 +124,7 @@ int SingleTask::get_shift() const{
 }
 
 void SingleTask::print_worker_costs() {
-  cout << "Available workers: " << endl;
+  cout << "Available workers cost: " << week << ", " << day << ", " << shift << " qual: " << get_qualification() << endl;
   for (int i=0; i < (int) avail_workers.size(); i++){
     cout << avail_workers[i]->temp_cost << " ";
   }
