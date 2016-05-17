@@ -144,10 +144,10 @@ public:
 	void add_block_to_worker(string, int, int = 0);
 	void init_add_block_to_worker();
 // 	void add_block_to_worker(int, string type = ""); //or " "?
-	void calculate_week_cost(Block*, string, int[5][7][4][4], int[5][7][4][4], int[5][7][4][4], int[5], int);
+	void calculate_week_cost(Block*, string, int[5][7][4][4], int[5][7][4][4], int[5][7][4][4], int[5], int, int, int[5][5]);
 	int calculate_PL_cost(Block*);
 	int calculate_demand_cost(Block*, string, int[5][7][4][4], int[5][7][4][4], int[5][7][4][4], int);
-	int calculate_stand_in_cost(Block*, string, int);
+	int calculate_stand_in_cost(Block*, string, int, int, int[5][5]);
 	int calc_temp_cost(int,int,int,int,int, int[5][7][4][4], int[5][7][4][4]);
 	int calculate_num_wends_cost(Block*);
 // 	int calculate_HB_assign_cost(Block*, int[5]);
