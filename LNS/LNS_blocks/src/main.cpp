@@ -7,10 +7,11 @@
 #include <iomanip>
 #include <cstdlib> //rand() function
 #include <time.h> //clock_t, clock, CLOCKS_PER_SEC
+#include "Constants.h"
 #include "Workers.h"
 #include "Blocks.h"
 #include "Library.h"
-#include "Constants.h"
+
 using namespace std;
 
 
@@ -167,7 +168,8 @@ int main() {
 	int t_updated;
 	int current_solution = 0;
 	//***DESTROY AND REPAIR LOOP!***
-	while(time < 54000){ //54000 means 17-08
+	int stop_time = 10;
+	while(time < stop_time){ //54000 means 17-08, 239400 means fri 13.37 - mon 8.07
 		t_updated = 0;
 		t = clock(); //Start counting
 // 		best_t = clock(); //Start counting if finding new best sol
@@ -183,9 +185,9 @@ int main() {
 			outFile << "\n\n\n***Best iteration number: " << count_new_sol << "***" << endl;
 			outFile << "Best solution so far is " << lib.evaluate_solution(outFile) << endl;//Print everything with evaluate_solution
 			t = clock() - t;
-			t_updated = 1;
 			time2 = time + (float)t/CLOCKS_PER_SEC;
 			outFile << "Time where new best solution found is: " << time2 << endl;
+			t_updated = 1;
 		}
 		if(t_updated == 0){
 			t = clock() - t; //in TICKS
@@ -195,6 +197,7 @@ int main() {
 // 		if(current_solution < 1000){
 // 			STAND_IN_COST = 2*STAND_IN_COST; //const param though
 // 		}
+		
 	}
 	
 // 	cout << "it took " << ((float)time)/CLOCKS_PER_SEC << " seconds to execute the program" << endl;

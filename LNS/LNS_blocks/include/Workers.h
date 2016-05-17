@@ -150,7 +150,7 @@ public:
 	int calculate_stand_in_cost(Block*, string, int);
 	int calc_temp_cost(int,int,int,int,int, int[5][7][4][4], int[5][7][4][4]);
 	int calculate_num_wends_cost(Block*);
-	int calculate_HB_assign_cost(Block*, int[5]);
+// 	int calculate_HB_assign_cost(Block*, int[5]);
 	
 
 	vector<Weekend_cost> getWeekend_cost_vector() const;

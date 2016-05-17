@@ -71,6 +71,7 @@ public:
 	void setTask(int, int, int, int); //Input: w, d, s, j and A = assigned value (0/1)
 	void setWday_block_number(int);
 	int not_assigned(int);
+	int task_assigned_day(int);
 
 };
 
