@@ -122,14 +122,37 @@ int main(int argc, char** argv)
 
   min_ass.clear();
   min_lib.clear();
-  int max_loops = 1;
+  int max_loops = 80;
+  int num_tests = 6;
   double weights[3];
 
   //AMPL loop
-  for(int loop=0; loop < max_loops; loop++){
+  for(int loop=0; loop < max_loops*num_tests; loop++){
 
     //1. Setting and normalizing weights for weekend objective function
     if(loop < max_loops){
+      weights[0]=10; //Min number of full time avail workers/day
+      weights[1]=10; //Min number of avail workers per shift
+      weights[2]=10; //Min number of avail workers a day
+
+      //Normalizing
+      double sum =  weights[0] +  weights[1] +  weights[2];
+      weights[0]/=sum;
+      weights[1]/=sum;
+      weights[2]/=sum;
+    }
+    else if(loop < max_loops*2){
+      weights[0]=0; //Min number of full time avail workers/day
+      weights[1]=0; //Min number of avail workers per shift
+      weights[2]=0; //Min number of avail workers a day
+
+      //Normalizing
+      double sum =  weights[0] +  weights[1] +  weights[2] + 0.01;
+      weights[0]/=sum;
+      weights[1]/=sum;
+      weights[2]/=sum;
+    }
+    else if(loop < max_loops*3){
       weights[0]=5; //Min number of full time avail workers/day
       weights[1]=10; //Min number of avail workers per shift
       weights[2]=10; //Min number of avail workers a day
@@ -140,7 +163,39 @@ int main(int argc, char** argv)
       weights[1]/=sum;
       weights[2]/=sum;
     }
+    else if(loop < max_loops*4){
+      weights[0]=10; //Min number of full time avail workers/day
+      weights[1]=5; //Min number of avail workers per shift
+      weights[2]=10; //Min number of avail workers a day
 
+      //Normalizing
+      double sum =  weights[0] +  weights[1] +  weights[2];
+      weights[0]/=sum;
+      weights[1]/=sum;
+      weights[2]/=sum;
+    }
+    else if(loop < max_loops*5){
+      weights[0]=10; //Min number of full time avail workers/day
+      weights[1]=10; //Min number of avail workers per shift
+      weights[2]=5; //Min number of avail workers a day
+
+      //Normalizing
+      double sum =  weights[0] +  weights[1] +  weights[2];
+      weights[0]/=sum;
+      weights[1]/=sum;
+      weights[2]/=sum;
+    }
+    else if(loop < max_loops*6){
+      weights[0]=10; //Min number of full time avail workers/day
+      weights[1]=5; //Min number of avail workers per shift
+      weights[2]=5; //Min number of avail workers a day
+
+      //Normalizing
+      double sum =  weights[0] +  weights[1] +  weights[2];
+      weights[0]/=sum;
+      weights[1]/=sum;
+      weights[2]/=sum;
+    }
 
     //2. Create library
     Library library {&res_file};
@@ -149,7 +204,7 @@ int main(int argc, char** argv)
     library.create_initial_solution();
 
     //4. Optimize weekends, input: num iterations, destroy percentage
-    library.optimize_weekends(10, 20, weights);
+    library.optimize_weekends(5000, 20, weights);
     
     //5. Write results to resfile
     library.write_results();
@@ -161,10 +216,10 @@ int main(int argc, char** argv)
     collect_AMPL_statistics(&infeasible_count, min_lib, min_ass);
 
     //7. Write AMPL statistics
-    if(loop == max_loops-1){
+    if(loop == max_loops-1 || loop == 2*max_loops-1 || loop == 3*max_loops-1 || loop == 4*max_loops-1 || loop == 5*max_loops-1 || loop == 6*max_loops-1){
       //Print costs to file
       double tot_cost = 0.0;
-      wend_AMPL_file  << date << endl;
+      wend_AMPL_file  << date.str().c_str() << endl;
       wend_AMPL_file  << "With weights: " <<  weights[0] << ", "<<  weights[1] << ", "<<  weights[2] << endl;
       cout << "Number of infeasible solutions: " << infeasible_count << endl;
       wend_AMPL_file  << "Number of infeasible solutions:" << infeasible_count << endl;

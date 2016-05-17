@@ -135,7 +135,7 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
 
 
     //Find exponential cooling
-    double T = pow(0.95, (double)100.0*i/(1.0*iterations));
+    double T = 0.7*pow(0.96, (double)100.0*i/(1.0*iterations));
     double cost_diff = abs(library_cost - orig_library_cost);
     double exp_val = exp(-(cost_diff/(1.0*T)));
     double random_num = (double)(rand() % 100 +1)*0.01;
@@ -242,8 +242,9 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
   print_num_avail_workers();
   print_current_demand();
 
-  cout << "Min avail day ass: " << min_avail[Ass] << " Min avail day lib: " << min_avail[Lib] 
-       << " Min avail ass: " << min_avail[Ass] << " Min avail lib: " << min_avail[Lib] << endl;
+  cout << "Min avail day ass/lib: " << min_avail[Ass] << ", " << min_avail[Lib] 
+       << " Min avail ass/lib: " << min_avail[Ass] << ", "<< min_avail[Lib]
+       << " Min num avail ass/lib: " << min_num_avail[Ass] << ", " << min_num_avail[Lib] << endl;
   cout <<"Library max cost: " << library_max_cost << " Library current cost: " << library_cost << endl;
   *resfile << library_cost << endl;
   //destroy_tasks(100,"perm");
@@ -257,6 +258,7 @@ void Library::set_library_cost(string mode, double weight[3]){
   set_avail_day_cost(mode);
   //set_avail_contribution_cost(mode);
   set_avail_cost(mode);
+  set_num_avail_cost();
   //int weight_[3];
   //weight_[0]=10;
   //weight_[1]=2;
@@ -266,6 +268,9 @@ void Library::set_library_cost(string mode, double weight[3]){
     library_cost = weight[0]*avail_day_cost
       + weight[1]*avail_cost
       + weight[2]*num_avail_cost
+      + (weight[0]/10)*avail_day_average
+      + (weight[1]/10)*avail_average
+      + (weight[2]/10)*num_avail_average
       ;
     
     //Print cost
@@ -392,25 +397,36 @@ void Library::set_num_avail_cost(){
   }
 
   //Find all available librarians and assistants
+  for(int i=0; i < (int)worker_list.size(); i++){
     for(int w = 0; w < NUM_WEEKS; w++){
       for(int d = 0; d < NUM_WEEKDAYS; d++){
-	for(int s = 0; s < NUM_SHIFTS; s++){
-	  for(int i=0; i < (int)worker_list.size(); i++){
-	    int found =0;
-	    if(!found){
-	      if(worker_list[i].get_current_avail(w,d,s)>=Lib){
-		found = 1;
-		local_avail_workers[Lib][w][d]++;
-	      }
-	      else if(worker_list[i].get_current_avail(w,d,s)==Ass){
-		found = 1;
-		local_avail_workers[Ass][w][d]++;
-	      }
-	    }	   
-	  }
+	bool found = false;
+	for(int s = 0; s < NUM_SHIFTS-1; s++){
+	  if(!found && worker_list[i].get_current_avail(w,d,3) == no_task){
+	    if(worker_list[i].get_current_avail(w,d,s)>=Lib){
+	      found = true;
+	      local_avail_workers[Lib][w][d]++;
+	    }
+	    else if(worker_list[i].get_current_avail(w,d,s)==Ass){
+	      found = true;
+	      local_avail_workers[Ass][w][d]++;
+	    }
+	  }	   
 	}
       }
     }
+  }
+
+  num_avail_average = 0.0;
+  for(int p = Ass; p <= Lib; p++){
+    for(int w = 0; w < NUM_WEEKS; w++){
+      for(int d = 0; d < NUM_WEEKDAYS; d++){
+	num_avail_average +=local_avail_workers[p][w][d];
+      }
+    }
+  }
+  num_avail_average/=(2*NUM_WEEKS*NUM_WEEKDAYS);
+
 
     //Find worst day
     for(int w=0; w<NUM_WEEKS; w++){
@@ -433,7 +449,7 @@ void Library::set_num_avail_cost(){
     num_avail_cost = min_avail_cost;
     min_num_avail[Ass] = min_num_ass;
     min_num_avail[Lib] = min_num_lib;
-    cout << "Perm avail cost: " << avail_cost << ". Ass: " 
+    cout << "Perm num avail cost: " << num_avail_cost << ". Ass: " 
 	 << min_num_ass << ". Lib: "
 	 << min_num_lib << ". week: " << week << " day: " << day << "." << endl;
 }
@@ -467,9 +483,11 @@ void Library::set_avail_cost(string mode){
       for(int d = 0; d < NUM_WEEKDAYS; d++){
 	for(int s = 0; s < NUM_SHIFTS-1; s++){
 	  for(int i=0; i < (int)worker_list.size(); i++){
-	    if(worker_list[i].get_current_avail(w,d,s)>=Lib)
+	    if(worker_list[i].get_current_avail(w,d,s)>=Lib
+	       && worker_list[i].get_current_avail(w,d,3) == no_task)
 	      local_avail_workers[Lib][w][d][s]++;
-	    else if(worker_list[i].get_current_avail(w,d,s)==Ass)
+	    else if(worker_list[i].get_current_avail(w,d,s)==Ass
+		    && worker_list[i].get_current_avail(w,d,3) == no_task)
 	      local_avail_workers[Ass][w][d][s]++;
 	  }	   
 	}
@@ -521,15 +539,18 @@ void Library::set_avail_cost(string mode){
 
   //Write to global variable
   if(mode == "perm"){
+    avail_average=0.0;
     for(int p=0; p<NUM_POSITIONS; p++){
       for(int w=0; w<NUM_WEEKS; w++){
 	for(int d=0; d<NUM_WEEKDAYS; d++){
 	  for(int s=0; s<NUM_SHIFTS-1; s++){
 	    num_weekday_avail_workers[p][w][d][s] = local_avail_workers[p][w][d][s];
+	    avail_average += local_avail_workers[p][w][d][s];
 	  }
 	}
       }
     }
+    avail_average/=(2*NUM_WEEKS*NUM_WEEKDAYS*NUM_SHIFTS-1);
   }
 
   if(mode == "temp"){
@@ -731,9 +752,14 @@ void Library::set_avail_day_cost(string mode){
   for(int i=0; i<(int) worker_list.size(); i++){
     for(int w=0; w<NUM_WEEKS; w++){
       for(int d=0; d<NUM_WEEKDAYS; d++){
-	//Worker available shifts 1-3, friday evening tasks ignored
-	if(worker_list[i].get_avail_day(w,d))
-	  local_num_avail_day_workers[worker_list[i].get_pos()][w][d]++;
+	Worker* worker = &worker_list[i];
+	//Worker available shifts 1-4, after evening tasks have been distributed
+	if(worker->get_current_avail(w,d,0) > 0 && worker->get_current_avail(w,d,1) > 0 &&
+	   worker->get_current_avail(w,d,2) > 0 && worker->get_current_task(w,d,3) == no_task){
+	  local_num_avail_day_workers[worker->get_pos()][w][d]++;
+	}
+	//if(worker_list[i].get_avail_day(w,d))
+	// local_num_avail_day_workers[worker_list[i].get_pos()][w][d]++;
       }
     }
   }
@@ -807,6 +833,16 @@ void Library::set_avail_day_cost(string mode){
 	}
       }
     }
+
+  avail_day_average=0.0;
+  for(int p=Ass; p<=Lib; p++){
+    for(int w=0; w<NUM_WEEKS; w++){
+      for(int d=0; d<NUM_WEEKDAYS; d++){
+	avail_day_average += local_num_avail_day_workers[p][w][d];
+      }
+    }
+  }
+  avail_day_average/=(2*NUM_WEEKS*NUM_WEEKDAYS);
 
   if(mode == "temp"){
     temp_avail_day_cost = 2*min_num_lib + 1*min_num_ass;
@@ -1373,7 +1409,8 @@ void Library::place_BokB(){
       current_demand[week][day][shift][BokB]--;
     }
     else if (worker36-> get_current_avail(week, day, shift) == current_task->get_qualification() && 
-	     worker36-> get_current_task(((NUM_WEEKS + (week-1)) % NUM_WEEKS),day,shift) != BokB){
+	     worker36-> get_current_task(((NUM_WEEKS + (week-1)) % NUM_WEEKS),day,shift) != BokB &&
+	     worker25->get_current_task(week,day,0) != BokB){
       //Place
       current_task->place_a_worker(worker36);
       cout << "BokB placed: " << worker36->get_ID() << endl;

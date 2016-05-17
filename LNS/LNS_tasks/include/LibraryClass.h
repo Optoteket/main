@@ -44,7 +44,7 @@ class Library{
   vector<TaskWorker> destroyed_wend_workers;
   vector<TaskWorker> destroyed_task_workers;
 
-  vector<int> weekend_objective_function;
+  vector<double> weekend_objective_function;
 
   //Demand arrays 
   int worker_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
@@ -88,6 +88,10 @@ class Library{
   int avail_cost;
   int temp_avail_cost;
   int min_avail[NUM_POSITIONS];
+
+  double avail_day_average;
+  double avail_average;
+  double num_avail_average;
 
  public:
 
