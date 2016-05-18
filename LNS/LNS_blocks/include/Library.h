@@ -124,7 +124,7 @@ public:
 	int check_if_collision(unsigned int, int, int, string);
 	
 	//*** Evaluate solution ***
-	int evaluate_solution(ostream&);
+	vector<int> evaluate_solution(ostream&);
 	
 	//*** DESTROY AND REPAIR ***
 	void destroy(int);

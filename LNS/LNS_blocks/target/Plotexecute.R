@@ -1,0 +1,29 @@
+# Read values from text file. objfcn, feasible, standins and maxmin
+plot_data <- read.table("./target/Plotdata.txt", header=T, sep="\t") 
+
+#Compute max y-values for each of the graphs
+max_y_objfcn <- max(plot_data$objfcn)
+max_y_feasible <- max(plot_data$feasible)
+max_y_standins <- max(plot_data$standins)
+max_y_maxmin <- max(plot_data$maxmin)
+
+
+
+#Create a 2x2 subplot
+par(mfrow=c(2,2))
+
+#Define colors to be used
+plot_colors <- c("blue", "red", "forestgreen", "black")
+
+#plot each of the columns
+
+plot(plot_data$objfcn, col = plot_colors[1])
+#Make x-axis
+#axis(1, at=1:5, lab=c("Mon", "Tue", "Wed", "Thu", "Fri"))
+#Make y-axis
+#axis(2, las=1, at=4*0:max_y_objfcn)
+
+plot(plot_data$feasible, col = plot_colors[2])
+plot(plot_data$standins, col = plot_colors[3])
+plot(plot_data$maxmin, col = plot_colors[4])
+

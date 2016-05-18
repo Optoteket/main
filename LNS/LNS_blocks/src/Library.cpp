@@ -1079,9 +1079,9 @@ void Library::calculate_demand(){ //Updates tasks_filled, demand_differ (+ LOW-a
 
 void Library::calculate_all_week_costs_for_worker(string type, int w_id, int count){
 	int calculate = 1;
-// 	if(STAND_IN_COST == HIGH_PRIORITY){
+	if(STAND_IN_COST == HIGH_PRIORITY){
 		get_lowest_stand_in(); //Also updates stand_in_amount[w][d]
-// 	}
+	}
 	if(type == "weekrest"){
 		//Clear vector
 		myworkers[w_id-1].clear_cost_vector(type);
@@ -1390,10 +1390,11 @@ void Library::clear_calculate_LOW_filled(){
 	}
 }
 
-int Library::evaluate_solution(ostream& stream){//Add all costs together and return the total cost. Stand-ins not included here
+vector<int> Library::evaluate_solution(ostream& stream){//Add all costs together and return the total cost. Stand-ins not included here
 	int total_eval_cost = 0;
 	int total_stand_in_cost = 0;
 	int demand_tot_cost = 0;
+	int demand_staff_cost = 0;
 	int demand_lib_cost = 0;
 	int demand_ass_cost = 0;
 	int demand_PL_cost = 0;
@@ -1409,32 +1410,43 @@ int Library::evaluate_solution(ostream& stream){//Add all costs together and ret
 	print_num_workers("ass", stream);//Num ass assigned
 	print_demand_differ(stream); //Demand_differ
 	
+	int DEMAND_LIB_COST = 0;
+	int DEMAND_ASS_COST = 0;
+	vector<int> output_vector;
+	output_vector.clear();
 	//Demand cost+qualifications, #PL, #HB, (LOW?)
 	for(int w=0; w<NUM_WEEKS; w++){
 		for(int d=0; d<6; d++){ //was d<5 before. Note: saturday gives same costs as sunday
 			for(int s=0; s<NUM_SHIFTS;s++){
-				//***DEMAND TOT COSTS WEEKDAYS*** what about assistants?
-				if(demand_differ[w][d][s][0] > 0){ //Understaffing Exp/Info
-					if(num_lib_assigned[w][d][s][0] - demand[w][d][s][0]/2 < 0){//not enough libs => add two costs (too few total and too few libs)
-						if(s == 3 && d < 4){demand_evening_cost += demand_differ[w][d][s][0]*DEMAND_EVENING_COST;
-						}else if(s != 3){demand_tot_cost += demand_differ[w][d][s][0]*DEMAND_FEW_TOT;}
-						demand_lib_cost += abs(num_lib_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_FEW_LIBS;
-					}else{ //enough libs => add only one cost
-						if(s == 3 && d < 4){demand_evening_cost += demand_differ[w][d][s][0]*DEMAND_EVENING_COST;
-						}else if(s != 3){demand_tot_cost += demand_differ[w][d][s][0]*DEMAND_FEW_TOT;}
-					}
-				}else if(demand_differ[w][d][s][0] < 0){//Overstaffing Exp/Info
-					if(num_lib_assigned[w][d][s][0] - demand[w][d][s][0]/2 < 0){//not enough libs => add two costs (too many total and too few libs)
-						if(s == 3 && d < 4){demand_evening_cost += abs(demand_differ[w][d][s][0])*DEMAND_EVENING_COST;
-						}else if(s != 3){demand_tot_cost += abs(demand_differ[w][d][s][0])*DEMAND_FEW_TOT;}
-						demand_lib_cost += abs(num_lib_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_FEW_LIBS;
+				if(num_lib_assigned[w][d][s][0] - demand[w][d][s][0]/2 <= 0){
+					DEMAND_LIB_COST = DEMAND_FEW_LIBS;
+				}else if(num_lib_assigned[w][d][s][0] - demand[w][d][s][0]/2 > 0){
+					DEMAND_LIB_COST = DEMAND_MANY_LIBS;
+				}
+				if(num_ass_assigned[w][d][s][0] - demand[w][d][s][0]/2 <= 0){
+					DEMAND_ASS_COST = DEMAND_FEW_ASS;
+				}else if(num_ass_assigned[w][d][s][0] - demand[w][d][s][0]/2 > 0){
+					DEMAND_ASS_COST = DEMAND_MANY_ASS;
+				}
+					
+				//***DEMAND TOT COSTS WEEKDAYS*** //Add the evening costs!
+				if(demand_differ[w][d][s][0] >= 0){ //Understaffing or zero demand Exp/Info => demand_few_tot
+					demand_staff_cost += abs((num_lib_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_LIB_COST
+					+(num_ass_assigned[w][d][s][0] - demand[w][d][s][0]/2)*DEMAND_ASS_COST);
+					if(s == 3 && d < 4){
+						demand_evening_cost += demand_differ[w][d][s][0]*DEMAND_EVENING_COST;
 					}else{
-						if(s == 3 && d < 4){demand_evening_cost += abs(demand_differ[w][d][s][0])*DEMAND_EVENING_COST;
-						}else if(s != 3){demand_tot_cost += abs(demand_differ[w][d][s][0])*DEMAND_FEW_TOT;}
+						demand_tot_cost += demand_differ[w][d][s][0]*DEMAND_FEW_TOT;
 					}
-				}else if(demand_differ[w][d][s][0] == 0 && //Feasible total amount of workers
-					(num_lib_assigned[w][d][s][0] - demand[w][d][s][0]/2) < 0){ //not enough libs => add one cost
-					demand_lib_cost += abs(num_lib_assigned[w][d][s][0]-demand[w][d][s][0]/2)*DEMAND_FEW_LIBS;
+					
+				}else if(demand_differ[w][d][s][0] < 0){//Overstaffing Exp/Info => demand_many_tot
+					demand_staff_cost += abs((num_lib_assigned[w][d][s][0] - demand[w][d][s][0]/2)*DEMAND_LIB_COST
+					+(num_ass_assigned[w][d][s][0] - demand[w][d][s][0]/2)*DEMAND_ASS_COST);
+					if(s == 3 && d < 4){
+						demand_evening_cost += abs(demand_differ[w][d][s][0])*DEMAND_EVENING_COST;
+					}else{
+						demand_tot_cost += abs(demand_differ[w][d][s][0])*DEMAND_MANY_TOT;
+					}
 				}
 			}
 			
@@ -1450,12 +1462,6 @@ int Library::evaluate_solution(ostream& stream){//Add all costs together and ret
 		}
 		for(int d=5; d<NUM_DAYS; d++){
 			if(d == 5){ //Weekend costs
-	// 			//***DEMAND TOT COSTS WEEKEND***
-	// 			if(demand_differ[w][d][0][0] > 0){ //Understaffing weekend Block
-	// 				demand_weekend_cost += demand_differ[w][d][0][0]*DEMAND_WEEKEND_COST;
-	// 			}else if(demand_differ[w][d][0][0] < 0){ //Overstaffing weekend Block
-	// 				demand_weekend_cost += abs(demand_differ[w][d][0][0])*DEMAND_WEEKEND_COST;
-	// 			}
 				
 				//***DEMAND HB COSTS***
 				if(demand_differ[w][d][0][2] > 0){ //Understaffing HB(only librarians in HB)
@@ -1507,6 +1513,8 @@ int Library::evaluate_solution(ostream& stream){//Add all costs together and ret
 	if(get_lowest_stand_in() > max_min_stand_in){
 		max_min_stand_in = get_lowest_stand_in();
 	}
+	
+	//***Print results to file***
 	print_weekends_assigned(stream); //lib_per_rot[w], ass_per_rot[w]
 	print_stand_ins(stream); //Stand-ins for each week
 	stream << "Max(min stand-in) for this solution is: " << get_lowest_stand_in() << endl;
@@ -1526,7 +1534,19 @@ int Library::evaluate_solution(ostream& stream){//Add all costs together and ret
 	stream << "total_stand_in_cost = " << total_stand_in_cost << endl;
 	stream << "*total_cost* = " << total_eval_cost + total_stand_in_cost << endl;
 // 	print_results(stream, lower_limit, upper_limit, demand_tot_cost);
-	return total_eval_cost;
+	output_vector.push_back(total_eval_cost+total_stand_in_cost);
+	output_vector.push_back(total_eval_cost);
+	output_vector.push_back(get_sum_stand_ins());
+	output_vector.push_back(get_lowest_stand_in());
+	output_vector.push_back(demand_tot_cost);
+	output_vector.push_back(demand_lib_cost);
+	output_vector.push_back(demand_ass_cost);
+	output_vector.push_back(demand_PL_cost);
+	output_vector.push_back(demand_HB_cost);
+	output_vector.push_back(demand_evening_cost);
+	output_vector.push_back(PL_amount_cost);
+	output_vector.push_back(no_weekend_cost);
+	return output_vector;
 }
 
 void Library::destroy(int num_destroy){ //Destroy blocks for num_destroy number of random workers (and give new weekend, in repair?)

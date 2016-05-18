@@ -377,7 +377,16 @@ void Worker::add_block_to_worker(string type, int week_id, int day){
 			blocks_assigned.at((newWeekend_week+4) % 5)->setWday_block_number(day); //What if same block multiple times here?
 		}
 	} else {cout << "No match were found in 'add_block_to_worker'" << endl;}
+	update_PL_assigned(); //Update amount of PL assigned to the worker after each block insertion
 	return;
+}
+
+void Worker::update_PL_assigned(){
+	int count = 0;
+	for(unsigned int n=0; n<blocks_assigned.size(); n++){
+		count += blocks_assigned.at(n)->getnum_PL();
+	}
+	num_PL = count;
 }
 
 
@@ -453,7 +462,7 @@ int Worker::calculate_PL_cost(Block* block){
 int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[5][7][4][4], int assigned_libs[5][7][4][4], int assigned_ass[5][7][4][4], int count){
 	int temp_cost = 0;
 	int w = 0;
-	for(int d=0; d<NUM_DAYS; d++){
+	for(int d=0; d<NUM_DAYS-1; d++){ //Only Monday-Saturday since Saturday and Sunday give the same costs.
 		for(int s=0; s<NUM_SHIFTS; s++){
 			if(type == "weekrest" || type == "weekday"){w = (newWeekend_week+count+1) % 5;} //The week in consideration
 			else if(type == "weekend"){w = newWeekend_week;}
@@ -468,10 +477,12 @@ int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[
 					}
 					else{ //regular demand all other shifts
 						temp_cost += calc_temp_cost(3,3,w,d,s,assigned_libs,assigned_ass); //Cost for libs/ass
-						//Costs for TOO FEW WORKERS
-						temp_cost -= DEMAND_FEW_TOT; //*(assigned_libs[w][d][s][1]+assigned_ass[w][d][s][1]+1-6);
 						if(s == 3 && d != 4){ //Fridays excluded in the evening cost
 							temp_cost -= DEMAND_EVENING_COST; //More priority on evenings
+						}
+						else{
+							//Costs for TOO FEW WORKERS
+							temp_cost -= DEMAND_FEW_TOT; //*(assigned_libs[w][d][s][1]+assigned_ass[w][d][s][1]+1-6);
 						}
 					}
 				}
@@ -484,10 +495,12 @@ int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[
 					}
 					else{ //regular demand all other shifts
 						temp_cost += calc_temp_cost(3,3,w,d,s,assigned_libs,assigned_ass);
-						//Costs for TOO MANY WORKERS
-						temp_cost += DEMAND_MANY_TOT; //*(assigned_libs[w][d][s][1]+assigned_ass[w][d][s][1]+1-6);
 						if(s == 3 && d != 4){ //Fridays excluded in the evening cost
 							temp_cost += DEMAND_EVENING_COST; //More priority on evenings
+						}
+						else{
+							//Costs for TOO MANY WORKERS
+							temp_cost += DEMAND_MANY_TOT; //*(assigned_libs[w][d][s][1]+assigned_ass[w][d][s][1]+1-6);
 						}
 					}
 				}
@@ -536,9 +549,9 @@ int Worker::calc_temp_cost(int demand_lib, int demand_ass, int w, int d, int s, 
 	if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][0]+1 <= demand_lib){
 		tmp_cst -= DEMAND_FEW_LIBS;  //*(demand-assigned_libs[w][d][s][1]) added if steeper steps if further away from demand
 	}
-// 	else if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][0]+1 > demand_lib){
-// 		tmp_cst += DEMAND_MANY_LIBS;
-// 	}
+	else if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][0]+1 > demand_lib){
+		tmp_cst += DEMAND_MANY_LIBS;
+	}
 	//Costs for ASSISTANTS
 	if(newQual.compare(0,3,"ass") == 0 && assigned_ass[w][d][s][0]+1 <= demand_ass){
 		tmp_cst -= DEMAND_FEW_ASS;

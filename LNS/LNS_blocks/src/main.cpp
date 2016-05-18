@@ -19,7 +19,6 @@ using namespace std;
 
 int main() {
 	clock_t t;
-// 	clock_t best_t;
 	float time = 0;
 	float time2 = 0;
 	int count_new_sol = 0;
@@ -30,6 +29,16 @@ int main() {
 		cerr << "Error opening the file!" << endl;
 		exit(1);
 	}
+	ofstream outdata("./target/Plotdata.txt");
+	//Checking for open Error
+	if (outdata.fail()) {
+		cerr << "Error opening the file!" << endl;
+		exit(1);
+	}
+	ofstream outobjfcn("./target/objfcn.txt");
+	ofstream outfeasible("./target/feasible.txt");
+	ofstream outstandins("./target/standins.txt");
+	ofstream outmaxmin("./target/maxmin.txt");
 	Library lib;
 	lib.create_all_blocks();
 	cout << "block_vector size is: " << lib.get_block_vector().size() << endl; //Why differ to #blocks to create?
@@ -100,7 +109,7 @@ int main() {
 // 	cout << "\n" << endl;
 // 	}
 	
-	cout << "The total cost after the new solution is: " << lib.evaluate_solution(cout) << endl;
+	cout << "The total cost after the initial solution is: " << lib.evaluate_solution(cout).at(1) << endl;
 	
 	lib.print_num_workers("lib", cout);
 	lib.print_num_workers("ass", cout);
@@ -128,13 +137,13 @@ int main() {
 // // 	lib.print_weekends_assigned(cout);
 // // 	lib.print_all_weekblocks_assigned_worker(p, cout);
 // 	lib.print_demand_differ(cout);
-// 	cout << "The total cost after the new solution is: " << lib.evaluate_solution(cout) << endl;
+// 	cout << "The total cost after the new solution is: " << lib.evaluate_solution(cout).at(1) << endl;
 // // 	cout << "Worker " << p << " is working weekend at week: " << lib.getWorker(p).getWeekend_week() << endl;
 // // 	lib.destroy(p);
 // 	lib.destroy(3);
 // 	cout << "\nAfter destroy!\n" << endl;
 // 	lib.calculate_demand(); //Update the tasks_filled and demand_differences
-// 	destroy_cost = lib.evaluate_solution(cout);
+// 	destroy_cost = lib.evaluate_solution(cout).at(1);
 // 	cout << "The total cost after the new solution is: " << destroy_cost << endl;
 // 	
 // // 	lib.print_demand_differ(cout);
@@ -145,10 +154,10 @@ int main() {
 // 	cout << "After repair" << endl;
 // // 	cout << "Worker " << p << " is working weekend at week (after repair): " << lib.getWorker(p).getWeekend_week() << endl;
 // 	lib.calculate_demand(); //Update the tasks_filled and demand_differences
-// // 	cout << "The total cost after the new solution is: " << lib.evaluate_solution(cout) << endl;
+// // 	cout << "The total cost after the new solution is: " << lib.evaluate_solution(cout).at(1) << endl;
 // 	cout << "Destroy_cost is: " << destroy_cost << endl;
 // 	cout << "Repair-increment is: " << lib.get_increment() << endl;
-// 	cout << "New solution should be: " << destroy_cost+lib.get_increment() << " but it is: " << lib.evaluate_solution(cout) << endl;
+// 	cout << "New solution should be: " << destroy_cost+lib.get_increment() << " but it is: " << lib.evaluate_solution(cout).at(1) << endl;
 // 	return 0;
 // // 	cout << "Weekblocks assigned to the worker is now: " << endl;
 // // 	lib.print_all_weekblocks_assigned_worker(p, cout);
@@ -169,44 +178,65 @@ int main() {
 // 	return 0;
 	
 	//***DESTROY AND REPAIR LOOP!***
-	int stop_time = 52400;
+	int stop_time = 65000;
 	int t_updated;
 	int current_solution = 0;
 	int iter_count = 0;
+	vector<int> output_vector;
+	STAND_IN_COST = LOW_PRIORITY;
+	outdata << "objfcn\tfeasible\tstandins\tmaxmin" << endl;
 	while(time < stop_time){ //54000 means 17-08, 239400 means fri 13.37 - mon 8.07
 		t_updated = 0;
 		t = clock(); //Start counting
-// 		best_t = clock(); //Start counting if finding new best sol
+		output_vector.clear();
 		if(time <= stop_time/3){ //Phase 1
 			STAND_IN_COST = LOW_PRIORITY;
 			cout << "Inside Phase 1" << endl;
 		}else if(time > stop_time/3 && time < 2*stop_time/3){ //Phase 2
 			STAND_IN_COST = HIGH_PRIORITY;
 			cout << "Inside Phase 2" << endl;
-		}else if(time >= 2*stop_time/3){ //Phase 1 again
-			STAND_IN_COST = LOW_PRIORITY;
-			cout << "Inside Phase 1 again" << endl;
+		}else if(time >= 2*stop_time/3){ //Phase 3, middle priority
+			STAND_IN_COST = MIDDLE_PRIORITY;
+			cout << "Inside Phase 3" << endl;
 		}
+		//Destroy and update
 		lib.destroy(3);
 		lib.calculate_demand();
+		//Repair (updates are inside the repair)
 		lib.repair();
 		lib.calculate_demand();
-		current_solution = lib.evaluate_solution(cout); //Cost from objective function
+		
+		
+		output_vector = lib.evaluate_solution(cout); //Total objfcn, feasible_cost, #stand-ins, max-min-stand-in
+		//Print all values to plotdata.txt
+		outdata << output_vector.at(0) << "\t" << output_vector.at(1) << "\t" << output_vector.at(2) << "\t" << output_vector.at(3) << endl;
+		outobjfcn << output_vector.at(0) << endl;
+		outfeasible << output_vector.at(1) << endl;
+		outstandins << output_vector.at(2) << endl;
+		outmaxmin << output_vector.at(3) << endl;
+		
+		
+		current_solution = output_vector.at(1); //Feasible cost from objective function
 		if(current_solution < best_solution){
 			best_solution = current_solution;
 			count_new_sol++;
 			//Print best solution to file!
-			//ERROR: check no_weekend_cost
-			outFile << "Worker 23 is assigned following weekend: " << endl;
-			lib.print_weekblocks_assigned_worker(23, "weekend", outFile);
-			outFile << "Worker 28 is assigned following blocks: " << endl;
-			lib.print_all_weekblocks_assigned_worker(28, outFile);
 			outFile << "\n\n\n***Best iteration number: " << count_new_sol << "***" << endl;
-			outFile << "Best solution so far is " << lib.evaluate_solution(outFile) << endl;//Print everything with evaluate_solution
+			outFile << "Best solution so far is " << lib.evaluate_solution(outFile).at(1) << endl;//Print everything with evaluate_solution
 			t = clock() - t;
 			time2 = time + (float)t/CLOCKS_PER_SEC;
 			outFile << "Time where new best solution found is: " << time2 << endl;
 			t_updated = 1;
+			//0=total_cost, 1=total_eval_cost, 2=sum_stand_ins, 3=maxmin, 4=demand_tot_cost
+			//5=demand_lib_cost, 6=demand_ass_cost, 7=demand_PL_cost, 8=demand_HB_cost, 9=demand_evening_cost
+			//10=PL_amount_cost, 11=no_weekend_cost
+			if(best_solution < 2000 && output_vector.at(1) > 0 && output_vector.at(4) > 0 &&
+				output_vector.at(5) == 0 && output_vector.at(6) == 0 && output_vector.at(7) == 0 &&
+				output_vector.at(8) == 0 && output_vector.at(9) == 0 && output_vector.at(10) == 0 &&
+				output_vector.at(11) == 0){
+				outFile << "Entering final phase!" << endl;
+				
+			}
 		}
 		if(t_updated == 0){
 			t = clock() - t; //in TICKS
@@ -214,9 +244,6 @@ int main() {
 		time += (float)t/CLOCKS_PER_SEC; //As float value
 		cout << "\n\n\ntime is: " << time << "\n\n" << endl;
 		iter_count++;
-// 		if(current_solution < 1000){
-// 			STAND_IN_COST = 2*STAND_IN_COST;
-// 		}
 		
 	}
 	
@@ -230,6 +257,7 @@ int main() {
 	outFile << "Best solution found was: " << best_solution << endl;
 	
 	outFile.close();
+	outdata.close();
 	cout << "End of main" << endl;
 	return 0;
 }

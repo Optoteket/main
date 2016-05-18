@@ -116,6 +116,7 @@ public:
 	int get_LOW_assigned(int, int, int) const;
 	int get_num_PL_assigned();
 	void print_assigned_LOW() const;
+	void update_PL_assigned();
 	
 	
 	
