@@ -62,7 +62,7 @@ param times_same_sol;
 #Objective function parameters
 param stand_in_day_d{I, W, 1..5}; #used to print number of stand-ins for each day
 param N1 := 1000; #Prioritize total number of stand ins
-param N1l := 2; #The bigger, the more priority to maximize librarian stand-ins
+param N1l := 5; #The bigger, the more priority to maximize librarian stand-ins
 param N1a := 1; #The bigger, the more priority to maximize assistants stand-ins
 param N2 := 1; #Prioritize similar weeks
 

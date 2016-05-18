@@ -45,6 +45,12 @@ class Library{
   vector<TaskWorker> destroyed_task_workers;
 
   vector<double> weekend_objective_function;
+  vector<double> weekend_day_avail_cost;
+  vector<double> weekend_shift_avail_cost;
+  vector<double> weekend_stand_in_cost;
+  vector<double> weekend_day_avail_average_cost;
+  vector<double> weekend_shift_avail_average_cost;
+  vector<double> weekend_stand_in_average_cost;
 
   //Demand arrays 
   int worker_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
@@ -73,25 +79,30 @@ class Library{
   double temp_library_cost;
   double orig_library_cost;
 
-  int avail_day_cost; //Maximize in objective function
-  int min_avail_day[NUM_POSITIONS];
+  //Stand in cost term
+  int stand_in_cost; //Maximize in objective function
+  int min_stand_in[NUM_POSITIONS];
   int temp_avail_day_cost;
 
+  //Shift avail cost term
+  int shift_avail_cost;
+  int temp_avail_cost;
+  int min_shift_avail[NUM_POSITIONS];
+
+  //Day avail cost terms
+  int day_avail_cost;
+  double min_day_avail[NUM_POSITIONS];
+
+  //Average cost terms
+  double stand_in_average;
+  double shift_avail_average;
+  double day_avail_average;
+
+  //Remove?
   int avail_contribution_cost;
   double min_contribution[NUM_POSITIONS];
   int temp_avail_contribution_cost;
 
-  int num_avail_cost;
-  double min_num_avail[NUM_POSITIONS];
-  //int temp_avail_contribution_cost;
-
-  int avail_cost;
-  int temp_avail_cost;
-  int min_avail[NUM_POSITIONS];
-
-  double avail_day_average;
-  double avail_average;
-  double num_avail_average;
 
  public:
 
@@ -104,10 +115,10 @@ class Library{
   void remove_weekday_tasks();
   bool set_evening_tasks();
   void set_library_cost(string, double[3]);
-  void set_num_avail_cost();
+  void set_day_avail_cost();
   void set_avail_contribution_cost(string);
-  void set_avail_day_cost(string);
-  void set_avail_cost(string);
+  void set_stand_in_cost(string);
+  void set_shift_avail_cost(string);
   //void find_sum_stand_ins(string);
   int find_min_stand_ins(int[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS],int);
 
@@ -148,6 +159,7 @@ class Library{
   //Get
   int get_demand(int, int, int, int);
   int get_current_demand(int, int, int, int);
+  double get_library_cost() const;
 
   //Dec
   void dec_current_demand(int, int, int, int);

@@ -1,10 +1,10 @@
-res <- read.csv("obj_func_val.csv", header=TRUE, sep=",")
+res <- read.csv("obj_func_vals_2016_5_18 17:35:17.csv", header=TRUE, sep=",")
 x <- res[,1]
 y1 <- res[,2]
 y2 <- res[,3]
 #par("usr")
 #plot.window(xlim=range(x),ylim=range(y1))
-#plot(x, y1, xlab = "Iterations", ylab="Obj function val",type="l", main="Weekend objective function values",axes=FALSE)
+plot(x, y1, xlab = "Iterations", ylab="Obj function val",type="l", main="Weekend objective function values")
 #plot(x, y1, type="l", main="Weekend objective function values",axes=FALSE, xlab="", ylab="")
 #plot.new()
 
@@ -27,12 +27,8 @@ y2 <- res[,3]
 #axis(2, at=seq(0,length(res[,2]),5),labels=seq(0,length(res[,2]),5), las=2)
 #title("Objective function plots", xlab="X values",ylab="Y=X"	)
 
-par(mar = c(5,5,2,5))
-plot(x, y1, type="l", col="red3", 
-             ylab=expression(-log[10](italic(p))),
-             ylim=c(min(res[,2])-1,max(res[,2])+1))
+#par(mar = c(5,5,2,5))
+#plot(x, y1, type="l", col="red3",    ylab=expression(-log[10](italic(p))), ylim=c(min(res[,2])-1,max(res[,2])+1))
 
-plot(x, y2, type="l", axes=F, xlab=NA, ylab=NA)
-legend("topleft",
-       legend=c(expression(-log[10](italic(p))), "N genes"),
-       lty=c(1,0), pch=c(NA, 16), col=c("red3", "black"))
+#plot(x, y2, type="l", axes=F, xlab=NA, ylab=NA)
+#legend("topleft",legend=c(expression(-log[10](italic(p))), "N genes"),  lty=c(1,0), pch=c(NA, 16), col=c("red3", "black"))

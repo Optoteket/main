@@ -1,8 +1,9 @@
 // Master Thesis Project, Spring of 2016 
 // Claes Arvidson and Emelie Karlsson
 // Applied Mathematics, Mathematical Institution, Linköpings Universitet 
-
-// Main project file
+/************************************************************************************/
+ // Main project file *************************** FOR TESTING ************************/
+/************************************************************************************/
 // Created 2016-03-30 by Emelie Karlsson
 
 #include <iostream>
@@ -111,7 +112,7 @@ int main(int argc, char** argv)
   else cout << "Unable to open file";
 
   //Std err to logfile
-  //freopen(log_file_path.str().c_str(), "a", stderr);
+  freopen(log_file_path.str().c_str(), "a", stderr);
 
   //Create result file
   res_file_path << res_file_dir << "resfile" << ".dat"; 
@@ -122,22 +123,20 @@ int main(int argc, char** argv)
       res_file << date.str().c_str() << endl;
       res_file << "The results are:" << endl;
     }
+
   min_ass.clear();
   min_lib.clear();
   library_costs.clear();
-
-  int max_loops = 80;
-  int num_tests = 8;
+  int max_loops = 1;
+  int num_tests = 1;
   double weights[3];
-  int iterations = 3000;
 
   //AMPL loop
   for(int loop=0; loop < max_loops*num_tests; loop++){
 
-
     //1. Setting and normalizing weights for weekend objective function
     if(loop < max_loops){
-      weights[0]=1; //Min number of full time avail workers/day
+      weights[0]=5; //Min number of full time avail workers/day
       weights[1]=10; //Min number of avail workers per shift
       weights[2]=10; //Min number of avail workers a day
 
@@ -148,20 +147,20 @@ int main(int argc, char** argv)
       weights[2]/=sum;
     }
     else if(loop < max_loops*2){
-      weights[0]=10; //Min number of full time avail workers/day
-      weights[1]=1; //Min number of avail workers per shift
-      weights[2]=10; //Min number of avail workers a day
+      weights[0]=0; //Min number of full time avail workers/day
+      weights[1]=0; //Min number of avail workers per shift
+      weights[2]=0; //Min number of avail workers a day
 
       //Normalizing
-      double sum =  weights[0] +  weights[1] +  weights[2];
+      double sum =  weights[0] +  weights[1] +  weights[2] + 0.01;
       weights[0]/=sum;
       weights[1]/=sum;
       weights[2]/=sum;
     }
     else if(loop < max_loops*3){
-      weights[0]=10; //Min number of full time avail workers/day
+      weights[0]=5; //Min number of full time avail workers/day
       weights[1]=10; //Min number of avail workers per shift
-      weights[2]=1; //Min number of avail workers a day
+      weights[2]=10; //Min number of avail workers a day
 
       //Normalizing
       double sum =  weights[0] +  weights[1] +  weights[2];
@@ -171,7 +170,7 @@ int main(int argc, char** argv)
     }
     else if(loop < max_loops*4){
       weights[0]=10; //Min number of full time avail workers/day
-      weights[1]=10; //Min number of avail workers per shift
+      weights[1]=5; //Min number of avail workers per shift
       weights[2]=10; //Min number of avail workers a day
 
       //Normalizing
@@ -182,8 +181,8 @@ int main(int argc, char** argv)
     }
     else if(loop < max_loops*5){
       weights[0]=10; //Min number of full time avail workers/day
-      weights[1]=1; //Min number of avail workers per shift
-      weights[2]=1; //Min number of avail workers a day
+      weights[1]=10; //Min number of avail workers per shift
+      weights[2]=5; //Min number of avail workers a day
 
       //Normalizing
       double sum =  weights[0] +  weights[1] +  weights[2];
@@ -192,34 +191,12 @@ int main(int argc, char** argv)
       weights[2]/=sum;
     }
     else if(loop < max_loops*6){
-      weights[0]=1; //Min number of full time avail workers/day
-      weights[1]=10; //Min number of avail workers per shift
-      weights[2]=1; //Min number of avail workers a day
+      weights[0]=10; //Min number of full time avail workers/day
+      weights[1]=5; //Min number of avail workers per shift
+      weights[2]=5; //Min number of avail workers a day
 
       //Normalizing
       double sum =  weights[0] +  weights[1] +  weights[2];
-      weights[0]/=sum;
-      weights[1]/=sum;
-      weights[2]/=sum;
-    }
-    else if(loop < max_loops*7){
-      weights[0]=1; //Min number of full time avail workers/day
-      weights[1]=1; //Min number of avail workers per shift
-      weights[2]=10; //Min number of avail workers a day
-
-      //Normalizing
-      double sum =  weights[0] +  weights[1] +  weights[2];
-      weights[0]/=sum;
-      weights[1]/=sum;
-      weights[2]/=sum;
-    }
-    else if(loop < max_loops*8){
-      weights[0]=0; //Min number of full time avail workers/day
-      weights[1]=0; //Min number of avail workers per shift
-      weights[2]=0; //Min number of avail workers a day
-
-      //Normalizing
-      double sum =  weights[0] +  weights[1] +  weights[2]+0.001;
       weights[0]/=sum;
       weights[1]/=sum;
       weights[2]/=sum;
@@ -232,10 +209,10 @@ int main(int argc, char** argv)
     library.create_initial_solution();
 
     //4. Optimize weekends, input: num iterations, destroy percentage
-    library.optimize_weekends(iterations, 20, weights);
+    library.optimize_weekends(1000, 20, weights);
     
     //5. Write results to resfile
-    //library.write_results();
+    library.write_results();
     double cost = library.get_library_cost();
     library_costs.push_back(cost);
 
@@ -247,7 +224,7 @@ int main(int argc, char** argv)
     usleep(1000);
 
     //7. Write AMPL statistics
-    if(loop == max_loops-1 || loop == 2*max_loops-1 || loop == 3*max_loops-1 || loop == 4*max_loops-1 || loop == 5*max_loops-1 || loop == 6*max_loops-1 || loop == 7*max_loops-1  || loop == 8*max_loops-1){
+    if(loop == max_loops-1 || loop == 2*max_loops-1 || loop == 3*max_loops-1 || loop == 4*max_loops-1 || loop == 5*max_loops-1 || loop == 6*max_loops-1){
       //Print costs to file
       double tot_cost = 0.0;
       int divisor = 0;
@@ -272,7 +249,6 @@ int main(int argc, char** argv)
       infeasible_count = 0;
       min_ass.clear();
       min_lib.clear();
-      library_costs.clear();
     }
   }
 
