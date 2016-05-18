@@ -84,7 +84,7 @@ int main(int argc, char** argv)
   vector<int> min_ass;
   vector<int> min_lib;
   int infeasible_count = 0;
-  string wend_AMPL_file_path = "../target/statistics/weekend_AMPL_data.csv";
+  string wend_AMPL_file_path = "../target/statistics/weekend_AMPL_data_2.csv";
   ofstream wend_AMPL_file(wend_AMPL_file_path.c_str());
 
   //Random seeding
@@ -122,8 +122,8 @@ int main(int argc, char** argv)
 
   min_ass.clear();
   min_lib.clear();
-  int max_loops = 80;
-  int num_tests = 6;
+  int max_loops = 1;
+  int num_tests = 1;
   double weights[3];
 
   //AMPL loop
@@ -131,7 +131,7 @@ int main(int argc, char** argv)
 
     //1. Setting and normalizing weights for weekend objective function
     if(loop < max_loops){
-      weights[0]=10; //Min number of full time avail workers/day
+      weights[0]=5; //Min number of full time avail workers/day
       weights[1]=10; //Min number of avail workers per shift
       weights[2]=10; //Min number of avail workers a day
 
@@ -204,7 +204,7 @@ int main(int argc, char** argv)
     library.create_initial_solution();
 
     //4. Optimize weekends, input: num iterations, destroy percentage
-    library.optimize_weekends(5000, 20, weights);
+    library.optimize_weekends(1, 20, weights);
     
     //5. Write results to resfile
     library.write_results();
@@ -243,7 +243,7 @@ int main(int argc, char** argv)
   //Timer end
   clock_t end = clock();
   double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-  //res_file << "Time of program: " << elapsed_secs << " s." << endl;
+  cout << "Time of program: " << elapsed_secs << " s." << endl;
   //res_file.close();
   return 0;
 
