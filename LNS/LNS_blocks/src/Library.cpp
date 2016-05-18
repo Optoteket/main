@@ -188,7 +188,7 @@ void Library::print_demand(ostream& stream) {
 }
 
 vector <string> Library::get_info_vector() { //1 = ID, 2 = Name, 3 = Boss, 4 = Qual, 5 = Dep, 6 = PL, 7 = Weekend, 8 = HB, 9 = free_day
-	ifstream inFile("./src/data/workers5W.txt");
+	ifstream inFile("./src/data/workers5Wpessimistic.txt");
 	//Checking for open Error
 	if (inFile.fail()) {
 		cerr << "Error opening the file!" << endl;
@@ -262,7 +262,7 @@ void Library::createWorkers() {
 
 //Assigns avail for all workers
 void Library::setAvail_worker() {
-	ifstream inFile("./src/data/workers5W.txt");
+	ifstream inFile("./src/data/workers5Wpessimistic.txt");
 	
 	//Checking for open Error
 	if (inFile.fail()) {
@@ -642,38 +642,38 @@ void Library::assign_block(Block* block, int worker_id){ //assign the block to t
 	return; //Block has been assigned to the available vectors for the worker
 }
 
-void Library::print_weekblocks_avail_worker(int worker_id, string type){
-	cout << "Weekblocks available for worker " << worker_id << " is:" << endl;
+void Library::print_weekblocks_avail_worker(int worker_id, string type, ostream& stream){ //Prints the weekblocks that DO NOT collide with LOW
+	stream << "Weekblocks available for worker " << worker_id << " is:" << endl;
 	if(type == "weekend"){
 		for(unsigned int n=0; n<myworkers[worker_id-1].getWeekend_cost_vector().size(); n++){
-			myworkers[worker_id-1].getWeekend_cost_vector().at(n).block->getTask_matrix();
+			myworkers[worker_id-1].getWeekend_cost_vector().at(n).block->getTask_matrix(stream);
 		}
 	} else if(type == "weekday"){
 		for(unsigned int n=0; n<myworkers[worker_id-1].getWeekday_cost_vector().size(); n++){
-			myworkers[worker_id-1].getWeekday_cost_vector().at(n).block->getTask_matrix();
+			myworkers[worker_id-1].getWeekday_cost_vector().at(n).block->getTask_matrix(stream);
 		}
 	} else if(type == "weekrest"){
 		for(unsigned int n=0; n<myworkers[worker_id-1].getWeekrest_cost_vector().size(); n++){
-			myworkers[worker_id-1].getWeekrest_cost_vector().at(n).block->getTask_matrix();
+			myworkers[worker_id-1].getWeekrest_cost_vector().at(n).block->getTask_matrix(stream);
 		}
 	} else{
 		cerr << "Not a valid string as inargument" << endl;
 	}
 }
 
-void Library::print_all_weekblocks_avail_worker(int worker_id, string type){
-	cout << "Weekblocks available for worker " << worker_id << " is:" << endl;
+void Library::print_all_weekblocks_avail_worker(int worker_id, string type, ostream& stream){ //Prints ALL weekblocks, even if collide with LOW
+	stream << "Weekblocks available for worker " << worker_id << " is:" << endl;
 	if(type == "weekend"){
 		for(unsigned int n=0; n<myworkers[worker_id-1].getblock_avail_vect(type).size(); n++){
-			myworkers[worker_id-1].getblock_avail_vect(type).at(n)->getTask_matrix();
+			myworkers[worker_id-1].getblock_avail_vect(type).at(n)->getTask_matrix(stream);
 		}
 	} else if(type == "weekday"){
 		for(unsigned int n=0; n<myworkers[worker_id-1].getblock_avail_vect(type).size(); n++){
-			myworkers[worker_id-1].getblock_avail_vect(type).at(n)->getTask_matrix();
+			myworkers[worker_id-1].getblock_avail_vect(type).at(n)->getTask_matrix(stream);
 		}
 	} else if(type == "weekrest"){
 		for(unsigned int n=0; n<myworkers[worker_id-1].getblock_avail_vect(type).size(); n++){
-			myworkers[worker_id-1].getblock_avail_vect(type).at(n)->getTask_matrix();
+			myworkers[worker_id-1].getblock_avail_vect(type).at(n)->getTask_matrix(stream);
 		}
 	} else{
 		cerr << "Not a valid string as inargument" << endl;
@@ -681,43 +681,43 @@ void Library::print_all_weekblocks_avail_worker(int worker_id, string type){
 }
 
 
-void Library::print_weekblocks_assigned_worker(int worker_id, string str){
+void Library::print_weekblocks_assigned_worker(int worker_id, string str, ostream& stream){ //Prints weekblocks of type "str"
 	int weekend_week = 0;
 	weekend_week = myworkers[worker_id-1].getWeekend_week();
 	if(str == "weekend"){
 		if(myworkers[worker_id-1].getblocks_assigned().size() == 5){
-			cout << "Weekend block assigned:" << endl;
-			myworkers[worker_id-1].getblocks_assigned().at(weekend_week)->getTask_matrix();
+			stream << "Weekend block assigned:" << endl;
+			myworkers[worker_id-1].getblocks_assigned().at(weekend_week)->getTask_matrix(stream);
 		}
 	} else if(str == "weekrest"){
 		if(myworkers[worker_id-1].getblocks_assigned().size() == 5){
-			cout << "Weekrest block assigned:" << endl;
-			myworkers[worker_id-1].getblocks_assigned().at((weekend_week+1) % 5)->getTask_matrix();
+			stream << "Weekrest block assigned:" << endl;
+			myworkers[worker_id-1].getblocks_assigned().at((weekend_week+1) % 5)->getTask_matrix(stream);
 		}
 	} else if(str == "weekday"){
 		if(myworkers[worker_id-1].getblocks_assigned().size() == 5){
-			cout << "Weekday blocks assigned:" << endl;
-			myworkers[worker_id-1].getblocks_assigned().at((weekend_week+2) % 5)->getTask_matrix(); //first weekday
-			myworkers[worker_id-1].getblocks_assigned().at((weekend_week+3) % 5)->getTask_matrix(); //second weekday
-			myworkers[worker_id-1].getblocks_assigned().at((weekend_week+4) % 5)->getTask_matrix(); //third weekday
+			stream << "Weekday blocks assigned:" << endl;
+			myworkers[worker_id-1].getblocks_assigned().at((weekend_week+2) % 5)->getTask_matrix(stream); //first weekday
+			myworkers[worker_id-1].getblocks_assigned().at((weekend_week+3) % 5)->getTask_matrix(stream); //second weekday
+			myworkers[worker_id-1].getblocks_assigned().at((weekend_week+4) % 5)->getTask_matrix(stream); //third weekday
 		}
 	} else{
 		cerr << "Not a valid string as inargument" << endl;
 	}
 }
 
-void Library::print_all_weekblocks_assigned_worker(int worker_id){
+void Library::print_all_weekblocks_assigned_worker(int worker_id, ostream& stream){ //Prints all 5 weekblocks assigned
 	int weekend_week = 0;
 	weekend_week = myworkers[worker_id-1].getWeekend_week();
 	if(myworkers[worker_id-1].getblocks_assigned().size() == 5){
-		cout << "Weekend block assigned:" << endl;
-		myworkers[worker_id-1].getblocks_assigned().at(weekend_week)->getTask_matrix();
-		cout << "Weekrest block assigned:" << endl;
-		myworkers[worker_id-1].getblocks_assigned().at((weekend_week+1) % 5)->getTask_matrix();
-		cout << "Weekday blocks assigned:" << endl;
-		myworkers[worker_id-1].getblocks_assigned().at((weekend_week+2) % 5)->getTask_matrix(); //first weekday
-		myworkers[worker_id-1].getblocks_assigned().at((weekend_week+3) % 5)->getTask_matrix(); //second weekday
-		myworkers[worker_id-1].getblocks_assigned().at((weekend_week+4) % 5)->getTask_matrix(); //third weekday
+		stream << "Weekend block assigned:" << endl;
+		myworkers[worker_id-1].getblocks_assigned().at(weekend_week)->getTask_matrix(stream);
+		stream << "Weekrest block assigned:" << endl;
+		myworkers[worker_id-1].getblocks_assigned().at((weekend_week+1) % 5)->getTask_matrix(stream);
+		stream << "Weekday blocks assigned:" << endl;
+		myworkers[worker_id-1].getblocks_assigned().at((weekend_week+2) % 5)->getTask_matrix(stream); //first weekday
+		myworkers[worker_id-1].getblocks_assigned().at((weekend_week+3) % 5)->getTask_matrix(stream); //second weekday
+		myworkers[worker_id-1].getblocks_assigned().at((weekend_week+4) % 5)->getTask_matrix(stream); //third weekday
 	}
 }
 
@@ -879,7 +879,7 @@ void Library::assign_a_rot_to_worker(int i){ //Assign a new random weekend for t
 			}
 		}
 	}
-	cout << "rand_week is: " << rand_week << endl;
+// 	cout << "rand_week is: " << rand_week << endl;
 	
 // 	//No weekend worker
 // 	if(myworkers[i-1].getWeekend().compare(0,10,"no_weekend") == 0){ //Assign the rotation regardless, since does not matter
@@ -1079,6 +1079,9 @@ void Library::calculate_demand(){ //Updates tasks_filled, demand_differ (+ LOW-a
 
 void Library::calculate_all_week_costs_for_worker(string type, int w_id, int count){
 	int calculate = 1;
+// 	if(STAND_IN_COST == HIGH_PRIORITY){
+		get_lowest_stand_in(); //Also updates stand_in_amount[w][d]
+// 	}
 	if(type == "weekrest"){
 		//Clear vector
 		myworkers[w_id-1].clear_cost_vector(type);
@@ -1087,7 +1090,7 @@ void Library::calculate_all_week_costs_for_worker(string type, int w_id, int cou
 		for(unsigned int n=0; n<myworkers[w_id-1].getweekrest_vect().size(); n++){
 			calculate = check_if_collision(n,w_id,w,type); //returns 0 if a task collides with LOW
 			if(calculate == 1){
-				myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekrest_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned, count);
+				myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekrest_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned, count, max_min_stand_in, stand_in_amount);
 			}else{
 // 				cout << "Collision with LOW!" << endl;
 			}
@@ -1100,7 +1103,7 @@ void Library::calculate_all_week_costs_for_worker(string type, int w_id, int cou
 		for(unsigned int n=0; n<myworkers[w_id-1].getweekday_vect().size(); n++){
 			calculate = check_if_collision(n,w_id,w,type); //returns 0 if a task collides with LOW
 			if(calculate == 1){
-				myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekday_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned, count);
+				myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekday_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned, count, max_min_stand_in, stand_in_amount);
 			}else{
 // 				cout << "Collision with LOW!" << endl;
 			}
@@ -1113,7 +1116,7 @@ void Library::calculate_all_week_costs_for_worker(string type, int w_id, int cou
 		for(unsigned int n=0; n<myworkers[w_id-1].getweekend_vect().size(); n++){
 			calculate = check_if_collision(n,w_id,w,type); //returns 0 if a task collides with LOW
 			if(calculate == 1){
-				myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekend_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned, count);
+				myworkers[w_id-1].calculate_week_cost(myworkers[w_id-1].getweekend_vect().at(n), type, demand_differ, num_lib_assigned, num_ass_assigned, HB_assigned, count, max_min_stand_in, stand_in_amount);
 			}else{
 // 				cout << "Collision with LOW!" << endl;
 			}
@@ -1235,7 +1238,7 @@ void Library::create_initial_solution(){
 	int block_type_to_add = 0;
 	string type = " ";
 	while(worker_vector.size() != 0){
-		srand(time(NULL)); //Change seed to give new random numbers
+// 		srand(time(NULL)); //Change seed to give new random numbers
 		current_worker_index = rand() % worker_vector.size(); //A number between 0-[size()-1]
 		current_worker = worker_vector.at(current_worker_index);
 		block_type_to_add = rand() % 3; //A number between 0-2, 0 means wend, 1 weekrest and 2 weekday
@@ -1255,11 +1258,11 @@ void Library::create_initial_solution(){
 // 				add_best_blocks_to_worker(type, current_worker);
 // 				calculate_all_week_costs_for_worker(type,current_worker, 0);
 // 				find_lowest_cost_in_vector(type,current_worker);
-// // 				print_cost_vector(type,current_worker);
-// // 				print_weekblocks_avail_worker(current_worker, type);
-// 				print_weekblocks_assigned_worker(current_worker, type);
+// // 				print_cost_vector(type,current_worker, cout);
+// // 				print_weekblocks_avail_worker(current_worker, type, cout);
+// 				print_weekblocks_assigned_worker(current_worker, type, cout);
 // 				cout << "The block already added to nr 23 is: " << endl;
-// 				print_weekblocks_assigned_worker(23, type);
+// 				print_weekblocks_assigned_worker(23, type, cout);
 // 				return;
 // 			}
 		
@@ -1286,7 +1289,7 @@ void Library::create_initial_solution(){
 		//Tag that this week type has been assigned to the worker
 		myworkers[current_worker-1].set_block_types_added(block_type_to_add,1);
 		
-// 		print_weekblocks_assigned_worker(current_worker, type);
+// 		print_weekblocks_assigned_worker(current_worker, type, cout);
 		if(myworkers[current_worker-1].check_all_block_types_added() == 1){
 		//Remove current_worker-1 from the vector worker_vector i.e. remove current_worker_index from vector			
 			worker_vector.erase(worker_vector.begin()+current_worker_index);
@@ -1316,7 +1319,7 @@ void Library::add_best_blocks_to_worker(string type, int current_worker, int cou
 			//Check if correct by printing cost vector and available blocks!
 // 					if(current_worker == 24 && type == "weekday" && count == 3){
 // 					print_cost_vector(type,current_worker);
-// 					print_weekblocks_avail_worker(current_worker, type);}
+// 					print_weekblocks_avail_worker(current_worker, type, cout);}
 			myworkers[current_worker-1].add_block_to_worker(type, element, count);
 		}
 	}
@@ -1485,9 +1488,10 @@ int Library::evaluate_solution(ostream& stream){//Add all costs together and ret
 		//***EMPTY WEEKEND COSTS***
 		int w = myworkers[i].getWeekend_week();
 		//Check if weekend block is 0 (empty one), since the only weekend block without a weekend task assigned for wend worker
-		if(myworkers[i].getblocks_assigned().at(w)->getID() == 0 && myworkers[i].getWeekend().compare(0,7,"weekend")){
+		if(myworkers[i].getblocks_assigned().at(w)->getID() == 0 && myworkers[i].getWeekend().compare(0,7,"weekend") == 0){
 			//Add cost
 			no_weekend_cost += NO_WEEKEND_COST;
+			stream << "WORKER WITH NO_WEEKEND_COST IS: " << i+1 << endl; //worker index 28 is the problem i.e.for i=27
 		}
 	}
 	
@@ -1522,7 +1526,7 @@ int Library::evaluate_solution(ostream& stream){//Add all costs together and ret
 	stream << "total_stand_in_cost = " << total_stand_in_cost << endl;
 	stream << "*total_cost* = " << total_eval_cost + total_stand_in_cost << endl;
 // 	print_results(stream, lower_limit, upper_limit, demand_tot_cost);
-	return total_eval_cost + total_stand_in_cost;
+	return total_eval_cost;
 }
 
 void Library::destroy(int num_destroy){ //Destroy blocks for num_destroy number of random workers (and give new weekend, in repair?)
@@ -1572,12 +1576,12 @@ void Library::repair(){ //Repair solution by assigning a new week rotation(only 
 	increment = 0; //Reset increment when a new repair is executed. Increment used to see if cost calculations are correct. Destroy + increment = new_obj_fcn
 	for(unsigned int n=0; n<workers_destroyed.size(); n++){//Selecting a worker 'n' to repair for
 		//Check if not a LOW-worker (fixed weekends)
-		cout << "before assign a rot to worker" << endl;
+// 		cout << "before assign a rot to worker" << endl;
 		if(workers_destroyed.at(n) != 14 && workers_destroyed.at(n) != 17 && workers_destroyed.at(n) != 25 && workers_destroyed.at(n) != 36 && workers_destroyed.at(n) != 37){
 			//Assign rotation to the worker
 			assign_a_rot_to_worker(workers_destroyed.at(n)); //a worker between 1-39
 		}
-		cout << "after assign a rot to worker" << endl;
+// 		cout << "after assign a rot to worker" << endl;
 	}
 	while(workers_destroyed.size() > 0){
 		current_worker_index = rand() % workers_destroyed.size(); //A number between 0-[size()-1] i.e. 0-2 if 3 workers in vect

@@ -39,7 +39,7 @@ int main() {
 	
 	//***Assign all the blocks to workers***
 	lib.assign_blocks_to_workers(outFile); //And print to result file
- 	lib.print_all_weekblocks_avail_worker(2, "weekend");
+//  	lib.print_all_weekblocks_avail_worker(23, "weekend", cout);
 // 	return 0;
 	
 	//***Assign rotation to the workers***
@@ -67,7 +67,7 @@ int main() {
 	lib.print_demand_differ(cout);
 	
 	//*** Print all available blocks for a worker ***
-// 	lib.print_weekblocks_avail_worker(36, "weekday");
+// 	lib.print_weekblocks_avail_worker(36, "weekday", cout);
 	
 	//*** Print cost for a weekday block ***
 // 	int p = 23; //p = 8 or 9 good test subjects, 36 good for wend HB, 23 for only HB, 24 for PL and stand-ins
@@ -84,6 +84,8 @@ int main() {
 	lib.assign_LOW();
 	
 	//***Create initial solution!***
+// 	cout << "Before create_initial_solution" << endl;
+// 	return 0;
 	lib.create_initial_solution();
 // 	lib.getWorker(36).print_assigned_LOW();
 // 	//Print ID for worker 1s assigned weekend
@@ -92,9 +94,9 @@ int main() {
 	//***Print assigned blocks for a few workers
 // 	for(int k=16;k<=20;k++){
 // 	cout << "Worker " << k << " has been assigned following blocks" << endl;
-// 	lib.print_weekblocks_assigned_worker(k, "weekend"); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
-// 	lib.print_weekblocks_assigned_worker(k, "weekrest"); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
-// 	lib.print_weekblocks_assigned_worker(k, "weekday"); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
+// 	lib.print_weekblocks_assigned_worker(k, "weekend", cout); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
+// 	lib.print_weekblocks_assigned_worker(k, "weekrest", cout); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
+// 	lib.print_weekblocks_assigned_worker(k, "weekday", cout); //prints the blocks of type "weekend", "weekrest" or "weekday" if 5 assigned
 // 	cout << "\n" << endl;
 // 	}
 	
@@ -104,7 +106,7 @@ int main() {
 	lib.print_num_workers("ass", cout);
 // 	lib.print_demand(cout);
 // 	lib.print_tasks_filled(cout);
-// 	lib.print_all_weekblocks_avail_worker(21, "weekrest");
+// 	lib.print_all_weekblocks_avail_worker(21, "weekrest", cout);
 // 	lib.getWorker(36).print_assigned_LOW();
 
 	////Find the worker with wrongly added weekend! -> worker nr 23 and **25** wrong due to "Only HB" and assigned after
@@ -124,7 +126,7 @@ int main() {
 // 	int destroy_cost = 0;
 // 	cout << "\n\n\nDestroy/Repair test starting here\n\n\n" << endl;
 // // 	lib.print_weekends_assigned(cout);
-// // 	lib.print_all_weekblocks_assigned_worker(p);
+// // 	lib.print_all_weekblocks_assigned_worker(p, cout);
 // 	lib.print_demand_differ(cout);
 // 	cout << "The total cost after the new solution is: " << lib.evaluate_solution(cout) << endl;
 // // 	cout << "Worker " << p << " is working weekend at week: " << lib.getWorker(p).getWeekend_week() << endl;
@@ -149,7 +151,7 @@ int main() {
 // 	cout << "New solution should be: " << destroy_cost+lib.get_increment() << " but it is: " << lib.evaluate_solution(cout) << endl;
 // 	return 0;
 // // 	cout << "Weekblocks assigned to the worker is now: " << endl;
-// // 	lib.print_all_weekblocks_assigned_worker(p);
+// // 	lib.print_all_weekblocks_assigned_worker(p, cout);
 // // 	lib.print_demand_differ(cout);
 // // 	lib.print_weekends_assigned(cout);
 // // 	cout << "worker " << p << " works weekend at week: " << lib.getWorker(p).getWeekend_week() << endl;
@@ -163,16 +165,28 @@ int main() {
 // 	cout << "Lowest number of stand_ins are: " << lib.get_lowest_stand_in() << endl;
 // // 	lib.getWorker(p).print_stand_in_matrix();
 // // 	lib.getWorker(p).getAvail_matrix();
-
+// 	cout << "Before Destroy/Repair" << endl;
 // 	return 0;
+	
+	//***DESTROY AND REPAIR LOOP!***
+	int stop_time = 52400;
 	int t_updated;
 	int current_solution = 0;
-	//***DESTROY AND REPAIR LOOP!***
-	int stop_time = 10;
+	int iter_count = 0;
 	while(time < stop_time){ //54000 means 17-08, 239400 means fri 13.37 - mon 8.07
 		t_updated = 0;
 		t = clock(); //Start counting
 // 		best_t = clock(); //Start counting if finding new best sol
+		if(time <= stop_time/3){ //Phase 1
+			STAND_IN_COST = LOW_PRIORITY;
+			cout << "Inside Phase 1" << endl;
+		}else if(time > stop_time/3 && time < 2*stop_time/3){ //Phase 2
+			STAND_IN_COST = HIGH_PRIORITY;
+			cout << "Inside Phase 2" << endl;
+		}else if(time >= 2*stop_time/3){ //Phase 1 again
+			STAND_IN_COST = LOW_PRIORITY;
+			cout << "Inside Phase 1 again" << endl;
+		}
 		lib.destroy(3);
 		lib.calculate_demand();
 		lib.repair();
@@ -182,6 +196,11 @@ int main() {
 			best_solution = current_solution;
 			count_new_sol++;
 			//Print best solution to file!
+			//ERROR: check no_weekend_cost
+			outFile << "Worker 23 is assigned following weekend: " << endl;
+			lib.print_weekblocks_assigned_worker(23, "weekend", outFile);
+			outFile << "Worker 28 is assigned following blocks: " << endl;
+			lib.print_all_weekblocks_assigned_worker(28, outFile);
 			outFile << "\n\n\n***Best iteration number: " << count_new_sol << "***" << endl;
 			outFile << "Best solution so far is " << lib.evaluate_solution(outFile) << endl;//Print everything with evaluate_solution
 			t = clock() - t;
@@ -194,19 +213,21 @@ int main() {
 		}
 		time += (float)t/CLOCKS_PER_SEC; //As float value
 		cout << "\n\n\ntime is: " << time << "\n\n" << endl;
+		iter_count++;
 // 		if(current_solution < 1000){
-// 			STAND_IN_COST = 2*STAND_IN_COST; //const param though
+// 			STAND_IN_COST = 2*STAND_IN_COST;
 // 		}
 		
 	}
 	
 // 	cout << "it took " << ((float)time)/CLOCKS_PER_SEC << " seconds to execute the program" << endl;
+	cout << "Number of iterations during the run: " << iter_count << endl;
 	cout << "Highest lowest number of stand-in for each day is: " << lib.get_max_min_stand_in() << endl;
 	cout << "Best solution found was: " << best_solution << endl;
 	cout << "Found " << count_new_sol << " new solutions during iteration" << endl;
-	outFile << "Found " << count_new_sol << " new solutions during iteration" << endl;
+	outFile << "\n\nFound " << count_new_sol << " new solutions during iteration" << endl;
+	outFile << "Number of iterations during the run: " << iter_count << endl;
 	outFile << "Best solution found was: " << best_solution << endl;
-	
 	
 	outFile.close();
 	cout << "End of main" << endl;

@@ -381,7 +381,7 @@ void Worker::add_block_to_worker(string type, int week_id, int day){
 }
 
 
-void Worker::calculate_week_cost(Block* blockobj, string type, int diff_in_demand[5][7][4][4],int assigned_libs[5][7][4][4],int assigned_ass[5][7][4][4], int HB_asgn[5], int count){ //Create one struct object from this function
+void Worker::calculate_week_cost(Block* blockobj, string type, int diff_in_demand[5][7][4][4],int assigned_libs[5][7][4][4],int assigned_ass[5][7][4][4], int HB_asgn[5], int count, int max_min_stand_in, int stand_in_matrix[5][5]){ //Create one struct object from this function
 	int total_cost = 0;
 	int PL_cost = 0;
 	int demand_cost = 0;
@@ -392,7 +392,7 @@ void Worker::calculate_week_cost(Block* blockobj, string type, int diff_in_deman
 	
 	PL_cost = calculate_PL_cost(blockobj);
 	demand_cost = calculate_demand_cost(blockobj, type, diff_in_demand, assigned_libs, assigned_ass, count);
-	stand_in_cst = calculate_stand_in_cost(blockobj, type, count);
+	stand_in_cst = calculate_stand_in_cost(blockobj, type, count, max_min_stand_in, stand_in_matrix);
 	num_wends_five_weeks_cost = calculate_num_wends_cost(blockobj);
 // 	HB_assigned_cost = calculate_HB_assign_cost(blockobj, HB_asgn);
 	if(type == "weekrest"){
@@ -534,38 +534,62 @@ int Worker::calc_temp_cost(int demand_lib, int demand_ass, int w, int d, int s, 
 	int tmp_cst = 0;
 	//Costs for LIBRARIANS
 	if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][0]+1 <= demand_lib){
-		tmp_cst = -DEMAND_FEW_LIBS;  //*(demand-assigned_libs[w][d][s][1]) added if steeper steps if further away from demand
+		tmp_cst -= DEMAND_FEW_LIBS;  //*(demand-assigned_libs[w][d][s][1]) added if steeper steps if further away from demand
 	}
-	else if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][0]+1 > demand_lib){
-		tmp_cst = DEMAND_MANY_LIBS;
-	}
+// 	else if(newQual.compare(0,3,"lib") == 0 && assigned_libs[w][d][s][0]+1 > demand_lib){
+// 		tmp_cst += DEMAND_MANY_LIBS;
+// 	}
 	//Costs for ASSISTANTS
 	if(newQual.compare(0,3,"ass") == 0 && assigned_ass[w][d][s][0]+1 <= demand_ass){
-		tmp_cst = -DEMAND_FEW_ASS;
+		tmp_cst -= DEMAND_FEW_ASS;
 	}
 	else if(newQual.compare(0,3,"ass") == 0 && assigned_ass[w][d][s][0]+1 > demand_ass){
-		tmp_cst = DEMAND_MANY_ASS;
+		tmp_cst += DEMAND_MANY_ASS;
 	}
 	return tmp_cst;
 }
 
-int Worker::calculate_stand_in_cost(Block* block, string type, int count){
+int Worker::calculate_stand_in_cost(Block* block, string type, int count, int max_min_stand_in, int stand_in_matrix[5][5]){
 	int temp_cost = 0;
 	for(int d=0; d<NUM_DAYS-2; d++){
 		if(type == "weekday"){
-			//Assign cost if 'ruining' a stand-in
-			if(block->task_assigned_day(d) == 1 && stand_in_avail[1+count][d] == 1){ //week == 2,3 and 4 means weekday week
-				temp_cost += STAND_IN_COST;
+			if(stand_in_matrix[(newWeekend_week+1+count)%5][d] >= max_min_stand_in + 2 && STAND_IN_COST == HIGH_PRIORITY){
+				//If we already have many stand-ins this day, then no need for more.
+				temp_cost = 0;
+			}
+			else{ //A day without many stand-ins.
+				//Assign cost if 'ruining' a stand-in
+				if(block->task_assigned_day(d) == 1 && stand_in_avail[1+count][d] == 1){ //week == 2,3 and 4 means weekday week
+					temp_cost += STAND_IN_COST;
+				}else if(block->task_assigned_day(d) == 0 && stand_in_avail[1+count][d] == 1){
+					temp_cost -= STAND_IN_COST;
+				}
 			}
 		} else if(type == "weekrest"){
-			//Assign cost if 'ruining' a stand-in
-			if(block->task_assigned_day(d) == 1 && stand_in_avail[1][d] == 1){ //week == 1 means weekrest week
-				temp_cost += STAND_IN_COST;
+			if(stand_in_matrix[(newWeekend_week+1)%5][d] >= max_min_stand_in + 2 && STAND_IN_COST == HIGH_PRIORITY){
+				//If we already have many stand-ins this day, then no need for more.
+				temp_cost = 0;
+			}
+			else{ //A day without many stand-ins.
+				//Assign cost if 'ruining' a stand-in
+				if(block->task_assigned_day(d) == 1 && stand_in_avail[1][d] == 1){ //week == 1 means weekrest week
+					temp_cost += STAND_IN_COST;
+				}else if(block->task_assigned_day(d) == 0 && stand_in_avail[1][d] == 1){
+					temp_cost -= STAND_IN_COST;
+				}
 			}
 		} else if(type == "weekend"){
-			//Assign cost if 'ruining' a stand-in
-			if(block->task_assigned_day(d) == 1 && stand_in_avail[0][d] == 1){ //week == 0 means weekend week
-				temp_cost += STAND_IN_COST;
+			if(stand_in_matrix[newWeekend_week][d] >= max_min_stand_in + 2 && STAND_IN_COST == HIGH_PRIORITY){
+				//If we already have many stand-ins this day, then no need for more.
+				temp_cost = 0;
+			}
+			else{ //A day without many stand-ins.
+				//Assign cost if 'ruining' a stand-in
+				if(block->task_assigned_day(d) == 1 && stand_in_avail[0][d] == 1){ //week == 0 means weekend week
+					temp_cost += STAND_IN_COST;
+				}else if(block->task_assigned_day(d) == 0 && stand_in_avail[0][d] == 1){
+					temp_cost -= STAND_IN_COST;
+				}
 			}
 		}
 	}

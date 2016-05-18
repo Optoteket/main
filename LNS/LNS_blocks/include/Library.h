@@ -85,10 +85,10 @@ public:
 	void assign_blocks_to_workers(ostream&);
 	void assign_block(Block*, int);
 	bool week_empty_of_tasks(Block*);
-	void print_weekblocks_avail_worker(int, string);
-	void print_all_weekblocks_avail_worker(int, string);
-	void print_weekblocks_assigned_worker(int, string);
-	void print_all_weekblocks_assigned_worker(int);
+	void print_weekblocks_avail_worker(int, string, ostream&);
+	void print_all_weekblocks_avail_worker(int, string, ostream&);
+	void print_weekblocks_assigned_worker(int, string, ostream&);
+	void print_all_weekblocks_assigned_worker(int, ostream&);
 	void assign_rot_to_workers();
 	void assign_a_rot_to_worker(int);
 	void print_weekends_assigned(ostream&);

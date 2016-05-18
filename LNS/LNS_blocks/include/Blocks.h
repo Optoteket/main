@@ -52,7 +52,7 @@ public:
 		//Returns "weekend", "weekrest" or "weekday"
 	string getHB() const;
 		//Returns "standard_HB", "no_HB" or "only_HB". "standard_HB" means max 1 per 5 weeks(10 weeks)
-	void getTask_matrix() const;
+	void getTask_matrix(ostream&) const;
 		//prints out the entire task matrix to the terminal
 	int getTask(int, int, int) const;
 	int getNUM_TASKS() const;
