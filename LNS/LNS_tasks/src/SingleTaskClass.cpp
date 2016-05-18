@@ -82,22 +82,25 @@ void SingleTask::place_workers(vector<TaskWorker>* a_workers){
   //cout << "Placed worker " << avail_workers[0]->temp_worker.get_ID() << " at task w:" << week << " d:" << day << " s:" << shift << endl;
 
   //Place cheapest workers
-  for(int i=0; i< orig_demand; i++){
-    avail_workers[i]->worker->set_task(week,day,shift,type);
-    cout << "Placed worker with cost: " << avail_workers[i]->temp_cost 
-	 << "(" << avail_workers[i]->worker->get_ID() <<")" << endl;
+  if((int) avail_workers.size() >= orig_demand){
+    for(int i=0; i< orig_demand; i++){
+      //Place worker
+      avail_workers[i]->worker->set_task(week,day,shift,type);
+      cout << "Placed worker with cost: " << avail_workers[i]->temp_cost 
+	   << "(" << avail_workers[i]->worker->get_ID() <<")" << endl;
 
-    //Add to list of placed workers
-    set_placed_workers(avail_workers[i]);
+      //Add to list of placed workers
+      set_placed_workers(avail_workers[i]);
 
-    //Recalculate task cost
-    demand--;
-    set_costs();
+      //Recalculate task cost
+      demand--;
+      set_costs();
+    }
   }
-
-  //Recalculate task cost
-  //demand--;
-  //set_costs();
+  else {
+    cerr << "Not enough workers to place on task!" << endl;
+    cout << "Not enough workers to place on task!" << endl;
+  }
 }
 
 void SingleTask::place_a_worker(Worker* worker){
