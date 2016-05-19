@@ -1,10 +1,73 @@
-res <- read.csv("obj_func_vals_2016_5_18 17:35:17.csv", header=TRUE, sep=",")
+res <- read.csv("obj_func_vals_3_0.csv", header=TRUE, sep=",")
+#res <- read.csv("obj_func_vals_2016_5_18 23:20:28.csv", header=TRUE, sep=",")
 x <- res[,1]
 y1 <- res[,2]
 y2 <- res[,3]
-#par("usr")
-#plot.window(xlim=range(x),ylim=range(y1))
-plot(x, y1, xlab = "Iterations", ylab="Obj function val",type="l", main="Weekend objective function values")
+y3 <- res[,4]
+y4 <- res[,5]
+
+par(mfrow=c(2,1))
+
+g_range <- range(0, y1, y2, y3, y4)
+
+plot(y1, type="l", col="blue", ylim=g_range, axes=FALSE, ann=FALSE)
+axis(1, at=seq(0,length(x)+100,50))
+box()
+axis(2, las=1, lty=2, at=5*0:(g_range[2]+5))
+
+#Lines
+lines(y2, lty=1, col="red")
+lines(y3, lty=1, col="green")
+lines(y4, lty=1, col="purple")
+#lines(y3, lty=1, col="green")
+#lines(y4, lty=1, col="purple")
+
+legend(1, 8, c("Obj fun","Stand ins","Shift avail","Day avail"), cex=0.5, col=c("blue","red","green","purple"), pch=21:22, lty=1:2);
+#legend(1, 8, c("Stand ins","Shift avail","Day avail"), cex=0.5, col=c("blue","green","purple"), pch=21:22, lty=1:2);
+
+title("Feasible solution: 3,0", xlab="Iteration number",ylab="Objective fun val")
+
+########################
+res <- read.csv("obj_func_vals_infeas_0.csv", header=TRUE, sep=",")
+#res <- read.csv("obj_func_vals_0_0_0_infeas_4.csv", header=TRUE, sep=",")
+x <- res[,1]
+y1 <- res[,2]
+y2 <- res[,3]
+y3 <- res[,4]
+y4 <- res[,5]
+
+g_range <- range(0, y1, y2, y3, y4)
+
+plot(y1, type="l", col="blue", ylim=g_range, axes=FALSE, ann=FALSE)
+axis(1, at=seq(0,length(x)+100,50))
+box()
+axis(2, las=1, lty=2, at=5*0:(g_range[2]+5))
+
+#Lines
+lines(y2, lty=1, col="red")
+lines(y3, lty=1, col="green")
+lines(y4, lty=1, col="purple")
+#lines(y3, lty=1, col="green")
+#lines(y4, lty=1, col="purple")
+
+legend(1, 8, c("Obj fun","Stand ins","Shift avail","Day avail"), cex=0.5, col=c("blue","red","green","purple"), pch=21:22, lty=1:2);
+#legend(1, 8, c("Stand ins","Shift avail","Day avail"), cex=0.5, col=c("blue","green","purple"), pch=21:22, lty=1:2);
+
+title("Infeasible solution", xlab="Iteration number",ylab="Objective fun val")
+
+
+#####################################################################################################################
+
+
+#plot(x, y1, xlab = "Iterations", ylab="Obj function val",type="l", main="Weekend objective function values")
+
+
+
+
+
+
+
+
 #plot(x, y1, type="l", main="Weekend objective function values",axes=FALSE, xlab="", ylab="")
 #plot.new()
 
