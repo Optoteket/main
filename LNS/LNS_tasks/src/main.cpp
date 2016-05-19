@@ -30,6 +30,15 @@ string res_file_dir = "../target/results/";
 stringstream log_file_path;
 stringstream res_file_path;
 
+
+struct Ax_struct{
+  int week;
+  int day;
+  int shift;
+  string type;
+  int number;
+};
+
 /************* Function myrandom ***********/
 int myrandom (int i) {return rand()%i;}
 
@@ -46,31 +55,63 @@ int find_position_req(int task_type){
 }
 
 /************* Function collect AMPL statistics ***********/
-void collect_AMPL_statistics(int* infeas, vector<int>& min_l, vector<int>& min_a){
+void collect_AMPL_statistics(int* infeas, vector<int>& min_l, vector<int>& min_a, vector<Ax_struct>& ax_vector){
   //string out_file_path = "../target/statistics/weekend_AMPL_data.csv";
   //ofstream out_file(out_file_path.c_str());
   string in_file_path = "../../../AMPLmodel/LNSweekendsAMPL/librarystaff10W_log.res";
   ifstream in_file(in_file_path.c_str());
   string input; 
+  bool read_ax=false;
+  bool found_ax = false;
   
   while(getline(in_file, input)){
-    if(input.find("integer infeasible") !=string::npos){
-      (*infeas)++;
-      min_l.push_back(-1);
-      min_a.push_back(-1);
-      break;
-    }
-    else{
-      if(input.find("min_lib = ") !=string::npos){
-	size_t pos = input.find("= ");
-	input = input.substr(pos+1,pos+2);
-	min_l.push_back(atoi(input.c_str()));
+
+    if(read_ax){
+      if(input.find(";") !=string::npos){
+	read_ax = false;
+	found_ax = false;
       }
-      if(input.find("min_ass = ") !=string::npos){
-	size_t pos = input.find("= ");
-	input = input.substr(pos+1,pos+2);
-	min_a.push_back(atoi(input.c_str()));
-      } 
+      else {
+	if(!found_ax){
+	  (*infeas)++;
+	}
+	found_ax=true;
+	Ax_struct ax;
+	//Find week
+	size_t pos = input.find(" ");
+	ax.week = atoi(input.substr(0,pos+1).c_str());
+	input = input.substr(pos+1);
+	//Find day
+	pos = input.find(" ");
+	ax.day = atoi(input.substr(0,pos+1).c_str());
+	input = input.substr(pos+1);
+	//Find shift
+	pos = input.find(" ");
+	ax.shift = atoi(input.substr(0,pos+1).c_str());
+	input = input.substr(pos+1);
+	//Find type
+	pos = input.find(" ");
+	ax.type = input.substr(0,pos+1);
+	input = input.substr(pos+1);
+	//Find value
+	pos = input.length();
+	ax.number = atoi(input.substr(0,pos+1).c_str());
+	//Push back artificial worker
+	ax_vector.push_back(ax);
+      }
+    }
+    if(input.find("min_lib = ") !=string::npos){
+      size_t pos = input.find("= ");
+      input = input.substr(pos+1,pos+2);
+      min_l.push_back(atoi(input.c_str()));
+    }
+    if(input.find("min_ass = ") !=string::npos){
+      size_t pos = input.find("= ");
+      input = input.substr(pos+1,pos+2);
+      min_a.push_back(atoi(input.c_str()));
+    }
+    if(input.find("ax :=") !=string::npos){
+      read_ax=true;
     } 
   }
 }
@@ -79,12 +120,15 @@ void collect_AMPL_statistics(int* infeas, vector<int>& min_l, vector<int>& min_a
 /***************** Main loop *****************/
 int main(int argc, char** argv)
 {
+
   //Timer start
   clock_t begin = clock();
 
   //Weekend statistics variables and files
   vector<int> min_ass;
   vector<int> min_lib;
+  vector<Ax_struct> ax_vector;
+  vector<vector<Ax_struct>> ax_vector_vector;
   vector<double> library_costs;
   int infeasible_count = 0;
   string wend_AMPL_file_path = "../target/statistics/weekend_AMPL_data.csv";
@@ -92,6 +136,7 @@ int main(int argc, char** argv)
 
   //Random seeding
   srand (unsigned (time(0)));
+
 
   //Create time and date stamp for files
   date << timedate->tm_year + 1900 << "_" 
@@ -126,14 +171,13 @@ int main(int argc, char** argv)
   min_lib.clear();
   library_costs.clear();
 
-  int max_loops = 40;
-  int num_tests = 1;
+  int max_loops = 5;
+  int num_tests = 5;
   double weights[3];
-  int iterations = 1000;
+  int iterations = 10;
 
   //AMPL loop
   for(int loop=0; loop < max_loops*num_tests; loop++){
-
 
     //1. Setting and normalizing weights for weekend objective function
     if(loop < max_loops){
@@ -235,7 +279,7 @@ int main(int argc, char** argv)
     library.optimize_weekends(iterations, 20, weights);
     
     //5. Write results to resfile
-    library.write_results();
+    //library.write_results();
     double cost = library.get_library_cost();
     library_costs.push_back(cost);
 
@@ -243,7 +287,9 @@ int main(int argc, char** argv)
     library.write_weekend_AMPL_data();
     log_file.close();
     system("../../../AMPLmodel/LNSweekendsAMPL/launchAMPL.sh");
-    collect_AMPL_statistics(&infeasible_count, min_lib, min_ass);
+    collect_AMPL_statistics(&infeasible_count, min_lib, min_ass, ax_vector);
+    ax_vector_vector.push_back(ax_vector);
+    ax_vector.clear();
     usleep(1000);
 
     //7. Write AMPL statistics
@@ -264,15 +310,26 @@ int main(int argc, char** argv)
 	  tot_cost += (5.0*min_lib[i] + 1.0*min_ass[i]);
 	  divisor++;
 	}
+	vector<Ax_struct>* ax_vec = &ax_vector_vector[i];
+	if((int) ax_vec->size()>0){
+	  wend_AMPL_file <<"Artificial workers placed at: " << endl;
+	  cout << "Artificial workers placed at: " << endl;
+	  for(int i=0; i<(int) ax_vec->size(); i++){
+	    wend_AMPL_file << (*ax_vec)[i].week << ", "<< (*ax_vec)[i].day << ", " << (*ax_vec)[i].shift << ", "<< (*ax_vec)[i].type << ". Number: "<< (*ax_vec)[i].number << endl;
+	    cout << (*ax_vec)[i].week << ", "<< (*ax_vec)[i].day << ", " << (*ax_vec)[i].shift << ", "<< (*ax_vec)[i].type << ". Number: "<< (*ax_vec)[i].number << endl;
+	  }
+	}
       }
+
       cout << endl << "Average cost:" << tot_cost/divisor << endl;
-      wend_AMPL_file << endl << "Average cost:" << tot_cost/(double)min_lib.size() << endl << endl;
+      wend_AMPL_file << endl << "Average cost:" << tot_cost/divisor << endl << endl;
       
       //Clear variables
       infeasible_count = 0;
       min_ass.clear();
       min_lib.clear();
       library_costs.clear();
+      ax_vector_vector.clear();
     }
   }
 

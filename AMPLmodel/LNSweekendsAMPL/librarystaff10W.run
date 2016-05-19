@@ -81,10 +81,12 @@ printf "\nThe minimal num of ass and lib stand ins is: \n";
 option log_file "/edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W_log.res";
 display min_lib, min_ass;
 printf "The same stand in objective function value occurs: %d times. \n\n", times_same_sol;
+display ax;
 option log_file '';
 
 ########################## Display of variables ###############################
 display M_big;
+
 
 ### display the variables ###
 display _varname, _var > /edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W.res;

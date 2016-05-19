@@ -61,15 +61,17 @@ param times_same_sol;
 
 #Objective function parameters
 param stand_in_day_d{I, W, 1..5}; #used to print number of stand-ins for each day
-param N1 := 1000; #Prioritize total number of stand ins
-param N1l := 5; #The bigger, the more priority to maximize librarian stand-ins
+param N1 := 100; #Prioritize total number of stand ins
+param N1l := 2; #The bigger, the more priority to maximize librarian stand-ins
 param N1a := 1; #The bigger, the more priority to maximize assistants stand-ins
 param N2 := 1; #Prioritize similar weeks
+param NA := 100000; #Cost of an artificial worker
 
 #################################### Variables ########################################################################
 var r{i in I, w in W} binary; #1 if person i has a rotation (phase shift) of w weeks, 0 otherwise
 var H{i in I, w in W, h in 1..2} binary; #1 if worker i works weekend h in week w
 var x{i in I, w in W, d in D, s in S[d], j in J[d]} binary; #1 if worker i is assigned task type j in shift s day d week w
+var ax{w in W, d in D, s in S[d], j in J[d]} integer, >=0; #1 if artificial worker i is assigned task type j in shift s day d week w
 var stand_in_lib{i in I_lib, w in W, d in D} binary; #1 if (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) = 1 and x[i,w,d,s,j] = 0. First term is if a worker is working a weekend
 var stand_in_ass{i in I_ass, w in W, d in D} binary; #1 if (h[i,v]*qualavail[i,(w-v+5) mod 5 +1,d,s,j]) = 1 and x[i,w,d,s,j] = 0. First term is if a worker is working a weekend
 var y{i in I, w in W, d in 1..5, s in 1..3} binary; #1 if worker i works week w, day d, shift s. No weekends and no evenings
@@ -90,25 +92,25 @@ var shifts_that_differ integer;
 
 maximize objective: #Maximize stand-ins and create schedules with similar weeks for each worker
 	#N1l*stand_in_lib_min + N1a*stand_in_ass_min - N2*shifts_that_differ;
-	N1*stand_in_min_tot - N2*shifts_that_differ;
+	N1*stand_in_min_tot - N2*shifts_that_differ - NA*(sum{w in W} (sum{d in D} (sum{s in S[d]} (sum{j in J[d]} ax[w,d,s,j]))));
 
 #################################### CONSTRAINTS ########################################################################
 
 ######################## Task demand for workers #####################################
 #number of workers to be assigned to different task types at different shifts (shall work for all days 1..7), except when there is a big meeting
 subject to task_assign_amount_weekdays{w in 1..5, d in 1..5,s in S[d], j in J[d] diff {'LOW'}}:
-	sum{i in I} x[i,w,d,s,j] = (1-M_big[w,d,s])*task_demand[d,s,j];
+	(sum{i in I} x[i,w,d,s,j]) + ax[w,d,s,j]= (1-M_big[w,d,s])*task_demand[d,s,j];
 
 subject to task_assign_amount_weekends{w in 1..5, d in 6..7,s in S[d], j in J[d]}:
-	sum{i in I} x[i,w,d,s,j] = task_demand[d,s,j];
+	(sum{i in I} x[i,w,d,s,j]) + ax[w,d,s,j]= task_demand[d,s,j];
 
 subject to task_assign_amount_library_on_wheels{w in 1..5, d in 1..5 ,s in S[d]}:
-	sum{i in I} x[i,w,d,s,'LOW'] = LOW_demand[w,d,s];
+	(sum{i in I} x[i,w,d,s,'LOW']) + ax[w,d,s,'LOW'] = LOW_demand[w,d,s];
+
 
 ######################## Maximum 4 shifts per week #########################################
 
 subject to max_four_shifts_per_week{i in I diff {36}, w in W}:
-#MODIFIED
 	sum{d in 1..5}(sum{s in S[d]}(sum{j in J[d]} x[i,w,d,s,j])) <= 4;
 
 ######################## Big meeting constraints #########################################
@@ -310,9 +312,8 @@ subject to task_free_weekday{i in I_free_day, w in W}:
 
 ######################### Max tasks at same shift time constraint #################################
 #Allowing only two shifts at a certain time each week, not accounting Library on Wheels
-#MODIFIED
 subject to max_two_shifts_at_same_hours_per_week{i in I, w in W, s in 1..3}:
-	sum{d in 1..5} y[i,w,d,s] <= 3;
+	sum{d in 1..5} y[i,w,d,s] <= 2;
 
 ######################## Lib on Wheels constraints #########################
 #Worker 25 works on LOW all available Thursdays
@@ -336,73 +337,73 @@ subject to only_LOW_in_evening{w in W, d in 1..4,j in {'Exp', 'Info', 'PL'}}:
 	x[36,w,d,4,j] = 0;
 
 ######################## Fixed weekends #########################
-subject to 3_5_1:
-H[3,5,1] + H[3,5,2]= 1;
-subject to 4_4_1:
-H[4,4,1] + H[4,4,2]= 1;
-subject to 5_3_1:
-H[5,3,1] + H[5,3,2]= 1;
-subject to 7_5_1:
-H[7,5,1] + H[7,5,2]= 1;
-subject to 8_2_1:
-H[8,2,1] + H[8,2,2]= 1;
-subject to 9_4_1:
-H[9,4,1] + H[9,4,2]= 1;
+subject to 3_1_1:
+H[3,1,1] + H[3,1,2]= 1;
+subject to 4_3_1:
+H[4,3,1] + H[4,3,2]= 1;
+subject to 5_5_1:
+H[5,5,1] + H[5,5,2]= 1;
+subject to 7_2_1:
+H[7,2,1] + H[7,2,2]= 1;
+subject to 8_4_1:
+H[8,4,1] + H[8,4,2]= 1;
+subject to 9_1_1:
+H[9,1,1] + H[9,1,2]= 1;
 subject to 12_4_1:
 H[12,4,1] + H[12,4,2]= 1;
-subject to 13_5_1:
-H[13,5,1] + H[13,5,2]= 1;
+subject to 13_3_1:
+H[13,3,1] + H[13,3,2]= 1;
 subject to 14_3_1:
 H[14,3,1] + H[14,3,2]= 1;
-subject to 16_1_1:
-H[16,1,1] + H[16,1,2]= 1;
-subject to 17_1_1:
-H[17,1,1] + H[17,1,2]= 1;
+subject to 16_4_1:
+H[16,4,1] + H[16,4,2]= 1;
+subject to 17_4_1:
+H[17,4,1] + H[17,4,2]= 1;
 subject to 19_2_1:
 H[19,2,1] + H[19,2,2]= 1;
-subject to 23_2_1:
-H[23,2,1] + H[23,2,2]= 1;
-subject to 24_4_1:
-H[24,4,1] + H[24,4,2]= 1;
-subject to 25_1_1:
-H[25,1,1] + H[25,1,2]= 1;
+subject to 23_5_1:
+H[23,5,1] + H[23,5,2]= 1;
+subject to 24_1_1:
+H[24,1,1] + H[24,1,2]= 1;
+subject to 25_5_1:
+H[25,5,1] + H[25,5,2]= 1;
 subject to 27_2_1:
 H[27,2,1] + H[27,2,2]= 1;
-subject to 31_3_1:
-H[31,3,1] + H[31,3,2]= 1;
-subject to 32_5_1:
-H[32,5,1] + H[32,5,2]= 1;
-subject to 36_5_1:
-H[36,5,1] + H[36,5,2]= 1;
-subject to 37_3_1:
-H[37,3,1] + H[37,3,2]= 1;
-subject to 38_1_1:
-H[38,1,1] + H[38,1,2]= 1;
-subject to 1_4_1:
-H[1,4,1] + H[1,4,2]= 1;
-subject to 6_1_1:
-H[6,1,1] + H[6,1,2]= 1;
-subject to 10_1_1:
-H[10,1,1] + H[10,1,2]= 1;
+subject to 31_5_1:
+H[31,5,1] + H[31,5,2]= 1;
+subject to 32_3_1:
+H[32,3,1] + H[32,3,2]= 1;
+subject to 36_2_1:
+H[36,2,1] + H[36,2,2]= 1;
+subject to 37_1_1:
+H[37,1,1] + H[37,1,2]= 1;
+subject to 38_5_1:
+H[38,5,1] + H[38,5,2]= 1;
+subject to 1_5_1:
+H[1,5,1] + H[1,5,2]= 1;
+subject to 6_4_1:
+H[6,4,1] + H[6,4,2]= 1;
+subject to 10_4_1:
+H[10,4,1] + H[10,4,2]= 1;
 subject to 11_2_1:
 H[11,2,1] + H[11,2,2]= 1;
-subject to 15_4_1:
-H[15,4,1] + H[15,4,2]= 1;
-subject to 18_1_1:
-H[18,1,1] + H[18,1,2]= 1;
-subject to 20_3_1:
-H[20,3,1] + H[20,3,2]= 1;
-subject to 22_5_1:
-H[22,5,1] + H[22,5,2]= 1;
-subject to 26_3_1:
-H[26,3,1] + H[26,3,2]= 1;
-subject to 29_5_1:
-H[29,5,1] + H[29,5,2]= 1;
-subject to 30_2_1:
-H[30,2,1] + H[30,2,2]= 1;
-subject to 33_2_1:
-H[33,2,1] + H[33,2,2]= 1;
-subject to 35_3_1:
-H[35,3,1] + H[35,3,2]= 1;
-subject to 39_4_1:
-H[39,4,1] + H[39,4,2]= 1;
+subject to 15_1_1:
+H[15,1,1] + H[15,1,2]= 1;
+subject to 18_5_1:
+H[18,5,1] + H[18,5,2]= 1;
+subject to 20_2_1:
+H[20,2,1] + H[20,2,2]= 1;
+subject to 22_1_1:
+H[22,1,1] + H[22,1,2]= 1;
+subject to 26_1_1:
+H[26,1,1] + H[26,1,2]= 1;
+subject to 29_3_1:
+H[29,3,1] + H[29,3,2]= 1;
+subject to 30_4_1:
+H[30,4,1] + H[30,4,2]= 1;
+subject to 33_3_1:
+H[33,3,1] + H[33,3,2]= 1;
+subject to 35_2_1:
+H[35,2,1] + H[35,2,2]= 1;
+subject to 39_3_1:
+H[39,3,1] + H[39,3,2]= 1;

@@ -135,7 +135,7 @@ Worker::Worker(string pos, int ID, string name, string department, string weeken
   costs.weights[2] = 5;//PL per week cost
   costs.weights[3] = 5;//Num_PL cost
   costs.weights[4] = 5;//Num_tasks_week cost
-  costs.weights[5] = 4;//Num_tasks_week cost
+  costs.weights[5] = 4;//Same task shift cost
 
   costs.PL_cost = 0;
   costs.cost_sum = 0;
@@ -425,22 +425,29 @@ void Worker::set_num_tasks_costs(int w, int d){
   //Set num tasks costs per day
   if(d == fri && current.tasks[w][d][0] == BokB && current.tasks[w][d][3] != no_task){
     //Can have one extra task at fridays if BokB in the morning
-    if (current.num_tasks_day[w][d] > MAX_TASKS_PER_DAY+1){
+    if (current.num_tasks_day[w][d] > (MAX_TASKS_PER_DAY+1)){
       costs.num_tasks_day_cost[w][d] = current.num_tasks_day[w][d] - (MAX_TASKS_PER_DAY+1);
     }
     else costs.num_tasks_week_cost[w] = 0;
   }
-  if (current.num_tasks_day[w][d] > MAX_TASKS_PER_DAY){
+  else if (current.num_tasks_day[w][d] > MAX_TASKS_PER_DAY){
     costs.num_tasks_day_cost[w][d] = current.num_tasks_day[w][d] - MAX_TASKS_PER_DAY;
   }
   else costs.num_tasks_day_cost[w][d] = 0;
 
   //Set num tasks costs per week
-  if (current.num_tasks_week[w] > MAX_TASKS_PER_WEEK 
-      &&  get_ID() != 36){
+  if (current.num_tasks_week[w] > MAX_TASKS_PER_WEEK  &&  get_ID() != 36){
     costs.num_tasks_week_cost[w] = current.num_tasks_week[w] - MAX_TASKS_PER_WEEK;
   }
   else costs.num_tasks_week_cost[w] = 0;
+}
+
+void Worker::set_num_same_shift_cost(int w, int s){
+  //Set num same shift costs
+  if (current.num_same_shifts_week[w][s] > MAX_TASKS_SAME_SHIFT){
+    costs.num_same_shifts_week_cost[w][s] = current.num_same_shifts_week[w][s] - MAX_TASKS_SAME_SHIFT;
+    //cout << "Same shift cost: " << costs.num_same_shifts_week_cost[w][s] << endl;
+  }
 }
 
 
@@ -448,6 +455,7 @@ void Worker::set_total_cost(int w, int d, int s){
   set_stand_in_cost(w,d);
   set_num_tasks_costs(w,d);
   set_PL_costs(w);
+  set_num_same_shift_cost(w,s);
 
   costs.total_cost[w][d][s] =  
     //Hight prio
@@ -457,10 +465,10 @@ void Worker::set_total_cost(int w, int d, int s){
     + costs.weights[1]*costs.stand_in_cost[w][d]
 
     //Mid prio
-    //+ costs.weights[2]*costs.PL_week_cost[w]
-    //+ costs.weights[3]*costs.PL_cost
-    //+ costs.weights[4]*costs.num_tasks_week_cost[w]
-    //+ costs.weights[5]*costs.num_same_shifts_week_cost[w][s]
+    + costs.weights[2]*costs.PL_week_cost[w]
+    + costs.weights[3]*costs.PL_cost
+    + costs.weights[4]*costs.num_tasks_week_cost[w]
+    + costs.weights[5]*costs.num_same_shifts_week_cost[w][s]
     ;
 }
 
@@ -540,7 +548,11 @@ void Worker::set_task(int w,int d,int s,int task){
       current.num_PL_week[w]++;
       current.num_PL++;
     }
- 
+    //Adjust number of tasks placed at the same shift a week
+    if(d <= fri){
+      current.num_same_shifts_week[w][s]++;
+    }
+
     //1. Add task - before updating avail and cost!
     current.tasks[w][d][s] = task;
 
@@ -575,6 +587,11 @@ void Worker::remove_task(int w, int d, int s){
     if(task == PL){
       current.num_PL_week[w]--;
       current.num_PL--;
+    }
+
+    //Adjust number of tasks placed at the same shift a week
+    if(d <= fri){
+      current.num_same_shifts_week[w][s]--;
     }
 
     //1. Remove task - before updating avail and cost!
