@@ -1,14 +1,2 @@
-2016_5_18 10:24:42
+2016_5_19 12:30:15
 The logs are:
-Solution not accepted at Ass. Week: 2. Day 3. Shift 3 .
-************* Solution accepted ************
-library cost: 34.8929
-************ Saved best solution: 34.8929
-Min avail day ass: 5 Min avail day lib: 9 Min avail ass: 8 Min avail lib: 13
-Library max cost: 34.8929 Library current cost: 34.8929
-avail_day_cost: 23
-avail_cost: 34
-num_avail_cost: 34
-Perm library_cost: 34.8929
-ILOG AMPL 10.000, licensed to "university-linkoping".
-AMPL Version 20051214 (Linux 2.6.9-5.ELsmp)

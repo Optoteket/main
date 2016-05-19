@@ -62,7 +62,7 @@ param times_same_sol;
 #Objective function parameters
 param stand_in_day_d{I, W, 1..5}; #used to print number of stand-ins for each day
 param N1 := 1000; #Prioritize total number of stand ins
-param N1l := 2; #The bigger, the more priority to maximize librarian stand-ins
+param N1l := 5; #The bigger, the more priority to maximize librarian stand-ins
 param N1a := 1; #The bigger, the more priority to maximize assistants stand-ins
 param N2 := 1; #Prioritize similar weeks
 
@@ -338,71 +338,71 @@ subject to only_LOW_in_evening{w in W, d in 1..4,j in {'Exp', 'Info', 'PL'}}:
 ######################## Fixed weekends #########################
 subject to 3_5_1:
 H[3,5,1] + H[3,5,2]= 1;
-subject to 4_5_1:
-H[4,5,1] + H[4,5,2]= 1;
-subject to 5_1_1:
-H[5,1,1] + H[5,1,2]= 1;
-subject to 7_2_1:
-H[7,2,1] + H[7,2,2]= 1;
-subject to 8_5_1:
-H[8,5,1] + H[8,5,2]= 1;
-subject to 9_1_1:
-H[9,1,1] + H[9,1,2]= 1;
+subject to 4_4_1:
+H[4,4,1] + H[4,4,2]= 1;
+subject to 5_3_1:
+H[5,3,1] + H[5,3,2]= 1;
+subject to 7_5_1:
+H[7,5,1] + H[7,5,2]= 1;
+subject to 8_2_1:
+H[8,2,1] + H[8,2,2]= 1;
+subject to 9_4_1:
+H[9,4,1] + H[9,4,2]= 1;
 subject to 12_4_1:
 H[12,4,1] + H[12,4,2]= 1;
-subject to 13_4_1:
-H[13,4,1] + H[13,4,2]= 1;
-subject to 14_2_1:
-H[14,2,1] + H[14,2,2]= 1;
-subject to 16_4_1:
-H[16,4,1] + H[16,4,2]= 1;
-subject to 17_3_1:
-H[17,3,1] + H[17,3,2]= 1;
-subject to 19_4_1:
-H[19,4,1] + H[19,4,2]= 1;
-subject to 23_4_1:
-H[23,4,1] + H[23,4,2]= 1;
-subject to 24_1_1:
-H[24,1,1] + H[24,1,2]= 1;
-subject to 25_2_1:
-H[25,2,1] + H[25,2,2]= 1;
-subject to 27_3_1:
-H[27,3,1] + H[27,3,2]= 1;
+subject to 13_5_1:
+H[13,5,1] + H[13,5,2]= 1;
+subject to 14_3_1:
+H[14,3,1] + H[14,3,2]= 1;
+subject to 16_1_1:
+H[16,1,1] + H[16,1,2]= 1;
+subject to 17_1_1:
+H[17,1,1] + H[17,1,2]= 1;
+subject to 19_2_1:
+H[19,2,1] + H[19,2,2]= 1;
+subject to 23_2_1:
+H[23,2,1] + H[23,2,2]= 1;
+subject to 24_4_1:
+H[24,4,1] + H[24,4,2]= 1;
+subject to 25_1_1:
+H[25,1,1] + H[25,1,2]= 1;
+subject to 27_2_1:
+H[27,2,1] + H[27,2,2]= 1;
 subject to 31_3_1:
 H[31,3,1] + H[31,3,2]= 1;
-subject to 32_1_1:
-H[32,1,1] + H[32,1,2]= 1;
-subject to 36_3_1:
-H[36,3,1] + H[36,3,2]= 1;
-subject to 37_2_1:
-H[37,2,1] + H[37,2,2]= 1;
-subject to 38_5_1:
-H[38,5,1] + H[38,5,2]= 1;
-subject to 1_2_1:
-H[1,2,1] + H[1,2,2]= 1;
-subject to 6_2_1:
-H[6,2,1] + H[6,2,2]= 1;
+subject to 32_5_1:
+H[32,5,1] + H[32,5,2]= 1;
+subject to 36_5_1:
+H[36,5,1] + H[36,5,2]= 1;
+subject to 37_3_1:
+H[37,3,1] + H[37,3,2]= 1;
+subject to 38_1_1:
+H[38,1,1] + H[38,1,2]= 1;
+subject to 1_4_1:
+H[1,4,1] + H[1,4,2]= 1;
+subject to 6_1_1:
+H[6,1,1] + H[6,1,2]= 1;
 subject to 10_1_1:
 H[10,1,1] + H[10,1,2]= 1;
-subject to 11_1_1:
-H[11,1,1] + H[11,1,2]= 1;
-subject to 15_5_1:
-H[15,5,1] + H[15,5,2]= 1;
-subject to 18_2_1:
-H[18,2,1] + H[18,2,2]= 1;
+subject to 11_2_1:
+H[11,2,1] + H[11,2,2]= 1;
+subject to 15_4_1:
+H[15,4,1] + H[15,4,2]= 1;
+subject to 18_1_1:
+H[18,1,1] + H[18,1,2]= 1;
 subject to 20_3_1:
 H[20,3,1] + H[20,3,2]= 1;
-subject to 22_4_1:
-H[22,4,1] + H[22,4,2]= 1;
-subject to 26_4_1:
-H[26,4,1] + H[26,4,2]= 1;
+subject to 22_5_1:
+H[22,5,1] + H[22,5,2]= 1;
+subject to 26_3_1:
+H[26,3,1] + H[26,3,2]= 1;
 subject to 29_5_1:
 H[29,5,1] + H[29,5,2]= 1;
-subject to 30_5_1:
-H[30,5,1] + H[30,5,2]= 1;
-subject to 33_1_1:
-H[33,1,1] + H[33,1,2]= 1;
+subject to 30_2_1:
+H[30,2,1] + H[30,2,2]= 1;
+subject to 33_2_1:
+H[33,2,1] + H[33,2,2]= 1;
 subject to 35_3_1:
 H[35,3,1] + H[35,3,2]= 1;
-subject to 39_3_1:
-H[39,3,1] + H[39,3,2]= 1;
+subject to 39_4_1:
+H[39,4,1] + H[39,4,2]= 1;

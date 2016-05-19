@@ -238,4 +238,82 @@ Min num lib/ass: (74) 2, 0. Cost: 4
 Min num lib/ass: (75) 2, 0. Cost: 4
 
 Average cost:4.36842
+2016_5_18 8:55:40
+With weights: 0.4, 0.2, 0.4
+Number of infeasible solutions:8
+Min num lib/ass: (0) 2, 0. Cost: 4
+Min num lib/ass: (1) 2, 0. Cost: 4
+Min num lib/ass: (2) 1, 2. Cost: 4
+Min num lib/ass: (3) 0, 2. Cost: 2
+Min num lib/ass: (4) 2, 0. Cost: 4
+Min num lib/ass: (5) 2, 0. Cost: 4
+Min num lib/ass: (6) 1, 2. Cost: 4
+Min num lib/ass: (7) 2, 0. Cost: 4
+Min num lib/ass: (8) 2, 2. Cost: 6
+Min num lib/ass: (9) 1, 2. Cost: 4
+Min num lib/ass: (10) 2, 0. Cost: 4
+Min num lib/ass: (11) 1, 0. Cost: 2
+Min num lib/ass: (12) 1, 2. Cost: 4
+Min num lib/ass: (13) 3, 0. Cost: 6
+Min num lib/ass: (14) 2, 0. Cost: 4
+Min num lib/ass: (15) 1, 0. Cost: 2
+Min num lib/ass: (16) 2, 0. Cost: 4
+Min num lib/ass: (17) 2, 0. Cost: 4
+Min num lib/ass: (18) 1, 2. Cost: 4
+Min num lib/ass: (19) 2, 0. Cost: 4
+Min num lib/ass: (20) 2, 2. Cost: 6
+Min num lib/ass: (21) 2, 0. Cost: 4
+Min num lib/ass: (22) 1, 2. Cost: 4
+Min num lib/ass: (23) 0, 4. Cost: 4
+Min num lib/ass: (24) 3, 0. Cost: 6
+Min num lib/ass: (25) 1, 2. Cost: 4
+Min num lib/ass: (26) 2, 0. Cost: 4
+Min num lib/ass: (27) 2, 0. Cost: 4
+Min num lib/ass: (28) 3, 0. Cost: 6
+Min num lib/ass: (29) 2, 0. Cost: 4
+Min num lib/ass: (30) 1, 2. Cost: 4
+Min num lib/ass: (31) 2, 0. Cost: 4
+Min num lib/ass: (32) 1, 0. Cost: 2
+Min num lib/ass: (33) 3, 0. Cost: 6
+Min num lib/ass: (34) 1, 2. Cost: 4
+Min num lib/ass: (35) 1, 2. Cost: 4
+Min num lib/ass: (36) 1, 0. Cost: 2
+Min num lib/ass: (37) 2, 0. Cost: 4
+Min num lib/ass: (38) 2, 0. Cost: 4
+Min num lib/ass: (39) 2, 0. Cost: 4
+Min num lib/ass: (40) 2, 0. Cost: 4
+Min num lib/ass: (41) 2, 0. Cost: 4
+Min num lib/ass: (42) 2, 0. Cost: 4
+Min num lib/ass: (43) 1, 0. Cost: 2
+Min num lib/ass: (44) 2, 0. Cost: 4
+Min num lib/ass: (45) 1, 2. Cost: 4
+Min num lib/ass: (46) 2, 2. Cost: 6
+Min num lib/ass: (47) 2, 0. Cost: 4
+Min num lib/ass: (48) 2, 0. Cost: 4
+Min num lib/ass: (49) 1, 2. Cost: 4
+Min num lib/ass: (50) 2, 0. Cost: 4
+Min num lib/ass: (51) 2, 0. Cost: 4
+Min num lib/ass: (52) 1, 2. Cost: 4
+Min num lib/ass: (53) 3, 0. Cost: 6
+Min num lib/ass: (54) 1, 0. Cost: 2
+Min num lib/ass: (55) 3, 0. Cost: 6
+Min num lib/ass: (56) 3, 0. Cost: 6
+Min num lib/ass: (57) 3, 0. Cost: 6
+Min num lib/ass: (58) 1, 2. Cost: 4
+Min num lib/ass: (59) 3, 0. Cost: 6
+Min num lib/ass: (60) 2, 2. Cost: 6
+Min num lib/ass: (61) 2, 0. Cost: 4
+Min num lib/ass: (62) 2, 0. Cost: 4
+Min num lib/ass: (63) 0, 2. Cost: 2
+Min num lib/ass: (64) 2, 0. Cost: 4
+Min num lib/ass: (65) 3, 0. Cost: 6
+Min num lib/ass: (66) 3, 0. Cost: 6
+Min num lib/ass: (67) 0, 4. Cost: 4
+Min num lib/ass: (68) 1, 0. Cost: 2
+Min num lib/ass: (69) 0, 2. Cost: 2
+Min num lib/ass: (70) 2, 0. Cost: 4
+Min num lib/ass: (71) 3, 0. Cost: 6
+
+Average cost:4.16667
+
 
