@@ -126,7 +126,7 @@ int main(int argc, char** argv)
   min_lib.clear();
   library_costs.clear();
 
-  int max_loops = 20;
+  int max_loops = 40;
   int num_tests = 1;
   double weights[3];
   int iterations = 1000;
