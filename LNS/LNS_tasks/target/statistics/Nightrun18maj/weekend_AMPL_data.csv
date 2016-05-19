@@ -1,4 +1,4 @@
-Time of program: 18471.4 s. (5 hours)
+Time of program: 18471.4 s. (5 hours) 3000 iterations
 
 Conclusions: 
 best result (infeasible): [0,0,0] val:4 (cost 8.625)
@@ -11,6 +11,7 @@ Shift avail and avail best to increase. Day avail better of the two.
 
 Ideas:	run [0,10,10] [5,10,10] [1,10,50] [1,5,10] 
 	run with new lib/ass weights [5,1]
+	run with different iterations: 1000, 5000
 
 2016_5_18 17:52:1
 With weights: 0.047619, 0.47619, 0.47619
