@@ -566,7 +566,7 @@ int Worker::calculate_stand_in_cost(Block* block, string type, int count, int ma
 	int temp_cost = 0;
 	for(int d=0; d<NUM_DAYS-2; d++){
 		if(type == "weekday"){
-			if(stand_in_matrix[(newWeekend_week+1+count)%5][d] >= max_min_stand_in + 2 && STAND_IN_COST == HIGH_PRIORITY){
+			if(stand_in_matrix[(newWeekend_week+1+count)%5][d] > max_min_stand_in + 2){
 				//If we already have many stand-ins this day, then no need for more.
 				temp_cost = 0;
 			}
@@ -579,7 +579,7 @@ int Worker::calculate_stand_in_cost(Block* block, string type, int count, int ma
 				}
 			}
 		} else if(type == "weekrest"){
-			if(stand_in_matrix[(newWeekend_week+1)%5][d] >= max_min_stand_in + 2 && STAND_IN_COST == HIGH_PRIORITY){
+			if(stand_in_matrix[(newWeekend_week+1)%5][d] > max_min_stand_in + 2){
 				//If we already have many stand-ins this day, then no need for more.
 				temp_cost = 0;
 			}
@@ -592,7 +592,7 @@ int Worker::calculate_stand_in_cost(Block* block, string type, int count, int ma
 				}
 			}
 		} else if(type == "weekend"){
-			if(stand_in_matrix[newWeekend_week][d] >= max_min_stand_in + 2 && STAND_IN_COST == HIGH_PRIORITY){
+			if(stand_in_matrix[newWeekend_week][d] > max_min_stand_in + 2){
 				//If we already have many stand-ins this day, then no need for more.
 				temp_cost = 0;
 			}

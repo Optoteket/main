@@ -178,27 +178,42 @@ int main() {
 // 	return 0;
 	
 	//***DESTROY AND REPAIR LOOP!***
-	int stop_time = 65000;
+	int stop_time = 2000;
 	int t_updated;
 	int current_solution = 0;
 	int iter_count = 0;
 	vector<int> output_vector;
-	STAND_IN_COST = LOW_PRIORITY;
+	STAND_IN_COST = MIDDLE_PRIORITY;
 	outdata << "objfcn\tfeasible\tstandins\tmaxmin" << endl;
 	while(time < stop_time){ //54000 means 17-08, 239400 means fri 13.37 - mon 8.07
 		t_updated = 0;
 		t = clock(); //Start counting
 		output_vector.clear();
-		if(time <= stop_time/3){ //Phase 1
-			STAND_IN_COST = LOW_PRIORITY;
-			cout << "Inside Phase 1" << endl;
-		}else if(time > stop_time/3 && time < 2*stop_time/3){ //Phase 2
-			STAND_IN_COST = HIGH_PRIORITY;
-			cout << "Inside Phase 2" << endl;
-		}else if(time >= 2*stop_time/3){ //Phase 3, middle priority
-			STAND_IN_COST = MIDDLE_PRIORITY;
-			cout << "Inside Phase 3" << endl;
-		}
+		
+		//***3 Phases dividing the stoptime by 3.***
+// 		if(time <= stop_time/3){ //Phase 1
+// 			STAND_IN_COST = LOW_PRIORITY;
+// 			cout << "Inside Phase 1" << endl;
+// 		}else if(time > stop_time/3 && time < 2*stop_time/3){ //Phase 2
+// 			STAND_IN_COST = HIGH_PRIORITY;
+// 			cout << "Inside Phase 2" << endl;
+// 		}else if(time >= 2*stop_time/3){ //Phase 3, middle priority
+// 			STAND_IN_COST = MIDDLE_PRIORITY;
+// 			cout << "Inside Phase 3" << endl;
+// 		}
+		
+		//***3 Phases, each 20 seconds long***
+// 		if((int)time%60 >= 0 && (int)time%60 < 20){ //Phase 1
+// 			STAND_IN_COST = LOW_PRIORITY;
+// 			cout << "Inside Phase 1" << endl;
+// 		}else if((int)time%60 >= 20 && (int)time%60 < 40){ //Phase 2
+// 			STAND_IN_COST = HIGH_PRIORITY;
+// 			cout << "Inside Phase 2" << endl;
+// 		}else if((int)time%60 >= 40){ //Phase 3, middle priority
+// 			STAND_IN_COST = MIDDLE_PRIORITY;
+// 			cout << "Inside Phase 3" << endl;
+// 		}
+		
 		//Destroy and update
 		lib.destroy(3);
 		lib.calculate_demand();
