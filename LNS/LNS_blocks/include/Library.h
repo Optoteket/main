@@ -40,7 +40,7 @@ private:
 	int lowest_cost;
 	int increment;
 	vector<int> workers_destroyed;
-	
+	int rot_to_assign_thursday_worker[workers_destroyed.size()];
 	int max_min_stand_in;
 
 public:
@@ -90,7 +90,7 @@ public:
 	void print_weekblocks_assigned_worker(int, string, ostream&);
 	void print_all_weekblocks_assigned_worker(int, ostream&);
 	void assign_rot_to_workers();
-	void assign_a_rot_to_worker(int);
+	void assign_a_rot_to_worker(int,int);
 	void print_weekends_assigned(ostream&);
 	void calculate_tasks_filled();
 	void print_tasks_filled(ostream&);
