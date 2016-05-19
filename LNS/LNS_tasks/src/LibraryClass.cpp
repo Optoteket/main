@@ -110,19 +110,64 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
     //Feasibility loop
     bool feasible = false;
     while(!feasible){
+      vector<Worker> old_workers;
+      int old_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
+
+      //Save old solution
+      old_workers.clear();
+      for(int j=0; j<(int) worker_list.size(); j++){
+	old_workers.push_back(worker_list[j]); 
+      }
+
+      //Save current demand
+      for(int w = 0; w < NUM_WEEKS; w++){
+	for(int d = 0; d < NUM_DAYS; d++){
+	  for(int s = 0; s < NUM_SHIFTS; s++){
+	    for(int t = 0; t < NUM_TASKS; t++){
+	      old_demand[w][d][s][t] = current_demand[w][d][s][t];
+	    }
+	  }
+	}
+      }
+
       //Remove all tasks except weekend/friday evening
-      cout << "************ Infeasible solution ***********" << endl;
+   
       remove_weekday_tasks();
 
       destroy_weekend(percent, "perm");
       repair_weekend("perm");
 
-      //Place tasks and check feasibility
-      place_BokB();
-      //Check if demand can be filled
+      //Check feasibility, place BokB
       feasible = compare_avail_demand("perm");
       if(feasible){
+	place_BokB();
+	feasible = compare_avail_demand("perm");
+      }
+
+      //Check feasibility, place evenings
+      if(feasible){
 	feasible = set_evening_tasks();
+	feasible = compare_avail_demand("perm");
+      }
+      
+      //Take back old solution if sol not feasible
+      if(!feasible){
+	cout << "************ Infeasible solution ***********" << endl;
+	//Save old solution
+	worker_list.clear();
+	for(int j=0; j<(int) old_workers.size(); j++){
+	  worker_list.push_back(old_workers[j]); 
+	}
+	//Save current demand
+	for(int w = 0; w < NUM_WEEKS; w++){
+	  for(int d = 0; d < NUM_DAYS; d++){
+	    for(int s = 0; s < NUM_SHIFTS; s++){
+	      for(int t = 0; t < NUM_TASKS; t++){
+		current_demand[w][d][s][t] = old_demand[w][d][s][t];
+	      }
+	    }
+	  }
+	}
       }
     }
 
@@ -1773,7 +1818,7 @@ void Library::write_stat(){
   stringstream stat_file2_path;
   stat_file2_path << stat_file_dir << "statistics/statfile2" << ".csv"; 
   stringstream objective_file_path;
-  objective_file_path << stat_file_dir << "objfunres/obj_func_vals_" << date.str().c_str() << ".csv"; 
+  objective_file_path << stat_file_dir << "objfunres/obj_func_vals_" << ".csv"; 
 
   // ofstream stat_file(stat_file_path.str().c_str());
   // int count = 0;
@@ -1940,19 +1985,22 @@ void Library::find_num_avail_workers(){
   } 
 
   //Add available workers
-  for(int i = 0; i < (int) worker_list.size(); i++){	
+  for(int i = 0; i < (int) worker_list.size(); i++){
+    Worker* worker = &worker_list[i];
     for(int w = 0; w < NUM_WEEKS; w++){
       for(int d = 0; d < NUM_DAYS; d++){
-	for(int s = 0; s < NUM_SHIFTS; s++){
-	  //cout << worker.get_avail(w,d,s) << endl;
-	  if (worker_list[i].get_current_avail(w,d,s) == BBlib){
-	    num_avail_workers[BBlib][w][d][s]++; 
-	  }
-	  if (worker_list[i].get_current_avail(w,d,s) == Lib){
-	    num_avail_workers[Lib][w][d][s]++; 
-	  }
-	  else if (worker_list[i].get_current_avail(w,d,s) == Ass){
-	    num_avail_workers[Ass][w][d][s]++; 
+	if(worker->get_current_task(w,d,0) + worker->get_current_task(w,d,1) + 
+	   worker->get_current_task(w,d,2) + worker->get_current_task(w,d,3) == no_task){
+	  for(int s = 0; s < NUM_SHIFTS; s++){
+	    if (worker_list[i].get_current_avail(w,d,s) == BBlib){
+	      num_avail_workers[BBlib][w][d][s]++; 
+	    }
+	    if (worker_list[i].get_current_avail(w,d,s) == Lib){
+	      num_avail_workers[Lib][w][d][s]++; 
+	    }
+	    else if (worker_list[i].get_current_avail(w,d,s) == Ass){
+	      num_avail_workers[Ass][w][d][s]++; 
+	    }
 	  }
 	}
       }

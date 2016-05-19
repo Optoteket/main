@@ -126,10 +126,10 @@ int main(int argc, char** argv)
   min_lib.clear();
   library_costs.clear();
 
-  int max_loops = 80;
-  int num_tests = 8;
+  int max_loops = 20;
+  int num_tests = 1;
   double weights[3];
-  int iterations = 3000;
+  int iterations = 1000;
 
   //AMPL loop
   for(int loop=0; loop < max_loops*num_tests; loop++){
@@ -235,7 +235,7 @@ int main(int argc, char** argv)
     library.optimize_weekends(iterations, 20, weights);
     
     //5. Write results to resfile
-    //library.write_results();
+    library.write_results();
     double cost = library.get_library_cost();
     library_costs.push_back(cost);
 
