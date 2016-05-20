@@ -35,6 +35,7 @@ Library::Library() {
 		HB_assigned[w] = 0;
 		lib_per_rot[w] = 0;
 		ass_per_rot[w] = 0;
+		thursday_worker_array[w] = 0;
 		for(int d=0; d<NUM_DAYS-2; d++){
 			stand_in_amount[w][d] = 0;
 			lib_stand_in_amount[w][d] = 0;
@@ -775,7 +776,7 @@ void Library::assign_rot_to_workers(){
 		myworkers[14-1].setWeekend_week(2-1);
 		lib_per_rot[2-1]++; //All are weekend workers
 		myworkers[17-1].setWeekend_week(4-1);
-		lib_per_rot[4-1]++;
+		lib_per_rot[4-1]++; //All are weekend workers
 		myworkers[25-1].setWeekend_week(2-1);
 		lib_per_rot[2-1]++;
 		myworkers[36-1].setWeekend_week(3-1);
@@ -783,8 +784,21 @@ void Library::assign_rot_to_workers(){
 		myworkers[37-1].setWeekend_week(3-1);
 		lib_per_rot[3-1]++;
 		
+		//Assign a specific first rotation to the Thursday evening workers, B4, A18, B19 (will change in destroy/repair)
+		myworkers[4-1].setWeekend_week(1-1);
+		lib_per_rot[1-1]++; //Weekend librarian
+		thursday_worker_array[1-1] = 1; //Count the array with information of how many Thursday_workers each week
+		myworkers[18-1].setWeekend_week(3-1);
+		ass_per_rot[3-1]++; //Weekend assistant
+		thursday_worker_array[3-1] = 1;
+		myworkers[19-1].setWeekend_week(4-1);
+		lib_per_rot[4-1]++;
+		thursday_worker_array[4-1] = 1;
+		
+// 		cout << "in here" << endl;
+		
 		for(int i=1; i<=num_workers; i++){
-			if(i != 14 && i != 17 && i != 25 && i != 36 && i != 37){
+			if(i != 14 && i != 17 && i != 25 && i != 36 && i != 37 && i != 4 && i != 18 && i != 19){
 				while(true){
 					rand_week = rand() % 5; //generates a random number between 0 to 4
 					if(myworkers[i-1].getQual().compare(0,3,"lib") == 0){
@@ -849,10 +863,17 @@ void Library::assign_rot_to_workers(){
 		cout << ass_per_rot[w] << " ";
 	}
 	cout << endl;
+	
+	cout << "Thursday_worker_array = ";
+	for(int w=0; w<NUM_WEEKS; w++){
+		cout << thursday_worker_array[w] << " ";
+	}
+	cout << endl;
+	
 	return;
 }
 
-void Library::assign_a_rot_to_worker(int i, int l){ //Assign a new random weekend for the worker (>= 36 workers already assigned)
+void Library::assign_a_rot_to_worker(int i){ //Assign a new random weekend for the worker (>= 36 workers already assigned)
 // 	int lib_per_rot[NUM_WEEKS];
 // 	int ass_per_rot[NUM_WEEKS];
 	int five_libs_assigned = 0;
@@ -860,12 +881,24 @@ void Library::assign_a_rot_to_worker(int i, int l){ //Assign a new random weeken
 	for(int w=0; w<NUM_WEEKS; w++){
 		if(lib_per_rot[w] == 5){five_libs_assigned = 1;}
 	}
-	
+	print_weekends_assigned(cout);
 	while(true){ //Find a week that needs assignments
 // 		srand(time(NULL));
 		rand_week = rand() % 5; //generates a random number between 0 to 4
-		if(i == 4 || i == 19 || i == 18){ //check if another Thursday_evening_worker is working that week
-			if(thursday_worker_array[rand_week] == 0){ //shall work if assigning rot to these _first_ in repair()
+		if(i != 4 && i != 19 && i != 18){ //check if another Thursday_evening_worker is working that week
+			if(lib_per_rot[rand_week] + ass_per_rot[rand_week] < 7 || myworkers[i-1].getWeekend().compare(0,10,"no_weekend") == 0){
+				if(myworkers[i-1].getQual().compare(0,3,"ass") == 0 && ass_per_rot[rand_week] <= 2){
+					break;
+				}else if(myworkers[i-1].getQual().compare(0,3,"lib") == 0 && five_libs_assigned == 1 && lib_per_rot[rand_week] < 4){
+					break;
+				}else if(myworkers[i-1].getQual().compare(0,3,"lib") == 0 && five_libs_assigned == 0 && lib_per_rot[rand_week] < 5){
+					break;
+				}else if(myworkers[i-1].getWeekend().compare(0,10,"no_weekend") == 0){
+					break;
+				}
+			}
+		}else{//if the worker i is 4, 19 or 18
+			if(thursday_worker_array[rand_week] == 0){ //Note: this statement shall work if assigning rot to these _first_ in repair()
 				if(lib_per_rot[rand_week] + ass_per_rot[rand_week] < 7 || myworkers[i-1].getWeekend().compare(0,10,"no_weekend") == 0){
 					if(myworkers[i-1].getQual().compare(0,3,"ass") == 0 && ass_per_rot[rand_week] <= 2){
 						break;
@@ -878,13 +911,9 @@ void Library::assign_a_rot_to_worker(int i, int l){ //Assign a new random weeken
 					}
 				}
 			}
-		}	
+		}
 	}
 // 	cout << "rand_week is: " << rand_week << endl;
-	
-// 	//No weekend worker
-// 	if(myworkers[i-1].getWeekend().compare(0,10,"no_weekend") == 0){ //Assign the rotation regardless, since does not matter
-// 		myworkers[i-1].setWeekend_week(rand_week);}
 	
 	//Librarian
 	if(myworkers[i-1].getQual().compare(0,3,"lib") == 0){
@@ -896,7 +925,7 @@ void Library::assign_a_rot_to_worker(int i, int l){ //Assign a new random weeken
 					lib_per_rot[rand_week]++;
 				}
 				if(i == 4 || i == 18 || i == 19){
-					rot_to_assign_thursday_worker[l] = 0; //l should be inargument to function which is the index where the worker_destroyed index.
+					thursday_worker_array[rand_week]++;
 				}
 			}
 		}
@@ -908,7 +937,7 @@ void Library::assign_a_rot_to_worker(int i, int l){ //Assign a new random weeken
 					lib_per_rot[rand_week]++;
 				}
 				if(i == 4 || i == 18 || i == 19){
-					rot_to_assign_thursday_worker[l] = 0; //l should be inargument to function which is the index where the worker_destroyed index.
+					thursday_worker_array[rand_week]++;
 				}
 			}
 		}
@@ -923,7 +952,7 @@ void Library::assign_a_rot_to_worker(int i, int l){ //Assign a new random weeken
 				ass_per_rot[rand_week]++;
 			}
 			if(i == 4 || i == 18 || i == 19){
-				rot_to_assign_thursday_worker[l] = 0; //l should be inargument to function which is the index where the worker_destroyed index.
+				thursday_worker_array[rand_week]++;
 			}
 		}
 	}
@@ -1582,6 +1611,10 @@ void Library::destroy(int num_destroy){ //Destroy blocks for num_destroy number 
 				workers_destroyed.push_back(worker_to_destroy);
 				//Reset block_types_added to 0 (Worker's blocks have been destroyed)
 				myworkers[worker_to_destroy-1].reset_block_types_added();
+				if(worker_to_destroy == 4 || worker_to_destroy == 18 || worker_to_destroy == 19){
+					thursday_worker_array[myworkers[worker_to_destroy].getWeekend_week()]--;
+				}
+				
 				not_unique = false;
 			}
 			
@@ -1599,6 +1632,7 @@ void Library::destroy(int num_destroy){ //Destroy blocks for num_destroy number 
 				ass_per_rot[myworkers[worker_to_destroy-1].getWeekend_week()]--;
 			}
 		}
+		print_weekends_assigned(cout);
 		not_unique = true;
 	}
 	
@@ -1618,31 +1652,75 @@ void Library::repair(){ //Repair solution by assigning a new week rotation(only 
 			rot_to_assign_thursday_worker[m] = 1;
 		}
 	}
-	int workers_assigned = 0; //Amount of workers assigned a rotation. Should be workers_destroyed.size()
-	int count_zeroes = 0; //A counter to check if there are more thursday workers to assign
+	cout << "Inside Repair" << endl;
+	cout << "rot_to_assign_thursday_worker = ";
+	for(unsigned int m=0; m<workers_destroyed.size(); m++){
+		cout << rot_to_assign_thursday_worker[m] << " ";
+	}
+	cout << endl;
+	unsigned int workers_assigned = 0; //Amount of workers assigned a rotation. Should be workers_destroyed.size()
+	unsigned int count_zeroes = 0; //A counter to check if there are more thursday workers to assign
 	int no_more_thursday_workers = 1; //while 0: There are thursday workers to assign first. Else assign any destroyed worker
+	cout << "before workers_assigned while loop" << endl;
 	while(workers_assigned != workers_destroyed.size()){
+		count_zeroes = 0;
 		for(unsigned int k=0; k<workers_destroyed.size(); k++){
 			if(rot_to_assign_thursday_worker[k] == 0){
 				count_zeroes++;
+				cout << "count_zeroes = " << count_zeroes << endl;
 			}
 		}
-		if(count_zeroes == 3){
+		if(count_zeroes == workers_destroyed.size()){
 			no_more_thursday_workers = 1;
-		}else{no_more_thursday_workers = 0;}
+		}else{no_more_thursday_workers = 0;} //Is 0 if there are thursday workers to assign first.
+		cout << "no_more_thursday_workers = " << no_more_thursday_workers << endl;
 		
-		for(unsigned int n=0; n<workers_destroyed.size(); n++){//Selecting a worker 'n' to repair for
-			//Check if not a LOW-worker (fixed weekends)
-			if(workers_destroyed.at(n) != 14 && workers_destroyed.at(n) != 17 && workers_destroyed.at(n) != 25 && workers_destroyed.at(n) != 36 && workers_destroyed.at(n) != 37){
-				if(rot_to_assign_thursday_worker[n] == 1 || no_more_thursday_workers == 1){
+		if(no_more_thursday_workers == 0){//Assign all found thursday worker
+			for(unsigned int j=0; j<workers_destroyed.size(); j++){
+				if(workers_destroyed.at(j) == 4 || workers_destroyed.at(j) == 18 || workers_destroyed.at(j) == 19){
 					//Assign rotation to the worker
-					assign_a_rot_to_worker(workers_destroyed.at(n), n); //a worker between 1-39
+					cout << "Before assign_a_rot_to_worker IN no_more_thursday_workers == 0" << endl;
+					cout << "worker to assign a rot to: " << workers_destroyed.at(j) << endl;
+					cout << "Thursday_worker_array = ";
+					for(int w=0; w<NUM_WEEKS; w++){
+						cout << thursday_worker_array[w] << " ";
+					}
+					cout << endl;
+					assign_a_rot_to_worker(workers_destroyed.at(j));
+					cout << "After assign_a_rot_to_worker IN no_more_thursday_workers == 0" << endl;
 					workers_assigned++;
+					cout << "workers_assigned = " << workers_assigned << endl;
+					if(rot_to_assign_thursday_worker[j] == 1){rot_to_assign_thursday_worker[j] = 0;} //Reset the variable
 				}
 			}
-	// 		cout << "after assign a rot to worker" << endl;
+		}
+		else if(no_more_thursday_workers == 1){//No thursday workers found => Assign as usual
+			for(unsigned int j=0; j<workers_destroyed.size(); j++){
+				//Check if not a LOW-worker (fixed weekends)
+				if(workers_destroyed.at(j) != 14 && workers_destroyed.at(j) != 17 && workers_destroyed.at(j) != 25 && workers_destroyed.at(j) != 36 && workers_destroyed.at(j) != 37){
+					if(workers_destroyed.at(j) != 4 && workers_destroyed.at(j) != 18 && workers_destroyed.at(j) != 19){
+						//Assign rotation to the worker
+						cout << "Before assign_a_rot_to_worker IN no_more_thursday_workers == 1" << endl;
+						cout << "worker to assign a rot to: " << workers_destroyed.at(j) << endl;
+						cout << "Thursday_worker_array = ";
+						for(int w=0; w<NUM_WEEKS; w++){
+							cout << thursday_worker_array[w] << " ";
+						}
+						cout << endl;
+						assign_a_rot_to_worker(workers_destroyed.at(j)); //a worker between 1-39
+						cout << "After assign_a_rot_to_worker" << endl;
+						workers_assigned++;
+						cout << "workers_assigned = " << workers_assigned << endl;
+					}
+				}
+				else{ //Count workers_assigned if LOW-worker (since fixed weekends)
+					workers_assigned++;
+					cout << "workers_assigned = " << workers_assigned << endl;
+				}
+			}
 		}
 	}
+	cout << "After the workers_assigned_loop" << endl;
 	while(workers_destroyed.size() > 0){
 		current_worker_index = rand() % workers_destroyed.size(); //A number between 0-[size()-1] i.e. 0-2 if 3 workers in vect
 		current_worker = workers_destroyed.at(current_worker_index);

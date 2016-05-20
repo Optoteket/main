@@ -185,7 +185,8 @@ int main() {
 	vector<int> output_vector;
 	STAND_IN_COST = MIDDLE_PRIORITY;
 	outdata << "objfcn\tfeasible\tstandins\tmaxmin" << endl;
-	while(time < stop_time){ //54000 means 17-08, 239400 means fri 13.37 - mon 8.07
+// 	while(time < stop_time){ //54000 means 17-08, 239400 means fri 13.37 - mon 8.07
+	for(int j=0; j<4; j++){
 		t_updated = 0;
 		t = clock(); //Start counting
 		output_vector.clear();
@@ -215,10 +216,16 @@ int main() {
 // 		}
 		
 		//Destroy and update
+		cout << "\nBefore Destroy\n" << endl;
+		lib.print_weekends_assigned(cout);
 		lib.destroy(3);
+		cout << "\nAfter Destroy\n" << endl;
+		lib.print_weekends_assigned(cout);
 		lib.calculate_demand();
 		//Repair (updates are inside the repair)
 		lib.repair();
+		cout << "\nAfter Repair\n" << endl;
+		lib.print_weekends_assigned(cout);
 		lib.calculate_demand();
 		
 		
