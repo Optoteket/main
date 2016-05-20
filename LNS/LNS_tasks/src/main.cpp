@@ -171,10 +171,10 @@ int main(int argc, char** argv)
   min_lib.clear();
   library_costs.clear();
 
-  int max_loops = 100;
-  int num_tests = 8;
+  int max_loops = 2;
+  int num_tests = 2;
   double weights[3];
-  int iterations = 3000;
+  int iterations = 1000;
 
   //AMPL loop
   for(int loop=0; loop < max_loops*num_tests; loop++){
@@ -276,7 +276,7 @@ int main(int argc, char** argv)
     library.create_initial_solution();
 
     //4. Optimize weekends, input: num iterations, destroy percentage
-    library.optimize_weekends(iterations, 20, weights);
+    library.optimize_weekends(iterations, 4, weights);
     
     //5. Write results to resfile
     //library.write_results();
@@ -296,7 +296,7 @@ int main(int argc, char** argv)
     if(loop == max_loops-1 || loop == 2*max_loops-1 || loop == 3*max_loops-1 || loop == 4*max_loops-1 || loop == 5*max_loops-1 || loop == 6*max_loops-1 || loop == 7*max_loops-1  || loop == 8*max_loops-1){
       //Print costs to file
       double tot_cost = 0.0;
-      int divisor = 0;
+      int divisor = (int) min_lib.size() - infeasible_count;
       wend_AMPL_file  << date.str().c_str() << endl;
       wend_AMPL_file  << "With weights: " <<  weights[0] << ", "<<  weights[1] << ", "<<  weights[2] << endl;
       cout << "Number of infeasible solutions: " << infeasible_count << endl;
@@ -306,10 +306,6 @@ int main(int argc, char** argv)
 	cout << "    ObjFun value: " << library_costs[i] << endl;
 	wend_AMPL_file << "Min num lib/ass: (" << i << ") "<< min_lib[i] << ", " << min_ass[i] << ". Cost: " << 5*min_lib[i] + min_ass[i];
 	wend_AMPL_file << "    ObjFun value: " << library_costs[i] << endl;
-	if(min_lib[i] != -1){
-	  tot_cost += (5.0*min_lib[i] + 1.0*min_ass[i]);
-	  divisor++;
-	}
 	vector<Ax_struct>* ax_vec = &ax_vector_vector[i];
 	if((int) ax_vec->size()>0){
 	  wend_AMPL_file <<"Artificial workers placed at: " << endl;
@@ -319,8 +315,8 @@ int main(int argc, char** argv)
 	    cout << (*ax_vec)[i].week << ", "<< (*ax_vec)[i].day << ", " << (*ax_vec)[i].shift << ", "<< (*ax_vec)[i].type << ". Number: "<< (*ax_vec)[i].number << endl;
 	  }
 	}
+	else tot_cost += 5*min_lib[i] + min_ass[i];
       }
-
       cout << endl << "Average cost:" << tot_cost/divisor << endl;
       wend_AMPL_file << endl << "Average cost:" << tot_cost/divisor << endl << endl;
       

@@ -81,7 +81,7 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
   bool feasible = false;
   while(!feasible){
     remove_weekday_tasks();
-    destroy_weekend(100, "perm");
+    destroy_weekend(35, "perm");
     repair_weekend("perm");
     feasible = compare_avail_demand("perm");
     if(feasible){
@@ -144,9 +144,9 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
       }
 
       //Remove all tasks except weekend/friday evening
-   
       remove_weekday_tasks();
 
+      //Destroy and repair partially
       destroy_weekend(percent, "perm");
       repair_weekend("perm");
 
@@ -188,8 +188,8 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
     set_library_cost("perm", weights);
 
     //Find exponential cooling
-    double T_0 = 0.9; //Larger means higher accept probability
-    double alpha = 0.94; //Larger means slower temperature fall
+    double T_0 = 0.4; //Larger means higher accept probability
+    double alpha = 0.98; //Larger means slower temperature fall
     double T = T_0*pow(alpha, (double)100.0*i/(1.0*iterations));
     double cost_diff = abs(library_cost - orig_library_cost);
     double exp_val = exp(-(cost_diff/(1.0*T)));
@@ -903,7 +903,8 @@ void Library::destroy_weekend(int percent, string mode){
 
     //Delete weekend task, multiple of 5 of the work force
     double num_tasks = 0.01*(double)percent*(double)task_worker_list.size();
-    int destroy_amount = (((int)(num_tasks + (double)NUM_WEEKS/2.0)/NUM_WEEKS) *NUM_WEEKS);
+    //int destroy_amount = (((int)(num_tasks + (double)NUM_WEEKS/2.0)/NUM_WEEKS) *NUM_WEEKS);
+    int destroy_amount = percent;
     cout << "Num tasks to destroy: "<< destroy_amount << endl;
 
     //Remove weekends for workers
