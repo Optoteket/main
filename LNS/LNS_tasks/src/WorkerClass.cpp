@@ -257,17 +257,17 @@ Worker::Worker(const Worker &obj){
 
 
  //Init rest current
-  for (int i=0; i<NUM_WEEKS; i++){      
-    for (int j=0; j<NUM_DAYS; j++){
-      for (int k=0; k<NUM_SHIFTS; k++){
-	current.tasks[i][j][k] = obj.current.tasks[i][j][k];
-	current.avail[i][j][k] = obj.current.avail[i][j][k];
-	current.num_same_shifts_week[i][k] = obj.current.num_same_shifts_week[i][k];
+  for (int w=0; w<NUM_WEEKS; w++){      
+    for (int d=0; d<NUM_DAYS; d++){
+      for (int s=0; s<NUM_SHIFTS; s++){
+	current.tasks[w][d][s] = obj.current.tasks[w][d][s];
+	current.avail[w][d][s] = obj.current.avail[w][d][s];
+	current.num_same_shifts_week[w][s] = obj.current.num_same_shifts_week[w][s];
       }
-      current.avail_day[i][j] = obj.current.avail_day[i][j];
-      current.num_tasks_day[i][j] = obj.current.num_tasks_day[i][j];
+      current.avail_day[w][d] = obj.current.avail_day[w][d];
+      current.num_tasks_day[w][d] = obj.current.num_tasks_day[w][d];
     }
-    current.num_tasks_week[i] = obj.current.num_tasks_week[i]; 
+    current.num_tasks_week[w] = obj.current.num_tasks_week[w]; 
   } 
 
 }
@@ -295,8 +295,8 @@ Worker::Worker(const Worker &obj){
 // }
 
 /************** Worker functions: get **********/
-int Worker::get_cost(int w, int d){
-  return costs.weights[0]*costs.num_tasks_day_cost[w][d] + costs.weights[1]*costs.stand_in_cost[w][d];
+int Worker::get_cost_sum(){
+  return costs.cost_sum;
 }
 
 int Worker::get_HB_type(){
@@ -394,10 +394,19 @@ int Worker::get_weekend_task_type(){
   return current.tasks[current.weekend-1][sat][0];
 }
 
+int Worker::get_num_excess_tasks_week(){
+  int excess_tasks=0;
+  for (int w=0; w<NUM_WEEKS; w++){  
+    excess_tasks += costs.num_tasks_week_cost[w];
+  }
+  return excess_tasks;
+}
+
+
 /************** Worker functions: set **********/
 void Worker::set_PL_costs(int w){
   //Set PL cost per week
-  if(current.num_PL_week[w] >  MAX_PL_PER_WEEK)
+  if(current.num_PL_week[w] > MAX_PL_PER_WEEK)
     costs.PL_week_cost[w] = current.num_PL_week[w]- MAX_PL_PER_WEEK;
   else costs.PL_week_cost[w] = 0;
 
@@ -424,7 +433,7 @@ void Worker::set_stand_in_cost(int w, int d){
 void Worker::set_num_tasks_costs(int w, int d){
   //Set num tasks costs per day
   if(d == fri && current.tasks[w][d][0] == BokB && current.tasks[w][d][3] != no_task){
-    //Can have one extra task at fridays if BokB in the morning
+    //Can have one extra task at friday evening if BokB in the morning
     if (current.num_tasks_day[w][d] > (MAX_TASKS_PER_DAY+1)){
       costs.num_tasks_day_cost[w][d] = current.num_tasks_day[w][d] - (MAX_TASKS_PER_DAY+1);
     }
@@ -444,10 +453,14 @@ void Worker::set_num_tasks_costs(int w, int d){
 
 void Worker::set_num_same_shift_cost(int w, int s){
   //Set num same shift costs
-  if (current.num_same_shifts_week[w][s] > MAX_TASKS_SAME_SHIFT){
-    costs.num_same_shifts_week_cost[w][s] = current.num_same_shifts_week[w][s] - MAX_TASKS_SAME_SHIFT;
-    //cout << "Same shift cost: " << costs.num_same_shifts_week_cost[w][s] << endl;
+  if(get_ID() == 36){
+    costs.num_same_shifts_week_cost[w][s] = 0;
   }
+  else if (current.num_same_shifts_week[w][s] > MAX_TASKS_SAME_SHIFT){
+    costs.num_same_shifts_week_cost[w][s] = current.num_same_shifts_week[w][s] - MAX_TASKS_SAME_SHIFT;
+    cout << "Same shift cost: " << costs.num_same_shifts_week_cost[w][s] << endl;
+  }
+  else costs.num_same_shifts_week_cost[w][s] = 0;
 }
 
 

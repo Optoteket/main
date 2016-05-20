@@ -318,9 +318,48 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
   cout <<"Library max cost: " << library_max_cost << " Library current cost: " << library_cost << endl;
   *resfile << library_cost << endl;
 
-  //destroy_tasks(100,"perm");
-  //repair_tasks("perm");
+}
 
+void Library::optimize_weekday_tasks(){
+  destroy_tasks(100,"perm");
+  repair_tasks("perm");
+
+  cout << "Worker costs after placing all tasks:" << endl;
+  for(int i=0; i<(int) worker_list.size(); i++){
+    cout << "Worker: " << worker_list[i].get_ID() << ". Cost: " << worker_list[i].get_cost_sum() << endl;
+  }
+  show_task_statistics();
+}
+
+void Library::show_task_statistics(){
+  const int max_extra_tasks = 6;
+  int too_many_tasks_per_week[max_extra_tasks][worker_list.size()];
+
+  for(int i= max_extra_tasks-1; i>=0; i--){
+    for(int j=0; j<(int)worker_list.size(); j++){
+      too_many_tasks_per_week[i][j]=0;
+    }
+  }
+
+  //Find excess tasks per day statistics
+  for(int i=0; i < (int)worker_list.size(); i++){
+     Worker* worker = &worker_list[i];
+     //if(worker->get_num_excess_tasks_week()>0){
+       too_many_tasks_per_week[worker->get_num_excess_tasks_week()][worker->get_ID()-1]=1;
+       //}
+  }
+
+  cout << "Statistics for worker tasks: " << endl;
+  cout << "Too many tasks per week (total num excess tasks): " << endl;
+  for(int i= max_extra_tasks-1; i>0; i--){
+    cout << "# " << i << " :  ";
+    for(int j=0; j<(int)worker_list.size(); j++){
+      if(too_many_tasks_per_week[i][worker_list[j].get_ID()-1] == 1){
+	cout << worker_list[j].get_ID() << " ";
+      }
+    }
+    cout << endl;
+  } 
 }
 
 /************ Library function: set library costs ***********/
@@ -1403,8 +1442,6 @@ void Library::place_BokB(){
 
 void Library::destroy_tasks(int percent, string mode){
   find_num_avail_workers();
-  print_num_avail_workers();
-  print_current_demand();
   task_list.clear();
 
   //Find all tasks
