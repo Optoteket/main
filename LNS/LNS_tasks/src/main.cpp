@@ -171,10 +171,10 @@ int main(int argc, char** argv)
   min_lib.clear();
   library_costs.clear();
 
-  int max_loops = 5;
-  int num_tests = 5;
+  int max_loops = 100;
+  int num_tests = 8;
   double weights[3];
-  int iterations = 10;
+  int iterations = 3000;
 
   //AMPL loop
   for(int loop=0; loop < max_loops*num_tests; loop++){
