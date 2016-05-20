@@ -13,54 +13,50 @@ solve;
 CPLEX 12.5.0.0: timing 1
 mipdisplay 2
 time = 237600
-MIP Presolve eliminated 57794 rows and 32218 columns.
-MIP Presolve modified 57587 coefficients.
-Reduced MIP has 11587 rows, 12207 columns, and 56854 nonzeros.
-Reduced MIP has 12206 binaries, 1 generals, 0 SOSs, and 0 indicators.
-Found incumbent of value -1849.000000 after 0.34 sec. (499.56 ticks)
-Probing fixed 1816 vars, tightened 0 bounds.
-Probing changed sense of 36 constraints.
-Probing time = 0.03 sec. (14.16 ticks)
-Cover probing fixed 14 vars, tightened 23 bounds.
-MIP Presolve eliminated 4414 rows and 2993 columns.
-MIP Presolve modified 2 coefficients.
-Reduced MIP has 6856 rows, 8897 columns, and 30273 nonzeros.
-Reduced MIP has 8896 binaries, 1 generals, 0 SOSs, and 0 indicators.
-Probing time = 0.02 sec. (9.28 ticks)
-Clique table members: 17597.
+MIP Presolve eliminated 57167 rows and 32376 columns.
+MIP Presolve modified 58021 coefficients.
+Reduced MIP has 12278 rows, 12983 columns, and 60605 nonzeros.
+Reduced MIP has 12791 binaries, 192 generals, 0 SOSs, and 0 indicators.
+Found incumbent of value -5.4401034e+07 after 0.32 sec. (456.92 ticks)
+Probing fixed 1446 vars, tightened 2 bounds.
+Probing changed sense of 45 constraints.
+Probing time = 0.03 sec. (14.26 ticks)
+Cover probing fixed 0 vars, tightened 5 bounds.
+MIP Presolve eliminated 4046 rows and 2388 columns.
+MIP Presolve modified 13 coefficients.
+Reduced MIP has 8006 rows, 10369 columns, and 35976 nonzeros.
+Reduced MIP has 10182 binaries, 187 generals, 0 SOSs, and 0 indicators.
+Probing time = 0.02 sec. (10.39 ticks)
+Clique table members: 16554.
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
 Parallel mode: deterministic, using up to 8 threads.
-Root relaxation solution time = 0.12 sec. (91.09 ticks)
+Root relaxation solution time = 0.16 sec. (127.99 ticks)
 
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
 
-*     0+    0                          627.0000    51000.0000     2817     --- 
-      0     0    15000.0000   453      627.0000    15000.0000     2817     --- 
-*     0+    0                        13000.0000    15000.0000     2820   15.38%
-      0     0    15000.0000    11    13000.0000      Fract: 1     2820   15.38%
-*     0+    0                        15000.0000    15000.0000     2820    0.00%
-      0     0        cutoff          15000.0000    15000.0000     2820    0.00%
-Elapsed time = 0.89 sec. (961.11 ticks, tree = 0.00 MB)
-
-Gomory fractional cuts applied:  1
+*     0+    0                      -5.44010e+07     2600.0000     3493  100.00%
+      0     0      600.0000   379  -5.44010e+07      600.0000     3493  100.00%
+*     0+    0                          600.0000      600.0000     3493    0.00%
+      0     0        cutoff            600.0000      600.0000     3493    0.00%
+Elapsed time = 0.94 sec. (972.78 ticks, tree = 0.00 MB)
 
 Root node processing (before b&c):
-  Real time             =    0.43 sec. (361.21 ticks)
+  Real time             =    0.51 sec. (422.55 ticks)
 Parallel b&c, 8 threads:
   Real time             =    0.00 sec. (0.00 ticks)
   Sync time (average)   =    0.00 sec.
   Wait time (average)   =    0.00 sec.
                           ------------
-Total (root+branch&cut) =    0.43 sec. (361.21 ticks)
+Total (root+branch&cut) =    0.51 sec. (422.55 ticks)
 
 Times (seconds):
-Input =  0.05699
-Solve =  1.26481
-Output = 0.037995
-CPLEX 12.5.0.0: optimal integer solution; objective 15000
-2820 MIP simplex iterations
+Input =  0.052992
+Solve =  1.67975
+Output = 0.036994
+CPLEX 12.5.0.0: optimal integer solution; objective 600
+3493 MIP simplex iterations
 0 branch-and-bound nodes
 Tried aggregator 3 times
 option log_file '';
@@ -69,6 +65,10 @@ min_lib = 3
 min_ass = 0
 
 printf "The same stand in objective function value occurs: %d times. \n\n", times_same_sol;
-The same stand in objective function value occurs: 6 times. 
+The same stand in objective function value occurs: 14 times. 
+
+display ax;
+ax :=
+;
 
 option log_file '';

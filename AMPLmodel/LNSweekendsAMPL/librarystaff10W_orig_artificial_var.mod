@@ -92,7 +92,7 @@ var shifts_that_differ integer;
 
 maximize objective: #Maximize stand-ins and create schedules with similar weeks for each worker
 	#N1l*stand_in_lib_min + N1a*stand_in_ass_min - N2*shifts_that_differ;
-	N1*stand_in_min_tot - N2*shifts_that_differ - NA*(sum{w in W} (sum{d in D} (sum{s in S} (sum{j in J} ax[w,d,s,j]))));
+	N1*stand_in_min_tot - N2*shifts_that_differ - NA*(sum{w in W} (sum{d in D} (sum{s in S[d]} (sum{j in J[d]} ax[w,d,s,j]))));
 
 #################################### CONSTRAINTS ########################################################################
 
@@ -111,7 +111,6 @@ subject to task_assign_amount_library_on_wheels{w in 1..5, d in 1..5 ,s in S[d]}
 ######################## Maximum 4 shifts per week #########################################
 
 subject to max_four_shifts_per_week{i in I diff {36}, w in W}:
-#MODIFIED
 	sum{d in 1..5}(sum{s in S[d]}(sum{j in J[d]} x[i,w,d,s,j])) <= 4;
 
 ######################## Big meeting constraints #########################################
@@ -313,9 +312,8 @@ subject to task_free_weekday{i in I_free_day, w in W}:
 
 ######################### Max tasks at same shift time constraint #################################
 #Allowing only two shifts at a certain time each week, not accounting Library on Wheels
-#MODIFIED
 subject to max_two_shifts_at_same_hours_per_week{i in I, w in W, s in 1..3}:
-	sum{d in 1..5} y[i,w,d,s] <= 3;
+	sum{d in 1..5} y[i,w,d,s] <= 2;
 
 ######################## Lib on Wheels constraints #########################
 #Worker 25 works on LOW all available Thursdays

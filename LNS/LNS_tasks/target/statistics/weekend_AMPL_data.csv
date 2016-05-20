@@ -1,46 +1,16 @@
-2016_5_19 12:30:15
+2016_5_20 10:28:39
 With weights: 0.047619, 0.47619, 0.47619
-Number of infeasible solutions:1
-Min num lib/ass: (0) -1, -1. Cost: -6    ObjFun value: 31.139
-Min num lib/ass: (1) 3, 0. Cost: 15    ObjFun value: 30.5965
-Min num lib/ass: (2) 3, 0. Cost: 15    ObjFun value: 30.6441
-Min num lib/ass: (3) 3, 0. Cost: 15    ObjFun value: 30.6438
-Min num lib/ass: (4) 2, 0. Cost: 10    ObjFun value: 30.6445
-Min num lib/ass: (5) 2, 0. Cost: 10    ObjFun value: 31.0727
-Min num lib/ass: (6) 3, 0. Cost: 15    ObjFun value: 30.6441
-Min num lib/ass: (7) 3, 0. Cost: 15    ObjFun value: 30.6441
-Min num lib/ass: (8) 2, 0. Cost: 10    ObjFun value: 31.1203
-Min num lib/ass: (9) 3, 0. Cost: 15    ObjFun value: 30.6445
-Min num lib/ass: (10) 3, 0. Cost: 15    ObjFun value: 30.6445
-Min num lib/ass: (11) 2, 0. Cost: 10    ObjFun value: 30.6441
-Min num lib/ass: (12) 3, 0. Cost: 15    ObjFun value: 30.9775
-Min num lib/ass: (13) 2, 0. Cost: 10    ObjFun value: 30.6441
-Min num lib/ass: (14) 2, 0. Cost: 10    ObjFun value: 30.6445
-Min num lib/ass: (15) 3, 0. Cost: 15    ObjFun value: 31.1203
-Min num lib/ass: (16) 2, 0. Cost: 10    ObjFun value: 30.6441
-Min num lib/ass: (17) 3, 0. Cost: 15    ObjFun value: 30.6445
-Min num lib/ass: (18) 3, 0. Cost: 15    ObjFun value: 31.1203
-Min num lib/ass: (19) 3, 0. Cost: 15    ObjFun value: 30.6441
-Min num lib/ass: (20) 3, 0. Cost: 15    ObjFun value: 31.0727
-Min num lib/ass: (21) 3, 0. Cost: 15    ObjFun value: 30.6441
-Min num lib/ass: (22) 2, 0. Cost: 10    ObjFun value: 31.1203
-Min num lib/ass: (23) 3, 0. Cost: 15    ObjFun value: 31.073
-Min num lib/ass: (24) 3, 0. Cost: 15    ObjFun value: 30.6445
-Min num lib/ass: (25) 3, 0. Cost: 15    ObjFun value: 30.6441
-Min num lib/ass: (26) 3, 0. Cost: 15    ObjFun value: 30.6441
-Min num lib/ass: (27) 3, 0. Cost: 15    ObjFun value: 30.6445
-Min num lib/ass: (28) 3, 0. Cost: 15    ObjFun value: 30.6445
-Min num lib/ass: (29) 3, 0. Cost: 15    ObjFun value: 30.6441
-Min num lib/ass: (30) 3, 0. Cost: 15    ObjFun value: 30.6441
-Min num lib/ass: (31) 3, 0. Cost: 15    ObjFun value: 30.6441
-Min num lib/ass: (32) 2, 0. Cost: 10    ObjFun value: 30.6445
-Min num lib/ass: (33) 2, 0. Cost: 10    ObjFun value: 30.6441
-Min num lib/ass: (34) 2, 0. Cost: 10    ObjFun value: 31.0727
-Min num lib/ass: (35) 3, 0. Cost: 15    ObjFun value: 31.1203
-Min num lib/ass: (36) 2, 0. Cost: 10    ObjFun value: 30.6441
-Min num lib/ass: (37) 2, 0. Cost: 10    ObjFun value: 31.1203
-Min num lib/ass: (38) 2, 0. Cost: 10    ObjFun value: 30.6441
-Min num lib/ass: (39) 3, 0. Cost: 15    ObjFun value: 30.6441
+Number of infeasible solutions:0
+Min num lib/ass: (0) 2, 0. Cost: 10    ObjFun value: 30.6441
+Min num lib/ass: (1) 2, 0. Cost: 10    ObjFun value: 30.5965
 
-Average cost:12.875
+Average cost:10
+
+2016_5_20 10:28:39
+With weights: 0.47619, 0.047619, 0.47619
+Number of infeasible solutions:0
+Min num lib/ass: (0) 2, 0. Cost: 10    ObjFun value: 29.414
+Min num lib/ass: (1) 3, 0. Cost: 15    ObjFun value: 29.414
+
+Average cost:12.5
 

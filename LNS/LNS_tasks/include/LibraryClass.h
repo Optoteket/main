@@ -44,6 +44,7 @@ class Library{
   vector<TaskWorker> destroyed_wend_workers;
   vector<TaskWorker> destroyed_task_workers;
 
+  //Objective function values
   vector<double> weekend_objective_function;
   vector<double> weekend_day_avail_cost;
   vector<double> weekend_shift_avail_cost;
@@ -51,6 +52,10 @@ class Library{
   vector<double> weekend_day_avail_average_cost;
   vector<double> weekend_shift_avail_average_cost;
   vector<double> weekend_stand_in_average_cost;
+
+  //Weights
+  static const int lib_weight = 2;
+  static const int ass_weight = 1;
 
   //Demand arrays 
   int worker_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 

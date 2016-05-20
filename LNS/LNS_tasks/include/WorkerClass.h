@@ -83,7 +83,9 @@ class Worker{
   void set_cost_sum();
   void set_stand_in_cost(int, int);
   void set_num_tasks_costs(int, int);
+  void set_num_same_shift_cost(int, int);
   void set_total_cost(int, int, int);
+
   void set_current_weekend(int);
   void set_current_weekend(int,int);
   void set_rotation(int);
