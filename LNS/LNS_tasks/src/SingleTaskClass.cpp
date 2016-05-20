@@ -48,7 +48,7 @@ void SingleTask::temp_place_workers(){
     avail_workers[i]->temp_worker.set_task(week,day,shift,type);
     //Set temp_cost as difference in cost by placing task
     avail_workers[i]->temp_cost = 
-      avail_workers[i]->temp_worker.get_cost(week,day) - avail_workers[i]->worker->get_cost(week,day);
+      avail_workers[i]->temp_worker.get_cost_sum() - avail_workers[i]->worker->get_cost_sum();
   }
 }
 
@@ -66,7 +66,7 @@ void SingleTask::place_workers(vector<TaskWorker>* a_workers){
   sort(avail_workers.begin(), avail_workers.end(), TaskWorker::p_min_cost());
 
   //Print avail workers
-  //print_worker_costs();
+  print_worker_costs();
  
   //cout << "Placed worker " << avail_workers[0]->temp_worker.get_ID() << " at task w:" << week << " d:" << day << " s:" << shift << endl;
 
@@ -116,9 +116,9 @@ int SingleTask::get_shift() const{
 }
 
 void SingleTask::print_worker_costs() {
-  cout << "Available workers cost: " << week << ", " << day << ", " << shift << " qual: " << get_qualification() << endl;
+  cout << "Available workers cost if task placed: " << week << ", " << day << ", " << shift << " qual: " << get_qualification() << " demand: " << orig_demand << endl;
   for (int i=0; i < (int) avail_workers.size(); i++){
-    cout << avail_workers[i]->temp_cost << " ";
+    cout << avail_workers[i]->temp_cost << "(" << avail_workers[i]->temp_worker.get_ID() << ") " ;
   }
   cout << endl;
 }

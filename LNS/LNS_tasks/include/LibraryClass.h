@@ -138,11 +138,13 @@ class Library{
   //void weekend_update_avail_demand(int, int, int); //Not working properly, not possible to keep updated
 
   //Weekday related
+  void optimize_weekday_tasks();
   void place_BokB();
   void destroy_tasks(int, string);
   void repair_tasks(string);
   void find_tasks(int);
   void set_tasks();
+  void show_task_statistics();
 
   //Init related
   void create_workers();

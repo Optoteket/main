@@ -70,7 +70,12 @@ class Task {
   
   struct max_qual{
     bool operator()(Task const & lhs, Task const & rhs) const{ 
-      return lhs.get_qualification() > rhs.get_qualification();
+      if(lhs.get_qualification() == rhs.get_qualification()){
+	return lhs.get_avail_diff() < rhs.get_avail_diff();
+      }
+      else{
+	return lhs.get_qualification() > rhs.get_qualification();
+      }
     }
   };
 

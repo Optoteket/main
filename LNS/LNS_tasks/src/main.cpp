@@ -171,10 +171,10 @@ int main(int argc, char** argv)
   min_lib.clear();
   library_costs.clear();
 
-  int max_loops = 2;
-  int num_tests = 2;
+  int max_loops = 100;
+  int num_tests = 8;
   double weights[3];
-  int iterations = 1000;
+  int iterations = 3000;
 
   //AMPL loop
   for(int loop=0; loop < max_loops*num_tests; loop++){
@@ -276,7 +276,8 @@ int main(int argc, char** argv)
     library.create_initial_solution();
 
     //4. Optimize weekends, input: num iterations, destroy percentage
-    library.optimize_weekends(iterations, 4, weights);
+    library.optimize_weekends(iterations, 8, weights);
+    //library.optimize_weekday_tasks();
     
     //5. Write results to resfile
     //library.write_results();

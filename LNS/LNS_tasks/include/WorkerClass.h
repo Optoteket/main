@@ -108,7 +108,7 @@ class Worker{
   int get_weekend_task_type();
   int get_HB_type();
   int get_PL_type();
-  int get_cost(int,int);
+  int get_cost_sum();
   int get_avail(int, int, int);
   int get_current_avail(int, int, int);
   int get_current_task(int,int,int);
@@ -122,6 +122,9 @@ class Worker{
   int get_current_avail_day(int, int);
   int get_cost_sum () const;
   int get_weekend_task();
+
+  //Worker cost statistics
+  int get_num_excess_tasks_week();
 
   bool has_weekend_task();
 
