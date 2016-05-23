@@ -178,14 +178,14 @@ int main() {
 // 	return 0;
 	
 	//***DESTROY AND REPAIR LOOP!***
-	int stop_time = 234612;
+	int stop_time = 240;
 	int t_updated;
 	int current_solution = 0;
 	int iter_count = 0;
 	vector<int> output_vector;
 	STAND_IN_COST = LOW_PRIORITY;
 	outdata << "objfcn\tfeasible\tstandins\tmaxmin" << endl;
-	while(time < stop_time){ //54000 means 17-08, 239400 means fri 13.37 - mon 8.07
+	while(time < stop_time){ //54000 means 17-08, 239400 means fri 13.37 - mon 8.07, 234612 means roughly 14.57 - mon 8.07
 // 	for(int j=0; j<100; j++){
 		t_updated = 0;
 		t = clock(); //Start counting

@@ -1603,6 +1603,16 @@ void Library::destroy(int num_destroy){ //Destroy blocks for num_destroy number 
 	for(int i=0; i<num_workers_to_destroy; i++){
 		while(not_unique){ //Loop until a worker that is not already destroyed is found
 			worker_to_destroy = rand() % 39 + 1; //Number between 1-39
+// 			if(i == 0){
+// 				worker_to_destroy = 19;
+// 			}
+// 			if(i == 1){
+// 				worker_to_destroy = 24;
+// 			}
+// 			if(i == 2){
+// 				worker_to_destroy = 18;
+// 			}
+			
 			it = find(workers_destroyed.begin(), workers_destroyed.end(), worker_to_destroy); //Find int in vector
 			if(it == workers_destroyed.end()){ //Searched the vector, value not found.
 				workers_destroyed.push_back(worker_to_destroy);
