@@ -174,7 +174,7 @@ int main(int argc, char** argv)
   int max_loops = 100;
   int num_tests = 8;
   double weights[3];
-  int iterations = 3000;
+  int iterations = 1000;
 
   //AMPL loop
   for(int loop=0; loop < max_loops*num_tests; loop++){
@@ -280,7 +280,7 @@ int main(int argc, char** argv)
     //library.optimize_weekday_tasks();
     
     //5. Write results to resfile
-    //library.write_results();
+    library.write_results();
     double cost = library.get_library_cost();
     library_costs.push_back(cost);
 
@@ -290,6 +290,9 @@ int main(int argc, char** argv)
     system("../../../AMPLmodel/LNSweekendsAMPL/launchAMPL.sh");
     collect_AMPL_statistics(&infeasible_count, min_lib, min_ass, ax_vector);
     ax_vector_vector.push_back(ax_vector);
+    if(ax_vector.size()>0){
+      loop=max_loops*num_tests;
+    }
     ax_vector.clear();
     usleep(1000);
 
