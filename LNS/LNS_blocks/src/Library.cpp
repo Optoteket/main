@@ -1612,7 +1612,7 @@ void Library::destroy(int num_destroy){ //Destroy blocks for num_destroy number 
 				//Reset block_types_added to 0 (Worker's blocks have been destroyed)
 				myworkers[worker_to_destroy-1].reset_block_types_added();
 				if(worker_to_destroy == 4 || worker_to_destroy == 18 || worker_to_destroy == 19){
-					thursday_worker_array[myworkers[worker_to_destroy].getWeekend_week()]--;
+					thursday_worker_array[myworkers[worker_to_destroy-1].getWeekend_week()]--;
 				}
 				
 				not_unique = false;
@@ -1620,6 +1620,7 @@ void Library::destroy(int num_destroy){ //Destroy blocks for num_destroy number 
 			
 		}
 		cout << "Worker to destroy: " << worker_to_destroy << endl;
+		cout << "With the following rotation assigned: " << myworkers[worker_to_destroy].getWeekend_week() << endl;
 		cout << myworkers[worker_to_destroy-1].getQual() << endl;
 		cout << myworkers[worker_to_destroy-1].getWeekend() << endl;
 		cout << myworkers[worker_to_destroy-1].getHB() << endl;
@@ -1648,8 +1649,10 @@ void Library::repair(){ //Repair solution by assigning a new week rotation(only 
 	int current_worker_index = 0;
 	increment = 0; //Reset increment when a new repair is executed. Increment used to see if cost calculations are correct. Destroy + increment = new_obj_fcn
 	for(unsigned int m=0; m<workers_destroyed.size(); m++){ //Scan the vector for thursday workers
+		cout << "The rotation for worker " << workers_destroyed.at(m) << " happens at week: " << myworkers[workers_destroyed.at(m)].getWeekend_week() << endl;
 		if(workers_destroyed.at(m) == 4 || workers_destroyed.at(m) == 19 || workers_destroyed.at(m) == 18){
 			rot_to_assign_thursday_worker[m] = 1;
+// 			cout << "The rotation for THIS worker happens at week: " << myworkers[workers_destroyed.at(m)].getWeekend_week() << endl;
 		}
 	}
 	cout << "Inside Repair" << endl;
@@ -1721,6 +1724,12 @@ void Library::repair(){ //Repair solution by assigning a new week rotation(only 
 		}
 	}
 	cout << "After the workers_assigned_loop" << endl;
+	cout << "Thursday_worker_array = ";
+	for(int w=0; w<NUM_WEEKS; w++){
+		cout << thursday_worker_array[w] << " ";
+	}
+	cout << endl;
+	
 	while(workers_destroyed.size() > 0){
 		current_worker_index = rand() % workers_destroyed.size(); //A number between 0-[size()-1] i.e. 0-2 if 3 workers in vect
 		current_worker = workers_destroyed.at(current_worker_index);
