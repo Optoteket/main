@@ -26,7 +26,7 @@ private:
 	int lib_stand_in_amount[NUM_WEEKS][NUM_DAYS-2];
 	int ass_stand_in_amount[NUM_WEEKS][NUM_DAYS-2];
 	
-	int demand_differ[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; //OK as public? only one Library object
+	int demand_differ[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; //
 	int num_lib_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; //Tasks: Block, PL, HB, BokB
 	int num_ass_assigned[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; //initialize as 0 and add to constructor
 
@@ -101,7 +101,9 @@ public:
 	void print_num_workers(string, ostream&);
 	void initial_add_blocks_to_workers();
 	void calculate_demand_differ();
+	int get_demand_differ(int, int, int, int) const;
 	void print_demand_differ(ostream&);
+	
 	
 	//*** Updates all demands and tasks filled ***
 	void calculate_demand();
@@ -114,6 +116,7 @@ public:
 	void print_stand_ins(ostream&);
 	int get_sum_stand_ins();
 	int get_lowest_stand_in();
+	int get_num_stand_ins(int, int);
 	
 	void find_lowest_cost_in_vector(string, int);
 	void print_cost_vector(string, int);
