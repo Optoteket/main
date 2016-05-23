@@ -75,7 +75,7 @@ public:
 	vector <Block>& get_block_vector();
 	int get_max_min_stand_in() const;
 	int get_increment() const;
-	
+	vector<int> get_workers_destroyed() const;
 	
 	void setAvail_worker();
 	Worker& getWorker(int i);
@@ -132,6 +132,7 @@ public:
 	
 	//*** DESTROY AND REPAIR ***
 	void destroy(int);
+	void destroy(vector<int>);
 	void repair();
 	
 

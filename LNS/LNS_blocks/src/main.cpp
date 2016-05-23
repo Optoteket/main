@@ -183,6 +183,8 @@ int main() {
 	int current_solution = 0;
 	int iter_count = 0;
 	vector<int> output_vector;
+	int temporary_solution = 9999999;
+	vector<int> workers_destroyed_vect;
 	int p = 3; //Number of workers to destroy for
 	STAND_IN_COST = LOW_PRIORITY;
 	outdata << "objfcn\tfeasible\tstandins\tmaxmin" << endl;
@@ -216,19 +218,33 @@ int main() {
 // 			cout << "Inside Phase 3" << endl;
 // 		}
 		
+
 		
-		//Destroy and update
 		cout << "\nBefore Destroy\n" << endl;
 		lib.destroy(p);
 		cout << "\nAfter Destroy\n" << endl;
 		lib.calculate_demand();
+		workers_destroyed_vect = lib.get_workers_destroyed();
 		//Repair (updates are inside the repair)
 		lib.repair();
 		cout << "\nAfter Repair\n" << endl;
 		lib.calculate_demand();
+		//Update current_solution
+		output_vector = lib.evaluate_solution(cout);
+		current_solution = output_vector.at(1);
 		
+		//Destroy and update
+		while(temporary_solution > current_solution){
+			lib.destroy(workers_destroyed_vect);
+			lib.calculate_demand();
+			lib.repair();
+			lib.calculate_demand();
+			output_vector = lib.evaluate_solution(cout); //Total objfcn, feasible_cost, #stand-ins, max-min-stand-in
+			temporary_solution = output_vector.at(1);
+			
+		}
+		current_solution = temporary_solution; //Best_solution??
 		
-		output_vector = lib.evaluate_solution(cout); //Total objfcn, feasible_cost, #stand-ins, max-min-stand-in
 		//Print all values to plotdata.txt
 		outdata << output_vector.at(0) << "\t" << output_vector.at(1) << "\t" << output_vector.at(2) << "\t" << output_vector.at(3) << "\t" << output_vector.at(4) << "\t" << output_vector.at(5) << "\t" << output_vector.at(6) << "\t" << output_vector.at(7) << "\t" << output_vector.at(8) << "\t" << output_vector.at(9) << "\t" << output_vector.at(10) << "\t" << output_vector.at(11) << endl;
 		outobjfcn << output_vector.at(0) << endl;
