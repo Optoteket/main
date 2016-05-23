@@ -13,70 +13,64 @@ solve;
 CPLEX 12.5.0.0: timing 1
 mipdisplay 2
 time = 237600
-MIP Presolve eliminated 57253 rows and 32412 columns.
-MIP Presolve modified 58099 coefficients.
-Reduced MIP has 12188 rows, 12943 columns, and 59953 nonzeros.
-Reduced MIP has 12751 binaries, 192 generals, 0 SOSs, and 0 indicators.
-Found incumbent of value -5.4301233e+07 after 0.32 sec. (455.26 ticks)
-Probing fixed 1423 vars, tightened 2 bounds.
-Probing changed sense of 45 constraints.
-Probing time = 0.03 sec. (14.15 ticks)
-Cover probing fixed 0 vars, tightened 5 bounds.
-MIP Presolve eliminated 3966 rows and 2355 columns.
+MIP Presolve eliminated 57340 rows and 32578 columns.
+MIP Presolve modified 57740 coefficients.
+Reduced MIP has 12120 rows, 12794 columns, and 60105 nonzeros.
+Reduced MIP has 12602 binaries, 192 generals, 0 SOSs, and 0 indicators.
+Found incumbent of value -5.3901006e+07 after 0.32 sec. (472.60 ticks)
+Probing fixed 1238 vars, tightened 0 bounds.
+Probing changed sense of 48 constraints.
+Probing time = 0.03 sec. (14.14 ticks)
+Cover probing fixed 0 vars, tightened 4 bounds.
+MIP Presolve eliminated 3870 rows and 2168 columns.
 MIP Presolve modified 13 coefficients.
-Reduced MIP has 8002 rows, 10368 columns, and 35993 nonzeros.
-Reduced MIP has 10181 binaries, 187 generals, 0 SOSs, and 0 indicators.
+Reduced MIP has 8012 rows, 10388 columns, and 36045 nonzeros.
+Reduced MIP has 10201 binaries, 187 generals, 0 SOSs, and 0 indicators.
 Probing fixed 0 vars, tightened 1 bounds.
-Probing time = 0.02 sec. (10.46 ticks)
-Clique table members: 16296.
+Probing time = 0.02 sec. (10.68 ticks)
+Clique table members: 16666.
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
 Parallel mode: deterministic, using up to 8 threads.
-Root relaxation solution time = 0.15 sec. (125.15 ticks)
+Root relaxation solution time = 0.17 sec. (125.97 ticks)
 
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
 
-*     0+    0                      -5.43012e+07     2900.0000     3446  100.01%
-      0     0      400.0000   260  -5.43012e+07      400.0000     3446  100.00%
-*     0+    0                     -1899618.0000      400.0000     3446  100.02%
-*     0+    0                          293.0000      400.0000     3449   36.52%
-*     0     0      integral     0      400.0000       Cuts: 6     3449    0.00%
-      0     0        cutoff            400.0000      400.0000     3449    0.00%
-Elapsed time = 0.86 sec. (893.24 ticks, tree = 0.00 MB)
-
-Clique cuts applied:  2
-Cover cuts applied:  1
-Mixed integer rounding cuts applied:  1
-Gomory fractional cuts applied:  2
+*     0+    0                      -5.39010e+07   -97100.0000     3400   99.82%
+      0     0   -99400.0000   302  -5.39010e+07   -99400.0000     3400   99.82%
+*     0+    0                       -99400.0000   -99400.0000     3400    0.00%
+      0     0        cutoff         -99400.0000   -99400.0000     3400    0.00%
+Elapsed time = 0.90 sec. (986.68 ticks, tree = 0.00 MB)
 
 Root node processing (before b&c):
-  Real time             =    0.43 sec. (345.74 ticks)
+  Real time             =    0.47 sec. (422.63 ticks)
 Parallel b&c, 8 threads:
   Real time             =    0.00 sec. (0.00 ticks)
   Sync time (average)   =    0.00 sec.
   Wait time (average)   =    0.00 sec.
                           ------------
-Total (root+branch&cut) =    0.43 sec. (345.74 ticks)
+Total (root+branch&cut) =    0.47 sec. (422.63 ticks)
 
 Times (seconds):
-Input =  0.055991
-Solve =  1.47178
-Output = 0.040994
-CPLEX 12.5.0.0: optimal integer solution; objective 400
-3449 MIP simplex iterations
+Input =  0.056991
+Solve =  1.57376
+Output = 0.037994
+CPLEX 12.5.0.0: optimal integer solution; objective -99400
+3400 MIP simplex iterations
 0 branch-and-bound nodes
 Tried aggregator 3 times
 option log_file '';
 display min_lib, min_ass;
-min_lib = 1
-min_ass = 2
+min_lib = 3
+min_ass = 0
 
 printf "The same stand in objective function value occurs: %d times. \n\n", times_same_sol;
-The same stand in objective function value occurs: 7 times. 
+The same stand in objective function value occurs: 15 times. 
 
 display ax;
 ax :=
+5 5 1 LOW   1
 ;
 
 option log_file '';
