@@ -402,6 +402,9 @@ int Library::get_max_min_stand_in() const{
 int Library::get_increment() const{
 	return increment;
 }
+vector<int> Library::get_workers_destroyed() const{
+	return workers_destroyed;
+}
 
 
 void Library::create_all_blocks() {
@@ -897,8 +900,8 @@ void Library::assign_a_rot_to_worker(int i){ //Assign a new random weekend for t
 					break;
 				}
 			}
-		}else{//if the worker i is 4, 19 or 18
-			if(thursday_worker_array[rand_week] == 0){ //Note: this statement shall work if assigning rot to these _first_ in repair()
+		}else{//worker i is 4, 19 or 18
+			if(thursday_worker_array[rand_week] <= 1){ //Note: this statement shall work if assigning rot to these _first_ in repair()
 				if(lib_per_rot[rand_week] + ass_per_rot[rand_week] < 7 || myworkers[i-1].getWeekend().compare(0,10,"no_weekend") == 0){
 					if(myworkers[i-1].getQual().compare(0,3,"ass") == 0 && ass_per_rot[rand_week] <= 2){
 						break;
@@ -1092,6 +1095,10 @@ void Library::calculate_demand_differ(){ //Calculate the difference between Libr
 	}
 }
 
+int Library::get_demand_differ(int w, int d, int s, int j) const{
+	return demand_differ[w][d][s][j];
+}
+
 void Library::print_demand_differ(ostream& stream){
 	calculate_demand_differ();
 	stream << "\n*** Demand difference *** in the library for: block, PL, HB, BokB" << endl;
@@ -1267,6 +1274,7 @@ void Library::print_cost_vector(string type, int w_id){
 
 void Library::create_initial_solution(){
 	vector<int> worker_vector;
+	worker_vector.clear();
 	for(int i=0; i<num_workers; i++){
 		worker_vector.push_back(i+1);
 	}
@@ -1606,6 +1614,21 @@ void Library::destroy(int num_destroy){ //Destroy blocks for num_destroy number 
 	for(int i=0; i<num_workers_to_destroy; i++){
 		while(not_unique){ //Loop until a worker that is not already destroyed is found
 			worker_to_destroy = rand() % 39 + 1; //Number between 1-39
+			
+// 			if(i == 0 || i == 1){ //Error check - destroy 2/3 Thursday workers each destroy
+// 				worker_to_destroy = rand() % 3;
+// 				if(worker_to_destroy == 0){
+// 					worker_to_destroy = 4;
+// 				}
+// 				if(worker_to_destroy == 1){
+// 					worker_to_destroy = 18;
+// 				}
+// 				if(worker_to_destroy == 2){
+// 					worker_to_destroy = 19;
+// 				}
+// 			}
+			
+			
 			it = find(workers_destroyed.begin(), workers_destroyed.end(), worker_to_destroy); //Find int in vector
 			if(it == workers_destroyed.end()){ //Searched the vector, value not found.
 				workers_destroyed.push_back(worker_to_destroy);
@@ -1635,6 +1658,38 @@ void Library::destroy(int num_destroy){ //Destroy blocks for num_destroy number 
 		}
 		print_weekends_assigned(cout);
 		not_unique = true;
+	}
+	
+}
+//Second destroy with specific workers to destroy
+void Library::destroy(vector<int> destroy_workers){ //Destroy blocks for num_destroy number of random workers (and give new weekend, in repair?)
+	int worker_to_destroy = 0;
+	unsigned int num_workers_to_destroy = destroy_workers.size(); //the amount of workers to destroy in destroy function. 3 gives a 7.5% destroy
+	workers_destroyed.clear();
+
+	for(unsigned int i=0; i<num_workers_to_destroy; i++){
+		worker_to_destroy = destroy_workers.at(i);
+		workers_destroyed.push_back(worker_to_destroy);
+		myworkers[worker_to_destroy-1].reset_block_types_added();
+		if(worker_to_destroy == 4 || worker_to_destroy == 18 || worker_to_destroy == 19){
+			thursday_worker_array[myworkers[worker_to_destroy-1].getWeekend_week()]--;
+		}
+		
+		cout << "Worker to destroy: " << worker_to_destroy << endl;
+		cout << "With the following rotation assigned: " << myworkers[worker_to_destroy].getWeekend_week() << endl;
+		cout << myworkers[worker_to_destroy-1].getQual() << endl;
+		cout << myworkers[worker_to_destroy-1].getWeekend() << endl;
+		cout << myworkers[worker_to_destroy-1].getHB() << endl;
+		myworkers[worker_to_destroy-1].clear_blocks(); //Assign empty blocks to the worker
+		//Remove values from lib_per_rot[w] and ass_per_rot[w] if not a LOW-worker (fixed weekends)
+		if(worker_to_destroy != 14 && worker_to_destroy != 17 && worker_to_destroy != 25 && worker_to_destroy != 36 && worker_to_destroy != 37){
+			if(myworkers[worker_to_destroy-1].getQual().compare(0,3,"lib") == 0 && myworkers[worker_to_destroy-1].getWeekend().compare(0,7,"weekend") == 0){
+				lib_per_rot[myworkers[worker_to_destroy-1].getWeekend_week()]--;
+			}else if(myworkers[worker_to_destroy-1].getQual().compare(0,3,"ass") == 0 && myworkers[worker_to_destroy-1].getWeekend().compare(0,7,"weekend") == 0){
+				ass_per_rot[myworkers[worker_to_destroy-1].getWeekend_week()]--;
+			}
+		}
+		print_weekends_assigned(cout);
 	}
 	
 }
@@ -1798,6 +1853,10 @@ void Library::calculate_stand_ins(){ //calculate stand_in_amount each day. Save 
 			}
 		}
 	}
+}
+
+int Library::get_num_stand_ins(int w, int d){
+	return stand_in_amount[w][d];
 }
 
 void Library::print_stand_ins(ostream& stream){ //Printing stand-ins for each day of all weeks
