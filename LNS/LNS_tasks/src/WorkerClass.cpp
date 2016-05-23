@@ -134,7 +134,7 @@ Worker::Worker(string pos, int ID, string name, string department, string weeken
   //Mid prio weights
   costs.weights[2] = 5;//PL per week cost
   costs.weights[3] = 5;//Num_PL cost
-  costs.weights[4] = 5;//Num_tasks_week cost
+  costs.weights[4] = 10;//Num_tasks_week cost
   costs.weights[5] = 4;//Same task shift cost
 
   costs.PL_cost = 0;
@@ -394,6 +394,16 @@ int Worker::get_weekend_task_type(){
   return current.tasks[current.weekend-1][sat][0];
 }
 
+int Worker::get_cost_sum_no_stand_in(){
+  int cost_sum=costs.cost_sum;
+  for (int w=0; w<NUM_WEEKS; w++){ 
+    for (int d=0; d<NUM_DAYS; d++){
+      cost_sum -= costs.weights[1]*costs.stand_in_cost[w][d];
+    }
+  }
+  return cost_sum;
+}
+
 int Worker::get_num_excess_tasks_week(){
   int excess_tasks=0;
   for (int w=0; w<NUM_WEEKS; w++){  
@@ -402,6 +412,58 @@ int Worker::get_num_excess_tasks_week(){
   return excess_tasks;
 }
 
+int Worker::get_num_excess_tasks_day(){
+  int excess_tasks=0;
+  for (int w=0; w<NUM_WEEKS; w++){  
+    for (int d=0; d<NUM_DAYS; d++){
+      excess_tasks += costs.num_tasks_day_cost[w][d];
+    }
+  }
+  return excess_tasks;
+}
+
+int Worker::get_num_excess_PL(){
+  return costs.PL_cost;
+}
+
+int Worker::get_num_excess_PL_week(){
+  int excess_tasks=0;
+  for (int w=0; w<NUM_WEEKS; w++){  
+    excess_tasks += costs.PL_week_cost[w];
+  }
+  return excess_tasks;
+}
+
+int Worker::get_num_excess_same_shifts_week(){
+  int excess_tasks=0;
+  for (int w=0; w<NUM_WEEKS; w++){  
+    for (int s=0; s<NUM_SHIFTS; s++){
+      excess_tasks += costs.num_tasks_day_cost[w][s];
+    }
+  }
+  return excess_tasks;
+}
+
+int Worker::get_worst_week(){
+  //Reset cost sum
+  int cost_sum[NUM_WEEKS]={0,0,0,0,0};
+  int worst_week = 0;
+  int worst_week_cost=0;
+
+  //Find cost sum
+  for (int w=0; w<NUM_WEEKS; w++){      
+    for (int d=0; d<NUM_DAYS; d++){
+      for (int s=0; s<NUM_SHIFTS; s++){
+	cost_sum[w] += costs.total_cost[w][d][s];
+	if(cost_sum[w] > worst_week_cost){
+	  worst_week_cost = cost_sum[w];
+	  worst_week = w;
+	}
+      }
+    }
+  }
+  return worst_week;
+}
 
 /************** Worker functions: set **********/
 void Worker::set_PL_costs(int w){
@@ -415,12 +477,12 @@ void Worker::set_PL_costs(int w){
      costs.PL_cost = current.num_PL;
   }
   else if (get_PL_type() == standard_PL){
-    if(current.num_PL > MAX_PL_10W_STANDARD)
+    if(current.num_PL > 1 + (MAX_PL_10W_STANDARD-1)/2)
       costs.PL_cost = current.num_PL - MAX_PL_10W_STANDARD;
     else costs.PL_cost = 0;
   }
   else if (get_PL_type() == many_PL){
-    if(current.num_PL > MAX_PL_10W_MANY)
+    if(current.num_PL > 1 + (MAX_PL_10W_MANY-1)/2)
       costs.PL_cost = current.num_PL - MAX_PL_10W_MANY;
     else costs.PL_cost = 0;
   } 
@@ -432,14 +494,15 @@ void Worker::set_stand_in_cost(int w, int d){
 
 void Worker::set_num_tasks_costs(int w, int d){
   //Set num tasks costs per day
-  if(d == fri && current.tasks[w][d][0] == BokB && current.tasks[w][d][3] != no_task){
+  if((d == fri && current.tasks[w][d][0] == BokB && current.tasks[w][d][3] != no_task)
+     ||(current.tasks[w][d][0] == BokB && current.tasks[w][d][3] == BokB)){
     //Can have one extra task at friday evening if BokB in the morning
     if (current.num_tasks_day[w][d] > (MAX_TASKS_PER_DAY+1)){
       costs.num_tasks_day_cost[w][d] = current.num_tasks_day[w][d] - (MAX_TASKS_PER_DAY+1);
     }
     else costs.num_tasks_week_cost[w] = 0;
   }
-  else if (current.num_tasks_day[w][d] > MAX_TASKS_PER_DAY){
+  else if (current.num_tasks_day[w][d] > MAX_TASKS_PER_DAY ){
     costs.num_tasks_day_cost[w][d] = current.num_tasks_day[w][d] - MAX_TASKS_PER_DAY;
   }
   else costs.num_tasks_day_cost[w][d] = 0;
@@ -458,7 +521,6 @@ void Worker::set_num_same_shift_cost(int w, int s){
   }
   else if (current.num_same_shifts_week[w][s] > MAX_TASKS_SAME_SHIFT){
     costs.num_same_shifts_week_cost[w][s] = current.num_same_shifts_week[w][s] - MAX_TASKS_SAME_SHIFT;
-    cout << "Same shift cost: " << costs.num_same_shifts_week_cost[w][s] << endl;
   }
   else costs.num_same_shifts_week_cost[w][s] = 0;
 }
@@ -708,7 +770,14 @@ void Worker::remove_weekend(){
   if (task != HB || !no_friday_when_HB){
     remove_task(current.weekend-1, fri, 3);
   }
+}
 
+void Worker::remove_week(int w){   
+  for (int d=0; d<NUM_DAYS; d++){
+    for (int s=0; s< NUM_SHIFTS; s++){
+      remove_task(w,d,s);
+    }
+  }
 }
 
 bool Worker::has_weekend_task(){

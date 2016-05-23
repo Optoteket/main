@@ -171,10 +171,10 @@ int main(int argc, char** argv)
   min_lib.clear();
   library_costs.clear();
 
-  int max_loops = 100;
+  int max_loops = 5;
   int num_tests = 8;
   double weights[3];
-  int iterations = 1000;
+  int iterations = 100;
 
   //AMPL loop
   for(int loop=0; loop < max_loops*num_tests; loop++){
@@ -182,8 +182,8 @@ int main(int argc, char** argv)
     //1. Setting and normalizing weights for weekend objective function
     if(loop < max_loops){
       weights[0]=1; //Min number of full time avail workers/day
-      weights[1]=10; //Min number of avail workers per shift
-      weights[2]=10; //Min number of avail workers a day
+      weights[1]=0; //Min number of avail workers per shift
+      weights[2]=0; //Min number of avail workers a day
 
       //Normalizing
       double sum =  weights[0] +  weights[1] +  weights[2];
@@ -192,9 +192,9 @@ int main(int argc, char** argv)
       weights[2]/=sum;
     }
     else if(loop < max_loops*2){
-      weights[0]=10; //Min number of full time avail workers/day
+      weights[0]=0; //Min number of full time avail workers/day
       weights[1]=1; //Min number of avail workers per shift
-      weights[2]=10; //Min number of avail workers a day
+      weights[2]=0; //Min number of avail workers a day
 
       //Normalizing
       double sum =  weights[0] +  weights[1] +  weights[2];
@@ -203,8 +203,8 @@ int main(int argc, char** argv)
       weights[2]/=sum;
     }
     else if(loop < max_loops*3){
-      weights[0]=10; //Min number of full time avail workers/day
-      weights[1]=10; //Min number of avail workers per shift
+      weights[0]=0; //Min number of full time avail workers/day
+      weights[1]=0; //Min number of avail workers per shift
       weights[2]=1; //Min number of avail workers a day
 
       //Normalizing
@@ -277,26 +277,35 @@ int main(int argc, char** argv)
 
     //4. Optimize weekends, input: num iterations, destroy percentage
     library.optimize_weekends(iterations, 8, weights);
-    //library.optimize_weekday_tasks();
     
     //5. Write results to resfile
     library.write_results();
     double cost = library.get_library_cost();
     library_costs.push_back(cost);
+    double cost_stand_in = library.get_stand_in_cost();
+    library_costs.push_back(cost_stand_in);
+    double cost_shift_avail = library.get_shift_avail_cost();
+    library_costs.push_back(cost_shift_avail);
+    double cost_day_avail = library.get_day_avail_cost();
+    library_costs.push_back(cost_day_avail);
+    double cost_stand_in_lib = library.get_stand_in_lib();
+    library_costs.push_back(cost_stand_in_lib);
+    double cost_stand_in_ass = library.get_stand_in_ass();
+    library_costs.push_back(cost_stand_in_ass);
 
-    //6. Write weekends to AMPL format and run
+    //6. Optimize weekdays
+    //library.optimize_weekday_tasks();
+
+    //7. Write weekends to AMPL format and run
     library.write_weekend_AMPL_data();
     log_file.close();
     system("../../../AMPLmodel/LNSweekendsAMPL/launchAMPL.sh");
     collect_AMPL_statistics(&infeasible_count, min_lib, min_ass, ax_vector);
     ax_vector_vector.push_back(ax_vector);
-    if(ax_vector.size()>0){
-      loop=max_loops*num_tests;
-    }
     ax_vector.clear();
     usleep(1000);
 
-    //7. Write AMPL statistics
+    //8. Write AMPL statistics
     if(loop == max_loops-1 || loop == 2*max_loops-1 || loop == 3*max_loops-1 || loop == 4*max_loops-1 || loop == 5*max_loops-1 || loop == 6*max_loops-1 || loop == 7*max_loops-1  || loop == 8*max_loops-1){
       //Print costs to file
       double tot_cost = 0.0;
@@ -306,10 +315,11 @@ int main(int argc, char** argv)
       cout << "Number of infeasible solutions: " << infeasible_count << endl;
       wend_AMPL_file  << "Number of infeasible solutions:" << infeasible_count << endl;
       for(int i=0; i<(int) min_lib.size(); i++){
-	cout << "Min num lib/ass: (" << i << ") "<< min_lib[i] << ", " << min_ass[i] << ". Cost: " << 5*min_lib[i] + min_ass[i];  
+	cout << "Min num lib/ass: (" << i << ") "<< min_lib[i] << ", " << min_ass[i] << ". Cost: " << 2*min_lib[i] + min_ass[i];  
 	cout << "    ObjFun value: " << library_costs[i] << endl;
-	wend_AMPL_file << "Min num lib/ass: (" << i << ") "<< min_lib[i] << ", " << min_ass[i] << ". Cost: " << 5*min_lib[i] + min_ass[i];
-	wend_AMPL_file << "    ObjFun value: " << library_costs[i] << endl;
+	wend_AMPL_file << "Min num lib/ass: (" << i << ") "<< min_lib[i] << ", " << min_ass[i] << ". Cost: " << 2*min_lib[i] + min_ass[i];
+	wend_AMPL_file << "    ObjFun value: " << library_costs[6*i] << ", Stand in cost: " << library_costs[6*i+1] << ", Shift avail: " << library_costs[6*i+2] << ", Day avail: " << library_costs[6*i+3] 
+		       <<" Num stand ins (lib/ass): " << library_costs[6*i+4] <<"/" << library_costs[6*i+5] << endl;
 	vector<Ax_struct>* ax_vec = &ax_vector_vector[i];
 	if((int) ax_vec->size()>0){
 	  wend_AMPL_file <<"Artificial workers placed at: " << endl;
@@ -319,7 +329,7 @@ int main(int argc, char** argv)
 	    cout << (*ax_vec)[i].week << ", "<< (*ax_vec)[i].day << ", " << (*ax_vec)[i].shift << ", "<< (*ax_vec)[i].type << ". Number: "<< (*ax_vec)[i].number << endl;
 	  }
 	}
-	else tot_cost += 5*min_lib[i] + min_ass[i];
+	else tot_cost += 2*min_lib[i] + min_ass[i];
       }
       cout << endl << "Average cost:" << tot_cost/divisor << endl;
       wend_AMPL_file << endl << "Average cost:" << tot_cost/divisor << endl << endl;
