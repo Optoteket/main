@@ -101,6 +101,7 @@ class Worker{
 
   void remove_week_rest();
   void remove_weekend();
+  void remove_week(int);
   void remove_weekrest_tasks();
   void remove_task(int, int, int);
 
@@ -121,10 +122,16 @@ class Worker{
   int get_avail_day(int, int);
   int get_current_avail_day(int, int);
   int get_cost_sum () const;
+  int get_cost_sum_no_stand_in();
   int get_weekend_task();
 
   //Worker cost statistics
   int get_num_excess_tasks_week();
+  int get_num_excess_tasks_day();
+  int get_num_excess_PL();
+  int get_num_excess_PL_week();
+  int get_num_excess_same_shifts_week();
+  int get_worst_week();
 
   bool has_weekend_task();
 

@@ -43,12 +43,16 @@ class Library{
   //Destroyed workers
   vector<TaskWorker> destroyed_wend_workers;
   vector<TaskWorker> destroyed_task_workers;
+  TaskWorker worst_worker;
+  int worst_week;
 
   //Objective function values
   vector<double> weekend_objective_function;
   vector<double> weekend_day_avail_cost;
   vector<double> weekend_shift_avail_cost;
   vector<double> weekend_stand_in_cost;
+  vector<double> weekend_stand_in_cost_lib;
+  vector<double> weekend_stand_in_cost_ass;
   vector<double> weekend_day_avail_average_cost;
   vector<double> weekend_shift_avail_average_cost;
   vector<double> weekend_stand_in_average_cost;
@@ -79,10 +83,21 @@ class Library{
   //Num full time equivalents
   double num_avail_workers_average[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS];
 
+  //Library costs
   double library_max_cost;
   double library_cost;
   double temp_library_cost;
   double orig_library_cost;
+  double library_stand_in_cost;
+  double library_critical_worker_cost;
+  double library_non_critical_worker_cost;
+
+  //Library worker costs
+  int num_tasks_day_cost;
+  int num_tasks_week_cost;
+  int PL_week_cost;
+  int PL_cost;
+  int num_same_shifts_week_cost;
 
   //Stand in cost term
   int stand_in_cost; //Maximize in objective function
@@ -138,7 +153,11 @@ class Library{
   //void weekend_update_avail_demand(int, int, int); //Not working properly, not possible to keep updated
 
   //Weekday related
+  void find_worst_worker();
+  void set_non_critical_worker_cost();
+  void set_critical_worker_cost();
   void optimize_weekday_tasks();
+  void set_library_stand_in_cost();
   void place_BokB();
   void destroy_tasks(int, string);
   void repair_tasks(string);
@@ -167,6 +186,11 @@ class Library{
   int get_demand(int, int, int, int);
   int get_current_demand(int, int, int, int);
   double get_library_cost() const;
+  double get_stand_in_cost() const;
+  double get_shift_avail_cost() const;
+  double get_day_avail_cost() const;
+  double get_stand_in_lib() const;
+  double get_stand_in_ass() const;
 
   //Dec
   void dec_current_demand(int, int, int, int);

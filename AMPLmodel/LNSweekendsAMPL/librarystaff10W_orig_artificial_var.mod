@@ -153,9 +153,21 @@ subject to all_other_times_no_meeting:
 #	M_big[w,1,1] + sum{d in 1..5}(sum{s in 1..3} meeting[w,d,s,dep]) <= 1;
 
 ######################## Maximum one task per day #####################################
-#Stating that a worker performing library on wheels cannot perform another task that day
-subject to only_LOW{i in I, w in W, d in 1..5, s2 in S[d]}:
+#Stating that a worker can at maximum perform one task per shift
+subject to only_LOW{i in I, w in W, d in D, s in S[d]}:
+	sum {j in J[d]} x[i,w,d,s,j] <= 1;
+
+#Stating that a worker performing library on wheels cannot perform another task that day, Mon-Thur
+subject to only_one_task_per_day{i in I, w in W, d in 1..4, s2 in S[d]}:
 	sum{s in S[d]}(sum {j in {'Exp','Info','PL'}} x[i,w,d,s,j]) <= 1 - x[i,w,d,s2,'LOW'];
+
+#Stating that a worker performing can only have one library task at Fridays.
+subject to only_LOW_friday{i in I, w in W}:
+	sum{s in S[5]}(sum {j in {'Exp','Info','PL'}} x[i,w,5,s,j]) <= 1;
+
+#Stating that a worker performing library on Friday morning can only have a task in the evning.
+subject to two_tasks_if_LOW_friday_morning{i in I, w in W, s in 1..3}:
+	(sum {j in {'Exp','Info','PL'}} x[i,w,5,s,j])  <= 1 - x[i,w,5,1,'LOW'];
 
 subject to max_one_task_per_day_weekend{i in I, w in W, d in 6..7}:
 	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;

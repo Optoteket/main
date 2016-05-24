@@ -153,9 +153,21 @@ subject to all_other_times_no_meeting:
 #	M_big[w,1,1] + sum{d in 1..5}(sum{s in 1..3} meeting[w,d,s,dep]) <= 1;
 
 ######################## Maximum one task per day #####################################
-#Stating that a worker performing library on wheels cannot perform another task that day
-subject to only_LOW{i in I, w in W, d in 1..5, s2 in S[d]}:
+#Stating that a worker can at maximum perform one task per shift
+subject to only_LOW{i in I, w in W, d in D, s in S[d]}:
+	sum {j in J[d]} x[i,w,d,s,j] <= 1;
+
+#Stating that a worker performing library on wheels cannot perform another task that day, Mon-Thur
+subject to only_one_task_per_day{i in I, w in W, d in 1..4, s2 in S[d]}:
 	sum{s in S[d]}(sum {j in {'Exp','Info','PL'}} x[i,w,d,s,j]) <= 1 - x[i,w,d,s2,'LOW'];
+
+#Stating that a worker performing can only have one library task at Fridays.
+subject to only_LOW_friday{i in I, w in W}:
+	sum{s in S[5]}(sum {j in {'Exp','Info','PL'}} x[i,w,5,s,j]) <= 1;
+
+#Stating that a worker performing library on Friday morning can only have a task in the evning.
+subject to two_tasks_if_LOW_friday_morning{i in I, w in W, s in 1..3}:
+	(sum {j in {'Exp','Info','PL'}} x[i,w,5,s,j])  <= 1 - x[i,w,5,1,'LOW'];
 
 subject to max_one_task_per_day_weekend{i in I, w in W, d in 6..7}:
 	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;
@@ -337,73 +349,73 @@ subject to only_LOW_in_evening{w in W, d in 1..4,j in {'Exp', 'Info', 'PL'}}:
 	x[36,w,d,4,j] = 0;
 
 ######################## Fixed weekends #########################
-subject to 3_4_1:
-H[3,4,1] + H[3,4,2]= 1;
+subject to 3_3_1:
+H[3,3,1] + H[3,3,2]= 1;
 subject to 4_4_1:
 H[4,4,1] + H[4,4,2]= 1;
 subject to 5_2_1:
 H[5,2,1] + H[5,2,2]= 1;
-subject to 7_2_1:
-H[7,2,1] + H[7,2,2]= 1;
-subject to 8_1_1:
-H[8,1,1] + H[8,1,2]= 1;
-subject to 9_3_1:
-H[9,3,1] + H[9,3,2]= 1;
-subject to 12_1_1:
-H[12,1,1] + H[12,1,2]= 1;
-subject to 13_2_1:
-H[13,2,1] + H[13,2,2]= 1;
-subject to 14_4_1:
-H[14,4,1] + H[14,4,2]= 1;
-subject to 16_3_1:
-H[16,3,1] + H[16,3,2]= 1;
+subject to 7_3_1:
+H[7,3,1] + H[7,3,2]= 1;
+subject to 8_2_1:
+H[8,2,1] + H[8,2,2]= 1;
+subject to 9_2_1:
+H[9,2,1] + H[9,2,2]= 1;
+subject to 12_2_1:
+H[12,2,1] + H[12,2,2]= 1;
+subject to 13_5_1:
+H[13,5,1] + H[13,5,2]= 1;
+subject to 14_2_1:
+H[14,2,1] + H[14,2,2]= 1;
+subject to 16_1_1:
+H[16,1,1] + H[16,1,2]= 1;
 subject to 17_5_1:
 H[17,5,1] + H[17,5,2]= 1;
-subject to 19_2_1:
-H[19,2,1] + H[19,2,2]= 1;
-subject to 23_5_1:
-H[23,5,1] + H[23,5,2]= 1;
-subject to 24_1_1:
-H[24,1,1] + H[24,1,2]= 1;
-subject to 25_5_1:
-H[25,5,1] + H[25,5,2]= 1;
-subject to 27_3_1:
-H[27,3,1] + H[27,3,2]= 1;
+subject to 19_1_1:
+H[19,1,1] + H[19,1,2]= 1;
+subject to 23_1_1:
+H[23,1,1] + H[23,1,2]= 1;
+subject to 24_3_1:
+H[24,3,1] + H[24,3,2]= 1;
+subject to 25_4_1:
+H[25,4,1] + H[25,4,2]= 1;
+subject to 27_5_1:
+H[27,5,1] + H[27,5,2]= 1;
 subject to 31_4_1:
 H[31,4,1] + H[31,4,2]= 1;
-subject to 32_5_1:
-H[32,5,1] + H[32,5,2]= 1;
-subject to 36_4_1:
-H[36,4,1] + H[36,4,2]= 1;
+subject to 32_4_1:
+H[32,4,1] + H[32,4,2]= 1;
+subject to 36_3_1:
+H[36,3,1] + H[36,3,2]= 1;
 subject to 37_1_1:
 H[37,1,1] + H[37,1,2]= 1;
-subject to 38_3_1:
-H[38,3,1] + H[38,3,2]= 1;
-subject to 1_2_1:
-H[1,2,1] + H[1,2,2]= 1;
-subject to 6_3_1:
-H[6,3,1] + H[6,3,2]= 1;
-subject to 10_4_1:
-H[10,4,1] + H[10,4,2]= 1;
-subject to 11_2_1:
-H[11,2,1] + H[11,2,2]= 1;
+subject to 38_5_1:
+H[38,5,1] + H[38,5,2]= 1;
+subject to 1_1_1:
+H[1,1,1] + H[1,1,2]= 1;
+subject to 6_4_1:
+H[6,4,1] + H[6,4,2]= 1;
+subject to 10_2_1:
+H[10,2,1] + H[10,2,2]= 1;
+subject to 11_1_1:
+H[11,1,1] + H[11,1,2]= 1;
 subject to 15_3_1:
 H[15,3,1] + H[15,3,2]= 1;
-subject to 18_1_1:
-H[18,1,1] + H[18,1,2]= 1;
-subject to 20_5_1:
-H[20,5,1] + H[20,5,2]= 1;
-subject to 22_3_1:
-H[22,3,1] + H[22,3,2]= 1;
-subject to 26_4_1:
-H[26,4,1] + H[26,4,2]= 1;
-subject to 29_1_1:
-H[29,1,1] + H[29,1,2]= 1;
-subject to 30_1_1:
-H[30,1,1] + H[30,1,2]= 1;
-subject to 33_2_1:
-H[33,2,1] + H[33,2,2]= 1;
-subject to 35_5_1:
-H[35,5,1] + H[35,5,2]= 1;
+subject to 18_2_1:
+H[18,2,1] + H[18,2,2]= 1;
+subject to 20_3_1:
+H[20,3,1] + H[20,3,2]= 1;
+subject to 22_5_1:
+H[22,5,1] + H[22,5,2]= 1;
+subject to 26_3_1:
+H[26,3,1] + H[26,3,2]= 1;
+subject to 29_4_1:
+H[29,4,1] + H[29,4,2]= 1;
+subject to 30_5_1:
+H[30,5,1] + H[30,5,2]= 1;
+subject to 33_4_1:
+H[33,4,1] + H[33,4,2]= 1;
+subject to 35_1_1:
+H[35,1,1] + H[35,1,2]= 1;
 subject to 39_5_1:
 H[39,5,1] + H[39,5,2]= 1;
