@@ -438,7 +438,7 @@ int Worker::get_num_excess_same_shifts_week(){
   int excess_tasks=0;
   for (int w=0; w<NUM_WEEKS; w++){  
     for (int s=0; s<NUM_SHIFTS; s++){
-      excess_tasks += costs.num_tasks_day_cost[w][s];
+      excess_tasks += costs.num_same_shifts_week_cost[w][s];
     }
   }
   return excess_tasks;
@@ -446,23 +446,80 @@ int Worker::get_num_excess_same_shifts_week(){
 
 int Worker::get_worst_week(){
   //Reset cost sum
-  int cost_sum[NUM_WEEKS]={0,0,0,0,0};
+  int cost[NUM_WEEKS]={0,0,0,0,0};
   int worst_week = 0;
   int worst_week_cost=0;
 
-  //Find cost sum
-  for (int w=0; w<NUM_WEEKS; w++){      
-    for (int d=0; d<NUM_DAYS; d++){
-      for (int s=0; s<NUM_SHIFTS; s++){
-	cost_sum[w] += costs.total_cost[w][d][s];
-	if(cost_sum[w] > worst_week_cost){
-	  worst_week_cost = cost_sum[w];
-	  worst_week = w;
+  //If there is a total PL problem, choose week with the most PL
+  if(get_total_PL_cost() != 0){
+    for (int w=0; w<NUM_WEEKS; w++){      
+      cost[w] = current.num_PL_week[w];
+      if(cost[w] > worst_week_cost){
+	worst_week_cost = cost[w];
+	worst_week = w;
+      }
+    }
+  }
+  else{//Find cost sum
+    for (int w=0; w<NUM_WEEKS; w++){      
+      for (int d=0; d<NUM_DAYS; d++){
+	for (int s=0; s<NUM_SHIFTS; s++){
+	  cost[w] += costs.total_cost[w][d][s];
+	  if(cost[w] > worst_week_cost){
+	    worst_week_cost = cost[w];
+	    worst_week = w;
+	  }
 	}
       }
     }
   }
   return worst_week;
+}
+
+int Worker::get_total_stand_in_cost(){
+  int sum=0;
+  for (int w=0; w<NUM_WEEKS; w++){ 
+    for (int d=0; d<NUM_DAYS; d++){
+      sum += costs.weights[1]*costs.stand_in_cost[w][d];
+    }
+  }
+  return sum;
+}
+int Worker::get_total_PL_week_cost(){
+  int sum=0;
+  for (int w=0; w<NUM_WEEKS; w++){ 
+    sum +=  costs.weights[2]*costs.PL_week_cost[w];
+  }
+  return sum;
+}
+int Worker::get_total_PL_cost(){
+  return costs.weights[3]*costs.PL_cost;
+}
+int Worker::get_total_tasks_week_cost(){
+  int sum=0;
+  for (int w=0; w<NUM_WEEKS; w++){
+    sum += costs.weights[4]*costs.num_tasks_week_cost[w];
+  }
+  return sum;
+}
+int  Worker::get_total_same_shift_cost(){
+  int sum=0;
+  for (int w=0; w<NUM_WEEKS; w++){
+    for (int s=0; s<NUM_SHIFTS; s++){
+      sum += costs.weights[5]*costs.num_same_shifts_week_cost[w][s];
+    }
+  }
+  return sum;
+}
+
+int Worker::get_total_tasks_day_cost(){
+  int sum=0;
+  for (int w=0; w<NUM_WEEKS; w++){
+    for (int d=0; d<NUM_DAYS; d++){
+      sum += costs.weights[0]*costs.num_tasks_day_cost[w][d];
+    }
+  }
+  return sum;
 }
 
 /************** Worker functions: set **********/
@@ -478,12 +535,12 @@ void Worker::set_PL_costs(int w){
   }
   else if (get_PL_type() == standard_PL){
     if(current.num_PL > 1 + (MAX_PL_10W_STANDARD-1)/2)
-      costs.PL_cost = current.num_PL - MAX_PL_10W_STANDARD;
+      costs.PL_cost = current.num_PL -  (1 + (MAX_PL_10W_STANDARD-1)/2);
     else costs.PL_cost = 0;
   }
   else if (get_PL_type() == many_PL){
     if(current.num_PL > 1 + (MAX_PL_10W_MANY-1)/2)
-      costs.PL_cost = current.num_PL - MAX_PL_10W_MANY;
+      costs.PL_cost = current.num_PL - (1 + (MAX_PL_10W_MANY-1)/2);
     else costs.PL_cost = 0;
   } 
 }
@@ -500,7 +557,7 @@ void Worker::set_num_tasks_costs(int w, int d){
     if (current.num_tasks_day[w][d] > (MAX_TASKS_PER_DAY+1)){
       costs.num_tasks_day_cost[w][d] = current.num_tasks_day[w][d] - (MAX_TASKS_PER_DAY+1);
     }
-    else costs.num_tasks_week_cost[w] = 0;
+    else costs.num_tasks_day_cost[w][d] = 0;
   }
   else if (current.num_tasks_day[w][d] > MAX_TASKS_PER_DAY ){
     costs.num_tasks_day_cost[w][d] = current.num_tasks_day[w][d] - MAX_TASKS_PER_DAY;
@@ -728,7 +785,7 @@ void Worker::rotate_current_avail(){
 void Worker::set_current_avail_day(int w, int d){
   if(get_current_task(w,d,0) == no_task && get_current_task(w,d,1) == no_task 
      && get_current_task(w,d,2) == no_task && get_current_task(w,d,3) == no_task
-     && get_avail_day(w, d) == 1){
+     && get_avail_day(w,d) == 1){
     current.avail_day[w][d] = 1;
   }
   else current.avail_day[w][d] = 0;

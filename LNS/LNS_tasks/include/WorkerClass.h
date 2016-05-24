@@ -7,6 +7,7 @@
 #include <fstream>
 #include <iterator>
 #include <algorithm>
+#include <cassert>
 
 #include "Constants.h"
 
@@ -124,6 +125,12 @@ class Worker{
   int get_cost_sum () const;
   int get_cost_sum_no_stand_in();
   int get_weekend_task();
+  int get_total_PL_week_cost();
+  int get_total_PL_cost();
+  int get_total_tasks_week_cost();
+  int get_total_same_shift_cost();
+  int get_total_stand_in_cost();
+  int get_total_tasks_day_cost();
 
   //Worker cost statistics
   int get_num_excess_tasks_week();

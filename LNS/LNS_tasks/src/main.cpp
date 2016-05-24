@@ -171,7 +171,7 @@ int main(int argc, char** argv)
   min_lib.clear();
   library_costs.clear();
 
-  int max_loops = 1;
+  int max_loops = 100;
   int num_tests = 1;
   double weights[3];
   int iterations = 100;
@@ -288,7 +288,7 @@ int main(int argc, char** argv)
     double cost_day_avail = library.get_day_avail_cost();
     library_costs.push_back(cost_day_avail);
     double cost_stand_in_lib = library.get_stand_in_lib();
-    library_costs.push_back(cost_stand_in_lib);
+     library_costs.push_back(cost_stand_in_lib);
     double cost_stand_in_ass = library.get_stand_in_ass();
     library_costs.push_back(cost_stand_in_ass);
 

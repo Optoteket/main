@@ -341,12 +341,6 @@ void Library::optimize_weekday_tasks(){
   //Todo: bool output? While infeasible, do again
   repair_tasks("perm");
 
-  cout << "Worker costs after placing all tasks:" << endl;
-  for(int i=0; i<(int) worker_list.size(); i++){
-    cout << "Worker: " << worker_list[i].get_ID() << ". Cost: " << worker_list[i].get_cost_sum_no_stand_in() << endl;
-  }
-
-
   show_task_statistics();
   cout << "Num tasks day cost: " << num_tasks_day_cost << endl;
   cout << "Num tasks week cost: " << num_tasks_week_cost << endl;
@@ -359,14 +353,38 @@ void Library::optimize_weekday_tasks(){
   set_non_critical_worker_cost();
 
   int loop_count=0;
-  while(library_critical_worker_cost + library_non_critical_worker_cost > 0){
+  int destroy_amount = 0;
+  while(library_critical_worker_cost > 0){
     loop_count++;
 
-    find_worst_worker();
+    //Calculate destroy amount
+    if(loop_count<500){
+      destroy_amount = loop_count*(16.0/500.0)+4;
+    }
+    else destroy_amount = 20;
 
-    destroy_tasks(6,"perm");
+    cout << "Destroy amount ----------> " << destroy_amount << endl;
+    //Destroy and repair workers
+    destroy_tasks(destroy_amount,"perm");
     repair_tasks("perm");
 
+    //Write the results
+    write_results();
+
+    //Display worker costs
+    cout << "Worker costs after placing all tasks:" << endl;
+    for(int i=0; i<(int) worker_list.size(); i++){
+      cout << "Worker: " << worker_list[i].get_ID() << ". Cost: " << worker_list[i].get_cost_sum_no_stand_in() 
+	   << ". Total Cost: " << worker_list[i].get_cost_sum() 
+	   << ". PL (week): " << worker_list[i].get_total_PL_week_cost()  
+	   << ". PL (total): " << worker_list[i].get_total_PL_cost() 
+	   << ". Tasks (week): "  << worker_list[i].get_total_tasks_week_cost() 
+	   << ". Same shifts: "  << worker_list[i].get_total_same_shift_cost()
+	   << ". Stand in: "  << worker_list[i].get_total_stand_in_cost()
+	   << endl;
+    }
+
+    //Display cost statistics
     show_task_statistics();
     cout << "Num tasks day cost: " << num_tasks_day_cost << endl;
     cout << "Num tasks week cost: " << num_tasks_week_cost << endl;
@@ -374,12 +392,25 @@ void Library::optimize_weekday_tasks(){
     cout << "PL total cost: " << PL_cost << endl;
     cout << "Num same shifts week cost: " << num_same_shifts_week_cost << endl << endl;
 
+    //Set library costs
     set_library_stand_in_cost();
     set_critical_worker_cost();
     set_non_critical_worker_cost();
+
+    usleep(100000);
   }
 
-
+  cout << "Worker costs after placing all tasks:" << endl;
+   for(int i=0; i<(int) worker_list.size(); i++){
+      cout << "Worker: " << worker_list[i].get_ID() << ". Cost: " << worker_list[i].get_cost_sum_no_stand_in() 
+	   << ". Total Cost: " << worker_list[i].get_cost_sum() 
+	   << ". PL (week): " << worker_list[i].get_total_PL_week_cost()  
+	   << ". PL (total): " << worker_list[i].get_total_PL_cost() 
+	   << ". Tasks (week): "  << worker_list[i].get_total_tasks_week_cost()
+	   << ". Same shifts: "  << worker_list[i].get_total_same_shift_cost() 
+	   << ". Stand in: "  << worker_list[i].get_total_stand_in_cost()
+	   << endl;
+    }
 
   cout << "***** TIMES IN DESTROY TASK LOOP: " << loop_count << endl;
   /**** PSEUDO CODE ****/
@@ -416,13 +447,13 @@ void Library::find_worst_worker(){
 /************ Library function: set critical worker cost ***********/
 
 void Library::set_critical_worker_cost(){
-  library_critical_worker_cost = num_tasks_day_cost;
+  library_critical_worker_cost = num_tasks_day_cost + num_tasks_week_cost + PL_week_cost + PL_cost +;
 }
 
 /************ Library function: set non critical worker cost ***********/
 
 void Library::set_non_critical_worker_cost(){
-  library_non_critical_worker_cost = num_tasks_week_cost + PL_week_cost + PL_cost + num_same_shifts_week_cost;
+  library_non_critical_worker_cost = num_same_shifts_week_cost;
 }
 
 /************ Library function: set library stand in cost ***********/
@@ -479,7 +510,7 @@ void Library::set_library_stand_in_cost(){
   library_stand_in_cost = min_avail_cost;
   min_stand_in[Ass] = min_num_ass;
   min_stand_in[Lib] = min_num_lib;
-  cout << "Library avail day cost: " << library_stand_in_cost << ". Ass: " << min_num_ass << ". Lib: " 
+  cout << "Library stand in cost: " << library_stand_in_cost << ". Ass: " << min_num_ass << ". Lib: " 
        << min_num_lib << ". week: " << week << " day: " << day << "." << endl;
 
   // //Write to global variable
@@ -2046,6 +2077,8 @@ void Library::write_stat(){
 
 /************* Library function: write results ******************/
 void Library::write_results(){
+  string res_file_dir = "../target/results/resfile.dat";
+  (*resfile).open(res_file_dir.c_str());
   if(resfile->is_open())
     {
       for(int h=0; h < (int) worker_list.size(); h++){
@@ -2062,6 +2095,15 @@ void Library::write_results(){
 	  *resfile << endl; 
 	}
 	*resfile << endl << endl;
+
+	*resfile << "Current avail day for worker " << worker_list[h].get_ID() << endl;	
+	for(int w = 0; w < NUM_WEEKS; w++){
+	  for (int k=0; k< NUM_DAYS; k++){
+	    *resfile << worker_list[h].get_current_avail_day(w,k) << " ";
+	  }
+	  *resfile << "   ";
+	}
+	*resfile << endl << endl;
       
 
 	*resfile << "Availability for worker " << worker_list[h].get_ID() << endl;	
@@ -2076,28 +2118,20 @@ void Library::write_results(){
 	}
 	*resfile << endl << endl;
 
-	*resfile << "Current avail day for worker " << worker_list[h].get_ID() << endl;	
-	  for(int w = 0; w < NUM_WEEKS; w++){
-	    for (int k=0; k< NUM_DAYS; k++){
-	      *resfile << worker_list[h].get_current_avail_day(w,k) << " ";
-	    }
-	    *resfile << "   ";
-	  }
-	  *resfile << endl << endl;
-
 	*resfile << "Avail day for worker " << worker_list[h].get_ID() << endl;	
 	for(int w = 0; w < NUM_WEEKS; w++){
-	    for (int k=0; k< NUM_DAYS; k++){
-	      *resfile << worker_list[h].get_avail_day(w,k) << " ";
-	    }
-	    *resfile << "   ";
+	  for (int k=0; k< NUM_DAYS; k++){
+	    *resfile << worker_list[h].get_avail_day(w,k) << " ";
 	  }
-	  *resfile << endl << endl;
+	  *resfile << "   ";
+	}
+	*resfile << endl << endl;
 	  *resfile 
 	    << "**************************************************************************************" << endl;
       }
     }
-  *resfile.close();
+  else cout << "ERROR: unable to open resfile" << endl;
+  (*resfile).close();
 }
 
 /************* Library function: write weekend AMPL data ******************/
