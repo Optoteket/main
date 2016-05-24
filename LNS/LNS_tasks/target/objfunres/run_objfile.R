@@ -11,7 +11,7 @@ y6 <- res[,7]
 
 #par(mfrow=c(2,1))
 
-g_range <- range(y5,y6)
+g_range <- range(y1)
 
 plot(y1, type="l", col="blue", ylim=g_range, axes=FALSE, ann=FALSE)
 axis(1, at=seq(0,length(x)+100,50))
@@ -19,9 +19,9 @@ box()
 axis(2, las=1, lty=2, at=seq(g_range[1],g_range[2]+5))
 
 #Lines
-lines(y5, lty=1, col="red")
-lines(y6, lty=1, col="green")
-#lines(y4, lty=1, col="purple")
+lines(y2, lty=1, col="red")
+lines(y3, lty=1, col="green")
+lines(y4, lty=1, col="purple")
 #lines(y3, lty=1, col="green")
 #lines(y4, lty=1, col="purple")
 

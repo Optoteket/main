@@ -171,8 +171,8 @@ int main(int argc, char** argv)
   min_lib.clear();
   library_costs.clear();
 
-  int max_loops = 5;
-  int num_tests = 8;
+  int max_loops = 1;
+  int num_tests = 1;
   double weights[3];
   int iterations = 100;
 
@@ -181,9 +181,9 @@ int main(int argc, char** argv)
 
     //1. Setting and normalizing weights for weekend objective function
     if(loop < max_loops){
-      weights[0]=1; //Min number of full time avail workers/day
-      weights[1]=0; //Min number of avail workers per shift
-      weights[2]=0; //Min number of avail workers a day
+      weights[0]=0.1; //Min number of full time avail workers/day
+      weights[1]=0.1; //Min number of avail workers per shift
+      weights[2]=10; //Min number of avail workers a day
 
       //Normalizing
       double sum =  weights[0] +  weights[1] +  weights[2];
@@ -278,8 +278,7 @@ int main(int argc, char** argv)
     //4. Optimize weekends, input: num iterations, destroy percentage
     library.optimize_weekends(iterations, 8, weights);
     
-    //5. Write results to resfile
-    library.write_results();
+    //5. Get objective function varibles
     double cost = library.get_library_cost();
     library_costs.push_back(cost);
     double cost_stand_in = library.get_stand_in_cost();
@@ -294,9 +293,12 @@ int main(int argc, char** argv)
     library_costs.push_back(cost_stand_in_ass);
 
     //6. Optimize weekdays
-    //library.optimize_weekday_tasks();
+    library.optimize_weekday_tasks();
 
-    //7. Write weekends to AMPL format and run
+    //7. Write results to resfile
+    library.write_results();
+
+    //8. Write weekends to AMPL format and run
     library.write_weekend_AMPL_data();
     log_file.close();
     system("../../../AMPLmodel/LNSweekendsAMPL/launchAMPL.sh");
@@ -305,7 +307,7 @@ int main(int argc, char** argv)
     ax_vector.clear();
     usleep(1000);
 
-    //8. Write AMPL statistics
+    //9. Write AMPL statistics
     if(loop == max_loops-1 || loop == 2*max_loops-1 || loop == 3*max_loops-1 || loop == 4*max_loops-1 || loop == 5*max_loops-1 || loop == 6*max_loops-1 || loop == 7*max_loops-1  || loop == 8*max_loops-1){
       //Print costs to file
       double tot_cost = 0.0;

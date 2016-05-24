@@ -2097,6 +2097,7 @@ void Library::write_results(){
 	    << "**************************************************************************************" << endl;
       }
     }
+  *resfile.close();
 }
 
 /************* Library function: write weekend AMPL data ******************/
