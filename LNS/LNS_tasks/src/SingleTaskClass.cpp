@@ -56,6 +56,8 @@ void SingleTask::temp_place_workers(){
 /********** SingleTask: Place cheapest worker ************/
 
 void SingleTask::place_workers(vector<TaskWorker>* a_workers){
+  placed_workers.clear();
+
   find_avail_workers(a_workers);
   
   //Find cost for workers if task is placed
@@ -94,6 +96,10 @@ void SingleTask::place_workers(vector<TaskWorker>* a_workers){
 
 void SingleTask::place_a_worker(Worker* worker){
   worker->set_task(week,day,shift,type);
+}
+
+int SingleTask::get_num_placed_workers(){
+  return (int) placed_workers.size();
 }
 
 bool SingleTask::check_feasibility(){

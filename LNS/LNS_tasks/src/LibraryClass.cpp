@@ -17,6 +17,9 @@ Library::Library(ofstream* r_file) {
   //Costs
   library_max_cost = 0;
 
+  //Fesible solution
+  feasible_solution = true;
+
   //Worker demand, current demand, num avail workers, avail demand diff
   for (int i=0; i< NUM_WEEKS; i++){
     for (int j=0; j<NUM_DAYS; j++){
@@ -329,44 +332,61 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
 
 /************ Library function: optimize weekday tasks ***********/
 
-void Library::optimize_weekday_tasks(){
-  library_cost = 0;
+void Library::optimize_weekday_tasks(int iterations){
   library_max_cost =0;
-  library_stand_in_cost=0;
-  library_critical_worker_cost=0;
-  library_non_critical_worker_cost=0;
-  int MAX_ITERATIONS = 1;
+  vector<int> loop_counts;
+  loop_counts.clear();
+  vector<int> library_costs;
+  library_costs.clear();
+  bool feasible = true;
 
-  //destroy_tasks(100,"perm");
-  //Todo: bool output? While infeasible, do again
-  repair_tasks("perm");
+  //Improvement loop
+  for(int i=0; i<iterations; i++){
+    library_cost = 0;
+    library_stand_in_cost=0;
+    library_critical_worker_cost=0;
+    library_non_critical_worker_cost=0;
+    feasible = true;
 
-  show_task_statistics();
-  cout << "Num tasks day cost: " << num_tasks_day_cost << endl;
-  cout << "Num tasks week cost: " << num_tasks_week_cost << endl;
-  cout << "PL week cost: " << PL_week_cost << endl;
-  cout << "PL total cost: " << PL_cost << endl;
-  cout << "Num same shifts week cost: " << num_same_shifts_week_cost << endl << endl;
+    if(i>0){
+      remove_weekday_tasks_not_BokB_or_evening();
+    }
+    //Todo: bool output? While infeasible, do again
+    repair_tasks("perm");
 
-  set_library_stand_in_cost();
-  set_critical_worker_cost();
-  set_non_critical_worker_cost();
+    show_task_statistics();
+    cout << "Num tasks day cost: " << num_tasks_day_cost << endl;
+    cout << "Num tasks week cost: " << num_tasks_week_cost << endl;
+    cout << "PL week cost: " << PL_week_cost << endl;
+    cout << "PL total cost: " << PL_cost << endl;
+    cout << "Num same shifts week cost: " << num_same_shifts_week_cost << endl << endl;
 
-  int loop_count=0;
-  int destroy_amount = 0;
-  while(library_critical_worker_cost > 0){
+    set_library_stand_in_cost();
+    set_critical_worker_cost();
+    set_non_critical_worker_cost();
+
+    int loop_count=0;
+    int destroy_amount = 4;
+
+  find_num_avail_workers();
+  print_num_avail_workers();
+  print_current_demand();
+
+  //Feasibility loop
+  while(library_critical_worker_cost > 0 && feasible && unassigned_tasks_exist()){
+    cout << "CRITICAL WORKER COST: " << library_critical_worker_cost << endl;
     loop_count++;
 
     //Calculate destroy amount
-    if(loop_count<500){
+    if(loop_count < 500){
       destroy_amount = loop_count*(16.0/500.0)+4;
+      feasible = true;
+    }
+    else if(loop_count > 600){
+      feasible = false;
+      break;
     }
     else destroy_amount = 20;
-
-    cout << "Destroy amount ----------> " << destroy_amount << endl;
-    //Destroy and repair workers
-    destroy_tasks(destroy_amount,"perm");
-    repair_tasks("perm");
 
     //Write the results
     write_results();
@@ -392,37 +412,127 @@ void Library::optimize_weekday_tasks(){
     cout << "PL total cost: " << PL_cost << endl;
     cout << "Num same shifts week cost: " << num_same_shifts_week_cost << endl << endl;
 
+
+    cout << "Destroy amount ----------> " << destroy_amount << endl;
+
+    //Destroy and repair workers
+    destroy_tasks(destroy_amount,"perm");
+
+    cout << "Worst worker: " << worst_worker.worker->get_ID() << endl;
+    usleep(100000);
+
+    repair_tasks("perm");
+
+    //Display cost statistics - again
+    show_task_statistics();
+    cout << "AFTER DESTROY" << endl;
+    cout << "Num tasks day cost: " << num_tasks_day_cost << endl;
+    cout << "Num tasks week cost: " << num_tasks_week_cost << endl;
+    cout << "PL week cost: " << PL_week_cost << endl;
+    cout << "PL total cost: " << PL_cost << endl;
+    cout << "Num same shifts week cost: " << num_same_shifts_week_cost << endl << endl;
+
     //Set library costs
     set_library_stand_in_cost();
     set_critical_worker_cost();
     set_non_critical_worker_cost();
 
-    usleep(100000);
+
   }
 
-  cout << "Worker costs after placing all tasks:" << endl;
-   for(int i=0; i<(int) worker_list.size(); i++){
-      cout << "Worker: " << worker_list[i].get_ID() << ". Cost: " << worker_list[i].get_cost_sum_no_stand_in() 
-	   << ". Total Cost: " << worker_list[i].get_cost_sum() 
-	   << ". PL (week): " << worker_list[i].get_total_PL_week_cost()  
-	   << ". PL (total): " << worker_list[i].get_total_PL_cost() 
-	   << ". Tasks (week): "  << worker_list[i].get_total_tasks_week_cost()
-	   << ". Same shifts: "  << worker_list[i].get_total_same_shift_cost() 
-	   << ". Stand in: "  << worker_list[i].get_total_stand_in_cost()
-	   << endl;
+  if(feasible){
+    library_cost = 100*(lib_weight*min_stand_in[Lib] + ass_weight*min_stand_in[Ass]);
+  }else library_cost = -1;
+
+  loop_counts.push_back(loop_count);
+  library_costs.push_back(library_cost);
+
+  //If a better solution is found, save
+  if(library_cost > library_max_cost){
+    cout << "BETTER SOLUTION FOUND: " << library_cost << endl;
+    library_max_cost = library_cost;
+    best_sol_workers.clear();
+    for(int j=0; j<(int) worker_list.size(); j++){
+      best_sol_workers.push_back(worker_list[j]); 
     }
+  }
+  }
 
-  cout << "***** TIMES IN DESTROY TASK LOOP: " << loop_count << endl;
-  /**** PSEUDO CODE ****/
-  //caluculate library worst stand in day
-  //calculate worker discrepancy from feasibility and punish with different weights (critical, regular cost)
-  //if critical and regular = 0 and solution better than best - save
-  //destroy tasks
-  //repair tasks
-  //loop
- 
+  for(int i=0; i<(int)loop_counts.size(); i++){
+    cout << "***** TIMES IN DESTROY TASK LOOP: (" << i << ") "<< loop_counts[i] 
+	 << " Cost: " << library_costs[i]<< endl;
+  }
 
+  //After improvement loop:
+  //Relaod best solution if better than current
+  if (library_max_cost > 0){
+
+    if(library_cost < library_max_cost){
+      cout << "BEST SOLUTION RELOADED: current " << library_cost << " best " << library_max_cost << endl;
+      worker_list.clear();
+      for(int i=0; i<(int) best_sol_workers.size(); i++){
+	worker_list.push_back(best_sol_workers[i]); 
+      }
+
+      //Reset current demand
+      for(int w = 0; w < NUM_WEEKS; w++){
+	for(int d = 0; d < NUM_DAYS; d++){
+	  for(int s = 0; s < NUM_SHIFTS; s++){
+	    for(int t = 0; t < NUM_TASKS; t++){
+	      current_demand[w][d][s][t] = worker_demand[w][d][s][t];
+	    }
+	  }
+	}
+      }
+
+      //Subtract with current workers
+      for(int w = 0; w < NUM_WEEKS; w++){
+	for(int d = 0; d < NUM_DAYS; d++){
+	  for(int s = 0; s < NUM_SHIFTS; s++){
+	    for(int i=0; i < (int)worker_list.size(); i++){
+	      if(worker_list[i].get_current_task(w,d,s) > 0)
+		current_demand[w][d][s][worker_list[i].get_current_task(w,d,s)]--;
+	    }
+	  }
+	}
+      }
+
+      //Update costs
+      set_library_stand_in_cost();
+      library_cost = 100*(lib_weight*min_stand_in[Lib] + ass_weight*min_stand_in[Ass]);
+      cout << "Library stand in cost: " << library_stand_in_cost 
+	   << ". Lib: " << min_stand_in[Lib] <<". Ass: " << min_stand_in[Ass] << endl; 
+    }
+  }
+  else cout << "*****NO FEASIBLE SOLUTION FOUND*****" << endl;
+
+  //Set library feasible solution variable
+  feasible_solution = feasible;
+
+  find_num_avail_workers();
+  print_num_avail_workers();
+  print_current_demand();
 }
+
+/************ Library function: find worst worker ***********/
+
+bool Library::unassigned_tasks_exist(){
+  int sum=0;
+  for(int w = 0; w < NUM_WEEKS; w++){
+    for(int d = 0; d < NUM_DAYS; d++){
+      for(int s = 0; s < NUM_SHIFTS; s++){
+	for(int t = 0; t < NUM_TASKS; t++){
+	  sum += current_demand[w][d][s][t];
+	}
+      }
+    }
+  }
+  if(sum == 0)
+    return true;
+  else return false;
+}
+
+/************ Library function: find worst worker ***********/
 
 void Library::find_worst_worker(){
  Worker* local_worst_worker;
@@ -447,7 +557,8 @@ void Library::find_worst_worker(){
 /************ Library function: set critical worker cost ***********/
 
 void Library::set_critical_worker_cost(){
-  library_critical_worker_cost = num_tasks_day_cost + num_tasks_week_cost + PL_week_cost + PL_cost +;
+  library_critical_worker_cost = num_tasks_day_cost + num_tasks_week_cost + PL_week_cost 
+    + PL_cost + num_same_shifts_week_cost;
 }
 
 /************ Library function: set non critical worker cost ***********/
@@ -510,8 +621,8 @@ void Library::set_library_stand_in_cost(){
   library_stand_in_cost = min_avail_cost;
   min_stand_in[Ass] = min_num_ass;
   min_stand_in[Lib] = min_num_lib;
-  cout << "Library stand in cost: " << library_stand_in_cost << ". Ass: " << min_num_ass << ". Lib: " 
-       << min_num_lib << ". week: " << week << " day: " << day << "." << endl;
+  cout << "Library stand in cost: " << library_stand_in_cost  << ". Lib: " << min_num_lib 
+       << ". Ass: " << min_num_ass << ". week: " << week << " day: " << day << "." << endl;
 
   // //Write to global variable
   // if(mode == "perm"){
@@ -1393,10 +1504,29 @@ bool Library::set_evening_tasks(){
 
     //Update current demand
     current_demand[week][day][shift][task] 
-      -= current_task->get_demand();
+      -= current_task->get_num_placed_workers();
   }
   find_num_avail_workers();
   return true;
+}
+
+/************* Library function: remove weekday tasks ************/
+
+void Library::remove_weekday_tasks_not_BokB_or_evening(){
+  for(int w = 0; w < NUM_WEEKS; w++){
+    for(int d = 0; d < NUM_WEEKDAYS; d++){
+      for(int s = 0; s < NUM_SHIFTS-1; s++){
+	for(int i=0; i < (int)worker_list.size(); i++){
+	  if(worker_list[i].get_current_task(w,d,s) != BokB){
+	    worker_list[i].remove_task(w,d,s);
+	  }
+	}
+	for(int t = 0; t < NUM_TASKS-1; t++){
+	  current_demand[w][d][s][t]= worker_demand[w][d][s][t];
+	}
+      }
+    }
+  }
 }
 
 /************* Library function: remove weekday tasks ************/
@@ -1612,7 +1742,7 @@ void Library::destroy_tasks(int percent, string mode){
   for(int d=0; d<NUM_WEEKDAYS; d++){
     for(int s=0; s<NUM_SHIFTS; s++){
       int task = worst_worker.worker->get_current_task(worst_week,d,s);
-      if(task != no_task){
+      if(task != no_task && task != BokB){
 	current_demand[worst_week][d][s][task]++;
       }
     }
@@ -1636,7 +1766,7 @@ void Library::destroy_tasks(int percent, string mode){
     for(int d=0; d<NUM_WEEKDAYS; d++){
       for(int s=0; s<NUM_SHIFTS; s++){
 	int task = worker_to_destroy->get_current_task(worst_week,d,s);
-	if(task != no_task){
+	if(task != no_task && task != BokB){
 	  current_demand[worst_week][d][s][task]++;
 	}
       }
@@ -1708,10 +1838,10 @@ void Library::repair_tasks(string mode){
     //Place cheapest workers at task
     current_task->place_workers(&destroyed_task_workers);
 
-    //Depending on placed weekend, reduce demand 
+    //Depending on placed weekend, reduce demand
     current_demand[current_task->get_week()][current_task->get_day()][current_task->get_shift()]
       [current_task->get_type()] 
-      -= current_task->get_demand();
+      -= current_task->get_num_placed_workers();
    
     //Remove task
    task_list.erase(task_list.begin()); 
@@ -2096,16 +2226,6 @@ void Library::write_results(){
 	}
 	*resfile << endl << endl;
 
-	*resfile << "Current avail day for worker " << worker_list[h].get_ID() << endl;	
-	for(int w = 0; w < NUM_WEEKS; w++){
-	  for (int k=0; k< NUM_DAYS; k++){
-	    *resfile << worker_list[h].get_current_avail_day(w,k) << " ";
-	  }
-	  *resfile << "   ";
-	}
-	*resfile << endl << endl;
-      
-
 	*resfile << "Availability for worker " << worker_list[h].get_ID() << endl;	
 	for (int j=0; j< NUM_SHIFTS; j++){
 	  for(int w = 0; w < NUM_WEEKS; w++){
@@ -2126,8 +2246,19 @@ void Library::write_results(){
 	  *resfile << "   ";
 	}
 	*resfile << endl << endl;
-	  *resfile 
-	    << "**************************************************************************************" << endl;
+
+
+	*resfile << "Current avail day for worker " << worker_list[h].get_ID() << endl;	
+	for(int w = 0; w < NUM_WEEKS; w++){
+	  for (int k=0; k< NUM_DAYS; k++){
+	    *resfile << worker_list[h].get_current_avail_day(w,k) << " ";
+	  }
+	  *resfile << "   ";
+	}
+	*resfile << endl << endl;
+
+	*resfile 
+	  << "**************************************************************************************" << endl;
       }
     }
   else cout << "ERROR: unable to open resfile" << endl;

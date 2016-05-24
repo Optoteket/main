@@ -19,8 +19,8 @@ void WeekendTask::find_avail_workers(vector<TaskWorker>* a_workers, string mode)
       TaskWorker* task_worker = &(*a_workers)[i];
       Worker* worker = task_worker->worker;
 
-      //if((type == HB && worker->get_HB_type()!= no_HB) 
-      //   || (type != HB &&worker->get_HB_type()!= only_HB)){
+      //if((type == HB && !(worker->get_HB_type() == no_HB)) 
+      //|| (type != HB && !(worker->get_HB_type() == only_HB))){
       if (!worker->has_weekend_task() && worker->get_pos() >= qualification){
 	avail_workers.push_back(task_worker);
       }

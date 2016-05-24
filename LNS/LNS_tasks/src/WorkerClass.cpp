@@ -300,16 +300,17 @@ int Worker::get_cost_sum(){
 }
 
 int Worker::get_HB_type(){
-  if (identity.HB_type.find("standard_HB",0,11) == 0){
+  if (identity.HB_type.find("standard_HB") != string::npos){
     return standard_HB;
   }
-  else if (identity.HB_type.find("only_HB",0,7) == 0){
+  else if (identity.HB_type.find("only_HB") != string::npos){
     return only_HB;
   }
-  else if (identity.HB_type.find("no_HB",0,5) == 0){
+  else if (identity.HB_type.find("no_HB") != string::npos){
     return no_HB;
   }
   else {
+    exit(0);
     cerr << "Error: in get_HB_type. No valid HB type found " << identity.HB_type << endl;
     return no_HB_type;
   }
@@ -463,6 +464,7 @@ int Worker::get_worst_week(){
   else{//Find cost sum
     for (int w=0; w<NUM_WEEKS; w++){      
       for (int d=0; d<NUM_DAYS; d++){
+	cost[w] -=  costs.weights[1]*costs.stand_in_cost[w][d];
 	for (int s=0; s<NUM_SHIFTS; s++){
 	  cost[w] += costs.total_cost[w][d][s];
 	  if(cost[w] > worst_week_cost){
@@ -609,14 +611,33 @@ void Worker::set_cost_sum(){
   //Reset cost sum
   costs.cost_sum=0;
 
-  //Find cost sum
+  // //Find cost sum
+  // for (int w=0; w<NUM_WEEKS; w++){      
+  //   for (int d=0; d<NUM_DAYS; d++){
+  //     for (int s=0; s<NUM_SHIFTS; s++){
+  // 	costs.cost_sum += costs.total_cost[w][d][s];
+  //     }
+  //   }
+  // }
+  for (int w=0; w<NUM_WEEKS; w++){ 
+    costs.cost_sum += costs.weights[2]*costs.PL_week_cost[w] 
+      + costs.weights[4]*costs.num_tasks_week_cost[w];
+  }
+
   for (int w=0; w<NUM_WEEKS; w++){      
     for (int d=0; d<NUM_DAYS; d++){
-      for (int s=0; s<NUM_SHIFTS; s++){
-	costs.cost_sum += costs.total_cost[w][d][s];
-      }
+      costs.cost_sum += costs.weights[0]*costs.num_tasks_day_cost[w][d] 
+	+ costs.weights[1]*costs.stand_in_cost[w][d];
     }
   }
+
+  for (int w=0; w<NUM_WEEKS; w++){  
+    for (int s=0; s<NUM_SHIFTS; s++){
+      costs.cost_sum += costs.weights[5]*costs.num_same_shifts_week_cost[w][s];
+    }
+  }
+  costs.cost_sum += costs.weights[3]*costs.PL_cost;
+  
 }
 
 //  void Worker::set_current_weekend(int wend){
@@ -830,9 +851,10 @@ void Worker::remove_weekend(){
 }
 
 void Worker::remove_week(int w){   
-  for (int d=0; d<NUM_DAYS; d++){
-    for (int s=0; s< NUM_SHIFTS; s++){
-      remove_task(w,d,s);
+  for (int d=0; d < NUM_DAYS; d++){
+    for (int s=0; s < NUM_SHIFTS; s++){
+      if(current.tasks[w][d][s] != BokB)
+	remove_task(w,d,s);
     }
   }
 }

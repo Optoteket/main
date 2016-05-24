@@ -57,6 +57,9 @@ class Library{
   vector<double> weekend_shift_avail_average_cost;
   vector<double> weekend_stand_in_average_cost;
 
+  //Solution feasibility
+  bool feasible_solution;
+
   //Weights
   static const int lib_weight = 2;
   static const int ass_weight = 1;
@@ -133,6 +136,7 @@ class Library{
 
   //Stand in avail
   void remove_weekday_tasks();
+  void remove_weekday_tasks_not_BokB_or_evening();
   bool set_evening_tasks();
   void set_library_cost(string, double[3]);
   void set_day_avail_cost();
@@ -153,10 +157,11 @@ class Library{
   //void weekend_update_avail_demand(int, int, int); //Not working properly, not possible to keep updated
 
   //Weekday related
+  bool unassigned_tasks_exist();
   void find_worst_worker();
   void set_non_critical_worker_cost();
   void set_critical_worker_cost();
-  void optimize_weekday_tasks();
+  void optimize_weekday_tasks(int);
   void set_library_stand_in_cost();
   void place_BokB();
   void destroy_tasks(int, string);

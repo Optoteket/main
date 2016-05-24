@@ -171,10 +171,11 @@ int main(int argc, char** argv)
   min_lib.clear();
   library_costs.clear();
 
-  int max_loops = 100;
-  int num_tests = 1;
+  int max_loops = 50;
+  int num_tests = 4;
   double weights[3];
-  int iterations = 100;
+  int wend_iterations = 500;
+  int wday_iterations = 10;
 
   //AMPL loop
   for(int loop=0; loop < max_loops*num_tests; loop++){
@@ -192,9 +193,9 @@ int main(int argc, char** argv)
       weights[2]/=sum;
     }
     else if(loop < max_loops*2){
-      weights[0]=0; //Min number of full time avail workers/day
+      weights[0]=1; //Min number of full time avail workers/day
       weights[1]=1; //Min number of avail workers per shift
-      weights[2]=0; //Min number of avail workers a day
+      weights[2]=10; //Min number of avail workers a day
 
       //Normalizing
       double sum =  weights[0] +  weights[1] +  weights[2];
@@ -203,9 +204,9 @@ int main(int argc, char** argv)
       weights[2]/=sum;
     }
     else if(loop < max_loops*3){
-      weights[0]=0; //Min number of full time avail workers/day
-      weights[1]=0; //Min number of avail workers per shift
-      weights[2]=1; //Min number of avail workers a day
+      weights[0]=1; //Min number of full time avail workers/day
+      weights[1]=1; //Min number of avail workers per shift
+      weights[2]=100; //Min number of avail workers a day
 
       //Normalizing
       double sum =  weights[0] +  weights[1] +  weights[2];
@@ -276,8 +277,11 @@ int main(int argc, char** argv)
     library.create_initial_solution();
 
     //4. Optimize weekends, input: num iterations, destroy percentage
-    library.optimize_weekends(iterations, 8, weights);
+    library.optimize_weekends(wend_iterations, 8, weights);
     
+    //6. Optimize weekdays
+    library.optimize_weekday_tasks(wday_iterations);
+
     //5. Get objective function varibles
     double cost = library.get_library_cost();
     library_costs.push_back(cost);
@@ -288,12 +292,9 @@ int main(int argc, char** argv)
     double cost_day_avail = library.get_day_avail_cost();
     library_costs.push_back(cost_day_avail);
     double cost_stand_in_lib = library.get_stand_in_lib();
-     library_costs.push_back(cost_stand_in_lib);
+    library_costs.push_back(cost_stand_in_lib);
     double cost_stand_in_ass = library.get_stand_in_ass();
     library_costs.push_back(cost_stand_in_ass);
-
-    //6. Optimize weekdays
-    library.optimize_weekday_tasks();
 
     //7. Write results to resfile
     library.write_results();
@@ -318,7 +319,7 @@ int main(int argc, char** argv)
       wend_AMPL_file  << "Number of infeasible solutions:" << infeasible_count << endl;
       for(int i=0; i<(int) min_lib.size(); i++){
 	cout << "Min num lib/ass: (" << i << ") "<< min_lib[i] << ", " << min_ass[i] << ". Cost: " << 2*min_lib[i] + min_ass[i];  
-	cout << "    ObjFun value: " << library_costs[i] << endl;
+	cout << "    ObjFun value: " << library_costs[6*i] << endl;
 	wend_AMPL_file << "Min num lib/ass: (" << i << ") "<< min_lib[i] << ", " << min_ass[i] << ". Cost: " << 2*min_lib[i] + min_ass[i];
 	wend_AMPL_file << "    ObjFun value: " << library_costs[6*i] << ", Stand in cost: " << library_costs[6*i+1] << ", Shift avail: " << library_costs[6*i+2] << ", Day avail: " << library_costs[6*i+3] 
 		       <<" Num stand ins (lib/ass): " << library_costs[6*i+4] <<"/" << library_costs[6*i+5] << endl;
