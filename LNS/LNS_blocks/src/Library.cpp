@@ -1285,7 +1285,7 @@ void Library::create_initial_solution(){
 	int block_type_to_add = 0;
 	string type = " ";
 	while(worker_vector.size() != 0){
-// 		srand(time(NULL)); //Change seed to give new random numbers
+		srand(time(NULL)); //Change seed to give new random numbers
 		current_worker_index = rand() % worker_vector.size(); //A number between 0-[size()-1]
 		current_worker = worker_vector.at(current_worker_index);
 		block_type_to_add = rand() % 3; //A number between 0-2, 0 means wend, 1 weekrest and 2 weekday
@@ -1299,19 +1299,7 @@ void Library::create_initial_solution(){
 		}else if(block_type_to_add == 2){
 			type = "weekday";
 		}
-// 		cout << "type is: " << type << endl;
-		//SEARCH FOR ERRORS!
-// 			if(current_worker == 25 && type == "weekend"){
-// 				add_best_blocks_to_worker(type, current_worker);
-// 				calculate_all_week_costs_for_worker(type,current_worker, 0);
-// 				find_lowest_cost_in_vector(type,current_worker);
-// // 				print_cost_vector(type,current_worker, cout);
-// // 				print_weekblocks_avail_worker(current_worker, type, cout);
-// 				print_weekblocks_assigned_worker(current_worker, type, cout);
-// 				cout << "The block already added to nr 23 is: " << endl;
-// 				print_weekblocks_assigned_worker(23, type, cout);
-// 				return;
-// 			}
+
 		
 		//Add for week type: "type"
 		if(type != "weekday"){
@@ -1659,6 +1647,7 @@ void Library::destroy(int num_destroy){ //Destroy blocks for num_destroy number 
 		print_weekends_assigned(cout);
 		not_unique = true;
 	}
+	calculate_demand(); //Update demand after each destroy
 	
 }
 //Second destroy with specific workers to destroy
@@ -1691,6 +1680,8 @@ void Library::destroy(vector<int> destroy_workers){ //Destroy blocks for num_des
 		}
 		print_weekends_assigned(cout);
 	}
+	
+	calculate_demand(); //Update demand after each destroy
 	
 }
 
