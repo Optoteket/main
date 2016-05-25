@@ -19,12 +19,9 @@ void WeekendTask::find_avail_workers(vector<TaskWorker>* a_workers, string mode)
       TaskWorker* task_worker = &(*a_workers)[i];
       Worker* worker = task_worker->worker;
 
-      //if((type == HB && !(worker->get_HB_type() == no_HB)) 
-      //|| (type != HB && !(worker->get_HB_type() == only_HB))){
       if (!worker->has_weekend_task() && worker->get_pos() >= qualification){
 	avail_workers.push_back(task_worker);
       }
-      //}
     }
   }
 
@@ -55,6 +52,11 @@ void WeekendTask::place_workers(vector<TaskWorker>* a_workers, string mode){
     //Shuffle
     random_shuffle(avail_workers.begin(), avail_workers.end(), myrandom);
 
+    if(type == HB){
+      sort(avail_workers.begin(), avail_workers.end(), WeekendTask::HB_first());
+    }
+    else sort(avail_workers.begin(), avail_workers.end(), WeekendTask::HB_last());
+
     //Place permanent workers
     if(mode == "perm"){
 
@@ -81,7 +83,7 @@ void WeekendTask::place_workers(vector<TaskWorker>* a_workers, string mode){
 /*********** Set functions **********/
 
 void WeekendTask::set_costs(){
-  total_cost = - qualification;
+  total_cost = - qualification - type;
 }
 
 

@@ -851,10 +851,12 @@ void Worker::remove_weekend(){
 }
 
 void Worker::remove_week(int w){   
-  for (int d=0; d < NUM_DAYS; d++){
+  for (int d=0; d < NUM_WEEKDAYS; d++){
     for (int s=0; s < NUM_SHIFTS; s++){
-      if(current.tasks[w][d][s] != BokB)
-	remove_task(w,d,s);
+      if(!(d==fri && s==3)){
+	if(current.tasks[w][d][s] != BokB)
+	  remove_task(w,d,s);
+      }
     }
   }
 }

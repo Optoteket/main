@@ -25,5 +25,6 @@ class TaskWorker{
 
   bool operator<(TaskWorker const & rhs) const{
     return this->temp_cost < rhs.temp_cost;
-  }  
+  }   
+  
 };

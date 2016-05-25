@@ -25,5 +25,18 @@ class WeekendTask : public Task {
   
   void print_avail_workers();
 
+  struct HB_first {
+    bool operator()(TaskWorker const * lhs, TaskWorker const * rhs) const{
+      //If type is HB, prioritize only and standard HB
+      return lhs->worker->get_HB_type() > rhs->worker->get_HB_type();
+    }
+  };
+
+  struct HB_last {
+    bool operator()(TaskWorker const * lhs, TaskWorker const * rhs) const{
+      //If type not HB, prioritize no HB
+      return lhs->worker->get_HB_type() < rhs->worker->get_HB_type();
+    }
+  };
 };
 

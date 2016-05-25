@@ -67,15 +67,15 @@ class Library{
   //Demand arrays 
   int worker_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
   int current_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
-  int temp_current_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
+  //int temp_current_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
   int orig_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
 
   //Avail statistics
   int num_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
-  int temp_num_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+  //int temp_num_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
 
   //Avail demand diff
-  int avail_demand_diff[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+  //int avail_demand_diff[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
 
   //Num avail_day_workers
   int num_weekday_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS][NUM_SHIFTS-1];
@@ -131,8 +131,10 @@ class Library{
 
   //Constructor
   Library(ofstream*);
+  Library(const Library &obj);
   void create_initial_solution();
   void optimize_weekends(int,int, double[3]);
+  bool get_solution_feasibility();
 
   //Stand in avail
   void remove_weekday_tasks();
@@ -153,7 +155,7 @@ class Library{
   void destroy_a_weekend(TaskWorker&, string);
   void repair_weekend(string);
   void repair_temp_weekend();
-  void use_temp_solution();
+  //void use_temp_solution();
   //void weekend_update_avail_demand(int, int, int); //Not working properly, not possible to keep updated
 
   //Weekday related
@@ -183,8 +185,8 @@ class Library{
 
   //Demand related
   void find_num_avail_workers();
-  void find_temp_num_avail_workers();
-  void find_avail_demand_diff(string);
+  //void find_temp_num_avail_workers();
+  //void find_avail_demand_diff(string);
   bool compare_avail_demand(string);
 
   //Get
