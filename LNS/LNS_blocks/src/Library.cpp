@@ -1285,7 +1285,7 @@ void Library::create_initial_solution(){
 	int block_type_to_add = 0;
 	string type = " ";
 	while(worker_vector.size() != 0){
-		srand(time(NULL)); //Change seed to give new random numbers
+// 		srand(time(NULL)); //Change seed to give new random numbers
 		current_worker_index = rand() % worker_vector.size(); //A number between 0-[size()-1]
 		current_worker = worker_vector.at(current_worker_index);
 		block_type_to_add = rand() % 3; //A number between 0-2, 0 means wend, 1 weekrest and 2 weekday
@@ -1820,6 +1820,58 @@ void Library::repair(){ //Repair solution by assigning a new week rotation(only 
 			workers_destroyed.erase(workers_destroyed.begin()+current_worker_index);
 		}
 	}
+}
+
+void Library::destroy_repair_one_week_at_the_time(){
+	int week_to_destroy_and_repair = 0;
+	int worker_to_destroy;
+	worker_to_destroy = rand() % 39 + 1; //Number between 1-39
+	int week_destroyed_and_repaired[5];
+	for(int l=0; l<5; l++){week_destroyed_and_repaired[l] = 0;}
+	cout << "Worker to destroy: " << worker_to_destroy << endl;
+	cout << "With the following rotation assigned: " << myworkers[worker_to_destroy].getWeekend_week() << endl;
+	cout << myworkers[worker_to_destroy-1].getQual() << endl;
+	cout << myworkers[worker_to_destroy-1].getWeekend() << endl;
+	cout << myworkers[worker_to_destroy-1].getHB() << endl;
+	
+	for(int k=0; k<5; k++){
+		week_to_destroy_and_repair = rand()%5; //A number between 0-4
+		while(week_destroyed_and_repaired[week_to_destroy_and_repair] == 1){ //Keep looping until finding a 0 (a week not iterated for)
+			week_to_destroy_and_repair = rand()%5;
+		}
+		myworkers[worker_to_destroy-1].clear_block(week_to_destroy_and_repair); //Assign empty block to the worker
+		calculate_demand(); //Update demand after each destroy
+		
+		switch(week_to_destroy_and_repair){
+			case 0 :{ //add weekend
+				add_best_blocks_to_worker("weekend",worker_to_destroy);
+				break;
+			}
+			case 1 :{ //add weekrest
+				add_best_blocks_to_worker("weekrest",worker_to_destroy);
+				break;
+			}
+			case 2 :{ //add weekday
+				add_best_blocks_to_worker("weekday",worker_to_destroy,1);
+				break;
+			}
+			case 3 :{ //add weekday
+				add_best_blocks_to_worker("weekday",worker_to_destroy,2);
+				break;
+			}
+			case 4 :{ //add weekday
+				add_best_blocks_to_worker("weekday",worker_to_destroy,3);
+				break;
+			}
+		}
+		calculate_demand(); //Update demand after new insertion
+		week_destroyed_and_repaired[week_to_destroy_and_repair] = 1; //state that it is added
+		
+		
+	}
+	
+	
+	
 }
 
 void Library::calculate_stand_ins(){ //calculate stand_in_amount each day. Save as int matrix. ADD TO: calculate_demand() ?
