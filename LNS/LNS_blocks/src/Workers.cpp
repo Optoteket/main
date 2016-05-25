@@ -516,10 +516,10 @@ int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[
 					}
 				}else if(diff_in_demand[w][d][s][1]-1 == 0){ //Good assignment -> Negative cost!
 					if(newQual.compare(0,3,"lib") == 0){
-						temp_cost -= DEMAND_PL_GOOD_LIB;
+						temp_cost -= 2*DEMAND_PL_GOOD_LIB;
 					}
 					else if(newQual.compare(0,3,"ass") == 0){
-						temp_cost -= DEMAND_PL_GOOD_ASS;
+						temp_cost -= 2*DEMAND_PL_GOOD_ASS;
 					}
 				}
 			}
@@ -531,11 +531,6 @@ int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[
 					temp_cost -= DEMAND_HB_OVERSTAFF; //Negative cost if filling up HB!
 				}
 			}
-// 			if(block->getTask(d,s,0) == 1){ //get all "no task" tasks
-// 				//Add a lower cost if diff_in_demand for all shifts and tasks that day is < 0
-// 				//Add a higher cost if diff_in_demand for all shifts and tasks that day is > 0
-// 				//NEW: Add no costs for this? Due to negative costs exist now
-// 			}
 			
 		}
 	}
@@ -646,6 +641,31 @@ void Worker::clear_blocks(){ //Assign five empty blocks to worker
 	add_block_to_worker("weekday",0,2);
 	add_block_to_worker("weekday",0,3);
 }
+void Worker::clear_block(int week){ //A value between 0-4
+	switch(week){
+		case 0 :{ //remove weekend
+			add_block_to_worker("weekend",0);
+			break;
+		}
+		case 1 :{ //remove weekrest
+			add_block_to_worker("weekrest",0);
+			break;
+		}
+		case 2 :{ //remove weekday
+			add_block_to_worker("weekday",0,1);
+			break;
+		}
+		case 3 :{ //remove weekday
+			add_block_to_worker("weekday",0,2);
+			break;
+		}
+		case 4 :{ //remove weekday
+			add_block_to_worker("weekday",0,3);
+			break;
+		}
+	}
+}
+
 
 void Worker::set_tasks_assigned_worker(){//Set the int matrix tasks_assigned_worker. Unrotated matrix!
 	int count = 0;

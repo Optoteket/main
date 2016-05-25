@@ -134,6 +134,7 @@ public:
 	void destroy(int);
 	void destroy(vector<int>);
 	void repair();
+	void destroy_repair_one_week_at_the_time();
 	
 
 	

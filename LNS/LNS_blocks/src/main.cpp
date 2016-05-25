@@ -246,36 +246,36 @@ int main() {
 		cout << "\nBefore Destroy\n" << endl;
 		lib.destroy(p);
 		cout << "\nAfter Destroy\n" << endl;
-		workers_destroyed_vect = lib.get_workers_destroyed(); //Saving the three workers that were destroyed
+// 		workers_destroyed_vect = lib.get_workers_destroyed(); //Saving the three workers that were destroyed
 		//Repair (updates are inside the repair)
 		lib.repair();
 		cout << "\nAfter Repair\n" << endl;
 		//Update current_solution
 		output_vector = lib.evaluate_solution(cout);
 		current_solution = output_vector.at(1);
-		outFile << "Current solutions is: " << current_solution << endl;
+// 		outFile << "Current solutions is: " << current_solution << endl;
 		
-		if(current_solution <= best_solution){
-			best_solution = current_solution;
-		}else{
-			//Destroy and repair until same or better solution
-			while(current_solution > best_solution){
-				lib.destroy(workers_destroyed_vect); //Same destroyed workers as before
-				lib.repair();
-				output_vector = lib.evaluate_solution(cout); //Total objfcn, feasible_cost, #stand-ins, max-min-stand-in
-				current_solution = output_vector.at(1);
-				outFile << "In while loop. Current solutions is: " << current_solution << endl;
-			}
-			best_solution = current_solution; //Best_solution or current_solution??
-		}
-		count_new_sol++;
-		//Print best solution to file!
-		outFile << "\n\n\n***Best iteration number: " << count_new_sol << "***" << endl;
-		outFile << "Best solution so far is " << lib.evaluate_solution(outFile).at(1) << endl;//Print everything with evaluate_solution
-		t = clock() - t;
-		time2 = time + (float)t/CLOCKS_PER_SEC;
-		outFile << "Time where new best solution found is: " << time2 << endl;
-		t_updated = 1;
+// 		if(current_solution <= best_solution){
+// 			best_solution = current_solution;
+// 		}else{
+// 			//Destroy and repair until same or better solution
+// 			while(current_solution > best_solution){
+// 				lib.destroy(workers_destroyed_vect); //Same destroyed workers as before
+// 				lib.repair();
+// 				output_vector = lib.evaluate_solution(cout); //Total objfcn, feasible_cost, #stand-ins, max-min-stand-in
+// 				current_solution = output_vector.at(1);
+// 				outFile << "In while loop. Current solutions is: " << current_solution << endl;
+// 			}
+// 			best_solution = current_solution; //Best_solution or current_solution??
+// 		}
+// 		count_new_sol++;
+// 		//Print best solution to file!
+// 		outFile << "\n\n\n***Best iteration number: " << count_new_sol << "***" << endl;
+// 		outFile << "Best solution so far is " << lib.evaluate_solution(outFile).at(1) << endl;//Print everything with evaluate_solution
+// 		t = clock() - t;
+// 		time2 = time + (float)t/CLOCKS_PER_SEC;
+// 		outFile << "Time where new best solution found is: " << time2 << endl;
+// 		t_updated = 1;
 		
 		
 		//Print all values to plotdata.txt
@@ -287,19 +287,19 @@ int main() {
 		
 		
 // 		current_solution = output_vector.at(1); //Feasibility cost from objective function
-		outFile << "Current solutions is: " << current_solution << endl;
-// 		if(current_solution < best_solution){
-// 			best_solution = current_solution;
-// 			count_new_sol++;
-// 			//Print best solution to file!
-// 			outFile << "\n\n\n***Best iteration number: " << count_new_sol << "***" << endl;
-// 			outFile << "Best solution so far is " << lib.evaluate_solution(outFile).at(1) << endl;//Print everything with evaluate_solution
-// 			t = clock() - t;
-// 			time2 = time + (float)t/CLOCKS_PER_SEC;
-// 			outFile << "Time where new best solution found is: " << time2 << endl;
-// 			t_updated = 1;
-// 			
-// 		}
+// 		outFile << "Current solutions is: " << current_solution << endl;
+		if(current_solution < best_solution){
+			best_solution = current_solution;
+			count_new_sol++;
+			//Print best solution to file!
+			outFile << "\n\n\n***Best iteration number: " << count_new_sol << "***" << endl;
+			outFile << "Best solution so far is " << lib.evaluate_solution(outFile).at(1) << endl;//Print everything with evaluate_solution
+			t = clock() - t;
+			time2 = time + (float)t/CLOCKS_PER_SEC;
+			outFile << "Time where new best solution found is: " << time2 << endl;
+			t_updated = 1;
+			
+		}
 		
 		
 		
@@ -307,53 +307,62 @@ int main() {
 		//0=total_cost, 1=total_eval_cost, 2=sum_stand_ins, 3=maxmin, 4=demand_tot_cost
 		//5=demand_lib_cost, 6=demand_ass_cost, 7=demand_PL_cost, 8=demand_HB_cost, 9=demand_evening_cost
 		//10=PL_amount_cost, 11=no_weekend_cost
-// 		if(current_solution <= 8000 && output_vector.at(1) > 0 && output_vector.at(4) >= 0 &&
-// 			output_vector.at(5) == 0 && output_vector.at(6) == 0 && output_vector.at(7) >= 0 &&
-// 			output_vector.at(8) == 0 && output_vector.at(9) == 0 && output_vector.at(10) == 0 &&
-// 			output_vector.at(11) == 0){
-// 			outFile << "Entering final phase!" << endl;
-// // 			p = 1;
-// 			int stand_in_looper = 1; //Enter while
-// 			while(output_vector.at(1) > 0 && stand_in_looper == 1){ //stand_in_looper = 0 if got 0 stand-ins and need more to get feasible solution
-// 				//Check stand_in_looper
-// 				lib.calculate_demand();
-// 				for(int w=0; w<NUM_WEEKS; w++){
-// 					for(int d=0; d<NUM_DAYS-2; d++){
-// 						for(int s=0; s<NUM_SHIFTS; s++){
-// 							for(int j=0; j<=1; j++){ //j=0 and j=1 means BLOCK and PL
-// 								if(lib.get_demand_differ(w,d,s,j) > 0 && lib.get_num_stand_ins(w,d) < lib.get_demand_differ(w,d,s,j)){ //less stand_ins than demand
-// 									outFile << "\nFewer stand-ins than needed! Keep looping\n" << endl;
-// 									outFile << "Happened for w = " << w << " d = " << d << " s = " << s << " j = " << j << endl;
-// 									stand_in_looper = 0; //Exit loop
-// 								}
-// 							}
-// 						}
-// 					}
-// 				}
-// 				
-// 				if(stand_in_looper == 1){ //If we got more stand-ins to fill tasks with
+		if(current_solution <= 8000 && output_vector.at(1) > 0 && output_vector.at(4) >= 0 &&
+			output_vector.at(5) == 0 && output_vector.at(6) == 0 && output_vector.at(7) >= 0 &&
+			output_vector.at(8) == 0 && output_vector.at(9) == 0 && output_vector.at(10) == 0 &&
+			output_vector.at(11) == 0){
+			outFile << "Entering final phase!" << endl;
+			outFile << "PL_amount_cost is: " << output_vector.at(10) << endl;
+// 			p = 1;
+			int stand_in_looper = 1; //Enter while
+			while(output_vector.at(1) > 0 && stand_in_looper == 1){ //stand_in_looper = 0 if got 0 stand-ins and need more to get feasible solution
+				//Check stand_in_looper
+				lib.calculate_demand();
+				for(int w=0; w<NUM_WEEKS; w++){
+					for(int d=0; d<NUM_DAYS-2; d++){
+						for(int s=0; s<NUM_SHIFTS; s++){
+							for(int j=0; j<=1; j++){ //j=0 and j=1 means BLOCK and PL
+								if(lib.get_demand_differ(w,d,s,j) > 0 && lib.get_num_stand_ins(w,d) < lib.get_demand_differ(w,d,s,j)){ //less stand_ins than demand
+									outFile << "\nFewer stand-ins than needed! Keep looping\n" << endl;
+									outFile << "Happened for w = " << w << " d = " << d << " s = " << s << " j = " << j << endl;
+									stand_in_looper = 0; //Exit loop
+								}
+							}
+						}
+					}
+				}
+				
+				if(stand_in_looper == 1){ //If we got more stand-ins to fill tasks with
+					//Loop this one until feasible otherwise?
 // 					while(current_solution == output_vector.at(1) || output_vector.at(1) <= 0){ //Loop until a new improvement or feasible solution
+					while(output_vector.at(1) > 0){ //Loop until a new improvement or feasible solution
 // 						lib.destroy(1); //destroy is working for 1 worker?
 // 						lib.repair();
-// 						cout << "\nAfter Repair in final phase\n" << endl;
-// 						output_vector = lib.evaluate_solution(cout); //Evaluate and save
-// 					} //Found a better sol after this loop or Feasible solution!
-// 					count_new_sol++;
-// 					//Print best solution to file!
-// 					outFile << "\n\n\n***Best iteration number: " << count_new_sol << "***" << endl;
-// 					outFile << "Best solution so far is " << lib.evaluate_solution(outFile).at(1) << endl;//Print everything with evaluate_solution
-// 					
-// 				}
-// 				else if(stand_in_looper == 0){
-// 					outFile << "\n\nTOO FEW STAND-INS\n\n" << endl;
-// 					for(int i=0; i<num_workers; i++){
-// 						lib.getWorker(i+1).clear_blocks();
-// 					}
-// 					outFile << "After create clear function" << endl;
-// 				}
-// 				
-// 			}
-// 		}
+// 						outFile << "Destroy and repair for one week/person" << endl;
+						lib.destroy_repair_one_week_at_the_time();
+						cout << "\nAfter Repair in final phase\n" << endl;
+						output_vector = lib.evaluate_solution(cout); //Evaluate and save
+						if(output_vector.at(1) < current_solution){
+							current_solution = output_vector.at(1);
+							outFile << "New solution found: " << lib.evaluate_solution(outFile).at(1) << endl;
+						}
+					} //Found a better sol after this loop or Feasible solution!
+					count_new_sol++;
+					//Print best solution to file!
+					outFile << "\n\n\n***Best iteration number: " << count_new_sol << "***" << endl;
+					outFile << "Best solution so far is " << lib.evaluate_solution(outFile).at(1) << endl;//Print everything with evaluate_solution
+					
+				}
+				else if(stand_in_looper == 0){
+					outFile << "\n\nTOO FEW STAND-INS\n\n" << endl;
+					for(int i=0; i<num_workers; i++){
+						lib.getWorker(i+1).clear_blocks();
+					}
+					outFile << "After create clear function" << endl;
+				}
+				
+			}
+		}
 		
 		//If output_vector.at(1) <= 0 Print solution to another file!
 		if(t_updated == 0){

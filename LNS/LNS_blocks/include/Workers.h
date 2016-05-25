@@ -159,6 +159,7 @@ public:
 	vector<Weekday_cost> getWeekday_cost_vector() const;
 	
 	void clear_blocks();
+	void clear_block(int);
 	int tasks_assigned_day(int, int); //week and day as argument
 	void print_tasks_assigned_worker();
 	
