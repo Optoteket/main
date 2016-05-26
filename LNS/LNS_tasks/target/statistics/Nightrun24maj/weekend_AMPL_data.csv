@@ -1,0 +1,224 @@
+2016_5_24 18:15:5
+With weights: 0.00980392, 0.00980392, 0.980392
+Number of infeasible solutions:0
+Min num lib/ass: (0) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (1) 3, 0. Cost: 6    ObjFun value: 400, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/0
+Min num lib/ass: (2) 2, 2. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (3) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (4) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (5) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 1/4
+Min num lib/ass: (6) 3, 0. Cost: 6    ObjFun value: 400, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/0
+Min num lib/ass: (7) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (8) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (9) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (10) 2, 2. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 1/4
+Min num lib/ass: (11) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (12) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (13) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (14) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (15) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (16) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (17) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (18) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (19) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (20) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 32 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (21) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (22) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (23) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (24) 3, 0. Cost: 6    ObjFun value: 400, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/0
+Min num lib/ass: (25) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (26) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (27) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (28) 1, 2. Cost: 4    ObjFun value: 400, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 1/2
+Min num lib/ass: (29) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (30) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (31) 0, 2. Cost: 2    ObjFun value: 400, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/0
+Min num lib/ass: (32) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (33) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (34) 2, 2. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (35) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (36) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (37) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (38) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (39) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (40) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (41) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (42) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (43) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (44) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (45) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 22, Shift avail: 26, Day avail: 32 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (46) 2, 2. Cost: 6    ObjFun value: 600, Stand in cost: 21, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (47) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (48) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (49) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+
+Average cost:5.28
+
+2016_5_24 18:15:5
+With weights: 0.0833333, 0.0833333, 0.833333
+Number of infeasible solutions:0
+Min num lib/ass: (0) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (1) 2, 2. Cost: 6    ObjFun value: 600, Stand in cost: 22, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (2) 2, 0. Cost: 4    ObjFun value: 400, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/0
+Min num lib/ass: (3) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (4) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (5) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 1/4
+Min num lib/ass: (6) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (7) 2, 2. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (8) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (9) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (10) 2, 0. Cost: 4    ObjFun value: 400, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 1/2
+Min num lib/ass: (11) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (12) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (13) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (14) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (15) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (16) 2, 2. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (17) 2, 2. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (18) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (19) 2, 2. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (20) 1, 2. Cost: 4    ObjFun value: 400, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/0
+Min num lib/ass: (21) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (22) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (23) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (24) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (25) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (26) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (27) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (28) 2, 2. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (29) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (30) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (31) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 22, Shift avail: 27, Day avail: 32 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (32) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (33) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (34) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (35) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (36) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (37) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (38) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (39) 2, 2. Cost: 6    ObjFun value: 400, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/0
+Min num lib/ass: (40) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (41) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (42) 2, 2. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (43) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (44) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (45) 1, 0. Cost: 2    ObjFun value: 400, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/0
+Min num lib/ass: (46) 2, 2. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (47) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 22, Shift avail: 27, Day avail: 31 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (48) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (49) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 20, Shift avail: 26, Day avail: 33 Num stand ins (lib/ass): 3/0
+
+Average cost:5.28
+
+2016_5_24 18:15:5
+With weights: 0.00980392, 0.00980392, 0.980392
+Number of infeasible solutions:0
+Min num lib/ass: (0) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (1) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (2) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (3) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (4) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (5) 2, 2. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (6) 2, 2. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (7) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 32 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (8) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (9) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (10) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (11) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (12) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (13) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (14) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 32 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (15) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (16) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (17) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (18) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (19) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (20) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (21) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (22) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (23) 3, 0. Cost: 6    ObjFun value: 400, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/0
+Min num lib/ass: (24) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 22, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (25) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (26) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (27) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (28) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (29) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (30) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (31) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (32) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (33) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (34) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (35) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (36) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (37) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (38) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (39) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 21, Shift avail: 27, Day avail: 31 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (40) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (41) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (42) 2, 2. Cost: 6    ObjFun value: 400, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/0
+Min num lib/ass: (43) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 1/4
+Min num lib/ass: (44) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (45) 2, 2. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (46) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (47) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (48) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 22, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (49) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+
+Average cost:5.36
+
+2016_5_24 18:15:5
+With weights: 0.333333, 0.333333, 0.333333
+Number of infeasible solutions:0
+Min num lib/ass: (0) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (1) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (2) 2, 2. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (3) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (4) 2, 2. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (5) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (6) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (7) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (8) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (9) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (10) 3, 0. Cost: 6    ObjFun value: 500, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/1
+Min num lib/ass: (11) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 22, Shift avail: 27, Day avail: 32 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (12) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (13) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (14) 1, 2. Cost: 4    ObjFun value: 400, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/0
+Min num lib/ass: (15) 1, 0. Cost: 2    ObjFun value: 400, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/0
+Min num lib/ass: (16) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (17) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (18) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (19) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (20) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (21) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (22) 2, 0. Cost: 4    ObjFun value: 400, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/0
+Min num lib/ass: (23) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (24) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (25) 3, 0. Cost: 6    ObjFun value: 400, Stand in cost: 21, Shift avail: 27, Day avail: 32 Num stand ins (lib/ass): 2/0
+Min num lib/ass: (26) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (27) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (28) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (29) 1, 2. Cost: 4    ObjFun value: 400, Stand in cost: 21, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/0
+Min num lib/ass: (30) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (31) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (32) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (33) 1, 2. Cost: 4    ObjFun value: 400, Stand in cost: 22, Shift avail: 25, Day avail: 30 Num stand ins (lib/ass): 2/0
+Min num lib/ass: (34) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 1/4
+Min num lib/ass: (35) 1, 4. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (36) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 22, Shift avail: 27, Day avail: 31 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (37) 2, 0. Cost: 4    ObjFun value: 400, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/0
+Min num lib/ass: (38) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (39) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 22, Shift avail: 27, Day avail: 34 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (40) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 32 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (41) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (42) 2, 0. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (43) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/2
+Min num lib/ass: (44) 3, 0. Cost: 6    ObjFun value: 500, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/1
+Min num lib/ass: (45) 1, 0. Cost: 2    ObjFun value: 400, Stand in cost: 23, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/0
+Min num lib/ass: (46) 1, 2. Cost: 4    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (47) 2, 2. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 1/4
+Min num lib/ass: (48) 3, 0. Cost: 6    ObjFun value: 600, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 3/0
+Min num lib/ass: (49) 2, 0. Cost: 4    ObjFun value: 400, Stand in cost: 24, Shift avail: 27, Day avail: 33 Num stand ins (lib/ass): 2/0
+
+Average cost:4.8
+

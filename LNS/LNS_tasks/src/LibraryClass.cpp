@@ -31,13 +31,101 @@ Library::Library(ofstream* r_file) {
 	  //Reset num avail workers
 	  for (int m=no_position; m < NUM_POSITIONS; m++){
 	    num_avail_workers[m][i][j][k] = 0;
-	    avail_demand_diff[m][i][j][k] = 0;
+	    //avail_demand_diff[m][i][j][k] = 0;
 	  }
 	}
       }
     }
   }
 }
+
+/*********** Library copy constructor *************/
+Library::Library(const Library &obj){
+
+  ///Copy vectors
+  for(int i=0; i <(int) obj.task_list.size(); i++){
+    task_list.push_back(obj.task_list[i]);
+  }
+  for(int i=0; i <(int) obj.weekend_task_list.size(); i++){
+    weekend_task_list.push_back(obj.weekend_task_list[i]);
+  }
+  for(int i=0; i <(int) obj.destroyed_wend_workers.size(); i++){
+    destroyed_wend_workers.push_back(obj.destroyed_wend_workers[i]);
+  }
+  for(int i=0; i <(int) obj.destroyed_task_workers.size(); i++){
+    destroyed_task_workers.push_back(obj.destroyed_task_workers[i]);
+  }
+  for(int i=0; i <(int) obj.worker_list.size(); i++){
+    worker_list.push_back(obj.worker_list[i]);
+  }
+  for(int i=0; i <(int) obj.weekend_workers.size(); i++){
+    weekend_workers.push_back(obj.weekend_workers[i]);
+  }
+  for(int i=0; i <(int) obj.orig_workers.size(); i++){
+    orig_workers.push_back(obj.orig_workers[i]);
+  }
+  for(int i=0; i <(int) obj.best_sol_workers.size(); i++){
+    best_sol_workers.push_back(obj.best_sol_workers[i]);
+  }
+  for(int i=0; i <(int) obj.weekend_objective_function.size(); i++){
+    weekend_objective_function.push_back(obj.weekend_objective_function[i]);
+  }
+  for(int i=0; i <(int) obj.weekend_day_avail_cost.size(); i++){
+    weekend_day_avail_cost.push_back(obj.weekend_day_avail_cost[i]);
+  }
+  for(int i=0; i <(int) obj.weekend_shift_avail_cost.size(); i++){
+    weekend_shift_avail_cost.push_back(obj.weekend_shift_avail_cost[i]);
+  }
+  for(int i=0; i <(int) obj.weekend_stand_in_cost.size(); i++){
+    weekend_stand_in_cost.push_back(obj.weekend_stand_in_cost[i]);
+  }
+  for(int i=0; i <(int) obj.weekend_stand_in_cost_lib.size(); i++){
+    weekend_stand_in_cost_lib.push_back(obj.weekend_stand_in_cost_lib[i]);
+  }
+  for(int i=0; i <(int) obj.weekend_stand_in_cost_ass.size(); i++){
+    weekend_stand_in_cost_ass.push_back(obj.weekend_stand_in_cost_ass[i]);
+  }
+
+  //Copy arrays
+  for(int w = 0; w < NUM_WEEKS; w++){
+    for(int d = 0; d < NUM_DAYS; d++){
+      for(int s = 0; s < NUM_SHIFTS; s++){
+	for(int i =0; i < NUM_POSITIONS; i++){
+	  num_avail_workers[i][w][d][s]=obj.num_avail_workers[i][w][d][s];
+	}
+	for(int t = 0; t < NUM_TASKS; t++){
+	  worker_demand[w][d][s][t]=obj.worker_demand[w][d][s][t]; 
+	  current_demand[w][d][s][t]=obj.current_demand[w][d][s][t]; 
+	  orig_demand[w][d][s][t]=obj.orig_demand[w][d][s][t];
+	}
+      }
+    }
+  }
+
+    for(int i =0; i < NUM_POSITIONS; i++){
+      for(int w = 0; w < NUM_WEEKS; w++){
+	for(int d = 0; d < NUM_WEEKDAYS; d++){
+	  for(int s = 0; s < NUM_SHIFTS-1; s++){
+	    num_weekday_avail_workers[i][w][d][s]=obj.num_weekday_avail_workers[i][w][d][s];
+	  }
+	  num_avail_day_workers[i][w][d]=obj.num_avail_day_workers[i][w][d];
+	  num_avail_workers_average[i][w][d]=obj.num_avail_workers_average[i][w][d];
+	}
+      }
+    }
+
+  for(int i =0; i < NUM_POSITIONS; i++){
+    min_stand_in[i]=obj.min_stand_in[i];
+    min_shift_avail[i]=obj.min_shift_avail[i];
+    min_contribution[i]=obj.min_contribution[i];
+  }
+
+  //temp_current_demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS]; 
+  //temp_num_avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+  //avail_demand_diff[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+
+}
+
 /********* Library function: create initial solution ********/
 
 void Library::create_initial_solution(){
@@ -338,6 +426,8 @@ void Library::optimize_weekday_tasks(int iterations){
   loop_counts.clear();
   vector<int> library_costs;
   library_costs.clear();
+  vector<bool> feasibles;
+  feasibles.clear();
   bool feasible = true;
 
   //Improvement loop
@@ -368,102 +458,116 @@ void Library::optimize_weekday_tasks(int iterations){
     int loop_count=0;
     int destroy_amount = 4;
 
-  find_num_avail_workers();
-  print_num_avail_workers();
-  print_current_demand();
+    find_num_avail_workers();
+    print_num_avail_workers();
+    print_current_demand();
 
-  //Feasibility loop
-  while(library_critical_worker_cost > 0 && feasible && unassigned_tasks_exist()){
-    cout << "CRITICAL WORKER COST: " << library_critical_worker_cost << endl;
-    loop_count++;
+    //Feasibility loop
+    while((library_critical_worker_cost > 0 || unassigned_tasks_exist()) && feasible){
+      cout << "CRITICAL WORKER COST: " << library_critical_worker_cost << endl;
+      loop_count++;
 
-    //Calculate destroy amount
-    if(loop_count < 500){
-      destroy_amount = loop_count*(16.0/500.0)+4;
-      feasible = true;
+      //Calculate destroy amount
+      if(loop_count < 500){
+	destroy_amount = loop_count*(16.0/500.0)+4;
+	feasible = true;
+      }
+      else if(loop_count > 600){
+	feasible = false;
+	break;
+      }
+      else destroy_amount = 20;
+
+      //Write the results
+      write_results();
+
+      //Display worker costs
+      cout << "Worker costs after placing all tasks:" << endl;
+      for(int i=0; i<(int) worker_list.size(); i++){
+	cout << "Worker: " << worker_list[i].get_ID() << ". Cost: " << worker_list[i].get_cost_sum_no_stand_in() 
+	     << ". Total Cost: " << worker_list[i].get_cost_sum() 
+	     << ". PL (week): " << worker_list[i].get_total_PL_week_cost()  
+	     << ". PL (total): " << worker_list[i].get_total_PL_cost() 
+	     << ". Tasks (week): "  << worker_list[i].get_total_tasks_week_cost() 
+	     << ". Same shifts: "  << worker_list[i].get_total_same_shift_cost()
+	     << ". Stand in: "  << worker_list[i].get_total_stand_in_cost()
+	     << endl;
+      }
+
+      //Display cost statistics
+      show_task_statistics();
+      cout << "Num tasks day cost: " << num_tasks_day_cost << endl;
+      cout << "Num tasks week cost: " << num_tasks_week_cost << endl;
+      cout << "PL week cost: " << PL_week_cost << endl;
+      cout << "PL total cost: " << PL_cost << endl;
+      cout << "Num same shifts week cost: " << num_same_shifts_week_cost << endl << endl;
+
+
+      cout << "Destroy amount ----------> " << destroy_amount << endl;
+
+      //Destroy and repair workers
+      destroy_tasks(destroy_amount,"perm");
+
+      cout << "Worst worker: " << worst_worker.worker->get_ID() << endl;
+      usleep(100000);
+
+      repair_tasks("perm");
+
+      //Display cost statistics - again
+      show_task_statistics();
+      cout << "AFTER DESTROY" << endl;
+      cout << "Num tasks day cost: " << num_tasks_day_cost << endl;
+      cout << "Num tasks week cost: " << num_tasks_week_cost << endl;
+      cout << "PL week cost: " << PL_week_cost << endl;
+      cout << "PL total cost: " << PL_cost << endl;
+      cout << "Num same shifts week cost: " << num_same_shifts_week_cost << endl << endl;
+
+      //Set library costs
+      set_library_stand_in_cost();
+      set_critical_worker_cost();
+      set_non_critical_worker_cost();
+
+
     }
-    else if(loop_count > 600){
-      feasible = false;
-      break;
+
+    //Push back feasibility
+    feasibles.push_back(feasible);
+    if(feasible){
+      library_cost = 100*(lib_weight*min_stand_in[Lib] + ass_weight*min_stand_in[Ass]);
     }
-    else destroy_amount = 20;
+    else library_cost = -1;
 
-    //Write the results
-    write_results();
+    loop_counts.push_back(loop_count);
+    library_costs.push_back(library_cost);
 
-    //Display worker costs
-    cout << "Worker costs after placing all tasks:" << endl;
-    for(int i=0; i<(int) worker_list.size(); i++){
-      cout << "Worker: " << worker_list[i].get_ID() << ". Cost: " << worker_list[i].get_cost_sum_no_stand_in() 
-	   << ". Total Cost: " << worker_list[i].get_cost_sum() 
-	   << ". PL (week): " << worker_list[i].get_total_PL_week_cost()  
-	   << ". PL (total): " << worker_list[i].get_total_PL_cost() 
-	   << ". Tasks (week): "  << worker_list[i].get_total_tasks_week_cost() 
-	   << ". Same shifts: "  << worker_list[i].get_total_same_shift_cost()
-	   << ". Stand in: "  << worker_list[i].get_total_stand_in_cost()
-	   << endl;
+    //If a better solution is found, save
+    if(library_cost > library_max_cost){
+      cout << "BETTER SOLUTION FOUND: " << library_cost << endl;
+      library_max_cost = library_cost;
+      best_sol_workers.clear();
+      for(int j=0; j<(int) worker_list.size(); j++){
+	best_sol_workers.push_back(worker_list[j]); 
+      }
     }
-
-    //Display cost statistics
-    show_task_statistics();
-    cout << "Num tasks day cost: " << num_tasks_day_cost << endl;
-    cout << "Num tasks week cost: " << num_tasks_week_cost << endl;
-    cout << "PL week cost: " << PL_week_cost << endl;
-    cout << "PL total cost: " << PL_cost << endl;
-    cout << "Num same shifts week cost: " << num_same_shifts_week_cost << endl << endl;
-
-
-    cout << "Destroy amount ----------> " << destroy_amount << endl;
-
-    //Destroy and repair workers
-    destroy_tasks(destroy_amount,"perm");
-
-    cout << "Worst worker: " << worst_worker.worker->get_ID() << endl;
-    usleep(100000);
-
-    repair_tasks("perm");
-
-    //Display cost statistics - again
-    show_task_statistics();
-    cout << "AFTER DESTROY" << endl;
-    cout << "Num tasks day cost: " << num_tasks_day_cost << endl;
-    cout << "Num tasks week cost: " << num_tasks_week_cost << endl;
-    cout << "PL week cost: " << PL_week_cost << endl;
-    cout << "PL total cost: " << PL_cost << endl;
-    cout << "Num same shifts week cost: " << num_same_shifts_week_cost << endl << endl;
-
-    //Set library costs
-    set_library_stand_in_cost();
-    set_critical_worker_cost();
-    set_non_critical_worker_cost();
-
-
   }
 
-  if(feasible){
-    library_cost = 100*(lib_weight*min_stand_in[Lib] + ass_weight*min_stand_in[Ass]);
-  }else library_cost = -1;
+  //After improvement loop:
 
-  loop_counts.push_back(loop_count);
-  library_costs.push_back(library_cost);
-
-  //If a better solution is found, save
-  if(library_cost > library_max_cost){
-    cout << "BETTER SOLUTION FOUND: " << library_cost << endl;
-    library_max_cost = library_cost;
-    best_sol_workers.clear();
-    for(int j=0; j<(int) worker_list.size(); j++){
-      best_sol_workers.push_back(worker_list[j]); 
-    }
-  }
-  }
-
+  //Show statistics
   for(int i=0; i<(int)loop_counts.size(); i++){
     cout << "***** TIMES IN DESTROY TASK LOOP: (" << i << ") "<< loop_counts[i] 
 	 << " Cost: " << library_costs[i]<< endl;
   }
 
-  //After improvement loop:
+  //Check if all solutions infeasible, in that case the problem must be resolved
+  feasible_solution = false;
+  for(int i=0; i <(int) feasibles.size(); i++){
+    if(feasibles[i] == true){
+      feasible_solution = true;
+      break;
+    }
+  }
+
   //Relaod best solution if better than current
   if (library_max_cost > 0){
 
@@ -514,6 +618,12 @@ void Library::optimize_weekday_tasks(int iterations){
   print_current_demand();
 }
 
+/************ Library function: get solution feasibility *******/
+
+bool Library::get_solution_feasibility(){
+  return feasible_solution;
+}
+
 /************ Library function: find worst worker ***********/
 
 bool Library::unassigned_tasks_exist(){
@@ -527,7 +637,7 @@ bool Library::unassigned_tasks_exist(){
       }
     }
   }
-  if(sum == 0)
+  if(sum != 0)
     return true;
   else return false;
 }
@@ -535,7 +645,7 @@ bool Library::unassigned_tasks_exist(){
 /************ Library function: find worst worker ***********/
 
 void Library::find_worst_worker(){
- Worker* local_worst_worker;
+ Worker* local_worst_worker = &worker_list[0];
  int worst_worker_cost=0;
 
  for(int i=0; i<(int) worker_list.size(); i++){
@@ -1124,54 +1234,54 @@ int Library::find_min_stand_ins(int num_avail_day_workers[NUM_POSITIONS][NUM_WEE
 /*****************************************************/
 
 
-/*********** Library function: use temp solution ********/
-void Library::use_temp_solution(){
-  //Apply destroy on real workers
-  for(int i=0; i < (int) destroyed_wend_workers.size(); i++){
-    //Get the real worker
-    TaskWorker* task_worker = &destroyed_wend_workers[i];
-    Worker* worker = task_worker->worker;
+// /*********** Library function: use temp solution ********/
+// void Library::use_temp_solution(){
+//   //Apply destroy on real workers
+//   for(int i=0; i < (int) destroyed_wend_workers.size(); i++){
+//     //Get the real worker
+//     TaskWorker* task_worker = &destroyed_wend_workers[i];
+//     Worker* worker = task_worker->worker;
       
-    //Remove its weekends
-    worker->remove_weekend();
-  }
+//     //Remove its weekends
+//     worker->remove_weekend();
+//   }
 
-  //Repair solution
-  //Set current demand
-  for(int w = 0; w < NUM_WEEKS; w++){
-    for(int d = 0; d < NUM_DAYS; d++){
-      for(int s = 0; s < NUM_SHIFTS; s++){
-	for(int t = 0; t < NUM_TASKS; t++){
-	  current_demand[w][d][s][t] = temp_current_demand[w][d][s][t];
-	}
-      }
-    }
-  }
+//   //Repair solution
+//   //Set current demand
+//   for(int w = 0; w < NUM_WEEKS; w++){
+//     for(int d = 0; d < NUM_DAYS; d++){
+//       for(int s = 0; s < NUM_SHIFTS; s++){
+// 	for(int t = 0; t < NUM_TASKS; t++){
+// 	  current_demand[w][d][s][t] = temp_current_demand[w][d][s][t];
+// 	}
+//       }
+//     }
+//   }
 
-  //Set all weekend tasks
-  while(weekend_task_list.size() > 0){
-    WeekendTask* current_task = &weekend_task_list[0];
+//   //Set all weekend tasks
+//   while(weekend_task_list.size() > 0){
+//     WeekendTask* current_task = &weekend_task_list[0];
 
-    //Get the placed workers at current task
-    vector<TaskWorker*>* task_workers = current_task->get_placed_workers();
+//     //Get the placed workers at current task
+//     vector<TaskWorker*>* task_workers = current_task->get_placed_workers();
 
-    for(int i=0; i < (int) task_workers->size(); i++){
-      //TaskWorker* task_worker = current_task->get_placed_worker();
-      Worker* worker = (*task_workers)[i]->worker;
-      Worker* temp_worker = &(*task_workers)[i]->temp_worker;
+//     for(int i=0; i < (int) task_workers->size(); i++){
+//       //TaskWorker* task_worker = current_task->get_placed_worker();
+//       Worker* worker = (*task_workers)[i]->worker;
+//       Worker* temp_worker = &(*task_workers)[i]->temp_worker;
       
-      //Set weekend for real worker
-      worker->set_current_weekend(temp_worker->get_current_weekend()-1,temp_worker->get_weekend_task());
-      //cout << "Worker: " << worker->get_ID() 
-      //   << " permanently placed at weekend: " << worker->get_current_weekend() << endl;
-    }
+//       //Set weekend for real worker
+//       worker->set_current_weekend(temp_worker->get_current_weekend()-1,temp_worker->get_weekend_task());
+//       //cout << "Worker: " << worker->get_ID() 
+//       //   << " permanently placed at weekend: " << worker->get_current_weekend() << endl;
+//     }
 
-    //Remove weekend task when all workers are permanently placed
-    weekend_task_list.erase(weekend_task_list.begin());  
-  }
-  //Find number of available workers
-  find_num_avail_workers();
-}
+//     //Remove weekend task when all workers are permanently placed
+//     weekend_task_list.erase(weekend_task_list.begin());  
+//   }
+//   //Find number of available workers
+//   find_num_avail_workers();
+// }
 
 /*********** Library function: destroy weekends ******/
 void Library::destroy_weekend(int percent, string mode){
@@ -1180,18 +1290,18 @@ void Library::destroy_weekend(int percent, string mode){
   destroyed_wend_workers.clear();
   weekend_task_list.clear();
 
-  //Set temporary demand
-  if(mode == "temp"){
-    for(int w = 0; w < NUM_WEEKS; w++){
-      for(int d = 0; d < NUM_DAYS; d++){
-	for(int s = 0; s < NUM_SHIFTS; s++){
-	  for(int t = 0; t < NUM_TASKS; t++){
-	    temp_current_demand[w][d][s][t] = current_demand[w][d][s][t];
-	  }
-	}
-      }
-    }
-  }
+  // //Set temporary demand
+  // if(mode == "temp"){
+  //   for(int w = 0; w < NUM_WEEKS; w++){
+  //     for(int d = 0; d < NUM_DAYS; d++){
+  // 	for(int s = 0; s < NUM_SHIFTS; s++){
+  // 	  for(int t = 0; t < NUM_TASKS; t++){
+  // 	    temp_current_demand[w][d][s][t] = current_demand[w][d][s][t];
+  // 	  }
+  // 	}
+  //     }
+  //   }
+  // }
 
   //Create task workers
   vector<TaskWorker> task_worker_list;
@@ -1209,9 +1319,6 @@ void Library::destroy_weekend(int percent, string mode){
 
   //Print sorted workers
   cout << "Task workers in destroy: " << endl;
-  //for(int h=0; h < (int) task_worker_list.size(); h++){
-  //cout << task_worker_list[h].temp_cost << " ID: " << task_worker_list[h].worker->get_ID() << endl;
-  //}
 
   //Delete weekend task, multiple of 5 of the work force
   double num_tasks = 0.01*(double)percent*(double)task_worker_list.size();
@@ -1221,8 +1328,6 @@ void Library::destroy_weekend(int percent, string mode){
 
   //Remove weekends for workers
   for(int i = 0; i<destroy_amount; i++){
-    // cout << "Destroyed worker: " << task_worker_list.back().worker->get_ID() << " Weekend: " 
-    // 	   << task_worker_list.back().worker->get_current_weekend() << endl;
 
     //Destroy a workers weekend
     destroy_a_weekend(task_worker_list.back(), mode);
@@ -1231,9 +1336,6 @@ void Library::destroy_weekend(int percent, string mode){
     task_worker_list.pop_back();
   }
 
-  // for(int i=0; i < (int)destroyed_wend_workers.size(); i++){
-  //   cout <<  " ID: " << destroyed_wend_workers[i]->get_ID() << endl;
-  // }
 
   //Find and push all free weekends
   for (int w=0; w <NUM_WEEKS; w++){
@@ -1242,12 +1344,11 @@ void Library::destroy_weekend(int percent, string mode){
       int weekend_demand = 0;
       if (mode == "perm")
 	weekend_demand = current_demand[w][sat][0][t];
-      else if (mode == "temp")
-	weekend_demand = temp_current_demand[w][sat][0][t];
       if(weekend_demand > 0){
 
 	//Find avail diff for task
-	int avail_diff = avail_demand_diff[find_position_req(t)][w][sat][0];
+	find_num_avail_workers();
+	int avail_diff =  num_avail_workers[find_position_req(t)][w][sat][0] - weekend_demand;
 
 	weekend_task_list.push_back(WeekendTask 
 				    {find_position_req(t), w, weekend_demand, avail_diff, t});
@@ -1281,84 +1382,84 @@ void Library::destroy_a_weekend(TaskWorker& t_worker, string mode){
     destroyed_wend_workers.push_back(t_worker);
   }
 
-  //Destroy worker weekend temporarily
-  else if (mode == "temp"){
-    Worker* temp_worker = &t_worker.temp_worker;
-    //If weekend task is to be removed, increase demand at library
-    if(temp_worker->has_weekend_task()){
-      temp_current_demand[temp_worker->get_current_weekend()-1][sat][0][temp_worker->get_weekend_task_type()]++;
-      temp_current_demand[temp_worker->get_current_weekend()-1][sun][0][temp_worker->get_weekend_task_type()]++;
+  // //Destroy worker weekend temporarily
+  // else if (mode == "temp"){
+  //   Worker* temp_worker = &t_worker.temp_worker;
+  //   //If weekend task is to be removed, increase demand at library
+  //   if(temp_worker->has_weekend_task()){
+  //     temp_current_demand[temp_worker->get_current_weekend()-1][sat][0][temp_worker->get_weekend_task_type()]++;
+  //     temp_current_demand[temp_worker->get_current_weekend()-1][sun][0][temp_worker->get_weekend_task_type()]++;
 
-      if(temp_worker->get_weekend_task_type() != HB){
-	temp_current_demand[temp_worker->get_current_weekend()-1][fri][3][temp_worker->get_weekend_task_type()]++;
-      }
+  //     if(temp_worker->get_weekend_task_type() != HB){
+  // 	temp_current_demand[temp_worker->get_current_weekend()-1][fri][3][temp_worker->get_weekend_task_type()]++;
+  //     }
 
-      //Remove task from worker
-      temp_worker->remove_weekend(); 
-    }
+  //     //Remove task from worker
+  //     temp_worker->remove_weekend(); 
+  //   }
 
-    //Collect destroyed worker
-    destroyed_wend_workers.push_back(t_worker);
-  }
+  //   //Collect destroyed worker
+  //   destroyed_wend_workers.push_back(t_worker);
+  // }
 }
 
 
 
 /*********** Library function: find temp num avail workers ********/
 
-void Library::find_temp_num_avail_workers(){ 
+// void Library::find_temp_num_avail_workers(){ 
 
-  find_num_avail_workers();
+//   find_num_avail_workers();
 
-  //Set temporary demand num avail workers
-  for(int p = 0; p < NUM_POSITIONS; p++)
-  for(int w = 0; w < NUM_WEEKS; w++){
-    for(int d = 0; d < NUM_DAYS; d++){
-      for(int s = 0; s < NUM_SHIFTS; s++){
-	  temp_num_avail_workers[p][w][d][s] = num_avail_workers[p][w][d][s];
-      }
-    }
-  }
+//   //Set temporary demand num avail workers
+//   for(int p = 0; p < NUM_POSITIONS; p++)
+//   for(int w = 0; w < NUM_WEEKS; w++){
+//     for(int d = 0; d < NUM_DAYS; d++){
+//       for(int s = 0; s < NUM_SHIFTS; s++){
+// 	  temp_num_avail_workers[p][w][d][s] = num_avail_workers[p][w][d][s];
+//       }
+//     }
+//   }
 
-  for(int i=0; i < (int) destroyed_wend_workers.size(); i++){
-    Worker* worker = destroyed_wend_workers[i].worker;
-    Worker* temp_worker = &destroyed_wend_workers[i].temp_worker;
+//   for(int i=0; i < (int) destroyed_wend_workers.size(); i++){
+//     Worker* worker = destroyed_wend_workers[i].worker;
+//     Worker* temp_worker = &destroyed_wend_workers[i].temp_worker;
 
-    //Remove worker if avail
-    for(int w = 0; w < NUM_WEEKS; w++){
-      for(int d = 0; d < NUM_DAYS; d++){
-	for(int s = 0; s < NUM_SHIFTS; s++){
-	  if (worker->get_current_avail(w,d,s) == BBlib){
-	    temp_num_avail_workers[BBlib][w][d][s]--; 
-	  }
-	  else if (worker->get_current_avail(w,d,s) == Lib){
-	    temp_num_avail_workers[Lib][w][d][s]--; 
-	  }
-	  else if (worker->get_current_avail(w,d,s) == Ass){
-	    temp_num_avail_workers[Ass][w][d][s]--; 
-	  }
-	}
-      }
-    }
+//     //Remove worker if avail
+//     for(int w = 0; w < NUM_WEEKS; w++){
+//       for(int d = 0; d < NUM_DAYS; d++){
+// 	for(int s = 0; s < NUM_SHIFTS; s++){
+// 	  if (worker->get_current_avail(w,d,s) == BBlib){
+// 	    temp_num_avail_workers[BBlib][w][d][s]--; 
+// 	  }
+// 	  else if (worker->get_current_avail(w,d,s) == Lib){
+// 	    temp_num_avail_workers[Lib][w][d][s]--; 
+// 	  }
+// 	  else if (worker->get_current_avail(w,d,s) == Ass){
+// 	    temp_num_avail_workers[Ass][w][d][s]--; 
+// 	  }
+// 	}
+//       }
+//     }
  
-    //Add temporary worker if avail
-    for(int w = 0; w < NUM_WEEKS; w++){
-      for(int d = 0; d < NUM_DAYS; d++){
-	for(int s = 0; s < NUM_SHIFTS; s++){
-	  if (temp_worker->get_current_avail(w,d,s) == BBlib){
-	    temp_num_avail_workers[BBlib][w][d][s]++; 
-	  }
-	  else if (temp_worker->get_current_avail(w,d,s) == Lib){
-	    temp_num_avail_workers[Lib][w][d][s]++; 
-	  }
-	  else if (temp_worker->get_current_avail(w,d,s) == Ass){
-	    temp_num_avail_workers[Ass][w][d][s]++; 
-	  }
-	}
-      }
-    }
-  }
-}
+//     //Add temporary worker if avail
+//     for(int w = 0; w < NUM_WEEKS; w++){
+//       for(int d = 0; d < NUM_DAYS; d++){
+// 	for(int s = 0; s < NUM_SHIFTS; s++){
+// 	  if (temp_worker->get_current_avail(w,d,s) == BBlib){
+// 	    temp_num_avail_workers[BBlib][w][d][s]++; 
+// 	  }
+// 	  else if (temp_worker->get_current_avail(w,d,s) == Lib){
+// 	    temp_num_avail_workers[Lib][w][d][s]++; 
+// 	  }
+// 	  else if (temp_worker->get_current_avail(w,d,s) == Ass){
+// 	    temp_num_avail_workers[Ass][w][d][s]++; 
+// 	  }
+// 	}
+//       }
+//     }
+//   }
+// }
 
 
 
@@ -1404,38 +1505,38 @@ void Library::repair_weekend(string mode){
     }
   }
 
-  //Temporarily repair the weekend
-  else if (mode == "temp"){
-    //Sort tasks according to cheapest task, ie librarian qualification tasks first
-    random_shuffle(weekend_task_list.begin(),weekend_task_list.end(), myrandom);
-    sort(weekend_task_list.begin(),weekend_task_list.end());
+  // //Temporarily repair the weekend
+  // else if (mode == "temp"){
+  //   //Sort tasks according to cheapest task, ie librarian qualification tasks first
+  //   random_shuffle(weekend_task_list.begin(),weekend_task_list.end(), myrandom);
+  //   sort(weekend_task_list.begin(),weekend_task_list.end());
 
-    int list_size = (int) weekend_task_list.size();
-    for(int i =0; i < list_size; i++){
-      WeekendTask* current_task = &weekend_task_list[i];
+  //   int list_size = (int) weekend_task_list.size();
+  //   for(int i =0; i < list_size; i++){
+  //     WeekendTask* current_task = &weekend_task_list[i];
 
-      //Place all workers at random
-      current_task->place_workers(&destroyed_wend_workers, mode);
+  //     //Place all workers at random
+  //     current_task->place_workers(&destroyed_wend_workers, mode);
 
-      //Get a placed worker
-      vector<TaskWorker*>* task_workers = current_task->get_placed_workers();
-      TaskWorker* task_worker = (*task_workers)[0];
-      Worker* worker = &task_worker->temp_worker;
+  //     //Get a placed worker
+  //     vector<TaskWorker*>* task_workers = current_task->get_placed_workers();
+  //     TaskWorker* task_worker = (*task_workers)[0];
+  //     Worker* worker = &task_worker->temp_worker;
 
-      //Depending on placed weekend, reduce demand
-      temp_current_demand[worker->get_current_weekend()-1][sat][0][worker->get_weekend_task_type()]
-	-= current_task->get_demand();
-      temp_current_demand[worker->get_current_weekend()-1][sun][0][worker->get_weekend_task_type()]
-	-= current_task->get_demand();
+  //     //Depending on placed weekend, reduce demand
+  //     temp_current_demand[worker->get_current_weekend()-1][sat][0][worker->get_weekend_task_type()]
+  // 	-= current_task->get_demand();
+  //     temp_current_demand[worker->get_current_weekend()-1][sun][0][worker->get_weekend_task_type()]
+  // 	-= current_task->get_demand();
 
-      if(worker->get_weekend_task_type() != HB){
-	temp_current_demand[worker->get_current_weekend()-1][fri][3][worker->get_weekend_task_type()]
-	  -= current_task->get_demand();
-      }
-    }
-    //Increase the number of available workers
-    find_temp_num_avail_workers();
-  }
+  //     if(worker->get_weekend_task_type() != HB){
+  // 	temp_current_demand[worker->get_current_weekend()-1][fri][3][worker->get_weekend_task_type()]
+  // 	  -= current_task->get_demand();
+  //     }
+  //   }
+  //   //Increase the number of available workers
+  //   find_temp_num_avail_workers();
+  // }
 }
 
 /******************************************************/
@@ -1742,8 +1843,10 @@ void Library::destroy_tasks(int percent, string mode){
   for(int d=0; d<NUM_WEEKDAYS; d++){
     for(int s=0; s<NUM_SHIFTS; s++){
       int task = worst_worker.worker->get_current_task(worst_week,d,s);
-      if(task != no_task && task != BokB){
-	current_demand[worst_week][d][s][task]++;
+      if(!(d==fri && s==3)){
+	if(task != no_task && task != BokB){
+	  current_demand[worst_week][d][s][task]++;
+	}
       }
     }
   }
@@ -1765,9 +1868,11 @@ void Library::destroy_tasks(int percent, string mode){
     //Update current demand 
     for(int d=0; d<NUM_WEEKDAYS; d++){
       for(int s=0; s<NUM_SHIFTS; s++){
-	int task = worker_to_destroy->get_current_task(worst_week,d,s);
-	if(task != no_task && task != BokB){
-	  current_demand[worst_week][d][s][task]++;
+	if(!(d==fri && s==3)){
+	  int task = worker_to_destroy->get_current_task(worst_week,d,s);
+	  if(task != no_task && task != BokB){
+	    current_demand[worst_week][d][s][task]++;
+	  }
 	}
       }
     }
@@ -2224,38 +2329,37 @@ void Library::write_results(){
 	  }
 	  *resfile << endl; 
 	}
-	*resfile << endl << endl;
 
-	*resfile << "Availability for worker " << worker_list[h].get_ID() << endl;	
-	for (int j=0; j< NUM_SHIFTS; j++){
-	  for(int w = 0; w < NUM_WEEKS; w++){
-	    for (int k=0; k< NUM_DAYS; k++){
-	      *resfile << worker_list[h].get_current_avail(w,k,j) << " ";
-	    }
-	    *resfile << "   ";
-	  }
-	  *resfile << endl; 
-	}
-	*resfile << endl << endl;
+	// *resfile << "Availability for worker " << worker_list[h].get_ID() << endl;	
+	// for (int j=0; j< NUM_SHIFTS; j++){
+	//   for(int w = 0; w < NUM_WEEKS; w++){
+	//     for (int k=0; k< NUM_DAYS; k++){
+	//       *resfile << worker_list[h].get_current_avail(w,k,j) << " ";
+	//     }
+	//     *resfile << "   ";
+	//   }
+	//   *resfile << endl; 
+	// }
+	// *resfile << endl << endl;
 
-	*resfile << "Avail day for worker " << worker_list[h].get_ID() << endl;	
-	for(int w = 0; w < NUM_WEEKS; w++){
-	  for (int k=0; k< NUM_DAYS; k++){
-	    *resfile << worker_list[h].get_avail_day(w,k) << " ";
-	  }
-	  *resfile << "   ";
-	}
-	*resfile << endl << endl;
+	// *resfile << "Avail day for worker " << worker_list[h].get_ID() << endl;	
+	// for(int w = 0; w < NUM_WEEKS; w++){
+	//   for (int k=0; k< NUM_DAYS; k++){
+	//     *resfile << worker_list[h].get_avail_day(w,k) << " ";
+	//   }
+	//   *resfile << "   ";
+	// }
+	// *resfile << endl << endl;
 
 
-	*resfile << "Current avail day for worker " << worker_list[h].get_ID() << endl;	
-	for(int w = 0; w < NUM_WEEKS; w++){
-	  for (int k=0; k< NUM_DAYS; k++){
-	    *resfile << worker_list[h].get_current_avail_day(w,k) << " ";
-	  }
-	  *resfile << "   ";
-	}
-	*resfile << endl << endl;
+	// *resfile << "Current avail day for worker " << worker_list[h].get_ID() << endl;	
+	// for(int w = 0; w < NUM_WEEKS; w++){
+	//   for (int k=0; k< NUM_DAYS; k++){
+	//     *resfile << worker_list[h].get_current_avail_day(w,k) << " ";
+	//   }
+	//   *resfile << "   ";
+	// }
+	// *resfile << endl << endl;
 
 	*resfile 
 	  << "**************************************************************************************" << endl;
@@ -2348,77 +2452,77 @@ void Library::find_num_avail_workers(){
 
 /************ Library function: avail demand diff  *****/
 
-void Library::find_avail_demand_diff(string mode){
-  int demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
-  int avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
+// void Library::find_avail_demand_diff(string mode){
+//   int demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
+//   int avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
 
-  if (mode == "temp"){
-    for(int w = 0; w < NUM_WEEKS; w++){
-      for(int d = 0; d < NUM_DAYS; d++){
-	for(int s = 0; s < NUM_SHIFTS; s++){
-	  for(int t = 0; t < NUM_TASKS; t++){
-	    demand[w][d][s][t] = temp_current_demand[w][d][s][t];
-	  }
-	}
-      }
-    }
-    for(int p = 0; p < NUM_POSITIONS; p++){
-      for(int w = 0; w < NUM_WEEKS; w++){
-	for(int d = 0; d < NUM_DAYS; d++){
-	  for(int s = 0; s < NUM_SHIFTS; s++){
-	    avail_workers[p][w][d][s] 
-	      = temp_num_avail_workers[p][w][d][s];
-	  }
-	}
-      }
-    }
-  }
-  else if (mode == "perm"){
-    for(int w = 0; w < NUM_WEEKS; w++){
-      for(int d = 0; d < NUM_DAYS; d++){
-	for(int s = 0; s < NUM_SHIFTS; s++){
-	  for(int t = 0; t < NUM_TASKS; t++){
-	    demand[w][d][s][t] = current_demand[w][d][s][t];
-	  }
-	}
-      }
-    }
-    for(int p = 0; p < NUM_POSITIONS; p++){
-      for(int w = 0; w < NUM_WEEKS; w++){
-	for(int d = 0; d < NUM_DAYS; d++){
-	  for(int s = 0; s < NUM_SHIFTS; s++){
-	    avail_workers[p][w][d][s] 
-	      = num_avail_workers[p][w][d][s];
-	  }
-	}
-      }
-    }
-  }
+//   // if (mode == "temp"){
+//   //   for(int w = 0; w < NUM_WEEKS; w++){
+//   //     for(int d = 0; d < NUM_DAYS; d++){
+//   // 	for(int s = 0; s < NUM_SHIFTS; s++){
+//   // 	  for(int t = 0; t < NUM_TASKS; t++){
+//   // 	    demand[w][d][s][t] = temp_current_demand[w][d][s][t];
+//   // 	  }
+//   // 	}
+//   //     }
+//   //   }
+//   //   for(int p = 0; p < NUM_POSITIONS; p++){
+//   //     for(int w = 0; w < NUM_WEEKS; w++){
+//   // 	for(int d = 0; d < NUM_DAYS; d++){
+//   // 	  for(int s = 0; s < NUM_SHIFTS; s++){
+//   // 	    avail_workers[p][w][d][s] 
+//   // 	      = temp_num_avail_workers[p][w][d][s];
+//   // 	  }
+//   // 	}
+//   //     }
+//   //   }
+//   // }
+//   if (mode == "perm"){
+//     for(int w = 0; w < NUM_WEEKS; w++){
+//       for(int d = 0; d < NUM_DAYS; d++){
+// 	for(int s = 0; s < NUM_SHIFTS; s++){
+// 	  for(int t = 0; t < NUM_TASKS; t++){
+// 	    demand[w][d][s][t] = current_demand[w][d][s][t];
+// 	  }
+// 	}
+//       }
+//     }
+//     for(int p = 0; p < NUM_POSITIONS; p++){
+//       for(int w = 0; w < NUM_WEEKS; w++){
+// 	for(int d = 0; d < NUM_DAYS; d++){
+// 	  for(int s = 0; s < NUM_SHIFTS; s++){
+// 	    avail_workers[p][w][d][s] 
+// 	      = num_avail_workers[p][w][d][s];
+// 	  }
+// 	}
+//       }
+//     }
+//   }
 
-  for(int t=BBlib; t>=Ass; t--){
-    for(int w = 0; w < NUM_WEEKS; w++){
-      for(int d = 0; d < NUM_DAYS; d++){
-	for(int s = 0; s < NUM_SHIFTS; s++){
-	  if(t == BBlib){
-	    avail_demand_diff[t][w][d][s] =  
-	      avail_workers[BBlib][w][d][s] 
-	      -demand[w][d][s][BokB]; 	
-	  }
-	  else if(t == Lib){
-	    avail_demand_diff[t][w][d][s] =  
-	      avail_workers[BBlib][w][d][s] + num_avail_workers[Lib][w][d][s] 
-	      -demand[w][d][s][Info] - demand[w][d][s][HB]; 	
-	  }
-	  else if (t == Ass){
-	    avail_demand_diff[t][w][d][s] = 
-	      avail_workers[BBlib][w][d][s] + avail_demand_diff[Lib][w][d][s] + num_avail_workers[Ass][w][d][s] 
-	      - demand[w][d][s][Exp] - demand[w][d][s][PL];
-	  }
-	}
-      }
-    }
-  }
-}
+//   for(int t=BBlib; t>=Ass; t--){
+//     for(int w = 0; w < NUM_WEEKS; w++){
+//       for(int d = 0; d < NUM_DAYS; d++){
+// 	for(int s = 0; s < NUM_SHIFTS; s++){
+// 	  if(t == BBlib){
+// 	    avail_demand_diff[t][w][d][s] =  
+// 	      avail_workers[BBlib][w][d][s] 
+// 	      -demand[w][d][s][BokB]; 	
+// 	  }
+// 	  else if(t == Lib){
+// 	    avail_demand_diff[t][w][d][s] =  
+// 	      avail_workers[BBlib][w][d][s] + num_avail_workers[Lib][w][d][s] 
+// 	      -demand[w][d][s][Info] - demand[w][d][s][HB]; 	
+// 	  }
+// 	  else if (t == Ass){
+// 	    avail_demand_diff[t][w][d][s] = 
+// 	      avail_workers[BBlib][w][d][s] + avail_demand_diff[Lib][w][d][s] + num_avail_workers[Ass][w][d][s] 
+// 	      - demand[w][d][s][Exp] - demand[w][d][s][PL];
+// 	  }
+// 	}
+//       }
+//     }
+//   }
+// }
 
 
 /************ Library function: compare avail demand *****/
@@ -2427,38 +2531,38 @@ bool Library::compare_avail_demand(string mode){
   
   //Find available workers
   find_num_avail_workers();
-  find_avail_demand_diff(mode);
+  //find_avail_demand_diff(mode);
 
   int diff[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
   int demand[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS][NUM_TASKS];
   int avail_workers[NUM_POSITIONS][NUM_WEEKS][NUM_DAYS][NUM_SHIFTS];
 
-  if (mode == "temp"){
-    //Find demand
-    for(int w = 0; w < NUM_WEEKS; w++){
-      for(int d = 0; d < NUM_DAYS; d++){
-	for(int s = 0; s < NUM_SHIFTS; s++){
-	  for(int t = 0; t < NUM_TASKS; t++){
-	    demand[w][d][s][t] = temp_current_demand[w][d][s][t];
-	  }
-	}
-      }
-    }
+  // if (mode == "temp"){
+  //   //Find demand
+  //   for(int w = 0; w < NUM_WEEKS; w++){
+  //     for(int d = 0; d < NUM_DAYS; d++){
+  // 	for(int s = 0; s < NUM_SHIFTS; s++){
+  // 	  for(int t = 0; t < NUM_TASKS; t++){
+  // 	    demand[w][d][s][t] = temp_current_demand[w][d][s][t];
+  // 	  }
+  // 	}
+  //     }
+  //   }
 
-    //Find avail workers
-    for(int p = 0; p < NUM_POSITIONS; p++){
-      for(int w = 0; w < NUM_WEEKS; w++){
-	for(int d = 0; d < NUM_DAYS; d++){
-	  for(int s = 0; s < NUM_SHIFTS; s++){
-	    avail_workers[p][w][d][s] 
-	      = temp_num_avail_workers[p][w][d][s];
-	  }
-	}
-      }
-    }
-  }
+  //   //Find avail workers
+  //   for(int p = 0; p < NUM_POSITIONS; p++){
+  //     for(int w = 0; w < NUM_WEEKS; w++){
+  // 	for(int d = 0; d < NUM_DAYS; d++){
+  // 	  for(int s = 0; s < NUM_SHIFTS; s++){
+  // 	    avail_workers[p][w][d][s] 
+  // 	      = temp_num_avail_workers[p][w][d][s];
+  // 	  }
+  // 	}
+  //     }
+  //   }
+  // }
 
-  else if (mode == "perm"){
+  if (mode == "perm"){
     //Find demand
     for(int w = 0; w < NUM_WEEKS; w++){
       for(int d = 0; d < NUM_DAYS; d++){
@@ -2651,22 +2755,22 @@ void Library::print_current_demand(){
   }
 }
 
-void Library::print_temp_current_demand(){
-  cout << "Library demand of workers" << endl;
-  cout << "Tasks: Exp, PL, Info, HB, BokB (without no_task)" << endl;
-  for (int i=0; i< NUM_WEEKS; i++){
-    for (int j=0; j< NUM_SHIFTS; j++){
-      for (int k=0; k< NUM_DAYS; k++){
-    	for (int l=Exp; l< NUM_TASKS; l++){
-	  cout << temp_current_demand[i][k][j][l] << " ";
-	}
-	cout << "   ";
-      }
-      cout << endl;
-    }
-    cout << endl << endl;
-  }
-}
+// void Library::print_temp_current_demand(){
+//   cout << "Library demand of workers" << endl;
+//   cout << "Tasks: Exp, PL, Info, HB, BokB (without no_task)" << endl;
+//   for (int i=0; i< NUM_WEEKS; i++){
+//     for (int j=0; j< NUM_SHIFTS; j++){
+//       for (int k=0; k< NUM_DAYS; k++){
+//     	for (int l=Exp; l< NUM_TASKS; l++){
+// 	  cout << temp_current_demand[i][k][j][l] << " ";
+// 	}
+// 	cout << "   ";
+//       }
+//       cout << endl;
+//     }
+//     cout << endl << endl;
+//   }
+// }
 
 
 
@@ -2694,41 +2798,41 @@ void Library::print_num_avail_workers(){
   }
 }
 
-void Library::print_temp_num_avail_workers(){
-  cout << "Total num of available workers (Ass, Lib, BBlib):" << endl;
+// oid Library::print_temp_num_avail_workers(){
+//   cout << "Total num of available workers (Ass, Lib, BBlib):" << endl;
   
-  for (int i=0; i< NUM_WEEKS; i++){
-    for (int j=0; j< NUM_SHIFTS; j++){
-      for(int m = Ass; m< NUM_POSITIONS; m++){
-	for (int k=0; k< NUM_DAYS; k++){
-	  cout << temp_num_avail_workers[m][i][k][j] << " ";
-	}
-	cout << "    ";
-      }
-      cout << endl;
-    }
-    cout << endl << endl;
-  }
-}
+//   for (int i=0; i< NUM_WEEKS; i++){
+//     for (int j=0; j< NUM_SHIFTS; j++){
+//       for(int m = Ass; m< NUM_POSITIONS; m++){
+// 	for (int k=0; k< NUM_DAYS; k++){
+// 	  cout << temp_num_avail_workers[m][i][k][j] << " ";
+// 	}
+// 	cout << "    ";
+//       }
+//       cout << endl;
+//     }
+//     cout << endl << endl;
+//   }
+// }
 
 
-void Library::print_avail_demand_diff(){
-  cout << "Avail demand diff:" << endl;
-  cout << "Tasks: Ass tasks (Exp, PL),    Lib tasks (Info, HB),     BBlib tasks (BokB)" << endl;
+// void Library::print_avail_demand_diff(){
+//   cout << "Avail demand diff:" << endl;
+//   cout << "Tasks: Ass tasks (Exp, PL),    Lib tasks (Info, HB),     BBlib tasks (BokB)" << endl;
  
-  for (int i=0; i< NUM_WEEKS; i++){
-    for (int j=0; j< NUM_SHIFTS; j++){
-      for (int t=Ass; t<=BBlib; t++){
-	for (int k=0; k< NUM_DAYS; k++){
-	  cout << avail_demand_diff[t][i][k][j] << " ";
-	}
-	cout << "    ";
-      }
-      cout << endl;
-    }
-    cout << endl << endl;
-  }
-}
+//   for (int i=0; i< NUM_WEEKS; i++){
+//     for (int j=0; j< NUM_SHIFTS; j++){
+//       for (int t=Ass; t<=BBlib; t++){
+// 	for (int k=0; k< NUM_DAYS; k++){
+// 	  cout << avail_demand_diff[t][i][k][j] << " ";
+// 	}
+// 	cout << "    ";
+//       }
+//       cout << endl;
+//     }
+//     cout << endl << endl;
+//   }
+// }
 
 void Library::print_worker_avail(int id, int w_a[NUM_WEEKS][NUM_DAYS][NUM_SHIFTS]){
   cout << "Worker_avail for " << id << endl;

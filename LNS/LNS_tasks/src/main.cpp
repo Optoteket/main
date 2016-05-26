@@ -120,7 +120,6 @@ void collect_AMPL_statistics(int* infeas, vector<int>& min_l, vector<int>& min_a
 /***************** Main loop *****************/
 int main(int argc, char** argv)
 {
-
   //Timer start
   clock_t begin = clock();
 
@@ -171,11 +170,16 @@ int main(int argc, char** argv)
   min_lib.clear();
   library_costs.clear();
 
-  int max_loops = 50;
-  int num_tests = 4;
+  int max_loops = 100;
+  int num_tests = 5;
   double weights[3];
   int wend_iterations = 500;
-  int wday_iterations = 10;
+  int wday_iterations = 20;
+  int max_library_cost = 0;
+
+  //Create and instance of empty best library
+  //Library best_library {&res_file};
+
 
   //AMPL loop
   for(int loop=0; loop < max_loops*num_tests; loop++){
@@ -226,9 +230,9 @@ int main(int argc, char** argv)
       weights[2]/=sum;
     }
     else if(loop < max_loops*5){
-      weights[0]=10; //Min number of full time avail workers/day
-      weights[1]=1; //Min number of avail workers per shift
-      weights[2]=1; //Min number of avail workers a day
+      weights[0]=0; //Min number of full time avail workers/day
+      weights[1]=0; //Min number of avail workers per shift
+      weights[2]=0; //Min number of avail workers a day
 
       //Normalizing
       double sum =  weights[0] +  weights[1] +  weights[2];
@@ -283,8 +287,8 @@ int main(int argc, char** argv)
     library.optimize_weekday_tasks(wday_iterations);
 
     //5. Get objective function varibles
-    double cost = library.get_library_cost();
-    library_costs.push_back(cost);
+    double library_cost = library.get_library_cost();
+    library_costs.push_back(library_cost);
     double cost_stand_in = library.get_stand_in_cost();
     library_costs.push_back(cost_stand_in);
     double cost_shift_avail = library.get_shift_avail_cost();
@@ -295,6 +299,11 @@ int main(int argc, char** argv)
     library_costs.push_back(cost_stand_in_lib);
     double cost_stand_in_ass = library.get_stand_in_ass();
     library_costs.push_back(cost_stand_in_ass);
+
+   //7. Check if library cost is better than max
+    // if (library_cost > max_library_cost){
+    //   best_library = library;
+    // }
 
     //7. Write results to resfile
     library.write_results();
@@ -345,6 +354,8 @@ int main(int argc, char** argv)
       ax_vector_vector.clear();
     }
   }
+
+  
 
   //Timer end
   clock_t end = clock();

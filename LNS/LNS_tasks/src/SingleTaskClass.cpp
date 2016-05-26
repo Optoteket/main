@@ -27,13 +27,16 @@ void SingleTask::find_avail_workers(vector<TaskWorker>* a_workers){
     Worker* worker = task_worker->worker;
 
     //Add if worker is available and qualified
-    if (worker->get_current_avail(week,day,shift) >= qualification){
-      avail_workers.push_back(task_worker);
-      //TaskWorker task_worker;
-      // task_worker.worker = &(*workers)[i];
-      // task_worker.temp_worker = (*workers)[i];
-      // task_worker.temp_cost = task_worker.temp_worker.get_cost(week,day);
-      // avail_workers.push_back(task_worker);
+    if((type == PL && (worker->get_current_avail_day(week,day) == 1))
+       || type != PL){
+      if (worker->get_current_avail(week,day,shift) >= qualification){
+	avail_workers.push_back(task_worker);
+	//TaskWorker task_worker;
+	// task_worker.worker = &(*workers)[i];
+	// task_worker.temp_worker = (*workers)[i];
+	// task_worker.temp_cost = task_worker.temp_worker.get_cost(week,day);
+	// avail_workers.push_back(task_worker);
+      }
     }
   }
   //cout << "In task: available workers:" << endl;

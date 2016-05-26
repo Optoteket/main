@@ -155,6 +155,7 @@ class Worker{
     bool operator()(Worker const* lhs, Worker const* rhs) const{
        return lhs->get_cost_sum() < rhs->get_cost_sum();
     } 
-  };    
+  }; 
+
 };
 
