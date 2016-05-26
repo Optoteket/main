@@ -1,0 +1,113 @@
+%The two heuristical approaches
+
+Apart from the implementation of the AMPL model we have also created two separate solvers of the problem using heuristics. One method was decided to be based on creating a pool of all week appearances that exists. Each week appearance contains a unique set of tasks during all seven days. After creating the pool of blocks these are assigned to the workers based on costs, one for each week. The other method ...
+
+\section{Weekly scheduling approach} \label{Weekly}
+\textit{Introduction text}
+\subsection{Block creation} \label{block_creation}
+A big part of this heuristic is to create the big pool of unique week appearances. These are then filtered for each of the worker based on its availability. The workers availability are generalized into three categories: \textit{Weekend week}, \textit{weekrest week} and \textit{weekday week}, where weekday week occurs three times during a five week period, see Table \ref{tab:Bob_avail}. 
+
+
+One week block contains seven days and up to four shifts where each shift can contain up to three task types. Table \ref{Generalized weekblock} below is a representation of a general week block with all possible tasks for each day \textit{d} and shift \textit{s}. \textit{I} in the table represents "No task that day", \textit{D} represents "Desk task" meaning either Exp or Info, \textit{PL} represents "Fetch list" and \textit{HB} represents "Hageby". 
+
+\begin{table}[!h]
+\centering
+\caption{A generalized weekblock with all existing tasks}
+\label{Generalized weekblock}
+\begin{tabular}{cccccccc}
+                         & Mon                         & Tue                         & Wed                         & Thu                         & Fri                         & Sat                         & Sun                         \\ \cline{2-8} 
+\multicolumn{1}{c|}{8-10} & \multicolumn{1}{c|}{I,D,PL} & \multicolumn{1}{c|}{I,D,PL} & \multicolumn{1}{c|}{I,D,PL} & \multicolumn{1}{c|}{I,D,PL} & \multicolumn{1}{c|}{I,D,PL} & \multicolumn{1}{c|}{I,D,HB} & \multicolumn{1}{c|}{I,D,HB} \\ \cline{2-8} 
+\multicolumn{1}{c|}{10-13} & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      &       \\ \cline{2-6} 
+\multicolumn{1}{c|}{13-16} & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      &       \\ \cline{2-6} 
+\multicolumn{1}{c|}{16-20} & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      &       \\ \cline{2-6} 
+\end{tabular}
+\end{table}
+
+Every day must contain exactly \textit{one} task from either of the four shifts when creating a week block. The tasks \textit{I} and \textit{PL} are ranging more than one shift. The duration of a PL is three shift and the I refers to the entire day. Hence, they are both placed in the first shift. When creating the combinations of block appearances there are additional conditions that have to be met:
+\begin{enumerate}  
+\item At most two tasks can be assigned the same shift and week.\label{first_item}
+\item No more than two evenings are allowed each week, one of which is required to be a Friday. \label{second_item}
+\item At most one PL is allowed in a weekblock. \label{third_item}
+\item Saturday and Sunday shall always contain the same task type, as well as if they contain a Desk task then Friday at shift four must also contain a Desk task.\label{fourth_item}
+\item No more than four tasks are allowed during the weekdays leaving at least one day without tasks. \label{fifth_item}
+\end{enumerate}
+
+If item \ref{first_item}, \ref{second_item}, \ref{third_item} and \ref{fifth_item} is disregarded there exists $6^5*3 = 23,328$ unique weekblocks. However, if Exp and Info were to be used instead of the combination of the two, the possible combinations would be significantly higher, namely $10^5*4 = 400,000$. By applying all conditions the total amount of unique block appearances for this implementation are 4,175.
+
+An illustration of one of the 4,175 existing block can be seen in Table \ref{block_example} below.
+\begin{table}[!h]
+\centering
+\caption{Illustration of one of the unique block appearances}
+\label{block_example}
+\begin{tabular}{cccccccc}
+                           & Mon                                            & Tue                                             & Wed                    & Thu                                            & Fri                    & Sat                                             & Sun                                             \\ \cline{2-8} 
+\multicolumn{1}{c|}{8-10}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}PL} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}HB} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}HB} \\ \cline{2-8} 
+\multicolumn{1}{c|}{10-13} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  &                                                 &                                                 \\ \cline{2-6}
+\multicolumn{1}{c|}{13-16} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{}  &                                                 &                                                 \\ \cline{2-6}
+\multicolumn{1}{c|}{16-20} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{}                           & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  &                                                 &                                                 \\ \cline{2-6}
+\end{tabular}
+\end{table}
+
+If a worker is assigned this block the worker will work in the Expedition desk or Information desk Monday and Thursday at 16-20 and 14-16 respectively. Also the worker will work with the Fetch list from 8-16 on Tuesday and be in Hageby during the weekend.
+
+
+\subsection{Block percolation}
+After creating all existing week combinations they are percolated to each of the workers based on their availability in each of the three categories mentioned in Section \ref{block_creation}. Table \ref{blocks_available_per_worker} below shows the results after this percolation has been made for all workers.
+
+\begin{table}[!h]
+\centering
+\caption{Number of assignable block combinations for the workers based on their availability.}
+\label{blocks_available_per_worker}
+\begin{tabular}{|c|ccc|}
+\hline
+Worker & Weekend & Weekrest & Weekday \\ \hline
+1      & 532     & 347      & 1580    \\ \hline
+2      & 1580    & 1580     & 1580    \\ \hline
+3      & 1063    & 347      & 1580    \\ \hline
+4      & 557     & 165      & 779     \\ \hline
+5      & 261     & 130      & 531     \\ \hline
+6      & 532     & 130      & 1580    \\ \hline
+7      & 261     & 130      & 531     \\ \hline
+8      & 261     & 29       & 531     \\ \hline
+9      & 115     & 12       & 247     \\ \hline
+10     & 532     & 130      & 1580    \\ \hline
+11     & 9       & 8        & 8       \\ \hline
+12     & 1063    & 347      & 1580    \\ \hline
+13     & 771     & 92       & 1190    \\ \hline
+14     & 265     & 29       & 489     \\ \hline
+15     & 51      & 18       & 120     \\ \hline
+16     & 495     & 130      & 843     \\ \hline
+17     & 237     & 69       & 267     \\ \hline
+18     & 532     & 279      & 1580    \\ \hline
+19     & 495     & 47       & 843     \\ \hline
+20     & 532     & 130      & 1580    \\ \hline
+21     & 227     & 227      & 227     \\ \hline
+22     & 2       & 1        & 1       \\ \hline
+23     & 3       & 2        & 2       \\ \hline
+24     & 11      & 5        & 47      \\ \hline
+25     & 1063    & 279      & 1580    \\ \hline
+26     & 5       & 4        & 4       \\ \hline
+27     & 213     & 106      & 425     \\ \hline
+28     & 2       & 1        & 2       \\ \hline
+29     & 426     & 106      & 1281    \\ \hline
+30     & 127     & 126      & 455     \\ \hline
+31     & 495     & 130      & 843     \\ \hline
+32     & 261     & 29       & 531     \\ \hline
+33     & 72      & 45       & 306     \\ \hline
+34     & 425     & 425      & 425     \\ \hline
+35     & 91      & 20       & 221     \\ \hline
+36     & 55      & 27       & 101     \\ \hline
+37     & 1063    & 347      & 1580    \\ \hline
+38     & 3       & 1        & 1       \\ \hline
+39     & 2       & 1        & 1       \\ \hline
+\end{tabular}
+\end{table}
+
+All of these values are a subset of the total amount 4,175. Knowing the problem, one can see that the amount of available weekrest blocks always are less than or equal to the available weekday blocks, as it should be. The only difference between these block categories is when a worker is free from work due to its weekrest. Therefore, using this information one can interpret that when they are equal the worker is never working weekends.
+
+%A SUBSET in the text below.
+One might think that there should be more weekend blocks available than weekday blocks as the availability as good as in all cases are higher for weekend blocks. This is not the case as all blocks without a weekend task is removed in the percolation, removing some combinations due to fridays. % % % % %
+
+
+\section{Individual task scheduling approach}\label{Individual}
+Text

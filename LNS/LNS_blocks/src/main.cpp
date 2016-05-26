@@ -40,6 +40,7 @@ void loop(ostream& outrunvalues){
 	Library lib;
 	lib.create_all_blocks();
 	cout << "block_vector size is: " << lib.get_block_vector().size() << endl; //Why differ to #blocks to create?
+// 	return;
 
 	lib.createWorkers(); //Creating myworkers[39]
 	

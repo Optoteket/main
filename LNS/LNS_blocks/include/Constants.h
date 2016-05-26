@@ -11,7 +11,7 @@ static const int num_workers = 39;
 
 static const int UPPER_LIMIT_STANDARD = 2;
 static const int UPPER_LIMIT_MANY = 3;
-static const int LOWER_LIMIT_MANY = 1;
+static const int LOWER_LIMIT_MANY = 0;
 
 //*** COSTS ***
 static const int PL_VIOLATE_COST = 1500; //When a block is containing a PL that will violate that workers demand
