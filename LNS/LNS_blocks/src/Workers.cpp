@@ -516,10 +516,10 @@ int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[
 					}
 				}else if(diff_in_demand[w][d][s][1]-1 == 0){ //Good assignment -> Negative cost!
 					if(newQual.compare(0,3,"lib") == 0){
-						temp_cost -= 2*DEMAND_PL_GOOD_LIB;
+						temp_cost -= DEMAND_PL_GOOD_LIB;
 					}
 					else if(newQual.compare(0,3,"ass") == 0){
-						temp_cost -= 2*DEMAND_PL_GOOD_ASS;
+						temp_cost -= DEMAND_PL_GOOD_ASS;
 					}
 				}
 			}

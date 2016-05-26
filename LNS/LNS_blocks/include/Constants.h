@@ -22,10 +22,10 @@ static const int DEMAND_FEW_ASS = 350; //**Increase this so>demand_few_lib??** G
 static const int DEMAND_MANY_ASS = 2000; //Bad to have too many assistants on shift!
 static const int DEMAND_FEW_TOT = 800; //currently: should be > DEMAND_MANY_LIBS
 static const int DEMAND_MANY_TOT = 700; //Same relation to PL_VIOLATE_COST
-static const int DEMAND_PL_BAD_LIB = 800;
-static const int DEMAND_PL_BAD_ASS = 600; 
-static const int DEMAND_PL_GOOD_LIB = 400; //When exact demand
-static const int DEMAND_PL_GOOD_ASS = 600; //When exact demand
+static const int DEMAND_PL_BAD_LIB = 2*800;
+static const int DEMAND_PL_BAD_ASS = 2*600; 
+static const int DEMAND_PL_GOOD_LIB = 2*400; //When exact demand
+static const int DEMAND_PL_GOOD_ASS = 2*600; //When exact demand
 extern int STAND_IN_COST;
 static const int DEMAND_EVENING_COST = 20000; //DEMAND_EVENING_COST > (5*)(2*)HIGH_PRIORITY (+ cost if ruining stand_in, - cost else). *5 becuase HIGH_PRIORITY can happen 5 times/week
 
