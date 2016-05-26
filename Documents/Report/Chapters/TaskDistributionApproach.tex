@@ -1,12 +1,50 @@
 
 \section{Introduction}
 
-In order to get a more complete picture of the problem and to avoid using expensive solvers such as CPLEX, the problem was also solved using two heuristic approaches. The first approach, where fixed weeks are distributed to workers, is discussed in the previous chapter. The second approach, which is presented in this chapter, instead distributes individual tasks to workers. This method greatly resembles the process of manually placing tasks as is typically done in many practical situations. 
+The first approach, where fixed weeks are distributed to workers, is discussed in the previous chapter. The second approach, which is presented in this chapter, instead distributes individual tasks to workers. This method greatly resembles the process of manually placing tasks as is typically done in many practical situations. 
 
-The objective of the scheduling process is not only to schedule a number of tasks to the workers but also to place them optimally with respect to stand ins. Thus, a method for moving through the solution space and a way of distinguishing between good and bad solutions is of great importance. The primary method used in this approach is a large neighbourhood search (LNS) together with a simulated annhealing (SA) accept function. Destroying and repairing the solution, as is customary in LNS, helps leading the solution out of local optima or plateaus. The accepted solutions are evaluated using cost approximations and this quides the search towards better solutions.
+The objective of the scheduling process is not only to schedule a number of tasks to the workers but also to place them optimally with respect to stand ins. Thus, a method for moving through the solution space and a way of distinguishing between good and bad solutions is of great importance. 
 
-\section{Costs}
-Distinguishing good schedules from bad schedules means there is a need for a way of seting a cost to different schedules. In the original mathematical model, the cost of a schedule consists of two different terms: a weighted sum of the number of stand ins and the number of different shifts present in the schedule. This represents the soft constraints of the problem. The hard constraints are instead modeled as constraints. In the heuristic approach however
+The primary method used in this approach is a large neighbourhood search (LNS) together with a simulated annhealing (SA) accept function. Destroying and repairing the solution, as is customary in LNS, helps leading the solution out of local optima or plateaus. Similarly, SA is used in order to allow the solution to move in a less favourable directions to avoid these local optima. The 
+search is guided by a continuously updated schedule cost.
+
+\section{Objective functions}
+Distinguishing good schedules from bad schedules means there is a need for a way of seting a cost to different schedules. In the original mathematical model, the cost of a schedule consists of two terms: a weighted sum of the number of stand ins on the worst day and the number of different shifts present in the schedule. The rest of the model consists of hard constraints which cannot be violated. However, in the heuristic approach these hard constraints are divided into hard and soft constraints, as is illustrated in Figure (TODO).
+
+During the scheduling process in the implementation, three different objective functions are used. The objective functions are illustrated in Table (TODO) and consist of a weekend objective function, a worker objective function and a weekday objective function.
+
+
+\begin{table}[]
+\centering
+\caption{Objective functions which leads the solution towards optimum.}
+\label{tab: task objective functions}
+\begin{tabular}{|l|l|}
+\hline
+\multirow{5}{3 cm}{\begin{tabular}[t]{@{}l@{}}Weekend \\ Objective \\ Function\end{tabular}} & \\
+ & Min stand in cost + average num stand ins\\  
+ & Min shift availability cost + average shift avail\\ 
+ & Min day availability cost + average day avail\\  
+ & \\ 
+\hline
+
+\multirow{7}{*}{\begin{tabular}[t]{@{}l@{}}Worker\\ Objective\\ Function\end{tabular}}    & \\
+& Num tasks per day cost \\ 
+& Num tasks per week cost \\ 
+& Num PL per week cost \\ 
+& Total num of PL cost \\ 
+& Num tasks at same shift per week  cost \\ 
+& \\
+\hline
+
+\multirow{4}{*}{\begin{tabular}[t]{@{}l@{}}Weekday\\ Objective\\ Function\end{tabular}}   & \\ & Stand in cost   \\ 
+ & \\ & \\ 
+\hline
+\end{tabular}
+\end{table}
+
+The weekday objective function is associated with the weekend distribution phase of the problem. In the weekend objective function, a stand in cost is defined as the weighted sum between the number of librarians and assistants which are stand ins at a certain day. The minimum stand in cost is defined as the cost at the worst av all days throughout all weeks. 
+
+The min shift availability cost refers to the minimum number of workers available at a shift throughout all shifts, days and weeks and similarly, the min day availability cost is the lowest number of workers available any shift throughout the whole schedule. Associate with these three costs is also the average, taken throughout all shifts, days and weeks for the three costs.
 
 Worker costs: 5 types of costs associated with workers which are weighed to a total sum, representing the cost of a worker. -Small constant "movement" towards more stand ins.
 
@@ -15,6 +53,8 @@ Library weekend cost: The cost consisting of 3 different parts: stand in avail, 
 Library total cost: the cost of the library is the number of stand ins on the worst day, with a weight on lib and ass workers (weighted sum). This corresponds exactly to the AMPL model.
 
 \section{Weekend phase}
+Discuss: relevance of objective function.
+
 Initial solution: placing tasks at random
 Destroy: Destroying a certain number of weekends at random.
 Repair: Repairing same weekends for same workers. Prioritizing weekends according to 1. qualification 2. avail demand diff. Almost random worker placed, although making sure that HB is placed correctly.
