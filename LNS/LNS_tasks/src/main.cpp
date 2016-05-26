@@ -235,7 +235,7 @@ int main(int argc, char** argv)
       weights[2]=0; //Min number of avail workers a day
 
       //Normalizing
-      double sum =  weights[0] +  weights[1] +  weights[2];
+      double sum =  weights[0] +  weights[1] +  weights[2] + 0.001;
       weights[0]/=sum;
       weights[1]/=sum;
       weights[2]/=sum;

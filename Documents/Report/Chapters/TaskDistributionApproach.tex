@@ -1,0 +1,48 @@
+
+\section{Introduction}
+
+In order to get a more complete picture of the problem and to avoid using expensive solvers such as CPLEX, the problem was also solved using two heuristic approaches. The first approach, where fixed weeks are distributed to workers, is discussed in the previous chapter. The second approach, which is presented in this chapter, instead distributes individual tasks to workers. This method greatly resembles the process of manually placing tasks as is typically done in many practical situations. 
+
+The objective of the scheduling process is not only to schedule a number of tasks to the workers but also to place them optimally with respect to stand ins. Thus, a method for moving through the solution space and a way of distinguishing between good and bad solutions is of great importance. The primary method used in this approach is a large neighbourhood search (LNS) together with a simulated annhealing (SA) accept function. Destroying and repairing the solution, as is customary in LNS, helps leading the solution out of local optima or plateaus. The accepted solutions are evaluated using cost approximations and this quides the search towards better solutions.
+
+\section{Costs}
+Distinguishing good schedules from bad schedules means there is a need for a way of seting a cost to different schedules. In the original mathematical model, the cost of a schedule consists of two different terms: a weighted sum of the number of stand ins and the number of different shifts present in the schedule. This represents the soft constraints of the problem. The hard constraints are instead modeled as constraints. In the heuristic approach however
+
+Worker costs: 5 types of costs associated with workers which are weighed to a total sum, representing the cost of a worker. -Small constant "movement" towards more stand ins.
+
+Library weekend cost: The cost consisting of 3 different parts: stand in avail, shift avail, day avail. Take worst value in objective function in order to match the mathematical model. Used together with the average of all three components. 
+
+Library total cost: the cost of the library is the number of stand ins on the worst day, with a weight on lib and ass workers (weighted sum). This corresponds exactly to the AMPL model.
+
+\section{Weekend phase}
+Initial solution: placing tasks at random
+Destroy: Destroying a certain number of weekends at random.
+Repair: Repairing same weekends for same workers. Prioritizing weekends according to 1. qualification 2. avail demand diff. Almost random worker placed, although making sure that HB is placed correctly.
+
+Infeasibility check: Does the current assignment of weekends generate a schedule where there are not enough workers at the shifts?
+
+Placing Library on Wheels and evenings: Considered as having very little degree of freedom. 
+
+Evenings: based on worker costs.
+
+Heuristic methods: SA on LNS with random destroy and repair. SA accept function, accepting with exponential cooling. Tuning parameters T and alpha.
+
+\section{Weekday phase}
+Evenings,weekends and BokB already placed. 
+
+Concept: destroy worst worker until all workers have feasible schedules. Record the library cost of the solution. 
+
+Destroy: weekday tasks for workers with highest cost.
+Repair: 1. qualification, 2. avail demand diff. Place cheapest worker.
+
+Infeasibility: when a feasible worker cost is not found for a large number of iterations. 
+
+\section{Simplifications of Mathematical Model}
+-10 Week scheduling
+-Objective function term about similar weeks
+-BokB fixed weeks for every other week workers.
+-Even odd weeks. How to handle?
+(-lower limit PL)
+
+\section{Implementation}
+C++, object orientation, run on a linux operating system. Reading availability of workers into the program and outputing a result file, which can be read by Excel. Results are to be visualized in Excel (write this in another part?)
