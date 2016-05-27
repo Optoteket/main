@@ -65,7 +65,7 @@ In order to measure what a good distribution of weekends is, the weekend objecti
 Because of the difficulty in measuring stand ins, certain tasks are placed already in the weekend phase. This includes all Library on Wheel tasks and all evening tasks. For the Library on Wheels, there is not much choice or variability, and thus a fixed schedule is used. Similarly, the workers who are available at the evening tasks are in most part, equal to the number of workers needed, thus leaving little choice in scheduling evenings. This is illustrated in tables \ref{tab:num_avail_no_tasks} and \ref{tab:num_avail_with_tasks}.
 
 \begin{table}[!h]
-\caption{Worker availability placing evening tasks and BokB.}
+\caption{Worker availability placing only weekends.}
 \centering
 \label{tab:num_avail_no_tasks}
 \begin{tabular}{|C{1.2cm}
@@ -96,7 +96,7 @@ Because of the difficulty in measuring stand ins, certain tasks are placed alrea
 
 \begin{table}[!h]
 \centering
-\caption{Worker availability after placing evening tasks and BokB for the same week.}
+\caption{Worker availability after placing weekends as well as evening tasks and BokB for the same week.}
 \label{tab:num_avail_with_tasks}
 \begin{tabular}{|C{1.2cm}
 |C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|}
@@ -130,7 +130,7 @@ The solution process follows an algorithm which involves both LNS and SA.
 
 
 % Define block styles
-\tikzstyle{decision} = [diamond, draw, fill=blue!30, 
+\tikzstyle{decision} = [diamond, draw, fill=red!30, 
     text width=3.5em, text badly centered, node distance=3cm, inner sep=0.1pt]
 \tikzstyle{block} = [rectangle, draw, fill=blue!30, 
     text width=5em, text centered, rounded corners, minimum height=4em]
@@ -140,7 +140,7 @@ The solution process follows an algorithm which involves both LNS and SA.
 
 \begin{figure}
 \centering
-
+\scalebox{0.85}{
 \begin{tikzpicture}[node distance = 2cm, auto]
     % Place nodes
     \node [block] (init) {Set \\ feasibility to false};
@@ -152,17 +152,23 @@ The solution process follows an algorithm which involves both LNS and SA.
 	 \node [block, below of=evaluate, node distance=2.5cm] (setobjf) {Set weekend obj fun value};
      \node [block, below of=setobjf, node distance=2cm] (init2) {Set \\ feasibility to false};
      \node [block, below of=setobjf] (savef) {Save solution};
-     \node [block, below of=savef] (save) {Save temp solution};
+     \node [block, below of=savef] (infeas) {Set \\ feasibility to false};
+     \node [block, below of=infeas] (save) {Save temp solution};
      \node [block, below of=save] (dr) {Destroy and repair solution};
      \node [decision, below of=dr] (evaluate2) {Solution feasible?};
      \node [block, right of=dr, node distance=3cm] (reload) {Reload temp solution};
-     \node [block, left of=evaluate2, node distance=4cm] (setobjf2) {Set weekend obj fun value};
+     \node [block, left of=evaluate2, node distance=5cm] (setobjf2) {Set weekend obj fun value};
      \node [decision, above of=setobjf2, node distance=2.5cm] (compare) {Better than saved?};
      \node [decision, above of=compare, node distance=2.5cm] (SA) {Accept anyway?};
-     \node [decision, left of=SA] (best) {Best solution?};
+     \node [decision, left of=SA, node distance=4cm] (best) {Best solution?};
      \node [block, above of=SA, minimum height=3em] (count++) {Increase iterator};
      \node [block, above of=best, minimum height=3em] (savebest) {Save as best};
-     \node [decision, above of=count++, node distance=2.5cm] (SA) {Iteration > max?};
+     \node [decision, above of=count++, node distance=2cm] (done) {Iteration > max?};
+     \node[above of=savebest, left of=savebest, node distance=2cm, scale=0.1](inv){};
+     \node [decision, below of=best, node distance=9cm] (isbest) {Current better than best?};
+     \node [block, right of=isbest, minimum height=3em, node distance=3cm] (reload2) {Reload best};
+      \node [block, below of=reload2, minimum height=3em, node distance=2.5cm] (finished) {Solution found};
+     
     %\node [decision, below of=evaluate] (decide) {is best candidate better?};
     %\node [block, below of=decide, node distance=3cm] (stop) {stop};
     % Draw edges
@@ -172,16 +178,32 @@ The solution process follows an algorithm which involves both LNS and SA.
 	\path [line] (redistribute) |- (distribute);
 	\path [line] (evaluate) -- node {yes}(setobjf);
 	\path [line] (setobjf) -- (savef);
-	\path [line] (savef) -- (save);
+	\path [line] (savef) -- (infeas);
+	\path [line] (infeas) -- (save);
 	\path [line] (save) -- (dr);
 	\path [line] (dr) -- (evaluate2);
 	\path [line] (evaluate2) -| node {no} (reload);
 	\path [line] (reload) -- (dr);
 	\path [line] (evaluate2) -- node {yes} (setobjf2);
 	\path [line] (setobjf2) -- (compare);
-	\path [line] (compare) -- node {yes} (setobjf2);
+	\path [line] (compare) -| node {yes} (best);
+	\path [line] (compare) -- node {no} (SA);
+	\path [line] (SA) -- node {yes} (best);
+	\path [line] (best) -- node {yes} (savebest);
+	\path [line] (best) -- node {no} (count++);
+	\path [line] (savebest) -- (count++);
+	\path [line] (count++) -- (done);
+	\path [line] (done) -- node {no}(save);
+	\path [line] (done) -- node {yes}(inv);
+	\path [line] (inv) |- (isbest);
+	\path [line] (isbest) -- node {no} (reload2);
+	\path [line] (isbest) -- node {yes} (finished);
+	\path [line] (reload2) -- (finished);
 	
-	\draw [color=gray!70,thick](-2,-18) rectangle (5,-10.5);
+	\node at (-2,-20.5) [above=4mm, right=2mm] {\textsc{feasibility loop}};
+	\draw [color=gray!70,thick](-2,-20.5) rectangle (5,-10.5);
+	\node at (-10.5,-21) [above=4mm, right=2mm] {\textsc{weekend distribution loop}};
+	\draw [color=gray!70,thick](-10.5,-21) rectangle (5,-8);
     %\path [line] (decide) -| node [near start] {yes} (update);
     %\path [line] (update) |- (identify);
     %\path [line] (decide) -- node {no}(stop);
@@ -189,6 +211,7 @@ The solution process follows an algorithm which involves both LNS and SA.
     %\path [line,dashed] (system) -- (init);
     %\path [line,dashed] (system) |- (evaluate);
 \end{tikzpicture}
+}
 
 \end{figure}
 
