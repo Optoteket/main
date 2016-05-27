@@ -189,7 +189,7 @@ void Library::print_demand(ostream& stream) {
 }
 
 vector <string> Library::get_info_vector() { //1 = ID, 2 = Name, 3 = Boss, 4 = Qual, 5 = Dep, 6 = PL, 7 = Weekend, 8 = HB, 9 = free_day
-	ifstream inFile("./src/data/workers5Wpessimistic.txt");
+	ifstream inFile("./src/data/workers5W.txt");
 	//Checking for open Error
 	if (inFile.fail()) {
 		cerr << "Error opening the file!" << endl;
@@ -263,7 +263,7 @@ void Library::createWorkers() {
 
 //Assigns avail for all workers
 void Library::setAvail_worker() {
-	ifstream inFile("./src/data/workers5Wpessimistic.txt");
+	ifstream inFile("./src/data/workers5W.txt");
 	
 	//Checking for open Error
 	if (inFile.fail()) {

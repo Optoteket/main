@@ -38,11 +38,12 @@ void loop(ostream& outrunvalues){
 	ofstream outstandins("./target/standins.txt");
 	ofstream outmaxmin("./target/maxmin.txt");
 	Library lib;
+	lib.createWorkers(); //Creating myworkers[39]
 	lib.create_all_blocks();
 	cout << "block_vector size is: " << lib.get_block_vector().size() << endl; //Why differ to #blocks to create?
 // 	return;
 
-	lib.createWorkers(); //Creating myworkers[39]
+	
 	
 	
 	//***Assign all the blocks to workers***
@@ -188,6 +189,7 @@ void loop(ostream& outrunvalues){
 	
 // 	int new_phase = 0;
 	int break_integer = 0;
+	
 	
 	//Evaluate the initial solution
 	output_vector = lib.evaluate_solution(cout);
@@ -366,7 +368,7 @@ void loop(ostream& outrunvalues){
 						time += (long double)t/CLOCKS_PER_SEC; //As long double value
 						outrunvalues << "Solution found after " << time << " seconds and " << iter_counter << " iterations" << endl;
 						outrunvalues << "Worst number of stand-ins: " << lib.get_lowest_stand_in() << endl;
-						lib.print_stand_ins(outrunvalues);
+// 						lib.print_stand_ins(outrunvalues);
 					}
 					
 				}

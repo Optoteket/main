@@ -1,9 +1,70 @@
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+    text width=4.5em, text badly centered, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+    text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+    minimum height=2em]
+
 %The two heuristical approaches
 
 Apart from the implementation of the AMPL model we have also created two separate solvers of the problem using heuristics. One method was decided to be based on creating a pool of all week appearances that exists. Each week appearance contains a unique set of tasks during all seven days. After creating the pool of blocks these are assigned to the workers based on costs, one for each week. The other method ...
 
 \section{Weekly scheduling approach} \label{Weekly}
-\textit{Introduction text}
+In Figure \ref{flow_chart}
+
+% % FLOW CHART
+\begin{figure}[!h]
+  \caption{A flow chart of the implemented heuristic}
+  \centering
+	\scalebox{0.85}{ \label{flow_chart}
+		\begin{tikzpicture}[node distance = 2cm, auto]
+		    % Place nodes
+			\node [block] (blocks) {Create all blocks};
+			\node [block,below of= blocks] (workers) {Create all workers};
+			\node [block,below of= workers] (sort) {Sort blocks to workers};
+			\node [block,below of= sort] (assign_rot) {Assign rotations};
+			\node [block,below of= assign_rot] (assign_low) {Assign LoW schedule};
+			\node [block,below of= assign_low] (init_sol) {Create initial solution};
+			\node [block,right of= init_sol, node distance = 4cm] (destroy) {Destroy workers};
+			\node [block,below of= destroy] (repair) {Repair workers};
+			\node [decision, below of= repair, node distance= 2.5cm] (feasible) {Is solution feasible?};
+			\node [block,below of= feasible, node distance = 6cm] (print) {Print solution to file};
+			
+			\node[decision,right of= feasible, node distance=3.5cm] (close) {Close enough?};
+			\node[block,below of= close, node distance = 3cm] (final) {Enter final phase};
+			\node[decision, right of= final, node distance = 4cm] (solved) {Solved in given number of iterations?};
+			\node[block,right of= assign_low, node distance = 11.5cm] (failed) {Failed iteration, run again};
+			\node[right of= assign_low, node distance = 5.5cm] (text) {LNS};
+			
+			%Invisible node, useful later
+%			\node[right of= destroy, node distance=2cm,scale=0.01](inv){};
+			
+		    % Draw edges
+		    \path [line] (blocks) -- (workers);
+		    \path [line] (workers) -- (sort);
+		    \path [line] (sort) -- (assign_rot);
+		    \path [line] (assign_rot) -- (assign_low);
+		    \path [line] (assign_low) -- (init_sol);
+		    \path [line] (init_sol) |- (feasible);
+		    \path [line] (destroy) -- (repair);
+		    \path [line] (repair) -- (feasible);
+		    \path [line] (feasible) -- node[right]{yes}(print);
+		    \path [line] (feasible) -- node[above]{no}(close);
+		    \path [line] (close) |- node[right]{no}(destroy);
+		    \path [line] (close) -- node[right]{yes}(final);
+		    \path [line] (final) -- (solved);
+		    \path [line] (solved) |- node[right]{yes}(print);
+		    \path [line] (solved) -- node[right]{no}(failed);
+		    \path [line] (failed) |- (blocks);
+%			\path[-,draw] (feasible) -| node[right]{no} (inv.north);
+%		    \path[line]{} (inv.north) |- node{} (destroy);
+			\draw [color=gray!70,thick](2.3,-8.5) rectangle(6,-17);
+		\end{tikzpicture}
+		}
+\end{figure}
+
 \subsection{Block creation} \label{block_creation}
 A big part of this heuristic is to create the big pool of unique week appearances. These are then filtered for each of the worker based on its availability. The workers availability are generalized into three categories: \textit{Weekend week}, \textit{weekrest week} and \textit{weekday week}, where weekday week occurs three times during a five week period, see Table \ref{tab:Bob_avail}. 
 
@@ -88,7 +149,7 @@ Worker & Weekend & Weekrest & Weekday \\ \hline
 25     & 1063    & 279      & 1580    \\ \hline
 26     & 5       & 4        & 4       \\ \hline
 27     & 213     & 106      & 425     \\ \hline
-28     & 2       & 1        & 2       \\ \hline
+28     & 2       & 2        & 2       \\ \hline
 29     & 426     & 106      & 1281    \\ \hline
 30     & 127     & 126      & 455     \\ \hline
 31     & 495     & 130      & 843     \\ \hline
@@ -103,11 +164,187 @@ Worker & Weekend & Weekrest & Weekday \\ \hline
 \end{tabular}
 \end{table}
 
-All of these values are a subset of the total amount 4,175. Knowing the problem, one can see that the amount of available weekrest blocks always are less than or equal to the available weekday blocks, as it should be. The only difference between these block categories is when a worker is free from work due to its weekrest. Therefore, using this information one can interpret that when they are equal the worker is never working weekends.
+All of these values are a subset of the total amount 4,175. Knowing the structure of the problem, one can see that the amount of available weekrest blocks are always less than or equal to the available weekday blocks, as it should be. The only difference between the two mentioned block categories is when a worker is free from work due to its weekrest. Therefore, using this information one can interpret that when they are equal the worker is never working weekends.
 
-%A SUBSET in the text below.
-One might think that there should be more weekend blocks available than weekday blocks as the availability as good as in all cases are higher for weekend blocks. This is not the case as all blocks without a weekend task is removed in the percolation, removing some combinations due to fridays. % % % % %
 
+\begin{table}[!h]
+\centering
+\caption{Typical availability for a generalized worker. Yellow signifies that the worker is available. In parenthesis, the weekend shift hours.}
+\label{typical_availability}
+\begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
+\hline
+%-------------------------------------------------------------------
+\textbf{Weekend week}& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
+\\ \hline 
+%%------------------------------------------------------------------- 
+%\rowcolor{Gray} 
+\colcell 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo &   & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & &
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 16:00-20:00 & & & \colcelltwo & & \colcelltwo & &
+\\ \hline 
+%%-------------------------------------------------------------------
+\end{tabularx}
+\begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
+\hline
+%-------------------------------------------------------------------
+\textbf{Weekrest week}& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
+\\ \hline 
+%%------------------------------------------------------------------- 
+%\rowcolor{Gray} 
+\colcell 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & & & & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & & & & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & & & &
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 16:00-20:00 & & & \colcelltwo & & & &
+\\ \hline 
+%%-------------------------------------------------------------------
+\end{tabularx}
+\begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
+\hline
+%-------------------------------------------------------------------
+\textbf{Weekday week}& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
+\\ \hline 
+%%------------------------------------------------------------------- 
+%\rowcolor{Gray} 
+\colcell 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo &   & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & &
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 16:00-20:00 & & & \colcelltwo & & & &
+\\ \hline 
+%%-------------------------------------------------------------------
+\end{tabularx}
+\begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
+\hline
+%-------------------------------------------------------------------
+\textbf{Weekday week}& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
+\\ \hline 
+%%------------------------------------------------------------------- 
+%\rowcolor{Gray} 
+\colcell 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo &   & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & &
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 16:00-20:00 & & & \colcelltwo & & & &
+\\ \hline 
+%%-------------------------------------------------------------------
+\end{tabularx}
+\begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
+\hline
+%-------------------------------------------------------------------
+\textbf{Weekday week}& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
+\\ \hline 
+%%------------------------------------------------------------------- 
+%\rowcolor{Gray} 
+\colcell 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo &   & 
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & &
+\\ \hline 
+%%-------------------------------------------------------------------
+%\rowcolor{Gray} 
+\colcell 16:00-20:00 & & & \colcelltwo & & & &
+\\ \hline 
+%%-------------------------------------------------------------------
+\end{tabularx}
+\end{table} 
+
+Looking at Table \ref{typical_availability} one might think that there shall be more weekend blocks available than weekday blocks as the availability, almost in all cases, are higher for weekend blocks. This is not the case as all blocks without weekend tasks are removed in the percolation. This means that all combinations with "No task" on weekends are removed, as well as the case that is shown in Table \ref{Friday_percolation}, which occur when a worker is assigned weekend Desk tasks and therefore can not be assigned any other task that Friday. "X" in Table \ref{Friday_percolation} means any task that day and shifts colored in black means no other task can be assigned that day. However, there are a few cases when a worker's weekrest occurs at two consecutive Fridays starting with the weekend week leading to less availability during a weekend week than a weekday week. % % % % % % % % % % Korrekturläs och ändra...
+
+\begin{table}[!h]
+\centering
+\caption{My caption}
+\label{Friday_percolation}
+\begin{tabular}{cccccccc}
+                                 & Mon                    & Tue                    & Wed                    & Thu                    & Fri                                            & Sat                                            & Sun                                            \\ \cline{2-8} 
+\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{X} & \multicolumn{1}{c|}{X} & \multicolumn{1}{c|}{X} & \multicolumn{1}{c|}{X} & \multicolumn{1}{c|}{\cellcolor[HTML]{000000}}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} \\ \cline{2-8} 
+\multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{000000}}  &                                                &                                                \\ \cline{2-6}
+\multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{000000}}  &                                                &                                                \\ \cline{2-6}
+\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} &                                                &                                                \\ \cline{2-6}
+\end{tabular}
+\end{table}
+
+
+\subsection{Rotation assignment} \label{rotation}
+
+
+\subsection{Assignment of Library on Wheels} \label{LoW_assignment}
+In order to avoid creating enormous amounts of block combinations, LoW tasks are assigned manually. To assign LoW manually also lead to a fix weekend rotation for the five LoW-workers. This slightly reduces the degrees of freedom of the problem as the LoW-workers' rotation will remain unchanged. However, as there are only a couple different set of feasible LoW assignments it shall not be the deciding factor for the quality of the solution.
+
+Without a manual assignment of LoW the number of existing tasks in a weekblock would increase significantly. The number of tasks would increase from 36 to 43, as there are seven LoW tasks during a week, resulting in much more than 4,175 unique week appearances. % %ändra sista
+
+\subsection{Initial solution} \label{initial_solution}
+The initial solution is created in a similar fashion as the repair function in this heuristic. Based on a greedy heuristic the best weekblock for a random worker and week is found and inserted. This is done until every worker have one weekend block, one weekrest block and three weekday blocks assigned to them.
+
+To find the best weekblock several costs have been introduced to measure whether a block is good or bad to assign a worker. Say, if the library demands two librarians at the Information desk Monday at 08:00 and currently there are one assigned, then it would be good to assign another one. Such an assignment will, therefore, be rewarded using a cost. Good assignments will provide negative costs and bad assignments will provide positive costs to the objective function. Table \ref{block_to_evaluate} together with Figure \ref{fig_costs} shows an increment where different cost parameters have to be considered when evaluating a block before assigning it to a worker. 
+
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[]
+\centering
+\caption{A block example to be evaluated using costs}
+\label{my-label}
+\begin{tabular}{llllllll}
+\multicolumn{1}{c}{}             & \multicolumn{1}{c}{Mon}                         & \multicolumn{1}{c}{Tue} & \multicolumn{1}{c}{Wed}                        & \multicolumn{1}{c}{Thu} & \multicolumn{1}{c}{Fri}                        & \multicolumn{1}{c}{Sat} & \multicolumn{1}{c}{Sun} \\ \cline{2-8} 
+\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}PL} & \multicolumn{1}{c|}{I}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I}  & \multicolumn{1}{c|}{I}  \\ \cline{2-8} 
+\multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c}{}    & \multicolumn{1}{c}{}    \\ \cline{2-6}
+\multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c}{}    & \multicolumn{1}{c}{}    \\ \cline{2-6}
+\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}                           & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c}{}    & \multicolumn{1}{c}{}    \\ \cline{2-6}
+                                 &                                                 &                         &                                                &                         &                                                &                         &                         \\
+                                 & Mon                                             &                         &                                                &                         &                                                &                         &                         \\ \cline{2-2}
+\multicolumn{1}{l|}{08:00-10:00} & \multicolumn{1}{l|}{\cellcolor[HTML]{FCFF2F}PL} &                         &                                                &                         &                                                &                         &                         \\ \cline{2-2}
+\multicolumn{1}{l|}{10:00-13:00} & \multicolumn{1}{l|}{\cellcolor[HTML]{FCFF2F}}   &                         &                                                &                         &                                                &                         &                         \\ \cline{2-2}
+\multicolumn{1}{l|}{13:00-16:00} & \multicolumn{1}{l|}{\cellcolor[HTML]{FCFF2F}}   &                         &                                                &                         &                                                &                         &                         \\ \cline{2-2}
+\end{tabular}
+\end{table}
+
+
+
+    
+
+
+\subsection{Costs}
+In order to find a feasible solution many of the implemented costs must be carefully chosen. Presently, there are 16 existing costs where some of them are correlated. 
 
 \section{Individual task scheduling approach}\label{Individual}
 Text
