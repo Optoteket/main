@@ -19,13 +19,15 @@
 \usepackage[english]{babel}
 %\usepackage{times}
 \usepackage{amssymb}
-\usepackage{fancybox} 
-\usepackage{textcomp}
+%\usepackage{fancybox} 
+%\usepackage{textcomp}
 \usepackage{float}
-\usepackage{amsmath}
+%\usepackage{amsmath}
 \usepackage{mathtools}
 \usepackage{multirow}
-\usepackage{booktabs}
+\usepackage{footnote}
+%\makesavenoteenv{tabular}
+%\makesavenoteenv{table}
 
 % the fancy header/footer
 % consult http://research.cmis.csiro.au/gjw/tex/docs/fancyhdr.pdf
@@ -149,6 +151,7 @@ Nyckelhål, XBOX, Dagens viktigaste nyckelord, and Keywords.}
   \begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
 \newcommand{\specialcelltwo}[2][c]{%
    \begin{tabular}[#1]{@{}l@{}l@{}}#2\end{tabular}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
 
 
