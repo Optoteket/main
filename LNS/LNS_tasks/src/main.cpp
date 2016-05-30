@@ -134,7 +134,7 @@ int main(int argc, char** argv)
   ofstream wend_AMPL_file(wend_AMPL_file_path.c_str());
 
   //Random seeding
-  srand (unsigned (time(0)));
+  //srand (unsigned (time(0)));
 
 
   //Create time and date stamp for files
@@ -170,8 +170,8 @@ int main(int argc, char** argv)
   min_lib.clear();
   library_costs.clear();
 
-  int max_loops = 100;
-  int num_tests = 5;
+  int max_loops = 1;
+  int num_tests = 1;
   double weights[3];
   int wend_iterations = 500;
   int wday_iterations = 20;
@@ -235,7 +235,7 @@ int main(int argc, char** argv)
       weights[2]=0; //Min number of avail workers a day
 
       //Normalizing
-      double sum =  weights[0] +  weights[1] +  weights[2];
+      double sum =  weights[0] +  weights[1] +  weights[2] + 0.001;
       weights[0]/=sum;
       weights[1]/=sum;
       weights[2]/=sum;
@@ -284,7 +284,7 @@ int main(int argc, char** argv)
     library.optimize_weekends(wend_iterations, 8, weights);
     
     //6. Optimize weekdays
-    library.optimize_weekday_tasks(wday_iterations);
+    //library.optimize_weekday_tasks(wday_iterations);
 
     //5. Get objective function varibles
     double library_cost = library.get_library_cost();

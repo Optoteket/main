@@ -55,11 +55,14 @@ param LOW_demand{w in W,d in D,s in S[d]} integer; #number of workers required f
 param Shift_list{Workers}; #used to visualize results in terminal, see .run file
 param LOW_list{Workers};
 param PL_list{Workers};
+param min_lib;
+param min_ass;
+param times_same_sol;
 
 #Objective function parameters
 param stand_in_day_d{I, W, 1..5}; #used to print number of stand-ins for each day
-param N1 := 1000; #Prioritize total number of stand ins
-param N1l := 5; #The bigger, the more priority to maximize librarian stand-ins
+param N1 := 100; #Prioritize total number of stand ins
+param N1l := 2; #The bigger, the more priority to maximize librarian stand-ins
 param N1a := 1; #The bigger, the more priority to maximize assistants stand-ins
 param N2 := 1; #Prioritize similar weeks
 
@@ -72,6 +75,8 @@ var stand_in_ass{i in I_ass, w in W, d in D} binary; #1 if (h[i,v]*qualavail[i,(
 var y{i in I, w in W, d in 1..5, s in 1..3} binary; #1 if worker i works week w, day d, shift s. No weekends and no evenings
 var stand_in_lib_min integer; # Lowest number of stand-in workers at any day
 var stand_in_ass_min integer; # Lowest number of stand-in workers at any day
+var stand_in_lib_tot{w in W, d in 1..5} integer; # Lowest number of stand-in workers at any day
+var stand_in_ass_tot{w in W, d in 1..5} integer; # Lowest number of stand-in workers at any day
 var stand_in_min_tot integer; # Lowest total number of stand in workers at any day
 var hb{i in I, w in W} binary; #1 if a person i works in HB week w
 var friday_evening{i in I, w in W} binary; #1 if a person works weekend but not in HB
@@ -147,9 +152,21 @@ subject to max_one_meeting_per_week{dep in 1..3, i in I_big_meeting union I_dep[
 	M_big[w,1,1] + sum{d in 1..5}(sum{s in 1..3} meeting[w,d,s,dep]) <= 1;
 
 ######################## Maximum one task per day #####################################
-#Stating that a worker performing library on wheels cannot perform another task that day
-subject to only_LOW{i in I, w in W, d in 1..5, s2 in S[d]}:
+#Stating that a worker can at maximum perform one task per shift
+subject to only_LOW{i in I, w in W, d in D, s in S[d]}:
+	sum {j in J[d]} x[i,w,d,s,j] <= 1;
+
+#Stating that a worker performing library on wheels cannot perform another task that day, Mon-Thur
+subject to only_one_task_per_day{i in I, w in W, d in 1..4, s2 in S[d]}:
 	sum{s in S[d]}(sum {j in {'Exp','Info','PL'}} x[i,w,d,s,j]) <= 1 - x[i,w,d,s2,'LOW'];
+
+#Stating that a worker performing can only have one library task at Fridays.
+subject to only_LOW_friday{i in I, w in W}:
+	sum{s in S[5]}(sum {j in {'Exp','Info','PL'}} x[i,w,5,s,j]) <= 1;
+
+#Stating that a worker performing library on Friday morning can only have a task in the evning.
+subject to two_tasks_if_LOW_friday_morning{i in I, w in W, s in 1..3}:
+	(sum {j in {'Exp','Info','PL'}} x[i,w,5,s,j])  <= 1 - x[i,w,5,1,'LOW'];
 
 subject to max_one_task_per_day_weekend{i in I, w in W, d in 6..7}:
 	sum{s in S[d]}(sum {j in J[d]} x[i,w,d,s,j]) <= 1;
@@ -167,8 +184,8 @@ subject to no_work_on_PL{i in I_no_PL, w in W, d in 1..5, s in S[d]}:
 	x[i,w,d,s,'PL'] = 0;
 	
 #Working many times at PL, min 3
-subject to many_work_on_PL_min{i in I_many_PL}:
-	sum{w in W}(sum{d in 1..5} x[i,w,d,1,'PL']) >= 3;
+#subject to many_work_on_PL_min{i in I_many_PL}:
+#	sum{w in W}(sum{d in 1..5} x[i,w,d,1,'PL']) >= 3;
 
 #Working many times at PL, max 4
 subject to many_work_on_PL_max{i in I_many_PL}:
@@ -233,15 +250,14 @@ subject to max_two_days_at_HB_per_ten_weeks{i in I_lib diff {23}}:
 subject to worker_not_assigned_exp_info{w in W}:
 	sum{d in 6..7}sum{j in {'Exp','Info'}} x[23,w,d,1,j] = 0;
 
-
 ######################### First objective function constraints: Stand-in constraints #################################
-
+#Find day with lowest lib and ass stand in value (weighted #lib + #ass) to maximize in obj function
 subject to find_total_min_num_stand_ins{w in W, d in 1..5}:
 	stand_in_min_tot <= (N1l*(sum{i in I_lib} stand_in_lib[i,w,d]) + N1a*(sum{i in I_ass} stand_in_ass[i,w,d]));
 
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
 subject to find_lowest_stand_in_amount_no_weekends_no_evenings_lib{w in W, d in 1..5}: #RHS: number of qualified workers at work that is available & not assigned to any task.
-	stand_in_lib_min <= sum{i in I_lib} stand_in_lib[i,w,d]; 		#+ meeting[s,d,w]*M; 
+	stand_in_lib_tot[w,d] = sum{i in I_lib} stand_in_lib[i,w,d]; 		#+ meeting[s,d,w]*M; 
 
 subject to working_shift_in_a_day{i in I, w in W, d in 1..5}:
 	working_a_shift[i,w,d] >= sum{s in 1..3}(sum{j in J[d]} x[i,w,d,s,j]);
@@ -264,7 +280,7 @@ subject to help_constraint3_lib{i in I_lib, w in W, d in 1..5}:
 ### Stand-ins for assistants
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
 subject to find_lowest_stand_in_amount_no_weekends_no_evenings_ass{w in W, d in 1..5}: #RHS: number of qualified workers at work that is available & not assigned to any task.
-	stand_in_ass_min <= sum{i in I_ass} stand_in_ass[i,w,d]; 		#+ meeting[s,d,w]*M; 
+	stand_in_ass_tot[w,d] = sum{i in I_ass} stand_in_ass[i,w,d]; 		#+ meeting[s,d,w]*M; 
 
 #A worker is a stand-in if he/she is available, qualified and is not already scheduled. Takes schedule rotation into account
 subject to find_avail_not_working_day_ass{i in I_ass, w in W, d in 1..5}:
@@ -300,8 +316,8 @@ subject to assign_y{i in I, w in W, d in 1..5, s in 1..3}:
 	y[i,w,d,s] = sum{j in {'Exp', 'Info', 'PL'}} x[i,w,d,s,j];
 
 #Workers that shall be assigned a weekday free from tasks
-subject to task_free_weekday{i in I_free_day, w in W}:
-	sum{d in 1..5}(1-sum{s in 1..3}(sum{j in J[d]} x[i,w,d,s,j])) >= 1;
+#subject to task_free_weekday{i in I_free_day, w in W}:
+#	sum{d in 1..5}(1-sum{s in 1..3}(sum{j in J[d]} x[i,w,d,s,j])) >= 1;
 
 ######################### Max tasks at same shift time constraint #################################
 #Allowing only two shifts at a certain time each week, not accounting Library on Wheels

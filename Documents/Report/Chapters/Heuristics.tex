@@ -16,7 +16,7 @@ In Figure \ref{flow_chart}
 
 % % FLOW CHART
 \begin{figure}[!h]
-  \caption{A flow chart of the implemented heuristic}
+  \caption{A flow chart of the implemented heuristic with weekly scheduling}
   \centering
 	\scalebox{0.85}{ \label{flow_chart}
 		\begin{tikzpicture}[node distance = 2cm, auto]
@@ -69,7 +69,7 @@ In Figure \ref{flow_chart}
 A big part of this heuristic is to create the big pool of unique week appearances. These are then filtered for each of the worker based on its availability. The workers availability are generalized into three categories: \textit{Weekend week}, \textit{weekrest week} and \textit{weekday week}, where weekday week occurs three times during a five week period, see Table \ref{tab:Bob_avail}. 
 
 
-One week block contains seven days and up to four shifts where each shift can contain up to three task types. Table \ref{Generalized weekblock} below is a representation of a general week block with all possible tasks for each day \textit{d} and shift \textit{s}. \textit{I} in the table represents "No task that day", \textit{D} represents "Desk task" meaning either Exp or Info, \textit{PL} represents "Fetch list" and \textit{HB} represents "Hageby". 
+One week block contains seven days and up to four shifts where each shift can contain up to three task types. Table \ref{Generalized weekblock} below is a representation of a general week block with all possible tasks for each day \textit{d} and shift \textit{s}. \textit{I} in the table represents "No task" is assigned that day, \textit{D} represents "Desk task" meaning either Exp or Info, \textit{PL} represents "Fetch list" and \textit{HB} represents "Hageby". 
 
 \begin{table}[!h]
 \centering
@@ -77,23 +77,25 @@ One week block contains seven days and up to four shifts where each shift can co
 \label{Generalized weekblock}
 \begin{tabular}{cccccccc}
                          & Mon                         & Tue                         & Wed                         & Thu                         & Fri                         & Sat                         & Sun                         \\ \cline{2-8} 
-\multicolumn{1}{c|}{8-10} & \multicolumn{1}{c|}{I,D,PL} & \multicolumn{1}{c|}{I,D,PL} & \multicolumn{1}{c|}{I,D,PL} & \multicolumn{1}{c|}{I,D,PL} & \multicolumn{1}{c|}{I,D,PL} & \multicolumn{1}{c|}{I,D,HB} & \multicolumn{1}{c|}{I,D,HB} \\ \cline{2-8} 
-\multicolumn{1}{c|}{10-13} & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      &       \\ \cline{2-6} 
-\multicolumn{1}{c|}{13-16} & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      &       \\ \cline{2-6} 
-\multicolumn{1}{c|}{16-20} & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      &       \\ \cline{2-6} 
+\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{I,D,PL} & \multicolumn{1}{c|}{I,D,PL} & \multicolumn{1}{c|}{I,D,PL} & \multicolumn{1}{c|}{I,D,PL} & \multicolumn{1}{c|}{I,D,PL} & \multicolumn{1}{c|}{I,D,HB} & \multicolumn{1}{c|}{I,D,HB} \\ \cline{2-8} 
+\multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      &       \\ \cline{2-6} 
+\multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      &       \\ \cline{2-6} 
+\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      & \multicolumn{1}{c|}{D}      &       \\ \cline{2-6} 
 \end{tabular}
 \end{table}
 
-Every day must contain exactly \textit{one} task from either of the four shifts when creating a week block. The tasks \textit{I} and \textit{PL} are ranging more than one shift. The duration of a PL is three shift and the I refers to the entire day. Hence, they are both placed in the first shift. When creating the combinations of block appearances there are additional conditions that have to be met:
+Every day must contain exactly \textit{one} task from either of the four shifts when creating a week block. The tasks \textit{I} and \textit{PL} are ranging more than one shift. The duration of a PL is three shift and the I refers to the entire day. Hence, they are both placed in the first shift to simplify the complete task representation. When creating the combinations of block appearances there are additional conditions that have to be met. These are:
 \begin{enumerate}  
 \item At most two tasks can be assigned the same shift and week.\label{first_item}
 \item No more than two evenings are allowed each week, one of which is required to be a Friday. \label{second_item}
 \item At most one PL is allowed in a weekblock. \label{third_item}
-\item Saturday and Sunday shall always contain the same task type, as well as if they contain a Desk task then Friday at shift four must also contain a Desk task.\label{fourth_item}
+\item Saturday and Sunday shall always contain the same task type.\label{fourth_item}
+\item If Saturday and Sunday contain Desk tasks, then so shall Friday afternoon (fourth shift). \label{friday_as_weekend}
 \item No more than four tasks are allowed during the weekdays leaving at least one day without tasks. \label{fifth_item}
 \end{enumerate}
 
-If item \ref{first_item}, \ref{second_item}, \ref{third_item} and \ref{fifth_item} is disregarded there exists $6^5*3 = 23,328$ unique weekblocks. However, if Exp and Info were to be used instead of the combination of the two, the possible combinations would be significantly higher, namely $10^5*4 = 400,000$. By applying all conditions the total amount of unique block appearances for this implementation are 4,175.
+%23,328 -> 9072 when item 4 applied
+Too see the growth of the problem when more tasks are added, consider the following example: If item \ref{first_item}, \ref{second_item}, \ref{third_item}, \ref{friday_as_weekend} and \ref{fifth_item} are disregarded there exists $6^5*3 = 23,328$ unique weekblocks. In contrast, if Exp and Info were to be considered separately, instead of the combination of the two, the possible combinations would be $10^5*4 = 400,000$.  By applying all conditions the total amount of unique block appearances for this implementation are 4,175. 
 
 An illustration of one of the 4,175 existing block can be seen in Table \ref{block_example} below.
 \begin{table}[!h]
@@ -102,22 +104,22 @@ An illustration of one of the 4,175 existing block can be seen in Table \ref{blo
 \label{block_example}
 \begin{tabular}{cccccccc}
                            & Mon                                            & Tue                                             & Wed                    & Thu                                            & Fri                    & Sat                                             & Sun                                             \\ \cline{2-8} 
-\multicolumn{1}{c|}{8-10}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}PL} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}HB} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}HB} \\ \cline{2-8} 
-\multicolumn{1}{c|}{10-13} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  &                                                 &                                                 \\ \cline{2-6}
-\multicolumn{1}{c|}{13-16} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{}  &                                                 &                                                 \\ \cline{2-6}
-\multicolumn{1}{c|}{16-20} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{}                           & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  &                                                 &                                                 \\ \cline{2-6}
+\multicolumn{1}{c|}{08:00-10:00}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}PL} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}HB} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}HB} \\ \cline{2-8} 
+\multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  &                                                 &                                                 \\ \cline{2-6}
+\multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{}  &                                                 &                                                 \\ \cline{2-6}
+\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{}                           & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  &                                                 &                                                 \\ \cline{2-6}
 \end{tabular}
 \end{table}
 
-If a worker is assigned this block the worker will work in the Expedition desk or Information desk Monday and Thursday at 16-20 and 14-16 respectively. Also the worker will work with the Fetch list from 8-16 on Tuesday and be in Hageby during the weekend.
+This block contains five tasks; two of them are weekend tasks and three are weekday tasks. Which week this block can be assigned to is dependent on the worker's rotation. Since Hageby is assigned to the weekblock one can conclude that only a librarian can have this block assigned to itself. Due to this fact, the Desk tasks can imply either Exp or Info desk work as librarians are qualified for both.
 
 
 \subsection{Block percolation}
-After creating all existing week combinations they are percolated to each of the workers based on their availability in each of the three categories mentioned in Section \ref{block_creation}. Table \ref{blocks_available_per_worker} below shows the results after this percolation has been made for all workers.
+After creating all existing week combinations they are percolated to each of the workers based on their availability in each of the three categories mentioned in Section \ref{block_creation}. Table \ref{blocks_available_per_worker} shows the results after this percolation has been made for all workers.
 
 \begin{table}[!h]
 \centering
-\caption{Number of assignable block combinations for the workers based on their availability.}
+\caption{Number of assignable unique blocks for the workers based on their availability and qualification.}
 \label{blocks_available_per_worker}
 \begin{tabular}{|c|ccc|}
 \hline
@@ -164,7 +166,7 @@ Worker & Weekend & Weekrest & Weekday \\ \hline
 \end{tabular}
 \end{table}
 
-All of these values are a subset of the total amount 4,175. Knowing the structure of the problem, one can see that the amount of available weekrest blocks are always less than or equal to the available weekday blocks, as it should be. The only difference between the two mentioned block categories is when a worker is free from work due to its weekrest. Therefore, using this information one can interpret that when they are equal the worker is never working weekends.
+All of the values in the table are a subset of the total amount of 4,175 blocks. Knowing the structure of the problem, one can deduce that the amount of available weekrest blocks are always less than or equal to the available weekday blocks, as it should be. The only difference between the two mentioned block categories is when a worker is free from work due to its weekrest. Therefore, using this information one can interpret that they are equal when the worker is never working weekends.
 
 
 \begin{table}[!h]
@@ -288,11 +290,11 @@ All of these values are a subset of the total amount 4,175. Knowing the structur
 \end{tabularx}
 \end{table} 
 
-Looking at Table \ref{typical_availability} one might think that there shall be more weekend blocks available than weekday blocks as the availability, almost in all cases, are higher for weekend blocks. This is not the case as all blocks without weekend tasks are removed in the percolation. This means that all combinations with "No task" on weekends are removed, as well as the case that is shown in Table \ref{Friday_percolation}, which occur when a worker is assigned weekend Desk tasks and therefore can not be assigned any other task that Friday. "X" in Table \ref{Friday_percolation} means any task that day and shifts colored in black means no other task can be assigned that day. However, there are a few cases when a worker's weekrest occurs at two consecutive Fridays starting with the weekend week leading to less availability during a weekend week than a weekday week. % % % % % % % % % % Korrekturläs och ändra...
+Looking at a generalized worker's availability shown in Table \ref{typical_availability} one might think that there shall be more weekend blocks available than weekday blocks as the availability, almost in all cases, are higher for weekend blocks. This is not the case as all blocks without weekend tasks are removed in the percolation. This means that all combinations with "No task" on weekends are removed, as well as the case that is shown in Table \ref{Friday_percolation}, which occur when a worker is assigned weekend Desk tasks and therefore can not be assigned any other task that Friday.
 
 \begin{table}[!h]
 \centering
-\caption{My caption}
+\caption{A weekend block with Desk tasks preventing any other tasks on Fridays.}
 \label{Friday_percolation}
 \begin{tabular}{cccccccc}
                                  & Mon                    & Tue                    & Wed                    & Thu                    & Fri                                            & Sat                                            & Sun                                            \\ \cline{2-8} 
@@ -303,6 +305,7 @@ Looking at Table \ref{typical_availability} one might think that there shall be 
 \end{tabular}
 \end{table}
 
+ "X" in Table \ref{Friday_percolation} means any task that day and shifts colored in black means no other task can be assigned that day. However, there are a couple of cases when a worker's weekrest occurs at two consecutive Fridays starting with the weekend week leading to less availability during a weekend week than a weekday week. % % % % % % % % % % Korrekturläs
 
 \subsection{Rotation assignment} \label{rotation}
 
@@ -320,10 +323,10 @@ To find the best weekblock several costs have been introduced to measure whether
 % Please add the following required packages to your document preamble:
 % \usepackage[table,xcdraw]{xcolor}
 % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
-\begin{table}[]
+\begin{table}[!h]
 \centering
 \caption{A block example to be evaluated using costs}
-\label{my-label}
+\label{block_to_evaluate}
 \begin{tabular}{llllllll}
 \multicolumn{1}{c}{}             & \multicolumn{1}{c}{Mon}                         & \multicolumn{1}{c}{Tue} & \multicolumn{1}{c}{Wed}                        & \multicolumn{1}{c}{Thu} & \multicolumn{1}{c}{Fri}                        & \multicolumn{1}{c}{Sat} & \multicolumn{1}{c}{Sun} \\ \cline{2-8} 
 \multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}PL} & \multicolumn{1}{c|}{I}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I}  & \multicolumn{1}{c|}{I}  \\ \cline{2-8} 
@@ -338,7 +341,22 @@ To find the best weekblock several costs have been introduced to measure whether
 \end{tabular}
 \end{table}
 
-
+% % FLOW CHART of COSTS
+\begin{figure}[!h]
+  \caption{A flow chart of appearing costs when a PL is assigned a block on a Monday.}
+  \centering
+	\scalebox{0.85}{ \label{cost_flow_chart}
+		\begin{tikzpicture}[node distance = 2cm, auto]
+		    % Place nodes
+		    \node [decision] (demand) {Need for another PL-worker Monday week 3?};
+			\node [block] (blocks) {Create all blocks};
+			\node [block,below of= blocks] (workers) {Create all workers};
+			
+		    % Draw edges
+		    \path [line] (blocks) -- (workers);
+		\end{tikzpicture}
+		}
+\end{figure}
 
     
 

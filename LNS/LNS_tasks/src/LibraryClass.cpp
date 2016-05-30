@@ -179,13 +179,13 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
     repair_weekend("perm");
     feasible = compare_avail_demand("perm");
     if(feasible){
-      place_BokB();
+      //place_BokB();
       feasible = compare_avail_demand("perm");
     }
 
     //Check feasibility, place evenings
     if(feasible){
-      feasible = set_evening_tasks();
+      //feasible = set_evening_tasks();
       feasible = compare_avail_demand("perm");
     }
   }
@@ -238,7 +238,7 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
       }
 
       //Remove all tasks except weekend/friday evening
-      remove_weekday_tasks();
+      //remove_weekday_tasks();
 
       //Destroy and repair partially
       destroy_weekend(percent, "perm");
@@ -247,13 +247,13 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
       //Check feasibility, place BokB
       feasible = compare_avail_demand("perm");
       if(feasible){
-	place_BokB();
+	//place_BokB();
 	feasible = compare_avail_demand("perm");
       }
 
       //Check feasibility, place evenings
       if(feasible){
-	feasible = set_evening_tasks();
+	//feasible = set_evening_tasks();
 	feasible = compare_avail_demand("perm");
       }
       
@@ -2312,6 +2312,32 @@ void Library::write_stat(){
 
 /************* Library function: write results ******************/
 void Library::write_results(){
+  string num_avail_file_dir = "../target/results/num_avail_workers.dat";
+  ofstream num_avail_file(num_avail_file_dir.c_str());
+  if(num_avail_file.is_open()){
+
+    num_avail_file << "Total num of available workers (Ass, Lib, BBlib):" << endl;
+  
+    for (int i=0; i< NUM_WEEKS; i++){
+      for (int j=0; j< NUM_SHIFTS; j++){
+	for(int m = Ass; m< NUM_POSITIONS; m++){
+	  for (int k=0; k< NUM_DAYS; k++){
+	    num_avail_file  << num_avail_workers[m][i][k][j];
+	    if (k != NUM_DAYS-1){
+	      num_avail_file  << " & ";
+	    }
+	  }
+	  if (m != NUM_POSITIONS-1){
+	   num_avail_file  << " &  &   ";
+	  }
+	}
+	num_avail_file << " \\" << "\\ \\hline" << endl;
+      }
+      num_avail_file << endl << endl;
+    }
+  }
+  num_avail_file.close();
+
   string res_file_dir = "../target/results/resfile.dat";
   (*resfile).open(res_file_dir.c_str());
   if(resfile->is_open())

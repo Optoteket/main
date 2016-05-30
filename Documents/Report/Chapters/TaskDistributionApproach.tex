@@ -1,0 +1,263 @@
+
+\section{Introduction}
+
+The first approach, where fixed weeks are distributed to workers, is discussed in the previous chapter. The second approach, which is presented in this chapter, instead distributes individual tasks to workers. This method greatly resembles the process of manually placing tasks as is typically done in many practical situations. 
+
+The objective of the scheduling process is not only to schedule a number of tasks to the workers but also to place them optimally with respect to stand ins. Thus, a method for moving through the solution space and a way of distinguishing between good and bad solutions is of great importance.  
+
+The primary method used in this approach is a large neighbourhood search (LNS) together with a simulated annhealing (SA) accept function. Destroying and repairing the solution, as is customary in LNS, helps leading the solution out of local optima or plateaus. Similarly, SA is used in order to allow the solution to move in a less favourable directions to avoid these local optima. The 
+search is guided by a continuously updated schedule cost.
+
+Write: two phases implemented.
+
+\section{Objective functions}
+Distinguishing good schedules from bad schedules means there is a need for a way of seting a cost to different schedules. In the original mathematical model, the cost of a schedule consists of two terms: a weighted sum of the number of stand ins on the worst day and the number of different shifts present in the schedule. The rest of the model consists of hard constraints which cannot be violated. However, in the heuristic approach these hard constraints are divided into hard and soft constraints, as is illustrated in Figure (TODO).
+
+During the scheduling process in the implementation, three different objective functions are used. The objective functions are illustrated in Table (TODO) and consist of a weekend objective function, a worker objective function and a weekday objective function.
+
+
+\begin{table}[]
+\centering
+\caption{Objective functions used in the implementation.}
+\label{tab: task objective functions}
+\begin{tabular}{|p{3cm}|l|}
+\hline
+\multirow{5}{*}{\begin{tabular}[t]{@{}l@{}}\textbf{Weekend} \\ \textbf{Objective} \\ \textbf{Function}\end{tabular}} & \\
+ & Min stand in cost + average num stand ins\\  
+ & Min shift availability cost + average shift avail\\ 
+ & Min day availability cost + average day avail\\  
+ & \\ 
+\hline
+
+\multirow{7}{*}{\begin{tabular}[t]{@{}l@{}}\textbf{Worker}\\ \textbf{Objective}\\ \textbf{Function}\end{tabular}}    & \\
+& Num tasks per day cost \\ 
+& Num tasks per week cost \\ 
+& Num PL per week cost \\ 
+& Total num of PL cost \\ 
+& Num tasks at same shift per week  cost \\ 
+& \\
+\hline
+
+\multirow{4}{*}{\begin{tabular}[t]{@{}l@{}}\textbf{Weekday}\\ \textbf{Objective}\\ \textbf{Function}\end{tabular}}   & \\ & Min stand in cost   \\ 
+ & \\ & \\ 
+\hline
+\end{tabular}
+\end{table}
+
+The weekday objective function is associated with the weekend distribution phase of the problem. In the weekend objective function, a stand in cost is defined as the weighted sum between the number of librarians and assistants which are stand ins at a certain day. The minimum stand in cost is defined as the cost at the worst av all days throughout all weeks. 
+
+The min shift availability cost refers to the minimum number of workers available at a shift throughout all shifts, days and weeks. Similarly, the min day availability cost is the lowest number of workers available any shift throughout the whole schedule. In addition to these costs, the average of all three cost types is also used to distinguish solutions which have the same cost.
+
+The worker objective function is used during the weekday task distribution phase of the problem. The function value is a combination of the relaxed constraints of the problem, as described at the beginning of this chapter. Thus, the worker objective function must always be reduced to zero before the schedule will be considered feasible.
+
+The objective function consists of five different costs. All of them are calculated as the total cost for all workers. For example, the first cost described in Table (todo) is the total number of tasks per day exceeding the maximum of one daily task. In the objective function, the sum of excess tasks is taken over all workers. 
+
+The second cost is the number of tasks exceeding four per week. The third is the number of Fetch list tasks performed by a worker exceeding the max limit of one per week. In addition to this, there is a specified max limit for the number of fetch lists that can be performed by a worker throughout all weeks and which is different for different workers. This is the fourth cost. Finally, the number of tasks performed at the same shift in a week should not exceed two, which is the final cost in the worker objective function.
+
+A feasible solution, where the worker objective function is zero, is evaluated using the weekday objective function described lastly in the table. This cost has only one cost and corresponds to the objective function in the mathematical model. The min stand in cost is calculated in the same way as in the weekend objective function. 
+
+\section{Weekend phase}
+
+The first phase in the scheduling process is the weekend phase. In this phase the weekends of all workers are placed and optimized before placing the remaining tasks. The reason for implementing such a phase rather than placing all tasks at once was the big impact of the weekend structure on the entire schedule. First and foremost, the location of a worker's weekend affects the availability of the worker in the following week where the week rest is placed. The worker is unavailable during week rest and if such week rests are combined in an unfortunate way, the scheduling can result in an uneven distribution of workers during days affected by week rest.
+
+In order to measure what a good distribution of weekends is, the weekend objective function described in the previous section is used during the search process. Although the overall objective is to maximize the number of stand ins at the most critical day in the schedule, that is, even out the stand ins over the days, it is not trivial to measure this in a schedule with no tasks placed. Evening work reduces potential stand ins as well as tasks distributed during the days. Furthermore, limits on how many tasks per week a person is allowed to take further complicates the measurement of stand ins.
+
+Because of the difficulty in measuring stand ins, certain tasks are placed already in the weekend phase. This includes all Library on Wheel tasks and all evening tasks. For the Library on Wheels, there is not much choice or variability, and thus a fixed schedule is used. Similarly, the workers who are available at the evening tasks are in most part, equal to the number of workers needed, thus leaving little choice in scheduling evenings. This is illustrated in tables \ref{tab:num_avail_no_tasks} and \ref{tab:num_avail_with_tasks}.
+
+\begin{table}[!h]
+\caption{Worker availability placing only weekends.}
+\centering
+\label{tab:num_avail_no_tasks}
+\begin{tabular}{|C{1.2cm}
+|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|}
+\hline
+&\multicolumn{7}{l|}{\textbf{Num available assistants}} \\ \hline
+\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline
+\colcell Shift 1: &8 & 10 & 10 & 10 & 6 & 0 & 0  \\ \hline
+\colcell Shift 2: &8 & 9 & 9 & 9 & 6 & 0 & 0 \\ \hline
+\colcell Shift 3: &9 & 8 & 9 & 7 & 5 & 0 & 0 \\ \hline
+\colcell Shift 4: & 3 & 2 & 2 & 3 & 0 & 0 & 0 \\ \hline
+\hline
+&\multicolumn{7}{l|}{\textbf{Num available librarians}} \\ \hline
+\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline
+\colcell Shift 1: & 16 & 15 & 16 & 13 & 12 & 0 & 0 \\ \hline
+\colcell Shift 2: & 18 & 15 & 17 & 14 & 13 & 0 & 0  \\ \hline
+\colcell Shift 3: &17 & 14 & 18 & 18 & 13 & 0 & 0  \\ \hline
+\colcell Shift 4: &3 & 4 & 4 & 3 & 1 & 0 & 0 \\ \hline
+\hline
+&\multicolumn{7}{l|}{\textbf{Num available BBlib}} \\ \hline
+\rowcolor{Gray}  & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline
+\colcell Shift 1:  & 2 & 0 & 1 & 1 & 1 & 0 & 0 \\ \hline
+\colcell Shift 2: & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\colcell Shift 3: &0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\colcell Shift 4: &1 & 0 & 2 & 2 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\caption{Worker availability after placing weekends as well as evening tasks and BokB for the same week.}
+\label{tab:num_avail_with_tasks}
+\begin{tabular}{|C{1.2cm}
+|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|}
+\hline
+&\multicolumn{7}{l|}{\textbf{Num available assistants}} \\ \hline
+\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline
+\colcell Shift 1: & 7 & 10 & 9 & 9 & 8 & 0 &  0 \\ \hline   
+\colcell Shift 2: &7 & 9 & 8 & 8 & 8 & 0 & 0 \\ \hline
+\colcell Shift 3: & 7 & 7 & 8 & 6 & 6 & 0 & 0 \\ \hline 
+\colcell Shift 4: & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\hline 
+&\multicolumn{7}{l|}{\textbf{Num available librarians}} \\ \hline
+\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline
+\colcell Shift 1: & 14 & 11 & 13 & 11 & 12 & 0 & 0 \\ \hline  
+\colcell Shift 2: &14 & 11 & 14 & 11 & 12 & 0 & 0 \\ \hline  
+\colcell Shift 3: &13 & 11 & 14 & 13 & 13 & 0 & 0 \\ \hline       
+\colcell Shift 4: &0 & 0 & 0 & 1 & 1 & 0 & 0 \\ \hline
+\hline   
+&\multicolumn{7}{l|}{\textbf{Num available BBlib}} \\ \hline
+\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline
+\colcell Shift 1: & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\colcell Shift 2: & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\colcell Shift 3: & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\colcell Shift 4: & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}
+
+The the number of available workers present at a shift, as illustrated in the tables, includes all those workers who are available for tasks at that shift and who has no tasks scheduled at that day.
+
+The solution process follows an algorithm which involves both LNS and SA. 
+
+
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, fill=red!30, 
+    text width=3.5em, text badly centered, node distance=3cm, inner sep=0.1pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!30, 
+    text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+    minimum height=2em]
+
+\begin{figure}
+\centering
+\scalebox{0.85}{
+\begin{tikzpicture}[node distance = 2cm, auto]
+    % Place nodes
+    \node [block] (init) {Set \\ feasibility to false};
+    %\node [cloud, left of=init] (expert) {expert};
+    %\node [cloud, right of=init] (system) {system};
+    \node [block, below of=init] (distribute) {Distribute all weekends randomly};
+    \node [decision, below of=distribute] (evaluate) {Solution feasible?};
+    \node [block, left of=distribute, node distance=4cm] (redistribute) {Remove all weekends};
+	 \node [block, below of=evaluate, node distance=2.5cm] (setobjf) {Set weekend obj fun value};
+     \node [block, below of=setobjf, node distance=2cm] (init2) {Set \\ feasibility to false};
+     \node [block, below of=setobjf] (savef) {Save solution};
+     \node [block, below of=savef] (infeas) {Set \\ feasibility to false};
+     \node [block, below of=infeas] (save) {Save temp solution};
+     \node [block, below of=save] (dr) {Destroy and repair solution};
+     \node [decision, below of=dr] (evaluate2) {Solution feasible?};
+     \node [block, right of=dr, node distance=3cm] (reload) {Reload temp solution};
+     \node [block, left of=evaluate2, node distance=5cm] (setobjf2) {Set weekend obj fun value};
+     \node [decision, above of=setobjf2, node distance=2.5cm] (compare) {Better than saved?};
+     \node [decision, above of=compare, node distance=2.5cm] (SA) {Accept anyway?};
+     \node [decision, left of=SA, node distance=4cm] (best) {Best solution?};
+     \node [block, above of=SA, minimum height=3em] (count++) {Increase iterator};
+     \node [block, above of=best, minimum height=3em] (savebest) {Save as best};
+     \node [decision, above of=count++, node distance=2cm] (done) {Iteration > max?};
+     \node[above of=savebest, left of=savebest, node distance=2cm, scale=0.1](inv){};
+     \node [decision, below of=best, node distance=9cm] (isbest) {Current better than best?};
+     \node [block, right of=isbest, minimum height=3em, node distance=3cm] (reload2) {Reload best};
+      \node [block, below of=reload2, minimum height=3em, node distance=2.5cm] (finished) {Solution found};
+     
+    %\node [decision, below of=evaluate] (decide) {is best candidate better?};
+    %\node [block, below of=decide, node distance=3cm] (stop) {stop};
+    % Draw edges
+    \path [line] (init) -- (distribute);
+    \path [line] (distribute) -- (evaluate);
+    \path [line] (evaluate) -| node {no} (redistribute);
+	\path [line] (redistribute) |- (distribute);
+	\path [line] (evaluate) -- node {yes}(setobjf);
+	\path [line] (setobjf) -- (savef);
+	\path [line] (savef) -- (infeas);
+	\path [line] (infeas) -- (save);
+	\path [line] (save) -- (dr);
+	\path [line] (dr) -- (evaluate2);
+	\path [line] (evaluate2) -| node {no} (reload);
+	\path [line] (reload) -- (dr);
+	\path [line] (evaluate2) -- node {yes} (setobjf2);
+	\path [line] (setobjf2) -- (compare);
+	\path [line] (compare) -| node {yes} (best);
+	\path [line] (compare) -- node {no} (SA);
+	\path [line] (SA) -- node {yes} (best);
+	\path [line] (best) -- node {yes} (savebest);
+	\path [line] (best) -- node {no} (count++);
+	\path [line] (savebest) -- (count++);
+	\path [line] (count++) -- (done);
+	\path [line] (done) -- node {no}(save);
+	\path [line] (done) -- node {yes}(inv);
+	\path [line] (inv) |- (isbest);
+	\path [line] (isbest) -- node {no} (reload2);
+	\path [line] (isbest) -- node {yes} (finished);
+	\path [line] (reload2) -- (finished);
+	
+	\node at (-2,-20.5) [above=4mm, right=2mm] {\textsc{feasibility loop}};
+	\draw [color=gray!70,thick](-2,-20.5) rectangle (5,-10.5);
+	\node at (-10.5,-21) [above=4mm, right=2mm] {\textsc{weekend distribution loop}};
+	\draw [color=gray!70,thick](-10.5,-21) rectangle (5,-8);
+    %\path [line] (decide) -| node [near start] {yes} (update);
+    %\path [line] (update) |- (identify);
+    %\path [line] (decide) -- node {no}(stop);
+    %\path [line,dashed] (expert) -- (init);
+    %\path [line,dashed] (system) -- (init);
+    %\path [line,dashed] (system) |- (evaluate);
+\end{tikzpicture}
+}
+
+\end{figure}
+
+\begin{table}[!h]
+\centering
+\caption{Algorithm for solving the weekend schedule.}
+\label{tab:weekend_algorithm}
+\begin{tabular}{C{1.5cm}L{3cm}L{3cm}}
+Step : & Set feasibility to false. & \\ 
+Step : & \textbf{while}(infeasible) & \\
+Step 1: & & Distribute all weekends at random to workers. \\
+Step 2: & & Check feasibility of solution. \\
+Step : & Set weekend objective function value & \\
+Step : &  \textbf{for}(N iterations) & \\
+Step : &  \tab Save current solution &\\
+\end{tabular}
+\end{table}
+
+Feasibility check: 
+
+Initial solution: placing tasks at random
+Destroy: Destroying a certain number of weekends at random.
+Repair: Repairing same weekends for same workers. Prioritizing weekends according to 1. qualification 2. avail demand diff. Almost random worker placed, although making sure that HB is placed correctly.
+
+Infeasibility check: Does the current assignment of weekends generate a schedule where there are not enough workers at the shifts?
+
+Evenings: based on worker costs.
+
+Heuristic methods: SA on LNS with random destroy and repair. SA accept function, accepting with exponential cooling. Tuning parameters T and alpha.
+
+\section{Weekday phase}
+Evenings,weekends and BokB already placed. 
+
+Concept: destroy worst worker until all workers have feasible schedules. Record the library cost of the solution. 
+
+Destroy: weekday tasks for workers with highest cost.
+Repair: 1. qualification, 2. avail demand diff. Place cheapest worker.
+
+Infeasibility: when a feasible worker cost is not found for a large number of iterations. 
+
+\section{Simplifications of Mathematical Model}
+-10 Week scheduling
+-Objective function term about similar weeks
+-BokB fixed weeks for every other week workers.
+-Even odd weeks. How to handle?
+(-lower limit PL)
+
+\section{Implementation}
+C++, object orientation, run on a linux operating system. Reading availability of workers into the program and outputing a result file, which can be read by Excel. Results are to be visualized in Excel (write this in another part?)

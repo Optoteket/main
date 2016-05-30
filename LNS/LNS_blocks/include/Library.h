@@ -40,8 +40,6 @@ private:
 	int lowest_cost;
 	int increment;
 	vector<int> workers_destroyed;
-	int rot_to_assign_thursday_worker[3]; //There are 3 Thursday workers (Where does this one reset?)
-	int thursday_worker_array[NUM_WEEKS]; //array containing where the thursday workers work their weekends i.e. [1 0 0 1 1]
 	int max_min_stand_in;
 
 public:
