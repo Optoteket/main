@@ -179,13 +179,13 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
     repair_weekend("perm");
     feasible = compare_avail_demand("perm");
     if(feasible){
-      //place_BokB();
+      place_BokB();
       feasible = compare_avail_demand("perm");
     }
 
     //Check feasibility, place evenings
     if(feasible){
-      //feasible = set_evening_tasks();
+      feasible = set_evening_tasks();
       feasible = compare_avail_demand("perm");
     }
   }
@@ -238,7 +238,7 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
       }
 
       //Remove all tasks except weekend/friday evening
-      //remove_weekday_tasks();
+      remove_weekday_tasks();
 
       //Destroy and repair partially
       destroy_weekend(percent, "perm");
@@ -247,13 +247,13 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
       //Check feasibility, place BokB
       feasible = compare_avail_demand("perm");
       if(feasible){
-	//place_BokB();
+	place_BokB();
 	feasible = compare_avail_demand("perm");
       }
 
       //Check feasibility, place evenings
       if(feasible){
-	//feasible = set_evening_tasks();
+	feasible = set_evening_tasks();
 	feasible = compare_avail_demand("perm");
       }
       
@@ -2337,6 +2337,52 @@ void Library::write_results(){
     }
   }
   num_avail_file.close();
+
+  string demand_file_dir = "../target/results/current_demand.dat";
+  ofstream demand_file(demand_file_dir.c_str());
+  if(demand_file.is_open()){
+    demand_file << "Library demand of workers" << endl;
+    demand_file << "Tasks: Exp, PL, Info, HB, BokB (without no_task)" << endl;
+    for (int k=0; k< NUM_DAYS; k++){
+      if(k==0){
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Monday } \\ \\hline" << endl;
+      }
+      else if(k==1){
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Tuesday } \\ \\hline" << endl;
+      }
+      else if(k==2){
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Wednesday } \\ \\hline" << endl;
+      }
+      else if(k==3){
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Thursday } \\ \\hline" << endl;
+      }
+      else if(k==4){
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Friday } \\ \\hline" << endl;
+      }
+      else if(k==5){
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Saturday } \\ \\hline" << endl;
+      }
+      else if(k==6){
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Sunday } \\ \\hline" << endl;
+      }
+      for (int j=0; j< NUM_SHIFTS; j++){
+	for(int l=Exp; l<NUM_TASKS; l++){
+	  int swap_tasks;
+	  if(l==PL){
+	    swap_tasks=Info;
+	  }
+	  else if(l==Info){
+	    swap_tasks=PL;
+	  }
+	  else swap_tasks=l;
+	  demand_file << " & " << "{\\cellcolor[gray]{" << 1.0/((1/4.0)*current_demand[0][k][j][swap_tasks]+1)-0.001 << "}}" << current_demand[0][k][j][swap_tasks];
+	}
+	demand_file << " \\" << "\\ \\hline" << endl;
+      }
+    }
+
+  }
+  demand_file.close();
 
   string res_file_dir = "../target/results/resfile.dat";
   (*resfile).open(res_file_dir.c_str());

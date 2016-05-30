@@ -1,0 +1,37 @@
+Library demand of workers
+Tasks: Exp, PL, Info, HB, BokB (without no_task)
+\multicolumn{6}{|l|}{\colcelltwo Monday } \ \hline
+ & {\cellcolor[gray]{0.665667}}2 & {\cellcolor[gray]{0.665667}}2 & {\cellcolor[gray]{0.799}}1 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.570429}}3 & {\cellcolor[gray]{0.570429}}3 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.570429}}3 & {\cellcolor[gray]{0.570429}}3 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+\multicolumn{6}{|l|}{\colcelltwo Tuesday } \ \hline
+ & {\cellcolor[gray]{0.665667}}2 & {\cellcolor[gray]{0.665667}}2 & {\cellcolor[gray]{0.799}}1 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.570429}}3 & {\cellcolor[gray]{0.570429}}3 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.570429}}3 & {\cellcolor[gray]{0.570429}}3 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+\multicolumn{6}{|l|}{\colcelltwo Wednesday } \ \hline
+ & {\cellcolor[gray]{0.665667}}2 & {\cellcolor[gray]{0.665667}}2 & {\cellcolor[gray]{0.799}}1 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.570429}}3 & {\cellcolor[gray]{0.570429}}3 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.570429}}3 & {\cellcolor[gray]{0.570429}}3 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+\multicolumn{6}{|l|}{\colcelltwo Thursday } \ \hline
+ & {\cellcolor[gray]{0.665667}}2 & {\cellcolor[gray]{0.665667}}2 & {\cellcolor[gray]{0.799}}1 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.570429}}3 & {\cellcolor[gray]{0.570429}}3 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.570429}}3 & {\cellcolor[gray]{0.570429}}3 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+\multicolumn{6}{|l|}{\colcelltwo Friday } \ \hline
+ & {\cellcolor[gray]{0.665667}}2 & {\cellcolor[gray]{0.665667}}2 & {\cellcolor[gray]{0.799}}1 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.570429}}3 & {\cellcolor[gray]{0.570429}}3 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.570429}}3 & {\cellcolor[gray]{0.570429}}3 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+\multicolumn{6}{|l|}{\colcelltwo Saturday } \ \hline
+ & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+\multicolumn{6}{|l|}{\colcelltwo Sunday } \ \hline
+ & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
+ & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 & {\cellcolor[gray]{0.999}}0 \\ \hline
