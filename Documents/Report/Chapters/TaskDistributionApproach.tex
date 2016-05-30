@@ -15,11 +15,13 @@ Distinguishing good schedules from bad schedules means there is a need for a way
 During the scheduling process in the implementation, three different objective functions are used. The objective functions are illustrated in Table (TODO) and consist of a weekend objective function, a worker objective function and a weekday objective function.
 
 
-\begin{table}[]
+\begin{table}[!h]
 \centering
-\caption{Objective functions used in the implementation.}
+\caption{Library objective functions.}
 \label{tab: task objective functions}
-\begin{tabular}{|p{3cm}|l|}
+\begin{tabular}{|l|l|}
+\hline
+\begin{tabular}[t]{@{}c@{}} \textbf{Objective}\\ \textbf{Function} \\ \textbf{Type}\end{tabular} & \textbf{Cost components} \\
 \hline
 \multirow{5}{*}{\begin{tabular}[t]{@{}l@{}}\textbf{Weekend} \\ \textbf{Objective} \\ \textbf{Function}\end{tabular}} & \\
  & Min stand in cost + average num stand ins\\ 
@@ -39,6 +41,27 @@ During the scheduling process in the implementation, three different objective f
 
 \multirow{4}{*}{\begin{tabular}[t]{@{}l@{}}\textbf{Weekday}\\ \textbf{Objective}\\ \textbf{Function}\end{tabular}}   & \\ & Min stand in cost   \\
  & \\ & \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[!h]
+\centering
+\caption{Worker objective functions.}
+\label{tab:worker objective functions}
+\begin{tabular}{|p{3cm}|l|}
+\hline
+\begin{tabular}[t]{@{}c@{}} \textbf{Objective}\\ \textbf{Function} \\ \textbf{Type}\end{tabular} & \textbf{Cost components} \\
+\hline
+\multirow{7}{*}{\begin{tabular}[t]{@{}l@{}}\textbf{Worker}\\ \textbf{Objective}\\ \textbf{Function}\end{tabular}}    & \\
+& Num tasks per day cost \\
+& Num tasks per week cost \\
+& Num PL per week cost \\
+& Total num of PL cost \\
+& Num tasks at same shift per week  cost \\
+& \\
+
 \hline
 \end{tabular}
 \end{table}
@@ -69,27 +92,18 @@ Because of the difficulty in measuring stand ins, certain weekday tasks are plac
 \label{tab:num_avail_no_tasks}
 \begin{tabular}{|C{1.2cm}
 |C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|}
-\hline
-&\multicolumn{7}{l|}{\textbf{Num available assistants}} \\ \hline
-\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline
-\colcell Shift 1: &8 & 10 & 10 & 10 & 6 & 0 & 0  \\ \hline
-\colcell Shift 2: &8 & 9 & 9 & 9 & 6 & 0 & 0 \\ \hline
-\colcell Shift 3: &9 & 8 & 9 & 7 & 5 & 0 & 0 \\ \hline
-\colcell Shift 4: & 3 & 2 & 2 & 3 & 0 & 0 & 0 \\ \hline
-\hline
-&\multicolumn{7}{l|}{\textbf{Num available librarians}} \\ \hline
-\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline
-\colcell Shift 1: & 16 & 15 & 16 & 13 & 12 & 0 & 0 \\ \hline
-\colcell Shift 2: & 18 & 15 & 17 & 14 & 13 & 0 & 0  \\ \hline
-\colcell Shift 3: &17 & 14 & 18 & 18 & 13 & 0 & 0  \\ \hline
-\colcell Shift 4: &3 & 4 & 4 & 3 & 1 & 0 & 0 \\ \hline
-\hline
-&\multicolumn{7}{l|}{\textbf{Num available BBlib}} \\ \hline
-\rowcolor{Gray}  & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline
-\colcell Shift 1:  & 2 & 0 & 1 & 1 & 1 & 0 & 0 \\ \hline
-\colcell Shift 2: & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-\colcell Shift 3: &0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-\colcell Shift 4: &1 & 0 & 2 & 2 & 0 & 0 & 0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available assistants}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!40}}6 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!40}}6 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!35}}5 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!20}}2 & {\cellcolor{maroon!20}}2 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!90}}16 & {\cellcolor{maroon!85}}15 & {\cellcolor{maroon!90}}16 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!90}}18 & {\cellcolor{maroon!85}}15 & {\cellcolor{maroon!95}}17 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!95}}17 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!90}}18 & {\cellcolor{maroon!90}}18 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!30}}4 & {\cellcolor{maroon!30}}4 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available BB-librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!20}}2 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!20}}2 & {\cellcolor{maroon!20}}2 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \end{tabular}
 \end{table}
 
@@ -99,27 +113,18 @@ Because of the difficulty in measuring stand ins, certain weekday tasks are plac
 \label{tab:num_avail_with_tasks}
 \begin{tabular}{|C{1.2cm}
 |C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|}
-\hline
-&\multicolumn{7}{l|}{\textbf{Num available assistants}} \\ \hline
-\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline
-\colcell Shift 1: & 7 & 10 & 9 & 9 & 8 & 0 &  0 \\ \hline  
-\colcell Shift 2: &7 & 9 & 8 & 8 & 8 & 0 & 0 \\ \hline
-\colcell Shift 3: & 7 & 7 & 8 & 6 & 6 & 0 & 0 \\ \hline
-\colcell Shift 4: & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-\hline
-&\multicolumn{7}{l|}{\textbf{Num available librarians}} \\ \hline
-\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline
-\colcell Shift 1: & 14 & 11 & 13 & 11 & 12 & 0 & 0 \\ \hline 
-\colcell Shift 2: &14 & 11 & 14 & 11 & 12 & 0 & 0 \\ \hline 
-\colcell Shift 3: &13 & 11 & 14 & 13 & 13 & 0 & 0 \\ \hline      
-\colcell Shift 4: &0 & 0 & 0 & 1 & 1 & 0 & 0 \\ \hline
-\hline  
-&\multicolumn{7}{l|}{\textbf{Num available BBlib}} \\ \hline
-\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline
-\colcell Shift 1: & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-\colcell Shift 2: & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-\colcell Shift 3: & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-\colcell Shift 4: & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available assistants}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!40}}6 & {\cellcolor{maroon!40}}6 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available BB-librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \end{tabular}
 \end{table}
 
@@ -164,10 +169,8 @@ Because of the difficulty in measuring stand ins, certain weekday tasks are plac
      \node[above of=savebest, left of=savebest, node distance=2.5cm, scale=0.1](inv){};
      \node [decision, below of=best, node distance=9cm] (isbest) {Current better than best?};
      \node [block, right of=isbest, minimum height=3em, node distance=3cm] (reload2) {Reload best};
-      \node [block, below of=reload2, minimum height=3em, node distance=2.5cm] (finished) {Solution found};
-    
-    %\node [decision, below of=evaluate] (decide) {is best candidate better?};
-    %\node [block, below of=decide, node distance=3cm] (stop) {stop};
+      \node [block, below of=reload2, minimum height=3em, node distance=2.5cm] (finished) {Search finished!};
+
     % Draw edges
     \path [line] (init) -- (distribute);
     \path [line] (distribute) -- (evaluate);
@@ -216,9 +219,9 @@ Because of the difficulty in measuring stand ins, certain weekday tasks are plac
 \end{figure}
 
 
-The algorithm for the distribution of weekends is illustrated in Figure \ref{fig:weekend_alg}. Two loops exist, an outer weekend distribution loop and an inner feasibility loop. The outer loop is performed a number of iterations and performs a search among neighbouring solutions provided by the inner loop through destroying and repairing a proportion of the solution.
+The algorithm for the distribution of weekends is illustrated in Figure \ref{fig:weekend_alg}. Two loops exist, an outer weekend distribution loop and an inner feasibility loop. The outer loop is performed a number of iterations and performs a search among neighbouring solutions provided by the inner loop through destroying and repairing a proportion of the solution. The decisions directing the search are coloured pink and can be described as: 
 
-All feasible solutions are pass from the feasibility loop to the weekend loop. If the solution is better or equally good as the previous one, it is accepted. However, if it is not it can still be accepted with the probability P, as described in Equations \ref{eq0} to \ref{eq2}. The delta energy is the differens in objective function value between two solutions. $T$ is the temperature of the SA accept function, which has an initial value of $T_0$ and which cools down with the iteration count  $t$ at a rate $\alpha$ ($0 < \alpha < 1$).
+\textbf{Accept anyway?} : All feasible solutions are pass from the feasibility loop to the weekend loop. If the solution is better or equally good as the previous one, it is accepted. However, if it is not it can still be accepted with the probability P, as described in Equations \ref{eq0} to \ref{eq2}. The delta energy is the differens in objective function value between two solutions. $T$ is the temperature of the SA accept function, which has an initial value of $T_0$ and which cools down with the iteration count  $t$ at a rate $\alpha$ ($0 < \alpha < 1$).
 
 \begin{equation}
 \Delta E = Wend_0 - Wend_1
@@ -235,20 +238,28 @@ P = exp(-\Delta E /kT)
 \label{eq0}
 \end{equation}
 
-The feasibility check in the algorithm corresponds to checking whether the number of workers available at each shift equals to the demand at each shift. A worker is counted as available if the worker is qualified and available for the task and has no other tasks scheduled during that day.
+\textbf{Solution feasible?} : The feasibility check in the algorithm corresponds to checking whether the number of workers available at each shift equals to the demand at each shift. A worker is counted as available if the worker is qualified and available for the task and has no other tasks scheduled during that day.
 
 The infeasibility loop checks the necessary condition of having enough workers, but is not sufficient in order to prove that the final schedule is feasible. If other constraints cannot be fulfilled in the final assignment of tasks, the schedule would be infeasible.
+
+\textbf{Better than saved?} :
+
+\textbf{Best solution?} :
+
+\textbf{Iteration $>$ max?} :
+
+\textbf{Current better than best?} :
 
 Destroying and repairing tasks in the  feasibility loop accounts for the LNS part of the problem. Destroying is always random, while the redistribution of weekends is done with priority on worker qualification, meaning that tasks with librarian qualification are placed first. Also, HB preferences are taken into account in the repair function.
 
 \section{Weekday phase}
 
-When entering the weekday phase, all weekends, evenings and BokB tasks are already placed. In this phase, the rest of the tasks, referred to as "weekday" tasks are also placed.
+When entering the weekday phase, all weekends, evenings and BokB tasks are already placed. In this phase, the rest of the tasks, referred to as "weekday" tasks are also placed. The demand is illustrated in tabl \ref{tab:current_demand}. All week demand now looks the same for all weeks.
 
 
 \begin{table}[!h]
 \centering
-\caption{Worker demand when entering weekday phase.}
+\caption{Worker demand during a week when entering weekday phase.}
 \label{tab:current_demand}
 \begin{tabular}{|C{1.2cm}
 |C{1cm}|C{1cm}|C{1cm}|C{1cm}|C{1cm}|}
@@ -285,6 +296,94 @@ When entering the weekday phase, all weekends, evenings and BokB tasks are alrea
 \colcell Shift 1: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
  \end{tabular}
 \end{table}
+
+
+The weekday distribution phase is similar to the weekend distribution phase, since it is divided into two loops. 
+
+
+\begin{figure}[!h]
+\centering
+\caption{Algorithm for distributing weekday tasks.}
+\label{fig:weekday_alg}
+\scalebox{0.9}{
+\begin{tikzpicture}[node distance = 2cm, auto]
+    %Right column
+    \node [scale=0.01,node distance=0cm] (invinit) {};
+    \node [block, below of=invinit, node distance=2cm] (init) {Set \\ feasibility to true};
+    \node [block, below of=init] (distribute) {Try distribute all tasks};
+    \node [block, below of=distribute] (workercost) {Set worker obj fun};
+    \node [decision, below of=workercost, node distance=3cm] (evaluatewc) {Worker cost = 0?};
+    \node [decision, below of=evaluatewc, node distance=3cm] (evaluatetasks) {All tasks distributed?};
+    \node [decision, below of=evaluatetasks, node distance=3cm] (feasible) {Solution feasible?};
+    \node [block, below of=feasible, node distance=3cm] (destamount) {Set destroy amount};
+    \node [block, below of=destamount] (dr) {Destroy and repair solution};
+    \node [block, below of=dr] (workercost2) {Set worker costs};
+
+    %Middle column
+     \node [block, left of=evaluatetasks, node distance = 4cm] (taskcost) {Set weekday costs};
+    \node [decision, above of=taskcost, node distance=2cm] (best) {Best solution?};
+    \node [block, above of=best, minimum height=3em, node distance = 2cm] (savebest) {Save solution as best};
+    
+    %Left column
+    \node [block, left of=savebest, node distance=4cm, minimum height=3em] (count++) {Increase iterator};
+    \node [decision, above of=count++, node distance=2cm] (done) {Iteration \textgreater max?};
+    \node [block, above of=done, node distance=2cm] (remove) {Remove all tasks};
+    
+    %Get solution
+    \node [decision, below of=count++, node distance=10cm] (isbest) {Current better than best?};
+    \node [block, right of=isbest, minimum height=3em, node distance=3cm] (reload2) {Reload best};
+    \node [block, below of=reload2, minimum height=3em, node distance=2.5cm] (finished) {Search finished!};
+    
+	%Invisible nodes
+    \node [right of=evaluatewc, scale=0.01,node distance=2cm] (inv) {};
+    \node [right of=workercost2, scale=0.01,node distance=4cm] (inv2) {};
+    \node [below of=evaluatewc, right of=evaluatewc, scale=0.01,node distance=4cm] (inv3) {};
+    \node[left of=isbest, node distance=4cm, scale=0.1](inv4){};
+ 
+	%Draw edges
+    \path [line] (init) -- (distribute);
+    \path [line] (distribute) -- (workercost);
+    \path [line] (workercost) -- (evaluatewc);
+    \path [line] (evaluatewc) -- node {yes} (evaluatetasks);
+    \path [line] (evaluatewc) -- node {no} (inv);
+    \path [line] (evaluatetasks) -- node {yes} (taskcost);
+    \path [line] (evaluatetasks) -- node {no} (feasible);
+	\path [line] (inv) |- (feasible);
+    \path [line] (feasible) -- node {yes} (destamount);
+    \path [line] (feasible) -| node {no} (count++);
+    \path [line] (destamount) -- (dr);
+    \path [line] (dr) -- (workercost2);
+    \path [line] (workercost2) -- (inv2);
+    \path [line] (inv2) -- (inv3);
+    \path [line] (inv3) -- (evaluatewc);
+    \path [line] (count++) -- (done);
+    \path [line] (done) -- node {no}(remove);    
+    \path [line] (best) -- node {yes}(savebest);
+    \path [line] (best) -- node {no}(count++);
+    \path [line] (taskcost) -- (best);
+    \path [line] (remove) -- (distribute);
+    \path [line] (done) -| node {no} (inv4);
+    \path [line] (inv4) -- (isbest);
+    \path [line] (isbest) -- node {no} (reload2);
+    \path [line] (isbest) -- node {yes} (finished);
+    \path [line] (reload2) -- (finished);
+
+ 
+%    Feasiblity loop
+%    \node at (-2,-21.5) [above=4mm, right=2mm] {\textsc{feasibility loop}};
+%    \draw [color=gray!70,thick](-2,-21.5) rectangle (5,-10.5);
+%    Weekend loop
+%    \node at (-10.5,-22) [above=4mm, right=2mm] {\textsc{weekend distribution loop}};
+%    \draw [color=gray!70,thick](-10.5,-22) rectangle (5,-9);
+%    \path [line] (decide) -| node [near start] {yes} (update);
+%    \path [line] (update) |- (identify);
+%    \path [line] (decide) -- node {no}(stop);
+%    \path [line,dashed] (expert) -- (init);
+%    \path [line,dashed] (system) -- (init);
+%    \path [line,dashed] (system) |- (evaluate);
+\end{tikzpicture}
+}
+\end{figure}
 
 Evenings,weekends and BokB already placed.
 

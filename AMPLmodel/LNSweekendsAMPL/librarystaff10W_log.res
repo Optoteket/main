@@ -31,7 +31,7 @@ Clique table members: 17103.
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
 Parallel mode: deterministic, using up to 8 threads.
-Root relaxation solution time = 0.15 sec. (113.57 ticks)
+Root relaxation solution time = 0.14 sec. (113.57 ticks)
 
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
@@ -40,21 +40,21 @@ Root relaxation solution time = 0.15 sec. (113.57 ticks)
       0     0      400.0000   349  -5.45012e+07      400.0000     3386  100.00%
 *     0+    0                          400.0000      400.0000     3386    0.00%
       0     0        cutoff            400.0000      400.0000     3386    0.00%
-Elapsed time = 0.91 sec. (938.20 ticks, tree = 0.00 MB)
+Elapsed time = 0.90 sec. (938.20 ticks, tree = 0.00 MB)
 
 Root node processing (before b&c):
-  Real time             =    0.46 sec. (361.24 ticks)
+  Real time             =    0.45 sec. (361.24 ticks)
 Parallel b&c, 8 threads:
   Real time             =    0.00 sec. (0.00 ticks)
   Sync time (average)   =    0.00 sec.
   Wait time (average)   =    0.00 sec.
                           ------------
-Total (root+branch&cut) =    0.46 sec. (361.24 ticks)
+Total (root+branch&cut) =    0.45 sec. (361.24 ticks)
 
 Times (seconds):
-Input =  0.06099
-Solve =  1.54077
-Output = 0.042994
+Input =  0.056991
+Solve =  1.47977
+Output = 0.044993
 CPLEX 12.5.0.0: optimal integer solution; objective 400
 3386 MIP simplex iterations
 0 branch-and-bound nodes
