@@ -37,3 +37,397 @@ Worker: 36 has 55 27 101 in sizes
 Worker: 37 has 1063 347 1580 in sizes
 Worker: 38 has 3 1 1 in sizes
 Worker: 39 has 2 1 1 in sizes
+Number of librarians assigned: block, PL, HB, BokB
+3 2 2 2 2 4 4   	1 0 0 1 1 0 0   	0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	
+3 4 4 3 5 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 3 4 5 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 4 4 3 4 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+2 2 2 2 3 3 3   	0 1 0 0 0 0 0   	0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	
+6 3 3 3 4 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+4 3 3 4 4 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+4 4 4 3 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+2 2 2 2 2 3 3   	0 1 0 1 0 0 0   	0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	
+4 3 3 3 5 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 4 3 5 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 4 4 3 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+2 2 2 2 2 3 3   	0 1 0 0 0 0 0   	0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	
+4 4 4 3 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 3 4 4 5 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+4 4 4 4 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+3 2 2 2 2 3 3   	0 0 0 0 1 0 0   	0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	
+3 3 4 3 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 3 3 5 6 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 4 4 3 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+Number of assistants assigned: block, PL, HB, BokB
+1 2 2 2 2 2 2   	0 1 1 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 2 2 3 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 3 2 1 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 2 2 3 2 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+2 2 2 2 1 3 3   	1 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 3 3 3 2 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+2 3 3 2 2 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+2 2 2 3 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+2 2 2 2 2 3 3   	1 0 1 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+2 3 3 3 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 2 3 1 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 2 2 3 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+2 2 2 2 2 3 3   	1 0 1 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+2 2 2 3 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 3 2 2 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+2 2 2 2 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+1 2 2 2 2 3 3   	1 0 1 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 3 2 3 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 3 3 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 2 2 3 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 1 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 1 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+#PL for worker 1 is: 1
+#PL for worker 2 is: 1
+#PL for worker 6 is: 1
+#PL for worker 8 is: 2
+#PL for worker 10 is: 1
+#PL for worker 12 is: 1
+#PL for worker 14 is: 1
+#PL for worker 16 is: 1
+#PL for worker 18 is: 2
+#PL for worker 20 is: 1
+#PL for worker 25 is: 1
+#PL for worker 29 is: 1
+#PL for worker 30 is: 1
+#PL for worker 32 is: 1
+#PL for worker 33 is: 1
+#PL for worker 34 is: 1
+#PL for worker 35 is: 2
+lib_per_rot = 5 4 4 4 4 
+ass_per_rot = 2 3 3 3 3 
+Stand-ins Week 0
+3 2 5 1 4 
+Libs
+3 1 5 1 4 
+Ass
+0 1 0 0 0 
+
+Stand-ins Week 1
+2 1 5 1 0 
+Libs
+2 1 5 1 0 
+Ass
+0 0 0 0 0 
+
+Stand-ins Week 2
+8 5 5 5 5 
+Libs
+6 3 5 2 3 
+Ass
+2 2 0 3 2 
+
+Stand-ins Week 3
+5 3 7 6 10 
+Libs
+5 2 5 5 6 
+Ass
+0 1 2 1 4 
+
+Stand-ins Week 4
+5 6 7 6 2 
+Libs
+3 4 5 5 0 
+Ass
+2 2 2 1 2 
+
+Max(min stand-in) for this solution is: 0
+Total number of stand-ins: 109
+demand_tot_cost = 800
+demand_lib_cost (too few or too many) = 0
+demand_ass_cost = 0
+demand_PL_cost = 6000
+demand_HB_cost = 0
+demand_evening_cost = 0
+PL_amount_cost = 0
+no_weekend_cost = 0
+
+total_eval_cost = 6800
+total_stand_in_cost = -2
+*total_cost* = 6798
+Best solution so far is 6800
+Entering final phase!
+PL_amount_cost is: 0
+
+Fewer stand-ins than needed! Keep looping
+
+Happened for w = 1 d = 4 s = 0 j = 1
+
+
+TOO FEW STAND-INS
+
+
+After create clear function
+Entering final phase!
+PL_amount_cost is: 0
+
+Fewer stand-ins than needed! Keep looping
+
+Happened for w = 0 d = 3 s = 0 j = 0
+
+Fewer stand-ins than needed! Keep looping
+
+Happened for w = 0 d = 3 s = 0 j = 1
+
+Fewer stand-ins than needed! Keep looping
+
+Happened for w = 1 d = 4 s = 1 j = 0
+
+
+TOO FEW STAND-INS
+
+
+After create clear function
+Entering final phase!
+PL_amount_cost is: 0
+
+Fewer stand-ins than needed! Keep looping
+
+Happened for w = 1 d = 4 s = 2 j = 0
+
+
+TOO FEW STAND-INS
+
+
+After create clear function
+
+
+
+***Best iteration number: 1***
+Number of librarians assigned: block, PL, HB, BokB
+2 2 3 2 2 3 3   	0 1 0 0 1 0 0   	0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	
+3 4 3 4 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 3 4 5 4 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 4 5 4 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+3 2 4 2 2 3 3   	0 0 0 0 0 0 0   	0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	
+4 3 3 4 4 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+5 3 3 4 4 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+4 4 4 3 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+2 3 3 2 4 4 4   	1 0 1 1 1 0 0   	0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	
+3 3 3 3 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+4 4 4 4 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 4 5 3 4 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+2 2 2 2 2 3 3   	0 1 1 1 1 0 0   	0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	
+5 4 3 3 4 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+4 4 5 3 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+4 4 4 3 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+2 3 2 3 2 3 3   	1 0 1 0 1 0 0   	0 0 0 0 0 1 1   	0 0 0 0 0 0 0   	
+4 4 3 3 6 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 4 3 5 4 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 4 5 3 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+Number of assistants assigned: block, PL, HB, BokB
+2 2 1 2 2 3 3   	0 0 1 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 2 3 2 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 3 2 1 2 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 2 1 2 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+1 2 0 2 2 3 3   	1 1 1 1 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+2 3 3 2 2 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+1 3 3 2 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+2 2 2 3 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+2 1 1 2 0 2 2   	0 1 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 3 3 3 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+2 2 2 2 2 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 2 1 3 2 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+2 2 2 2 1 3 3   	1 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+1 2 3 3 2 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+2 2 1 3 2 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+2 2 2 3 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+2 1 2 1 2 3 3   	0 1 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+2 2 3 3 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 2 3 1 2 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+3 2 1 3 3 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+
+*** Demand difference *** in the library for: block, PL, HB, BokB
+Negative values means overstaffing, positive means lack of workers
+0 0 0 0 0 0 0   	1 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 1 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+0 0 0 0 0 0 0   	0 0 0 1 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	0 0 0 0 0 0 0   	
+
+
+#PL for worker 1 is: 1
+#PL for worker 2 is: 1
+#PL for worker 6 is: 1
+#PL for worker 7 is: 1
+#PL for worker 8 is: 1
+#PL for worker 9 is: 1
+#PL for worker 10 is: 1
+#PL for worker 12 is: 1
+#PL for worker 13 is: 1
+#PL for worker 14 is: 1
+#PL for worker 16 is: 1
+#PL for worker 17 is: 1
+#PL for worker 18 is: 2
+#PL for worker 19 is: 1
+#PL for worker 20 is: 1
+#PL for worker 24 is: 1
+#PL for worker 25 is: 1
+#PL for worker 27 is: 1
+#PL for worker 29 is: 1
+#PL for worker 33 is: 1
+#PL for worker 34 is: 1
+#PL for worker 35 is: 1
+lib_per_rot = 4 4 5 4 4 
+ass_per_rot = 3 3 2 3 3 
+Stand-ins Week 0
+2 1 4 1 4 
+Libs
+2 0 2 0 4 
+Ass
+0 1 2 1 0 
+
+Stand-ins Week 1
+3 2 5 1 0 
+Libs
+1 0 4 1 0 
+Ass
+2 2 1 0 0 
+
+Stand-ins Week 2
+4 3 1 5 4 
+Libs
+3 2 1 3 2 
+Ass
+1 1 0 2 2 
+
+Stand-ins Week 3
+4 2 7 6 5 
+Libs
+3 0 3 4 4 
+Ass
+1 2 4 2 1 
+
+Stand-ins Week 4
+8 3 3 2 7 
+Libs
+6 1 2 2 2 
+Ass
+2 2 1 0 5 
+
+Max(min stand-in) for this solution is: 0
+Total number of stand-ins: 87
+demand_tot_cost = 3200
+demand_lib_cost (too few or too many) = 0
+demand_ass_cost = 0
+demand_PL_cost = 2400
+demand_HB_cost = 0
+demand_evening_cost = 0
+PL_amount_cost = 0
+no_weekend_cost = 0
+
+total_eval_cost = 5600
+total_stand_in_cost = -1
+*total_cost* = 5599
+Best solution so far is 5600
+Time where new best solution found is: 65.49
+Entering final phase!
+PL_amount_cost is: 0
+
+Fewer stand-ins than needed! Keep looping
+
+Happened for w = 1 d = 4 s = 2 j = 0
+
+
+TOO FEW STAND-INS
+
+
+After create clear function
