@@ -1475,9 +1475,9 @@ vector<int> Library::evaluate_solution(ostream& stream){//Add all costs together
 				
 				//***DEMAND HB COSTS***
 				if(demand_differ[w][d][0][2] > 0){ //Understaffing HB(only librarians in HB)
-					demand_HB_cost += demand_differ[w][d][0][2]*DEMAND_HB_OVERSTAFF;
+					demand_HB_cost += demand_differ[w][d][0][2]*DEMAND_HB;
 				}else if(demand_differ[w][d][0][2] < 0){ //Too many workers
-					demand_HB_cost += abs(demand_differ[w][d][0][2])*DEMAND_HB_OVERSTAFF;
+					demand_HB_cost += abs(demand_differ[w][d][0][2])*DEMAND_HB;
 				}
 			}
 		}

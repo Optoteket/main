@@ -525,10 +525,10 @@ int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[
 			}
 			if(s == 0 && d == 6 && block->getTask(d,s,3) == 1){ //get all "HB" tasks
 				if(diff_in_demand[w][d][s][2]-1 < 0){
-					temp_cost += DEMAND_HB_OVERSTAFF; //Positive cost if overstaffing HB!
+					temp_cost += DEMAND_HB; //Positive cost if overstaffing HB!
 				}
 				else if(diff_in_demand[w][d][s][2]-1 == 0){
-					temp_cost -= DEMAND_HB_OVERSTAFF; //Negative cost if filling up HB!
+					temp_cost -= DEMAND_HB; //Negative cost if filling up HB!
 				}
 			}
 			

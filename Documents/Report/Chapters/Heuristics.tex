@@ -318,7 +318,9 @@ Without a manual assignment of LoW the number of existing tasks in a weekblock w
 \subsection{Initial solution} \label{initial_solution}
 The initial solution is created in a similar fashion as the repair function in this heuristic. Based on a greedy heuristic the best weekblock for a random worker and week is found and inserted. This is done until every worker have one weekend block, one weekrest block and three weekday blocks assigned to them.
 
-To find the best weekblock several costs have been introduced to measure whether a block is good or bad to assign a worker. Say, if the library demands two librarians at the Information desk Monday at 08:00 and currently there are one assigned, then it would be good to assign another one. Such an assignment will, therefore, be rewarded using a cost. Good assignments will provide negative costs and bad assignments will provide positive costs to the objective function. Table \ref{block_to_evaluate} together with Figure \ref{fig_costs} shows an increment where different cost parameters have to be considered when evaluating a block before assigning it to a worker. 
+To find the best weekblock several costs have been introduced to measure whether a block is good or bad to assign a worker. Say, if the library demands two librarians at the Information desk Monday at 08:00 and currently there are one assigned, then it would be good to assign another one. Such an assignment will, therefore, be rewarded using a cost. Good assignments will provide negative costs and bad assignments will provide positive costs to the objective function value.
+
+Table \ref{block_to_evaluate} together with Figure \ref{flow_chart_cost} shows an increment where different cost parameters have to be considered when evaluating a block before assigning it to a worker. In order to calculate demand costs for the PL in the library, assume that this block which is being evaluated is to be inserted at week three.
 
 % Please add the following required packages to your document preamble:
 % \usepackage[table,xcdraw]{xcolor}
@@ -327,33 +329,72 @@ To find the best weekblock several costs have been introduced to measure whether
 \centering
 \caption{A block example to be evaluated using costs}
 \label{block_to_evaluate}
-\begin{tabular}{llllllll}
-\multicolumn{1}{c}{}             & \multicolumn{1}{c}{Mon}                         & \multicolumn{1}{c}{Tue} & \multicolumn{1}{c}{Wed}                        & \multicolumn{1}{c}{Thu} & \multicolumn{1}{c}{Fri}                        & \multicolumn{1}{c}{Sat} & \multicolumn{1}{c}{Sun} \\ \cline{2-8} 
-\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}PL} & \multicolumn{1}{c|}{I}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I}  & \multicolumn{1}{c|}{I}  \\ \cline{2-8} 
-\multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c}{}    & \multicolumn{1}{c}{}    \\ \cline{2-6}
-\multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c}{}    & \multicolumn{1}{c}{}    \\ \cline{2-6}
-\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}                           & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c}{}    & \multicolumn{1}{c}{}    \\ \cline{2-6}
-                                 &                                                 &                         &                                                &                         &                                                &                         &                         \\
-                                 & Mon                                             &                         &                                                &                         &                                                &                         &                         \\ \cline{2-2}
-\multicolumn{1}{l|}{08:00-10:00} & \multicolumn{1}{l|}{\cellcolor[HTML]{FCFF2F}PL} &                         &                                                &                         &                                                &                         &                         \\ \cline{2-2}
-\multicolumn{1}{l|}{10:00-13:00} & \multicolumn{1}{l|}{\cellcolor[HTML]{FCFF2F}}   &                         &                                                &                         &                                                &                         &                         \\ \cline{2-2}
-\multicolumn{1}{l|}{13:00-16:00} & \multicolumn{1}{l|}{\cellcolor[HTML]{FCFF2F}}   &                         &                                                &                         &                                                &                         &                         \\ \cline{2-2}
+\begin{tabular}{cccccccc}
+                                 & Mon                                             & Tue                    & Wed                                            & Thu                    & Fri                                            & Sat                    & Sun                    \\ \cline{2-8} 
+\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}PL} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{I} \\ \cline{2-8} 
+\multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} &                        &                        \\ \cline{2-6}
+\multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          &                        &                        \\ \cline{2-6}
+\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}                           & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          &                        &                        \\ \cline{2-6}
+                                 &                                                 &                        &                                                &                        &                                                &                        &                        \\
+\multicolumn{3}{c}{Task to be evaluated}                                                                    &                                                &                        &                                                &                        &                        \\
+                                 & Mon                                             &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
+\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}PL} &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
+\multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
+\multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
 \end{tabular}
 \end{table}
 
+
 % % FLOW CHART of COSTS
 \begin{figure}[!h]
-  \caption{A flow chart of appearing costs when a PL is assigned a block on a Monday.}
+  \caption{A flow chart of appearing costs when a PL is assigned a block on a Monday, third week relative to the library schedule.}
   \centering
-	\scalebox{0.85}{ \label{cost_flow_chart}
+	\scalebox{0.85}{ \label{flow_chart_cost}
 		\begin{tikzpicture}[node distance = 2cm, auto]
 		    % Place nodes
 		    \node [decision] (demand) {Need for another PL-worker Monday week 3?};
-			\node [block] (blocks) {Create all blocks};
-			\node [block,below of= blocks] (workers) {Create all workers};
+		    %Invisible node
+		    \node[below of= demand, node distance=3.5cm,scale=0.01](inv){};
+		    
+		    \node [decision, left of= inv, node distance = 3.5cm] (whoami1) {Am I ass/lib?};
+		    \node [decision, right of= inv, node distance = 3.5cm] (whoami2) {Am I ass/lib?};
+		    
+		    %Invisible nodes
+		    \node[below of= whoami1, node distance=3cm,scale=0.01](inv2){};
+		    \node[below of= whoami2, node distance=3cm,scale=0.01](inv3){};
+		    
+		    \node[block, left of= inv2] (add_ass_cost1) {Add positive assistant demand cost};
+		    \node[block, right of= inv2] (add_lib_cost1) {Add positive librarian demand cost};
+		    \node[block, left of= inv3] (add_ass_cost2) {Add negative assistant demand cost};
+		    \node[block, right of= inv3] (add_lib_cost2) {Add negative librarian demand cost};
+			\node[decision, below of= demand, node distance = 11cm] (too_many) {Have I too many PL already?};
+			
+			%Invisible node
+			\node[below of= too_many, node distance=3cm,scale=0.01](inv4){};
+			\node[block, left of= inv4, node distance=2cm] (pl_good) {Add negative PL amount cost};
+			\node[block, right of= inv4, node distance=2cm] (pl_violate) {Add positive PL amount cost};
 			
 		    % Draw edges
-		    \path [line] (blocks) -- (workers);
+		    \path [line] (demand) -- node[left]{no}(whoami1);
+		    \path [line] (demand) -- node[right]{yes}(whoami2);
+		    \path [line] (whoami1) -- node[left]{ass}(add_ass_cost1);
+		    \path [line] (whoami1) -- node[right]{lib}(add_lib_cost1);
+		    \path [line] (whoami2) -- node[left]{ass}(add_ass_cost2);
+		    \path [line] (whoami2) -- node[right]{lib}(add_lib_cost2);
+		    \path [line] (add_ass_cost1) -- (too_many.north);
+		    \path [line] (add_lib_cost1) -- (too_many.north);
+		    \path [line] (add_ass_cost2) -- (too_many.north);
+		    \path [line] (add_lib_cost2) -- (too_many.north);
+		    \path [line] (too_many) -- node[left]{no}(pl_good);
+		    \path [line] (too_many) -- node[right]{yes}(pl_violate);
+		    
+		    %First cost
+		    \draw [color=gray!70,thick](-8,-9) rectangle(8,2);
+		    \node[draw] at (-6.5,1.5) {PL demand cost};
+		    %Second cost
+		    \draw [color=gray!70,thick](-4,-16.5) rectangle(4,-9);
+   		    \node[draw] at (-2.5,-9.5) {PL amount cost};
+		    
 		\end{tikzpicture}
 		}
 \end{figure}
@@ -362,7 +403,68 @@ To find the best weekblock several costs have been introduced to measure whether
 
 
 \subsection{Costs}
-In order to find a feasible solution many of the implemented costs must be carefully chosen. Presently, there are 16 existing costs where some of them are correlated. 
+In order to find a feasible solution many of the implemented costs must be carefully chosen. Presently, there are 16 existing costs where some of them are correlated with each other. The solution behaves differently depending on the relation between the costs changes.
 
-\section{Individual task scheduling approach}\label{Individual}
+Six of the costs are presented in Figure \ref{flow_chart_cost}. They have all been assigned unique values so that, for example, positive assistant demand cost differs from negative assistant demand cost in absolute value. To explain why, one can imagine a case where four workers are demanded of which two have to be librarians, see Table \ref{library_solutions}. The first case, where one assistant and three librarians have been assigned, is more desirable than the case with three assistants and one librarian. In the first case it is still a feasible solution as the qualification of assistants are a subset of the librarians. The second case is feasible, however, not optimal due to the exceeding use of librarians. The optimal solution is shown in green as Case 3 in Table \ref{library_solutions}.
+
+\begin{table}[!h]
+\centering
+\caption{Library demand at a shift and solution qualities}
+\label{library_solutions}
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+Demand:                         & \multicolumn{2}{l|}{\cellcolor[HTML]{C0C0C0}4 workers ($\geq 2$ librarians)} \\ \hline
+\rowcolor[HTML]{FD6864} 
+\cellcolor[HTML]{C0C0C0}Case 1: & 3 assistants, 1 librarian                  & (not feasible)                 \\ \hline
+\rowcolor[HTML]{FFFE65} 
+\cellcolor[HTML]{C0C0C0}Case 2: & 1 assistant, 3 librarians                  & (feasible)                     \\ \hline
+\rowcolor[HTML]{34FF34} 
+\cellcolor[HTML]{C0C0C0}Case 3:  & 2 assistants, 2 librarians                 & (optimal)                      \\ \hline
+\end{tabular}
+\end{table}
+
+The complete list of costs with description can be seen in Table \ref{tab:all_costs}. 
+
+\begin{table}[!h]
+\centering
+\caption{My caption}
+\label{tab:all_costs}
+\begin{tabular}{|l|l|}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+Cost                                      & Description       \\ \hline
+\rowcolor[HTML]{FD6864} 
+\multicolumn{2}{|c|}{\cellcolor[HTML]{FD6864}Demand costs}    \\ \hline
+Demand\_few\_assistants                        & In need of more assistants to fill quota.                  \\ \hline
+Demand\_few\_librarians                        & In need of more librarians to fill quota.                 \\ \hline
+Demand\_many\_assistants                       & More assistants assigned than needed (redundance).           \\ \hline
+Demand\_many\_librarians                       & More librarians assigned than reference value.                  \\ \hline
+Demand\_few\_total                             & Not correct amount of workers assigned a task.                  \\ \hline
+Demand\_many\_total                            & Not correct amount of workers assigned a task.                  \\ \hline
+Demand\_PL\_good\_assistant        & Assigning a PL to assistant, empty before assignment.            \\ \hline
+Demand\_PL\_good\_librarian        & Assigning a PL to librarian, empty before assignment.           \\ \hline
+Demand\_PL\_bad\_assistant         & Assigning a PL to assistant, others already assigned.           \\ \hline
+Demand\_PL\_bad\_librarian         & Assigning a PL to librarian, others already assigned.             \\ \hline
+\rowcolor[HTML]{FD6864} 
+\multicolumn{2}{|c|}{\cellcolor[HTML]{FD6864}PL amount costs} \\ \hline
+PL\_good\_amount                  & Assigning PL when in need of more for feasibility.                  \\ \hline
+PL\_violate\_amount             & Assigning more PL than allowed to that worker.                  \\ \hline
+\rowcolor[HTML]{FD6864} 
+\multicolumn{2}{|c|}{\cellcolor[HTML]{FD6864}Weekend costs}   \\ \hline
+HB\_amount                       & No or more than one HB workers assigned the same weekend.   \\ \hline
+No\_weekend                &                   \\ \hline
+\rowcolor[HTML]{FD6864} 
+\multicolumn{2}{|c|}{\cellcolor[HTML]{FD6864}Stand-in costs}  \\ \hline
+Stand\_in\_cost                     & Occuring when a possible stand-in is ruined due to assignment.    \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{Destroy}
+Text
+\subsection{Repair}
+Text
+\subsection{Evaluation of solution}
+Text
+\subsection{Final phase}
 Text

@@ -32,7 +32,7 @@ static const int DEMAND_EVENING_COST = 20000; //DEMAND_EVENING_COST > (5*)(2*)HI
 //*Weekend costs*
 static const int NO_WEEKEND_COST = 5000; //No weekend assigned to a weekend worker. Keep decently high (happens if Only_HB-worker can not take HB, since already assigned)
 // static const int HB_ASSIGNED_COST = 10000; //If HB is already assigned when being assigned to the worker (used for 10W)
-static const int DEMAND_HB_OVERSTAFF = 15000;
+static const int DEMAND_HB = 15000;
 
 static const int HIGH_PRIORITY = 2500; //param value for STAND_IN_COST. DEMAND_EVENING_COST > 5*HIGH_PRIORITY since can happen 5 times/week
 static const int MIDDLE_PRIORITY = 250;
