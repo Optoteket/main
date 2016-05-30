@@ -17,7 +17,7 @@ MIP Presolve eliminated 65347 rows and 32173 columns.
 MIP Presolve modified 57565 coefficients.
 Reduced MIP has 12660 rows, 13185 columns, and 63626 nonzeros.
 Reduced MIP has 12995 binaries, 190 generals, 0 SOSs, and 0 indicators.
-Found incumbent of value -5.4501242e+07 after 0.34 sec. (481.83 ticks)
+Found incumbent of value -5.4501242e+07 after 0.33 sec. (481.83 ticks)
 Probing fixed 1537 vars, tightened 2 bounds.
 Probing changed sense of 50 constraints.
 Probing time = 0.03 sec. (14.53 ticks)
@@ -31,7 +31,7 @@ Clique table members: 17103.
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
 Parallel mode: deterministic, using up to 8 threads.
-Root relaxation solution time = 0.16 sec. (113.57 ticks)
+Root relaxation solution time = 0.15 sec. (113.57 ticks)
 
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
@@ -40,21 +40,21 @@ Root relaxation solution time = 0.16 sec. (113.57 ticks)
       0     0      400.0000   349  -5.45012e+07      400.0000     3386  100.00%
 *     0+    0                          400.0000      400.0000     3386    0.00%
       0     0        cutoff            400.0000      400.0000     3386    0.00%
-Elapsed time = 0.92 sec. (938.20 ticks, tree = 0.00 MB)
+Elapsed time = 0.91 sec. (938.20 ticks, tree = 0.00 MB)
 
 Root node processing (before b&c):
-  Real time             =    0.47 sec. (361.24 ticks)
+  Real time             =    0.46 sec. (361.24 ticks)
 Parallel b&c, 8 threads:
   Real time             =    0.00 sec. (0.00 ticks)
   Sync time (average)   =    0.00 sec.
   Wait time (average)   =    0.00 sec.
                           ------------
-Total (root+branch&cut) =    0.47 sec. (361.24 ticks)
+Total (root+branch&cut) =    0.46 sec. (361.24 ticks)
 
 Times (seconds):
-Input =  0.057991
-Solve =  1.50977
-Output = 0.041994
+Input =  0.06099
+Solve =  1.54077
+Output = 0.042994
 CPLEX 12.5.0.0: optimal integer solution; objective 400
 3386 MIP simplex iterations
 0 branch-and-bound nodes

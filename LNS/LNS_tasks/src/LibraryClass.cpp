@@ -2345,27 +2345,28 @@ void Library::write_results(){
     demand_file << "Tasks: Exp, PL, Info, HB, BokB (without no_task)" << endl;
     for (int k=0; k< NUM_DAYS; k++){
       if(k==0){
-	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Monday } \\ \\hline" << endl;
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Monday }" << " \\" << "\\ \\hline" << endl;
       }
       else if(k==1){
-	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Tuesday } \\ \\hline" << endl;
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Tuesday }" << " \\" << "\\ \\hline" << endl;
       }
       else if(k==2){
-	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Wednesday } \\ \\hline" << endl;
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Wednesday }" << " \\" << "\\ \\hline" << endl;
       }
       else if(k==3){
-	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Thursday } \\ \\hline" << endl;
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Thursday }" << " \\" << "\\ \\hline" << endl;
       }
       else if(k==4){
-	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Friday } \\ \\hline" << endl;
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Friday }" << " \\" << "\\ \\hline" << endl;
       }
       else if(k==5){
-	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Saturday } \\ \\hline" << endl;
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Saturday }" << " \\" << "\\ \\hline" << endl;
       }
       else if(k==6){
-	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Sunday } \\ \\hline" << endl;
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Sunday }" << " \\" << "\\ \\hline" << endl;
       }
       for (int j=0; j< NUM_SHIFTS; j++){
+	demand_file << "\\colcell Shift " << j+1 << ":";
 	for(int l=Exp; l<NUM_TASKS; l++){
 	  int swap_tasks;
 	  if(l==PL){
@@ -2375,7 +2376,7 @@ void Library::write_results(){
 	    swap_tasks=PL;
 	  }
 	  else swap_tasks=l;
-	  demand_file << " & " << "{\\cellcolor[gray]{" << 1.0/((1/4.0)*current_demand[0][k][j][swap_tasks]+1)-0.001 << "}}" << current_demand[0][k][j][swap_tasks];
+	  demand_file << " & " << "{\\cellcolor{maroon!" << (int)100*((1/4.0)*current_demand[0][k][j][swap_tasks]) << "}}" << current_demand[0][k][j][swap_tasks];
 	}
 	demand_file << " \\" << "\\ \\hline" << endl;
       }
