@@ -305,8 +305,7 @@ The weekday distribution phase is similar to the weekend distribution phase, sin
 \centering
 \caption{Algorithm for distributing weekday tasks.}
 \label{fig:weekday_alg}
-\scalebox{0.9}{
-\begin{tikzpicture}[node distance = 2cm, auto]
+\begin{tikzpicture}[node distance = 2cm, scale=0.8, , every node/.style={scale=0.6}]
     %Right column
     \node [scale=0.01,node distance=0cm] (invinit) {};
     \node [block, below of=invinit, node distance=2cm] (init) {Set \\ feasibility to true};
@@ -344,26 +343,30 @@ The weekday distribution phase is similar to the weekend distribution phase, sin
     \path [line] (init) -- (distribute);
     \path [line] (distribute) -- (workercost);
     \path [line] (workercost) -- (evaluatewc);
-    \path [line] (evaluatewc) -- node {yes} (evaluatetasks);
-    \path [line] (evaluatewc) -- node {no} (inv);
+    \path [line] (evaluatewc) -- node {yes} (evaluatetasks);    
+    %ERROR
+%    \path [line] (evaluatewc) -- node {no} (inv);    
     \path [line] (evaluatetasks) -- node {yes} (taskcost);
-    \path [line] (evaluatetasks) -- node {no} (feasible);
-	\path [line] (inv) |- (feasible);
+    \path [line] (evaluatetasks) -- node {no} (feasible);    
+    %ERROR
+%	\path [line] (inv) |- (feasible);
     \path [line] (feasible) -- node {yes} (destamount);
     \path [line] (feasible) -| node {no} (count++);
     \path [line] (destamount) -- (dr);
     \path [line] (dr) -- (workercost2);
-    \path [line] (workercost2) -- (inv2);
-    \path [line] (inv2) -- (inv3);
-    \path [line] (inv3) -- (evaluatewc);
+    %ERROR
+%    \path [line] (workercost2) -- (inv2);
+%    \path [line] (inv2) -- (inv3);
+%    \path [line] (inv3) -- (evaluatewc);
     \path [line] (count++) -- (done);
     \path [line] (done) -- node {no}(remove);    
     \path [line] (best) -- node {yes}(savebest);
     \path [line] (best) -- node {no}(count++);
     \path [line] (taskcost) -- (best);
     \path [line] (remove) -- (distribute);
-    \path [line] (done) -| node {no} (inv4);
-    \path [line] (inv4) -- (isbest);
+    %ERROR
+%    \path [line] (done) -| node {no} (inv4);
+%    \path [line] (inv4) -- (isbest);
     \path [line] (isbest) -- node {no} (reload2);
     \path [line] (isbest) -- node {yes} (finished);
     \path [line] (reload2) -- (finished);
@@ -382,7 +385,6 @@ The weekday distribution phase is similar to the weekend distribution phase, sin
 %    \path [line,dashed] (system) -- (init);
 %    \path [line,dashed] (system) |- (evaluate);
 \end{tikzpicture}
-}
 \end{figure}
 
 Evenings,weekends and BokB already placed.
