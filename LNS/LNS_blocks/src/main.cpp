@@ -14,13 +14,10 @@
 
 using namespace std;
 
-
-
-
-int main() {
+void loop(ostream& outrunvalues){
 	clock_t t;
-	float time = 0;
-	float time2 = 0;
+	double time = 0;
+	long double time2 = 0;
 	int count_new_sol = 0;
 	int best_solution = 9999999; //Initialized as high value
 	ofstream outFile("./target/results.txt");
@@ -30,6 +27,7 @@ int main() {
 		exit(1);
 	}
 	ofstream outdata("./target/Plotdata.txt");
+// 	ofstream outrunvalues("./target/runvalues.txt");
 	//Checking for open Error
 	if (outdata.fail()) {
 		cerr << "Error opening the file!" << endl;
@@ -40,10 +38,12 @@ int main() {
 	ofstream outstandins("./target/standins.txt");
 	ofstream outmaxmin("./target/maxmin.txt");
 	Library lib;
+	lib.createWorkers(); //Creating myworkers[39]
 	lib.create_all_blocks();
 	cout << "block_vector size is: " << lib.get_block_vector().size() << endl; //Why differ to #blocks to create?
+// 	return;
 
-	lib.createWorkers(); //Creating myworkers[39]
+	
 	
 	
 	//***Assign all the blocks to workers***
@@ -183,11 +183,13 @@ int main() {
 	int current_solution = 0;
 	int iter_count = 0;
 	vector<int> output_vector;
-	int temporary_solution = 9999999;
+// 	int temporary_solution = 9999999;
 	vector<int> workers_destroyed_vect;
 	int p = 3; //Number of workers to destroy for
 	
-	int new_phase = 0;
+// 	int new_phase = 0;
+	int break_integer = 0;
+	
 	
 	//Evaluate the initial solution
 	output_vector = lib.evaluate_solution(cout);
@@ -197,7 +199,7 @@ int main() {
 	
 	outdata << "objfcn\tfeasible\tstandins\tmaxmin" << endl;
 	//Start the destroy/repair loop!
-	while(time < stop_time){ //54000 means 17-08, 239400 means fri 13.37 - mon 8.07, 234612 means roughly 14.57 - mon 8.07
+	while(time < stop_time && current_solution > 0){ //54000 means 17-08, 239400 means fri 13.37 - mon 8.07, 234612 means roughly 14.57 - mon 8.07
 // 	for(int j=0; j<100; j++){
 		t_updated = 0;
 		t = clock(); //Start counting
@@ -273,7 +275,7 @@ int main() {
 // 		outFile << "\n\n\n***Best iteration number: " << count_new_sol << "***" << endl;
 // 		outFile << "Best solution so far is " << lib.evaluate_solution(outFile).at(1) << endl;//Print everything with evaluate_solution
 // 		t = clock() - t;
-// 		time2 = time + (float)t/CLOCKS_PER_SEC;
+// 		time2 = time + (long double)t/CLOCKS_PER_SEC;
 // 		outFile << "Time where new best solution found is: " << time2 << endl;
 // 		t_updated = 1;
 		
@@ -295,7 +297,7 @@ int main() {
 			outFile << "\n\n\n***Best iteration number: " << count_new_sol << "***" << endl;
 			outFile << "Best solution so far is " << lib.evaluate_solution(outFile).at(1) << endl;//Print everything with evaluate_solution
 			t = clock() - t;
-			time2 = time + (float)t/CLOCKS_PER_SEC;
+			time2 = time + (long double)t/CLOCKS_PER_SEC;
 			outFile << "Time where new best solution found is: " << time2 << endl;
 			t_updated = 1;
 			
@@ -307,7 +309,7 @@ int main() {
 		//0=total_cost, 1=total_eval_cost, 2=sum_stand_ins, 3=maxmin, 4=demand_tot_cost
 		//5=demand_lib_cost, 6=demand_ass_cost, 7=demand_PL_cost, 8=demand_HB_cost, 9=demand_evening_cost
 		//10=PL_amount_cost, 11=no_weekend_cost
-		if(current_solution <= 8000 && output_vector.at(1) > 0 && output_vector.at(4) >= 0 &&
+		if(current_solution <= 10000 && output_vector.at(1) > 0 && output_vector.at(4) >= 0 &&
 			output_vector.at(5) == 0 && output_vector.at(6) == 0 && output_vector.at(7) >= 0 &&
 			output_vector.at(8) == 0 && output_vector.at(9) == 0 && output_vector.at(10) == 0 &&
 			output_vector.at(11) == 0){
@@ -333,24 +335,41 @@ int main() {
 				}
 				
 				if(stand_in_looper == 1){ //If we got more stand-ins to fill tasks with
-					//Loop this one until feasible otherwise?
-// 					while(current_solution == output_vector.at(1) || output_vector.at(1) <= 0){ //Loop until a new improvement or feasible solution
+					//Start the time when entering final loop
+					int iter_counter = 0;
+					//Loop this one until feasible or for X number of iterations if cant find sol.
 					while(output_vector.at(1) > 0){ //Loop until a new improvement or feasible solution
-// 						lib.destroy(1); //destroy is working for 1 worker?
-// 						lib.repair();
 // 						outFile << "Destroy and repair for one week/person" << endl;
 						lib.destroy_repair_one_week_at_the_time();
 						cout << "\nAfter Repair in final phase\n" << endl;
 						output_vector = lib.evaluate_solution(cout); //Evaluate and save
 						if(output_vector.at(1) < current_solution){
 							current_solution = output_vector.at(1);
+							best_solution = current_solution;
 							outFile << "New solution found: " << lib.evaluate_solution(outFile).at(1) << endl;
+						}
+// 						//Update iterations
+						iter_counter++;
+						cout << "ITER COUNTER IS: " << iter_counter << endl;
+						if(iter_counter >= 1000){
+							outrunvalues << "No solution found after " << iter_counter << " iterations" << endl;
+// 							outrunvalues << "Current solution was " << current_solution << endl;
+							break_integer = 1;
+							break;
 						}
 					} //Found a better sol after this loop or Feasible solution!
 					count_new_sol++;
 					//Print best solution to file!
 					outFile << "\n\n\n***Best iteration number: " << count_new_sol << "***" << endl;
 					outFile << "Best solution so far is " << lib.evaluate_solution(outFile).at(1) << endl;//Print everything with evaluate_solution
+					if(output_vector.at(1) <= 0){
+						//Update time and print values to outrunvalues
+						t = clock() - t; //in TICKS
+						time += (long double)t/CLOCKS_PER_SEC; //As long double value
+						outrunvalues << "Solution found after " << time << " seconds and " << iter_counter << " iterations" << endl;
+						outrunvalues << "Worst number of stand-ins: " << lib.get_lowest_stand_in() << endl;
+// 						lib.print_stand_ins(outrunvalues);
+					}
 					
 				}
 				else if(stand_in_looper == 0){
@@ -360,7 +379,9 @@ int main() {
 					}
 					outFile << "After create clear function" << endl;
 				}
-				
+				if(break_integer == 1){
+					break;
+				}
 			}
 		}
 		
@@ -368,13 +389,15 @@ int main() {
 		if(t_updated == 0){
 			t = clock() - t; //in TICKS
 		}
-		time += (float)t/CLOCKS_PER_SEC; //As float value
+		time += (long double)t/CLOCKS_PER_SEC; //As long double value
 		cout << "\n\n\ntime is: " << time << "\n\n" << endl;
 		iter_count++;
-		
+		if(break_integer == 1){
+			break;
+		}
 	}
 	
-// 	cout << "it took " << ((float)time)/CLOCKS_PER_SEC << " seconds to execute the program" << endl;
+// 	cout << "it took " << ((long double)time)/CLOCKS_PER_SEC << " seconds to execute the program" << endl;
 	cout << "Number of iterations during the run: " << iter_count << endl;
 	cout << "Highest lowest number of stand-in for each day is: " << lib.get_max_min_stand_in() << endl;
 	cout << "Best solution found was: " << best_solution << endl;
@@ -382,9 +405,21 @@ int main() {
 	outFile << "\n\nFound " << count_new_sol << " new solutions during iteration" << endl;
 	outFile << "Number of iterations during the run: " << iter_count << endl;
 	outFile << "Best solution found was: " << best_solution << endl;
+	outFile << "Found after " << time << " seconds" << endl;
 	
 	outFile.close();
 	outdata.close();
+}
+
+
+int main() {
+	ofstream outrunvalues("./target/runvalues.txt");
+	for(int ii=0; ii<10000; ii++){
+		outrunvalues << "*** Iteration " << ii+1 << " ***" << endl;
+		loop(outrunvalues);
+	}
+	
+	outrunvalues.close();
 	cout << "End of main" << endl;
 	return 0;
 }

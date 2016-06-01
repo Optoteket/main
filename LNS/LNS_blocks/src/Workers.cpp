@@ -516,19 +516,19 @@ int Worker::calculate_demand_cost(Block* block, string type, int diff_in_demand[
 					}
 				}else if(diff_in_demand[w][d][s][1]-1 == 0){ //Good assignment -> Negative cost!
 					if(newQual.compare(0,3,"lib") == 0){
-						temp_cost -= 2*DEMAND_PL_GOOD_LIB;
+						temp_cost -= DEMAND_PL_GOOD_LIB;
 					}
 					else if(newQual.compare(0,3,"ass") == 0){
-						temp_cost -= 2*DEMAND_PL_GOOD_ASS;
+						temp_cost -= DEMAND_PL_GOOD_ASS;
 					}
 				}
 			}
 			if(s == 0 && d == 6 && block->getTask(d,s,3) == 1){ //get all "HB" tasks
 				if(diff_in_demand[w][d][s][2]-1 < 0){
-					temp_cost += DEMAND_HB_OVERSTAFF; //Positive cost if overstaffing HB!
+					temp_cost += DEMAND_HB; //Positive cost if overstaffing HB!
 				}
 				else if(diff_in_demand[w][d][s][2]-1 == 0){
-					temp_cost -= DEMAND_HB_OVERSTAFF; //Negative cost if filling up HB!
+					temp_cost -= DEMAND_HB; //Negative cost if filling up HB!
 				}
 			}
 			
@@ -607,13 +607,13 @@ int Worker::calculate_stand_in_cost(Block* block, string type, int count, int ma
 
 int Worker::calculate_num_wends_cost(Block* block){ //Add a cost to first block since it has no weekends assigned (for weekend workers)
 	int temp_cost = 0;
-	int count = 0;
-	if(newWeekend.compare(0,7,"weekend") == 0){
-		for(int d=5; d<7; d++){
-			if(block->getTask(d,0,0) == 1){count++;} //Count if empty task
-		}
-		if(count == 2){temp_cost = NO_WEEKEND_COST;}
-	}
+// 	int count = 0;
+// 	if(newWeekend.compare(0,7,"weekend") == 0){
+// 		for(int d=5; d<7; d++){
+// 			if(block->getTask(d,0,0) == 1){count++;} //Count if empty task
+// 		}
+// 		if(count == 2){temp_cost = NO_WEEKEND_COST;}
+// 	}
 // 	if(temp_cost != 0){cout << "in calculate_num_wends_cost. Temp_cost is: " << temp_cost << endl;}
 	return temp_cost;
 }
