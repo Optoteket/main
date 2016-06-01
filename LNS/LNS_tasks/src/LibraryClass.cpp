@@ -179,13 +179,13 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
     repair_weekend("perm");
     feasible = compare_avail_demand("perm");
     if(feasible){
-      //place_BokB();
+      place_BokB();
       feasible = compare_avail_demand("perm");
     }
 
     //Check feasibility, place evenings
     if(feasible){
-      //feasible = set_evening_tasks();
+      feasible = set_evening_tasks();
       feasible = compare_avail_demand("perm");
     }
   }
@@ -238,7 +238,7 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
       }
 
       //Remove all tasks except weekend/friday evening
-      //remove_weekday_tasks();
+      remove_weekday_tasks();
 
       //Destroy and repair partially
       destroy_weekend(percent, "perm");
@@ -247,13 +247,13 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
       //Check feasibility, place BokB
       feasible = compare_avail_demand("perm");
       if(feasible){
-	//place_BokB();
+	place_BokB();
 	feasible = compare_avail_demand("perm");
       }
 
       //Check feasibility, place evenings
       if(feasible){
-	//feasible = set_evening_tasks();
+	feasible = set_evening_tasks();
 	feasible = compare_avail_demand("perm");
       }
       
@@ -479,7 +479,7 @@ void Library::optimize_weekday_tasks(int iterations){
       else destroy_amount = 20;
 
       //Write the results
-      write_results();
+      //write_results();
 
       //Display worker costs
       cout << "Worker costs after placing all tasks:" << endl;
@@ -523,17 +523,15 @@ void Library::optimize_weekday_tasks(int iterations){
       cout << "Num same shifts week cost: " << num_same_shifts_week_cost << endl << endl;
 
       //Set library costs
-      set_library_stand_in_cost();
       set_critical_worker_cost();
       set_non_critical_worker_cost();
-
-
     }
 
     //Push back feasibility
     feasibles.push_back(feasible);
     if(feasible){
-      library_cost = 100*(lib_weight*min_stand_in[Lib] + ass_weight*min_stand_in[Ass]);
+      set_library_stand_in_cost();
+      //library_cost = 100*(lib_weight*min_stand_in[Lib] + ass_weight*min_stand_in[Ass]);
     }
     else library_cost = -1;
 
@@ -2316,27 +2314,80 @@ void Library::write_results(){
   ofstream num_avail_file(num_avail_file_dir.c_str());
   if(num_avail_file.is_open()){
 
-    num_avail_file << "Total num of available workers (Ass, Lib, BBlib):" << endl;
-  
     for (int i=0; i< NUM_WEEKS; i++){
-      for (int j=0; j< NUM_SHIFTS; j++){
-	for(int m = Ass; m< NUM_POSITIONS; m++){
-	  for (int k=0; k< NUM_DAYS; k++){
-	    num_avail_file  << num_avail_workers[m][i][k][j];
-	    if (k != NUM_DAYS-1){
-	      num_avail_file  << " & ";
-	    }
-	  }
-	  if (m != NUM_POSITIONS-1){
-	   num_avail_file  << " &  &   ";
-	  }
+      for(int m = Ass; m< NUM_POSITIONS; m++){
+	if(m==Ass){
+	num_avail_file << "\\hline & \\multicolumn{7}{l|}{\\textbf{Num available assistants}}" << " \\" << "\\ \\hline";
 	}
-	num_avail_file << " \\" << "\\ \\hline" << endl;
+	else if(m==Lib){
+	num_avail_file << "\\hline & \\multicolumn{7}{l|}{\\textbf{Num available librarians}}" << " \\" << "\\ \\hline";
+	}
+	else if(m==BBlib){
+	  num_avail_file << "\\hline & \\multicolumn{7}{l|}{\\textbf{Num available BB-librarians}}" << " \\" << "\\ \\hline";
+	}
+	num_avail_file << "\\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\" << "\\ \\hline";
+	for (int j=0; j< NUM_SHIFTS; j++){
+	  num_avail_file << "\\colcell Shift " << j+1 << ":";
+	  for (int k=0; k< NUM_DAYS; k++){
+	    if (num_avail_workers[m][i][k][j] < 18 && num_avail_workers[m][i][k][j] != 0){
+	       num_avail_file << " & " << "{\\cellcolor{maroon!" << (int)100*((1/20.0)*num_avail_workers[m][i][k][j]) + 10 << "}}"<< num_avail_workers[m][i][k][j];
+	    }
+	    else
+	      num_avail_file << " & " << "{\\cellcolor{maroon!" << (int)100*((1/20.0)*num_avail_workers[m][i][k][j]) << "}}"<< num_avail_workers[m][i][k][j];
+	  }
+	  num_avail_file << " \\" << "\\ \\hline" << endl;
+	}
       }
       num_avail_file << endl << endl;
     }
+    }
+    num_avail_file.close();
+
+  string demand_file_dir = "../target/results/current_demand.dat";
+  ofstream demand_file(demand_file_dir.c_str());
+  if(demand_file.is_open()){
+
+    for (int k=0; k< NUM_DAYS; k++){
+      if(k==0){
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Monday }" << " \\" << "\\ \\hline" << endl;
+      }
+      else if(k==1){
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Tuesday }" << " \\" << "\\ \\hline" << endl;
+      }
+      else if(k==2){
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Wednesday }" << " \\" << "\\ \\hline" << endl;
+      }
+      else if(k==3){
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Thursday }" << " \\" << "\\ \\hline" << endl;
+      }
+      else if(k==4){
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Friday }" << " \\" << "\\ \\hline" << endl;
+      }
+      else if(k==5){
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Saturday }" << " \\" << "\\ \\hline" << endl;
+      }
+      else if(k==6){
+	demand_file << "\\multicolumn{6}{|l|}{\\colcelltwo Sunday }" << " \\" << "\\ \\hline" << endl;
+      }
+      for (int j=0; j< NUM_SHIFTS; j++){
+	demand_file << "\\colcell Shift " << j+1 << ":";
+	for(int l=Exp; l<NUM_TASKS; l++){
+	  int swap_tasks;
+	  if(l==PL){
+	    swap_tasks=Info;
+	  }
+	  else if(l==Info){
+	    swap_tasks=PL;
+	  }
+	  else swap_tasks=l;
+	  demand_file << " & " << "{\\cellcolor{maroon!" << (int)100*((1/4.0)*current_demand[0][k][j][swap_tasks]) << "}}" << current_demand[0][k][j][swap_tasks];
+	}
+	demand_file << " \\" << "\\ \\hline" << endl;
+      }
+    }
+
   }
-  num_avail_file.close();
+  demand_file.close();
 
   string res_file_dir = "../target/results/resfile.dat";
   (*resfile).open(res_file_dir.c_str());

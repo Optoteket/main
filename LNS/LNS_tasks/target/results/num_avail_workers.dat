@@ -1,31 +1,70 @@
-Total num of available workers (Ass, Lib, BBlib):
-8 & 10 & 10 & 10 & 6 & 0 & 0 &  &   16 & 15 & 16 & 13 & 12 & 0 & 0 &  &   2 & 0 & 1 & 1 & 1 & 0 & 0 \\ \hline
-8 & 9 & 9 & 9 & 6 & 0 & 0 &  &   18 & 15 & 17 & 14 & 13 & 0 & 0 &  &   0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-9 & 8 & 9 & 7 & 5 & 0 & 0 &  &   17 & 14 & 18 & 18 & 13 & 0 & 0 &  &   0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-3 & 2 & 2 & 3 & 0 & 0 & 0 &  &   3 & 4 & 4 & 3 & 1 & 0 & 0 &  &   1 & 0 & 2 & 2 & 0 & 0 & 0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available assistants}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!40}}6 & {\cellcolor{maroon!40}}6 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available BB-librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 
 
-9 & 10 & 10 & 12 & 7 & 0 & 0 &  &   17 & 16 & 16 & 14 & 11 & 0 & 0 &  &   2 & 0 & 1 & 1 & 2 & 0 & 0 \\ \hline
-9 & 9 & 9 & 11 & 7 & 0 & 0 &  &   19 & 16 & 17 & 15 & 13 & 0 & 0 &  &   0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-9 & 8 & 9 & 7 & 5 & 0 & 0 &  &   17 & 15 & 18 & 18 & 13 & 0 & 0 &  &   0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-3 & 2 & 2 & 2 & 0 & 0 & 0 &  &   3 & 4 & 4 & 4 & 1 & 0 & 0 &  &   1 & 0 & 2 & 2 & 0 & 0 & 0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available assistants}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!40}}6 & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!40}}6 & {\cellcolor{maroon!40}}6 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available BB-librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!20}}2 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 
 
-8 & 10 & 10 & 12 & 9 & 0 & 0 &  &   16 & 15 & 16 & 14 & 11 & 0 & 0 &  &   2 & 0 & 1 & 1 & 1 & 0 & 0 \\ \hline
-8 & 9 & 9 & 11 & 9 & 0 & 0 &  &   18 & 15 & 17 & 15 & 12 & 0 & 0 &  &   0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-9 & 8 & 9 & 9 & 6 & 0 & 0 &  &   16 & 13 & 18 & 18 & 13 & 0 & 0 &  &   0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-3 & 2 & 2 & 3 & 0 & 0 & 0 &  &   3 & 4 & 4 & 4 & 1 & 0 & 0 &  &   1 & 0 & 2 & 1 & 0 & 0 & 0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available assistants}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!40}}6 & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available BB-librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 
 
-8 & 10 & 10 & 12 & 8 & 0 & 0 &  &   16 & 15 & 16 & 14 & 11 & 0 & 0 &  &   2 & 0 & 1 & 1 & 1 & 0 & 0 \\ \hline
-8 & 9 & 9 & 11 & 8 & 0 & 0 &  &   18 & 15 & 17 & 15 & 12 & 0 & 0 &  &   0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-9 & 8 & 9 & 9 & 7 & 0 & 0 &  &   17 & 14 & 18 & 17 & 13 & 0 & 0 &  &   0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-3 & 2 & 2 & 3 & 0 & 0 & 0 &  &   3 & 4 & 4 & 4 & 1 & 0 & 0 &  &   1 & 0 & 2 & 2 & 0 & 0 & 0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available assistants}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!35}}5 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!35}}5 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!35}}5 & {\cellcolor{maroon!35}}5 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!85}}15 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available BB-librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 
 
-7 & 10 & 10 & 12 & 6 & 0 & 0 &  &   16 & 15 & 16 & 13 & 13 & 0 & 0 &  &   2 & 0 & 1 & 1 & 1 & 0 & 0 \\ \hline
-7 & 9 & 9 & 11 & 6 & 0 & 0 &  &   18 & 15 & 17 & 14 & 14 & 0 & 0 &  &   0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-9 & 8 & 9 & 9 & 6 & 0 & 0 &  &   16 & 14 & 18 & 18 & 14 & 0 & 0 &  &   0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-3 & 2 & 2 & 3 & 0 & 0 & 0 &  &   3 & 4 & 4 & 3 & 1 & 0 & 0 &  &   1 & 0 & 2 & 2 & 0 & 0 & 0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available assistants}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!30}}4 & {\cellcolor{maroon!35}}5 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\hline & \multicolumn{7}{l|}{\textbf{Num available BB-librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 
 

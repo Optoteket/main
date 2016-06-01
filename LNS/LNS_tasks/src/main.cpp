@@ -117,6 +117,7 @@ void collect_AMPL_statistics(int* infeas, vector<int>& min_l, vector<int>& min_a
 }
 
 
+
 /***************** Main loop *****************/
 int main(int argc, char** argv)
 {
