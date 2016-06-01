@@ -1502,13 +1502,13 @@ vector<int> Library::evaluate_solution(ostream& stream){//Add all costs together
 		}
 		
 		//***EMPTY WEEKEND COSTS***
-		int w = myworkers[i].getWeekend_week();
-		//Check if weekend block is 0 (empty one), since the only weekend block without a weekend task assigned for wend worker
-		if(myworkers[i].getblocks_assigned().at(w)->getID() == 0 && myworkers[i].getWeekend().compare(0,7,"weekend") == 0){
-			//Add cost
-			no_weekend_cost += NO_WEEKEND_COST;
-			stream << "WORKER WITH NO_WEEKEND_COST IS: " << i+1 << endl; //worker index 28 is the problem i.e.for i=27
-		}
+// 		int w = myworkers[i].getWeekend_week();
+// 		//Check if weekend block is 0 (empty one), since the only weekend block without a weekend task assigned for wend worker
+// 		if(myworkers[i].getblocks_assigned().at(w)->getID() == 0 && myworkers[i].getWeekend().compare(0,7,"weekend") == 0){
+// 			//Add cost
+// 			no_weekend_cost += NO_WEEKEND_COST;
+// 			stream << "WORKER WITH NO_WEEKEND_COST IS: " << i+1 << endl; //worker index 28 is the problem i.e.for i=27
+// 		}
 	}
 	
 	

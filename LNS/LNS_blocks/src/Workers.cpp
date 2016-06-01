@@ -607,13 +607,13 @@ int Worker::calculate_stand_in_cost(Block* block, string type, int count, int ma
 
 int Worker::calculate_num_wends_cost(Block* block){ //Add a cost to first block since it has no weekends assigned (for weekend workers)
 	int temp_cost = 0;
-	int count = 0;
-	if(newWeekend.compare(0,7,"weekend") == 0){
-		for(int d=5; d<7; d++){
-			if(block->getTask(d,0,0) == 1){count++;} //Count if empty task
-		}
-		if(count == 2){temp_cost = NO_WEEKEND_COST;}
-	}
+// 	int count = 0;
+// 	if(newWeekend.compare(0,7,"weekend") == 0){
+// 		for(int d=5; d<7; d++){
+// 			if(block->getTask(d,0,0) == 1){count++;} //Count if empty task
+// 		}
+// 		if(count == 2){temp_cost = NO_WEEKEND_COST;}
+// 	}
 // 	if(temp_cost != 0){cout << "in calculate_num_wends_cost. Temp_cost is: " << temp_cost << endl;}
 	return temp_cost;
 }

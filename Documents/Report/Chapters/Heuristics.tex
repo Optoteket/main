@@ -405,18 +405,18 @@ Table \ref{block_to_evaluate} together with Figure \ref{flow_chart_cost} shows a
 \subsection{Costs}
 In order to find a feasible solution many of the implemented costs must be carefully chosen. Presently, there are 16 existing costs where some of them are correlated with each other. The solution behaves differently depending on the relation between the costs changes.
 
-Six of the costs are presented in Figure \ref{flow_chart_cost}. They have all been assigned unique values so that, for example, positive assistant demand cost differs from negative assistant demand cost in absolute value. To explain why, one can imagine a case where four workers are demanded of which two have to be librarians, see Table \ref{library_solutions}. The first case, where one assistant and three librarians have been assigned, is more desirable than the case with three assistants and one librarian. In the first case it is still a feasible solution as the qualification of assistants are a subset of the librarians. The second case is feasible, however, not optimal due to the exceeding use of librarians. The optimal solution is shown in green as Case 3 in Table \ref{library_solutions}.
+Six of the costs are presented in Figure \ref{flow_chart_cost}. They have all been assigned unique values so that, for example, positive assistant demand cost differs from negative assistant demand cost in absolute value. To explain why, one can imagine a case where four workers are demanded of which two have to be librarians, see Table \ref{library_solutions}. The first case, where one assistant and three librarians have been assigned, is more desirable than the case with three assistants and one librarian. In the first case it is still a feasible solution as the qualification of assistants are a subset of the librarians. The second case is feasible, however, not optimal due to the exceeding use of librarians. The optimal solution is shown in green as Case 3.
 
 \begin{table}[!h]
 \centering
-\caption{Library demand at a shift and solution qualities}
+\caption{Library demand at a shift and solution qualities.}
 \label{library_solutions}
 \begin{tabular}{|l|l|l|}
 \hline
 \rowcolor[HTML]{C0C0C0} 
 Demand:                         & \multicolumn{2}{l|}{\cellcolor[HTML]{C0C0C0}4 workers ($\geq 2$ librarians)} \\ \hline
 \rowcolor[HTML]{FD6864} 
-\cellcolor[HTML]{C0C0C0}Case 1: & 3 assistants, 1 librarian                  & (not feasible)                 \\ \hline
+\cellcolor[HTML]{C0C0C0}Case 1: & 3 assistants, 1 librarian                  & (infeasible)                 \\ \hline
 \rowcolor[HTML]{FFFE65} 
 \cellcolor[HTML]{C0C0C0}Case 2: & 1 assistant, 3 librarians                  & (feasible)                     \\ \hline
 \rowcolor[HTML]{34FF34} 
@@ -428,20 +428,21 @@ The complete list of costs with description can be seen in Table \ref{tab:all_co
 
 \begin{table}[!h]
 \centering
-\caption{My caption}
+\caption{List of all costs with description.}
 \label{tab:all_costs}
 \begin{tabular}{|l|l|}
 \hline
 \rowcolor[HTML]{C0C0C0} 
-Cost                                      & Description       \\ \hline
+Cost name                                      & Description       \\ \hline
 \rowcolor[HTML]{FD6864} 
 \multicolumn{2}{|c|}{\cellcolor[HTML]{FD6864}Demand costs}    \\ \hline
 Demand\_few\_assistants                        & In need of more assistants to fill quota.                  \\ \hline
 Demand\_few\_librarians                        & In need of more librarians to fill quota.                 \\ \hline
-Demand\_many\_assistants                       & More assistants assigned than needed (redundance).           \\ \hline
+Demand\_many\_assistants                       & More assistants assigned than needed (redundancy).           \\ \hline
 Demand\_many\_librarians                       & More librarians assigned than reference value.                  \\ \hline
-Demand\_few\_total                             & Not correct amount of workers assigned a task.                  \\ \hline
-Demand\_many\_total                            & Not correct amount of workers assigned a task.                  \\ \hline
+Demand\_few\_total                             & Incorrect amount of workers assigned a task.                  \\ \hline
+Demand\_many\_total                            & Incorrect amount of workers assigned a task.                  \\ \hline
+Demand\_evening\_cost         & Incorrect amount of workers assigned an evening task (more crucial).\\ \hline
 Demand\_PL\_good\_assistant        & Assigning a PL to assistant, empty before assignment.            \\ \hline
 Demand\_PL\_good\_librarian        & Assigning a PL to librarian, empty before assignment.           \\ \hline
 Demand\_PL\_bad\_assistant         & Assigning a PL to assistant, others already assigned.           \\ \hline
