@@ -1,19 +1,28 @@
 \section{Introduction}
 
-The first approach, where fixed weeks are distributed to workers, is discussed in the previous chapter. The second approach, which is presented in this chapter, instead distributes individual tasks to workers. This method greatly resembles the process of manually placing tasks as is typically done in many practical situations.
+The second heuristic approach tested distributes individual tasks to workers. This method greatly resembles the process of manually placing tasks as is typically done in many practical situations. The heuristic undergoes two phases. In the first phase, weekends, as well as some weekday tasks, are distributed and in the second phase the rest of the weekday tasks are distributed.
 
-The objective of the scheduling process is not only to schedule a number of tasks to the workers but also to place them optimally with respect to stand ins. Thus, a method for moving through the solution space and a way of distinguishing between good and bad solutions is of great importance. 
+The primary method used in this approach is a large neighbourhood search (LNS) together with a simulated annhealing (SA) accept function. Destroying and repairing the solution, as is customary in LNS, helps leading the solution out of local optima or plateaus. Similarly, SA is used in order to allow the solution to move in a less favourable directions to avoid these local optima.
 
-The primary method used in this approach is a large neighbourhood search (LNS) together with a simulated annhealing (SA) accept function. Destroying and repairing the solution, as is customary in LNS, helps leading the solution out of local optima or plateaus. Similarly, SA is used in order to allow the solution to move in a less favourable directions to avoid these local optima. The
-search is guided by a continuously updated schedule cost.
-
-Write: two phases implemented.
-
-\section{Objective functions}
-Distinguishing good schedules from bad schedules means there is a need for a way of seting a cost to different schedules. In the original mathematical model, the cost of a schedule consists of two terms: a weighted sum of the number of stand ins on the worst day and the number of different shifts present in the schedule. The rest of the model consists of hard constraints which cannot be violated. However, in the heuristic approach these hard constraints are divided into hard and soft constraints, as is illustrated in Figure (TODO).
+\section{Costs}
+The search in this approach is guided using cost functions. In the original mathematical model, the cost of a schedule consists of two terms. The rest of the model consists of hard constraints which cannot be violated. However, in the heuristic approach these hard constraints are divided into hard and soft constraints, as is illustrated in Figure (TODO).
 
 During the scheduling process in the implementation, three different objective functions are used. The objective functions are illustrated in Table (TODO) and consist of a weekend objective function, a worker objective function and a weekday objective function.
 
+\begin{table}[!h]
+\centering
+\caption{Library objective functions}
+\label{tab: task objective functions_test}
+\begin{tabular}{|l|l|}
+\hline
+\multicolumn{2}{|l|}{Weekend Objective Function} \\
+\hline 
+%\multicolumn{2}{*}{Weekend Objective Function} \\
+%\hline
+%\multicolumn{2}{*}{Weekend Objective Function} \\
+%\hline
+\end{tabular}
+\end{table}
 
 \begin{table}[!h]
 \centering
@@ -29,7 +38,6 @@ During the scheduling process in the implementation, three different objective f
  & Min day availability cost + average day avail\\ 
  & \\
 \hline
-
 \multirow{7}{*}{\begin{tabular}[t]{@{}l@{}}\textbf{Worker}\\ \textbf{Objective}\\ \textbf{Function}\end{tabular}}    & \\
 & Num tasks per day cost \\
 & Num tasks per week cost \\
