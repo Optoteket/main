@@ -145,41 +145,39 @@ Because of the difficulty in measuring stand ins, certain weekday tasks are plac
 \scalebox{0.8}{
 \begin{tikzpicture}[node distance = 2cm, auto]
     % Place nodes
+    %Right row
     \node [scale=0.01,node distance=0cm] (invinit) {};
-    \node [block, below of=invinit, node distance=01cm] (init) {Set \\ feasibility to false};
-    \node [block, below of=init] (distribute) {Distribute all weekends randomly};
+    \node [block, below of=invinit] (distribute) {Distribute all weekends randomly};
     \node [decision, below of=distribute, node distance=2.5cm] (evaluate) {Solution feasible?};
     \node [block, left of=distribute, node distance=4cm] (redistribute) {Remove all weekends};
-     \node [block, below of=evaluate, node distance=2.5cm] (setobjf) {Set weekend obj fun value};
-     \node [block, below of=setobjf, node distance=2.5cm] (savef) {Save current solution};
-     \node [block, below of=savef] (init2) {Set \\ feasibility to false};
-     \node [block, below of=savef] (infeas) {Set \\ feasibility to false};
-     \node [block, below of=infeas] (save) {Save temp solution};
-     \node [block, below of=save] (dr) {Destroy and repair solution};
+     \node [block, below of=evaluate, node distance=3.5cm] (setobjf) {Set weekend obj fun value};
+     \node [block, below of=setobjf, node distance=3cm] (save) {Save temp solution};
+     \node [block, below of=save, node distance=3cm] (dr) {Destroy and repair solution};
      \node [decision, below of=dr] (evaluate2) {Solution feasible?};
      \node [block, right of=dr, node distance=3cm] (reload) {Reload temp solution};
+     
+     %Middle row
      \node [block, left of=evaluate2, node distance=5cm] (setobjf2) {Set weekend obj fun value};
      \node [decision, above of=setobjf2, node distance=2.5cm] (compare) {Better than saved?};
      \node [decision, above of=compare, node distance=2.5cm] (SA) {Accept anyway?};
      \node [decision, left of=SA, node distance=4cm] (best) {Best solution?};
      \node  [block, above of=SA, node distance =2.5cm] (reloadsaved) {Reload saved solution}; 
-     \node [block, above of=reloadsaved, minimum height=3em] (count++) {Increase iterator};
-     \node [block, above of=best, minimum height=3em, node distance = 4.5cm] (savebest) {Save solution as best};
-     \node [decision, above of=count++, node distance=2.5cm] (done) {Iteration \textgreater max?};
+     \node [block, above of=best, minimum height=3em, node distance = 2cm] (savebest) {Save solution as best};
+     \node [decision, above of=reloadsaved, node distance=2cm] (done) {Iteration \textgreater max?};
      \node[above of=savebest, left of=savebest, node distance=2.5cm, scale=0.1](inv){};
-     \node [decision, below of=best, node distance=9cm] (isbest) {Current better than best?};
+     
+     %Bottom nodes
+     \node [decision, below of=best, node distance=10cm] (isbest) {Current better than best?};
      \node [block, right of=isbest, minimum height=3em, node distance=3cm] (reload2) {Reload best};
       \node [block, below of=reload2, minimum height=3em, node distance=2.5cm] (finished) {Search finished!};
 
     % Draw edges
-    \path [line] (init) -- (distribute);
+    \path [line] (invinit) -- (distribute);
     \path [line] (distribute) -- (evaluate);
     \path [line] (evaluate) -| node {no} (redistribute);
     \path [line] (redistribute) |- (distribute);
     \path [line] (evaluate) -- node {yes}(setobjf);
-    \path [line] (setobjf) -- (savef);
-    \path [line] (savef) -- (infeas);
-    \path [line] (infeas) -- (save);
+    \path [line] (setobjf) -- (save);
     \path [line] (save) -- (dr);
     \path [line] (dr) -- (evaluate2);
     \path [line] (evaluate2) -| node {no} (reload);
@@ -190,24 +188,26 @@ Because of the difficulty in measuring stand ins, certain weekday tasks are plac
     \path [line] (compare) -- node {no} (SA);
     \path [line] (SA) -- node {yes} (best);
     \path [line] (SA) -- node {no} (reloadsaved);
-    \path [line] (reloadsaved) -- (count++);
+    \path [line] (reloadsaved) -- (done);
     \path [line] (best) -- node {yes} (savebest);
-    \path [line] (best) -- node {no} (count++);
-    \path [line] (savebest) -- (count++);
-    \path [line] (count++) -- (done);
+    \path [line] (best) -- node {no} (done);
+    \path [line] (savebest) -- (done);
     \path [line] (done) -- node {no}(save);
-    \path [line] (done) -- node {yes}(inv);
+    \path [-,draw] (done) -- node {yes}(inv);
     \path [line] (inv) |- (isbest);
     \path [line] (isbest) -- node {no} (reload2);
     \path [line] (isbest) -- node {yes} (finished);
     \path [line] (reload2) -- (finished);
    
     %Feasiblity loop
-    \node at (-2,-21.5) [above=4mm, right=2mm] {\textsc{feasibility loop}};
-    \draw [color=gray!70,thick](-2,-21.5) rectangle (5,-10.5);
+    \node at (-2,-19) [above=4mm, right=2mm] {\textsc{feasibility loop}};
+    \draw [color=gray!70,thick](-2,-19) rectangle (5,-12);
     %Weekend loop
-    \node at (-10.5,-22) [above=4mm, right=2mm] {\textsc{weekend distribution loop}};
-    \draw [color=gray!70,thick](-10.5,-22) rectangle (5,-9);
+    \node at (-10.5,-19.5) [above=4mm, right=2mm] {\textsc{weekend distribution loop}};
+    \draw [color=gray!70,thick](-10.5,-19.5) rectangle (5,-6);
+    %SA componenet
+    \node at (-7.5,-13.5) [above=4mm, right=2mm] {\textsc{SA}};
+    \draw [color=gray!70,thick](-7.5,-13.5) rectangle (-3,-10.5);
     %\path [line] (decide) -| node [near start] {yes} (update);
     %\path [line] (update) |- (identify);
     %\path [line] (decide) -- node {no}(stop);
@@ -305,18 +305,16 @@ The weekday distribution phase is similar to the weekend distribution phase, sin
 \centering
 \caption{Algorithm for distributing weekday tasks.}
 \label{fig:weekday_alg}
-\begin{tikzpicture}[node distance = 2cm, scale=0.8, , every node/.style={scale=0.6}]
+\begin{tikzpicture}[node distance = 2cm , auto, every node/.style={scale=0.8}]
     %Right column
     \node [scale=0.01,node distance=0cm] (invinit) {};
-    \node [block, below of=invinit, node distance=2cm] (init) {Set \\ feasibility to true};
-    \node [block, below of=init] (distribute) {Try distribute all tasks};
+    \node [block, below of=invinit] (distribute) {Try distribute all tasks};
     \node [block, below of=distribute] (workercost) {Set worker obj fun};
-    \node [decision, below of=workercost, node distance=3cm] (evaluatewc) {Worker cost = 0?};
+    \node [decision, below of=workercost, node distance=2.5cm] (evaluatewc) {Worker cost = 0?};
     \node [decision, below of=evaluatewc, node distance=3cm] (evaluatetasks) {All tasks distributed?};
     \node [decision, below of=evaluatetasks, node distance=3cm] (feasible) {Solution feasible?};
-    \node [block, below of=feasible, node distance=3cm] (destamount) {Set destroy amount};
+    \node [block, below of=feasible, node distance=2.5cm] (destamount) {Set destroy amount};
     \node [block, below of=destamount] (dr) {Destroy and repair solution};
-    \node [block, below of=dr] (workercost2) {Set worker costs};
 
     %Middle column
      \node [block, left of=evaluatetasks, node distance = 4cm] (taskcost) {Set weekday costs};
@@ -324,53 +322,56 @@ The weekday distribution phase is similar to the weekend distribution phase, sin
     \node [block, above of=best, minimum height=3em, node distance = 2cm] (savebest) {Save solution as best};
     
     %Left column
-    \node [block, left of=savebest, node distance=4cm, minimum height=3em] (count++) {Increase iterator};
-    \node [decision, above of=count++, node distance=2cm] (done) {Iteration \textgreater max?};
-    \node [block, above of=done, node distance=2cm] (remove) {Remove all tasks};
+    \node [decision, left of=savebest, node distance=4cm] (done) {Iteration \textgreater max?};
+    \node [block, above of=done, node distance=3.5cm] (remove) {Remove all tasks};
     
     %Get solution
-    \node [decision, below of=count++, node distance=10cm] (isbest) {Current better than best?};
+    \node [decision, below of=done, node distance=15cm] (isbest) {Current better than best?};
     \node [block, right of=isbest, minimum height=3em, node distance=3cm] (reload2) {Reload best};
     \node [block, below of=reload2, minimum height=3em, node distance=2.5cm] (finished) {Search finished!};
     
 	%Invisible nodes
-    \node [right of=evaluatewc, scale=0.01,node distance=2cm] (inv) {};
-    \node [right of=workercost2, scale=0.01,node distance=4cm] (inv2) {};
-    \node [below of=evaluatewc, right of=evaluatewc, scale=0.01,node distance=4cm] (inv3) {};
+    \node [right of=evaluatewc, scale=0.1,node distance=2cm] (inv) {};
+    \node [right of=dr, scale=0.1,node distance=4cm] (inv2) {};
+    \node [right of=workercost, scale=0.1,node distance=4cm] (inv3) {};
     \node[left of=isbest, node distance=4cm, scale=0.1](inv4){};
+    
  
 	%Draw edges
-    \path [line] (init) -- (distribute);
+	\path [line] (invinit) -- (distribute);
     \path [line] (distribute) -- (workercost);
     \path [line] (workercost) -- (evaluatewc);
-    \path [line] (evaluatewc) -- node {yes} (evaluatetasks);    
-    %ERROR
-%    \path [line] (evaluatewc) -- node {no} (inv);    
-    \path [line] (evaluatetasks) -- node {yes} (taskcost);
-    \path [line] (evaluatetasks) -- node {no} (feasible);    
-    %ERROR
-%	\path [line] (inv) |- (feasible);
-    \path [line] (feasible) -- node {yes} (destamount);
-    \path [line] (feasible) -| node {no} (count++);
+    \path [line] (evaluatewc) -- node [anchor=east]{yes} (evaluatetasks);    
+    \path [-,draw] (evaluatewc) -- node [anchor=south]{no} (inv);    
+    \path [line] (evaluatetasks) -- node [anchor=south]{yes} (taskcost);
+    \path [line] (evaluatetasks) -- node [anchor=east]{no} (feasible);
     \path [line] (destamount) -- (dr);
-    \path [line] (dr) -- (workercost2);
-    %ERROR
-%    \path [line] (workercost2) -- (inv2);
-%    \path [line] (inv2) -- (inv3);
-%    \path [line] (inv3) -- (evaluatewc);
-    \path [line] (count++) -- (done);
-    \path [line] (done) -- node {no}(remove);    
-    \path [line] (best) -- node {yes}(savebest);
-    \path [line] (best) -- node {no}(count++);
+    \path [-,draw] (dr) -- (inv2);
+    \path [-,draw] (inv2) -- (inv3);
+    \path [line] (inv3) -- (workercost);
+     %To middle row   
+	\path [line] (inv) |- (feasible);
+    \path [line] (feasible) -- node [anchor=east]{yes} (destamount);
+    \path [line] (feasible) -| node [anchor=east]{no} (done);
+    %Middle row
+    \path [line] (done) -- node [anchor=east]{no}(remove);    
+    \path [line] (best) -- node [anchor=east]{yes}(savebest);
+    \path [line] (savebest) -- (done);
+    \path [line] (best) -- node [anchor=east]{no}(done);
     \path [line] (taskcost) -- (best);
     \path [line] (remove) -- (distribute);
-    %ERROR
-%    \path [line] (done) -| node {no} (inv4);
-%    \path [line] (inv4) -- (isbest);
-    \path [line] (isbest) -- node {no} (reload2);
-    \path [line] (isbest) -- node {yes} (finished);
+    \path [-,draw] (done) -| node [anchor=east] {yes} (inv4);
+    \path [line] (inv4) -- (isbest);
+    \path [line] (isbest) -- node [anchor=south]{no} (reload2);
+    \path [line] (isbest) -- node [anchor=east]{yes} (finished);
     \path [line] (reload2) -- (finished);
 
+    %Feasiblity loop
+    \node at (-2,-15) [above=4mm, right=2mm] {\textsc{feasibility loop}};
+    \draw [color=gray!70,thick](-2,-15) rectangle (4,-2.5);
+    %Weekend loop
+    \node at (-8,-15) [above=4mm, right=2mm] {\textsc{weeday task distribution loop}};
+    \draw [color=gray!70,thick](-8,-15) rectangle (4,-0.5);
  
 %    Feasiblity loop
 %    \node at (-2,-21.5) [above=4mm, right=2mm] {\textsc{feasibility loop}};
