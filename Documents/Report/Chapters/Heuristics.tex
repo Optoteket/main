@@ -11,7 +11,7 @@
 
 Apart from the implementation of the AMPL model we have also created two separate solvers of the problem using heuristics. One method was decided to be based on creating a pool of all week appearances that exists. Each week appearance contains a unique set of tasks during all seven days. After creating the pool of blocks these are assigned to the workers based on costs, one for each week. The second method creates a schedule through distributing individual tasks.
 
-The difference in objective function and constraints between the model used in AMPL and the model used in the heuristics is described by Figure \ref{fig:AMPL_vs_heur}.
+The difference in objective function and constraints between the model used in AMPL and the model used in the heuristics is described by Figure \ref{fig:AMPL_vs_heur}. Since different constraints are modeled as soft and hard in the two heuristics, how they differ from the AMPL model is described in Tables \ref{tab:task_constraints} and TODO. Some constraints have not been implemented in the heuristics due to factors such as lack of time. These are refered to as as relaxed constraints.
 
 % Define block styles
 \tikzstyle{block} = [rectangle, draw=none, fill=white,
@@ -56,47 +56,30 @@ The difference in objective function and constraints between the model used in A
 \end{center}
 \end{figure}
 
-\begin{table}[!h]
-\centering
-\caption{Soft and hard constraints in the week block approach.}
-\label{tab:blocks_constraints}
-\begin{tabular}{|l|}
-\hline
-% ---------------------------------------------------------
-\cellcolor{corn} \textbf{Soft Constraints} \\ \hline
-First soft constraint. \\ \hline
-Second... \\ \hline
-% ---------------------------------------------------------
-\cellcolor{corn} \textbf{Hard constraints} \\ \hline
-First hard constraint. \\ \hline
-Second... \\ \hline
-% ---------------------------------------------------------
-\cellcolor{corn} \textbf{Relaxations of constraints.} \\ \hline
-First relaxed constraint. \\ \hline
-Second... \\ \hline
-\end{tabular}
-\end{table}
 
 \begin{table}[!h]
 \centering
-\caption{Soft and hard constraints in the task distribution approach.}
+\caption{Soft and relaxed constraints in the task distribution approach.}
 \label{tab:task_constraints}
-\begin{tabular}{|l|}
+\begin{tabular}{|p{4cm}|p{7cm}|}
 \hline
 % ---------------------------------------------------------
-\cellcolor{corn} \textbf{Soft Constraints} \\ \hline
-- One task per day restriction. Equation \ref{constr:one_task_constraint}. \\ \hline
-- Four tasks per week restriction. Equation \ref{constr:four_weekly_shifts_at_most}. \\ \hline
-- One PL per week restriction. Equation \ref{constr:one_PL}. \\ \hline
-- Number of PL per 10 weeks restriction. Equation \ref{constr:three_PL}. \\ \hline
-- Not more than two tasks at the same shift in a week restriction. Equation \ref{constr:various_start_times}. \\ \hline
+\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Soft Constraints}} \\
+\hline 
+\rowcolor{Gray} Affecting constraints & Constraint description \\ \hline
+\ref{constr:one_task_constraint} & One task per day restriction.  \\ \hline
+\ref{constr:four_weekly_shifts_at_most} & Four tasks per week restriction. \\ \hline
+\ref{constr:one_PL} & One PL per week restriction. \\ \hline
+\ref{constr:three_PL} & Number of PL per 10 weeks restriction. \\ \hline
+\ref{constr:various_start_times} & Not more than two tasks at the same shift in a week restriction.  \\ \hline
 % ---------------------------------------------------------
-\cellcolor{corn} \textbf{Hard constraints} \\ \hline
-All other constraints in the AMPL model. \\ \hline
-% ---------------------------------------------------------
-\cellcolor{corn} \textbf{Relaxations of constraints.} \\ \hline
-First relaxed constraint. \\ \hline
-Second... \\ \hline
+\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Relaxed Constraints}} \\
+\hline 
+\rowcolor{Gray} Affecting constraints & Constraint alteration \\ \hline
+Several. $W = W_5$ in all constraints. & 5 week scheduling instead of 10 week scheduling. \\ \hline
+BokB-constraints & BokB placed according to constraints, but the schedule is fixed. \\ \hline
+Availability data & Even and odd week workers have availability at each shift according to the stricter of the two weeks. \\ \hline
+\ref{constr:library_meetings} - \ref{constr:dep_meetings4} & Meetings not implemented. \\ \hline
 \end{tabular}
 \end{table}
 

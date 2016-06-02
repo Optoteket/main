@@ -13,9 +13,9 @@ The search in this approach is guided using costs. A worker gets has a number of
 \label{tab:worker_costs}
 \begin{tabular}{|l|l|}
 \hline
-\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Stand in cost}} \\ \hline
+\multicolumn{2}{|l|}{\cellcolor{Gray} \textbf{Stand in cost}} \\ \hline
 $C_{SI\_min}$ &  Cost of day with minimum number of stand ins. \\ \hline
-\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Infeasibility costs}} \\ \hline
+\multicolumn{2}{|l|}{\cellcolor{Gray} \textbf{Infeasibility costs}} \\ \hline
 $C_{Task\_Day}$ & Cost from all tasks exceeding the daily limit. \\ \hline
 $C_{Task\_Week}$ & Cost from all tasks exceeding the weekly limit.  \\ \hline
 $C_{PL\_Day}$ & Cost from all PL exceeding the weekly limit. \\ \hline
@@ -23,7 +23,6 @@ $C_{PL\_Tot}$& Cost from all PL exceeding the total limit. \\ \hline
 $C_{SShift\_Week}$ & \begin{tabular}[t]{@{}l@{}} Cost from the number of task performed at \\ the same shift in a week exceeding the weekly limit. \end{tabular} \\ \hline
 \end{tabular}
 \end{table}
-
 
 
 \begin{table}[!h]
@@ -58,8 +57,6 @@ $C_{SI\_min}$ &  Cost of day with minimum number of stand ins. \\ \hline
 \end{tabular}
 \end{table}
 
-
-
 The weekday objective function is associated with the weekend distribution phase of the problem. Their are three types of costs in the objective function, measuring a certain aspect of a good weekend schedule. Since we want to increase the number of stand ins at the most critical days, the worst days of all aspects are considered, referred to as the min cost. Also, the average of each aspect is considered, in order to distinguish solutions which for which the worst day is identical. All costs in this objective function are calculated uding the forumula:
 
 \begin{equation}
@@ -69,11 +66,15 @@ C_{type} = W_{lib}*num\_of\_lib + W_{ass}*num\_of\_ass
 
 The weights are constants used in all weekend objective function costs. Typically $W_{lib}$ is larger than $W_{ass}$ since librarians can perform a greater number of tasks.
 
-After maximizing weekends the weekday distribution phase is entered. Here, the worker objective function is used to identify infeasibilities in the worker schedules and is simply a sum of all the worker costs over all workers. When this cost is zero, the schedule is feasible. Then, in order to compare feasible schedules, the weekday objective function is used, containing only the minimum stand in cost, calculated in the same way as in the weekend objective function. This objective function is also corresponding to the objective function in the Mathematical Model.
+After maximizing weekends the weekday distribution phase is entered. Here, the worker objective function is used to identify infeasibilities in the worker schedules and is simply a sum of all the worker costs over all workers. When this cost is zero, the schedule is feasible. Then, in order to compare feasible schedules, the weekday objective function is used, containing only the minimum stand in cost, calculated in the same way as in the weekend objective function. This objective function is corresponding to the objective function in the Mathematical Model.
 
 \section{Weekend phase}
 
-The first phase in the scheduling process is the weekend phase. In this phase the weekends of all workers are placed and optimized before placing the remaining tasks. The reason for implementing such a phase rather than placing all tasks at once was the big impact of the weekend structure on the entire schedule. First and foremost, the location of a worker's weekend affects the availability of the worker in the following week where the week rest is placed. The worker is unavailable during week rest and if such week rests are combined in an unfortunate way, the scheduling can result in an uneven distribution of workers during days affected by week rest.
+The weekend phase is the first phase the algorithm enters and is described in detail in Appendix TODO. The LNS component is described by feasibility loop, while the simulated annealing step is marked as a decision to accept solutions which are worse than the current one.
+
+The reason for implementing the weekend phase separate from the distribution of other tasks was because of the realization that the minimum number of stand ins depended to a very large extent on the weekend structure. In particular, it is the weekend rest associated with the weekend week which decides how many people are present at a particular shift or day. This can be seen in for example Table \ref{tab:Bob_avail}.
+
+Measuring the goodness of a schedule is done through using the weekend objective function. 
 
 In order to measure what a good distribution of weekends is, the weekend objective function described in the previous section is used during the search process. Although the overall objective is to maximize the number of stand ins at the most critical day in the schedule, that is, even out the stand ins over the days, it is not trivial to measure this in a schedule with no tasks placed. Evening work reduces potential stand ins as well as tasks distributed during the days. Furthermore, limits on how many tasks per week a person is allowed to take further complicates the measurement of stand ins.
 
@@ -131,85 +132,7 @@ Because of the difficulty in measuring stand ins, certain weekday tasks are plac
 \tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
     minimum height=2em]
 
-\begin{figure}[!H]
-\centering
-\caption{Algorithm for distributing weekends.}
-\label{fig:weekend_alg}
-\scalebox{0.8}{
-\begin{tikzpicture}[node distance = 2cm, auto]
-    % Place nodes
-    %Right row
-    \node [scale=0.01,node distance=0cm] (invinit) {};
-    \node [block, below of=invinit] (distribute) {Distribute all weekends randomly};
-    \node [decision, below of=distribute, node distance=2.5cm] (evaluate) {Solution feasible?};
-    \node [block, left of=distribute, node distance=4cm] (redistribute) {Remove all weekends};
-     \node [block, below of=evaluate, node distance=3.5cm] (setobjf) {Set weekend obj fun value};
-     \node [block, below of=setobjf, node distance=3cm] (save) {Save temp solution};
-     \node [block, below of=save, node distance=3cm] (dr) {Destroy and repair solution};
-     \node [decision, below of=dr] (evaluate2) {Solution feasible?};
-     \node [block, right of=dr, node distance=3cm] (reload) {Reload temp solution};
-     
-     %Middle row
-     \node [block, left of=evaluate2, node distance=5cm] (setobjf2) {Set weekend obj fun value};
-     \node [decision, above of=setobjf2, node distance=2.5cm] (compare) {Better than saved?};
-     \node [decision, above of=compare, node distance=2.5cm] (SA) {Accept anyway?};
-     \node [decision, left of=SA, node distance=4cm] (best) {Best solution?};
-     \node  [block, above of=SA, node distance =2.5cm] (reloadsaved) {Reload saved solution}; 
-     \node [block, above of=best, minimum height=3em, node distance = 2cm] (savebest) {Save solution as best};
-     \node [decision, above of=reloadsaved, node distance=2cm] (done) {Iteration \textgreater max?};
-     \node[above of=savebest, left of=savebest, node distance=2.5cm, scale=0.1](inv){};
-     
-     %Bottom nodes
-     \node [decision, below of=best, node distance=10cm] (isbest) {Current better than best?};
-     \node [block, right of=isbest, minimum height=3em, node distance=3cm] (reload2) {Reload best};
-      \node [block, below of=reload2, minimum height=3em, node distance=2.5cm] (finished) {Search finished!};
 
-    % Draw edges
-    \path [line] (invinit) -- (distribute);
-    \path [line] (distribute) -- (evaluate);
-    \path [line] (evaluate) -| node {no} (redistribute);
-    \path [line] (redistribute) |- (distribute);
-    \path [line] (evaluate) -- node {yes}(setobjf);
-    \path [line] (setobjf) -- (save);
-    \path [line] (save) -- (dr);
-    \path [line] (dr) -- (evaluate2);
-    \path [line] (evaluate2) -| node {no} (reload);
-    \path [line] (reload) -- (dr);
-    \path [line] (evaluate2) -- node {yes} (setobjf2);
-    \path [line] (setobjf2) -- (compare);
-    \path [line] (compare) -| node {yes} (best);
-    \path [line] (compare) -- node {no} (SA);
-    \path [line] (SA) -- node {yes} (best);
-    \path [line] (SA) -- node {no} (reloadsaved);
-    \path [line] (reloadsaved) -- (done);
-    \path [line] (best) -- node {yes} (savebest);
-    \path [line] (best) -- node {no} (done);
-    \path [line] (savebest) -- (done);
-    \path [line] (done) -- node {no}(save);
-    \path [-,draw] (done) -- node {yes}(inv);
-    \path [line] (inv) |- (isbest);
-    \path [line] (isbest) -- node {no} (reload2);
-    \path [line] (isbest) -- node {yes} (finished);
-    \path [line] (reload2) -- (finished);
-   
-    %Feasiblity loop
-    \node at (-2,-19) [above=4mm, right=2mm] {\textsc{feasibility loop}};
-    \draw [color=gray!70,thick](-2,-19) rectangle (5,-12);
-    %Weekend loop
-    \node at (-10.5,-19.5) [above=4mm, right=2mm] {\textsc{weekend distribution loop}};
-    \draw [color=gray!70,thick](-10.5,-19.5) rectangle (5,-6);
-    %SA componenet
-    \node at (-7.5,-13.5) [above=4mm, right=2mm] {\textsc{SA}};
-    \draw [color=gray!70,thick](-7.5,-13.5) rectangle (-3,-10.5);
-    %\path [line] (decide) -| node [near start] {yes} (update);
-    %\path [line] (update) |- (identify);
-    %\path [line] (decide) -- node {no}(stop);
-    %\path [line,dashed] (expert) -- (init);
-    %\path [line,dashed] (system) -- (init);
-    %\path [line,dashed] (system) |- (evaluate);
-\end{tikzpicture}
-}
-\end{figure}
 
 
 The algorithm for the distribution of weekends is illustrated in Figure \ref{fig:weekend_alg}. Two loops exist, an outer weekend distribution loop and an inner feasibility loop. The outer loop is performed a number of iterations and performs a search among neighbouring solutions provided by the inner loop through destroying and repairing a proportion of the solution. The decisions directing the search are coloured pink and can be described as: 
@@ -292,94 +215,6 @@ When entering the weekday phase, all weekends, evenings and BokB tasks are alrea
 
 
 The weekday distribution phase is similar to the weekend distribution phase, since it is divided into two loops. 
-
-
-\begin{figure}[!h]
-\centering
-\caption{Algorithm for distributing weekday tasks.}
-\label{fig:weekday_alg}
-\begin{tikzpicture}[node distance = 2cm , auto, every node/.style={scale=0.8}]
-    %Right column
-    \node [scale=0.01,node distance=0cm] (invinit) {};
-    \node [block, below of=invinit] (distribute) {Try distribute all tasks};
-    \node [block, below of=distribute] (workercost) {Set worker obj fun};
-    \node [decision, below of=workercost, node distance=2.5cm] (evaluatewc) {Worker cost = 0?};
-    \node [decision, below of=evaluatewc, node distance=3cm] (evaluatetasks) {All tasks distributed?};
-    \node [decision, below of=evaluatetasks, node distance=3cm] (feasible) {Solution feasible?};
-    \node [block, below of=feasible, node distance=2.5cm] (destamount) {Set destroy amount};
-    \node [block, below of=destamount] (dr) {Destroy and repair solution};
-
-    %Middle column
-     \node [block, left of=evaluatetasks, node distance = 4cm] (taskcost) {Set weekday costs};
-    \node [decision, above of=taskcost, node distance=2cm] (best) {Best solution?};
-    \node [block, above of=best, minimum height=3em, node distance = 2cm] (savebest) {Save solution as best};
-    
-    %Left column
-    \node [decision, left of=savebest, node distance=4cm] (done) {Iteration \textgreater max?};
-    \node [block, above of=done, node distance=3.5cm] (remove) {Remove all tasks};
-    
-    %Get solution
-    \node [decision, below of=done, node distance=15cm] (isbest) {Current better than best?};
-    \node [block, right of=isbest, minimum height=3em, node distance=3cm] (reload2) {Reload best};
-    \node [block, below of=reload2, minimum height=3em, node distance=2.5cm] (finished) {Search finished!};
-    
-	%Invisible nodes
-    \node [right of=evaluatewc, scale=0.1,node distance=2cm] (inv) {};
-    \node [right of=dr, scale=0.1,node distance=4cm] (inv2) {};
-    \node [right of=workercost, scale=0.1,node distance=4cm] (inv3) {};
-    \node[left of=isbest, node distance=4cm, scale=0.1](inv4){};
-    
- 
-	%Draw edges
-	\path [line] (invinit) -- (distribute);
-    \path [line] (distribute) -- (workercost);
-    \path [line] (workercost) -- (evaluatewc);
-    \path [line] (evaluatewc) -- node [anchor=east]{yes} (evaluatetasks);    
-    \path [-,draw] (evaluatewc) -- node [anchor=south]{no} (inv);    
-    \path [line] (evaluatetasks) -- node [anchor=south]{yes} (taskcost);
-    \path [line] (evaluatetasks) -- node [anchor=east]{no} (feasible);
-    \path [line] (destamount) -- (dr);
-    \path [-,draw] (dr) -- (inv2);
-    \path [-,draw] (inv2) -- (inv3);
-    \path [line] (inv3) -- (workercost);
-     %To middle row   
-	\path [line] (inv) |- (feasible);
-    \path [line] (feasible) -- node [anchor=east]{yes} (destamount);
-    \path [line] (feasible) -| node [anchor=east]{no} (done);
-    %Middle row
-    \path [line] (done) -- node [anchor=east]{no}(remove);    
-    \path [line] (best) -- node [anchor=east]{yes}(savebest);
-    \path [line] (savebest) -- (done);
-    \path [line] (best) -- node [anchor=east]{no}(done);
-    \path [line] (taskcost) -- (best);
-    \path [line] (remove) -- (distribute);
-    \path [-,draw] (done) -| node [anchor=east] {yes} (inv4);
-    \path [line] (inv4) -- (isbest);
-    \path [line] (isbest) -- node [anchor=south]{no} (reload2);
-    \path [line] (isbest) -- node [anchor=east]{yes} (finished);
-    \path [line] (reload2) -- (finished);
-
-    %Feasiblity loop
-    \node at (-2,-15) [above=4mm, right=2mm] {\textsc{feasibility loop}};
-    \draw [color=gray!70,thick](-2,-15) rectangle (4,-2.5);
-    %Weekend loop
-    \node at (-8,-15) [above=4mm, right=2mm] {\textsc{weeday task distribution loop}};
-    \draw [color=gray!70,thick](-8,-15) rectangle (4,-0.5);
- 
-%    Feasiblity loop
-%    \node at (-2,-21.5) [above=4mm, right=2mm] {\textsc{feasibility loop}};
-%    \draw [color=gray!70,thick](-2,-21.5) rectangle (5,-10.5);
-%    Weekend loop
-%    \node at (-10.5,-22) [above=4mm, right=2mm] {\textsc{weekend distribution loop}};
-%    \draw [color=gray!70,thick](-10.5,-22) rectangle (5,-9);
-%    \path [line] (decide) -| node [near start] {yes} (update);
-%    \path [line] (update) |- (identify);
-%    \path [line] (decide) -- node {no}(stop);
-%    \path [line,dashed] (expert) -- (init);
-%    \path [line,dashed] (system) -- (init);
-%    \path [line,dashed] (system) |- (evaluate);
-\end{tikzpicture}
-\end{figure}
 
 Evenings,weekends and BokB already placed.
 
