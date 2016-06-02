@@ -5,86 +5,71 @@ The second heuristic approach tested distributes individual tasks to workers. Th
 The primary method used in this approach is a large neighbourhood search (LNS) together with a simulated annhealing (SA) accept function. Destroying and repairing the solution, as is customary in LNS, helps leading the solution out of local optima or plateaus. Similarly, SA is used in order to allow the solution to move in a less favourable directions to avoid these local optima.
 
 \section{Costs}
-The search in this approach is guided using cost functions. In the original mathematical model, the cost of a schedule consists of two terms. The rest of the model consists of hard constraints which cannot be violated. However, in the heuristic approach these hard constraints are divided into hard and soft constraints, as is illustrated in Figure (TODO).
-
-During the scheduling process in the implementation, three different objective functions are used. The objective functions are illustrated in Table (TODO) and consist of a weekend objective function, a worker objective function and a weekday objective function.
+The search in this approach is guided using costs. A worker gets has a number of costs, as displayed in Table \ref{tab:worker_costs}. Each cost represents a misplaced task, resulting in an infeasible schedule or unused stand in potential. In the library, different costs are weighed together in three different ways. These are referred to as objective functions, see Table \ref{tab:lib_costs}. 
 
 \begin{table}[!h]
 \centering
-\caption{Library objective functions}
-\label{tab: task objective functions_test}
+\caption{Worker costs. Costs are incremented when a worker gets a task which breaks a soft constraint.}
+\label{tab:worker_costs}
 \begin{tabular}{|l|l|}
 \hline
-\multicolumn{2}{|l|}{Weekend Objective Function} \\
+\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Stand in cost}} \\ \hline
+$C_{SI\_min}$ &  Cost of day with minimum number of stand ins. \\ \hline
+\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Infeasibility costs}} \\ \hline
+$C_{Task\_Day}$ & Cost from all tasks exceeding the daily limit. \\ \hline
+$C_{Task\_Week}$ & Cost from all tasks exceeding the weekly limit.  \\ \hline
+$C_{PL\_Day}$ & Cost from all PL exceeding the weekly limit. \\ \hline
+$C_{PL\_Tot}$& Cost from all PL exceeding the total limit. \\ \hline
+$C_{SShift\_Week}$ & \begin{tabular}[t]{@{}l@{}} Cost from the number of task performed at \\ the same shift in a week exceeding the weekly limit. \end{tabular} \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+\begin{table}[!h]
+\centering
+\caption{Library objective functions and their cost components. Weekend and weekday objective functions are to be maximized while the worker objective function is to be minimized.}
+\label{tab:lib_costs}
+\begin{tabular}{|l|l|}
+\hline
+\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Weekend Objective Function}} \\
 \hline 
-%\multicolumn{2}{*}{Weekend Objective Function} \\
-%\hline
-%\multicolumn{2}{*}{Weekend Objective Function} \\
-%\hline
-\end{tabular}
-\end{table}
-
-\begin{table}[!h]
-\centering
-\caption{Library objective functions.}
-\label{tab: task objective functions}
-\begin{tabular}{|l|l|}
+\rowcolor{Gray} Cost & Cost description \\ \hline
+$C_{SI\_min}$ &  Cost of day with minimum number of stand ins. \\ \hline
+$C_{Shift\_min}$ & Cost of shift with minimum number of workers. \\ \hline
+$C_{Day\_min}$ & Cost of day with minimum number of workers. \\ \hline
+$C_{SI\_aver}$ & Average number of stand ins at a day. \\ \hline
+$C_{Shift\_aver}$ & Average number of workers at a shift. \\ \hline
+$C_{Day\_aver}$ & Average number of workers at a day. \\ \hline
 \hline
-\begin{tabular}[t]{@{}c@{}} \textbf{Objective}\\ \textbf{Function} \\ \textbf{Type}\end{tabular} & \textbf{Cost components} \\
+\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Worker Objective Function}} \\
 \hline
-\multirow{5}{*}{\begin{tabular}[t]{@{}l@{}}\textbf{Weekend} \\ \textbf{Objective} \\ \textbf{Function}\end{tabular}} & \\
- & Min stand in cost + average num stand ins\\ 
- & Min shift availability cost + average shift avail\\
- & Min day availability cost + average day avail\\ 
- & \\
+\rowcolor{Gray} Cost & Cost description \\ \hline
+$C_{Task\_Day}$ & Cost from all tasks exceeding the daily limit in all workers. \\ \hline
+$C_{Task\_Week}$ & Cost from all tasks exceeding the weekly limit in all workers. \\ \hline
+$C_{PL\_Week}$ & Cost from all PL exceeding the weekly limit in all workers. \\ \hline
+$C_{PL\_Tot}$& Cost from all PL exceeding the total limit in all workers. \\ \hline
+$C_{SShift\_Week}$ & \begin{tabular}[t]{@{}l@{}} Cost from the number of task performed at \\ the same shift in a week exceeding the weekly limit in all workers. \end{tabular}\\ \hline
 \hline
-\multirow{7}{*}{\begin{tabular}[t]{@{}l@{}}\textbf{Worker}\\ \textbf{Objective}\\ \textbf{Function}\end{tabular}}    & \\
-& Num tasks per day cost \\
-& Num tasks per week cost \\
-& Num PL per week cost \\
-& Total num of PL cost \\
-& Num tasks at same shift per week  cost \\
-& \\
+ \multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Weekday Objective Function}} \\
 \hline
-
-\multirow{4}{*}{\begin{tabular}[t]{@{}l@{}}\textbf{Weekday}\\ \textbf{Objective}\\ \textbf{Function}\end{tabular}}   & \\ & Min stand in cost   \\
- & \\ & \\
-\hline
+\rowcolor{Gray} Cost & Cost description \\ \hline
+$C_{SI\_min}$ &  Cost of day with minimum number of stand ins. \\ \hline
 \end{tabular}
 \end{table}
 
 
-\begin{table}[!h]
-\centering
-\caption{Worker objective functions.}
-\label{tab:worker objective functions}
-\begin{tabular}{|p{3cm}|l|}
-\hline
-\begin{tabular}[t]{@{}c@{}} \textbf{Objective}\\ \textbf{Function} \\ \textbf{Type}\end{tabular} & \textbf{Cost components} \\
-\hline
-\multirow{7}{*}{\begin{tabular}[t]{@{}l@{}}\textbf{Worker}\\ \textbf{Objective}\\ \textbf{Function}\end{tabular}}    & \\
-& Num tasks per day cost \\
-& Num tasks per week cost \\
-& Num PL per week cost \\
-& Total num of PL cost \\
-& Num tasks at same shift per week  cost \\
-& \\
 
-\hline
-\end{tabular}
-\end{table}
+The weekday objective function is associated with the weekend distribution phase of the problem. Their are three types of costs in the objective function, measuring a certain aspect of a good weekend schedule. Since we want to increase the number of stand ins at the most critical days, the worst days of all aspects are considered, referred to as the min cost. Also, the average of each aspect is considered, in order to distinguish solutions which for which the worst day is identical. All costs in this objective function are calculated uding the forumula:
 
-The weekday objective function is associated with the weekend distribution phase of the problem. In the weekend objective function, a stand in cost is defined as the weighted sum between the number of librarians and assistants which are stand ins at a certain day. The minimum stand in cost is defined as the cost at the worst av all days throughout all weeks.
+\begin{equation}
+\label{eq:wend_cost_calc}
+C_{type} = W_{lib}*num\_of\_lib + W_{ass}*num\_of\_ass
+\end{equation}
 
-The min shift availability cost refers to the minimum number of workers available at a shift throughout all shifts, days and weeks. Similarly, the min day availability cost is the lowest number of workers available any shift throughout the whole schedule. In addition to these costs, the average of all three cost types is also used to distinguish solutions which have the same cost.
+The weights are constants used in all weekend objective function costs. Typically $W_{lib}$ is larger than $W_{ass}$ since librarians can perform a greater number of tasks.
 
-The worker objective function is used during the weekday task distribution phase of the problem. The function value is a combination of the relaxed constraints of the problem, as described at the beginning of this chapter. Thus, the worker objective function must always be reduced to zero before the schedule will be considered feasible.
-
-The objective function consists of five different costs. All of them are calculated as the total cost for all workers. For example, the first cost described in Table (todo) is the total number of tasks per day exceeding the maximum of one daily task. In the objective function, the sum of excess tasks is taken over all workers.
-
-The second cost is the number of tasks exceeding four per week. The third is the number of Fetch list tasks performed by a worker exceeding the max limit of one per week. In addition to this, there is a specified max limit for the number of fetch lists that can be performed by a worker throughout all weeks and which is different for different workers. This is the fourth cost. Finally, the number of tasks performed at the same shift in a week should not exceed two, which is the final cost in the worker objective function.
-
-A feasible solution, where the worker objective function is zero, is evaluated using the weekday objective function described lastly in the table. The objective function has only one cost and corresponds to the objective function in the mathematical model. The min stand in cost is calculated in the same way as in the weekend objective function.
+After maximizing weekends the weekday distribution phase is entered. Here, the worker objective function is used to identify infeasibilities in the worker schedules and is simply a sum of all the worker costs over all workers. When this cost is zero, the schedule is feasible. Then, in order to compare feasible schedules, the weekday objective function is used, containing only the minimum stand in cost, calculated in the same way as in the weekend objective function. This objective function is also corresponding to the objective function in the Mathematical Model.
 
 \section{Weekend phase}
 

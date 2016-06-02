@@ -11,6 +11,34 @@
 
 Apart from the implementation of the AMPL model we have also created two separate solvers of the problem using heuristics. One method was decided to be based on creating a pool of all week appearances that exists. Each week appearance contains a unique set of tasks during all seven days. After creating the pool of blocks these are assigned to the workers based on costs, one for each week. The other method ...
 
+\begin{center}
+	\begin{tikzpicture}[auto,
+	block_center/.style ={rectangle, draw=black, thick, fill=white,
+      text width=8em, text centered, minimum height=4em},
+    block_left/.style ={rectangle, draw=black, thick, fill=white,
+      text width=8em, text ragged, text centered, minimum height=4em, inner sep=6pt},
+    block_noborder/.style ={rectangle, draw=none, thick, fill=none,
+      text width=18em, text centered, minimum height=1em},
+    block_assign/.style ={rectangle, draw=black, thick, fill=white,
+      text width=18em, text ragged, minimum height=3em, inner sep=6pt},
+    block_lost/.style ={rectangle, draw=black, thick, fill=white,
+      text width=16em, text ragged, minimum height=3em, inner sep=6pt},
+      line/.style ={draw, thick, -latex', shorten >=0pt}]
+     \matrix [column sep=5mm,row sep=3mm] {
+            % enrollment - Row 1
+            \node [block_noborder] (AMPL) {\textsc{AMPL}}; 
+			 & \node [block_noborder] (Heuristic) {\textsc{HEURISTIC}}; \\
+			 % Row 2
+			 \node [block_noborder] (ObjfunA) {- $Z_{AMPL}$ \\
+			 - AMPL constraints};
+			 & \node[block_noborder] (ObjfunH) {- $Z_{AMPL}$}; \\
+			  % Row 3
+			 \node [block_noborder] (ObjfunA) {- AMPL constraints};
+			  & \node[block_noborder] (ObjfunH) {- Hard constraints}; \\
+     };% end matrix
+	\end{tikzpicture}
+\end{center}
+
 \section{Weekly scheduling approach} \label{Weekly}
 In Figure \ref{flow_chart}
 

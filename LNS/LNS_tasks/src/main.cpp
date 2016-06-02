@@ -171,12 +171,11 @@ int main(int argc, char** argv)
   min_lib.clear();
   library_costs.clear();
 
-  int max_loops = 1;
+  int max_loops = 20;
   int num_tests = 1;
   double weights[3];
   int wend_iterations = 500;
   int wday_iterations = 20;
-  int max_library_cost = 0;
 
   //Create and instance of empty best library
   //Library best_library {&res_file};
