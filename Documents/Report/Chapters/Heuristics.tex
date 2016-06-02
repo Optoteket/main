@@ -39,9 +39,11 @@ In Figure \ref{flow_chart}
 			\node[right of= assign_low, node distance = 5.5cm] (text) {LNS};
 			
 			%Invisible node, useful later
-%			\node[right of= destroy, node distance=2cm,scale=0.01](inv){};
+			\node[above of= blocks, node distance=1.3cm,scale=0.01](inv){};
+			
 			
 		    % Draw edges
+		    \path [line] (inv) -- (blocks);
 		    \path [line] (blocks) -- (workers);
 		    \path [line] (workers) -- (sort);
 		    \path [line] (sort) -- (assign_rot);
@@ -290,7 +292,7 @@ All of the values in the table are a subset of the total amount of 4,175 blocks.
 \end{tabularx}
 \end{table} 
 
-Looking at a generalized worker's availability shown in Table \ref{typical_availability} one might think that there shall be more weekend blocks available than weekday blocks as the availability, almost in all cases, are higher for weekend blocks. This is not the case as all blocks without weekend tasks are removed in the percolation. This means that all combinations with "No task" on weekends are removed, as well as the case that is shown in Table \ref{Friday_percolation}, which occur when a worker is assigned weekend Desk tasks and therefore can not be assigned any other task that Friday.
+Looking at a generalized worker's availability shown in Table \ref{typical_availability} one might think that there shall be more weekend blocks available than weekday blocks as the availability, almost in all cases, are higher for weekend blocks. This is not the case as all blocks without weekend tasks are removed in the percolation. This means that all combinations with "No task" on weekends are removed, as well as the case that is shown in Table \ref{Friday_percolation}. The case in Table \ref{Friday_percolation} occurs when a worker is assigned weekend Desk tasks and therefore can not be assigned any other task that Friday.
 
 \begin{table}[!h]
 \centering
@@ -305,15 +307,49 @@ Looking at a generalized worker's availability shown in Table \ref{typical_avail
 \end{tabular}
 \end{table}
 
- "X" in Table \ref{Friday_percolation} means any task that day and shifts colored in black means no other task can be assigned that day. However, there are a couple of cases when a worker's weekrest occurs at two consecutive Fridays starting with the weekend week leading to less availability during a weekend week than a weekday week. % % % % % % % % % % Korrekturläs
+ "X" in Table \ref{Friday_percolation} can represent any task and shifts colored in black means that no other task can be assigned that shift.
 
 \subsection{Rotation assignment} \label{rotation}
+There are 35 weekend workers available of which 21 are librarians and 14 are assistants. The demand of weekend workers each week is seven, i.e. the demand for five weeks is exactly $7*5 = 35$ workers. Therefore, it deems reasonable to swap weekend weeks between workers in the destroy. Another requirement in excess to seven workers each weekend is that at least four of them have to be librarians due to three librarians are needed in Information desks and one in Hageby.
+
+To assign the rotations a random generator was used that always makes sure that the two mentioned requirements are met. Furthermore, all of the LoW-workers have fixed weekends and hence are not given new rotations in the destroy/repair loop. This is more thoroughly described in Section \ref{LoW_assignment} below. 
+
+Table \ref{rotation_assignment} shows what a destroy/repair iteration looks like regarding rotation assignments. The amount of workers being destroyed in each iteration is three.
+
+\begin{table}[!h]
+\centering
+\caption{An iteration in the destroy/repair loop showing a swap of weekends when three workers are destroyed}
+\label{rotation_assignment}
+Initial assignment:\\
+\begin{tabular}{l|llllll}
+\rowcolor[HTML]{C0C0C0}
+Week       & 1 & 2 & 3 & 4 & 5  \\ \hline
+Librarians & 4 & 4 & 5 & 4 & 4  \\ \hline
+Assistants & 3 & 3 & 2 & 3 & 3 
+\end{tabular}\\
+After destroy:\\
+\begin{tabular}{l|llllll}
+\rowcolor[HTML]{C0C0C0}
+Week       & 1                         & 2                         & 3                         & 4                         & 5                          \\ \hline
+Librarians & \cellcolor[HTML]{FFFE65}3 & 4 & \cellcolor[HTML]{FFFE65}4 & 4 & 4  \\ \hline
+Assistants & 3 & \cellcolor[HTML]{FFFE65}2 & 2 & 3 & 3
+\end{tabular}\\
+After repair:\\
+\begin{tabular}{l|llllll}
+\rowcolor[HTML]{C0C0C0}
+Week       & 1 & 2 & 3 & 4 & 5  \\ \hline
+Librarians & \cellcolor[HTML]{9AFF99}4 & \cellcolor[HTML]{9AFF99}5 & 4 & 4 & 4  \\ \hline
+Assistants & 3 & 2 & \cellcolor[HTML]{9AFF99}3 & 3 & 3 
+\end{tabular}
+\end{table}
+
+Yellow indicates that a worker, either librarian or assistant, has been destroyed that week and green indicates that a worker has been repaired. Comparing the "Initial assignment" with "After repair" a swap can be seen between week 2 and 3. Worth noting is that a swap can occur even if the amount of qualified workers remains the same after a repair. To understand this, imagine that two librarians with different rotations are destroyed, then two cases can occur: Either they are assigned the same rotation as before or they swap weekends. 
 
 
 \subsection{Assignment of Library on Wheels} \label{LoW_assignment}
 In order to avoid creating enormous amounts of block combinations, LoW tasks are assigned manually. To assign LoW manually also lead to a fix weekend rotation for the five LoW-workers. This slightly reduces the degrees of freedom of the problem as the LoW-workers' rotation will remain unchanged. However, as there are only a couple different set of feasible LoW assignments it shall not be the deciding factor for the quality of the solution.
 
-Without a manual assignment of LoW the number of existing tasks in a weekblock would increase significantly. The number of tasks would increase from 36 to 43, as there are seven LoW tasks during a week, resulting in much more than 4,175 unique week appearances. % %ändra sista
+Without a manual assignment of LoW the number of existing tasks in a weekblock would increase significantly. The number of tasks would increase from 36 to 43, as there are seven LoW tasks during a week, resulting in a lot more than 4,175 unique week appearances. % %ändra sista
 
 \subsection{Initial solution} \label{initial_solution}
 The initial solution is created in a similar fashion as the repair function in this heuristic. Based on a greedy heuristic the best weekblock for a random worker and week is found and inserted. This is done until every worker have one weekend block, one weekrest block and three weekday blocks assigned to them.
