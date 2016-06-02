@@ -250,15 +250,14 @@ subject to max_two_days_at_HB_per_ten_weeks{i in I_lib diff {23}}:
 subject to worker_not_assigned_exp_info{w in W}:
 	sum{d in 6..7}sum{j in {'Exp','Info'}} x[23,w,d,1,j] = 0;
 
-
 ######################### First objective function constraints: Stand-in constraints #################################
-
+#Find day with lowest lib and ass stand in value (weighted #lib + #ass) to maximize in obj function
 subject to find_total_min_num_stand_ins{w in W, d in 1..5}:
 	stand_in_min_tot <= (N1l*(sum{i in I_lib} stand_in_lib[i,w,d]) + N1a*(sum{i in I_ass} stand_in_ass[i,w,d]));
 
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
 subject to find_lowest_stand_in_amount_no_weekends_no_evenings_lib{w in W, d in 1..5}: #RHS: number of qualified workers at work that is available & not assigned to any task.
-	stand_in_lib_min <= sum{i in I_lib} stand_in_lib[i,w,d]; 		#+ meeting[s,d,w]*M; 
+	stand_in_lib_tot[w,d] = sum{i in I_lib} stand_in_lib[i,w,d]; 		#+ meeting[s,d,w]*M; 
 
 subject to working_shift_in_a_day{i in I, w in W, d in 1..5}:
 	working_a_shift[i,w,d] >= sum{s in 1..3}(sum{j in J[d]} x[i,w,d,s,j]);
@@ -277,10 +276,11 @@ subject to help_constraint2_lib{i in I_lib, w in W, d in 1..5}:
 subject to help_constraint3_lib{i in I_lib, w in W, d in 1..5}:
 	stand_in_lib[i,w,d] <= 1-working_a_shift[i,w,d]; # Note: ADD LOW here??
 
+
 ### Stand-ins for assistants
 #Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
 subject to find_lowest_stand_in_amount_no_weekends_no_evenings_ass{w in W, d in 1..5}: #RHS: number of qualified workers at work that is available & not assigned to any task.
-	stand_in_ass_min <= sum{i in I_ass} stand_in_ass[i,w,d]; 		#+ meeting[s,d,w]*M; 
+	stand_in_ass_tot[w,d] = sum{i in I_ass} stand_in_ass[i,w,d]; 		#+ meeting[s,d,w]*M; 
 
 #A worker is a stand-in if he/she is available, qualified and is not already scheduled. Takes schedule rotation into account
 subject to find_avail_not_working_day_ass{i in I_ass, w in W, d in 1..5}:
