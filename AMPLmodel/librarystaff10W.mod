@@ -255,7 +255,7 @@ subject to worker_not_assigned_exp_info{w in W}:
 subject to find_total_min_num_stand_ins{w in W, d in 1..5}:
 	stand_in_min_tot <= (N1l*(sum{i in I_lib} stand_in_lib[i,w,d]) + N1a*(sum{i in I_ass} stand_in_ass[i,w,d]));
 
-#Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
+#Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded ONLY IN RUN-FILE TO FIND WORST DAY
 subject to find_lowest_stand_in_amount_no_weekends_no_evenings_lib{w in W, d in 1..5}: #RHS: number of qualified workers at work that is available & not assigned to any task.
 	stand_in_lib_tot[w,d] = sum{i in I_lib} stand_in_lib[i,w,d]; 		#+ meeting[s,d,w]*M; 
 
@@ -278,7 +278,7 @@ subject to help_constraint3_lib{i in I_lib, w in W, d in 1..5}:
 
 
 ### Stand-ins for assistants
-#Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
+#Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded ONLY IN RUN-FILE TO FIND WORST DAY
 subject to find_lowest_stand_in_amount_no_weekends_no_evenings_ass{w in W, d in 1..5}: #RHS: number of qualified workers at work that is available & not assigned to any task.
 	stand_in_ass_tot[w,d] = sum{i in I_ass} stand_in_ass[i,w,d]; 		#+ meeting[s,d,w]*M; 
 

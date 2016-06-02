@@ -89,16 +89,17 @@ In order to further define the problem we introduce the following variables: Let
 	\end{cases}
 	\\
 	l^{min}&= \text{lowest number of stand-in librarians found (integer)} \\
-	a^{min}&= \text{lowest number of stand-in assistants found (integer)}
+	a^{min}&= \text{lowest number of stand-in assistants found (integer)} \\
+	s^{min}&= \text{weighted sum of number of stand-in librarians and assistants}
 \end{align}
 
 Based on the variables defined above it has been possible to solve our scheduling problem. \textit{$l^{min}$} and \textit{$a^{min}$} are the variables of most significance as they represent the number of stand-ins found after a run. 
 
 \section{Objective function} \label{section:obj}
-Due to multiple objective functions it has been necessary to weigh them against each other using parameters. These are shown in Equation \ref{objfcn} below as $L$, $A$ and $N$.
+Due to multiple objective functions it has been necessary to weigh them against each other using parameters. These are shown in Equation \ref{objfcn} below as $M$ and $N$.
 
 \begin{equation} \label{objfcn}
-maximize \hspace{0.3cm} L \cdot l^{min} + A \cdot a^{min} - N \cdot \sum_{i \in I}\sum_{w \in W_5}\sum_{d \in D_5}\sum_{s \in S_3} d_{iwds}
+maximize \hspace{0.3cm} M\cdot s^{min} - N \cdot \sum_{i \in I}\sum_{w \in W_5}\sum_{d \in D_5}\sum_{s \in S_3} d_{iwds}
 \end{equation}
 The two first objective functions represent the lowest amount of stand-in librarians and assistants found. The third objective function is a preference from the library that two weeks with a five-week interval should be as similar as possible (e.g. week 1 and 6, 2 and 7 etc.).
 
@@ -130,16 +131,16 @@ To ensure that no worker is assigned more than one task the following constraint
 \end{equation}
 However, if we allow a person to have two shifts at the Library on Wheels on a day, Equation \ref{constr:one_task_constraint} has to be slightly modified, which is shown in the complete model in Appendix \ref{definitions}.
 
-It is preferred to allow only one P per week and a maximum of three P per ten weeks. These are easily modeled with the following constraints:
+It is preferred to allow only one PL per week and a maximum of three PL per ten weeks. These are easily modeled with the following constraints:
 \begin{equation} \label{constr:one_PL}
 \sum_{s \in S_d}\sum_{d \in D} x_{iwdsP} \leq 1, \; \forall i\in I, w \in W
 \end{equation}
 \begin{equation} \label{constr:three_PL}
 \sum_{w \in W}\sum_{s \in S_d}\sum_{d \in D} x_{iwdsP} \leq 3, \; \forall i\in I
 \end{equation}
-The duration of a P, which is for an entire day, is the cause of these preferences. Some workers are required to have some alloted time to perform inner tasks.
+The duration of a PL (in the model named 'P'), which is from 08:00-16:00, is the cause of these preferences. Some workers are required to have some alloted time to perform inner tasks.
 
-Another preference is to have various start times of the assigned tasks each week, so that the more and less desired shifts are evenly distributed. The following equation was implemented to meet such requirements:
+Another preference is to have various start times of the assigned tasks each week, so that the more and less desired shifts are evenly distributed. The following equation is implemented to meet such requirements:
 \begin{equation} \label{constr:various_start_times}
 \sum_{d \in D_5} y_{iwds} \leq 2, \; \forall i\in I, w \in W, s \in S_3
 \end{equation}
@@ -171,7 +172,7 @@ r_{iw} \geq H_{iw1}, \; \forall i\in I, w \in W
 
 Equation \ref{constr:one_rot} provides all workers with a rotation of their schedule regardless if they are working weekends or not. Equation \ref{constr:max_one_weekend} allows a worker a maximum of two weekends $(h = 1, h = 2)$ per ten weeks. Lastly, Equation \ref{constr:rot_weekend} in combination with Equation \ref{constr:one_rot} ensures that the schedule rotation is aligned with the first weekend, if the worker is due for weekend work. In case the worker is not due for weekend work, the rotation of the schedule is free.
 
-A worker is supposed to work weekends with a five-week interval. However, in case when there are enough workers to satisfy the demand on weekends it may be enough to work one weekend per ten weeks for some. To avoid problems with the rotation when only the second weekend is assigned to a worker, the following equation was implemented:
+A worker is supposed to work weekends with a five-week interval. However, in case when there are enough workers to satisfy the demand on weekends it may be enough to work one weekend per ten weeks for some. To avoid problems with the rotation when only the second weekend is assigned to a worker, the following equation is implemented:
 \begin{equation} \label{constr:five_week_interval}
 r_{i({10}(w+4)+1)} \geq H_{iw2}, \; \forall i\in I, w \in W
 \end{equation}
@@ -213,34 +214,38 @@ x_{iw61j} = x_{iw71j}, \; \forall i\in I, w \in W, j \in J_d
 
 Friday evening is also included in extension to working Saturday and Sunday, unless the worker is assigned to HB. It is, however, not a necessity to perform the same task Friday evenings as during the weekend, thus Fridays not included in Equation \ref{constr:same_tasks}. Equation \ref{constr:friday_added} below adds Fridays to the weekend:
 \begin{equation} \label{constr:friday_added}
-\sum_{j \in J \backslash \{B\}}x_{iw54j} = f_{iw}, \; \forall i \in I, w \in W
+\sum_{j \in J \backslash \{L\}}x_{iw54j} = f_{iw}, \; \forall i \in I, w \in W
 \end{equation}
-The variable $f_{iw}$ is, as mentioned in the variable declaration, equal to one if and only if a worker is working weekend as well as not being assigned to HB. The help constraints implemented to avoid multiplication of the two variables $b_{iw}$ and $H_{iwh}$ are left out of this section and can instead be seen in Appendix \ref{definitions}.
+'L' in the equation refers to the task Library on Wheels. The variable $f_{iw}$ is, as mentioned in the variable declaration, equal to one if and only if a worker is working weekend as well as not being assigned to HB. The help constraints implemented to avoid multiplication of the two variables $b_{iw}$ and $H_{iwh}$ are left out of this section and can instead be seen in Appendix \ref{definitions}.
 
 It is of interest to implement a constraint preventing workers being assigned to HB more than once every ten weeks to avoid unfairness. The constraint can be modeled as:
 \begin{equation} \label{constr:max_one_hb}
-\sum_{w \in W}\sum_{d = 6}^{7}x_{iwd1HB} \leq 2, \; \forall i \in I
+\sum_{w \in W}\sum_{d = 6}^{7}x_{iwd1B} \leq 2, \; \forall i \in I
 \end{equation}
-The combination of Equations \ref{constr:max_one_hb} and \ref{constr:same_tasks} ensure that once a worker is assigned to HB it will be for two consecutive weekend days, which is the amount of days the previous equation allow a worker every ten weeks. Why this is preferable is described in Section \ref{section:library_tasks}.
+'B' in this equation refers to HB. The combination of Equations \ref{constr:same_tasks} and \ref{constr:max_one_hb} ensure that once a worker is assigned to HB it will be for two consecutive weekend days, which is the amount of days the last mentioned equation allow a worker every ten weeks. Why this is preferable is described in Section \ref{section:library_tasks}.
 
 \subsection{Objective function constraints} \label{section:obj_fcn_constraints}
-To calculate the variable $l^{min}$ and $a^{min}$ used in the objective function (\ref{objfcn}) the following equations were implemented:
-\begin{equation} \label{constr:l_min}
-l^{min} \leq \sum_{i \in I_{lib}} l_{iwd}, \; \forall w \in W, d \in D_5
+To calculate the variables $s^{min}$ used in the objective function, \ref{objfcn}, the following equation is implemented:
+\begin{equation} \label{constr:s_min}
+s^{min} \leq L\cdot \sum_{i \in I_{lib}} l_{iwd} + A\cdot \sum_{i \in I_{ass}} a_{iwd}, \; \forall w \in W, d \in D_5
 \end{equation}
-\begin{equation} \label{constr:a_min}
-a^{min} \leq \sum_{i \in I_{ass}} a_{iwd}, \; \forall w \in W, d \in D_5
-\end{equation}
-$l_{iwd}$ and $a_{iwd}$ are binary variables stating, for a day $d$, whether a worker is a stand-in or not. $l^{min}$ and $a^{min}$ are being maximized in the objective function; therefore, they will assume the lowest value of stand-in librarians and assistants respectively, for any day during the ten weeks. Just as with previous equations, help constraints have been left out for simplicity reasons. In this case regarding how $l_{iwd}$ and $a_{iwd}$ are determined.
+%\begin{equation} \label{constr:l_min}
+%l^{min} \leq \sum_{i \in I_{lib}} l_{iwd}, \; \forall w \in W, d \in D_5
+%\end{equation}
+%\begin{equation} \label{constr:a_min}
+%a^{min} \leq \sum_{i \in I_{ass}} a_{iwd}, \; \forall w \in W, d \in D_5
+%\end{equation}
 
-As stated in Section \ref{section:obj}, two weeks with a five-week interval should be as similar as possible. Equation \ref{constr:obj_fcn_shifts} in combination with the Objective function \ref{objfcn} provides this preference:
+$l_{iwd}$ and $a_{iwd}$ are binary variables stating, for a day $d$, whether a worker is a stand-in or not. $s^{min}$ is being maximized in the objective function; therefore, it will assume the lowest value of the sum of stand-in librarians and assistants for any day during the ten weeks. Just as with previous equation, help constraints have been left out for simplicity reasons. In this case regarding how $l_{iwd}$ and $a_{iwd}$ are determined.
+
+As stated in Section \ref{section:obj}, two weeks with a five-week interval should be as similar as possible. Equation \ref{constr:obj_fcn_shifts} in combination with the objective function equation, \ref{objfcn}, provides this preference:
 \begin{equation} \label{constr:obj_fcn_shifts}
 d_{iwds} = \abs{y_{iwds} - y_{i(w+5)ds}}, \; \forall i \in I, w \in W_5, d \in D_5, s \in S_3
 \end{equation}
 The decision variable $d_{iwds}$ in the previous equation states if there is a difference in assignment between two tasks at the same hour and day for two weeks: $w$ and $w+5$. Thus, a variable minimized in the objective function.
-% EXPLAIN MORE!!!!
+% % EXPLAIN MORE!!!!
 \subsection{Meeting constraints} \label{section:meeting_constraints}
-At the library there are both library meetings as well as department meetings, where both occur with a five-week interval. Library meetings are set to take place from 8-10 on Mondays, whereas department meetings are more freely distributed. A few workers are not assigned library meetings, since they are needed at the stations to keep the library running. The set $I_{big}$ in the equation below consists of all workers who are to be assigned library meetings. The constraints modeling library meetings are as follows:
+At the library there are both library meetings as well as department meetings, where both occur with a five-week interval. Library meetings are set to take place from 08:00-10:00 on Mondays, whereas department meetings are more freely distributed. A few workers are not assigned library meetings, since they are needed at the stations to keep the library running. The set $I_{big}$ in the equation below consists of all workers who are to be assigned library meetings. The constraints modeling library meetings are as follows:
 \begin{equation} \label{constr:library_meetings}
 \sum_{w \in W_5} M_{w11} = 1
 \end{equation}
@@ -248,7 +253,7 @@ At the library there are both library meetings as well as department meetings, w
 M_{(w+5)11} = M_{w11}, \; \forall w \in W_5
 \end{equation}
 \begin{equation} \label{constr:library_meetings3}
-\sum_{s=2}^{3} \sum_{j \in J_d \backslash \{B\}} x_{iw1sj} \leq 1-M_{w11}, \; \forall i \in I \backslash I_{big}, w \in W
+\sum_{s=2}^{3} \sum_{j \in J_d \backslash \{L\}} x_{iw1sj} \leq 1-M_{w11}, \; \forall i \in I \backslash I_{big}, w \in W
 \end{equation}
 Equation \ref{constr:library_meetings} and \ref{constr:library_meetings2} assign two library meetings with a five-week interval during the ten-week scheduling period. Equation \ref{constr:library_meetings3} makes sure that the workers that do not attend library meetings are assigned any other task the day of the meeting.
 

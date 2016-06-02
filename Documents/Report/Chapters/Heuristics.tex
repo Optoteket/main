@@ -10,7 +10,6 @@
 %The two heuristical approaches
 
 Apart from the implementation of the AMPL model we have also created two separate solvers of the problem using heuristics. One method was decided to be based on creating a pool of all week appearances that exists. Each week appearance contains a unique set of tasks during all seven days. After creating the pool of blocks these are assigned to the workers based on costs, one for each week. The other method ...
-
 \begin{center}
 	\begin{tikzpicture}[auto,
 	block_center/.style ={rectangle, draw=black, thick, fill=white,
@@ -42,58 +41,7 @@ Apart from the implementation of the AMPL model we have also created two separat
 \section{Weekly scheduling approach} \label{Weekly}
 In Figure \ref{flow_chart}
 
-% % FLOW CHART
-\begin{figure}[!h]
-  \caption{A flow chart of the implemented heuristic with weekly scheduling}
-  \centering
-	\scalebox{0.85}{ \label{flow_chart}
-		\begin{tikzpicture}[node distance = 2cm, auto]
-		    % Place nodes
-			\node [block] (blocks) {Create all blocks};
-			\node [block,below of= blocks] (workers) {Create all workers};
-			\node [block,below of= workers] (sort) {Sort blocks to workers};
-			\node [block,below of= sort] (assign_rot) {Assign rotations};
-			\node [block,below of= assign_rot] (assign_low) {Assign LoW schedule};
-			\node [block,below of= assign_low] (init_sol) {Create initial solution};
-			\node [block,right of= init_sol, node distance = 4cm] (destroy) {Destroy workers};
-			\node [block,below of= destroy] (repair) {Repair workers};
-			\node [decision, below of= repair, node distance= 2.5cm] (feasible) {Is solution feasible?};
-			\node [block,below of= feasible, node distance = 6cm] (print) {Print solution to file};
-			
-			\node[decision,right of= feasible, node distance=3.5cm] (close) {Close enough?};
-			\node[block,below of= close, node distance = 3cm] (final) {Enter final phase};
-			\node[decision, right of= final, node distance = 4cm] (solved) {Solved in given number of iterations?};
-			\node[block,right of= assign_low, node distance = 11.5cm] (failed) {Failed iteration, run again};
-			\node[right of= assign_low, node distance = 5.5cm] (text) {LNS};
-			
-			%Invisible node, useful later
-			\node[above of= blocks, node distance=1.3cm,scale=0.01](inv){};
-			
-			
-		    % Draw edges
-		    \path [line] (inv) -- (blocks);
-		    \path [line] (blocks) -- (workers);
-		    \path [line] (workers) -- (sort);
-		    \path [line] (sort) -- (assign_rot);
-		    \path [line] (assign_rot) -- (assign_low);
-		    \path [line] (assign_low) -- (init_sol);
-		    \path [line] (init_sol) |- (feasible);
-		    \path [line] (destroy) -- (repair);
-		    \path [line] (repair) -- (feasible);
-		    \path [line] (feasible) -- node[right]{yes}(print);
-		    \path [line] (feasible) -- node[above]{no}(close);
-		    \path [line] (close) |- node[right]{no}(destroy);
-		    \path [line] (close) -- node[right]{yes}(final);
-		    \path [line] (final) -- (solved);
-		    \path [line] (solved) |- node[right]{yes}(print);
-		    \path [line] (solved) -- node[right]{no}(failed);
-		    \path [line] (failed) |- (blocks);
-%			\path[-,draw] (feasible) -| node[right]{no} (inv.north);
-%		    \path[line]{} (inv.north) |- node{} (destroy);
-			\draw [color=gray!70,thick](2.3,-8.5) rectangle(6,-17);
-		\end{tikzpicture}
-		}
-\end{figure}
+
 
 \subsection{Block creation} \label{block_creation}
 A big part of this heuristic is to create the big pool of unique week appearances. These are then filtered for each of the worker based on its availability. The workers availability are generalized into three categories: \textit{Weekend week}, \textit{weekrest week} and \textit{weekday week}, where weekday week occurs three times during a five week period, see Table \ref{tab:Bob_avail}. 
@@ -145,60 +93,10 @@ This block contains five tasks; two of them are weekend tasks and three are week
 
 
 \subsection{Block percolation}
-After creating all existing week combinations they are percolated to each of the workers based on their availability in each of the three categories mentioned in Section \ref{block_creation}. Table \ref{blocks_available_per_worker} shows the results after this percolation has been made for all workers.
+After creating all existing week combinations they are percolated to each of the workers based on their availability in each of the three categories mentioned in Section \ref{block_creation}. Table \ref{blocks_available_per_worker} in Appendix \ref{appendix:weekblock} shows the results after this percolation has been made for all workers.
 
-\begin{table}[!h]
-\centering
-\caption{Number of assignable unique blocks for the workers based on their availability and qualification.}
-\label{blocks_available_per_worker}
-\begin{tabular}{|c|ccc|}
-\hline
-Worker & Weekend & Weekrest & Weekday \\ \hline
-1      & 532     & 347      & 1580    \\ \hline
-2      & 1580    & 1580     & 1580    \\ \hline
-3      & 1063    & 347      & 1580    \\ \hline
-4      & 557     & 165      & 779     \\ \hline
-5      & 261     & 130      & 531     \\ \hline
-6      & 532     & 130      & 1580    \\ \hline
-7      & 261     & 130      & 531     \\ \hline
-8      & 261     & 29       & 531     \\ \hline
-9      & 115     & 12       & 247     \\ \hline
-10     & 532     & 130      & 1580    \\ \hline
-11     & 9       & 8        & 8       \\ \hline
-12     & 1063    & 347      & 1580    \\ \hline
-13     & 771     & 92       & 1190    \\ \hline
-14     & 265     & 29       & 489     \\ \hline
-15     & 51      & 18       & 120     \\ \hline
-16     & 495     & 130      & 843     \\ \hline
-17     & 237     & 69       & 267     \\ \hline
-18     & 532     & 279      & 1580    \\ \hline
-19     & 495     & 47       & 843     \\ \hline
-20     & 532     & 130      & 1580    \\ \hline
-21     & 227     & 227      & 227     \\ \hline
-22     & 2       & 1        & 1       \\ \hline
-23     & 3       & 2        & 2       \\ \hline
-24     & 11      & 5        & 47      \\ \hline
-25     & 1063    & 279      & 1580    \\ \hline
-26     & 5       & 4        & 4       \\ \hline
-27     & 213     & 106      & 425     \\ \hline
-28     & 2       & 2        & 2       \\ \hline
-29     & 426     & 106      & 1281    \\ \hline
-30     & 127     & 126      & 455     \\ \hline
-31     & 495     & 130      & 843     \\ \hline
-32     & 261     & 29       & 531     \\ \hline
-33     & 72      & 45       & 306     \\ \hline
-34     & 425     & 425      & 425     \\ \hline
-35     & 91      & 20       & 221     \\ \hline
-36     & 55      & 27       & 101     \\ \hline
-37     & 1063    & 347      & 1580    \\ \hline
-38     & 3       & 1        & 1       \\ \hline
-39     & 2       & 1        & 1       \\ \hline
-\end{tabular}
-\end{table}
 
 All of the values in the table are a subset of the total amount of 4,175 blocks. Knowing the structure of the problem, one can deduce that the amount of available weekrest blocks are always less than or equal to the available weekday blocks, as it should be. The only difference between the two mentioned block categories is when a worker is free from work due to its weekrest. Therefore, using this information one can interpret that they are equal when the worker is never working weekends.
-
-
 \begin{table}[!h]
 \centering
 \caption{Typical availability for a generalized worker. Yellow signifies that the worker is available. In parenthesis, the weekend shift hours.}
@@ -322,6 +220,10 @@ All of the values in the table are a subset of the total amount of 4,175 blocks.
 
 Looking at a generalized worker's availability shown in Table \ref{typical_availability} one might think that there shall be more weekend blocks available than weekday blocks as the availability, almost in all cases, are higher for weekend blocks. This is not the case as all blocks without weekend tasks are removed in the percolation. This means that all combinations with "No task" on weekends are removed, as well as the case that is shown in Table \ref{Friday_percolation}. The case in Table \ref{Friday_percolation} occurs when a worker is assigned weekend Desk tasks and therefore can not be assigned any other task that Friday.
 
+
+
+
+
 \begin{table}[!h]
 \centering
 \caption{A weekend block with Desk tasks preventing any other tasks on Fridays.}
@@ -338,11 +240,11 @@ Looking at a generalized worker's availability shown in Table \ref{typical_avail
  "X" in Table \ref{Friday_percolation} can represent any task and shifts colored in black means that no other task can be assigned that shift.
 
 \subsection{Rotation assignment} \label{rotation}
-There are 35 weekend workers available of which 21 are librarians and 14 are assistants. The demand of weekend workers each week is seven, i.e. the demand for five weeks is exactly $7*5 = 35$ workers. Therefore, it deems reasonable to swap weekend weeks between workers in the destroy. Another requirement in excess to seven workers each weekend is that at least four of them have to be librarians due to three librarians are needed in Information desks and one in Hageby.
+There are 35 weekend workers available of which 21 are librarians and 14 are assistants. The demand of weekend workers each week is seven, i.e. the demand for five weeks is exactly $7*5 = 35$ workers. Another requirement in excess to seven workers each weekend is that at least four of them have to be librarians due to three librarians are needed in Information desks and one in Hageby. Therefore, it deems reasonable to swap rotations between workers in the destroy so that it always remains feasible. 
 
-To assign the rotations a random generator was used that always makes sure that the two mentioned requirements are met. Furthermore, all of the LoW-workers have fixed weekends and hence are not given new rotations in the destroy/repair loop. This is more thoroughly described in Section \ref{LoW_assignment} below. 
+A random generator is used in the assignment of rotations that always makes sure that the two mentioned requirements are met. Furthermore, all of the LoW-workers have fixed weekends and hence are not given new rotations in the destroy/repair loop and is more thoroughly described in Section \ref{LoW_assignment} below. 
 
-Table \ref{rotation_assignment} shows what a destroy/repair iteration looks like regarding rotation assignments. The amount of workers being destroyed in each iteration is three.
+Table \ref{rotation_assignment} shows a destroy/repair iteration regarding rotation assignments. The amount of workers being destroyed in each iteration is three.
 
 \begin{table}[!h]
 \centering
@@ -526,10 +428,18 @@ Stand\_in\_cost                     & Occuring when a possible stand-in is ruine
 \end{table}
 
 \subsection{Destroy}
-Text
+The destroy consists of two contiguous steps: Choosing three workers to destroy and then destroying their assigned blocks. The LoW tasks remain unchanged even if a worker assigned those tasks is destroyed. 
 \subsection{Repair}
-Text
+Initially in the repair function the destroyed workers are assigned new rotations, see Table \ref{rotation_assignment}, followed by five new week blocks. Which order the blocks are inserted in is randomly generated. For each iteration is one of the three workers randomly chosen followed by one block that has not been reassigned until all 15 destroyed weeks have been repaired. Which week block that is chosen is based on the costs listed in Table \ref{tab:all_costs}. 
 \subsection{Evaluation of solution}
-Text
+After each destroy/repair loop the new solution is evaluated. It is common for the new solution to be worse than the previous one. However, all new solutions are accepted regardless.
+
+All costs are regarded in the evaluation function. If there are any demand differences in the library or any differences in amount of PL assigned to a worker these are given the respective costs. Furthermore, the amount of stand-ins is evaluated here provided with a negative cost showing that these are desired.
+
+If there are no infeasibilities in the solution the evaluation function will return the value zero, unless there are stand-ins. In case there are stand-ins a negative value can be returned. 
 \subsection{Final phase}
-Text
+At the end of a run there are mostly a few infeasibilities left that do not get solved. To fix this, a final phase was implemented. Whenever a run is "relatively close" to a solution and it is "theoretically possible" to find a solution the final phase is initiated. "Relatively close" means in this case that the only infeasibility is the lack of workers at a handful of weekday shifts. "Theoretically possible" means that there are more stand-ins available all days where the infeasibility occurs.
+
+The final phase destroys one random week for a random worker and immediately repairs it, resulting in the same or better solution until it is feasible. % %In discussion: Sometimes it does not find a feasible solution due to the worker had already four tasks assigned, i.e. the required block does not exist.
+
+Due to well chosen cost parameter values the run will always eventually get relatively close and reach the final phase. If there are fewer stand-ins available a day where workers are lacking the solution will be discarded before entering the final phase. 
