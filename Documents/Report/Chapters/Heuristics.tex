@@ -1,90 +1,10 @@
-% Define block styles
-\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
-    text width=4.5em, text badly centered, inner sep=0pt]
-\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
-    text width=5em, text centered, rounded corners, minimum height=4em]
-\tikzstyle{line} = [draw, -latex']
-\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
-    minimum height=2em]
-
-%The two heuristical approaches
-
-Apart from the implementation of the AMPL model we have also created two separate solvers of the problem using heuristics. One method was decided to be based on creating a pool of all week appearances that exists. Each week appearance contains a unique set of tasks during all seven days. After creating the pool of blocks these are assigned to the workers based on costs, one for each week. The second method creates a schedule through distributing individual tasks.
-
-The difference in objective function and constraints between the model used in AMPL and the model used in the heuristics is described by Figure \ref{fig:AMPL_vs_heur}. Since different constraints are modeled as soft and hard in the two heuristics, how they differ from the AMPL model is described in Tables \ref{tab:task_constraints} and TODO. Some constraints have not been implemented in the heuristics due to factors such as lack of time. These are refered to as as relaxed constraints.
-
-% Define block styles
-\tikzstyle{block} = [rectangle, draw=none, fill=white,
-    text width=8em, text ragged, rounded corners, minimum height=0em, node distance =1.5cm]
-    
-\newcommand*{\h}{\hspace{18pt}}% for indentation
-\newcommand*{\hh}{\hspace{24pt}}% double indentation
-
-\begin{figure}[!h]
-\caption{Illustration of how the Heurstic models have been designed}
-\label{fig:AMPL_vs_heur}
-\begin{center}
-\begin{tikzpicture}[node distance = 2cm , auto, scale=0.7, every node/.style={scale=0.7}]
-	%Row 1
-	\node[block, node distance= 6cm, text width=4em] (AMPL){\Large \textbf{AMPL}};
-	\node[block, right of=AMPL, node distance= 5cm] (Mid){};
-	\node[block, right of=Mid, node distance= 6cm] (Heur){\Large \textbf{HEURISTIC}};
-	%Row 2
-	\node[block, below of = AMPL, text width=15em, node distance =1.5cm](ObjfA) {\hh AMPL Objective Function};
-	\node[block, below of = Heur, text width=15em, node distance =1.5cm](ObjfH) { \h Heuristic Objective Function};
-	%Row 3	
-	\node[block, below of = ObjfA, text width=10em](ConstA) {AMPL Constraints};
-	\node[block, below of = Mid, text width=10em, node distance=2.5cm](SConst) {\h Soft Constraints};
-	%Row 4
-	\node[block, below of = SConst, text width=10em, node distance=1cm](HConst) {\h Hard Constraints};
-	\node[block, below of = ObjfH, text width=15em, node distance=1.5cm](ConstH) {\h Heuristic Constraints};
-	%Invisible node
-	\node[block, right of=SConst,scale=0.05, node distance=4cm](inv){};
-	%\node at (ObjfH)[block, left of=ObjfH,scale=0.05,node distance=2.7cm](inv2){};
-	\node at (8.4,-1.6)(inv2){};
-	\begin{scope}[every path/.style=line]
-		\path (ObjfA) -- (ObjfH);
-		\path (ConstA.east) -- (HConst.west);
-		\path (ConstA.east) -- (SConst.west);
-		\path (SConst.east) -- (inv2.west);
-		\path (HConst.east) -- (ConstH.west);
-%		\path [-,draw](SConst) -- (inv);
-%		\path (inv) |- (ObjfH);
-	\end{scope}
-	\draw [color=gray!70,thick](15,1) rectangle (-3,-5);
-\end{tikzpicture}
-\end{center}
-\end{figure}
 
 
+In Appendix \ref{appendix:flow_charts}, Figure \ref{flow_chart}, is a flow chart of the implemented heuristic presented.
 
-\begin{table}[!h]
-\centering
-\caption{Soft and relaxed constraints in the task distribution approach.}
-\label{tab:task_constraints}
-\begin{tabular}{|p{4cm}|p{7cm}|}
-\hline
-% ---------------------------------------------------------
-\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Soft Constraints}} \\
-\hline 
-\rowcolor{Gray} Affecting constraints & Constraint description \\ \hline
-\ref{constr:one_task_constraint} & One task per day restriction.  \\ \hline
-\ref{constr:four_weekly_shifts_at_most} & Four tasks per week restriction. \\ \hline
-\ref{constr:one_PL} & One PL per week restriction. \\ \hline
-\ref{constr:three_PL} & Number of PL per 10 weeks restriction. \\ \hline
-\ref{constr:various_start_times} & Not more than two tasks at the same shift in a week restriction.  \\ \hline
-% ---------------------------------------------------------
-\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Relaxed Constraints}} \\
-\hline 
-\rowcolor{Gray} Affecting constraints & Constraint alteration \\ \hline
-Several. $W = W_5$ in all constraints. & 5 week scheduling instead of 10 week scheduling. \\ \hline
-BokB-constraints & BokB placed according to constraints, but the schedule is fixed. \\ \hline
-Availability data & Even and odd week workers have availability at each shift according to the stricter of the two weeks. \\ \hline
-\ref{constr:library_meetings} - \ref{constr:dep_meetings4} & Meetings not implemented. \\ \hline
-\end{tabular}
-\end{table}
+For every worker their information such as availability and qualification is inserted into a table template in Excel. It is then written to a text file using Visual Basic code, which in turn is read by the heuristic.
 
-\subsection{Block creation} \label{block_creation}
+\section{Block creation} \label{block_creation}
 A big part of this heuristic is to create the big pool of unique week appearances. These are then filtered for each of the worker based on its availability. The workers availability are generalized into three categories: \textit{Weekend week}, \textit{weekrest week} and \textit{weekday week}, where weekday week occurs three times during a five week period, see Table \ref{tab:Bob_avail}. 
 
 
@@ -103,7 +23,7 @@ One week block contains seven days and up to four shifts where each shift can co
 \end{tabular}
 \end{table}
 
-Every day must contain exactly \textit{one} task from either of the four shifts when creating a week block. The tasks \textit{I} and \textit{PL} are ranging more than one shift. The duration of a PL is three shift and the I refers to the entire day. Hence, they are both placed in the first shift to simplify the complete task representation. When creating the combinations of block appearances there are additional conditions that have to be met. These are:
+Every day must contain exactly \textit{one} task from either of the four shifts when creating a week block. The tasks \textit{I} and \textit{PL} are ranging more than one shift. The duration of a PL is three shift and I refers to the entire day. Hence, they are both placed in the first shift to simplify the complete task representation. When creating the combinations of block appearances there are additional conditions that have to be met. These are:
 \begin{enumerate}  
 \item At most two tasks can be assigned the same shift and week.\label{first_item}
 \item No more than two evenings are allowed each week, one of which is required to be a Friday. \label{second_item}
@@ -133,7 +53,7 @@ An illustration of one of the 4,175 existing block can be seen in Table \ref{blo
 This block contains five tasks; two of them are weekend tasks and three are weekday tasks. Which week this block can be assigned to is dependent on the worker's rotation. Since Hageby is assigned to the weekblock one can conclude that only a librarian can have this block assigned to itself. Due to this fact, the Desk tasks can imply either Exp or Info desk work as librarians are qualified for both.
 
 
-\subsection{Block percolation}
+\section{Block percolation}
 After creating all existing week combinations they are percolated to each of the workers based on their availability in each of the three categories mentioned in Section \ref{block_creation}. Table \ref{blocks_available_per_worker} in Appendix \ref{appendix:weekblock} shows the results after this percolation has been made for all workers.
 
 
@@ -280,7 +200,7 @@ Looking at a generalized worker's availability shown in Table \ref{typical_avail
 
  "X" in Table \ref{Friday_percolation} can represent any task and shifts colored in black means that no other task can be assigned that shift.
 
-\subsection{Rotation assignment} \label{rotation}
+\section{Rotation assignment} \label{rotation}
 There are 35 weekend workers available of which 21 are librarians and 14 are assistants. The demand of weekend workers each week is seven, i.e. the demand for five weeks is exactly $7*5 = 35$ workers. Another requirement in excess to seven workers each weekend is that at least four of them have to be librarians due to three librarians are needed in Information desks and one in Hageby. Therefore, it deems reasonable to swap rotations between workers in the destroy so that it always remains feasible. 
 
 A random generator is used in the assignment of rotations that always makes sure that the two mentioned requirements are met. Furthermore, all of the LoW-workers have fixed weekends and hence are not given new rotations in the destroy/repair loop and is more thoroughly described in Section \ref{LoW_assignment} below. 
@@ -317,12 +237,12 @@ Assistants & 3 & 2 & \cellcolor[HTML]{9AFF99}3 & 3 & 3
 Yellow indicates that a worker, either librarian or assistant, has been destroyed that week and green indicates that a worker has been repaired. Comparing the "Initial assignment" with "After repair" a swap can be seen between week 2 and 3. Worth noting is that a swap can occur even if the amount of qualified workers remains the same after a repair. To understand this, imagine that two librarians with different rotations are destroyed, then two cases can occur: Either they are assigned the same rotation as before or they swap weekends. 
 
 
-\subsection{Assignment of Library on Wheels} \label{LoW_assignment}
+\section{Assignment of Library on Wheels} \label{LoW_assignment}
 In order to avoid creating enormous amounts of block combinations, LoW tasks are assigned manually. To assign LoW manually also lead to a fix weekend rotation for the five LoW-workers. This slightly reduces the degrees of freedom of the problem as the LoW-workers' rotation will remain unchanged. However, as there are only a couple different set of feasible LoW assignments it shall not be the deciding factor for the quality of the solution.
 
 Without a manual assignment of LoW the number of existing tasks in a weekblock would increase significantly. The number of tasks would increase from 36 to 43, as there are seven LoW tasks during a week, resulting in a lot more than 4,175 unique week appearances. % %ändra sista
 
-\subsection{Initial solution} \label{initial_solution}
+\section{Initial solution} \label{initial_solution}
 The initial solution is created in a similar fashion as the repair function in this heuristic. Based on a greedy heuristic the best weekblock for a random worker and week is found and inserted. This is done until every worker have one weekend block, one weekrest block and three weekday blocks assigned to them.
 
 To find the best weekblock several costs have been introduced to measure whether a block is good or bad to assign a worker. Say, if the library demands two librarians at the Information desk Monday at 08:00 and currently there are one assigned, then it would be good to assign another one. Such an assignment will, therefore, be rewarded using a cost. Good assignments will provide negative costs and bad assignments will provide positive costs to the objective function value.
@@ -350,6 +270,15 @@ Table \ref{block_to_evaluate} together with Figure \ref{flow_chart_cost} shows a
 \multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
 \end{tabular}
 \end{table}
+
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+    text width=4.5em, text badly centered, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+    text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+    minimum height=2em]
 
 
 % % FLOW CHART of COSTS
@@ -409,7 +338,7 @@ Table \ref{block_to_evaluate} together with Figure \ref{flow_chart_cost} shows a
     
 
 
-\subsection{Costs}
+\section{Costs}
 In order to find a feasible solution many of the implemented costs must be carefully chosen. Presently, there are 16 existing costs where some of them are correlated with each other. The solution behaves differently depending on the relation between the costs changes.
 
 Six of the costs are presented in Figure \ref{flow_chart_cost}. They have all been assigned unique values so that, for example, positive assistant demand cost differs from negative assistant demand cost in absolute value. To explain why, one can imagine a case where four workers are demanded of which two have to be librarians, see Table \ref{library_solutions}. The first case, where one assistant and three librarians have been assigned, is more desirable than the case with three assistants and one librarian. In the first case it is still a feasible solution as the qualification of assistants are a subset of the librarians. The second case is feasible, however, not optimal due to the exceeding use of librarians. The optimal solution is shown in green as Case 3.
@@ -468,17 +397,17 @@ Stand\_in\_cost                     & Occuring when a possible stand-in is ruine
 \end{tabular}
 \end{table}
 
-\subsection{Destroy}
+\section{Destroy}
 The destroy consists of two contiguous steps: Choosing three workers to destroy and then destroying their assigned blocks. The LoW tasks remain unchanged even if a worker assigned those tasks is destroyed. 
-\subsection{Repair}
+\section{Repair}
 Initially in the repair function the destroyed workers are assigned new rotations, see Table \ref{rotation_assignment}, followed by five new week blocks. Which order the blocks are inserted in is randomly generated. For each iteration is one of the three workers randomly chosen followed by one block that has not been reassigned until all 15 destroyed weeks have been repaired. Which week block that is chosen is based on the costs listed in Table \ref{tab:all_costs}. 
-\subsection{Evaluation of solution}
+\section{Evaluation of solution}
 After each destroy/repair loop the new solution is evaluated. It is common for the new solution to be worse than the previous one. However, all new solutions are accepted regardless.
 
 All costs are regarded in the evaluation function. If there are any demand differences in the library or any differences in amount of PL assigned to a worker these are given the respective costs. Furthermore, the amount of stand-ins is evaluated here provided with a negative cost showing that these are desired.
 
 If there are no infeasibilities in the solution the evaluation function will return the value zero, unless there are stand-ins. In case there are stand-ins a negative value can be returned. 
-\subsection{Final phase}
+\section{Final phase}
 At the end of a run there are mostly a few infeasibilities left that do not get solved. To fix this, a final phase was implemented. Whenever a run is "relatively close" to a solution and it is "theoretically possible" to find a solution the final phase is initiated. "Relatively close" means in this case that the only infeasibility is the lack of workers at a handful of weekday shifts. "Theoretically possible" means that there are more stand-ins available all days where the infeasibility occurs.
 
 The final phase destroys one random week for a random worker and immediately repairs it, resulting in the same or better solution until it is feasible. % %In discussion: Sometimes it does not find a feasible solution due to the worker had already four tasks assigned, i.e. the required block does not exist.

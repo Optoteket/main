@@ -37,6 +37,7 @@ void loop(ostream& outrunvalues){
 	ofstream outfeasible("./target/feasible.txt");
 	ofstream outstandins("./target/standins.txt");
 	ofstream outmaxmin("./target/maxmin.txt");
+	ofstream outstandinsperiter("./target/StandinsPerIter.txt");
 	Library lib;
 	lib.createWorkers(); //Creating myworkers[39]
 	lib.create_all_blocks();
@@ -198,6 +199,7 @@ void loop(ostream& outrunvalues){
 	outFile << "Best solution so far is " << lib.evaluate_solution(outFile).at(1) << endl;//Print everything with evaluate_solution
 	
 	outdata << "objfcn\tfeasible\tstandins\tmaxmin" << endl;
+	outstandinsperiter << "Worst number of stand-ins when solution found" << endl;
 	//Start the destroy/repair loop!
 	while(time < stop_time && current_solution > 0){ //54000 means 17-08, 239400 means fri 13.37 - mon 8.07, 234612 means roughly 14.57 - mon 8.07
 // 	for(int j=0; j<100; j++){
@@ -281,7 +283,7 @@ void loop(ostream& outrunvalues){
 		
 		
 		//Print all values to plotdata.txt
-		outdata << output_vector.at(0) << "\t" << output_vector.at(1) << "\t" << output_vector.at(2) << "\t" << output_vector.at(3) << "\t" << output_vector.at(4) << "\t" << output_vector.at(5) << "\t" << output_vector.at(6) << "\t" << output_vector.at(7) << "\t" << output_vector.at(8) << "\t" << output_vector.at(9) << "\t" << output_vector.at(10) << "\t" << output_vector.at(11) << endl;
+		outdata << output_vector.at(0) << "\t" << output_vector.at(1) << "\t" << output_vector.at(2) << "\t" << output_vector.at(3) << endl; // << "\t" << output_vector.at(4) << "\t" << output_vector.at(5) << "\t" << output_vector.at(6) << "\t" << output_vector.at(7) << "\t" << output_vector.at(8) << "\t" << output_vector.at(9) << "\t" << output_vector.at(10) << "\t" << output_vector.at(11) << endl;
 		outobjfcn << output_vector.at(0) << endl;
 		outfeasible << output_vector.at(1) << endl;
 		outstandins << output_vector.at(2) << endl;
@@ -305,7 +307,7 @@ void loop(ostream& outrunvalues){
 		
 		
 		
-		// *** Intensification phase! ***
+		// *** Final phase! ***
 		//0=total_cost, 1=total_eval_cost, 2=sum_stand_ins, 3=maxmin, 4=demand_tot_cost
 		//5=demand_lib_cost, 6=demand_ass_cost, 7=demand_PL_cost, 8=demand_HB_cost, 9=demand_evening_cost
 		//10=PL_amount_cost, 11=no_weekend_cost
@@ -341,6 +343,7 @@ void loop(ostream& outrunvalues){
 					while(output_vector.at(1) > 0){ //Loop until a new improvement or feasible solution
 // 						outFile << "Destroy and repair for one week/person" << endl;
 						lib.destroy_repair_one_week_at_the_time();
+						outdata << output_vector.at(0) << "\t" << output_vector.at(1) << "\t" << output_vector.at(2) << "\t" << output_vector.at(3) << endl; // "\t" << output_vector.at(4) << "\t" << output_vector.at(5) << "\t" << output_vector.at(6) << "\t" << output_vector.at(7) << "\t" << output_vector.at(8) << "\t" << output_vector.at(9) << "\t" << output_vector.at(10) << "\t" << output_vector.at(11) << endl;
 						cout << "\nAfter Repair in final phase\n" << endl;
 						output_vector = lib.evaluate_solution(cout); //Evaluate and save
 						if(output_vector.at(1) < current_solution){
@@ -362,12 +365,17 @@ void loop(ostream& outrunvalues){
 					//Print best solution to file!
 					outFile << "\n\n\n***Best iteration number: " << count_new_sol << "***" << endl;
 					outFile << "Best solution so far is " << lib.evaluate_solution(outFile).at(1) << endl;//Print everything with evaluate_solution
+					outstandinsperiter << "123" << endl;
 					if(output_vector.at(1) <= 0){
 						//Update time and print values to outrunvalues
 						t = clock() - t; //in TICKS
 						time += (long double)t/CLOCKS_PER_SEC; //As long double value
+						outstandinsperiter << lib.get_lowest_stand_in() << endl;
+						outstandinsperiter << "Hello" << endl;
 						outrunvalues << "Solution found after " << time << " seconds and " << iter_counter << " iterations" << endl;
 						outrunvalues << "Worst number of stand-ins: " << lib.get_lowest_stand_in() << endl;
+						
+						
 // 						lib.print_stand_ins(outrunvalues);
 					}
 					

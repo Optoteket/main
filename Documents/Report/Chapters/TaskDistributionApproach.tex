@@ -1,20 +1,20 @@
-\section{Introduction}
 
-The second heuristic approach tested distributes individual tasks to workers. This method greatly resembles the process of manually placing tasks as is typically done in many practical situations. The heuristic undergoes two phases. In the first phase, weekends, as well as some weekday tasks, are distributed and in the second phase the rest of the weekday tasks are distributed.
 
-The primary method used in this approach is a large neighbourhood search (LNS) together with a simulated annhealing (SA) accept function. Destroying and repairing the solution, as is customary in LNS, helps leading the solution out of local optima or plateaus. Similarly, SA is used in order to allow the solution to move in a less favourable directions to avoid these local optima.
+The second heuristic approach tested distributes individual tasks to workers and greatly resembles the process of manual scheduling. The implemented algorithm undergoes two phases. In the first phase, weekends, as well as some weekday tasks, are distributed and in the second phase the rest of the weekday tasks are distributed. 
+
+The primary method used in this approach is a Large Neighbourhood Search (LNS) together with a Simulated Annealing (SA) accept function. Destroying and repairing the solution, as is customary in LNS, helps leading the solution out of local optima or plateaus. Similarly, SA is used in order to allow the solution to move in a less favourable directions to move out of local optima regions.
 
 \section{Costs}
-The search algorithm is guided using costs. A worker gets has a number of costs, as displayed in Table \ref{tab:worker_costs}. Each cost represents a misplaced task, resulting in an infeasible schedule or unused stand in potential. In the library, different costs are weighed together in three different ways. These are referred to as objective functions, see Table \ref{tab:lib_costs}. 
+The search algorithm is guided using costs, both for worker schedules and the whole library schedule. Each worker has a number of costs, as displayed in Table \ref{tab:worker_costs}. Each of these costs represents a badly placed task, resulting in an infeasible schedule or unused stand in potential. For the library schedule, costs are weighed together in three different ways. These are referred to as the three library objective functions, see Table \ref{tab:lib_costs}. 
 
 \begin{table}[!h]
 \centering
-\caption{Worker costs. Costs are incremented when a worker gets a task which breaks a soft constraint.}
+\caption{Individual worker costs.}
 \label{tab:worker_costs}
 \begin{tabular}{|l|l|}
 \hline
 \multicolumn{2}{|l|}{\cellcolor{Gray} \textbf{Stand in cost}} \\ \hline
-$C_{SI\_min}$ &  Cost of day with minimum number of stand ins. \\ \hline
+$C_{SI}$ &  Cost from having a task on a day where worker can be stand in. \\ \hline
 \multicolumn{2}{|l|}{\cellcolor{Gray} \textbf{Infeasibility costs}} \\ \hline
 $C_{Task\_Day}$ & Cost from all tasks exceeding the daily limit. \\ \hline
 $C_{Task\_Week}$ & Cost from all tasks exceeding the weekly limit.  \\ \hline
@@ -27,7 +27,7 @@ $C_{SShift\_Week}$ & \begin{tabular}[t]{@{}l@{}} Cost from the number of task pe
 
 \begin{table}[!h]
 \centering
-\caption{Library objective functions and their cost components. Weekend and weekday objective functions are to be maximized while the worker objective function is to be minimized.}
+\caption{Library objective functions and their cost components.}
 \label{tab:lib_costs}
 \begin{tabular}{|l|l|}
 \hline
@@ -57,31 +57,33 @@ $C_{SI\_min}$ &  Cost of day with minimum number of stand ins. \\ \hline
 \end{tabular}
 \end{table}
 
-The weekday objective function is associated with the weekend distribution phase of the problem. Their are three types of costs in the objective function, measuring a certain aspect of a good weekend schedule. Since we want to increase the number of stand ins at the most critical days, the worst days of all aspects are considered, referred to as the min cost. Also, the average of each aspect is considered, in order to distinguish solutions which for which the worst day is identical. All costs in this objective function are calculated using the formula:
+The weekend objective function is associated with the weekend distribution phase of the problem. There are three types of costs in the objective function, each measuring a certain aspect of a good weekend schedule. Since we want to increase the number of stand ins at the most critical days, the worst days of all aspects are considered, referred to as the min cost. Also, the average of each aspect is considered, in order to distinguish solutions for which the worst day is identical. All costs in this objective function are calculated using the formula:
 
 \begin{equation}
 \label{eq:wend_cost_calc}
 C_{type} = W_{lib}*num\_of\_lib + W_{ass}*num\_of\_ass
 \end{equation}
 
-The weights are constants used in all weekend objective function costs. Typically $W_{lib}$ is larger than $W_{ass}$ since librarians can perform a greater number of tasks.
+The weights $W_{lib}$ and $W_{ass}$ are constants used in all weekend objective function costs. Typically $W_{lib}$ is larger than $W_{ass}$ since librarians can perform a greater number of tasks. The weekend objective function is to be maximized.
 
-After maximizing weekends, the weekday distribution phase is entered. Here, the worker objective function is used to identify infeasibilities in the worker schedules and is simply a sum of all the worker costs over all workers. When this cost is zero, the schedule is feasible. Then, in order to compare feasible schedules, the weekday objective function is used, containing only the minimum stand in cost, calculated in the same way as in the weekend objective function. This objective function is corresponding to the objective function in the Mathematical Model.
+
+
+After maximizing weekends, the weekday distribution phase is entered. Here, the worker objective function is used to identify infeasibilities in the worker schedules and is simply a sum of the worker costs for all workers. When this cost is zero, the schedule is feasible. Then, in order to compare feasible schedules, the weekday objective function is used, containing the minimum stand in cost, which is calculated in the same way as in the weekend objective function. The weekday objective function is corresponding to the objective function in the Mathematical Model and is maximized.
 
 \section{Weekend phase}
 
-The weekend phase is the first phase the algorithm enters and is described in detail in Appendix TODO. The LNS component is described by a destroy and repair loop, while the simulated annealing step is marked as the decision to accept solutions which are worse than the current one.
+The weekend phase is the first phase the algorithm enters and it's flow is described also in Appendix \ref{appendix:flow_charts}. The LNS component is part of the "destroy and repair loop", while the simulated annealing step is marked as the decision to accept solutions which are worse than the current one.
 
-The reason for implementing the weekend phase separate from the distribution of other tasks was because of the realization that the minimum number of stand ins depended to a very large extent on the weekend structure. In particular, it is the week rest associated following upon weekend work which decides how many people are present at a particular shift or day. This can be seen in for example Table \ref{tab:Bob_avail}.
+The reason for implementing the weekend phase separate from the distribution of other tasks is because of the fact that the minimum number of stand ins depends to a very large extent on the weekend-worker constellation. In particular, it is the week rest following upon weekend work which decides how many people are present at a particular shift or day. This can be seen in for example Table \ref{tab:Bob_avail}.
 
-The outer loop is performed a specified number of iterations. This loop is guided by the weekend objective function described in the previous section. Better solutions are always accepted and the globally best solution is saved. The SA component is implemented using exponential cooling, so that a solution is accepted with a probability P:
+The outer loop in the flow chart is performed a specified number of iterations. This loop is guided by the weekend objective function described in the previous section. Better solutions are always accepted and the globally best solution is saved. The SA component is implemented using exponential cooling, so that a solution which is worse than the current one is accepted with a probability P:
 
 \begin{equation}
-P = exp(-\Delta E /kT)
+P = exp(-\Delta E/T)
 \label{eq0}
 \end{equation}
 
-where:
+where
 
 \begin{equation}
 \Delta E = Wend_t - Wend_{t-1}
@@ -98,7 +100,7 @@ T = T_0 \alpha^t
 $T$ is the temperature of the SA accept function, which has an initial value of $T_0$ and which cools down with the iteration count  $t$ at a rate $\alpha$ ($0 < \alpha < 1$). The objective function at the iteration $t$ is written $Wend_t$.
 
 
-The inner loop of the algorithm destroys and repairs the solution. The loop checks if the produced solution is infeasible, that is the difference between the number of available workers at each shift with the number of required workers is negative. Such schedules are discarded and a new destroy and repair is performed. An available worker in this context is a worker who is available for work at the shift and does not have any tasks scheduled at that day.
+The inner loop of the algorithm destroys and repairs the solution. The loop checks if the produced solution is infeasible, that is if the difference between the number of available workers at each shift and the number of required workers is negative. Such schedules are discarded and a new destroy and repair is performed. An available worker in this context is a worker who is available for work at the shift and does not have any tasks scheduled at that day.
 
  % ----------------- %
 
@@ -148,11 +150,11 @@ The algoritms for distributing, destroying and repairing weekends is simply a ra
 \end{table}
 
 
-In order to get a better measurement of the number of available workers during this phase evening tasks and BokB tasks are distributed upon repairing weekends. The evening tasks are distributed using the same method as is described in the next section while BokB tasks are placed according to a fixed schedule. The effect of this distribution is visible in Tables \ref{tab:num_avail_no_tasks} and \ref{tab:num_avail_with_tasks}. High intensity of red in a cell indicates a higher number of workers. Thus, since the first table is generally redder, there are fewer available workers in the second table, which more reflect the real number of available workers for the weekend constellation. 
+In order to get a better measurement of the number of available workers during this phase evening tasks and BokB tasks are distributed upon repairing weekends. The evening tasks are distributed using the same method as is described in Section \ref{wday_phase} while BokB tasks are placed according to a fixed schedule. The effect of this distribution is visible in Tables \ref{tab:num_avail_no_tasks} and \ref{tab:num_avail_with_tasks}. High intensity of red in a cell indicates a higher number of workers. It is visible that the first table is generally redder and thus there are fewer available workers in the second table. This state reflects better the real number of available workers for a certain weekend constellation. 
 
-\section{Weekday phase}
+\section{Weekday phase}\label{wday_phase}
 
-When entering the weekday phase, all weekends, evenings and BokB tasks are already placed. In this phase, the rest of the tasks, referred to as "weekday" tasks are also placed. The demand for a week at this point is illustrated in Table \ref{tab:current_demand}. This demand is identical for all weeks.The algorithm for distributing weekday tasks is found in Appendix TODO and greatly resembles the algorithm for distributing weekends.
+When entering the weekday phase, all weekends, evenings and BokB tasks are already placed. In this phase, the rest of the tasks, referred to as "weekday" tasks are to be placed. The demand for a week at this point is illustrated in Table \ref{tab:current_demand} and is identical for all weeks.The algorithm for distributing weekday tasks is found in Appendix \ref{appendix:flow_charts} and greatly resembles the algorithm for distributing weekends.
 
 
 \begin{table}[!h]
@@ -195,12 +197,13 @@ When entering the weekday phase, all weekends, evenings and BokB tasks are alrea
  \end{tabular}
 \end{table}
 
-The outer loop of the algorithm is performed a specified number of iterations and simply checks the weekday objective function. Better solutions are saved, others are discareded. 
+The outer loop of the weekday phase, or the "weekday task distribution loop", is performed a specified number of iterations and calculates the weekday objective function for each iteration. Better solutions are saved, others are discarded. 
 
-The inner loop destroys and repairs the solution until the worker objective function is zero, that is until the schedule is feasible. If the loop cannot find such a schedule during a maximum number of iterations, the solution is discarded as infeasible, and the outer loop is entered.
+The inner "destroy and repair loop" destroys and repairs the solution until the worker objective function is zero, that is until all worker schedules are feasible. If the loop cannot find such a schedule during a maximum number of iterations, the whole solution is discarded as infeasible, and the outer loop is entered.
 
-As opposed to the previous phase, the destroy and repair as well as the initial distribution of weekday tasks is following a greedy algoritm. Library tasks are first sorted according to qualification requirement, so that librarian tasks are placed first and assistant tasks second. This guarantees that all librarian tasks can be placed. Secondly, these tasks are sorted according to the differens between the number of available workers and the demand at each task. This makes sure that the most critical tasks are placed first.
+When destroying and repairing tasks, the tasks are first sorted according to qualification requirement, so that librarian tasks are placed first and assistant tasks second. This guarantees that all librarian tasks can be placed. Secondly, in each subgroup, the tasks are sorted according to the difference between the number of available workers and the demand at each task. This makes sure that the most critical tasks are placed first.
 
 The tasks are then staffed one at a time. The process starts with temporarily placing the task at all available workers. This will generate a cost for each worker according to Table \ref{tab:worker_costs}. The cheapest workers are then chosen and permanently placed on the task.
 
-The destroy function identifies the worker with the highest cost. The worst week of this worker is then identified and destroyed. Similarly, a few random workers are chosen, their number depending on the destroy amount specified, for which the same week is destroyed. This makes it possible for the first worker to get a better worst week by changing tasks with the other workers in the repair function.
+
+The destroy function identifies the worker with the highest cost. The worst week of this worker is then identified and destroyed. Similarly, a few random workers are chosen, their number depending on the destroy amount specified, for which the same week is destroyed. This makes it possible for the first worker to get a better worst week by changing tasks with the other workers, who have better weeks, in the repair function.

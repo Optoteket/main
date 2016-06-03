@@ -332,42 +332,47 @@ SMPTSP	& Text\\
 % -------------------CHAPTERS -----------------------------
 %##########################################################
 
-\chapter{Introduction}
+\chapter{Introduction}\label{chap:intro}
 
 \inputencoding{\enc}
 \input{Chapters/Introduction}
 \inputencoding{\enc}
 
-\chapter{Literature review}
+\chapter{Literature review}\label{chap:lit}
 
 \inputencoding{\enc}
 \input{Chapters/LiteratureReview}
 \inputencoding{\enc}
 
-\chapter{The mathematical model}
+\chapter{The mathematical model}\label{chap:mathmod}
 
 \inputencoding{\enc}
 \input{Chapters/MathModel}
 \inputencoding{\enc}
 
-\chapter{Results from mathematical model}
+\chapter{Implementations}\label{chap:impl}
 
 \inputencoding{\enc}
-\input{Chapters/MathModelResults}
+\input{Chapters/Implementation}
 \inputencoding{\enc}
 
-\chapter{Heuristic implementations}
+\chapter{Weekly scheduling approach}\label{chap:weekly}
 
 \inputencoding{\enc}
 \input{Chapters/Heuristics}
 \inputencoding{\enc}
 
-
-\chapter{Task distribution approach}
+\chapter{Task distribution approach}\label{chap:taskdist}
 
 \inputencoding{\enc}
 \input{Chapters/TaskDistributionApproach.tex}
 \inputencoding{\enc}
+
+\chapter{Results and discussion}\label{chap:res}
+\inputencoding{\enc}
+\input{Chapters/ResultsAndDiscussion.tex}
+\inputencoding{\enc}
+
 
 %##########################################################
 % -------------------END CHAPTERS -------------------------
@@ -472,7 +477,7 @@ SMPTSP	& Text\\
 \end{align}
 
 % % %New chapter
-\chapter{Flow charts}
+\chapter{Flow charts} \label{appendix:flow_charts}
 
 % Define block styles
 \tikzstyle{decision} = [diamond, draw, fill=red!30,
@@ -489,7 +494,7 @@ SMPTSP	& Text\\
 \begin{figure}[!h]
   \caption{A flow chart of the implemented heuristic with weekly scheduling}
   \centering
-	\scalebox{0.55}{ \label{flow_chart}
+	\scalebox{0.7}{ \label{flow_chart}
 		\begin{tikzpicture}[node distance = 2cm, auto]
 		    % Place nodes
 			\node [block] (blocks) {Create all blocks};
@@ -498,20 +503,23 @@ SMPTSP	& Text\\
 			\node [block,below of= sort] (assign_rot) {Assign rotations};
 			\node [block,below of= assign_rot] (assign_low) {Assign LoW schedule};
 			\node [block,below of= assign_low] (init_sol) {Create initial solution};
-			\node [block,right of= init_sol, node distance = 4cm] (destroy) {Destroy workers};
-			\node [block,below of= destroy] (repair) {Repair workers};
-			\node [decision, below of= repair, node distance= 2.5cm] (feasible) {Is solution feasible?};
-			\node [block,below of= feasible, node distance = 6cm] (print) {Print solution to file};
+			\node [decision, right of = init_sol, node distance= 4cm] (feasible) {Is solution feasible?};
+			\node [block,above of= feasible, node distance = 3cm] (repair) {Repair workers};
+			\node [block,above of= repair, node distance = 2cm] (destroy) {Destroy workers};
 			
+			
+			\node [block,below of= feasible, node distance = 6cm] (print) {Print solution to file};
 			\node[decision,right of= feasible, node distance=3.5cm] (close) {Close enough?};
 			\node[block,below of= close, node distance = 3cm] (final) {Enter final phase};
 			\node[decision, right of= final, node distance = 4cm] (solved) {Solved in given number of iterations?};
 			\node[block,right of= assign_low, node distance = 11.5cm] (failed) {Failed iteration, run again};
-			\node[right of= assign_low, node distance = 5.5cm] (text) {LNS};
+			
 			
 			%Invisible node, useful later
+			\node[right of= sort, node distance=5.5cm,scale=0.01](invLNS){};
 			\node[above of= blocks, node distance=1.3cm,scale=0.01](inv){};
 			
+			\node[above of= invLNS, node distance = 0.7cm] (text) {LNS};
 			
 		    % Draw edges
 		    \path [line] (inv) -- (blocks);
@@ -533,7 +541,7 @@ SMPTSP	& Text\\
 		    \path [line] (failed) |- (blocks);
 %			\path[-,draw] (feasible) -| node[right]{no} (inv.north);
 %		    \path[line]{} (inv.north) |- node{} (destroy);
-			\draw [color=gray!70,thick](2.3,-8.5) rectangle(6,-17);
+			\draw [color=gray!70,thick](2.3,-3.5) rectangle(6,-12);
 		\end{tikzpicture}
 		}
 \end{figure}
