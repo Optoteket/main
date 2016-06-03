@@ -5,7 +5,7 @@ The second heuristic approach tested distributes individual tasks to workers. Th
 The primary method used in this approach is a large neighbourhood search (LNS) together with a simulated annhealing (SA) accept function. Destroying and repairing the solution, as is customary in LNS, helps leading the solution out of local optima or plateaus. Similarly, SA is used in order to allow the solution to move in a less favourable directions to avoid these local optima.
 
 \section{Costs}
-The search in this approach is guided using costs. A worker gets has a number of costs, as displayed in Table \ref{tab:worker_costs}. Each cost represents a misplaced task, resulting in an infeasible schedule or unused stand in potential. In the library, different costs are weighed together in three different ways. These are referred to as objective functions, see Table \ref{tab:lib_costs}. 
+The search algorithm is guided using costs. A worker gets has a number of costs, as displayed in Table \ref{tab:worker_costs}. Each cost represents a misplaced task, resulting in an infeasible schedule or unused stand in potential. In the library, different costs are weighed together in three different ways. These are referred to as objective functions, see Table \ref{tab:lib_costs}. 
 
 \begin{table}[!h]
 \centering
@@ -57,7 +57,7 @@ $C_{SI\_min}$ &  Cost of day with minimum number of stand ins. \\ \hline
 \end{tabular}
 \end{table}
 
-The weekday objective function is associated with the weekend distribution phase of the problem. Their are three types of costs in the objective function, measuring a certain aspect of a good weekend schedule. Since we want to increase the number of stand ins at the most critical days, the worst days of all aspects are considered, referred to as the min cost. Also, the average of each aspect is considered, in order to distinguish solutions which for which the worst day is identical. All costs in this objective function are calculated uding the forumula:
+The weekday objective function is associated with the weekend distribution phase of the problem. Their are three types of costs in the objective function, measuring a certain aspect of a good weekend schedule. Since we want to increase the number of stand ins at the most critical days, the worst days of all aspects are considered, referred to as the min cost. Also, the average of each aspect is considered, in order to distinguish solutions which for which the worst day is identical. All costs in this objective function are calculated using the formula:
 
 \begin{equation}
 \label{eq:wend_cost_calc}
@@ -66,22 +66,47 @@ C_{type} = W_{lib}*num\_of\_lib + W_{ass}*num\_of\_ass
 
 The weights are constants used in all weekend objective function costs. Typically $W_{lib}$ is larger than $W_{ass}$ since librarians can perform a greater number of tasks.
 
-After maximizing weekends the weekday distribution phase is entered. Here, the worker objective function is used to identify infeasibilities in the worker schedules and is simply a sum of all the worker costs over all workers. When this cost is zero, the schedule is feasible. Then, in order to compare feasible schedules, the weekday objective function is used, containing only the minimum stand in cost, calculated in the same way as in the weekend objective function. This objective function is corresponding to the objective function in the Mathematical Model.
+After maximizing weekends, the weekday distribution phase is entered. Here, the worker objective function is used to identify infeasibilities in the worker schedules and is simply a sum of all the worker costs over all workers. When this cost is zero, the schedule is feasible. Then, in order to compare feasible schedules, the weekday objective function is used, containing only the minimum stand in cost, calculated in the same way as in the weekend objective function. This objective function is corresponding to the objective function in the Mathematical Model.
 
 \section{Weekend phase}
 
-The weekend phase is the first phase the algorithm enters and is described in detail in Appendix TODO. The LNS component is described by feasibility loop, while the simulated annealing step is marked as a decision to accept solutions which are worse than the current one.
+The weekend phase is the first phase the algorithm enters and is described in detail in Appendix TODO. The LNS component is described by a destroy and repair loop, while the simulated annealing step is marked as the decision to accept solutions which are worse than the current one.
 
-The reason for implementing the weekend phase separate from the distribution of other tasks was because of the realization that the minimum number of stand ins depended to a very large extent on the weekend structure. In particular, it is the weekend rest associated with the weekend week which decides how many people are present at a particular shift or day. This can be seen in for example Table \ref{tab:Bob_avail}.
+The reason for implementing the weekend phase separate from the distribution of other tasks was because of the realization that the minimum number of stand ins depended to a very large extent on the weekend structure. In particular, it is the week rest associated following upon weekend work which decides how many people are present at a particular shift or day. This can be seen in for example Table \ref{tab:Bob_avail}.
 
-Measuring the goodness of a schedule is done through using the weekend objective function. 
+The outer loop is performed a specified number of iterations. This loop is guided by the weekend objective function described in the previous section. Better solutions are always accepted and the globally best solution is saved. The SA component is implemented using exponential cooling, so that a solution is accepted with a probability P:
 
-In order to measure what a good distribution of weekends is, the weekend objective function described in the previous section is used during the search process. Although the overall objective is to maximize the number of stand ins at the most critical day in the schedule, that is, even out the stand ins over the days, it is not trivial to measure this in a schedule with no tasks placed. Evening work reduces potential stand ins as well as tasks distributed during the days. Furthermore, limits on how many tasks per week a person is allowed to take further complicates the measurement of stand ins.
+\begin{equation}
+P = exp(-\Delta E /kT)
+\label{eq0}
+\end{equation}
 
-Because of the difficulty in measuring stand ins, certain weekday tasks are placed already in the weekend phase. This includes all Library on Wheel tasks and all evening tasks. For the Library on Wheels, there is not much choice or variability, and thus a fixed schedule is applied for the workers. Similarly, the workers who are available at the evening tasks are in most part, equal to the number of workers needed, thus leaving little choice in scheduling evenings. This is illustrated in tables \ref{tab:num_avail_no_tasks} and \ref{tab:num_avail_with_tasks} which show the number of available workers before and after placing the task mentioned.
+where:
+
+\begin{equation}
+\Delta E = Wend_t - Wend_{t-1}
+\label{eq1}
+\end{equation}
+
+and
+
+\begin{equation}
+T = T_0 \alpha^t
+\label{eq2}
+\end{equation}
+
+$T$ is the temperature of the SA accept function, which has an initial value of $T_0$ and which cools down with the iteration count  $t$ at a rate $\alpha$ ($0 < \alpha < 1$). The objective function at the iteration $t$ is written $Wend_t$.
+
+
+The inner loop of the algorithm destroys and repairs the solution. The loop checks if the produced solution is infeasible, that is the difference between the number of available workers at each shift with the number of required workers is negative. Such schedules are discarded and a new destroy and repair is performed. An available worker in this context is a worker who is available for work at the shift and does not have any tasks scheduled at that day.
+
+ % ----------------- %
+
+The algoritms for distributing, destroying and repairing weekends is simply a random function since it is very hard to predict what is a good or bad placement of a specific weekend without placing the whole schedule. Since the weekend objective function is only a measurement of the current number of available workers and stand ins, this number will be greatly reduced when placing the weekday tasks. 
+
 
 \begin{table}[!h]
-\caption{Worker availability placing only weekends.}
+\caption{Worker availability placing only weekends. Intensity of red indicates number of workers.}
 \centering
 \label{tab:num_avail_no_tasks}
 \begin{tabular}{|C{1.2cm}
@@ -103,7 +128,7 @@ Because of the difficulty in measuring stand ins, certain weekday tasks are plac
 
 \begin{table}[!h]
 \centering
-\caption{Worker availability after placing weekends as well as evening tasks and BokB for the same week.}
+\caption{Worker availability after placing weekends as well as evening tasks and BokB for the same week. }
 \label{tab:num_avail_with_tasks}
 \begin{tabular}{|C{1.2cm}
 |C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|}
@@ -123,54 +148,11 @@ Because of the difficulty in measuring stand ins, certain weekday tasks are plac
 \end{table}
 
 
-% Define block styles
-\tikzstyle{decision} = [diamond, draw, fill=red!30,
-    text width=3.5em, text badly centered, node distance=3cm, inner sep=0.1pt]
-\tikzstyle{block} = [rectangle, draw, fill=blue!30,
-    text width=5em, text centered, rounded corners, minimum height=4em]
-\tikzstyle{line} = [draw, -latex']
-\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
-    minimum height=2em]
-
-
-
-
-The algorithm for the distribution of weekends is illustrated in Figure \ref{fig:weekend_alg}. Two loops exist, an outer weekend distribution loop and an inner feasibility loop. The outer loop is performed a number of iterations and performs a search among neighbouring solutions provided by the inner loop through destroying and repairing a proportion of the solution. The decisions directing the search are coloured pink and can be described as: 
-
-\textbf{Accept anyway?} : All feasible solutions are pass from the feasibility loop to the weekend loop. If the solution is better or equally good as the previous one, it is accepted. However, if it is not it can still be accepted with the probability P, as described in Equations \ref{eq0} to \ref{eq2}. The delta energy is the differens in objective function value between two solutions. $T$ is the temperature of the SA accept function, which has an initial value of $T_0$ and which cools down with the iteration count  $t$ at a rate $\alpha$ ($0 < \alpha < 1$).
-
-\begin{equation}
-\Delta E = Wend_0 - Wend_1
-\label{eq1}
-\end{equation}
-
-\begin{equation}
-T = T_0 \alpha^t
-\label{eq2}
-\end{equation}
-
-\begin{equation}
-P = exp(-\Delta E /kT)
-\label{eq0}
-\end{equation}
-
-\textbf{Solution feasible?} : The feasibility check in the algorithm corresponds to checking whether the number of workers available at each shift equals to the demand at each shift. A worker is counted as available if the worker is qualified and available for the task and has no other tasks scheduled during that day.
-
-The infeasibility loop checks the necessary condition of having enough workers, but is not sufficient in order to prove that the final schedule is feasible. If other constraints cannot be fulfilled in the final assignment of tasks, the schedule would be infeasible.
-
-\textbf{Better than saved?} :
-
-\textbf{Best solution?} :
-
-\textbf{Iteration $>$ max?} :
-
-\textbf{Current better than best?} :
-
-Destroying and repairing tasks in the  feasibility loop accounts for the LNS part of the problem. Destroying is always random, while the redistribution of weekends is done with priority on worker qualification, meaning that tasks with librarian qualification are placed first. Also, HB preferences are taken into account in the repair function.
+In order to get a better measurement of the number of available workers during this phase evening tasks and BokB tasks are distributed upon repairing weekends. The evening tasks are distributed using the same method as is described in the next section while BokB tasks are placed according to a fixed schedule. The effect of this distribution is visible in Tables \ref{tab:num_avail_no_tasks} and \ref{tab:num_avail_with_tasks}. High intensity of red in a cell indicates a higher number of workers. Thus, since the first table is generally redder, there are fewer available workers in the second table, which more reflect the real number of available workers for the weekend constellation. 
 
 \section{Weekday phase}
 
-When entering the weekday phase, all weekends, evenings and BokB tasks are already placed. In this phase, the rest of the tasks, referred to as "weekday" tasks are also placed. The demand is illustrated in tabl \ref{tab:current_demand}. All week demand now looks the same for all weeks.
+When entering the weekday phase, all weekends, evenings and BokB tasks are already placed. In this phase, the rest of the tasks, referred to as "weekday" tasks are also placed. The demand for a week at this point is illustrated in Table \ref{tab:current_demand}. This demand is identical for all weeks.The algorithm for distributing weekday tasks is found in Appendix TODO and greatly resembles the algorithm for distributing weekends.
 
 
 \begin{table}[!h]
@@ -182,29 +164,29 @@ When entering the weekday phase, all weekends, evenings and BokB tasks are alrea
 \hline
 \rowcolor{Gray} & Exp & Info & PL & HB & BokB \\ \hline
 \multicolumn{6}{|l|}{\colcelltwo Monday } \\ \hline
-\colcell Shift 1: & {\cellcolor{maroon!50}}2 & {\cellcolor{maroon!50}}2 & {\cellcolor{maroon!25}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
-\colcell Shift 2: & {\cellcolor{maroon!75}}3 & {\cellcolor{maroon!75}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
-\colcell Shift 3: & {\cellcolor{maroon!75}}3 & {\cellcolor{maroon!75}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 1: & {\cellcolor{maroon!25}}2 & {\cellcolor{maroon!25}}2 & {\cellcolor{maroon!25}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \multicolumn{6}{|l|}{\colcelltwo Tuesday } \\ \hline
-\colcell Shift 1: & {\cellcolor{maroon!50}}2 & {\cellcolor{maroon!50}}2 & {\cellcolor{maroon!25}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
-\colcell Shift 2: & {\cellcolor{maroon!75}}3 & {\cellcolor{maroon!75}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
-\colcell Shift 3: & {\cellcolor{maroon!75}}3 & {\cellcolor{maroon!75}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 1: & {\cellcolor{maroon!25}}2 & {\cellcolor{maroon!25}}2 & {\cellcolor{maroon!25}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \multicolumn{6}{|l|}{\colcelltwo Wednesday } \\ \hline
-\colcell Shift 1: & {\cellcolor{maroon!50}}2 & {\cellcolor{maroon!50}}2 & {\cellcolor{maroon!25}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
-\colcell Shift 2: & {\cellcolor{maroon!75}}3 & {\cellcolor{maroon!75}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
-\colcell Shift 3: & {\cellcolor{maroon!75}}3 & {\cellcolor{maroon!75}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 1: & {\cellcolor{maroon!25}}2 & {\cellcolor{maroon!25}}2 & {\cellcolor{maroon!25}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \multicolumn{6}{|l|}{\colcelltwo Thursday } \\ \hline
-\colcell Shift 1: & {\cellcolor{maroon!50}}2 & {\cellcolor{maroon!50}}2 & {\cellcolor{maroon!25}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
-\colcell Shift 2: & {\cellcolor{maroon!75}}3 & {\cellcolor{maroon!75}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
-\colcell Shift 3: & {\cellcolor{maroon!75}}3 & {\cellcolor{maroon!75}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 1: & {\cellcolor{maroon!25}}2 & {\cellcolor{maroon!25}}2 & {\cellcolor{maroon!25}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \multicolumn{6}{|l|}{\colcelltwo Friday } \\ \hline
-\colcell Shift 1: & {\cellcolor{maroon!50}}2 & {\cellcolor{maroon!50}}2 & {\cellcolor{maroon!25}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
-\colcell Shift 2: & {\cellcolor{maroon!75}}3 & {\cellcolor{maroon!75}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
-\colcell Shift 3: & {\cellcolor{maroon!75}}3 & {\cellcolor{maroon!75}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 1: & {\cellcolor{maroon!25}}2 & {\cellcolor{maroon!25}}2 & {\cellcolor{maroon!25}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \multicolumn{6}{|l|}{\colcelltwo Saturday } \\ \hline
 \colcell Shift 1: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
@@ -213,24 +195,12 @@ When entering the weekday phase, all weekends, evenings and BokB tasks are alrea
  \end{tabular}
 \end{table}
 
+The outer loop of the algorithm is performed a specified number of iterations and simply checks the weekday objective function. Better solutions are saved, others are discareded. 
 
-The weekday distribution phase is similar to the weekend distribution phase, since it is divided into two loops. 
+The inner loop destroys and repairs the solution until the worker objective function is zero, that is until the schedule is feasible. If the loop cannot find such a schedule during a maximum number of iterations, the solution is discarded as infeasible, and the outer loop is entered.
 
-Evenings,weekends and BokB already placed.
+As opposed to the previous phase, the destroy and repair as well as the initial distribution of weekday tasks is following a greedy algoritm. Library tasks are first sorted according to qualification requirement, so that librarian tasks are placed first and assistant tasks second. This guarantees that all librarian tasks can be placed. Secondly, these tasks are sorted according to the differens between the number of available workers and the demand at each task. This makes sure that the most critical tasks are placed first.
 
-Concept: destroy worst worker until all workers have feasible schedules. Record the library cost of the solution.
+The tasks are then staffed one at a time. The process starts with temporarily placing the task at all available workers. This will generate a cost for each worker according to Table \ref{tab:worker_costs}. The cheapest workers are then chosen and permanently placed on the task.
 
-Destroy: weekday tasks for workers with highest cost.
-Repair: 1. qualification, 2. avail demand diff. Place cheapest worker.
-
-Infeasibility: when a feasible worker cost is not found for a large number of iterations.
-
-\section{Simplifications of Mathematical Model}
--10 Week scheduling
--Objective function term about similar weeks
--BokB fixed weeks for every other week workers.
--Even odd weeks. How to handle?
-(-lower limit PL)
-
-\section{Implementation}
-C++, object orientation, run on a linux operating system. Reading availability of workers into the program and outputing a result file, which can be read by Excel. Results are to be visualized in Excel (write this in another part?)
+The destroy function identifies the worker with the highest cost. The worst week of this worker is then identified and destroyed. Similarly, a few random workers are chosen, their number depending on the destroy amount specified, for which the same week is destroyed. This makes it possible for the first worker to get a better worst week by changing tasks with the other workers in the repair function.

@@ -473,6 +473,17 @@ SMPTSP	& Text\\
 
 % % %New chapter
 \chapter{Flow charts}
+
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, fill=red!30,
+    text width=3.5em, text badly centered, node distance=3cm, inner sep=0.1pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!30,
+    text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+    minimum height=2em]
+
+
 \section{Weekly scheduling approach}
 % % FLOW CHART
 \begin{figure}[!h]
@@ -529,6 +540,7 @@ SMPTSP	& Text\\
 
 
 \section{Task distribution approach}
+
 \begin{figure}[h]
 \centering
 \caption{Algorithm for distributing weekends.}
@@ -591,7 +603,7 @@ SMPTSP	& Text\\
     \path [line] (reload2) -- (finished);
    
     %Feasiblity loop
-    \node at (-2,-19) [above=4mm, right=2mm] {\textsc{feasibility loop}};
+    \node at (-2,-19) [above=4mm, right=2mm] {\textsc{destroy and repair loop}};
     \draw [color=gray!70,thick](-2,-19) rectangle (5,-12);
     %Weekend loop
     \node at (-10.5,-19.5) [above=4mm, right=2mm] {\textsc{weekend distribution loop}};
@@ -671,7 +683,7 @@ SMPTSP	& Text\\
     \path [line] (reload2) -- (finished);
 
     %Feasiblity loop
-    \node at (-2,-15) [above=4mm, right=2mm] {\textsc{feasibility loop}};
+    \node at (-2,-15) [above=4mm, right=2mm] {\textsc{destroy and repair loop}};
     \draw [color=gray!70,thick](-2,-15) rectangle (4,-2.5);
     %Weekend loop
     \node at (-8,-15) [above=4mm, right=2mm] {\textsc{weeday task distribution loop}};

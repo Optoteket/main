@@ -2380,7 +2380,8 @@ void Library::write_results(){
 	    swap_tasks=PL;
 	  }
 	  else swap_tasks=l;
-	  demand_file << " & " << "{\\cellcolor{maroon!" << (int)100*((1/4.0)*current_demand[0][k][j][swap_tasks]) << "}}" << current_demand[0][k][j][swap_tasks];
+	  //demand_file << " & " << "{\\cellcolor{maroon!" << (int)100*((1/4.0)*current_demand[0][k][j][swap_tasks]) << "}}" << current_demand[0][k][j][swap_tasks];
+	  demand_file << " & " << current_demand[0][k][j][swap_tasks];
 	}
 	demand_file << " \\" << "\\ \\hline" << endl;
       }
