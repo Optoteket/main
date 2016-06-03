@@ -9,41 +9,85 @@
 
 %The two heuristical approaches
 
-Apart from the implementation of the AMPL model we have also created two separate solvers of the problem using heuristics. One method was decided to be based on creating a pool of all week appearances that exists. Each week appearance contains a unique set of tasks during all seven days. After creating the pool of blocks these are assigned to the workers based on costs, one for each week. The other method ...
+Apart from the implementation of the AMPL model we have also created two separate solvers of the problem using heuristics. One method was decided to be based on creating a pool of all week appearances that exists. Each week appearance contains a unique set of tasks during all seven days. After creating the pool of blocks these are assigned to the workers based on costs, one for each week. The second method creates a schedule through distributing individual tasks.
+
+The difference in objective function and constraints between the model used in AMPL and the model used in the heuristics is described by Figure \ref{fig:AMPL_vs_heur}. Since different constraints are modeled as soft and hard in the two heuristics, how they differ from the AMPL model is described in Tables \ref{tab:task_constraints} and TODO. Some constraints have not been implemented in the heuristics due to factors such as lack of time. These are refered to as as relaxed constraints.
+
+% Define block styles
+\tikzstyle{block} = [rectangle, draw=none, fill=white,
+    text width=8em, text ragged, rounded corners, minimum height=0em, node distance =1.5cm]
+    
+\newcommand*{\h}{\hspace{18pt}}% for indentation
+\newcommand*{\hh}{\hspace{24pt}}% double indentation
+
+\begin{figure}[!h]
+\caption{Illustration of how the Heurstic models have been designed}
+\label{fig:AMPL_vs_heur}
 \begin{center}
-	\begin{tikzpicture}[auto,
-	block_center/.style ={rectangle, draw=black, thick, fill=white,
-      text width=8em, text centered, minimum height=4em},
-    block_left/.style ={rectangle, draw=black, thick, fill=white,
-      text width=8em, text ragged, text centered, minimum height=4em, inner sep=6pt},
-    block_noborder/.style ={rectangle, draw=none, thick, fill=none,
-      text width=18em, text centered, minimum height=1em},
-    block_assign/.style ={rectangle, draw=black, thick, fill=white,
-      text width=18em, text ragged, minimum height=3em, inner sep=6pt},
-    block_lost/.style ={rectangle, draw=black, thick, fill=white,
-      text width=16em, text ragged, minimum height=3em, inner sep=6pt},
-      line/.style ={draw, thick, -latex', shorten >=0pt}]
-     \matrix [column sep=5mm,row sep=3mm] {
-            % enrollment - Row 1
-            \node [block_noborder] (AMPL) {\textsc{AMPL}}; 
-			 & \node [block_noborder] (Heuristic) {\textsc{HEURISTIC}}; \\
-			 % Row 2
-			 \node [block_noborder] (ObjfunA) {- $Z_{AMPL}$ \\
-			 - AMPL constraints};
-			 & \node[block_noborder] (ObjfunH) {- $Z_{AMPL}$}; \\
-			  % Row 3
-			 \node [block_noborder] (ObjfunA) {- AMPL constraints};
-			  & \node[block_noborder] (ObjfunH) {- Hard constraints}; \\
-     };% end matrix
-	\end{tikzpicture}
+\begin{tikzpicture}[node distance = 2cm , auto, scale=0.7, every node/.style={scale=0.7}]
+	%Row 1
+	\node[block, node distance= 6cm, text width=4em] (AMPL){\Large \textbf{AMPL}};
+	\node[block, right of=AMPL, node distance= 5cm] (Mid){};
+	\node[block, right of=Mid, node distance= 6cm] (Heur){\Large \textbf{HEURISTIC}};
+	%Row 2
+	\node[block, below of = AMPL, text width=15em, node distance =1.5cm](ObjfA) {\hh AMPL Objective Function};
+	\node[block, below of = Heur, text width=15em, node distance =1.5cm](ObjfH) { \h Heuristic Objective Function};
+	%Row 3	
+	\node[block, below of = ObjfA, text width=10em](ConstA) {AMPL Constraints};
+	\node[block, below of = Mid, text width=10em, node distance=2.5cm](SConst) {\h Soft Constraints};
+	%Row 4
+	\node[block, below of = SConst, text width=10em, node distance=1cm](HConst) {\h Hard Constraints};
+	\node[block, below of = ObjfH, text width=15em, node distance=1.5cm](ConstH) {\h Heuristic Constraints};
+	%Invisible node
+	\node[block, right of=SConst,scale=0.05, node distance=4cm](inv){};
+	%\node at (ObjfH)[block, left of=ObjfH,scale=0.05,node distance=2.7cm](inv2){};
+	\node at (8.4,-1.6)(inv2){};
+	\begin{scope}[every path/.style=line]
+		\path (ObjfA) -- (ObjfH);
+		\path (ConstA.east) -- (HConst.west);
+		\path (ConstA.east) -- (SConst.west);
+		\path (SConst.east) -- (inv2.west);
+		\path (HConst.east) -- (ConstH.west);
+%		\path [-,draw](SConst) -- (inv);
+%		\path (inv) |- (ObjfH);
+	\end{scope}
+	\draw [color=gray!70,thick](15,1) rectangle (-3,-5);
+\end{tikzpicture}
 \end{center}
+\end{figure}
+
+
+
+\begin{table}[!h]
+\centering
+\caption{Soft and relaxed constraints in the task distribution approach.}
+\label{tab:task_constraints}
+\begin{tabular}{|p{4cm}|p{7cm}|}
+\hline
+% ---------------------------------------------------------
+\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Soft Constraints}} \\
+\hline 
+\rowcolor{Gray} Affecting constraints & Constraint description \\ \hline
+\ref{constr:one_task_constraint} & One task per day restriction.  \\ \hline
+\ref{constr:four_weekly_shifts_at_most} & Four tasks per week restriction. \\ \hline
+\ref{constr:one_PL} & One PL per week restriction. \\ \hline
+\ref{constr:three_PL} & Number of PL per 10 weeks restriction. \\ \hline
+\ref{constr:various_start_times} & Not more than two tasks at the same shift in a week restriction.  \\ \hline
+% ---------------------------------------------------------
+\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Relaxed Constraints}} \\
+\hline 
+\rowcolor{Gray} Affecting constraints & Constraint alteration \\ \hline
+Several. $W = W_5$ in all constraints. & 5 week scheduling instead of 10 week scheduling. \\ \hline
+BokB-constraints & BokB placed according to constraints, but the schedule is fixed. \\ \hline
+Availability data & Even and odd week workers have availability at each shift according to the stricter of the two weeks. \\ \hline
+\ref{constr:library_meetings} - \ref{constr:dep_meetings4} & Meetings not implemented. \\ \hline
+\end{tabular}
+\end{table}
 
 \section{Weekly scheduling approach} \label{Weekly}
 In Appendix \ref{appendix:flow_charts}, Figure \ref{flow_chart}, is a flow chart of the implemented heuristic presented.
 
 For every worker their information such as availability and qualification is inserted into a table template in Excel. It is then written to a text file using Visual Basic code, which in turn is read by the heuristic.
-
-
 
 \subsection{Block creation} \label{block_creation}
 A big part of this heuristic is to create the big pool of unique week appearances. These are then filtered for each of the worker based on its availability. The workers availability are generalized into three categories: \textit{Weekend week}, \textit{weekrest week} and \textit{weekday week}, where weekday week occurs three times during a five week period, see Table \ref{tab:Bob_avail}. 
