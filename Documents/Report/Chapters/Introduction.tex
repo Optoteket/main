@@ -3,13 +3,13 @@
 \section{Background}
 
 
-At a library, staff absence can cause problems and result in a shortage of staff with a special competence. If a worker is unavailable a certain day due to a meeting or illness it would require a stand-in to fill the vacancy. Therefore, it is of great interest to create schedules with as many skilled stand-ins as possible to overcome such disturbances, when they occur. Furthermore, the library personnel have certain demands and preferences as to how a satisfactory working schedule should be. For instance, it is neither preferable to work more than one evening per week nor work more weekends than required. 
+At a library, staff absence can cause problems and result in a shortage of staff with a special competence. If a worker is unavailable a certain day due to a meeting or illness it would require a stand-in to fill the vacancy. Therefore, it is of great interest to create schedules with as many skilled stand-ins as possible to overcome such disturbances, when they occur. 
 
 The problem addressed in this thesis work concerns the library staff at the Central Library of Norrköping. The library has more than 40 employees and the culturally important building from the 1950's is known to all inhabitants of Norrköping. The library is open weekdays between 08:00 and 20:00 and during weekends between 11:00 and 16:00. The generous opening times also creates a challenge for the library as it requires a large pool of well coordinated personnel to keep it running. In addition, the library also provides its services to one other smaller library. This creates a challenge for the library schedulers.
 
 \section{Problem description}
 
-In this section, the most important features of the worker scheduling problem studied in this thesis work will be explained.  
+The task we were given was to create a ten week schedule for all workers with a high number of stand ins at all days, given the workers' individual availability schedules and the demands listed and explained in this section. 
 
 \subsection{Description of the daily tasks at the library} \label{section:library_tasks}
 The most important activity at a library is the activity directed towards the public. This includes book loan services as well as providing customers with helpful information about the resources at the disposal of the library. These activities are referred to as "outer tasks". In addition, the book collection must be maintained, the returned books must be sorted and put back to the shelves, the web page must be updated and so on. Such work is often referred to as "inner work" and this non-public work is an equally important part of the everyday activities at the library. 
@@ -320,11 +320,11 @@ An example of a feasible schedule for the sample worker is provided in Table \re
 
 \subsection{Scheduling objectives: stand-in maximization and schedule variation}
 
-What is investigated in this thesis is not primarily how to distribute the tasks according to the rules given above, but rather how to do this is a way so that the number of stand-in personnel is maximized. The emergency back-up system of stand-ins is crucial for the library in order to be able to keep the library desks open and fully staffed. Thus, the highest priority is to maximize the number of stand-in personnel.
+When we first were presented with the scheduling task, it was explained to us that the main challenge for the library is to find a good number stand ins for all days. When we studied their schedule, we observed that only one stand in was present at the worst day. Thus, the main objective of this thesis work is to create a feasible schedule with as many stand ins as possible at the worst day.
 
-A stand-in is defined as a worker who is available for outer tasks during the first three shifts, as well as not scheduled for any shift that day. Inner work sometimes prevents personnel from being scheduled as a stand-in for the outer tasks, and therefore also information about such work must be known to the scheduler. Both librarians and assistants can be scheduled as a stand-in, but only librarians are qualified to take emergency shifts at the Info desk. Since the regular library activity is the most crucial activity, there is no need for stand-ins during evening and weekends. Similarly, there are no assigned stand-ins for the Library on Wheels or for Hageby.
+A stand-in is defined by the as a worker who is available for outer tasks during the first three shifts, and who is not scheduled for any shift that day. Both librarians and assistants can be scheduled as a stand-in, but only librarians are qualified to take emergency shifts at the Info desk. Since the regular library activity is the most crucial activity, there is no need for stand-ins during evening and weekends. Similarly, there are no assigned stand-ins for the Library on Wheels or for Hageby.
 
-Apart from maximizing the number of stand-ins for each day at the library, another important measurement of a good schedule is the level of variation. It is desirable for the sake of the personnel to create schedules in which the weeks resemble eachother or are repeated according to some pattern. On the other hand, since some shifts are more attractive than other and in order to avoid too much repetitiveness it is desirable that the days during a work week are not too similar. The example schedule in Table \ref{tab:Lib_feas_sched} is an example of a sufficiently varied weekly schedule. 
+Apart from maximizing the number of stand-ins for each day at the library, it is desirable for the sake of the personnel to create schedules in which are repeated according to a five week pattern. Thus, the ten week schedule becomes two five week schedules. 
 
 \section{Method}
 

@@ -13,59 +13,62 @@ solve;
 CPLEX 12.5.0.0: timing 1
 mipdisplay 2
 time = 237600
-MIP Presolve eliminated 65347 rows and 32173 columns.
-MIP Presolve modified 57565 coefficients.
-Reduced MIP has 12660 rows, 13185 columns, and 63626 nonzeros.
-Reduced MIP has 12995 binaries, 190 generals, 0 SOSs, and 0 indicators.
-Found incumbent of value -5.4501242e+07 after 0.33 sec. (481.83 ticks)
-Probing fixed 1537 vars, tightened 2 bounds.
-Probing changed sense of 50 constraints.
-Probing time = 0.03 sec. (14.53 ticks)
-Cover probing fixed 0 vars, tightened 7 bounds.
-MIP Presolve eliminated 4391 rows and 2549 columns.
-MIP Presolve modified 17 coefficients.
-Reduced MIP has 8008 rows, 10375 columns, and 35993 nonzeros.
-Reduced MIP has 10191 binaries, 184 generals, 0 SOSs, and 0 indicators.
-Probing time = 0.02 sec. (10.52 ticks)
-Clique table members: 17103.
+MIP Presolve eliminated 65670 rows and 32412 columns.
+MIP Presolve modified 57881 coefficients.
+Reduced MIP has 12354 rows, 12965 columns, and 61310 nonzeros.
+Reduced MIP has 12773 binaries, 192 generals, 0 SOSs, and 0 indicators.
+Found incumbent of value -5.4301129e+07 after 0.33 sec. (470.27 ticks)
+Probing fixed 1382 vars, tightened 2 bounds.
+Probing changed sense of 45 constraints.
+Probing time = 0.03 sec. (14.28 ticks)
+Cover probing fixed 0 vars, tightened 4 bounds.
+MIP Presolve eliminated 4100 rows and 2339 columns.
+MIP Presolve modified 13 coefficients.
+Reduced MIP has 8015 rows, 10387 columns, and 36037 nonzeros.
+Reduced MIP has 10200 binaries, 187 generals, 0 SOSs, and 0 indicators.
+Probing fixed 0 vars, tightened 1 bounds.
+Probing time = 0.02 sec. (10.78 ticks)
+Cover probing fixed 0 vars, tightened 1 bounds.
+Clique table members: 16380.
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
 Parallel mode: deterministic, using up to 8 threads.
-Root relaxation solution time = 0.15 sec. (113.57 ticks)
+Root relaxation solution time = 0.17 sec. (138.29 ticks)
 
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
 
-*     0+    0                      -5.45012e+07     2600.0000     3386  100.00%
-      0     0      400.0000   349  -5.45012e+07      400.0000     3386  100.00%
-*     0+    0                          400.0000      400.0000     3386    0.00%
-      0     0        cutoff            400.0000      400.0000     3386    0.00%
-Elapsed time = 0.91 sec. (938.20 ticks, tree = 0.00 MB)
+*     0+    0                      -5.43011e+07     3000.0000     3583  100.01%
+      0     0      599.0000   306  -5.43011e+07      599.0000     3583  100.00%
+*     0+    0                     -2099409.0000      599.0000     3583  100.03%
+*     0+    0                          599.0000      599.0000     3583    0.00%
+      0     0        cutoff            599.0000      599.0000     3583    0.00%
+Elapsed time = 0.95 sec. (886.32 ticks, tree = 0.00 MB)
 
 Root node processing (before b&c):
-  Real time             =    0.47 sec. (361.24 ticks)
+  Real time             =    0.51 sec. (322.61 ticks)
 Parallel b&c, 8 threads:
   Real time             =    0.00 sec. (0.00 ticks)
   Sync time (average)   =    0.00 sec.
   Wait time (average)   =    0.00 sec.
                           ------------
-Total (root+branch&cut) =    0.47 sec. (361.24 ticks)
+Total (root+branch&cut) =    0.51 sec. (322.61 ticks)
 
 Times (seconds):
-Input =  0.055992
-Solve =  1.56476
-Output = 0.043992
-CPLEX 12.5.0.0: optimal integer solution; objective 400
-3386 MIP simplex iterations
+Input =  0.06099
+Solve =  1.60676
+Output = 0.044993
+CPLEX 12.5.0.0: optimal integer solution; objective 599
+3583 MIP simplex iterations
 0 branch-and-bound nodes
 Tried aggregator 3 times
 option log_file '';
 display min_lib, min_ass;
-min_lib = 2
+min_lib = 3
 min_ass = 0
 
 printf "The same stand in objective function value occurs: %d times. \n\n", times_same_sol;
-The same stand in objective function value occurs: 6 times. 
+The same stand in objective function value occurs: 15 times. 
 
 display ax;
 ax :=

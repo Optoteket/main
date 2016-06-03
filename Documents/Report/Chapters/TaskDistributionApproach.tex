@@ -4,7 +4,7 @@ The second heuristic approach tested distributes individual tasks to workers and
 
 The primary method used in this approach is a Large Neighbourhood Search (LNS) together with a Simulated Annealing (SA) accept function. Destroying and repairing the solution, as is customary in LNS, helps leading the solution out of local optima or plateaus. Similarly, SA is used in order to allow the solution to move in a less favourable directions to move out of local optima regions.
 
-\section{Costs}
+\section{Costs} \label{section:tasks_cost}
 The search algorithm is guided using costs, both for worker schedules and the whole library schedule. Each worker has a number of costs, as displayed in Table \ref{tab:worker_costs}. Each of these costs represents a badly placed task, resulting in an infeasible schedule or unused stand in potential. For the library schedule, costs are weighed together in three different ways. These are referred to as the three library objective functions, see Table \ref{tab:lib_costs}. 
 
 \begin{table}[!h]
@@ -16,14 +16,13 @@ The search algorithm is guided using costs, both for worker schedules and the wh
 \multicolumn{2}{|l|}{\cellcolor{Gray} \textbf{Stand in cost}} \\ \hline
 $C_{SI}$ &  Cost from having a task on a day where worker can be stand in. \\ \hline
 \multicolumn{2}{|l|}{\cellcolor{Gray} \textbf{Infeasibility costs}} \\ \hline
-$C_{Task\_Day}$ & Cost from all tasks exceeding the daily limit. \\ \hline
-$C_{Task\_Week}$ & Cost from all tasks exceeding the weekly limit.  \\ \hline
-$C_{PL\_Day}$ & Cost from all PL exceeding the weekly limit. \\ \hline
+$C_{Task\_D}$ & Cost from all tasks exceeding the daily limit. \\ \hline
+$C_{Task\_W}$ & Cost from all tasks exceeding the weekly limit.  \\ \hline
+$C_{PL\_D}$ & Cost from all PL exceeding the weekly limit. \\ \hline
 $C_{PL\_Tot}$& Cost from all PL exceeding the total limit. \\ \hline
-$C_{SShift\_Week}$ & \begin{tabular}[t]{@{}l@{}} Cost from the number of task performed at \\ the same shift in a week exceeding the weekly limit. \end{tabular} \\ \hline
+$C_{SShift\_W}$ & \begin{tabular}[t]{@{}l@{}} Cost from the number of task performed at \\ the same shift in a week exceeding the weekly limit. \end{tabular} \\ \hline
 \end{tabular}
 \end{table}
-
 
 \begin{table}[!h]
 \centering
@@ -34,26 +33,26 @@ $C_{SShift\_Week}$ & \begin{tabular}[t]{@{}l@{}} Cost from the number of task pe
 \multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Weekend Objective Function}} \\
 \hline 
 \rowcolor{Gray} Cost & Cost description \\ \hline
-$C_{SI\_min}$ &  Cost of day with minimum number of stand ins. \\ \hline
-$C_{Shift\_min}$ & Cost of shift with minimum number of workers. \\ \hline
-$C_{Day\_min}$ & Cost of day with minimum number of workers. \\ \hline
-$C_{SI\_aver}$ & Average number of stand ins at a day. \\ \hline
-$C_{Shift\_aver}$ & Average number of workers at a shift. \\ \hline
-$C_{Day\_aver}$ & Average number of workers at a day. \\ \hline
+$C_{SI\_m}$ &  Cost of day with minimum number of stand ins. \\ \hline
+$C_{S\_m}$ & Cost of shift with minimum number of workers. \\ \hline
+$C_{D\_m}$ & Cost of day with minimum number of workers. \\ \hline
+$C_{SI\_a}$ & Average number of stand ins at a day. \\ \hline
+$C_{S\_a}$ & Average number of workers at a shift. \\ \hline
+$C_{D\_a}$ & Average number of workers at a day. \\ \hline
 \hline
 \multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Worker Objective Function}} \\
 \hline
 \rowcolor{Gray} Cost & Cost description \\ \hline
-$C_{Task\_Day}$ & Cost from all tasks exceeding the daily limit in all workers. \\ \hline
-$C_{Task\_Week}$ & Cost from all tasks exceeding the weekly limit in all workers. \\ \hline
-$C_{PL\_Week}$ & Cost from all PL exceeding the weekly limit in all workers. \\ \hline
+$C_{Task\_D}$ & Cost from all tasks exceeding the daily limit in all workers. \\ \hline
+$C_{Task\_W}$ & Cost from all tasks exceeding the weekly limit in all workers. \\ \hline
+$C_{PL\_W}$ & Cost from all PL exceeding the weekly limit in all workers. \\ \hline
 $C_{PL\_Tot}$& Cost from all PL exceeding the total limit in all workers. \\ \hline
-$C_{SShift\_Week}$ & \begin{tabular}[t]{@{}l@{}} Cost from the number of task performed at \\ the same shift in a week exceeding the weekly limit in all workers. \end{tabular}\\ \hline
+$C_{SShift\_W}$ & \begin{tabular}[t]{@{}l@{}} Cost from the number of task performed at \\ the same shift in a week exceeding the weekly limit in all workers. \end{tabular}\\ \hline
 \hline
  \multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Weekday Objective Function}} \\
 \hline
 \rowcolor{Gray} Cost & Cost description \\ \hline
-$C_{SI\_min}$ &  Cost of day with minimum number of stand ins. \\ \hline
+$C_{SI\_m}$ &  Cost of day with minimum number of stand ins. \\ \hline
 \end{tabular}
 \end{table}
 
@@ -64,9 +63,9 @@ The weekend objective function is associated with the weekend distribution phase
 C_{type} = W_{lib}*num\_of\_lib + W_{ass}*num\_of\_ass
 \end{equation}
 
-The weights $W_{lib}$ and $W_{ass}$ are constants used in all weekend objective function costs. Typically $W_{lib}$ is larger than $W_{ass}$ since librarians can perform a greater number of tasks. The weekend objective function is to be maximized.
+The weights $W_{lib}$ and $W_{ass}$ are constants used in all weekend objective function costs. Typically $W_{lib}$ is larger than $W_{ass}$ since librarians can perform a greater number of tasks. 
 
-
+The weekend objective function becomes the sum of the weighted costs displayed in Table \ref{tab:lib_costs}. The corresponding weights can be written $W_{SI\_m}$, $W_{S\_m}$, $W_{D\_m}$, $W_{SI\_a}$, $W_{S\_a}$ and $W_{D\_a}$.
 
 After maximizing weekends, the weekday distribution phase is entered. Here, the worker objective function is used to identify infeasibilities in the worker schedules and is simply a sum of the worker costs for all workers. When this cost is zero, the schedule is feasible. Then, in order to compare feasible schedules, the weekday objective function is used, containing the minimum stand in cost, which is calculated in the same way as in the weekend objective function. The weekday objective function is corresponding to the objective function in the Mathematical Model and is maximized.
 
@@ -101,8 +100,6 @@ $T$ is the temperature of the SA accept function, which has an initial value of 
 
 
 The inner loop of the algorithm destroys and repairs the solution. The loop checks if the produced solution is infeasible, that is if the difference between the number of available workers at each shift and the number of required workers is negative. Such schedules are discarded and a new destroy and repair is performed. An available worker in this context is a worker who is available for work at the shift and does not have any tasks scheduled at that day.
-
- % ----------------- %
 
 The algoritms for distributing, destroying and repairing weekends is simply a random function since it is very hard to predict what is a good or bad placement of a specific weekend without placing the whole schedule. Since the weekend objective function is only a measurement of the current number of available workers and stand ins, this number will be greatly reduced when placing the weekday tasks. 
 
