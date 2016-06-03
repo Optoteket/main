@@ -39,7 +39,9 @@ Apart from the implementation of the AMPL model we have also created two separat
 \end{center}
 
 \section{Weekly scheduling approach} \label{Weekly}
-In Figure \ref{flow_chart}
+In Appendix \ref{appendix:flow_charts}, Figure \ref{flow_chart}, is a flow chart of the implemented heuristic presented.
+
+For every worker their information such as availability and qualification is inserted into a table template in Excel. It is then written to a text file using Visual Basic code, which in turn is read by the heuristic.
 
 
 
@@ -62,7 +64,7 @@ One week block contains seven days and up to four shifts where each shift can co
 \end{tabular}
 \end{table}
 
-Every day must contain exactly \textit{one} task from either of the four shifts when creating a week block. The tasks \textit{I} and \textit{PL} are ranging more than one shift. The duration of a PL is three shift and the I refers to the entire day. Hence, they are both placed in the first shift to simplify the complete task representation. When creating the combinations of block appearances there are additional conditions that have to be met. These are:
+Every day must contain exactly \textit{one} task from either of the four shifts when creating a week block. The tasks \textit{I} and \textit{PL} are ranging more than one shift. The duration of a PL is three shift and I refers to the entire day. Hence, they are both placed in the first shift to simplify the complete task representation. When creating the combinations of block appearances there are additional conditions that have to be met. These are:
 \begin{enumerate}  
 \item At most two tasks can be assigned the same shift and week.\label{first_item}
 \item No more than two evenings are allowed each week, one of which is required to be a Friday. \label{second_item}
