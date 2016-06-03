@@ -271,6 +271,7 @@ Table \ref{block_to_evaluate} together with Figure \ref{flow_chart_cost} shows a
 \end{tabular}
 \end{table}
 
+<<<<<<< HEAD
 % Define block styles
 \tikzstyle{decision} = [diamond, draw, fill=blue!20, 
     text width=4.5em, text badly centered, inner sep=0pt]
@@ -281,6 +282,8 @@ Table \ref{block_to_evaluate} together with Figure \ref{flow_chart_cost} shows a
     minimum height=2em]
 
 
+=======
+>>>>>>> 3f68c55f8eac44e6dd8174f0fcac7566685e831d
 % % FLOW CHART of COSTS
 \begin{figure}[!h]
   \caption{A flow chart of appearing costs when a PL is assigned a block on a Monday, third week relative to the library schedule.}
@@ -317,10 +320,10 @@ Table \ref{block_to_evaluate} together with Figure \ref{flow_chart_cost} shows a
 		    \path [line] (whoami1) -- node[right]{lib}(add_lib_cost1);
 		    \path [line] (whoami2) -- node[left]{ass}(add_ass_cost2);
 		    \path [line] (whoami2) -- node[right]{lib}(add_lib_cost2);
-		    \path [line] (add_ass_cost1) -- (too_many.north);
-		    \path [line] (add_lib_cost1) -- (too_many.north);
-		    \path [line] (add_ass_cost2) -- (too_many.north);
-		    \path [line] (add_lib_cost2) -- (too_many.north);
+		    \path [line] (add_ass_cost1.south) -- (too_many.north);
+		    \path [line] (add_lib_cost1.south) -- (too_many.north);
+		    \path [line] (add_ass_cost2.south) -- (too_many.north);
+		    \path [line] (add_lib_cost2.south) -- (too_many.north);
 		    \path [line] (too_many) -- node[left]{no}(pl_good);
 		    \path [line] (too_many) -- node[right]{yes}(pl_violate);
 		    
@@ -368,10 +371,10 @@ The complete list of costs with description can be seen in Table \ref{tab:all_co
 \label{tab:all_costs}
 \begin{tabular}{|l|l|}
 \hline
-\rowcolor[HTML]{C0C0C0} 
-Cost name                                      & Description       \\ \hline
 \rowcolor[HTML]{FD6864} 
 \multicolumn{2}{|c|}{\cellcolor[HTML]{FD6864}Demand costs}    \\ \hline
+\rowcolor[HTML]{C0C0C0} 
+Cost name                                      & Description       \\ \hline
 Demand\_few\_assistants                        & In need of more assistants to fill quota.                  \\ \hline
 Demand\_few\_librarians                        & In need of more librarians to fill quota.                 \\ \hline
 Demand\_many\_assistants                       & More assistants assigned than needed (redundancy).           \\ \hline
@@ -385,14 +388,20 @@ Demand\_PL\_bad\_assistant         & Assigning a PL to assistant, others already
 Demand\_PL\_bad\_librarian         & Assigning a PL to librarian, others already assigned.             \\ \hline
 \rowcolor[HTML]{FD6864} 
 \multicolumn{2}{|c|}{\cellcolor[HTML]{FD6864}PL amount costs} \\ \hline
+\rowcolor[HTML]{C0C0C0} 
+Cost name                                      & Description       \\ \hline
 PL\_good\_amount                  & Assigning PL when in need of more for feasibility.                  \\ \hline
 PL\_violate\_amount             & Assigning more PL than allowed to that worker.                  \\ \hline
 \rowcolor[HTML]{FD6864} 
 \multicolumn{2}{|c|}{\cellcolor[HTML]{FD6864}Weekend costs}   \\ \hline
+\rowcolor[HTML]{C0C0C0} 
+Cost name                                      & Description       \\ \hline
 HB\_amount                       & No or more than one HB workers assigned the same weekend.   \\ \hline
-No\_weekend                &                   \\ \hline
+No\_weekend                & No weekend blocks available for assignment                  \\ \hline
 \rowcolor[HTML]{FD6864} 
 \multicolumn{2}{|c|}{\cellcolor[HTML]{FD6864}Stand-in costs}  \\ \hline
+\rowcolor[HTML]{C0C0C0} 
+Cost name                                      & Description       \\ \hline
 Stand\_in\_cost                     & Occuring when a possible stand-in is ruined due to assignment.    \\ \hline
 \end{tabular}
 \end{table}

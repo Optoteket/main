@@ -10,3 +10,42 @@ Text
 
 \subsection{Task distribution approach}
 Text
+
+
+\section{Discussion}
+Text
+
+
+\subsection{Weekly scheduling approach}
+Table \ref{pros_cons_weekly_scheduling} lists pros and cons with the implemented weekly scheduling approach.
+\begin{table}[!h]
+\caption{Pros and cons with the implemented weekly scheduling approach}
+\label{pros_cons_weekly_scheduling}
+\begin{tabularx}{\linewidth}{>{\parskip1ex}X@{\kern4\tabcolsep}>{\parskip1ex}X}
+\toprule
+\hfil\bfseries Pros
+&
+\hfil\bfseries Cons
+\\\cmidrule(r{3\tabcolsep}){1-1}\cmidrule(l{-\tabcolsep}){2-2}
+
+%% PROS, seperated by empty line or \par
+The same amount of week block appearances will exist for five and ten weeks.\par
+Quick iterations when destroying and repairing.\par
+
+&
+
+%% CONS, seperated by empty line or \par
+Weekends needs to be assigned in a more systematically way in order to achieve reasonable results regarding lowest amount of stand-ins through the days.\par
+The amount of unique block appearances grows exponentially in case more task types are added, such as meetings.\par
+The solution time can vary considerably as several random generators have been used.\par
+A great deal of costs are needed (some correlated), where each of them affects the solution procedure.
+
+\\\bottomrule
+\end{tabularx}
+\end{table}
+
+ Weekends, solution time and costs are no major issues as they can be avoided by a few smarter implementations. For instance, weekends can be improved by assigning values when each worker is available on a day and from those numbers create an even distribution of possible stand-ins and therefore increase the lowest value of stand-ins through the days. This shall implicitly decrease the solution time as less iterations will be required. However, to always be able to create a pool of week appearances regardless of problem size can easily become a major issue. Just by adding meetings and the assignment of Library on Wheels tasks to the problem makes it grow considerably.
+ 
+
+\subsection{Task distribution approach}
+Text

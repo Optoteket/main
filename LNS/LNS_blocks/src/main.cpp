@@ -14,7 +14,7 @@
 
 using namespace std;
 
-void loop(ostream& outrunvalues){
+void loop(ostream& outrunvalues, ostream& outstandinsperiter){
 	clock_t t;
 	double time = 0;
 	long double time2 = 0;
@@ -37,7 +37,6 @@ void loop(ostream& outrunvalues){
 	ofstream outfeasible("./target/feasible.txt");
 	ofstream outstandins("./target/standins.txt");
 	ofstream outmaxmin("./target/maxmin.txt");
-	ofstream outstandinsperiter("./target/StandinsPerIter.txt");
 	Library lib;
 	lib.createWorkers(); //Creating myworkers[39]
 	lib.create_all_blocks();
@@ -199,7 +198,6 @@ void loop(ostream& outrunvalues){
 	outFile << "Best solution so far is " << lib.evaluate_solution(outFile).at(1) << endl;//Print everything with evaluate_solution
 	
 	outdata << "objfcn\tfeasible\tstandins\tmaxmin" << endl;
-	outstandinsperiter << "Worst number of stand-ins when solution found" << endl;
 	//Start the destroy/repair loop!
 	while(time < stop_time && current_solution > 0){ //54000 means 17-08, 239400 means fri 13.37 - mon 8.07, 234612 means roughly 14.57 - mon 8.07
 // 	for(int j=0; j<100; j++){
@@ -365,15 +363,13 @@ void loop(ostream& outrunvalues){
 					//Print best solution to file!
 					outFile << "\n\n\n***Best iteration number: " << count_new_sol << "***" << endl;
 					outFile << "Best solution so far is " << lib.evaluate_solution(outFile).at(1) << endl;//Print everything with evaluate_solution
-					outstandinsperiter << "123" << endl;
 					if(output_vector.at(1) <= 0){
 						//Update time and print values to outrunvalues
 						t = clock() - t; //in TICKS
 						time += (long double)t/CLOCKS_PER_SEC; //As long double value
-						outstandinsperiter << lib.get_lowest_stand_in() << endl;
-						outstandinsperiter << "Hello" << endl;
 						outrunvalues << "Solution found after " << time << " seconds and " << iter_counter << " iterations" << endl;
 						outrunvalues << "Worst number of stand-ins: " << lib.get_lowest_stand_in() << endl;
+						outstandinsperiter << lib.get_lowest_stand_in() << endl;
 						
 						
 // 						lib.print_stand_ins(outrunvalues);
@@ -422,9 +418,12 @@ void loop(ostream& outrunvalues){
 
 int main() {
 	ofstream outrunvalues("./target/runvalues.txt");
+	ofstream outstandinsperiter("./target/StandinsPerIter.txt");
+	outstandinsperiter << "Worst number of stand-ins when solution found" << endl;
 	for(int ii=0; ii<10000; ii++){
 		outrunvalues << "*** Iteration " << ii+1 << " ***" << endl;
-		loop(outrunvalues);
+		
+		loop(outrunvalues, outstandinsperiter);
 	}
 	
 	outrunvalues.close();
