@@ -58,17 +58,18 @@ The first six weights, belonging to the weekend objective function, were most ex
 
 The individual worker weights and the worker objective function weights are identical in the table since they, relative to each other, decide what soft constraints are most strict. It is, for example more severe to break the rule of one task per day, than to break the rule of having too many shifts at the same time in a week, which is reflected in the weights. Also, in accordance with weights $W_{lib} = 2$ and $W_{ass} = 1$, the stand in cost for librarians is twice the cost of an assistant.
 
-As was argued in Chapter \ref{chap:taskdist}, the critical part of the problem was thought to be the weekend placement part, leading to the implemented two-phase algorithm. That this is the case, is suggested by Tables \ref and \ref{}. 
+As was argued in Chapter \ref{chap:taskdist}, the critical part of the problem was thought to be the weekend placement part, leading to the implemented two-phase algorithm. Both phases are run a specified number of iterations, referred to as $It_{wend}$ and $It_{wday}$. These parameters were also trimmed and the results from different combination are displayed in Tables \ref and \ref{}. 
 
-The objective function value during a typical run is illustrated by Figure TODO.
 
 \begin{figure}[!h]
 \centering
 \includegraphics[width=\textwidth, trim = 100px 50px 100px 20px, clip]{Chapters/ImagesEmelie/Plot_1000_20.png}
+\caption{Figure of the weekend objective function value for SA parameters $T_0 = 0.4$ and $\alpha = 0.985$. $It_{wend} = 1000$.}
+\label{fig:obj_fun_vals}
 \end{figure}
 
+The objective function value during a typical run is illustrated by Figure \ref{fig:obj_fun_vals}. The SA accpet function is visible, mainly as a large dive in the objective function value. After about half of the iterations, the SA accepts some deteriorating solutions, but mostly small ones.
 
-$T_0$, $\alpha$
 
 
 \section{Discussion}

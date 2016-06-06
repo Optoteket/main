@@ -2247,11 +2247,11 @@ void Library::write_stat(){
   string stat_file_dir;
   stringstream stat_file_path;
   stat_file_dir = "../target/";
-  stat_file_path << stat_file_dir << "statistics/statfile_temp" << ".csv"; 
+  stat_file_path << stat_file_dir << "statistics/statfile" << ".csv"; 
   stringstream stat_file2_path;
-  stat_file2_path << stat_file_dir << "statistics/statfile2_temp" << ".csv"; 
+  stat_file2_path << stat_file_dir << "statistics/statfile2" << ".csv"; 
   stringstream objective_file_path;
-  objective_file_path << stat_file_dir << "objfunres/obj_func_vals_temp" << ".csv"; 
+  objective_file_path << stat_file_dir << "objfunres/obj_func_vals" << ".csv"; 
 
   // ofstream stat_file(stat_file_path.str().c_str());
   // int count = 0;

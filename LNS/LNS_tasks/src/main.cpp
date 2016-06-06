@@ -131,7 +131,7 @@ int main(int argc, char** argv)
   vector<vector<Ax_struct>> ax_vector_vector;
   vector<double> library_costs;
   int infeasible_count = 0;
-  string wend_AMPL_file_path = "../target/statistics/weekend_AMPL_data_temp.csv";
+  string wend_AMPL_file_path = "../target/statistics/weekend_AMPL_data.csv";
   ofstream wend_AMPL_file(wend_AMPL_file_path.c_str());
 
   //Random seeding
@@ -166,7 +166,7 @@ int main(int argc, char** argv)
   min_lib.clear();
   library_costs.clear();
 
-  int max_loops = 1;
+  int max_loops = 100;
   int num_tests = 1;
   double weights[3];
   int wend_iterations = 1000;
