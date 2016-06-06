@@ -31,4 +31,7 @@ LNS/LNS_tasks/build/*.o
 # Ignore any executables
 LNS/LNS_tasks/bin/program
 
+# Ignore pdf from report
+Documents/Report/Report.pdf
+
 echo "Ignoring things!"

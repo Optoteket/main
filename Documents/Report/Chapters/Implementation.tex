@@ -1,0 +1,83 @@
+%The two heuristical approaches
+
+The model described in Chapter \ref{chap:mathmod}, was implemented and run on the problem described in Chapter \ref{chap:intro} using two different methods: an AMPL model and heuristics. The first implementation was written in the mathematical modeling language AMPL and was run on a CPLEX commercial optimization software. An AMPL data file containing worker availability and worker sets was generated was generated through exporting availability information from Excel spreadsheets to a data file together with worker data sets. Visual Basic was used for exporting.
+
+The second method involved writing the model in C++ using heuristics. Two implementations were made as is described in the following chapters. As in the case of the AMPL implementation, information about worker availability was exported from Excel to a data file using Visual Basic. 
+
+For all implementations, the resulting schedules can be visualized using a second Excel file which produces colour coded schedules for all workers. This schedule is too large to include in the report as it contains the schedules of 39 workers for ten weeks.
+
+\section{Differences in implementation} 
+
+In the AMPL implementation, the model was identical to the one described in Chapter \ref{chap:mathmod}. However, in order to implement the heuristics, the model's constraints had to be relaxed. Figure \ref{fig:AMPL_vs_heur} illustrates how this process works. The relaxations of the two models are described in Tables \ref{tab:task_constraints} and \ref{}. The reason for the relaxation is to create a larger neighbourhood for the heuristic to iterate through so that it can move more freely between solutions.
+
+% Define block styles
+\tikzstyle{block} = [rectangle, draw=none, fill=white,
+    text width=8em, text ragged, rounded corners, minimum height=0em, node distance =1.5cm]
+\tikzstyle{line} = [draw, -latex']
+    
+\newcommand*{\h}{\hspace{18pt}}% for indentation
+\newcommand*{\hh}{\hspace{24pt}}% double indentation
+
+\begin{figure}[!h]
+\caption{Illustration of the difference between the implementation in AMPL and for the heuristics.}
+\label{fig:AMPL_vs_heur}
+\begin{center}
+\begin{tikzpicture}[node distance = 2cm , auto, scale=0.7, every node/.style={scale=0.7}]
+	%Row 1
+	\node[block, node distance= 6cm, text width=4em] (AMPL){\Large \textbf{AMPL}};
+	\node[block, right of=AMPL, node distance= 5cm] (Mid){};
+	\node[block, right of=Mid, node distance= 6cm] (Heur){\Large \textbf{HEURISTIC}};
+	%Row 2
+	\node[block, below of = AMPL, text width=15em, node distance =1.5cm](ObjfA) {\hh AMPL Objective Function};
+	\node[block, below of = Heur, text width=15em, node distance =1.5cm](ObjfH) { \h Heuristic Objective Function};
+	%Row 3	
+	\node[block, below of = ObjfA, text width=10em](ConstA) {AMPL Constraints};
+	\node[block, below of = Mid, text width=10em, node distance=2.5cm](SConst) {\h Soft Constraints};
+	%Row 4
+	\node[block, below of = SConst, text width=10em, node distance=1cm](HConst) {\h Hard Constraints};
+	\node[block, below of = ObjfH, text width=15em, node distance=1.5cm](ConstH) {\h Heuristic Constraints};
+	%Invisible node
+	\node[block, right of=SConst,scale=0.05, node distance=4cm](inv){};
+	%\node at (ObjfH)[block, left of=ObjfH,scale=0.05,node distance=2.7cm](inv2){};
+	\node at (8.4,-1.6)(inv2){};
+	\begin{scope}[every path/.style=line]
+		\path (ObjfA) -- (ObjfH);
+		\path (ConstA.east) -- (HConst.west);
+		\path (ConstA.east) -- (SConst.west);
+		\path (SConst.east) -- (inv2.west);
+		\path (HConst.east) -- (ConstH.west);
+%		\path [-,draw](SConst) -- (inv);
+%		\path (inv) |- (ObjfH);
+	\end{scope}
+	\draw [color=gray!70,thick](15,1) rectangle (-3,-5);
+\end{tikzpicture}
+\end{center}
+\end{figure}
+
+
+
+\begin{table}[!h]
+\centering
+\caption{Soft and relaxed constraints in the task distribution approach.}
+\label{tab:task_constraints}
+\begin{tabular}{|p{4cm}|p{7cm}|}
+\hline
+% ---------------------------------------------------------
+\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Soft Constraints}} \\
+\hline 
+\rowcolor{Gray} Affecting constraints & Constraint description \\ \hline
+\ref{constr:one_task_constraint} & One task per day restriction.  \\ \hline
+\ref{constr:four_weekly_shifts_at_most} & Four tasks per week restriction. \\ \hline
+\ref{constr:one_PL} & One PL per week restriction. \\ \hline
+\ref{constr:three_PL} & Number of PL per 10 weeks restriction. \\ \hline
+\ref{constr:various_start_times} & Not more than two tasks at the same shift in a week restriction.  \\ \hline
+% ---------------------------------------------------------
+\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Relaxed Constraints}} \\
+\hline 
+\rowcolor{Gray} Affecting constraints & Constraint alteration \\ \hline
+Several. $W = W_5$ in all constraints. & 5 week scheduling instead of 10 week scheduling. \\ \hline
+BokB-constraints & BokB placed according to constraints, but the schedule is fixed. \\ \hline
+Availability data & Even and odd week workers have availability at each shift according to the stricter of the two sets. \\ \hline
+\ref{constr:library_meetings} - \ref{constr:dep_meetings4} & Meetings are not implemented. \\ \hline
+\end{tabular}
+\end{table}

@@ -3,13 +3,34 @@ Results will be presented in this chapter followed by a discussion regarding the
 \section{Results}
 In the following sections results will be presented for both of the heuristics.
 
+\subsection{AMPL implementation}
+
+Implementing the model in AMPL and running the model in CPLEX 12.5 gives the resulting values for the three objective function components displayed in Table \ref{tab:CPLEX_res}. The weights in equations \ref{objfcn} and \ref{constr:s_min} were set to $L = 2$, $A = 1$, $M =100$ and $N=1$, thus making librarians twice as valuable as assistants and stand ins 100 times more valuable than no shift changes. 
+
+\begin{table}[!h]
+\centering
+\label{tab:CPLEX_res}
+\caption{Results from running the Mathematical Model in CPLEX.}
+\begin{tabular}{|l|p{3cm}|p{3cm}|l|}
+\hline
+\rowcolor{Gray} & \textbf{Min num stand ins (lib,ass)} & \textbf{Number of shift changes} & \textbf{Solution time} \\ \hline
+\cellcolor{Gray} \textbf{Result} & \multicolumn{1}{c|}{(3,0)} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{19 min} \\
+\hline
+\end{tabular}
+\end{table}
+
+These results can be used as benchmark in the heuristics as CPLEX returns an optimal solution. 
+
 \subsection{Weekly scheduling approach}
 Text
 
-
-
 \subsection{Task distribution approach}
-Text
+
+Some parameter tuning was done in order to find the optimal settings for the algoritm, particularly for the weekend objective function weights described in Section \ref{section:tasks_cost}. The tuning landed in the following parameters
+ 
+Number of iterations, first phase.
+Number of iterations, second phase.
+$T_0$, $\alpha$
 
 
 \section{Discussion}

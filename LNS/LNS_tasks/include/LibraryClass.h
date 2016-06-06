@@ -94,6 +94,7 @@ class Library{
   double library_stand_in_cost;
   double library_critical_worker_cost;
   double library_non_critical_worker_cost;
+  double library_wend_cost;
 
   //Library worker costs
   int num_tasks_day_cost;
@@ -192,7 +193,7 @@ class Library{
   //Get
   int get_demand(int, int, int, int);
   int get_current_demand(int, int, int, int);
-  double get_library_cost() const;
+  double get_library_wend_cost() const;
   double get_stand_in_cost() const;
   double get_shift_avail_cost() const;
   double get_day_avail_cost() const;

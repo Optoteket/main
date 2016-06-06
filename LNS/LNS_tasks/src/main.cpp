@@ -135,7 +135,7 @@ int main(int argc, char** argv)
   ofstream wend_AMPL_file(wend_AMPL_file_path.c_str());
 
   //Random seeding
-  //srand (unsigned (time(0)));
+  srand (unsigned (time(0)));
 
 
   //Create time and date stamp for files
@@ -162,24 +162,15 @@ int main(int argc, char** argv)
   res_file_path << res_file_dir << "resfile" << ".dat"; 
   ofstream res_file (res_file_path.str().c_str());
   
-  if(res_file.is_open())
-    {
-      res_file << date.str().c_str() << endl;
-      res_file << "The results are:" << endl;
-    }
   min_ass.clear();
   min_lib.clear();
   library_costs.clear();
 
-  int max_loops = 20;
+  int max_loops = 100;
   int num_tests = 1;
   double weights[3];
   int wend_iterations = 500;
   int wday_iterations = 20;
-
-  //Create and instance of empty best library
-  //Library best_library {&res_file};
-
 
   //AMPL loop
   for(int loop=0; loop < max_loops*num_tests; loop++){
@@ -284,10 +275,10 @@ int main(int argc, char** argv)
     library.optimize_weekends(wend_iterations, 8, weights);
     
     //6. Optimize weekdays
-    //library.optimize_weekday_tasks(wday_iterations);
+    library.optimize_weekday_tasks(wday_iterations);
 
     //5. Get objective function varibles
-    double library_cost = library.get_library_cost();
+    double library_cost = library.get_library_wend_cost();
     library_costs.push_back(library_cost);
     double cost_stand_in = library.get_stand_in_cost();
     library_costs.push_back(cost_stand_in);
@@ -327,11 +318,11 @@ int main(int argc, char** argv)
       cout << "Number of infeasible solutions: " << infeasible_count << endl;
       wend_AMPL_file  << "Number of infeasible solutions:" << infeasible_count << endl;
       for(int i=0; i<(int) min_lib.size(); i++){
-	cout << "Min num lib/ass: (" << i << ") "<< min_lib[i] << ", " << min_ass[i] << ". Cost: " << 2*min_lib[i] + min_ass[i];  
+	cout << "Min num lib/ass: (" << i << ") "<< min_lib[i] << ", " << min_ass[i] << " Cost: " << 2*min_lib[i] + min_ass[i];  
 	cout << "    ObjFun value: " << library_costs[6*i] << endl;
-	wend_AMPL_file << "Min num lib/ass: (" << i << ") "<< min_lib[i] << ", " << min_ass[i] << ". Cost: " << 2*min_lib[i] + min_ass[i];
-	wend_AMPL_file << "    ObjFun value: " << library_costs[6*i] << ", Stand in cost: " << library_costs[6*i+1] << ", Shift avail: " << library_costs[6*i+2] << ", Day avail: " << library_costs[6*i+3] 
-		       <<" Num stand ins (lib/ass): " << library_costs[6*i+4] <<"/" << library_costs[6*i+5] << endl;
+	wend_AMPL_file << "WendObjFunval: " << library_costs[6*i]
+		       <<"  Heuristic(lib,ass): (" << library_costs[6*i+4] <<", " << library_costs[6*i+5] << ")  HeuristicCost: " << 2*library_costs[6*i+4] + library_costs[6*i+5];
+	wend_AMPL_file << "   AMPL(lib,ass): " << i << ") ("<< min_lib[i] << ", " << min_ass[i] << ")  AMPLCost: " << 2*min_lib[i] + min_ass[i]  << endl;
 	vector<Ax_struct>* ax_vec = &ax_vector_vector[i];
 	if((int) ax_vec->size()>0){
 	  wend_AMPL_file <<"Artificial workers placed at: " << endl;
@@ -354,8 +345,6 @@ int main(int argc, char** argv)
       ax_vector_vector.clear();
     }
   }
-
-  
 
   //Timer end
   clock_t end = clock();
