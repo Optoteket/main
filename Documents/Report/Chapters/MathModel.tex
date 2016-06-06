@@ -114,7 +114,7 @@ To model the present problem it has been of relevance to divide many of the cons
 
 \subsection{Demand and assignment constraints} \label{section:demand_ass_constraints}
 The most crucial constraint is to ensure that the demand of workers is met each day. This can be modeled as:
-\begin{equation}
+\begin{equation} \label{eq:demand}
 \sum_{i \in I} x_{iwdsj} = demand_{wdsj}, \; \forall w\in W,d\in D,s\in S,j\in J_d
 \end{equation}
 $demand_{wdsj}$ is an integer representing the number of workers required week \textit{w}, day \textit{d}, shift \textit{s} for a task \textit{j}.

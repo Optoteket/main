@@ -420,7 +420,7 @@ int main() {
 	ofstream outrunvalues("./target/runvalues.txt");
 	ofstream outstandinsperiter("./target/StandinsPerIter.txt");
 	outstandinsperiter << "Worst number of stand-ins when solution found" << endl;
-	for(int ii=0; ii<10000; ii++){
+	for(int ii=0; ii<1; ii++){
 		outrunvalues << "*** Iteration " << ii+1 << " ***" << endl;
 		
 		loop(outrunvalues, outstandinsperiter);

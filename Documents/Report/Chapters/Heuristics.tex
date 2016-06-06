@@ -1,8 +1,8 @@
 
 
-In Appendix \ref{appendix:flow_charts}, Figure \ref{flow_chart}, is a flow chart of the implemented heuristic presented.
+The implemented algorithm is based on Large Neighborhood Search (LNS) where small parts of the current solution is destroyed and repaired. In Appendix \ref{appendix:flow_charts}, Figure \ref{flow_chart}, is a flow chart of the implemented heuristic presented. 
 
-For every worker their information such as availability and qualification is inserted into a table template in Excel. It is then written to a text file using Visual Basic code, which in turn is read by the heuristic.
+Every workers' information such as availability and qualification is inserted into an Excel table. It is then written to a text file using Visual Basic code, which in turn is read and used by the heuristic.
 
 \section{Block creation} \label{block_creation}
 A big part of this heuristic is to create the big pool of unique week appearances. These are then filtered for each of the worker based on its availability. The workers availability are generalized into three categories: \textit{Weekend week}, \textit{weekrest week} and \textit{weekday week}, where weekday week occurs three times during a five week period, see Table \ref{tab:Bob_avail}. 
@@ -271,7 +271,7 @@ Table \ref{block_to_evaluate} together with Figure \ref{flow_chart_cost} shows a
 \end{tabular}
 \end{table}
 
-<<<<<<< HEAD
+
 % Define block styles
 \tikzstyle{decision} = [diamond, draw, fill=blue!20, 
     text width=4.5em, text badly centered, inner sep=0pt]
@@ -281,9 +281,6 @@ Table \ref{block_to_evaluate} together with Figure \ref{flow_chart_cost} shows a
 \tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
     minimum height=2em]
 
-
-=======
->>>>>>> 3f68c55f8eac44e6dd8174f0fcac7566685e831d
 % % FLOW CHART of COSTS
 \begin{figure}[!h]
   \caption{A flow chart of appearing costs when a PL is assigned a block on a Monday, third week relative to the library schedule.}
@@ -372,44 +369,76 @@ The complete list of costs with description can be seen in Table \ref{tab:all_co
 \begin{tabular}{|l|l|}
 \hline
 \rowcolor[HTML]{FD6864} 
-\multicolumn{2}{|c|}{\cellcolor[HTML]{FD6864}Demand costs}    \\ \hline
+\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Demand costs}} \\ \hline
+%\multicolumn{2}{|c|}{\cellcolor[HTML]{FD6864}Demand costs}    \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 Cost name                                      & Description       \\ \hline
-Demand\_few\_assistants                        & In need of more assistants to fill quota.                  \\ \hline
-Demand\_few\_librarians                        & In need of more librarians to fill quota.                 \\ \hline
-Demand\_many\_assistants                       & More assistants assigned than needed (redundancy).           \\ \hline
-Demand\_many\_librarians                       & More librarians assigned than reference value.                  \\ \hline
+Demand\_few\_ass                        & In need of more assistants to fill quota.                  \\ \hline
+Demand\_few\_lib                        & In need of more librarians to fill quota.                 \\ \hline
+Demand\_many\_ass                       & More assistants assigned than needed (redundancy).           \\ \hline
+Demand\_many\_lib                       & More librarians assigned than reference value.                  \\ \hline
 Demand\_few\_total                             & Incorrect amount of workers assigned a task.                  \\ \hline
 Demand\_many\_total                            & Incorrect amount of workers assigned a task.                  \\ \hline
 Demand\_evening\_cost         & Incorrect amount of workers assigned an evening task (more crucial).\\ \hline
-Demand\_PL\_good\_assistant        & Assigning a PL to assistant, empty before assignment.            \\ \hline
-Demand\_PL\_good\_librarian        & Assigning a PL to librarian, empty before assignment.           \\ \hline
-Demand\_PL\_bad\_assistant         & Assigning a PL to assistant, others already assigned.           \\ \hline
-Demand\_PL\_bad\_librarian         & Assigning a PL to librarian, others already assigned.             \\ \hline
+Demand\_PL\_good\_ass        & Assigning a PL to an assistant when empty before assignment.            \\ \hline
+Demand\_PL\_good\_lib        & Assigning a PL to a librarian when empty before assignment.           \\ \hline
+Demand\_PL\_bad\_ass         & Assigning a PL to an assistant when already assigned by another.           \\ \hline
+Demand\_PL\_bad\_lib         & Assigning a PL to a librarian when already assigned by another.             \\ \hline
 \rowcolor[HTML]{FD6864} 
-\multicolumn{2}{|c|}{\cellcolor[HTML]{FD6864}PL amount costs} \\ \hline
+\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{PL amount costs}} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 Cost name                                      & Description       \\ \hline
 PL\_good\_amount                  & Assigning PL when in need of more for feasibility.                  \\ \hline
 PL\_violate\_amount             & Assigning more PL than allowed to that worker.                  \\ \hline
 \rowcolor[HTML]{FD6864} 
-\multicolumn{2}{|c|}{\cellcolor[HTML]{FD6864}Weekend costs}   \\ \hline
+\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Weekend costs}} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 Cost name                                      & Description       \\ \hline
 HB\_amount                       & No or more than one HB workers assigned the same weekend.   \\ \hline
-No\_weekend                & No weekend blocks available for assignment                  \\ \hline
+No\_weekend                & No weekend blocks available for assignment.                  \\ \hline
 \rowcolor[HTML]{FD6864} 
-\multicolumn{2}{|c|}{\cellcolor[HTML]{FD6864}Stand-in costs}  \\ \hline
+\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Stand-in costs}} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 Cost name                                      & Description       \\ \hline
 Stand\_in\_cost                     & Occuring when a possible stand-in is ruined due to assignment.    \\ \hline
 \end{tabular}
 \end{table}
 
+Whenever a new week block is to be inserted in a repair all available blocks for that worker has to be given a cost. This cost will be based on the current amount of workers assigned the tasks in the library. The block with the lowest cost will be the inserted block in the repair. An illustrative example can be seen in Table \ref{tab:block_costs}.
+
+\begin{table}[!h]
+\centering
+\caption{Cost evaluation of two blocks. The lower cost the more desired to insert in repair (the values do not coincide with the implemented ones).}
+\label{tab:block_costs}
+\begin{tabular}{cccccccc}
+                                 & Mon                                             & Tue                    & Wed                                            & Thu                    & Fri                                            & Sat                    & Sun                    \\ \cline{2-8} 
+\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}PL} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{I} \\ \cline{2-8} 
+\multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} &     &   \\ \cline{2-6}
+\multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}         &            &          \\ \cline{2-6}
+\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} &         &         \\ \cline{2-6}
+\end{tabular}
+\newline
+$Total cost = -Demand\_PL\_good\_lib + PL\_violate\_amount + Demand\_many\_lib - Demand\_few\_lib = 5,050$
+
+\begin{tabular}{cccccccc}
+                                 & Mon                                             & Tue                    & Wed                                            & Thu                    & Fri                                            & Sat                    & Sun                    \\ \cline{2-8} 
+\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{I} \\ \cline{2-8} 
+\multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} &     &   \\ \cline{2-6}
+\multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}         &            &          \\ \cline{2-6}
+\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} &         &         \\ \cline{2-6}
+\end{tabular} 
+\newline
+$Total cost = -Demand\_few\_lib - Demand\_evening\_cost$
+$+ Demand\_many\_lib = -17,700$
+
+\end{table}
+
+
+
 \section{Destroy}
 The destroy consists of two contiguous steps: Choosing three workers to destroy and then destroying their assigned blocks. The LoW tasks remain unchanged even if a worker assigned those tasks is destroyed. 
 \section{Repair}
-Initially in the repair function the destroyed workers are assigned new rotations, see Table \ref{rotation_assignment}, followed by five new week blocks. Which order the blocks are inserted in is randomly generated. For each iteration is one of the three workers randomly chosen followed by one block that has not been reassigned until all 15 destroyed weeks have been repaired. Which week block that is chosen is based on the costs listed in Table \ref{tab:all_costs}. 
+Initially in the repair function the destroyed workers are assigned new rotations, see Table \ref{rotation_assignment}, followed by five new week blocks. Which order the blocks are inserted in is randomly generated. For each iteration is one of the three workers randomly chosen followed by one block that has not been reassigned until all 15 destroyed weeks have been repaired. Which week block that is chosen is based on the costs listed in Table \ref{tab:all_costs} and shown as an illustrative example in Table \ref{tab:block_costs}.
 \section{Evaluation of solution}
 After each destroy/repair loop the new solution is evaluated. It is common for the new solution to be worse than the previous one. However, all new solutions are accepted regardless.
 

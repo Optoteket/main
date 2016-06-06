@@ -40,14 +40,6 @@ dev.off()
 
 
 
-
-
-
-
-
-
-
-
 ### PLOT WITHOUT SAVING RESULTS ###
 
 # Read values from text file. objfcn, feasible, standins and maxmin

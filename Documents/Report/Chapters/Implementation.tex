@@ -55,6 +55,30 @@ In the AMPL implementation, the model was identical to the one described in Chap
 \end{figure}
 
 
+\begin{table}[!h]
+\centering
+\caption{Soft and relaxed constraints in the weekly scheduling approach.}
+\label{tab:weekly_task_constraints}
+\begin{tabular}{|p{4cm}|p{7cm}|}
+\hline
+% ---------------------------------------------------------
+\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Soft Constraints}} \\
+\hline 
+\rowcolor{Gray} Affecting constraints & Constraint description \\ \hline
+\ref{eq:demand} & The amount of workers needed for every shift and task type in the library.  \\ \hline
+\ref{constr:three_PL} & Number of PL per ten weeks restriction. \\ \hline
+% ---------------------------------------------------------
+\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Relaxed Constraints}} \\
+\hline 
+\rowcolor{Gray} Affecting constraints & Constraint alteration \\ \hline
+Several. $W = W_5$ in all constraints. & 5 week scheduling instead of 10 week scheduling. \\ \hline
+\ref{constr:obj_fcn_shifts} & Any two weeks \textit{w} and \textit{w+5} shall be as similar as possible. \\ \hline
+LoW-constraints & LoW placed according to constraints, but the schedule is fixed. \\ \hline
+Availability data & Even and odd week workers have availability at each shift according to the stricter of the two sets. \\ \hline
+\ref{constr:library_meetings} - \ref{constr:dep_meetings4} & Meetings are not implemented. \\ \hline
+\end{tabular}
+\end{table}
+
 
 \begin{table}[!h]
 \centering
@@ -69,13 +93,14 @@ In the AMPL implementation, the model was identical to the one described in Chap
 \ref{constr:one_task_constraint} & One task per day restriction.  \\ \hline
 \ref{constr:four_weekly_shifts_at_most} & Four tasks per week restriction. \\ \hline
 \ref{constr:one_PL} & One PL per week restriction. \\ \hline
-\ref{constr:three_PL} & Number of PL per 10 weeks restriction. \\ \hline
+\ref{constr:three_PL} & Number of PL per ten weeks restriction. \\ \hline
 \ref{constr:various_start_times} & Not more than two tasks at the same shift in a week restriction.  \\ \hline
 % ---------------------------------------------------------
 \multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Relaxed Constraints}} \\
 \hline 
 \rowcolor{Gray} Affecting constraints & Constraint alteration \\ \hline
-Several. $W = W_5$ in all constraints. & 5 week scheduling instead of 10 week scheduling. \\ \hline
+Several. $W = W_5$ in all constraints. & five week scheduling instead of ten week scheduling. \\ \hline
+\ref{constr:obj_fcn_shifts} & Any two weeks \textit{w} and \textit{w+5} shall be as similar as possible. \\ \hline
 BokB-constraints & BokB placed according to constraints, but the schedule is fixed. \\ \hline
 Availability data & Even and odd week workers have availability at each shift according to the stricter of the two sets. \\ \hline
 \ref{constr:library_meetings} - \ref{constr:dep_meetings4} & Meetings are not implemented. \\ \hline
