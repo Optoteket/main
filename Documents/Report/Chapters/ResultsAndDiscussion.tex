@@ -24,12 +24,50 @@ These results can be used as benchmark in the heuristics as CPLEX returns an opt
 \subsection{Weekly scheduling approach}
 Text
 
-\subsection{Task distribution approach}
+\subsection{Task distribution approach}\label{sec:task_dist_res}
 
-Some parameter tuning was done in order to find the optimal settings for the algoritm, particularly for the weekend objective function weights described in Section \ref{section:tasks_cost}. The tuning landed in the following parameters
- 
-Number of iterations, first phase.
-Number of iterations, second phase.
+In order to decide the weights described in Section \ref{section:tasks_cost}, different tuning tests were performed. These tests resulted in the weights presented in Table \ref{tab:tasks_weight}. 
+
+\begin{table}[!h]
+\centering
+\caption{Weights used in the implementation.}
+\label{tab:tasks_weight}
+\begin{tabular}{|l|l|}
+\hline
+\rowcolor{Gray} Weight & Weight value \\ \hline
+$W_{SI\_m}$ & 0.1 \\ \hline
+$W_{S\_m}$ & 0.1 \\ \hline
+$W_{D\_m}$ & 10 \\ \hline
+$W_{SI\_a}$ & 0.01 \\ \hline
+$W_{S\_a}$ & 0.01 \\ \hline
+$W_{D\_a}$ & 1 \\ \hline
+$W_{w\_SI}$ & 
+\begin{tabular} [x]{@{}c@{}}
+	2 \text{if librarian} \\ 
+	1 \text{if assistant}
+\end{tabular} \\ \hline
+$W_{Task\_D}$ / $W_{w\_Task\_D}$ & 100\\ \hline
+$W_{Task\_W}$ / $W_{w\_Task\_W}$ & 	10 \\ \hline
+$W_{PL\_W}$ / $W_{w\_PL\_W}$ & 5 \\ \hline
+$W_{PL\_Tot}$ / $W_{w\_PL\_Tot}$ & 5 \\ \hline
+$W_{SShift\_W}$ / $W_{w\_SShift\_W}$ & 4 \\ \hline
+\end{tabular}
+\end{table}
+
+The first six weights, belonging to the weekend objective function, were most experimented with and will be discussed further in this section. The first three have are scaled relatively to each other, while the latter three are simple calculated as one tenth of their equivalent minimum weight. In each of these components, the weights $W_{lib} = 2$ and $W_{ass} = 1$ were used since it can be argued that a librarian can perform twice as many tasks as an assistant.
+
+The individual worker weights and the worker objective function weights are identical in the table since they, relative to each other, decide what soft constraints are most strict. It is, for example more severe to break the rule of one task per day, than to break the rule of having too many shifts at the same time in a week, which is reflected in the weights. Also, in accordance with weights $W_{lib} = 2$ and $W_{ass} = 1$, the stand in cost for librarians is twice the cost of an assistant.
+
+As was argued in Chapter \ref{chap:taskdist}, the critical part of the problem was thought to be the weekend placement part, leading to the implemented two-phase algorithm. That this is the case, is suggested by Tables \ref and \ref{}. 
+
+The objective function value during a typical run is illustrated by Figure TODO.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=\textwidth, trim = 100px 50px 100px 20px, clip]{Chapters/ImagesEmelie/Plot_1000_20.png}
+\end{figure}
+
+
 $T_0$, $\alpha$
 
 

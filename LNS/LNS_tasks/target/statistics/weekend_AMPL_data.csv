@@ -1,9 +1,0 @@
-2016_6_3 17:35:1
-With weights: 0.00980392, 0.00980392, 0.980392
-Number of infeasible solutions:0
-WendObjFunval: 33.9551  Heuristic(lib,ass): (3, 0)  HeuristicCost: 6   AMPL(lib,ass): 0) (3, 0)  AMPLCost: 6
-WendObjFunval: 33.9551  Heuristic(lib,ass): (2, 0)  HeuristicCost: 4   AMPL(lib,ass): 1) (1, 2)  AMPLCost: 4
-WendObjFunval: 33.9453  Heuristic(lib,ass): (3, 0)  HeuristicCost: 6   AMPL(lib,ass): 2) (3, 0)  AMPLCost: 6
-
-Average cost:5.33333
-

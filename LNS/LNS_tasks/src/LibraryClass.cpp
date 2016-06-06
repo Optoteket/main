@@ -2247,11 +2247,11 @@ void Library::write_stat(){
   string stat_file_dir;
   stringstream stat_file_path;
   stat_file_dir = "../target/";
-  stat_file_path << stat_file_dir << "statistics/statfile" << ".csv"; 
+  stat_file_path << stat_file_dir << "statistics/statfile_temp" << ".csv"; 
   stringstream stat_file2_path;
-  stat_file2_path << stat_file_dir << "statistics/statfile2" << ".csv"; 
+  stat_file2_path << stat_file_dir << "statistics/statfile2_temp" << ".csv"; 
   stringstream objective_file_path;
-  objective_file_path << stat_file_dir << "objfunres/obj_func_vals_" << ".csv"; 
+  objective_file_path << stat_file_dir << "objfunres/obj_func_vals_temp" << ".csv"; 
 
   // ofstream stat_file(stat_file_path.str().c_str());
   // int count = 0;
@@ -2719,6 +2719,10 @@ int Library::get_current_demand(int week, int day, int shift, int task){
 
 double Library::get_library_wend_cost() const{
   return library_wend_cost;
+}
+
+double Library::get_library_cost() const{
+  return library_cost;
 }
 
 double Library::get_stand_in_cost() const{

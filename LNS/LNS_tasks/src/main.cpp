@@ -131,7 +131,7 @@ int main(int argc, char** argv)
   vector<vector<Ax_struct>> ax_vector_vector;
   vector<double> library_costs;
   int infeasible_count = 0;
-  string wend_AMPL_file_path = "../target/statistics/weekend_AMPL_data.csv";
+  string wend_AMPL_file_path = "../target/statistics/weekend_AMPL_data_temp.csv";
   ofstream wend_AMPL_file(wend_AMPL_file_path.c_str());
 
   //Random seeding
@@ -166,10 +166,10 @@ int main(int argc, char** argv)
   min_lib.clear();
   library_costs.clear();
 
-  int max_loops = 100;
+  int max_loops = 1;
   int num_tests = 1;
   double weights[3];
-  int wend_iterations = 500;
+  int wend_iterations = 1000;
   int wday_iterations = 20;
 
   //AMPL loop
@@ -278,7 +278,14 @@ int main(int argc, char** argv)
     library.optimize_weekday_tasks(wday_iterations);
 
     //5. Get objective function varibles
-    double library_cost = library.get_library_wend_cost();
+    double library_cost=0;
+    //Only record feasible solutions
+    if(library.get_library_cost() != -1){
+      library_cost = library.get_library_wend_cost();
+    }
+    else {
+      library_cost = library.get_library_cost();
+    }
     library_costs.push_back(library_cost);
     double cost_stand_in = library.get_stand_in_cost();
     library_costs.push_back(cost_stand_in);
@@ -334,8 +341,8 @@ int main(int argc, char** argv)
 	}
 	else tot_cost += 2*min_lib[i] + min_ass[i];
       }
-      cout << endl << "Average cost:" << tot_cost/divisor << endl;
-      wend_AMPL_file << endl << "Average cost:" << tot_cost/divisor << endl << endl;
+      cout << endl << "Average AMPL cost:" << tot_cost/divisor << endl;
+      wend_AMPL_file << endl << "Average AMPL cost:" << tot_cost/divisor << endl << endl;
       
       //Clear variables
       infeasible_count = 0;
