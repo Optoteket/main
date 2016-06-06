@@ -74,11 +74,19 @@ The objective function value during a typical run is illustrated by Figure \ref{
 \begin{figure}[!h]
 \centering
 \includegraphics[width=\textwidth, trim = 100px 50px 100px 20px, clip]{Chapters/ImagesEmelie/Components_1000_20.png}
-\caption{Figure of the weekend objective function component values for SA parameters $T_0 = 0.4$ and $\alpha = 0.985$. $It_{wend} = 1000$.}
+\caption{Figure of the weekend objective minimum costs for SA parameters $T_0 = 0.4$ and $\alpha = 0.985$. $It_{wend} = 1000$.}
 \label{fig:obj_fun_comp}
 \end{figure}
 
-From Figure \ref{fig:obj_fun_comp}, the three different min costs from the weekend objective function, without weights, are displayed. Although they seem to constantly vary, a small improvement over iterations can be seen at least in the day avail cost component. 
+\begin{figure}[!h]
+\centering
+\includegraphics[width=\textwidth, trim = 100px 50px 100px 20px, clip]{Chapters/ImagesEmelie/Components_av_1000_20.png}
+\caption{Figure of the weekend objective function average costs for SA parameters $T_0 = 0.4$ and $\alpha = 0.985$. $It_{wend} = 1000$.}
+\label{fig:obj_fun_comp_aver}
+\end{figure}
+
+
+In Figure \ref{fig:obj_fun_comp}, the three different min costs from the weekend objective function, without weights, are displayed. Although they seem to constantly vary, a small improvement over iterations can be seen at least in the day avail cost component. Comparing this with Figure \ref{fig:obj_fun_comp_aver}, it can be seen that the average costs do not contribute much to the total objective function value, which is not unexpected.
 
 Correlating the three different variables was done in order to find out if any of the them are interdependent. If that were the case, the choice of weights would be arbitrary. The claculation yielded the following correlation coefficient matrices:
 
@@ -108,6 +116,8 @@ Correlating the three different variables was done in order to find out if any o
  
  This suggests that there is almost no correlation between the cost components since the top right and bottom left values are close to 0 in all three cases. 0 in these coefficients is equivalent to no correlation while -1 and 1 are indicate a linear correlation. 
  
+TODO: plots with 10/20/30 wday iterations. Add 4 different weights. (run to Tuesday).
+Write about these results. Correlation between objective function value and AMPL result.
 
 \section{Discussion}
 Text
@@ -145,4 +155,14 @@ A great deal of costs are needed (some correlated), where each of them affects t
  
 
 \subsection{Task distribution approach}
-Text
+Discussion: 
+
+Why do the different weekend weights give such different results?
+To what extent is the weekend objective function a good measure of a good schedule?
+Conclusion: weekend schedule is ESSENTIAL for a good schedule.
+
+Improve SA?
+
+More tests with average weights.
+
+Further development: look more at weekend objective functions.
