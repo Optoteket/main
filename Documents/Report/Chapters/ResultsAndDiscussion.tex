@@ -64,13 +64,50 @@ As was argued in Chapter \ref{chap:taskdist}, the critical part of the problem w
 \begin{figure}[!h]
 \centering
 \includegraphics[width=\textwidth, trim = 100px 50px 100px 20px, clip]{Chapters/ImagesEmelie/Plot_1000_20.png}
-\caption{Figure of the weekend objective function value for SA parameters $T_0 = 0.4$ and $\alpha = 0.985$. $It_{wend} = 1000$.}
+\caption{Figure of the weekend objective function values for SA parameters $T_0 = 0.4$ and $\alpha = 0.985$. $It_{wend} = 1000$.}
 \label{fig:obj_fun_vals}
 \end{figure}
 
 The objective function value during a typical run is illustrated by Figure \ref{fig:obj_fun_vals}. The SA accpet function is visible, mainly as a large dive in the objective function value. After about half of the iterations, the SA accepts some deteriorating solutions, but mostly small ones.
 
 
+\begin{figure}[!h]
+\centering
+\includegraphics[width=\textwidth, trim = 100px 50px 100px 20px, clip]{Chapters/ImagesEmelie/Components_1000_20.png}
+\caption{Figure of the weekend objective function component values for SA parameters $T_0 = 0.4$ and $\alpha = 0.985$. $It_{wend} = 1000$.}
+\label{fig:obj_fun_comp}
+\end{figure}
+
+From Figure \ref{fig:obj_fun_comp}, the three different min costs from the weekend objective function, without weights, are displayed. Although they seem to constantly vary, a small improvement over iterations can be seen at least in the day avail cost component. 
+
+Correlating the three different variables was done in order to find out if any of the them are interdependent. If that were the case, the choice of weights would be arbitrary. The claculation yielded the following correlation coefficient matrices:
+
+\begin{equation}
+  R_{SI\_D} =
+  \begin{bmatrix}
+ 	 1  &  -0.0427 \\
+ 	 -0.0427  &  1
+ \end{bmatrix}
+\end{equation}
+
+ \begin{equation}
+ R_{SI\_S} =
+ \begin{bmatrix}
+	 1  &  0.1497 \\
+	 0.1497  &  1
+ \end{bmatrix}
+ \end{equation}
+ 
+\begin{equation}
+ R_{S\_D} =
+ \begin{bmatrix}
+	 1  &  0.0863 \\
+	 0.0863  &  1
+ \end{bmatrix}
+ \end{equation} 
+ 
+ This suggests that there is almost no correlation between the cost components since the top right and bottom left values are close to 0 in all three cases. 0 in these coefficients is equivalent to no correlation while -1 and 1 are indicate a linear correlation. 
+ 
 
 \section{Discussion}
 Text

@@ -170,7 +170,7 @@ int main(int argc, char** argv)
   int num_tests = 1;
   double weights[3];
   int wend_iterations = 1000;
-  int wday_iterations = 20;
+  int wday_iterations = 10;
 
   //AMPL loop
   for(int loop=0; loop < max_loops*num_tests; loop++){
