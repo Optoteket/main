@@ -24,10 +24,6 @@ par(mfrow=c(2,2))
 
 #plot each of the columns
 plot(plot_data$objfcn, col = plot_colors[1])
-#title(main="My Title", col.main="red",
-#  sub="My Sub-title", col.sub="blue",
-#  xlab="My X label", ylab="My Y label",
-#  col.lab="green", cex.lab=1.3)
 #Make x-axis
 #axis(1, at=1:5, lab=c("Mon", "Tue", "Wed", "Thu", "Fri"))
 #Make y-axis
@@ -40,6 +36,14 @@ plot(plot_data$maxmin, col = plot_colors[4])
 
 # Turn off device driver (to flush output to png)
 dev.off()
+
+
+
+
+
+
+
+
 
 
 

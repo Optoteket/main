@@ -66,11 +66,17 @@ Stand\_in\_cost                     & 5     \\ \hline
 
 Worth noting is that these values are most certainly not optimal as they have mostly been assigned using intuition. However, a few relations were determined by either running some tests or using reason. An example is either if $PL\_good\_cost > Demand\_PL\_good\_ass$ or $PL\_good\_cost > Demand\_PL\_good\_lib$. If so, all workers that can be assigned another PL will be, leaving the library overstaffed with PL workers. The reason is because the net of $-PL\_good\_cost + Demand\_PL\_good\_ass/lib$ will be negative meaning it is a preferable insertion even though the library will be overstaffed.
 
+Table \ref{successful_runs} shows the amount of successful runs after 200 iterations.
+
+Based on x successful runs the average objective function is: . 
+
+
+
 %\includegraphics[scale = 0.3, width = 15cm]{Rplot}
-\includegraphics[scale = 0.3, width = 15cm]{1Plot}
+%\includegraphics[scale = 0.3, width = 15cm]{1Plot}
 \subsection{Task distribution approach}
 
-Some parameter tuning was done in order to find the optimal settings for the algoritm, particularly for the weekend objective function weights described in Section \ref{section:tasks_cost}. The tuning landed in the following parameters
+Some parameter tuning was done in order to find the optimal settings for the algorithm, particularly for the weekend objective function weights described in Section \ref{section:tasks_cost}. The tuning landed in the following parameters
  
 Number of iterations, first phase.
 Number of iterations, second phase.

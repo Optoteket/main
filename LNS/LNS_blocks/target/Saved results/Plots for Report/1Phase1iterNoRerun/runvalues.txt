@@ -1,0 +1,3 @@
+*** Iteration 1 ***
+Solution found after 174.68 seconds and 37 iterations
+Worst number of stand-ins: 0

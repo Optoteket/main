@@ -14,7 +14,7 @@
 
 using namespace std;
 
-void loop(ostream& outrunvalues, ostream& outstandinsperiter){
+void loop(ostream& outrunvalues, ostream& outstandinsperiter, ostream& outobjvalueperiter){
 	clock_t t;
 	double time = 0;
 	long double time2 = 0;
@@ -171,7 +171,7 @@ void loop(ostream& outrunvalues, ostream& outstandinsperiter){
 // 	
 // 	lib.print_stand_ins(cout);
 // 	cout << "Total number of stand_ins are: " << lib.get_sum_stand_ins() << endl;
-// 	cout << "Lowest number of stand_ins are: " << lib.get_lowest_stand_in() << endl;
+// 	cout << "Lowest number of stand_ins are: " << lib.get_lowest_stand_in().at(0) << endl;
 // // 	lib.getWorker(p).print_stand_in_matrix();
 // // 	lib.getWorker(p).getAvail_matrix();
 // 	cout << "Before Destroy/Repair" << endl;
@@ -368,8 +368,9 @@ void loop(ostream& outrunvalues, ostream& outstandinsperiter){
 						t = clock() - t; //in TICKS
 						time += (long double)t/CLOCKS_PER_SEC; //As long double value
 						outrunvalues << "Solution found after " << time << " seconds and " << iter_counter << " iterations" << endl;
-						outrunvalues << "Worst number of stand-ins: " << lib.get_lowest_stand_in() << endl;
-						outstandinsperiter << lib.get_lowest_stand_in() << endl;
+						outrunvalues << "Worst number of stand-ins: " << lib.get_lowest_stand_in().at(0) << " (" << lib.get_lowest_stand_in().at(1) << "/" << lib.get_lowest_stand_in().at(2) << ")" << endl;
+						outstandinsperiter << lib.get_lowest_stand_in().at(0) << " (" << lib.get_lowest_stand_in().at(1) << "/" << lib.get_lowest_stand_in().at(2) << ")" << endl;
+						outobjvalueperiter << lib.get_lowest_stand_in().at(1)*2 + lib.get_lowest_stand_in().at(2)*1) << endl;
 						
 						
 // 						lib.print_stand_ins(outrunvalues);
@@ -419,11 +420,12 @@ void loop(ostream& outrunvalues, ostream& outstandinsperiter){
 int main() {
 	ofstream outrunvalues("./target/runvalues.txt");
 	ofstream outstandinsperiter("./target/StandinsPerIter.txt");
+	ofstream outobjvalueperiter("./target/ObjectiveFunction.txt");
 	outstandinsperiter << "Worst number of stand-ins when solution found" << endl;
-	for(int ii=0; ii<1; ii++){
+	for(int ii=0; ii<10000; ii++){
 		outrunvalues << "*** Iteration " << ii+1 << " ***" << endl;
 		
-		loop(outrunvalues, outstandinsperiter);
+		loop(outrunvalues, outstandinsperiter, outobjvalueperiter);
 	}
 	
 	outrunvalues.close();

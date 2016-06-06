@@ -1092,9 +1092,6 @@ void Library::calculate_demand(){ //Updates tasks_filled, demand_differ (+ LOW-a
 
 void Library::calculate_all_week_costs_for_worker(string type, int w_id, int count){
 	int calculate = 1;
-	if(STAND_IN_COST == HIGH_PRIORITY){
-		get_lowest_stand_in(); //Also updates stand_in_amount[w][d]
-	}
 	if(type == "weekrest"){
 		//Clear vector
 		myworkers[w_id-1].clear_cost_vector(type);
@@ -1516,18 +1513,18 @@ vector<int> Library::evaluate_solution(ostream& stream){//Add all costs together
 	//***STAND_IN_COSTS***
 	//Evaluate cost for stand-ins - Find min(stand_in[w][d]) give cost - Sum stand_ins give cost
 	//Give negative costs for every new stand-in found! ***Higher cost for librarians!! - double?***
-	total_stand_in_cost -= get_lowest_stand_in()*STAND_IN_COST;
+	total_stand_in_cost -= get_lowest_stand_in().at(0)*STAND_IN_COST;
 	cout << "sum stand_ins are: " << get_sum_stand_ins() << endl;
 	total_stand_in_cost -= (int)get_sum_stand_ins()/25*STAND_IN_COST*0.1; //If 100 stand-ins, then give -floor(100*STDCST*0.1/25) = -2 in cost
 	
-	if(get_lowest_stand_in() > max_min_stand_in){
-		max_min_stand_in = get_lowest_stand_in();
+	if(get_lowest_stand_in().at(0) > max_min_stand_in){
+		max_min_stand_in = get_lowest_stand_in().at(0);
 	}
 	
 	//***Print results to file***
 	print_weekends_assigned(stream); //lib_per_rot[w], ass_per_rot[w]
 	print_stand_ins(stream); //Stand-ins for each week
-	stream << "Max(min stand-in) for this solution is: " << get_lowest_stand_in() << endl;
+	stream << "Max(min stand-in) for this solution is: " << get_lowest_stand_in().at(0) << endl;
 	stream << "Total number of stand-ins: " << get_sum_stand_ins() << endl;
 	
 	total_eval_cost = demand_tot_cost + demand_lib_cost + demand_ass_cost + demand_PL_cost + demand_HB_cost + demand_evening_cost + PL_amount_cost + no_weekend_cost;
@@ -1547,7 +1544,7 @@ vector<int> Library::evaluate_solution(ostream& stream){//Add all costs together
 	output_vector.push_back(total_eval_cost+total_stand_in_cost);
 	output_vector.push_back(total_eval_cost);
 	output_vector.push_back(get_sum_stand_ins());
-	output_vector.push_back(get_lowest_stand_in());
+	output_vector.push_back(get_lowest_stand_in().at(0));
 	output_vector.push_back(demand_tot_cost);
 	output_vector.push_back(demand_lib_cost);
 	output_vector.push_back(demand_ass_cost);
@@ -1840,37 +1837,25 @@ int Library::get_sum_stand_ins(){ //Return a value with the total sum of stand-i
 	return total_stand_in_amount;
 }
 
-int Library::get_lowest_stand_in(){ //Find the lowest number of stand-ins out of all 25 days
+vector<int> Library::get_lowest_stand_in(){ //Find the lowest number of stand-ins out of all 25 days
 	calculate_stand_ins();
-	int lowest_stand_in_amount = 99; //a high default value
+	vector<int> lowest_stand_in_amount;
+	lowest_stand_in_amount.push_back(99); //a high default value
+	lowest_stand_in_amount.push_back(0);
+	lowest_stand_in_amount.push_back(0);
 	for(int w=0; w<NUM_WEEKS; w++){
 		for(int d=0; d<NUM_DAYS-2; d++){
-			if(stand_in_amount[w][d] < lowest_stand_in_amount){
-				lowest_stand_in_amount = stand_in_amount[w][d];
+			if(stand_in_amount[w][d] < lowest_stand_in_amount.at(0)){
+				lowest_stand_in_amount.at(0) = stand_in_amount[w][d];
+				lowest_stand_in_amount.at(1) = lib_stand_in_amount[w][d];
+				lowest_stand_in_amount.at(2) = ass_stand_in_amount[w][d];
 			}
 		}
 	}
 	return lowest_stand_in_amount;
 }
 
-// void Library::print_results(ostream& stream, int lower_limit, int upper_limit, int demand_tot_cost, int demand_lib_cost, int demand_ass_cost, int demand_PL_cost){
-// // 	stream << "lower limit for worker " << i+1 << ": " << lower_limit - myworkers[i].get_num_PL_assigned() << " too few" << endl;
-// // 	stream << "upper limit for worker " << i+1 << ": " <<  myworkers[i].get_num_PL_assigned() - upper_limit << " too many" << endl;
-// 	stream << "Max(min stand-in) for this solution is: " << get_lowest_stand_in() << endl;
-// 	stream << "Total number of stand-ins: " << get_sum_stand_ins() << endl;
-// 	stream << "demand_tot_cost = " << demand_tot_cost << endl;
-// 	stream << "demand_lib_cost (too few or too many) = " << demand_lib_cost << endl;
-// 	stream << "demand_ass_cost = " << demand_ass_cost << endl;
-// 	stream << "demand_PL_cost = " << demand_PL_cost << endl;
-// 	stream << "demand_HB_cost = " << demand_HB_cost << endl;
-// 	stream << "demand_evening_cost = " << demand_evening_cost << endl;
-// 	stream << "demand_weekend_cost = " << demand_weekend_cost << endl;
-// 	stream << "PL_amount_cost = " << PL_amount_cost << endl;
-// 	stream << "no_weekend_cost = " << no_weekend_cost << endl;
-// 	stream << "\ntotal_eval_cost = " << total_eval_cost << endl;
-// 	stream << "total_stand_in_cost = " << total_stand_in_cost << endl;
-// 	stream << "*total_cost* = " << total_eval_cost + total_stand_in_cost << endl;
-// }
+
 
 
 

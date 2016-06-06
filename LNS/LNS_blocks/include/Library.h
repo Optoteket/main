@@ -113,7 +113,7 @@ public:
 	void calculate_stand_ins();
 	void print_stand_ins(ostream&);
 	int get_sum_stand_ins();
-	int get_lowest_stand_in();
+	vector<int> get_lowest_stand_in();
 	int get_num_stand_ins(int, int);
 	
 	void find_lowest_cost_in_vector(string, int);
