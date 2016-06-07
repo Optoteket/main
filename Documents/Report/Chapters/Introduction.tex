@@ -3,13 +3,13 @@
 \section{Background}
 
 
-At a library, bad work distribution among staff can cause problems and result in a shortage of staff at certain critical shifts. If a worker becomes unavailable at such shifts, due to for example illness, a qualified stand in is required to fill the vacancy. Therefore, it is of high priority to libraries and other similar institutions to create schedules with as many skilled stand ins as possible in order to handle such unexpected disturbances. 
+At a library, bad work distribution among staff can cause problems and result in a shortage of staff at certain critical shifts. If a worker becomes unavailable at such shifts, due to for example illness, a qualified stand-in is required to fill the vacancy. Therefore, it is of high priority to libraries and other similar institutions to create schedules with as many skilled stand-ins as possible in order to handle such unexpected disturbances. 
 
 The problem addressed in this thesis work concerns the library staff at the Central Library of Norrköping. The library currently has 39 employees and the renown building from the 1950's is a central gathering point in Norrköping. The library is open weekdays from eight to eight and from eleven to four during weekends. The generous opening times also creates a scheduling challenge for the library as it requires a large pool of well coordinated personnel to keep the library open. In addition, the library also provides its services to one other smaller library, which adds further complexity to the problem of task distribution among staff.
 
 \section{Problem description}
 
-The problem studied involves creating a ten week task distribution for all workers with a high number of stand ins at all days. We were given the workers' individual availability schedules, the staffing demand at different tasks, shifts, days and weeks and the constraints and demands discussed in this section. 
+The problem studied involves creating a ten week task distribution for all workers with a high number of stand-ins at all days. We were given the workers' individual availability schedules, the staffing demand at different tasks, shifts, days and weeks and the constraints and demands discussed in this section. 
 
 \subsection{Description of the daily tasks at the library} \label{section:library_tasks}
 The highest priority at a library, as with any service institution, is the provision of good service to visitors. This includes providing book loan services as well as being able to give visitors helpful information about the resources at disposal at the library. This type of work is referred to as "outer tasks" in this thesis. In addition to these, "inner tasks" such as sorting books, ordering new books and answering emails also exist and are equally a part of the every day library tasks. The problem of allocating the outer tasks, while taking inner tasks into consideration, is studied in this thesis.
@@ -46,40 +46,40 @@ Three main outer task types can be identified at the library of Norrköping; wor
 
 \begin{table}[ht]
 \centering
-\caption{Worker demand during a week. PL is marked as one shift, but is performed during a whole day.}
+\caption{Worker demand during a week. PL is marked as one shift, but is performed during the whole day.}
 \label{tab:Outer_Task_Demand}
 \begin{tabular}{|C{1.2cm}
 |C{1cm}|C{1cm}|C{1cm}|C{1cm}|}
 \hline
 \rowcolor{Gray} & Exp & Info & PL & HB  \\ \hline
-\multicolumn{5}{|l|}{\colcelltwo Monday } \\ \hline
+\multicolumn{5}{|l|}{\cellcolor{gray!90} Monday } \\ \hline
 \colcell Shift 1: & 2 & 2 & 1 & 0  \\ \hline
 \colcell Shift 2: & 3 & 3 & 0 & 0  \\ \hline
 \colcell Shift 3: & 3 & 3 & 0 & 0  \\ \hline
 \colcell Shift 4: & 3 & 3 & 0 & 0  \\ \hline
-\multicolumn{5}{|l|}{\colcelltwo Tuesday } \\ \hline
+\multicolumn{5}{|l|}{\cellcolor{gray!90} Tuesday } \\ \hline
 \colcell Shift 1: & 2 & 2 & 1 & 0  \\ \hline
 \colcell Shift 2: & 3 & 3 & 0 & 0  \\ \hline
 \colcell Shift 3: & 3 & 3 & 0 & 0  \\ \hline
 \colcell Shift 4: & 3 & 3 & 0 & 0  \\ \hline
-\multicolumn{5}{|l|}{\colcelltwo Wednesday } \\ \hline
+\multicolumn{5}{|l|}{\cellcolor{gray!90} Wednesday } \\ \hline
 \colcell Shift 1: & 2 & 2 & 1 & 0  \\ \hline
 \colcell Shift 2: & 3 & 3 & 0 & 0  \\ \hline
 \colcell Shift 3: & 3 & 3 & 0 & 0 \\ \hline
 \colcell Shift 4: & 3 & 3 & 0 & 0 \\ \hline
-\multicolumn{5}{|l|}{\colcelltwo Thursday } \\ \hline
+\multicolumn{5}{|l|}{\cellcolor{gray!90} Thursday } \\ \hline
 \colcell Shift 1: & 2 & 2 & 1 & 0  \\ \hline
 \colcell Shift 2: & 3 & 3 & 0 & 0  \\ \hline
 \colcell Shift 3: & 3 & 3 & 0 & 0  \\ \hline
 \colcell Shift 4: & 3 & 3 & 0 & 0  \\ \hline
-\multicolumn{5}{|l|}{\colcelltwo Friday } \\ \hline
+\multicolumn{5}{|l|}{\cellcolor{gray!90} Friday } \\ \hline
 \colcell Shift 1: & 2 & 2 & 1 & 0  \\ \hline
 \colcell Shift 2: & 3 & 3 & 0 & 0  \\ \hline
 \colcell Shift 3: & 3 & 3 & 0 & 0  \\ \hline
 \colcell Shift 4: & 3 & 3 & 0 & 0  \\ \hline
-\multicolumn{5}{|l|}{\colcelltwo Saturday } \\ \hline
+\multicolumn{5}{|l|}{\cellcolor{gray!90} Saturday } \\ \hline
 \colcell Shift 1: & 3 & 3 & 0 & 1  \\ \hline
-\multicolumn{5}{|l|}{\colcelltwo Sunday } \\ \hline
+\multicolumn{5}{|l|}{\cellcolor{gray!90} Sunday } \\ \hline
 \colcell Shift 1: & 3 & 3 & 0 & 1  \\ \hline
  \end{tabular}
 \end{table}
@@ -294,7 +294,7 @@ Considering again the sample worker's schedule in Table \ref{tab:Bob_avail}, the
 
 \subsection{Scheduling objectives: stand-in maximization and schedule variation}
 
-When we first were presented with the scheduling task, it was explained to us that the main challenge for the library is to find a good number stand ins for all days. When we studied their schedule, we observed that only one stand in was present at the worst day. Thus, the main objective of this thesis work is to create a feasible schedule, according to the constraints explained in this section, with as many stand ins as possible at the day with the least number of stand ins.
+When we first were presented with the scheduling task, it was explained to us that the main challenge for the library is to find a good number stand-ins for all days. When we studied their schedule, we observed that only one stand-in was present at the worst day. Thus, the main objective of this thesis work is to create a feasible schedule, according to the constraints explained in this section, with as many stand-ins as possible at the day with the least number of stand-ins.
 
 In this context, a stand-in is defined as a worker who is available for outer tasks during the first three shifts and who is not scheduled for any shift that day. Both librarians and assistants can be considered as a stand-in, but only librarians are qualified to be assigned to any task. Since the regular hour library activities are most crucial, there is no need for stand-ins during evenings and weekends. Similarly, there are no assigned stand-ins for the Library on Wheels or for Hageby.
 
