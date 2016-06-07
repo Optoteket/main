@@ -58,20 +58,36 @@ The first six weights, belonging to the weekend objective function, were most ex
 
 The individual worker weights and the worker objective function weights are identical in the table since they, relative to each other, decide what soft constraints are most strict. It is, for example more severe to break the rule of one task per day, than to break the rule of having too many shifts at the same time in a week, which is reflected in the weights. Also, in accordance with weights $W_{lib} = 2$ and $W_{ass} = 1$, the stand in cost for librarians is twice the cost of an assistant.
 
-As was argued in Chapter \ref{chap:taskdist}, the critical part of the problem was thought to be the weekend placement part, leading to the implemented two-phase algorithm. Both phases are run a specified number of iterations, referred to as $It_{wend}$ and $It_{wday}$. These parameters were also trimmed and the results from different combination are displayed in Tables \ref and \ref{}. 
+As was argued in Chapter \ref{chap:taskdist}, the critical part of the problem was thought to be the weekend placement part, leading to the implemented two-phase algorithm. Both phases are run a specified number of iterations, referred to as $It_{wend}$ and $It_{wday}$. These parameters were also trimmed and the results from different combination are displayed in Tables \ref{tab:taskdist_res} and \ref{tab:taskdist_weights_res}. 
 
 \begin{table}[!h]
 \centering
 \label{tab:taskdist_res}
 \caption{Results from the task distribution heuristic. Weights form Table \ref{tab:tasks_weight}}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\rowcolor{Gray} \textbf{$It_{wend}/It_{wday}$} &  \textbf{Heuristic cost} &  \textbf{AMPL cost} & \textbf{$\rho_{O\_A}$} \\ \hline
+\cellcolor{Gray} \textbf{100/20} & \multicolumn{1}{c|}{5.22} & \multicolumn{1}{c|}{5.48} & 0.58 \\
+\cellcolor{Gray} \textbf{500/20} & \multicolumn{1}{c|}{5.64} & \multicolumn{1}{c|}{5.74} & -0.20 \\
+\cellcolor{Gray} \textbf{1000/10} & \multicolumn{1}{c|}{5.54} & \multicolumn{1}{c|}{5.66} & 0.03 \\
+\cellcolor{Gray} \textbf{1000/20} & \multicolumn{1}{c|}{5.57} & \multicolumn{1}{c|}{5.80} & 0.08 \\
+\cellcolor{Gray} \textbf{1000/30} & \multicolumn{1}{c|}{5.50} & \multicolumn{1}{c|}{5.68} & -0.06 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\label{tab:taskdist_weights_res}
+\caption{Results from the task distribution heuristic when varying weights. All runs with $It_{wend} = 1000$ and $It_{wday} = 20$.}
 \begin{tabular}{|l|l|l|}
 \hline
-\rowcolor{Gray} \textbf{$It_{wend}/It_{wday}$} &  \textbf{Heuristic cost} &  \textbf{AMPL cost} \\ \hline
-\cellcolor{Gray} \textbf{100/20} & \multicolumn{1}{c|}{5.22} & \multicolumn{1}{c|}{5.48}  \\
-\cellcolor{Gray} \textbf{500/20} & \multicolumn{1}{c|}{5.64} & \multicolumn{1}{c|}{5.74}  \\
-\cellcolor{Gray} \textbf{1000/10} & \multicolumn{1}{c|}{5.54} & \multicolumn{1}{c|}{5.66}  \\
-\cellcolor{Gray} \textbf{1000/20} & \multicolumn{1}{c|}{5.57} & \multicolumn{1}{c|}{5.8}  \\
-\cellcolor{Gray} \textbf{1000/30} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{5.68}  \\
+\rowcolor{Gray} \textbf{$W_{SI\_m}/W_{S\_m}/W_{D\_m}$} & \textbf{Heuristic cost} &  \textbf{AMPL cost} \\ \hline
+\cellcolor{Gray} 0/0/0 & \multicolumn{1}{c|}{2.85} & \multicolumn{1}{c|}{3.66}  \\
+\cellcolor{Gray} 1/1/1 & \multicolumn{1}{c|}{5.43} & \multicolumn{1}{c|}{5.54}  \\
+\cellcolor{Gray} 10/1/1 & \multicolumn{1}{c|}{5.11} & \multicolumn{1}{c|}{5.36}  \\
+\cellcolor{Gray} 1/10/1 & \multicolumn{1}{c|}{5.43} & \multicolumn{1}{c|}{5.60}  \\
+\cellcolor{Gray} 1/1/10 & \multicolumn{1}{c|}{5.57} & \multicolumn{1}{c|}{5.80} \\
 \hline
 \end{tabular}
 \end{table}
