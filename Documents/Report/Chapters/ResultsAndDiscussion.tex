@@ -66,10 +66,47 @@ Stand\_in\_cost                     & 5     \\ \hline
 
 Worth noting is that these values are most certainly not optimal as they have mostly been assigned using intuition. However, a few relations were determined by either running some tests or using reason. An example is either if $PL\_good\_cost > Demand\_PL\_good\_ass$ or $PL\_good\_cost > Demand\_PL\_good\_lib$. If so, all workers that can be assigned another PL will be, leaving the library overstaffed with PL workers. The reason is because the net of $-PL\_good\_cost + Demand\_PL\_good\_ass/lib$ will be negative meaning it is a preferable insertion even though the library will be overstaffed.
 
-Table \ref{successful_runs} shows the amount of successful runs after 200 iterations.
+Table \ref{successful_iter} shows the amount of successful iterations on a run. This run is using the same cost parameters shown in Table \ref{tab:cost_parameters}. 
+\begin{table}[!h]
+\centering
+\caption{Amount of successful iterations}
+\label{successful_iter}
+\begin{tabular}{|c|c|}
+\hline
+Successful iterations         & 420      \\ \hline
+Iterations (total) & 638      \\ \hline
+\%                 & $\sim$66 \\ \hline
+\end{tabular}
+\end{table}
 
-Based on x successful runs the average objective function is: . 
+Based on the same data as in Table \ref{successful_iter} the average stand-in value per iteration can be calculated. It is seen in Table \ref{tab:average_stand_ins}.
+\begin{table}[!h]
+\centering
+\caption{Average stand-in value per iteration}
+\label{tab:average_stand_ins}
+\begin{tabular}{|c|c|}
+\hline
+Stand-in value & 105      \\ \hline
+Number of iterations         & 420      \\ \hline
+Average stand-in value      & 0.25 \\ \hline
+\end{tabular}
+\end{table}
+A librarian is multiplied by a factor two and an assistant is multiplied by a factor one.
 
+Having an average stand-in value of 0.25 means that most of the times no stand-ins are found. About once every fourth or once every eighth iteration was an assistant or librarian found respectively during the run. Table \ref{tab:stand_in_spread} shows statistics of how many stand-ins were found after 420 successful iterations. 
+\begin{table}[!h]
+\centering
+\caption{Amount of stand-ins found after 420 successful iterations.}
+\label{tab:stand_in_spread}
+\begin{tabular}{|c|c|}
+\hline
+\rowcolor[HTML]{D2D2D2} 
+Stand-in spread & Times \\ \hline
+No stand-ins    & 351                      \\ \hline
+1 assistant     & 33                      \\ \hline
+1 librarian 	& 36 \\ \hline
+\end{tabular}
+\end{table}
 
 
 %\includegraphics[scale = 0.3, width = 15cm]{Rplot}

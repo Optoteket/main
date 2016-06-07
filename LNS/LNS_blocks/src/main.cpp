@@ -370,7 +370,7 @@ void loop(ostream& outrunvalues, ostream& outstandinsperiter, ostream& outobjval
 						outrunvalues << "Solution found after " << time << " seconds and " << iter_counter << " iterations" << endl;
 						outrunvalues << "Worst number of stand-ins: " << lib.get_lowest_stand_in().at(0) << " (" << lib.get_lowest_stand_in().at(1) << "/" << lib.get_lowest_stand_in().at(2) << ")" << endl;
 						outstandinsperiter << lib.get_lowest_stand_in().at(0) << " (" << lib.get_lowest_stand_in().at(1) << "/" << lib.get_lowest_stand_in().at(2) << ")" << endl;
-						outobjvalueperiter << lib.get_lowest_stand_in().at(1)*2 + lib.get_lowest_stand_in().at(2)*1) << endl;
+						outobjvalueperiter << lib.get_lowest_stand_in().at(1)*2 + lib.get_lowest_stand_in().at(2)*1 << endl;
 						
 						
 // 						lib.print_stand_ins(outrunvalues);
