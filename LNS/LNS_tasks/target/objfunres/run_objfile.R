@@ -1,5 +1,5 @@
-res <- read.csv("obj_func_vals_.csv", header=TRUE, sep=",")
-#res <- read.csv("obj_func_vals_2016_5_18 23:20:28.csv", header=TRUE, sep=",")
+res <- read.csv("obj_func_vals_temp.csv", header=TRUE, sep=",")
+
 x <- res[,1]
 y1 <- res[,2]
 y2 <- res[,3]
@@ -16,12 +16,12 @@ g_range <- range(y1)
 plot(y1, type="l", col="blue", ylim=g_range, axes=FALSE, ann=FALSE)
 axis(1, at=seq(0,length(x)+100,50))
 box()
-axis(2, las=1, lty=2, at=seq(g_range[1],g_range[2]+5))
+#axis(2, las=1, lty=2, at=seq(g_range[1],g_range[2]+5))
 
 #Lines
-lines(y2, lty=1, col="red")
-lines(y3, lty=1, col="green")
-lines(y4, lty=1, col="purple")
+#lines(y2, lty=1, col="red")
+#lines(y3, lty=1, col="green")
+#lines(y4, lty=1, col="purple")
 #lines(y3, lty=1, col="green")
 #lines(y4, lty=1, col="purple")
 

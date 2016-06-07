@@ -254,3 +254,5 @@ Worst number of stand-ins: 0 (0/0)
 Solution found after 70.23 seconds and 381 iterations
 Worst number of stand-ins: 1 (1/0)
 *** Iteration 95 ***
+No solution found after 1000 iterations
+*** Iteration 96 ***

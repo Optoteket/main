@@ -167,10 +167,10 @@ int main(int argc, char** argv)
   library_costs.clear();
 
   int max_loops = 100;
-  int num_tests = 1;
+  int num_tests = 5;
   double weights[3];
-  int wend_iterations = 500;
-  int wday_iterations = 20;
+  int wend_iterations = 1000;
+  int wday_iterations = 30;
 
   //AMPL loop
   for(int loop=0; loop < max_loops*num_tests; loop++){
@@ -188,9 +188,10 @@ int main(int argc, char** argv)
       weights[2]/=sum;
     }
     else if(loop < max_loops*2){
+      wday_iterations = 20;
       weights[0]=1; //Min number of full time avail workers/day
       weights[1]=1; //Min number of avail workers per shift
-      weights[2]=10; //Min number of avail workers a day
+      weights[2]=1; //Min number of avail workers a day
 
       //Normalizing
       double sum =  weights[0] +  weights[1] +  weights[2];
@@ -199,9 +200,9 @@ int main(int argc, char** argv)
       weights[2]/=sum;
     }
     else if(loop < max_loops*3){
-      weights[0]=1; //Min number of full time avail workers/day
-      weights[1]=1; //Min number of avail workers per shift
-      weights[2]=100; //Min number of avail workers a day
+      weights[0]=10; //Min number of full time avail workers/day
+      weights[1]=0.1; //Min number of avail workers per shift
+      weights[2]=0.1; //Min number of avail workers a day
 
       //Normalizing
       double sum =  weights[0] +  weights[1] +  weights[2];
@@ -210,9 +211,9 @@ int main(int argc, char** argv)
       weights[2]/=sum;
     }
     else if(loop < max_loops*4){
-      weights[0]=10; //Min number of full time avail workers/day
+      weights[0]=0.1; //Min number of full time avail workers/day
       weights[1]=10; //Min number of avail workers per shift
-      weights[2]=10; //Min number of avail workers a day
+      weights[2]=0.1; //Min number of avail workers a day
 
       //Normalizing
       double sum =  weights[0] +  weights[1] +  weights[2];
@@ -278,7 +279,14 @@ int main(int argc, char** argv)
     library.optimize_weekday_tasks(wday_iterations);
 
     //5. Get objective function varibles
-    double library_cost = library.get_library_wend_cost();
+    double library_cost=0;
+    //Only record feasible solutions
+    if(library.get_library_cost() != -1){
+      library_cost = library.get_library_wend_cost();
+    }
+    else {
+      library_cost = library.get_library_cost();
+    }
     library_costs.push_back(library_cost);
     double cost_stand_in = library.get_stand_in_cost();
     library_costs.push_back(cost_stand_in);
@@ -334,8 +342,8 @@ int main(int argc, char** argv)
 	}
 	else tot_cost += 2*min_lib[i] + min_ass[i];
       }
-      cout << endl << "Average cost:" << tot_cost/divisor << endl;
-      wend_AMPL_file << endl << "Average cost:" << tot_cost/divisor << endl << endl;
+      cout << endl << "Average AMPL cost:" << tot_cost/divisor << endl;
+      wend_AMPL_file << endl << "Average AMPL cost:" << tot_cost/divisor << endl << endl;
       
       //Clear variables
       infeasible_count = 0;

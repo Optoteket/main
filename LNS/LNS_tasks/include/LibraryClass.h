@@ -194,6 +194,7 @@ class Library{
   int get_demand(int, int, int, int);
   int get_current_demand(int, int, int, int);
   double get_library_wend_cost() const;
+  double get_library_cost() const;
   double get_stand_in_cost() const;
   double get_shift_avail_cost() const;
   double get_day_avail_cost() const;

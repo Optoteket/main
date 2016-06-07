@@ -164,12 +164,12 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
   weekend_day_avail_cost.clear();
   weekend_shift_avail_cost.clear();
   weekend_stand_in_cost.clear();
-  weekend_stand_in_cost_lib.clear();
-  weekend_stand_in_cost_ass.clear();
+  //weekend_stand_in_cost_lib.clear();
+  //weekend_stand_in_cost_ass.clear();
 
-  //weekend_day_avail_average_cost.clear();
-  //weekend_shift_avail_average_cost.clear();
-  //weekend_stand_in_average_cost.clear();
+  weekend_day_avail_average_cost.clear();
+  weekend_shift_avail_average_cost.clear();
+  weekend_stand_in_average_cost.clear();
 
   //Destroy and repair all weekends
   bool feasible = false;
@@ -344,11 +344,11 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
     weekend_stand_in_cost.push_back(stand_in_cost);
     weekend_shift_avail_cost.push_back(shift_avail_cost);
     weekend_day_avail_cost.push_back(day_avail_cost);
-    weekend_stand_in_cost_lib.push_back(min_stand_in[Lib]);
-    weekend_stand_in_cost_ass.push_back(min_stand_in[Ass]);
-    //weekend_day_avail_average_cost.push_back(day_avail_average);
-    //weekend_shift_avail_average_cost.push_back(shift_avail_average);
-    //weekend_stand_in_average_cost.push_back(stand_in_average);
+    //weekend_stand_in_cost_lib.push_back(min_stand_in[Lib]);
+    //weekend_stand_in_cost_ass.push_back(min_stand_in[Ass]);
+    weekend_day_avail_average_cost.push_back(day_avail_average);
+    weekend_shift_avail_average_cost.push_back(shift_avail_average);
+    weekend_stand_in_average_cost.push_back(stand_in_average);
     
     cerr << "Stand in cost: " << stand_in_cost << endl;
     cerr << "Shift avail cost: " << shift_avail_cost << endl;
@@ -370,11 +370,11 @@ void Library::optimize_weekends(int iterations, int percent, double weights[3]){
     weekend_stand_in_cost.push_back(stand_in_cost);
     weekend_shift_avail_cost.push_back(shift_avail_cost);
     weekend_day_avail_cost.push_back(day_avail_cost);
-    weekend_stand_in_cost_lib.push_back(min_stand_in[Lib]);
-    weekend_stand_in_cost_ass.push_back(min_stand_in[Ass]);
-    //weekend_day_avail_average_cost.push_back(day_avail_average);
-    //weekend_shift_avail_average_cost.push_back(shift_avail_average);
-    //weekend_stand_in_average_cost.push_back(stand_in_average);
+    //weekend_stand_in_cost_lib.push_back(min_stand_in[Lib]);
+    //weekend_stand_in_cost_ass.push_back(min_stand_in[Ass]);
+    weekend_day_avail_average_cost.push_back(day_avail_average);
+    weekend_shift_avail_average_cost.push_back(shift_avail_average);
+    weekend_stand_in_average_cost.push_back(stand_in_average);
     
 
     //Reset current demand
@@ -2251,7 +2251,7 @@ void Library::write_stat(){
   stringstream stat_file2_path;
   stat_file2_path << stat_file_dir << "statistics/statfile2" << ".csv"; 
   stringstream objective_file_path;
-  objective_file_path << stat_file_dir << "objfunres/obj_func_vals_" << ".csv"; 
+  objective_file_path << stat_file_dir << "objfunres/obj_func_vals" << ".csv"; 
 
   // ofstream stat_file(stat_file_path.str().c_str());
   // int count = 0;
@@ -2297,12 +2297,12 @@ void Library::write_stat(){
 	       << weekend_stand_in_cost[i] << "," 
 	       << weekend_shift_avail_cost[i] << "," 
 	       << weekend_day_avail_cost[i] << ","
-	       << weekend_stand_in_cost_lib[i] << "," 
-	       << weekend_stand_in_cost_ass[i] 
+	//     << weekend_stand_in_cost_lib[i] << "," 
+	//<< weekend_stand_in_cost_ass[i] 
 	//<< ","
-	//<< weekend_stand_in_average_cost[i] << ","
-	//     << weekend_shift_avail_average_cost[i] << ","
-	//     << weekend_day_avail_average_cost[i] 
+	<< weekend_stand_in_average_cost[i] << ","
+	     << weekend_shift_avail_average_cost[i] << ","
+	     << weekend_day_avail_average_cost[i] 
 	       << endl;
     }
   }
@@ -2719,6 +2719,10 @@ int Library::get_current_demand(int week, int day, int shift, int task){
 
 double Library::get_library_wend_cost() const{
   return library_wend_cost;
+}
+
+double Library::get_library_cost() const{
+  return library_cost;
 }
 
 double Library::get_stand_in_cost() const{
