@@ -2712,3 +2712,29 @@ No solution found after 1000 iterations
 Solution found after 103371 seconds and 103 iterations
 Worst number of stand-ins: 1 (1/0)
 *** Iteration 1026 ***
+No solution found after 1000 iterations
+*** Iteration 1027 ***
+Solution found after 103574 seconds and 56 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1028 ***
+Solution found after 103630 seconds and 80 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1029 ***
+No solution found after 1000 iterations
+*** Iteration 1030 ***
+Solution found after 46.77 seconds and 73 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 1031 ***
+Solution found after 103921 seconds and 92 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1032 ***
+Solution found after 103902 seconds and 13 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1033 ***
+No solution found after 1000 iterations
+*** Iteration 1034 ***
+Solution found after 104131 seconds and 30 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1035 ***
+No solution found after 1000 iterations
+*** Iteration 1036 ***
