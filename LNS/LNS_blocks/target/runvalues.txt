@@ -2282,3 +2282,6 @@ No solution found after 1000 iterations
 *** Iteration 863 ***
 No solution found after 1000 iterations
 *** Iteration 864 ***
+Solution found after 218.19 seconds and 199 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 865 ***
