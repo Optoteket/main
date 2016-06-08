@@ -1,3 +1,5 @@
+
+
 \section{Results}
 In the following sections results will be presented for the AMPL implementation and for both of the heuristics. The parameter values used in the runs will also be presented. 
 
@@ -167,6 +169,37 @@ As was argued in Chapter \ref{chap:taskdist}, the critical part of the problem w
 
 \begin{table}[!h]
 \centering
+\label{tab:taskdist_res_new}
+\caption{Results from the task distribution heuristic. Weights form Table \ref{tab:tasks_weight}}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\rowcolor{Gray} \textbf{$It_{wend}/It_{wday}$} &  \textbf{Heuristic cost} &  \textbf{AMPL cost} & \textbf{$\rho_{O\_A}$} \\ \hline
+\cellcolor{Gray} \textbf{10/10} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \\
+\cellcolor{Gray} \textbf{50/10} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \\
+\cellcolor{Gray} \textbf{100/10} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \\
+\cellcolor{Gray} \textbf{500/10} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \\
+\cellcolor{Gray} \textbf{1000/10} & \multicolumn{1}{c|}{5.54} & \multicolumn{1}{c|}{5.66} & 0.03 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\label{tab:taskdist_res_new_2}
+\caption{Results from the task distribution heuristic. Weights form Table \ref{tab:tasks_weight}}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\rowcolor{Gray} \textbf{$It_{wend}/It_{wday}$} &  \textbf{Heuristic cost} &  \textbf{AMPL cost} & \textbf{$\rho_{O\_A}$} \\ \hline
+\cellcolor{Gray} \textbf{500/5} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} &  \\
+\cellcolor{Gray} \textbf{500/10} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} &  \\
+\cellcolor{Gray} \textbf{500/15} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} &  \\
+\cellcolor{Gray} \textbf{500/20} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} &  \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+\centering
 \label{tab:taskdist_weights_res}
 \caption{Results from the task distribution heuristic when varying weights. All runs with $It_{wend} = 1000$ and $It_{wday} = 20$.}
 \begin{tabular}{|l|l|l|}
@@ -174,9 +207,9 @@ As was argued in Chapter \ref{chap:taskdist}, the critical part of the problem w
 \rowcolor{Gray} \textbf{$W_{SI\_m}/W_{S\_m}/W_{D\_m}$} & \textbf{Heuristic cost} &  \textbf{AMPL cost} \\ \hline
 \cellcolor{Gray} 0/0/0 & \multicolumn{1}{c|}{2.85} & \multicolumn{1}{c|}{3.66}  \\
 \cellcolor{Gray} 1/1/1 & \multicolumn{1}{c|}{5.43} & \multicolumn{1}{c|}{5.54}  \\
-\cellcolor{Gray} 10/1/1 & \multicolumn{1}{c|}{5.11} & \multicolumn{1}{c|}{5.36}  \\
-\cellcolor{Gray} 1/10/1 & \multicolumn{1}{c|}{5.43} & \multicolumn{1}{c|}{5.60}  \\
-\cellcolor{Gray} 1/1/10 & \multicolumn{1}{c|}{5.57} & \multicolumn{1}{c|}{5.80} \\
+\cellcolor{Gray} 10/0.1/0.1 & \multicolumn{1}{c|}{5.11} & \multicolumn{1}{c|}{5.36}  \\
+\cellcolor{Gray} 0.1/10/0.1 & \multicolumn{1}{c|}{5.43} & \multicolumn{1}{c|}{5.60}  \\
+\cellcolor{Gray} 0.1/0.1/10 & \multicolumn{1}{c|}{5.57} & \multicolumn{1}{c|}{5.80} \\
 \hline
 \end{tabular}
 \end{table}
@@ -191,7 +224,6 @@ As was argued in Chapter \ref{chap:taskdist}, the critical part of the problem w
 
 The objective function value during a typical run is illustrated by Figure \ref{fig:obj_fun_vals}. The SA accpet function is visible, mainly as a large dive in the objective function value. After about half of the iterations, the SA accepts some deteriorating solutions, but mostly small ones.
 
->>>>>>> 3acb8311f01de353b66cb667458c31e9680b4aa6
 
 \begin{figure}[!h]
 \centering

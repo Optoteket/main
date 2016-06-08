@@ -13,60 +13,60 @@ solve;
 CPLEX 12.5.0.0: timing 1
 mipdisplay 2
 time = 237600
-MIP Presolve eliminated 65709 rows and 32355 columns.
-MIP Presolve modified 57954 coefficients.
-Reduced MIP has 12305 rows, 13012 columns, and 61143 nonzeros.
-Reduced MIP has 12820 binaries, 192 generals, 0 SOSs, and 0 indicators.
-Found incumbent of value -5.4400938e+07 after 0.32 sec. (464.71 ticks)
-Probing fixed 1447 vars, tightened 2 bounds.
-Probing changed sense of 45 constraints.
-Probing time = 0.03 sec. (14.28 ticks)
-Cover probing fixed 0 vars, tightened 3 bounds.
-MIP Presolve eliminated 4071 rows and 2399 columns.
-MIP Presolve modified 13 coefficients.
-Reduced MIP has 8005 rows, 10384 columns, and 36033 nonzeros.
-Reduced MIP has 10197 binaries, 187 generals, 0 SOSs, and 0 indicators.
-Probing fixed 0 vars, tightened 1 bounds.
-Probing time = 0.02 sec. (10.56 ticks)
-Clique table members: 16525.
+MIP Presolve eliminated 65331 rows and 32161 columns.
+MIP Presolve modified 57566 coefficients.
+Reduced MIP has 12680 rows, 13201 columns, and 63704 nonzeros.
+Reduced MIP has 13011 binaries, 190 generals, 0 SOSs, and 0 indicators.
+Found incumbent of value -5.4501245e+07 after 0.34 sec. (480.94 ticks)
+Probing fixed 1549 vars, tightened 1 bounds.
+Probing changed sense of 50 constraints.
+Probing time = 0.03 sec. (14.57 ticks)
+Cover probing fixed 0 vars, tightened 5 bounds.
+MIP Presolve eliminated 4405 rows and 2564 columns.
+MIP Presolve modified 17 coefficients.
+Reduced MIP has 8015 rows, 10377 columns, and 36018 nonzeros.
+Reduced MIP has 10193 binaries, 184 generals, 0 SOSs, and 0 indicators.
+Probing time = 0.02 sec. (10.49 ticks)
+Clique table members: 16993.
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
 Parallel mode: deterministic, using up to 8 threads.
-Root relaxation solution time = 0.13 sec. (98.26 ticks)
+Root relaxation solution time = 0.17 sec. (134.49 ticks)
 
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
 
-*     0+    0                      -5.44009e+07     2800.0000     3152  100.01%
-      0     0      200.0000    97  -5.44009e+07      200.0000     3152  100.00%
-*     0+    0                          200.0000      200.0000     3152    0.00%
-      0     0        cutoff            200.0000      200.0000     3152    0.00%
-Elapsed time = 0.78 sec. (925.22 ticks, tree = 0.00 MB)
+*     0+    0                      -5.45012e+07     2700.0000     3534  100.00%
+      0     0      599.0000   348  -5.45012e+07      599.0000     3534  100.00%
+*     0+    0                     -1999409.0000      599.0000     3534  100.03%
+*     0+    0                          599.0000      599.0000     3534    0.00%
+      0     0        cutoff            599.0000      599.0000     3534    0.00%
+Elapsed time = 0.97 sec. (981.88 ticks, tree = 0.00 MB)
 
 Root node processing (before b&c):
-  Real time             =    0.35 sec. (365.92 ticks)
+  Real time             =    0.51 sec. (406.22 ticks)
 Parallel b&c, 8 threads:
   Real time             =    0.00 sec. (0.00 ticks)
   Sync time (average)   =    0.00 sec.
   Wait time (average)   =    0.00 sec.
                           ------------
-Total (root+branch&cut) =    0.35 sec. (365.92 ticks)
+Total (root+branch&cut) =    0.51 sec. (406.22 ticks)
 
 Times (seconds):
-Input =  0.058991
-Solve =  1.3018
-Output = 0.044993
-CPLEX 12.5.0.0: optimal integer solution; objective 200
-3152 MIP simplex iterations
+Input =  0.06099
+Solve =  1.64875
+Output = 0.044994
+CPLEX 12.5.0.0: optimal integer solution; objective 599
+3534 MIP simplex iterations
 0 branch-and-bound nodes
 Tried aggregator 3 times
 option log_file '';
 display min_lib, min_ass;
-min_lib = 1
+min_lib = 3
 min_ass = 0
 
 printf "The same stand in objective function value occurs: %d times. \n\n", times_same_sol;
-The same stand in objective function value occurs: 5 times. 
+The same stand in objective function value occurs: 10 times. 
 
 display ax;
 ax :=

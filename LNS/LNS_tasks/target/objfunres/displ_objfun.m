@@ -25,6 +25,7 @@ R_S_D = corrcoef(S_D)
 close all
 
 figure
+subplot(3,1,1)
 plot(x,y)
 
 title('Weekend objective function value')
@@ -32,7 +33,7 @@ xlabel('Iterations')
 ylabel('Objective function value')
 legend('Objective function')
 
-figure
+subplot(3,1,2)
 plot(x,si_y,x,s_y,x,d_y)
 legend('Stand in min cost', 'Shift avail min cost', 'Day avail min cost')
 xlabel('Iterations')
@@ -40,7 +41,7 @@ ylabel('Objective function component value')
 title('Weekend objective function cost components - min values')
 
 
-figure
+subplot(3,1,3)
 plot(x,av_si_y,x,av_s_y,x,av_d_y)
 legend('Stand in aver cost', 'Shift avail aver cost', 'Day avail aver cost')
 xlabel('Iterations')
