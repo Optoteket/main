@@ -1,0 +1,230 @@
+\section{Sets}
+\itab{I} \tab{Set of workers}\\
+\itab{I\_lib} \tab{Set of librarians (I\_lib $\subseteq$ I)} \\
+\itab{I\_ass}	 \tab{Set of assistants (I\_ass $\subseteq$ I)}	\\
+\itab{W}                 \tab{Set of weeks}                                               \\
+\itab{$W_5$}	\tab{Set of first five weeks} \\
+\itab{D}                 \tab{Set of days in a week}                                      \\
+\itab{$D_5$}	\tab{Set of all five weekdays} \\
+\itab{$S_d$}           \tab{Set of shifts day \textit{d}}                                        \\
+\itab{$S_3$}           \tab{Set of first three shifts on a weekday}     \\
+\itab{$J_d$}            \tab{Set of task types day \textit{d}}                                    \\
+\itab{I\_LOW}	 \tab{Set of librarians available to work in library on wheels}	\\
+\itab{I\_free\_day}	 \tab{Set of workers that shall be assigned a free weekday per week}	\\
+\itab{I\_odd\_even}	 \tab{Set of all workers with odd or even weeks}	\\
+\itab{I\_weekend\_avail}	 \tab{Set of workers available for weekend work}	\\
+\itab{I\_big\_meeting}	 \tab{Set of all workers that attend big meetings}	\\
+\itab{I\_no\_PL}	 \tab{Set of workers not working on PL}	\\
+\itab{I\_weekend\_avail}	 \tab{Set of workers working 3-4 times PL in 10 weeks}	\\
+\itab{Dep}	 \tab{Set of departments}	\\
+\itab{I\_dep\{Dep\}}	 \tab{Set of workers in departments}	\\
+\itab{V}	 \tab{Set of possible week rotations (shift the week by 1-10 steps)}	\\
+
+
+\section{Variables} \label{variabs}
+\begin{align}
+    x_{iwdsj}&=
+    \begin{cases}
+      1, & \text{if worker \textit{i} is assigned in week \textit{w}, day \textit{d}, shift \textit{s} to a task \textit{j}}\\
+      0, & \text{otherwise}
+    \end{cases}
+    \\
+    H_{iwh}&=
+    \begin{cases}
+      1, & \text{if worker \textit{i} works weekend \textit{h} (= 1, 2) in week \textit{w}}\\
+      0, & \text{otherwise}
+    \end{cases}
+	\\
+	r_{iw}&=
+	\begin{cases}
+		1, & \text{if worker \textit{i} has its schedule rotated \textit{w-1} steps}\\
+		0, & \text{otherwise}
+	\end{cases}
+	\\
+	l_{iwd}&=
+	\begin{cases}
+	  1, & \text{if librarian \textit{i} is a stand-in week \textit{w}, day \textit{d}} \\
+	  0, & \text{otherwise}
+	\end{cases}
+	\\
+	a_{iwd}&=
+	\begin{cases}
+ 		1, & \text{if assistant \textit{i} is a stand-in week \textit{w}, day \textit{d}} \\
+ 		0, & \text{otherwise}
+	\end{cases}
+	\\
+	y_{iwds}&=
+	\begin{cases}
+ 		1, & \text{if worker \textit{i} works week \textit{w}, day \textit{d}, shift \textit{s} at task type E, I or P} \\
+ 		0, & \text{otherwise}
+	\end{cases}
+	\\
+	W_{iwd}&=
+	\begin{cases}
+	 	1, & \text{if a worker \textit{i} is working a shift week \textit{w}, day \textit{d}} \\
+	 	0, & \text{otherwise}
+	\end{cases}
+	\\
+	b_{iw}&=
+	\begin{cases}
+ 		1, & \text{if worker \textit{i} works at HB week \textit{w}} \\
+ 		0, & \text{otherwise}
+	\end{cases}
+	\\
+	f_{iw}&=
+	\begin{cases}
+ 		1, & \text{if worker \textit{i} is assigned to work friday evening week \textit{w}} \\
+ 		0, & \text{otherwise}
+	\end{cases}	
+	\\
+	M_{wds}&=
+	\begin{cases}
+	 	1, & \text{if a big meeting is placed on week \textit{w}, day \textit{d}, shift \textit{s}} \\
+	 	0, & \text{otherwise}
+	\end{cases}
+	\\
+	m_{wdsD}&=
+	\begin{cases}
+	 	1, & \text{if a meeting is placed on week \textit{w}, day \textit{d}, shift \textit{s} at department \textit{D}} \\
+	 	0, & \text{otherwise}
+	\end{cases}
+	\\
+	d_{iwds}&=
+	\begin{cases}
+	 	1, & \text{if there is a difference in assignment of tasks at a shift}\\
+	 		& \text{ \textit{s}, for a worker \textit{i}, day \textit{d} between week \textit{w} and \textit{w+5}} \\
+	 	0, & \text{otherwise}
+	\end{cases}
+	\\
+	l^{min}&= \text{lowest number of stand-in librarians found (integer)} \\
+	a^{min}&= \text{lowest number of stand-in assistants found (integer)} \\
+	s^{min}&= \text{weighted sum with number of stand-in librarians and assistants}.
+\end{align}
+
+
+
+\section{Parameters} \label{params}
+\begin{align}
+	N1l&= \text{a value to prioritize the amount of stand-in librarians}\\
+	N1a&= \text{a value to prioritize the amount of stand-in assistants}\\
+	N1&= \text{a value to prioritize total number of stand ins}\\
+	N2&= \text{a value to prioritize similar weeks}\\
+	avail\_day_{iwd}&=
+	\begin{cases}
+		1, & \text{if worker \textit{i} is available for work week \textit{w}, day \textit{d}} \\
+		0, & \text{otherwise}
+	\end{cases}\\
+	demand_{dsj}&= \text{number of workers required day \textit{d}, shift \textit{s} for task type \textit{j}}\\
+	qualavail_{iwdsj}&=
+	\begin{cases}
+		1, & \text{if worker \textit{i} is qualified and available week \textit{w}, day \textit{d}, shift \textit{s} for task type \textit{j}} \\
+		0, & \text{otherwise}
+	\end{cases}\\
+	LOW\_demand_{wds}&= \text{number of workers required day \textit{d}, shift \textit{s} at the library on wheels}
+\end{align}
+
+\section{Objective function and constraints} \label{app:constr}
+\begin{equation} \label{app:objfcn}
+maximize \hspace{0.3cm} M\cdot s^{min} - N \cdot \sum_{i \in I}\sum_{w \in 1..5}\sum_{d \in 1..5}\sum_{s \in 1..3} d_{iwds}
+\end{equation}
+
+\begin{equation}
+\sum_{i \in I} x_{iwdsj} = (1-M_{wds})demand_{dsj}, \; \forall w\in W,d\in 1..5,s\in S_d,j\in J_d\backslash \{L\}
+\end{equation}
+
+\begin{equation}
+\sum_{i \in I} x_{iwdsj} = demand_{dsj}, \; \forall w\in W,d\in 6..7,s\in S_d,j\in J_d
+\end{equation}
+
+\begin{equation}
+\sum_{i \in I} x_{iwdsL} = LOW\_demand_{wds}, \; \forall w\in W,d\in 1..5,s\in S_d
+\end{equation}
+
+\begin{equation}
+\sum_{d \in 1..5}\sum_{s \in S_d}\sum_{j in J_d} x_{iwdsj} \leq 4, \; \forall i\in I\backslash\{36\},w\in W
+\end{equation}
+
+\begin{equation}
+\sum_{w \in 1..5} M_{w11} = 1
+\end{equation}
+
+\begin{equation}
+M_{(w+5)11} = M_{w11}
+\end{equation}
+
+\begin{equation}
+\sum_{w \in W}\sum_{d \in 1..5}\sum_{s \in S_d} M_{wds} = 2
+\end{equation}
+
+\begin{equation}
+\sum_{s \in 2..3}\sum_{j \in J_d\backslash\{L\}} x_{iw1sj} \leq 1-M_{w11}, \; \forall i \in I\backslash I\_big, w \in W
+\end{equation}
+
+\begin{equation}
+\sum_{w \in 1..5}\sum_{d \in 1..5}\sum_{s \in 1..3} m_{wdsD} = 1, \; \forall D \in Dep
+\end{equation}
+
+\begin{equation}
+m_{(w+5)dsD} = m_{wdsD}, \; \forall D \in Dep, w \in 1..5, d \in 1..5, s \in 1..3
+\end{equation}
+
+\begin{equation}
+m_{wdsD} + x_{iwdsj} \leq 1, \; \forall D \in Dep, i \in I\_dep\{Dep\}, w \in W, d \in 1..5, s \in 1..3, j \in J_d
+\end{equation}
+
+\begin{equation}
+m_{wd2D} + m_{wd3D} + x_{iwd1P} \leq 1, \; \forall D \in Dep, i \in I\_dep\{Dep\}, w \in W, d \in 1..5, s \in 1..3
+\end{equation}
+
+\begin{equation}
+m_{wdsD} \leq \sum_{v \in V}r_{iv}\cdot qualavail_{i(mod_{10}(w-v+10)+1)dsE}, \; \forall D \in Dep, i \in I\_dep\{Dep\} \backslash \{39\}, w \in W, d \in 1..5, s \in 1..3
+\end{equation}
+
+\begin{equation}
+M_{w11} + \sum_{d \in 1..5}\sum_{s \in 1..3} m_{wdsD} \leq 1, \; \forall D \in Dep, i \in I\_big \cup I\_dep\{Dep\}, w \in W
+\end{equation}
+
+\begin{equation}
+\sum_{j \in J_d} x_{iwdsj} \leq 1, \; \forall i \in I, w \in W, d \in D, s \in S_d
+\end{equation}
+
+\begin{equation}
+\sum_{s \in S_d}\sum_{j \in J_d\backslash \{L\}} x_{iwdsj} \leq 1 - x_{iwds_2L}, \; \forall i \in I, w \in W, d \in 1..4, s_2 \in S_d
+\end{equation}
+
+\begin{equation}
+\sum_{s \in S_5}\sum_{j \in J_d\backslash \{L\}} x_{iw5sj} \leq 1, \; \forall i \in I, w \in W
+\end{equation}
+
+\begin{equation}
+\sum_{j \in J_d\backslash \{L\}} x_{iw5sj} \leq 1 - x_{iw51L}, \; \forall i \in I, w \in W, s \in 1..3
+\end{equation}
+
+\begin{equation}
+\sum_{s \in S_d}\sum_{j \in J_d} x_{iwdsj} \leq 1, \; \forall i \in I, w \in W, d \in 6..7
+\end{equation}
+
+\begin{equation}
+\sum_{d \in 1..4}\sum_{j \in J_d} x_{iwd4j} \leq 1, \; \forall i \in I \backslash \{36\}, w \in W
+\end{equation}
+
+%#Allowing a worker i to only work with 'Plocklistan' once per week
+%subject to max_one_PL_per_week{i in I, w in W}:
+%	sum{d in 1..5} x[i,w,d,1,'PL'] <= 1;
+%
+%#Not working at PL
+%subject to no_work_on_PL{i in I_no_PL, w in W, d in 1..5, s in S[d]}:
+%	x[i,w,d,s,'PL'] = 0;
+%
+%	
+%#Working many times at PL, min 3
+%#subject to many_work_on_PL_min{i in I_many_PL}:
+%#	sum{w in W}(sum{d in 1..5} x[i,w,d,1,'PL']) >= 3;
+%
+%#Working many times at PL, max 4
+%subject to many_work_on_PL_max{i in I_many_PL}:
+%	sum{w in W}(sum{d in 1..5} x[i,w,d,1,'PL']) <= 4;
+%
+%#Working regular num times at PL, max 3
+%subject to regular_work_on_PL_max{i in I diff I_no_PL diff I_many_PL}:
+%	sum{w in W}(sum{d in 1..5}x[i,w,d,1,'PL']) <= 3;

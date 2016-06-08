@@ -1,5 +1,3 @@
-
-
 \section{Results}
 In the following sections results will be presented for the AMPL implementation and for both of the heuristics. The parameter values used in the runs will also be presented. 
 
@@ -21,20 +19,20 @@ Implementing the model in AMPL and running the model in CPLEX 12.5 gives the res
 
 These results can be used as benchmark in the heuristics as CPLEX returns an optimal solution. 
 
-\subsection{Weekly scheduling approach}
+\subsection{Week block scheduling approach}
 As most of the costs are correlated with each other some parameter tuning has been required. The final result of the parameter tuning can be seen in Table \ref{tab:cost_parameters}. Their respective descriptions can be seen in Table \ref{tab:all_costs}. 
 
 \begin{table}[!h]
 \centering
-\caption{List of all costs used in weekly scheduling approach and their respective values.}
+\caption{List of all costs used in week block scheduling approach and their respective values.}
 \label{tab:cost_parameters}
-\begin{tabular}{|l|l|}
+\begin{tabular}{|c|c|}
 \hline
 \rowcolor[HTML]{FD6864} 
 \multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Demand costs}} \\ \hline
 %\multicolumn{2}{|c|}{\cellcolor[HTML]{FD6864}Demand costs}    \\ \hline
 \rowcolor[HTML]{C0C0C0} 
-Cost name                                      & Value       \\ \hline
+Cost name                                      & Cost value       \\ \hline
 Demand\_few\_ass                        & 350         \\ \hline
 Demand\_few\_lib                        & 300         \\ \hline
 Demand\_many\_ass                       & 200         \\ \hline
@@ -49,19 +47,19 @@ Demand\_PL\_bad\_lib         & 1,600             \\ \hline
 \rowcolor[HTML]{FD6864} 
 \multicolumn{2}{|l|}{\cellcolor{corn} \textbf{PL amount costs}} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
-Cost name                                      & Value       \\ \hline
+Cost name                                      & Cost value       \\ \hline
 PL\_good\_amount                  & 1,000                   \\ \hline
 PL\_violate\_amount             & 1,500                  \\ \hline
 \rowcolor[HTML]{FD6864} 
 \multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Weekend costs}} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
-Cost name                                      & Value       \\ \hline
+Cost name                                      & Cost value       \\ \hline
 HB\_amount                       & 15,000    \\ \hline
 No\_weekend                & 5,000                   \\ \hline
 \rowcolor[HTML]{FD6864} 
 \multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Stand-in costs}} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
-Cost name                                      & Value       \\ \hline
+Cost name                                      & Cost value       \\ \hline
 Stand\_in\_cost                     & 5     \\ \hline
 \end{tabular}
 \end{table}
@@ -81,7 +79,6 @@ Iterations (total) & 638      \\ \hline
 \end{tabular}
 \end{table}
 
-<<<<<<< HEAD
 Based on the same data as in Table \ref{successful_iter} the average stand-in value per iteration can be calculated. It is seen in Table \ref{tab:average_stand_ins}.
 \begin{table}[!h]
 \centering
@@ -96,7 +93,7 @@ Average stand-in value      & 0.25 \\ \hline
 \end{table}
 A librarian is multiplied by a factor two and an assistant is multiplied by a factor one.
 
-Having an average stand-in value of 0.25 means that most of the times no stand-ins are found. About once every fourth or once every eighth iteration was an assistant or librarian found respectively during the run. Table \ref{tab:stand_in_spread} shows statistics of how many stand-ins were found after 420 successful iterations. 
+Having an average stand-in value of 0.25 means that most of the times no stand-ins are found. Table \ref{tab:stand_in_spread} shows statistics of how many stand-ins were found after 420 successful iterations. 
 \begin{table}[!h]
 \centering
 \caption{Amount of stand-ins found after 420 successful iterations.}
@@ -111,9 +108,16 @@ No stand-ins    & 351                      \\ \hline
 \end{tabular}
 \end{table}
 
+Figure \ref{fig:feasibleRerun} shows a plot of the objective function value after destroy and repair iterations. When the value on the y-axis reaches zero, a solution is found. Every time the value skyrockets a solution has been discarded and a new iteration starts. This is done until a solution is found. 
 
 %\includegraphics[scale = 0.3, width = 15cm]{Rplot}
 %\includegraphics[scale = 0.3, width = 15cm]{1Plot}
+\begin{figure}[!h]
+\centering
+\includegraphics[scale = 0.3]{Chapters/ImagesClaes/Rfeasible.png}
+\caption{Plot of the objective function value after every new destroy and repair iteration.}
+\label{fig:feasibleRerun}
+\end{figure}
 
 \subsection{Task distribution approach}\label{sec:task_dist_res}
 
@@ -154,7 +158,7 @@ As was argued in Chapter \ref{chap:taskdist}, the critical part of the problem w
 \begin{table}[!h]
 \centering
 \label{tab:taskdist_res}
-\caption{Results from the task distribution heuristic. Weights form Table \ref{tab:tasks_weight}}
+\caption{Results from the task distribution heuristic. Weights from Table \ref{tab:tasks_weight}}
 \begin{tabular}{|l|l|l|l|}
 \hline
 \rowcolor{Gray} \textbf{$It_{wend}/It_{wday}$} &  \textbf{Heuristic cost} &  \textbf{AMPL cost} & \textbf{$\rho_{O\_A}$} \\ \hline
@@ -277,11 +281,11 @@ Write about these results. Correlation between objective function value and AMPL
 Text
 
 
-\subsection{Weekly scheduling approach}
-Table \ref{pros_cons_weekly_scheduling} lists pros and cons with the implemented weekly scheduling approach. Some pros and cons were considered before the heuristic was chosen. Mainly the con concerning the exponential growth was taken into consideration as an estimation of the upper limit of the problem size was done. Also, the pro regarding the same amount of week blocks was taken into consideration, as the heuristic was thought of having firstly a block construction phase and secondly an assignment phase. 
+\subsection{Week block scheduling approach}
+Table \ref{pros_cons_weekly_scheduling} lists pros and cons with the implemented week block scheduling approach. Some pros and cons were considered before the heuristic was chosen. Mainly the con concerning the exponential growth was taken into consideration as an estimation of the upper limit of the problem size was done. Also, the pro regarding the same amount of week blocks was taken into consideration, as the heuristic was thought of having firstly a block construction phase and secondly an assignment phase. 
 
 \begin{table}[!h]
-\caption{Pros and cons with the implemented weekly scheduling approach}
+\caption{Pros and cons with the implemented week block scheduling approach}
 \label{pros_cons_weekly_scheduling}
 \begin{tabularx}{\linewidth}{>{\parskip1ex}X@{\kern4\tabcolsep}>{\parskip1ex}X}
 \toprule

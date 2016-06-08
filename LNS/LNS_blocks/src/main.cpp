@@ -35,6 +35,7 @@ void loop(ostream& outrunvalues, ostream& outstandinsperiter, ostream& outobjval
 	}
 	ofstream outobjfcn("./target/objfcn.txt");
 	ofstream outfeasible("./target/feasible.txt");
+	outfeasible << "feasible" << endl;
 	ofstream outstandins("./target/standins.txt");
 	ofstream outmaxmin("./target/maxmin.txt");
 	Library lib;

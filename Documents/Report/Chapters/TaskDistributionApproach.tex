@@ -2,7 +2,7 @@
 
 The second heuristic approach tested distributes individual tasks to workers and greatly resembles the process of manual scheduling. The implemented algorithm undergoes two phases. In the first phase, weekends, as well as some weekday tasks, are distributed and in the second phase the rest of the weekday tasks are distributed. 
 
-The primary method used in this approach is a Large Neighbourhood Search (LNS) together with a Simulated Annealing (SA) accept function. Destroying and repairing the solution, as is customary in LNS, helps leading the solution out of local optima or plateaus. Similarly, SA is used in order to allow the solution to move in a less favourable directions to move out of local optima regions.
+The primary method used in this approach is a Large Neighbourhood Search (LNS) together with a Simulated Annealing (SA) accept function. Destroying and repairing the solution, as is customary in LNS, helps leading the solution out of local optima or plateaus. Similarly, SA is used in order to allow the solution to move in a less favorable directions to move out of local optima regions.
 
 \section{Costs} \label{section:tasks_cost}
 The search algorithm is guided using costs, both for worker schedules and the whole library schedule. Each worker has a number of costs, as displayed in Table \ref{tab:worker_costs}. Each of these costs represents a badly placed task, resulting in an infeasible schedule or unused stand-in potential. The costs have different weights, as illustrated in the table. How the weights should be set is discussed in Chapter \ref{chap:res}. 
@@ -15,7 +15,7 @@ For the library schedule, costs are weighed together in three different ways. Th
 \label{tab:worker_costs}
 \begin{tabular}{|l|l|p{7cm}|}
 \hline
-\multicolumn{3}{|l|}{\cellcolor{gray!90} \textbf{Stand in cost}} \\ \hline
+\multicolumn{3}{|l|}{\cellcolor{gray!90} \textbf{Stand-in cost}} \\ \hline
 \rowcolor{Gray} Cost & Weight & Cost description \\ \hline
 $C_{SI}$ & $W_{w\_SI}$ & Cost from having a task on a day where the worker can be a stand-in. \\ \hline
 \multicolumn{3}{|l|}{\cellcolor{gray!90} \textbf{Infeasibility costs}} \\ \hline

@@ -608,3 +608,2133 @@ Worst number of stand-ins: 1 (0/1)
 Solution found after 222.14 seconds and 93 iterations
 Worst number of stand-ins: 0 (0/0)
 *** Iteration 228 ***
+No solution found after 1000 iterations
+*** Iteration 229 ***
+Solution found after 22635.3 seconds and 58 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 230 ***
+No solution found after 1000 iterations
+*** Iteration 231 ***
+Solution found after 22771.7 seconds and 44 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 232 ***
+No solution found after 1000 iterations
+*** Iteration 233 ***
+Solution found after 23059.6 seconds and 109 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 234 ***
+Solution found after 23111.1 seconds and 302 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 235 ***
+No solution found after 1000 iterations
+*** Iteration 236 ***
+Solution found after 83.93 seconds and 99 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 237 ***
+No solution found after 1000 iterations
+*** Iteration 238 ***
+No solution found after 1000 iterations
+*** Iteration 239 ***
+No solution found after 1000 iterations
+*** Iteration 240 ***
+Solution found after 23922.3 seconds and 382 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 241 ***
+No solution found after 1000 iterations
+*** Iteration 242 ***
+Solution found after 8.27 seconds and 62 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 243 ***
+Solution found after 240.83 seconds and 145 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 244 ***
+No solution found after 1000 iterations
+*** Iteration 245 ***
+No solution found after 1000 iterations
+*** Iteration 246 ***
+Solution found after 24753.2 seconds and 49 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 247 ***
+Solution found after 24737.1 seconds and 21 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 248 ***
+Solution found after 24763.1 seconds and 251 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 249 ***
+Solution found after 24831.4 seconds and 157 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 250 ***
+Solution found after 24827.1 seconds and 36 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 251 ***
+No solution found after 1000 iterations
+*** Iteration 252 ***
+Solution found after 25051.6 seconds and 69 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 253 ***
+Solution found after 25269.8 seconds and 79 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 254 ***
+Solution found after 25212 seconds and 31 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 255 ***
+No solution found after 1000 iterations
+*** Iteration 256 ***
+Solution found after 130.81 seconds and 292 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 257 ***
+Solution found after 25512.5 seconds and 23 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 258 ***
+No solution found after 1000 iterations
+*** Iteration 259 ***
+No solution found after 1000 iterations
+*** Iteration 260 ***
+Solution found after 25825.6 seconds and 149 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 261 ***
+No solution found after 1000 iterations
+*** Iteration 262 ***
+Solution found after 26020.6 seconds and 200 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 263 ***
+Solution found after 25999.5 seconds and 70 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 264 ***
+Solution found after 26011.5 seconds and 64 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 265 ***
+No solution found after 1000 iterations
+*** Iteration 266 ***
+No solution found after 1000 iterations
+*** Iteration 267 ***
+Solution found after 26372.1 seconds and 40 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 268 ***
+Solution found after 26448.4 seconds and 475 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 269 ***
+Solution found after 26472.4 seconds and 86 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 270 ***
+Solution found after 94.89 seconds and 67 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 271 ***
+No solution found after 1000 iterations
+*** Iteration 272 ***
+No solution found after 1000 iterations
+*** Iteration 273 ***
+Solution found after 26888.8 seconds and 58 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 274 ***
+Solution found after 26916.6 seconds and 117 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 275 ***
+Solution found after 88.18 seconds and 131 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 276 ***
+No solution found after 1000 iterations
+*** Iteration 277 ***
+Solution found after 27150.8 seconds and 210 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 278 ***
+Solution found after 86.67 seconds and 603 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 279 ***
+Solution found after 92.65 seconds and 227 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 280 ***
+Solution found after 27492.3 seconds and 32 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 281 ***
+Solution found after 27489.6 seconds and 67 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 282 ***
+Solution found after 27540.1 seconds and 107 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 283 ***
+Solution found after 27530.8 seconds and 52 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 284 ***
+No solution found after 1000 iterations
+*** Iteration 285 ***
+No solution found after 1000 iterations
+*** Iteration 286 ***
+Solution found after 27986.8 seconds and 196 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 287 ***
+Solution found after 27966.4 seconds and 62 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 288 ***
+Solution found after 28114 seconds and 12 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 289 ***
+Solution found after 28068.5 seconds and 41 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 290 ***
+Solution found after 28425.3 seconds and 70 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 291 ***
+Solution found after 28272.2 seconds and 157 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 292 ***
+No solution found after 1000 iterations
+*** Iteration 293 ***
+Solution found after 28478 seconds and 62 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 294 ***
+No solution found after 1000 iterations
+*** Iteration 295 ***
+No solution found after 1000 iterations
+*** Iteration 296 ***
+No solution found after 1000 iterations
+*** Iteration 297 ***
+Solution found after 75.39 seconds and 361 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 298 ***
+Solution found after 29155.6 seconds and 75 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 299 ***
+Solution found after 29201.1 seconds and 94 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 300 ***
+Solution found after 29262.2 seconds and 160 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 301 ***
+Solution found after 29254 seconds and 44 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 302 ***
+Solution found after 29588.1 seconds and 706 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 303 ***
+No solution found after 1000 iterations
+*** Iteration 304 ***
+Solution found after 29624.9 seconds and 183 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 305 ***
+Solution found after 29740.2 seconds and 75 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 306 ***
+Solution found after 29709 seconds and 58 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 307 ***
+Solution found after 83.24 seconds and 104 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 308 ***
+Solution found after 105.72 seconds and 420 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 309 ***
+Solution found after 29945.6 seconds and 10 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 310 ***
+No solution found after 1000 iterations
+*** Iteration 311 ***
+Solution found after 30369.5 seconds and 192 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 312 ***
+No solution found after 1000 iterations
+*** Iteration 313 ***
+No solution found after 1000 iterations
+*** Iteration 314 ***
+No solution found after 1000 iterations
+*** Iteration 315 ***
+Solution found after 30944.6 seconds and 52 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 316 ***
+Solution found after 30868 seconds and 54 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 317 ***
+Solution found after 30873.6 seconds and 51 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 318 ***
+No solution found after 1000 iterations
+*** Iteration 319 ***
+No solution found after 1000 iterations
+*** Iteration 320 ***
+Solution found after 31467.9 seconds and 37 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 321 ***
+No solution found after 1000 iterations
+*** Iteration 322 ***
+No solution found after 1000 iterations
+*** Iteration 323 ***
+Solution found after 31926 seconds and 169 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 324 ***
+Solution found after 31940.2 seconds and 136 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 325 ***
+No solution found after 1000 iterations
+*** Iteration 326 ***
+No solution found after 1000 iterations
+*** Iteration 327 ***
+Solution found after 166.34 seconds and 174 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 328 ***
+Solution found after 32617.5 seconds and 277 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 329 ***
+Solution found after 36.81 seconds and 36 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 330 ***
+Solution found after 32652.3 seconds and 120 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 331 ***
+Solution found after 32903.1 seconds and 123 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 332 ***
+Solution found after 32913.3 seconds and 81 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 333 ***
+No solution found after 1000 iterations
+*** Iteration 334 ***
+Solution found after 33119.4 seconds and 111 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 335 ***
+No solution found after 1000 iterations
+*** Iteration 336 ***
+Solution found after 52.36 seconds and 139 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 337 ***
+Solution found after 33414.2 seconds and 75 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 338 ***
+No solution found after 1000 iterations
+*** Iteration 339 ***
+Solution found after 33742.4 seconds and 112 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 340 ***
+Solution found after 33745 seconds and 70 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 341 ***
+No solution found after 1000 iterations
+*** Iteration 342 ***
+No solution found after 1000 iterations
+*** Iteration 343 ***
+Solution found after 34111.6 seconds and 115 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 344 ***
+Solution found after 34164.3 seconds and 146 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 345 ***
+Solution found after 34265.5 seconds and 220 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 346 ***
+No solution found after 1000 iterations
+*** Iteration 347 ***
+Solution found after 34438.8 seconds and 241 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 348 ***
+Solution found after 34570.7 seconds and 85 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 349 ***
+Solution found after 34521.6 seconds and 116 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 350 ***
+No solution found after 1000 iterations
+*** Iteration 351 ***
+Solution found after 34675.2 seconds and 105 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 352 ***
+Solution found after 34692 seconds and 82 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 353 ***
+No solution found after 1000 iterations
+*** Iteration 354 ***
+No solution found after 1000 iterations
+*** Iteration 355 ***
+Solution found after 34967.8 seconds and 126 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 356 ***
+No solution found after 1000 iterations
+*** Iteration 357 ***
+Solution found after 117.87 seconds and 82 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 358 ***
+Solution found after 35250.7 seconds and 225 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 359 ***
+No solution found after 1000 iterations
+*** Iteration 360 ***
+Solution found after 35430 seconds and 56 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 361 ***
+Solution found after 35437.3 seconds and 25 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 362 ***
+Solution found after 92.53 seconds and 101 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 363 ***
+Solution found after 35582 seconds and 66 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 364 ***
+Solution found after 35576.3 seconds and 20 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 365 ***
+Solution found after 35703.8 seconds and 437 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 366 ***
+Solution found after 35701.8 seconds and 259 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 367 ***
+Solution found after 58.89 seconds and 100 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 368 ***
+No solution found after 1000 iterations
+*** Iteration 369 ***
+No solution found after 1000 iterations
+*** Iteration 370 ***
+Solution found after 36179.7 seconds and 27 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 371 ***
+No solution found after 1000 iterations
+*** Iteration 372 ***
+Solution found after 36295.3 seconds and 133 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 373 ***
+Solution found after 36367.3 seconds and 70 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 374 ***
+Solution found after 36359.2 seconds and 140 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 375 ***
+Solution found after 36430.9 seconds and 123 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 376 ***
+Solution found after 36552.2 seconds and 204 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 377 ***
+No solution found after 1000 iterations
+*** Iteration 378 ***
+No solution found after 1000 iterations
+*** Iteration 379 ***
+No solution found after 1000 iterations
+*** Iteration 380 ***
+Solution found after 37042.2 seconds and 86 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 381 ***
+Solution found after 37017.7 seconds and 22 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 382 ***
+No solution found after 1000 iterations
+*** Iteration 383 ***
+No solution found after 1000 iterations
+*** Iteration 384 ***
+No solution found after 1000 iterations
+*** Iteration 385 ***
+No solution found after 1000 iterations
+*** Iteration 386 ***
+No solution found after 1000 iterations
+*** Iteration 387 ***
+Solution found after 38084.2 seconds and 195 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 388 ***
+Solution found after 80.91 seconds and 154 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 389 ***
+No solution found after 1000 iterations
+*** Iteration 390 ***
+Solution found after 38316 seconds and 15 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 391 ***
+Solution found after 38343.8 seconds and 172 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 392 ***
+No solution found after 1000 iterations
+*** Iteration 393 ***
+Solution found after 28.93 seconds and 68 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 394 ***
+Solution found after 74.2 seconds and 80 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 395 ***
+Solution found after 38754.3 seconds and 89 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 396 ***
+Solution found after 38713.2 seconds and 57 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 397 ***
+No solution found after 1000 iterations
+*** Iteration 398 ***
+Solution found after 39071.9 seconds and 19 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 399 ***
+Solution found after 56.22 seconds and 87 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 400 ***
+Solution found after 39148.4 seconds and 35 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 401 ***
+Solution found after 39109.6 seconds and 85 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 402 ***
+No solution found after 1000 iterations
+*** Iteration 403 ***
+Solution found after 39533.2 seconds and 229 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 404 ***
+Solution found after 39505 seconds and 74 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 405 ***
+Solution found after 121.86 seconds and 398 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 406 ***
+No solution found after 1000 iterations
+*** Iteration 407 ***
+No solution found after 1000 iterations
+*** Iteration 408 ***
+No solution found after 1000 iterations
+*** Iteration 409 ***
+Solution found after 40138.2 seconds and 41 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 410 ***
+No solution found after 1000 iterations
+*** Iteration 411 ***
+No solution found after 1000 iterations
+*** Iteration 412 ***
+Solution found after 40638 seconds and 30 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 413 ***
+Solution found after 40590.1 seconds and 51 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 414 ***
+Solution found after 40636.1 seconds and 316 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 415 ***
+Solution found after 40679.3 seconds and 234 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 416 ***
+Solution found after 167.6 seconds and 77 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 417 ***
+Solution found after 40977.5 seconds and 255 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 418 ***
+Solution found after 41006.8 seconds and 215 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 419 ***
+Solution found after 41011.8 seconds and 83 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 420 ***
+No solution found after 1000 iterations
+*** Iteration 421 ***
+No solution found after 1000 iterations
+*** Iteration 422 ***
+Solution found after 41441.7 seconds and 32 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 423 ***
+Solution found after 41433.6 seconds and 61 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 424 ***
+No solution found after 1000 iterations
+*** Iteration 425 ***
+No solution found after 1000 iterations
+*** Iteration 426 ***
+Solution found after 41776.1 seconds and 43 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 427 ***
+Solution found after 41799.9 seconds and 273 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 428 ***
+No solution found after 1000 iterations
+*** Iteration 429 ***
+No solution found after 1000 iterations
+*** Iteration 430 ***
+No solution found after 1000 iterations
+*** Iteration 431 ***
+Solution found after 138.92 seconds and 201 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 432 ***
+Solution found after 92.38 seconds and 23 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 433 ***
+Solution found after 42596.5 seconds and 192 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 434 ***
+No solution found after 1000 iterations
+*** Iteration 435 ***
+Solution found after 42786.8 seconds and 186 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 436 ***
+Solution found after 62.48 seconds and 162 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 437 ***
+Solution found after 42901.7 seconds and 223 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 438 ***
+Solution found after 42903 seconds and 26 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 439 ***
+Solution found after 42951.4 seconds and 51 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 440 ***
+Solution found after 54.84 seconds and 296 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 441 ***
+No solution found after 1000 iterations
+*** Iteration 442 ***
+Solution found after 43248.1 seconds and 246 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 443 ***
+No solution found after 1000 iterations
+*** Iteration 444 ***
+No solution found after 1000 iterations
+*** Iteration 445 ***
+Solution found after 43587.7 seconds and 124 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 446 ***
+Solution found after 43668 seconds and 37 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 447 ***
+No solution found after 1000 iterations
+*** Iteration 448 ***
+Solution found after 109.68 seconds and 332 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 449 ***
+Solution found after 44002.5 seconds and 58 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 450 ***
+Solution found after 44034.9 seconds and 122 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 451 ***
+Solution found after 44024.4 seconds and 37 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 452 ***
+Solution found after 44075 seconds and 143 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 453 ***
+No solution found after 1000 iterations
+*** Iteration 454 ***
+No solution found after 1000 iterations
+*** Iteration 455 ***
+No solution found after 1000 iterations
+*** Iteration 456 ***
+Solution found after 44785.9 seconds and 40 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 457 ***
+No solution found after 1000 iterations
+*** Iteration 458 ***
+Solution found after 44881.8 seconds and 68 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 459 ***
+No solution found after 1000 iterations
+*** Iteration 460 ***
+No solution found after 1000 iterations
+*** Iteration 461 ***
+Solution found after 54.36 seconds and 118 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 462 ***
+Solution found after 45222.5 seconds and 28 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 463 ***
+No solution found after 1000 iterations
+*** Iteration 464 ***
+Solution found after 79.14 seconds and 124 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 465 ***
+No solution found after 1000 iterations
+*** Iteration 466 ***
+Solution found after 45703.4 seconds and 216 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 467 ***
+Solution found after 45754.4 seconds and 123 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 468 ***
+Solution found after 45893.5 seconds and 78 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 469 ***
+No solution found after 1000 iterations
+*** Iteration 470 ***
+Solution found after 46013.8 seconds and 151 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 471 ***
+No solution found after 1000 iterations
+*** Iteration 472 ***
+Solution found after 46176.5 seconds and 118 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 473 ***
+Solution found after 46260.9 seconds and 180 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 474 ***
+Solution found after 207.58 seconds and 584 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 475 ***
+Solution found after 46603.7 seconds and 26 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 476 ***
+No solution found after 1000 iterations
+*** Iteration 477 ***
+No solution found after 1000 iterations
+*** Iteration 478 ***
+Solution found after 47366 seconds and 25 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 479 ***
+Solution found after 47132.4 seconds and 57 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 480 ***
+Solution found after 47144.4 seconds and 60 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 481 ***
+No solution found after 1000 iterations
+*** Iteration 482 ***
+Solution found after 47467.3 seconds and 128 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 483 ***
+Solution found after 47842.3 seconds and 111 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 484 ***
+Solution found after 47667.8 seconds and 148 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 485 ***
+Solution found after 61.57 seconds and 71 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 486 ***
+Solution found after 47858.6 seconds and 42 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 487 ***
+No solution found after 1000 iterations
+*** Iteration 488 ***
+No solution found after 1000 iterations
+*** Iteration 489 ***
+Solution found after 48088.5 seconds and 107 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 490 ***
+Solution found after 48190.5 seconds and 40 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 491 ***
+Solution found after 48286.5 seconds and 240 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 492 ***
+Solution found after 46.8 seconds and 136 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 493 ***
+Solution found after 48294.3 seconds and 57 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 494 ***
+Solution found after 48406 seconds and 198 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 495 ***
+Solution found after 180.85 seconds and 76 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 496 ***
+Solution found after 48711.1 seconds and 40 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 497 ***
+Solution found after 45 seconds and 78 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 498 ***
+Solution found after 48705.7 seconds and 88 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 499 ***
+No solution found after 1000 iterations
+*** Iteration 500 ***
+Solution found after 48952.3 seconds and 31 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 501 ***
+No solution found after 1000 iterations
+*** Iteration 502 ***
+Solution found after 137.15 seconds and 47 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 503 ***
+Solution found after 49348 seconds and 19 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 504 ***
+No solution found after 1000 iterations
+*** Iteration 505 ***
+Solution found after 73.86 seconds and 77 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 506 ***
+Solution found after 22.81 seconds and 31 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 507 ***
+Solution found after 29.97 seconds and 68 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 508 ***
+Solution found after 104.05 seconds and 83 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 509 ***
+Solution found after 49688.7 seconds and 53 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 510 ***
+Solution found after 99.21 seconds and 2 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 511 ***
+Solution found after 99.53 seconds and 41 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 512 ***
+Solution found after 49892.6 seconds and 68 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 513 ***
+No solution found after 1000 iterations
+*** Iteration 514 ***
+No solution found after 1000 iterations
+*** Iteration 515 ***
+Solution found after 50315.2 seconds and 44 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 516 ***
+Solution found after 50311.7 seconds and 67 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 517 ***
+Solution found after 50504.1 seconds and 718 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 518 ***
+No solution found after 1000 iterations
+*** Iteration 519 ***
+Solution found after 110.31 seconds and 126 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 520 ***
+No solution found after 1000 iterations
+*** Iteration 521 ***
+Solution found after 50999.8 seconds and 91 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 522 ***
+Solution found after 50980.9 seconds and 167 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 523 ***
+Solution found after 122.54 seconds and 97 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 524 ***
+Solution found after 51398.4 seconds and 49 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 525 ***
+Solution found after 51327.1 seconds and 205 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 526 ***
+Solution found after 51340.2 seconds and 233 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 527 ***
+Solution found after 51359.2 seconds and 130 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 528 ***
+Solution found after 101.63 seconds and 43 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 529 ***
+No solution found after 1000 iterations
+*** Iteration 530 ***
+Solution found after 51712.8 seconds and 78 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 531 ***
+Solution found after 51723.5 seconds and 57 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 532 ***
+Solution found after 81.96 seconds and 103 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 533 ***
+No solution found after 1000 iterations
+*** Iteration 534 ***
+Solution found after 52097.1 seconds and 199 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 535 ***
+Solution found after 52120.1 seconds and 40 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 536 ***
+Solution found after 52355.3 seconds and 30 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 537 ***
+Solution found after 11.14 seconds and 70 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 538 ***
+Solution found after 52321.7 seconds and 13 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 539 ***
+Solution found after 52444.8 seconds and 91 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 540 ***
+Solution found after 52380.8 seconds and 31 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 541 ***
+No solution found after 1000 iterations
+*** Iteration 542 ***
+Solution found after 52638.3 seconds and 130 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 543 ***
+No solution found after 1000 iterations
+*** Iteration 544 ***
+No solution found after 1000 iterations
+*** Iteration 545 ***
+Solution found after 52943.3 seconds and 150 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 546 ***
+Solution found after 53162.5 seconds and 313 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 547 ***
+Solution found after 53735.2 seconds and 43 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 548 ***
+Solution found after 53583.6 seconds and 78 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 549 ***
+Solution found after 53736.9 seconds and 155 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 550 ***
+Solution found after 53651.4 seconds and 20 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 551 ***
+Solution found after 53719 seconds and 46 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 552 ***
+No solution found after 1000 iterations
+*** Iteration 553 ***
+No solution found after 1000 iterations
+*** Iteration 554 ***
+No solution found after 1000 iterations
+*** Iteration 555 ***
+Solution found after 54459.9 seconds and 189 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 556 ***
+Solution found after 54541.7 seconds and 25 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 557 ***
+Solution found after 126.9 seconds and 338 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 558 ***
+No solution found after 1000 iterations
+*** Iteration 559 ***
+No solution found after 1000 iterations
+*** Iteration 560 ***
+Solution found after 55223.6 seconds and 380 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 561 ***
+Solution found after 55234.3 seconds and 88 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 562 ***
+Solution found after 53.72 seconds and 259 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 563 ***
+Solution found after 55328.4 seconds and 246 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 564 ***
+No solution found after 1000 iterations
+*** Iteration 565 ***
+No solution found after 1000 iterations
+*** Iteration 566 ***
+Solution found after 55823.4 seconds and 31 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 567 ***
+No solution found after 1000 iterations
+*** Iteration 568 ***
+Solution found after 102.81 seconds and 183 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 569 ***
+Solution found after 56162.5 seconds and 250 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 570 ***
+No solution found after 1000 iterations
+*** Iteration 571 ***
+Solution found after 56375.6 seconds and 85 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 572 ***
+Solution found after 210.6 seconds and 256 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 573 ***
+Solution found after 56731.8 seconds and 213 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 574 ***
+No solution found after 1000 iterations
+*** Iteration 575 ***
+Solution found after 56931.2 seconds and 14 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 576 ***
+Solution found after 56973.4 seconds and 140 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 577 ***
+Solution found after 81.23 seconds and 166 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 578 ***
+No solution found after 1000 iterations
+*** Iteration 579 ***
+Solution found after 57295.6 seconds and 172 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 580 ***
+Solution found after 98.54 seconds and 267 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 581 ***
+Solution found after 57472.4 seconds and 66 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 582 ***
+Solution found after 57933.4 seconds and 101 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 583 ***
+No solution found after 1000 iterations
+*** Iteration 584 ***
+No solution found after 1000 iterations
+*** Iteration 585 ***
+No solution found after 1000 iterations
+*** Iteration 586 ***
+Solution found after 54.73 seconds and 176 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 587 ***
+Solution found after 57.87 seconds and 261 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 588 ***
+Solution found after 58291.3 seconds and 202 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 589 ***
+Solution found after 58382.3 seconds and 150 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 590 ***
+No solution found after 1000 iterations
+*** Iteration 591 ***
+Solution found after 74.83 seconds and 96 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 592 ***
+No solution found after 1000 iterations
+*** Iteration 593 ***
+Solution found after 59.13 seconds and 343 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 594 ***
+Solution found after 58874.2 seconds and 153 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 595 ***
+No solution found after 1000 iterations
+*** Iteration 596 ***
+No solution found after 1000 iterations
+*** Iteration 597 ***
+Solution found after 59219.5 seconds and 51 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 598 ***
+No solution found after 1000 iterations
+*** Iteration 599 ***
+Solution found after 59484.9 seconds and 154 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 600 ***
+Solution found after 59531.2 seconds and 126 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 601 ***
+No solution found after 1000 iterations
+*** Iteration 602 ***
+Solution found after 59715.5 seconds and 89 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 603 ***
+No solution found after 1000 iterations
+*** Iteration 604 ***
+Solution found after 59953.9 seconds and 270 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 605 ***
+Solution found after 59936.2 seconds and 143 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 606 ***
+No solution found after 1000 iterations
+*** Iteration 607 ***
+Solution found after 60305.7 seconds and 90 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 608 ***
+No solution found after 1000 iterations
+*** Iteration 609 ***
+Solution found after 60338.1 seconds and 41 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 610 ***
+Solution found after 60447.4 seconds and 84 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 611 ***
+No solution found after 1000 iterations
+*** Iteration 612 ***
+No solution found after 1000 iterations
+*** Iteration 613 ***
+Solution found after 60669.6 seconds and 75 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 614 ***
+No solution found after 1000 iterations
+*** Iteration 615 ***
+No solution found after 1000 iterations
+*** Iteration 616 ***
+No solution found after 1000 iterations
+*** Iteration 617 ***
+No solution found after 1000 iterations
+*** Iteration 618 ***
+Solution found after 61540.7 seconds and 145 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 619 ***
+No solution found after 1000 iterations
+*** Iteration 620 ***
+Solution found after 61692.4 seconds and 47 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 621 ***
+No solution found after 1000 iterations
+*** Iteration 622 ***
+Solution found after 120.15 seconds and 262 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 623 ***
+Solution found after 62000.1 seconds and 139 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 624 ***
+Solution found after 62024.2 seconds and 51 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 625 ***
+No solution found after 1000 iterations
+*** Iteration 626 ***
+Solution found after 62346.8 seconds and 450 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 627 ***
+No solution found after 1000 iterations
+*** Iteration 628 ***
+Solution found after 62471.7 seconds and 126 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 629 ***
+No solution found after 1000 iterations
+*** Iteration 630 ***
+Solution found after 62787.6 seconds and 84 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 631 ***
+No solution found after 1000 iterations
+*** Iteration 632 ***
+No solution found after 1000 iterations
+*** Iteration 633 ***
+No solution found after 1000 iterations
+*** Iteration 634 ***
+Solution found after 63350.7 seconds and 126 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 635 ***
+Solution found after 62.87 seconds and 56 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 636 ***
+Solution found after 127.37 seconds and 238 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 637 ***
+No solution found after 1000 iterations
+*** Iteration 638 ***
+Solution found after 63670.3 seconds and 88 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 639 ***
+Solution found after 63701.3 seconds and 126 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 640 ***
+Solution found after 63716.2 seconds and 138 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 641 ***
+No solution found after 1000 iterations
+*** Iteration 642 ***
+No solution found after 1000 iterations
+*** Iteration 643 ***
+Solution found after 159.32 seconds and 125 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 644 ***
+Solution found after 64192.7 seconds and 52 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 645 ***
+Solution found after 64229.2 seconds and 154 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 646 ***
+Solution found after 64224.1 seconds and 22 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 647 ***
+Solution found after 64381.7 seconds and 368 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 648 ***
+Solution found after 64421.2 seconds and 65 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 649 ***
+No solution found after 1000 iterations
+*** Iteration 650 ***
+Solution found after 64804.7 seconds and 120 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 651 ***
+Solution found after 64743.2 seconds and 18 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 652 ***
+Solution found after 64815.8 seconds and 44 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 653 ***
+Solution found after 64859.5 seconds and 97 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 654 ***
+Solution found after 64833.3 seconds and 65 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 655 ***
+Solution found after 64847.7 seconds and 87 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 656 ***
+Solution found after 64890.8 seconds and 99 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 657 ***
+No solution found after 1000 iterations
+*** Iteration 658 ***
+No solution found after 1000 iterations
+*** Iteration 659 ***
+Solution found after 65429.2 seconds and 131 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 660 ***
+No solution found after 1000 iterations
+*** Iteration 661 ***
+No solution found after 1000 iterations
+*** Iteration 662 ***
+No solution found after 1000 iterations
+*** Iteration 663 ***
+No solution found after 1000 iterations
+*** Iteration 664 ***
+Solution found after 66034.8 seconds and 80 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 665 ***
+Solution found after 62.94 seconds and 218 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 666 ***
+Solution found after 66190.3 seconds and 331 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 667 ***
+Solution found after 152.83 seconds and 132 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 668 ***
+Solution found after 66536.8 seconds and 339 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 669 ***
+No solution found after 1000 iterations
+*** Iteration 670 ***
+Solution found after 42.57 seconds and 40 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 671 ***
+Solution found after 64.26 seconds and 308 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 672 ***
+No solution found after 1000 iterations
+*** Iteration 673 ***
+Solution found after 67117.3 seconds and 60 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 674 ***
+Solution found after 67298.7 seconds and 107 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 675 ***
+Solution found after 67276.1 seconds and 328 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 676 ***
+Solution found after 67322.3 seconds and 198 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 677 ***
+Solution found after 67320.4 seconds and 60 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 678 ***
+Solution found after 67380.3 seconds and 236 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 679 ***
+No solution found after 1000 iterations
+*** Iteration 680 ***
+No solution found after 1000 iterations
+*** Iteration 681 ***
+No solution found after 1000 iterations
+*** Iteration 682 ***
+Solution found after 67923.6 seconds and 96 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 683 ***
+No solution found after 1000 iterations
+*** Iteration 684 ***
+Solution found after 68176.4 seconds and 187 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 685 ***
+Solution found after 68194.9 seconds and 71 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 686 ***
+Solution found after 68188.8 seconds and 94 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 687 ***
+No solution found after 1000 iterations
+*** Iteration 688 ***
+Solution found after 164.81 seconds and 129 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 689 ***
+No solution found after 1000 iterations
+*** Iteration 690 ***
+Solution found after 68745.5 seconds and 53 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 691 ***
+Solution found after 68765.6 seconds and 113 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 692 ***
+No solution found after 1000 iterations
+*** Iteration 693 ***
+No solution found after 1000 iterations
+*** Iteration 694 ***
+No solution found after 1000 iterations
+*** Iteration 695 ***
+No solution found after 1000 iterations
+*** Iteration 696 ***
+Solution found after 69574.4 seconds and 169 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 697 ***
+No solution found after 1000 iterations
+*** Iteration 698 ***
+No solution found after 1000 iterations
+*** Iteration 699 ***
+Solution found after 70094.7 seconds and 201 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 700 ***
+Solution found after 70058.1 seconds and 100 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 701 ***
+Solution found after 150.03 seconds and 62 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 702 ***
+Solution found after 70240.3 seconds and 172 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 703 ***
+No solution found after 1000 iterations
+*** Iteration 704 ***
+No solution found after 1000 iterations
+*** Iteration 705 ***
+Solution found after 70745.7 seconds and 45 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 706 ***
+Solution found after 70690.4 seconds and 220 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 707 ***
+No solution found after 1000 iterations
+*** Iteration 708 ***
+No solution found after 1000 iterations
+*** Iteration 709 ***
+No solution found after 1000 iterations
+*** Iteration 710 ***
+Solution found after 71267.7 seconds and 81 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 711 ***
+Solution found after 113.75 seconds and 180 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 712 ***
+No solution found after 1000 iterations
+*** Iteration 713 ***
+Solution found after 92.61 seconds and 154 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 714 ***
+Solution found after 124.51 seconds and 77 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 715 ***
+Solution found after 71894.4 seconds and 224 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 716 ***
+Solution found after 71932.4 seconds and 64 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 717 ***
+No solution found after 1000 iterations
+*** Iteration 718 ***
+No solution found after 1000 iterations
+*** Iteration 719 ***
+Solution found after 90.55 seconds and 209 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 720 ***
+Solution found after 89.37 seconds and 129 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 721 ***
+No solution found after 1000 iterations
+*** Iteration 722 ***
+Solution found after 117.95 seconds and 48 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 723 ***
+Solution found after 117.47 seconds and 37 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 724 ***
+Solution found after 72880.9 seconds and 71 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 725 ***
+Solution found after 83.79 seconds and 71 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 726 ***
+Solution found after 72967.5 seconds and 53 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 727 ***
+No solution found after 1000 iterations
+*** Iteration 728 ***
+No solution found after 1000 iterations
+*** Iteration 729 ***
+Solution found after 73273.9 seconds and 61 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 730 ***
+Solution found after 73319.6 seconds and 143 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 731 ***
+Solution found after 73333.8 seconds and 76 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 732 ***
+Solution found after 73399.4 seconds and 71 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 733 ***
+No solution found after 1000 iterations
+*** Iteration 734 ***
+No solution found after 1000 iterations
+*** Iteration 735 ***
+No solution found after 1000 iterations
+*** Iteration 736 ***
+Solution found after 172.94 seconds and 198 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 737 ***
+Solution found after 74004.6 seconds and 51 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 738 ***
+No solution found after 1000 iterations
+*** Iteration 739 ***
+No solution found after 1000 iterations
+*** Iteration 740 ***
+No solution found after 1000 iterations
+*** Iteration 741 ***
+Solution found after 74699.2 seconds and 433 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 742 ***
+Solution found after 74732.4 seconds and 270 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 743 ***
+No solution found after 1000 iterations
+*** Iteration 744 ***
+Solution found after 58.94 seconds and 51 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 745 ***
+Solution found after 74977.8 seconds and 188 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 746 ***
+Solution found after 75071.9 seconds and 19 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 747 ***
+No solution found after 1000 iterations
+*** Iteration 748 ***
+Solution found after 75198.6 seconds and 71 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 749 ***
+Solution found after 75512.3 seconds and 9 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 750 ***
+No solution found after 1000 iterations
+*** Iteration 751 ***
+Solution found after 75600.5 seconds and 68 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 752 ***
+No solution found after 1000 iterations
+*** Iteration 753 ***
+Solution found after 76047.6 seconds and 162 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 754 ***
+Solution found after 75971.5 seconds and 33 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 755 ***
+Solution found after 75982.1 seconds and 65 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 756 ***
+Solution found after 75997 seconds and 104 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 757 ***
+No solution found after 1000 iterations
+*** Iteration 758 ***
+Solution found after 76297.8 seconds and 119 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 759 ***
+No solution found after 1000 iterations
+*** Iteration 760 ***
+No solution found after 1000 iterations
+*** Iteration 761 ***
+*** Iteration 762 ***
+Solution found after 76637.1 seconds and 233 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 763 ***
+Solution found after 76829.7 seconds and 233 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 764 ***
+Solution found after 76859.7 seconds and 141 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 765 ***
+No solution found after 1000 iterations
+*** Iteration 766 ***
+No solution found after 1000 iterations
+*** Iteration 767 ***
+No solution found after 1000 iterations
+*** Iteration 768 ***
+Solution found after 77373.1 seconds and 50 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 769 ***
+No solution found after 1000 iterations
+*** Iteration 770 ***
+No solution found after 1000 iterations
+*** Iteration 771 ***
+No solution found after 1000 iterations
+*** Iteration 772 ***
+Solution found after 77911.6 seconds and 461 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 773 ***
+Solution found after 78006.6 seconds and 51 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 774 ***
+Solution found after 78027.9 seconds and 240 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 775 ***
+Solution found after 78107.1 seconds and 99 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 776 ***
+No solution found after 1000 iterations
+*** Iteration 777 ***
+No solution found after 1000 iterations
+*** Iteration 778 ***
+Solution found after 78507.6 seconds and 152 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 779 ***
+No solution found after 1000 iterations
+*** Iteration 780 ***
+Solution found after 78828.7 seconds and 57 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 781 ***
+No solution found after 1000 iterations
+*** Iteration 782 ***
+No solution found after 1000 iterations
+*** Iteration 783 ***
+Solution found after 100.46 seconds and 587 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 784 ***
+Solution found after 79227.7 seconds and 89 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 785 ***
+No solution found after 1000 iterations
+*** Iteration 786 ***
+No solution found after 1000 iterations
+*** Iteration 787 ***
+Solution found after 79519.9 seconds and 42 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 788 ***
+Solution found after 68.38 seconds and 97 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 789 ***
+Solution found after 79611.3 seconds and 73 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 790 ***
+Solution found after 79758.9 seconds and 200 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 791 ***
+Solution found after 79719.1 seconds and 79 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 792 ***
+Solution found after 79799.1 seconds and 131 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 793 ***
+Solution found after 59.39 seconds and 126 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 794 ***
+Solution found after 79989.1 seconds and 46 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 795 ***
+No solution found after 1000 iterations
+*** Iteration 796 ***
+Solution found after 80159.8 seconds and 22 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 797 ***
+Solution found after 80167.2 seconds and 80 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 798 ***
+Solution found after 80248.3 seconds and 111 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 799 ***
+No solution found after 1000 iterations
+*** Iteration 800 ***
+No solution found after 1000 iterations
+*** Iteration 801 ***
+No solution found after 1000 iterations
+*** Iteration 802 ***
+Solution found after 33.8 seconds and 87 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 803 ***
+No solution found after 1000 iterations
+*** Iteration 804 ***
+Solution found after 62.89 seconds and 56 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 805 ***
+No solution found after 1000 iterations
+*** Iteration 806 ***
+No solution found after 1000 iterations
+*** Iteration 807 ***
+Solution found after 81426.2 seconds and 56 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 808 ***
+Solution found after 81480.1 seconds and 113 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 809 ***
+No solution found after 1000 iterations
+*** Iteration 810 ***
+Solution found after 81622.7 seconds and 42 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 811 ***
+Solution found after 81670.4 seconds and 37 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 812 ***
+No solution found after 1000 iterations
+*** Iteration 813 ***
+Solution found after 81851.5 seconds and 38 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 814 ***
+Solution found after 81881.9 seconds and 76 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 815 ***
+No solution found after 1000 iterations
+*** Iteration 816 ***
+Solution found after 55.75 seconds and 96 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 817 ***
+Solution found after 82258.3 seconds and 151 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 818 ***
+Solution found after 82215.9 seconds and 133 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 819 ***
+Solution found after 82249.3 seconds and 14 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 820 ***
+Solution found after 82392.3 seconds and 209 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 821 ***
+Solution found after 82345.4 seconds and 110 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 822 ***
+No solution found after 1000 iterations
+*** Iteration 823 ***
+No solution found after 1000 iterations
+*** Iteration 824 ***
+Solution found after 23.02 seconds and 39 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 825 ***
+Solution found after 54.06 seconds and 115 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 826 ***
+Solution found after 82779.8 seconds and 199 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 827 ***
+No solution found after 1000 iterations
+*** Iteration 828 ***
+Solution found after 133.61 seconds and 52 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 829 ***
+No solution found after 1000 iterations
+*** Iteration 830 ***
+No solution found after 1000 iterations
+*** Iteration 831 ***
+Solution found after 83406.1 seconds and 178 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 832 ***
+Solution found after 83440.5 seconds and 82 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 833 ***
+No solution found after 1000 iterations
+*** Iteration 834 ***
+Solution found after 83645.8 seconds and 128 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 835 ***
+Solution found after 83775.6 seconds and 199 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 836 ***
+No solution found after 1000 iterations
+*** Iteration 837 ***
+Solution found after 84064.7 seconds and 168 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 838 ***
+No solution found after 1000 iterations
+*** Iteration 839 ***
+Solution found after 84346.1 seconds and 85 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 840 ***
+Solution found after 84571.7 seconds and 8 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 841 ***
+Solution found after 45.04 seconds and 15 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 842 ***
+Solution found after 91.68 seconds and 276 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 843 ***
+Solution found after 84605.6 seconds and 40 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 844 ***
+Solution found after 84715.6 seconds and 56 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 845 ***
+Solution found after 84679 seconds and 36 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 846 ***
+Solution found after 84682.6 seconds and 9 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 847 ***
+No solution found after 1000 iterations
+*** Iteration 848 ***
+Solution found after 202.6 seconds and 148 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 849 ***
+Solution found after 85029.1 seconds and 57 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 850 ***
+No solution found after 1000 iterations
+*** Iteration 851 ***
+Solution found after 85306.6 seconds and 46 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 852 ***
+Solution found after 85292.4 seconds and 194 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 853 ***
+Solution found after 85306.1 seconds and 71 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 854 ***
+Solution found after 85353.6 seconds and 29 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 855 ***
+No solution found after 1000 iterations
+*** Iteration 856 ***
+No solution found after 1000 iterations
+*** Iteration 857 ***
+No solution found after 1000 iterations
+*** Iteration 858 ***
+No solution found after 1000 iterations
+*** Iteration 859 ***
+No solution found after 1000 iterations
+*** Iteration 860 ***
+Solution found after 86185.7 seconds and 42 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 861 ***
+Solution found after 162.14 seconds and 79 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 862 ***
+No solution found after 1000 iterations
+*** Iteration 863 ***
+No solution found after 1000 iterations
+*** Iteration 864 ***
+Solution found after 218.19 seconds and 199 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 865 ***
+No solution found after 1000 iterations
+*** Iteration 866 ***
+Solution found after 87251.4 seconds and 33 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 867 ***
+Solution found after 87417.1 seconds and 12 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 868 ***
+Solution found after 87485.2 seconds and 223 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 869 ***
+Solution found after 87467.6 seconds and 166 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 870 ***
+Solution found after 259.69 seconds and 272 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 871 ***
+Solution found after 87759 seconds and 77 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 872 ***
+Solution found after 87768.5 seconds and 73 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 873 ***
+Solution found after 43 seconds and 66 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 874 ***
+No solution found after 1000 iterations
+*** Iteration 875 ***
+Solution found after 88026.5 seconds and 69 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 876 ***
+Solution found after 88049.7 seconds and 187 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 877 ***
+No solution found after 1000 iterations
+*** Iteration 878 ***
+No solution found after 1000 iterations
+*** Iteration 879 ***
+Solution found after 88705 seconds and 148 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 880 ***
+*** Iteration 881 ***
+No solution found after 1000 iterations
+*** Iteration 882 ***
+Solution found after 88809.8 seconds and 108 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 883 ***
+Solution found after 88815.4 seconds and 39 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 884 ***
+No solution found after 1000 iterations
+*** Iteration 885 ***
+Solution found after 51.7 seconds and 261 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 886 ***
+Solution found after 89033.7 seconds and 72 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 887 ***
+Solution found after 89095.5 seconds and 364 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 888 ***
+No solution found after 1000 iterations
+*** Iteration 889 ***
+Solution found after 89314.2 seconds and 69 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 890 ***
+Solution found after 89382.8 seconds and 348 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 891 ***
+Solution found after 89370.5 seconds and 75 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 892 ***
+No solution found after 1000 iterations
+*** Iteration 893 ***
+Solution found after 59.99 seconds and 151 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 894 ***
+Solution found after 89731.1 seconds and 87 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 895 ***
+No solution found after 1000 iterations
+*** Iteration 896 ***
+No solution found after 1000 iterations
+*** Iteration 897 ***
+Solution found after 90040.8 seconds and 23 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 898 ***
+No solution found after 1000 iterations
+*** Iteration 899 ***
+No solution found after 1000 iterations
+*** Iteration 900 ***
+Solution found after 90414.2 seconds and 14 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 901 ***
+No solution found after 1000 iterations
+*** Iteration 902 ***
+No solution found after 1000 iterations
+*** Iteration 903 ***
+No solution found after 1000 iterations
+*** Iteration 904 ***
+No solution found after 1000 iterations
+*** Iteration 905 ***
+Solution found after 91278.6 seconds and 180 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 906 ***
+Solution found after 15.19 seconds and 112 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 907 ***
+Solution found after 91388.4 seconds and 575 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 908 ***
+Solution found after 91617.8 seconds and 74 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 909 ***
+No solution found after 1000 iterations
+*** Iteration 910 ***
+Solution found after 91658.9 seconds and 44 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 911 ***
+No solution found after 1000 iterations
+*** Iteration 912 ***
+No solution found after 1000 iterations
+*** Iteration 913 ***
+Solution found after 46.78 seconds and 84 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 914 ***
+No solution found after 1000 iterations
+*** Iteration 915 ***
+No solution found after 1000 iterations
+*** Iteration 916 ***
+Solution found after 138.04 seconds and 80 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 917 ***
+Solution found after 92619.1 seconds and 67 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 918 ***
+No solution found after 1000 iterations
+*** Iteration 919 ***
+Solution found after 92946.3 seconds and 29 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 920 ***
+Solution found after 92874.1 seconds and 168 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 921 ***
+Solution found after 93021.2 seconds and 48 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 922 ***
+No solution found after 1000 iterations
+*** Iteration 923 ***
+Solution found after 93424.2 seconds and 418 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 924 ***
+No solution found after 1000 iterations
+*** Iteration 925 ***
+Solution found after 93563.5 seconds and 61 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 926 ***
+No solution found after 1000 iterations
+*** Iteration 927 ***
+Solution found after 93754.1 seconds and 101 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 928 ***
+Solution found after 93776.7 seconds and 62 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 929 ***
+No solution found after 1000 iterations
+*** Iteration 930 ***
+Solution found after 94064.9 seconds and 125 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 931 ***
+No solution found after 1000 iterations
+*** Iteration 932 ***
+Solution found after 54.55 seconds and 140 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 933 ***
+No solution found after 1000 iterations
+*** Iteration 934 ***
+Solution found after 61.96 seconds and 307 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 935 ***
+No solution found after 1000 iterations
+*** Iteration 936 ***
+Solution found after 94814.1 seconds and 112 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 937 ***
+Solution found after 94865.9 seconds and 229 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 938 ***
+No solution found after 1000 iterations
+*** Iteration 939 ***
+Solution found after 95068.7 seconds and 172 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 940 ***
+Solution found after 95175.1 seconds and 129 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 941 ***
+Solution found after 95179.6 seconds and 126 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 942 ***
+No solution found after 1000 iterations
+*** Iteration 943 ***
+Solution found after 95458.8 seconds and 23 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 944 ***
+Solution found after 79.6 seconds and 257 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 945 ***
+No solution found after 1000 iterations
+*** Iteration 946 ***
+Solution found after 95757.3 seconds and 228 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 947 ***
+Solution found after 95756.1 seconds and 144 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 948 ***
+Solution found after 72.16 seconds and 279 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 949 ***
+Solution found after 95985.6 seconds and 39 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 950 ***
+No solution found after 1000 iterations
+*** Iteration 951 ***
+Solution found after 96124.9 seconds and 95 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 952 ***
+No solution found after 1000 iterations
+*** Iteration 953 ***
+Solution found after 96272.6 seconds and 1 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 954 ***
+Solution found after 248.31 seconds and 417 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 955 ***
+Solution found after 96574.9 seconds and 60 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 956 ***
+Solution found after 96600.1 seconds and 26 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 957 ***
+Solution found after 96614.7 seconds and 266 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 958 ***
+No solution found after 1000 iterations
+*** Iteration 959 ***
+Solution found after 96779.6 seconds and 45 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 960 ***
+Solution found after 158.36 seconds and 80 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 961 ***
+Solution found after 96988.4 seconds and 315 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 962 ***
+Solution found after 97156.3 seconds and 153 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 963 ***
+Solution found after 51.88 seconds and 222 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 964 ***
+Solution found after 97170.7 seconds and 27 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 965 ***
+Solution found after 97248.2 seconds and 162 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 966 ***
+Solution found after 97258.2 seconds and 49 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 967 ***
+Solution found after 32.42 seconds and 115 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 968 ***
+Solution found after 97446.2 seconds and 313 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 969 ***
+Solution found after 89.88 seconds and 60 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 970 ***
+Solution found after 97491.4 seconds and 78 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 971 ***
+Solution found after 172.69 seconds and 214 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 972 ***
+Solution found after 8.24 seconds and 63 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 973 ***
+No solution found after 1000 iterations
+*** Iteration 974 ***
+Solution found after 98142.4 seconds and 34 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 975 ***
+Solution found after 103.91 seconds and 198 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 976 ***
+Solution found after 98174.6 seconds and 84 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 977 ***
+Solution found after 99.19 seconds and 22 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 978 ***
+No solution found after 1000 iterations
+*** Iteration 979 ***
+Solution found after 63.71 seconds and 39 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 980 ***
+No solution found after 1000 iterations
+*** Iteration 981 ***
+Solution found after 98691.2 seconds and 107 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 982 ***
+Solution found after 98695.9 seconds and 86 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 983 ***
+Solution found after 146.67 seconds and 67 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 984 ***
+Solution found after 98959.6 seconds and 26 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 985 ***
+Solution found after 98956.1 seconds and 135 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 986 ***
+No solution found after 1000 iterations
+*** Iteration 987 ***
+Solution found after 99167.2 seconds and 79 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 988 ***
+Solution found after 64.45 seconds and 216 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 989 ***
+Solution found after 195.62 seconds and 71 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 990 ***
+Solution found after 99449.6 seconds and 118 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 991 ***
+No solution found after 1000 iterations
+*** Iteration 992 ***
+Solution found after 99607.2 seconds and 65 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 993 ***
+Solution found after 134.77 seconds and 607 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 994 ***
+Solution found after 99761 seconds and 126 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 995 ***
+No solution found after 1000 iterations
+*** Iteration 996 ***
+Solution found after 99965.2 seconds and 61 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 997 ***
+No solution found after 1000 iterations
+*** Iteration 998 ***
+No solution found after 1000 iterations
+*** Iteration 999 ***
+Solution found after 78.47 seconds and 38 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1000 ***
+No solution found after 1000 iterations
+*** Iteration 1001 ***
+Solution found after 100564 seconds and 38 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1002 ***
+No solution found after 1000 iterations
+*** Iteration 1003 ***
+Solution found after 77.96 seconds and 320 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1004 ***
+No solution found after 1000 iterations
+*** Iteration 1005 ***
+Solution found after 100963 seconds and 71 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1006 ***
+No solution found after 1000 iterations
+*** Iteration 1007 ***
+Solution found after 110.71 seconds and 520 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1008 ***
+Solution found after 100.72 seconds and 411 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 1009 ***
+Solution found after 101560 seconds and 129 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1010 ***
+Solution found after 101469 seconds and 109 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1011 ***
+Solution found after 86.64 seconds and 120 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1012 ***
+No solution found after 1000 iterations
+*** Iteration 1013 ***
+Solution found after 101875 seconds and 68 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1014 ***
+Solution found after 150.64 seconds and 331 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1015 ***
+No solution found after 1000 iterations
+*** Iteration 1016 ***
+Solution found after 102182 seconds and 511 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1017 ***
+No solution found after 1000 iterations
+*** Iteration 1018 ***
+No solution found after 1000 iterations
+*** Iteration 1019 ***
+Solution found after 102687 seconds and 71 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1020 ***
+Solution found after 44.6 seconds and 99 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1021 ***
+Solution found after 102784 seconds and 47 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1022 ***
+No solution found after 1000 iterations
+*** Iteration 1023 ***
+No solution found after 1000 iterations
+*** Iteration 1024 ***
+No solution found after 1000 iterations
+*** Iteration 1025 ***
+Solution found after 103371 seconds and 103 iterations
+Worst number of stand-ins: 1 (1/0)
+*** Iteration 1026 ***
+No solution found after 1000 iterations
+*** Iteration 1027 ***
+Solution found after 103574 seconds and 56 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1028 ***
+Solution found after 103630 seconds and 80 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1029 ***
+No solution found after 1000 iterations
+*** Iteration 1030 ***
+Solution found after 46.77 seconds and 73 iterations
+Worst number of stand-ins: 1 (0/1)
+*** Iteration 1031 ***
+Solution found after 103921 seconds and 92 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1032 ***
+Solution found after 103902 seconds and 13 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1033 ***
+No solution found after 1000 iterations
+*** Iteration 1034 ***
+Solution found after 104131 seconds and 30 iterations
+Worst number of stand-ins: 0 (0/0)
+*** Iteration 1035 ***
+No solution found after 1000 iterations
+*** Iteration 1036 ***

@@ -301,9 +301,9 @@ In this context, a stand-in is defined as a worker who is available for outer ta
 Apart from maximizing the number of stand-ins for each day at the library, it is desirable for the sake of the personnel to create schedules in which are repeated according to a five week pattern. Thus, the ten week schedule should ideally consist of two five week schedules. 
 
 \section{Method}
-The method used in the thesis work for solving the problem described above was to first formulate a mathematical model for the problem, which was then solved using two different methods. The first method involved modeling the probelm in the AMPL programming language and solving it in the commercial optimization solver CPLEX. The second method involved creating an independent solver in C++ and solving it using a heuristic. Worker availability data was imported from Excel sheets to data files used to solve the problem through Visual Basic.
+The method used in the thesis work for solving the problem described above was to first formulate a mathematical model for the problem, which was then solved using two different methods. The first method involved modeling the problem in the AMPL programming language and solving it in the commercial optimization solver CPLEX. The second method involved creating an independent solver in C++ and solving it using a heuristic. Worker availability data was imported from Excel sheets to data files used to solve the problem through Visual Basic.
 
-Two different heuristics were tested in the second solution method. The first heuristic distributes week blocks to workers. All blocks are pregenerated and feasible according to the constraints described in the previous section. In the second heuristic, individual tasks are distributed to the workers. In order to find better solutions and move through the solution space, both heuristics were based on a large neighbourhood search (LNS) algorithm.
+Two different heuristics were tested in the second solution method. The first heuristic distributes week blocks to workers. All blocks are pre-generated and feasible according to the constraints described in the previous section. In the second heuristic, individual tasks are distributed to the workers. In order to find better solutions and move through the solution space, both heuristics were based on a Large Neighbourhood Search (LNS) algorithm.
 
 \section{Disposition of the report}
 
@@ -314,7 +314,7 @@ The report is divided into the following chapters:
 	\item Chapter \ref{chap:lit}: Previous work in the area of scheduling
 	\item Chapter \ref{chap:mathmod}: Formulation of the problem as a mathematical model
 	\item Chapter \ref{chap:impl}: Presentation of different implementations of the problem
-	\item Chapter \ref{chap:weekly}: Implementation of the weekly scheduling approach 
+	\item Chapter \ref{chap:weekly}: Implementation of the week block scheduling approach 
 	\item Chapter \ref{chap:taskdist}: Implementation of the task distribution approach 
 	\item Chapter \ref{chap:res}: Results and discussion of the implementations
 	\item Chapter \ref{chap:further}: Suggestions for further development

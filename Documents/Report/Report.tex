@@ -307,7 +307,7 @@ Library on wheels & The library task of driving the bus with books to remote are
 Exp		& Service counter(sv. expeditionsdisken) \\
 Info	& Information counter (sv. informationsdisken)\\
 PL		& Fetch list (sv. plocklistan)\\
-BokB    & Library on wheels (sv bokbussen)\\
+BokB    & Library on wheels (sv. bokbussen)\\
 HB      & Hageby library \\
 \end{tabular}
 
@@ -374,7 +374,7 @@ HB      & Hageby library \\
 
 \chapter{Conclusion}\label{chap:concl}
 \inputencoding{\enc}
-%\input{Chapters/Conclusion.tex}
+\input{Chapters/Conclusion.tex}
 \inputencoding{\enc}
 
 
@@ -388,97 +388,14 @@ HB      & Hageby library \\
 %%% .................. appendix ...................................
 \appendix
 \chapter{Problem definitions} \label{definitions}
-\section{Sets}
-\itab{I} \tab{Set of workers}\\
-\itab{I\_lib} \tab{Set of librarians (I\_lib $\subseteq$ I)} \\
-\itab{I\_ass}	 \tab{Set of assistants (I\_ass $\subseteq$ I)}	\\
-\itab{W}                 \tab{Set of weeks}                                               \\
-\itab{D}                 \tab{Set of days in a week}                                      \\
-\itab{$S_d$}           \tab{Set of shifts day \textit{d}}                                        \\
-\itab{$J_d$}            \tab{Set of task types day \textit{d}}                                    \\
-\itab{I\_LOW}	 \tab{Set of librarians available to work in library on wheels}	\\
-\itab{I\_free\_day}	 \tab{Set of workers that shall be assigned a free weekday per week}	\\
-\itab{I\_odd\_even}	 \tab{Set of all workers with odd or even weeks}	\\
-\itab{I\_weekend\_avail}	 \tab{Set of workers available for weekend work}	\\ 
-\newpage
-\section{Variables} \label{variabs}
-\begin{align}
-    x_{iwdsj}&=
-    \begin{cases}
-      1, & \text{if worker \textit{i} is assigned in week \textit{w}, day \textit{d}, shift \textit{s} to a task \textit{j}}\\
-      0, & \text{otherwise}
-    \end{cases}
-    \\
-    H_{iwh}&=
-    \begin{cases}
-      1, & \text{if worker \textit{i} works weekend h in week \textit{w}}\\
-      0, & \text{otherwise}
-    \end{cases}
-	\\
-	r_{iw}&=
-	\begin{cases}
-		1, & \text{if worker \textit{i} has its scheduled rotated \textit{w-1 steps}}\\
-		0, & \text{otherwise}
-	\end{cases}
-	\\
-	lib_{iwd}&=
-	\begin{cases}
-	  1, & \text{if librarian \textit{i} is a stand-in week \textit{w} day \textit{d}} \\
-	  0, & \text{otherwise}
-	\end{cases}
-	\\
-	ass_{iwd}&=
-	\begin{cases}
- 		1, & \text{if assistant \textit{i} is a stand-in week \textit{w} day \textit{d}} \\
- 		0, & \text{otherwise}
-	\end{cases}
-	\\
-	y_{iwds}&=
-	\begin{cases}
- 		1, & \text{if worker \textit{i} is working \textit{w} day \textit{d} regardless of task type} \\
- 		0, & \text{otherwise}
-	\end{cases}
-	\\
-	hb_{iw}&=
-	\begin{cases}
- 		1, & \text{if assistant \textit{i} is a stand-in week \textit{w} day \textit{d}} \\
- 		0, & \text{otherwise}
-	\end{cases}
-	\\
-	friday\_evening_{iw}&=
-	\begin{cases}
- 		1, & \text{if assistant \textit{i} is a stand-in week \textit{w} day \textit{d}} \\
- 		0, & \text{otherwise}
-	\end{cases}	
-	\\
-	lib\_min&= \text{lowest number of stand-in librarians found (integer)} \\
-	ass\_min&= \text{lowest number of stand-in assistants found (integer)}
-\end{align}
-\newpage
-\section{Parameters} \label{params}
-\begin{align}
-	N1l&= \text{a value to prioritize the amount of stand-in librarians}
-	\\
-	N1a&= \text{a value to prioritize the amount of stand-in assistants}
-	\\
-	N2&= \text{a value to prioritize similar weeks}
-	\\
-	avail\_day_{iwd}&=
-	\begin{cases}
-		1, & \text{if worker \textit{i} is available for work week \textit{w}, day \textit{d}} \\
-		0, & \text{otherwise}
-	\end{cases}
-	\\
-	task\_demand_{dsj}&= \text{number of workers required day \textit{d}, shift \textit{s} for task type \textit{j}}
-	\\
-	qualavail_{iwdsj}&=
-	\begin{cases}
-		1, & \text{if worker \textit{i} is qualified and available week \textit{w}, day \textit{d}, shift \textit{s} for task type \textit{j}} \\
-		0, & \text{otherwise}
-	\end{cases}
-	\\
-	LOW\_demand_{wds}&= \text{number of workers required day \textit{d}, shift \textit{s} at the library on wheels}
-\end{align}
+\inputencoding{\enc}
+\input{Chapters/ModelAppendix.tex}
+\inputencoding{\enc}
+
+
+
+
+
 
 % % %New chapter
 \chapter{Flow charts} \label{appendix:flow_charts}
