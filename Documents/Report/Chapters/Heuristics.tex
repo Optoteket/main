@@ -203,7 +203,7 @@ Looking at a generalized worker's availability shown in Table \ref{typical_avail
 \section{Rotation assignment} \label{rotation}
 There are 35 weekend workers available of which 21 are librarians and 14 are assistants. The demand of weekend workers each week is seven, i.e. the demand for five weeks is exactly $7*5 = 35$ workers. Another requirement in excess to seven workers each weekend is that at least four of them have to be librarians due to three librarians are needed in Information desks and one in Hageby. Therefore, it deems reasonable to swap rotations between workers in the destroy so that it always remains feasible. 
 
-A random generator is used in the assignment of rotations that always makes sure that the two mentioned requirements are met. Furthermore, all of the LoW-workers have fixed weekends and hence are not given new rotations in the destroy/repair loop and is more thoroughly described in Section \ref{LoW_assignment} below. 
+A random generator is used in the assignment of rotations that always makes sure that the two mentioned requirements are met. Furthermore, all of the BokB-workers have fixed weekends and hence are not given new rotations in the destroy/repair loop and is more thoroughly described in Section \ref{BokB_assignment} below. 
 
 Table \ref{rotation_assignment} shows a destroy/repair iteration regarding rotation assignments. The amount of workers being destroyed in each iteration is three.
 
@@ -237,10 +237,10 @@ Assistants & 3 & 2 & \cellcolor[HTML]{9AFF99}3 & 3 & 3
 Yellow indicates that a worker, either librarian or assistant, has been destroyed that week and green indicates that a worker has been repaired. Comparing the "Initial assignment" with "After repair" a swap can be seen between week 2 and 3. Worth noting is that a swap can occur even if the amount of qualified workers remains the same after a repair. To understand this, imagine that two librarians with different rotations are destroyed, then two cases can occur: Either they are assigned the same rotation as before or they swap weekends. 
 
 
-\section{Assignment of Library on Wheels} \label{LoW_assignment}
-In order to avoid creating enormous amounts of block combinations, LoW tasks are assigned manually. To assign LoW manually also lead to a fix weekend rotation for the five LoW-workers. This slightly reduces the degrees of freedom of the problem as the LoW-workers' rotation will remain unchanged. However, as there are only a couple different set of feasible LoW assignments it shall not be the deciding factor for the quality of the solution.
+\section{Assignment of Library on Wheels} \label{BokB_assignment}
+In order to avoid creating enormous amounts of block combinations, BokB tasks are assigned manually. To assign BokB manually also lead to a fix weekend rotation for the five BokB-workers. This slightly reduces the degrees of freedom of the problem as the BokB-workers' rotation will remain unchanged. However, as there are only a couple different set of feasible BokB assignments it shall not be the deciding factor for the quality of the solution.
 
-Without a manual assignment of LoW the number of existing tasks in a weekblock would increase significantly. The number of tasks would increase from 36 to 43, as there are seven LoW tasks during a week, resulting in a lot more than 4,175 unique week appearances. % %ändra sista
+Without a manual assignment of BokB the number of existing tasks in a weekblock would increase significantly. The number of tasks would increase from 36 to 43, as there are seven BokB tasks during a week, resulting in a lot more than 4,175 unique week appearances. % %ändra sista
 
 \section{Initial solution} \label{initial_solution}
 The initial solution is created in a similar fashion as the repair function in this heuristic. Based on a greedy heuristic the best weekblock for a random worker and week is found and inserted. This is done until every worker have one weekend block, one weekrest block and three weekday blocks assigned to them.
@@ -408,7 +408,7 @@ Whenever a new week block is to be inserted in a repair all available blocks for
 
 \begin{table}[!h]
 \centering
-\caption{Cost evaluation of two blocks. The lower cost the more desired to insert in repair (the values do not coincide with the implemented ones).}
+\caption{Cost evaluation of two blocks. The lower the total cost is, the more desired to insert in repair (the values do not coincide with the implemented ones).}
 \label{tab:block_costs}
 \begin{tabular}{cccccccc}
                                  & Mon                                             & Tue                    & Wed                                            & Thu                    & Fri                                            & Sat                    & Sun                    \\ \cline{2-8} 
@@ -422,10 +422,10 @@ $Total cost = -Demand\_PL\_good\_lib + PL\_violate\_amount + Demand\_many\_lib -
 
 \begin{tabular}{cccccccc}
                                  & Mon                                             & Tue                    & Wed                                            & Thu                    & Fri                                            & Sat                    & Sun                    \\ \cline{2-8} 
-\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{I} \\ \cline{2-8} 
+\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{I} \\ \cline{2-8} 
 \multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} &     &   \\ \cline{2-6}
 \multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}         &            &          \\ \cline{2-6}
-\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} &         &         \\ \cline{2-6}
+\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D}  & \multicolumn{1}{c|}{} &         &         \\ \cline{2-6}
 \end{tabular} 
 \newline
 $Total cost = -Demand\_few\_lib - Demand\_evening\_cost$
@@ -436,7 +436,7 @@ $+ Demand\_many\_lib = -17,700$
 
 
 \section{Destroy}
-The destroy consists of two contiguous steps: Choosing three workers to destroy and then destroying their assigned blocks. The LoW tasks remain unchanged even if a worker assigned those tasks is destroyed. 
+The destroy consists of two contiguous steps: Choosing three workers to destroy and then destroying their assigned blocks. The BokB tasks remain unchanged even if a worker assigned those tasks is destroyed. 
 \section{Repair}
 Initially in the repair function the destroyed workers are assigned new rotations, see Table \ref{rotation_assignment}, followed by five new week blocks. Which order the blocks are inserted in is randomly generated. For each iteration is one of the three workers randomly chosen followed by one block that has not been reassigned until all 15 destroyed weeks have been repaired. Which week block that is chosen is based on the costs listed in Table \ref{tab:all_costs} and shown as an illustrative example in Table \ref{tab:block_costs}.
 \section{Evaluation of solution}

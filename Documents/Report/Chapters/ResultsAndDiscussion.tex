@@ -19,20 +19,20 @@ Implementing the model in AMPL and running the model in CPLEX 12.5 gives the res
 
 These results can be used as benchmark in the heuristics as CPLEX returns an optimal solution. 
 
-\subsection{Weekly scheduling approach}
+\subsection{Week block scheduling approach}
 As most of the costs are correlated with each other some parameter tuning has been required. The final result of the parameter tuning can be seen in Table \ref{tab:cost_parameters}. Their respective descriptions can be seen in Table \ref{tab:all_costs}. 
 
 \begin{table}[!h]
 \centering
-\caption{List of all costs used in weekly scheduling approach and their respective values.}
+\caption{List of all costs used in week block scheduling approach and their respective values.}
 \label{tab:cost_parameters}
-\begin{tabular}{|l|l|}
+\begin{tabular}{|c|c|}
 \hline
 \rowcolor[HTML]{FD6864} 
 \multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Demand costs}} \\ \hline
 %\multicolumn{2}{|c|}{\cellcolor[HTML]{FD6864}Demand costs}    \\ \hline
 \rowcolor[HTML]{C0C0C0} 
-Cost name                                      & Value       \\ \hline
+Cost name                                      & Cost value       \\ \hline
 Demand\_few\_ass                        & 350         \\ \hline
 Demand\_few\_lib                        & 300         \\ \hline
 Demand\_many\_ass                       & 200         \\ \hline
@@ -47,19 +47,19 @@ Demand\_PL\_bad\_lib         & 1,600             \\ \hline
 \rowcolor[HTML]{FD6864} 
 \multicolumn{2}{|l|}{\cellcolor{corn} \textbf{PL amount costs}} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
-Cost name                                      & Value       \\ \hline
+Cost name                                      & Cost value       \\ \hline
 PL\_good\_amount                  & 1,000                   \\ \hline
 PL\_violate\_amount             & 1,500                  \\ \hline
 \rowcolor[HTML]{FD6864} 
 \multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Weekend costs}} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
-Cost name                                      & Value       \\ \hline
+Cost name                                      & Cost value       \\ \hline
 HB\_amount                       & 15,000    \\ \hline
 No\_weekend                & 5,000                   \\ \hline
 \rowcolor[HTML]{FD6864} 
 \multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Stand-in costs}} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
-Cost name                                      & Value       \\ \hline
+Cost name                                      & Cost value       \\ \hline
 Stand\_in\_cost                     & 5     \\ \hline
 \end{tabular}
 \end{table}
@@ -79,7 +79,6 @@ Iterations (total) & 638      \\ \hline
 \end{tabular}
 \end{table}
 
-<<<<<<< HEAD
 Based on the same data as in Table \ref{successful_iter} the average stand-in value per iteration can be calculated. It is seen in Table \ref{tab:average_stand_ins}.
 \begin{table}[!h]
 \centering
@@ -94,7 +93,7 @@ Average stand-in value      & 0.25 \\ \hline
 \end{table}
 A librarian is multiplied by a factor two and an assistant is multiplied by a factor one.
 
-Having an average stand-in value of 0.25 means that most of the times no stand-ins are found. About once every fourth or once every eighth iteration was an assistant or librarian found respectively during the run. Table \ref{tab:stand_in_spread} shows statistics of how many stand-ins were found after 420 successful iterations. 
+Having an average stand-in value of 0.25 means that most of the times no stand-ins are found. Table \ref{tab:stand_in_spread} shows statistics of how many stand-ins were found after 420 successful iterations. 
 \begin{table}[!h]
 \centering
 \caption{Amount of stand-ins found after 420 successful iterations.}
@@ -152,7 +151,7 @@ As was argued in Chapter \ref{chap:taskdist}, the critical part of the problem w
 \begin{table}[!h]
 \centering
 \label{tab:taskdist_res}
-\caption{Results from the task distribution heuristic. Weights form Table \ref{tab:tasks_weight}}
+\caption{Results from the task distribution heuristic. Weights from Table \ref{tab:tasks_weight}}
 \begin{tabular}{|l|l|l|l|}
 \hline
 \rowcolor{Gray} \textbf{$It_{wend}/It_{wday}$} &  \textbf{Heuristic cost} &  \textbf{AMPL cost} & \textbf{$\rho_{O\_A}$} \\ \hline
@@ -189,9 +188,7 @@ As was argued in Chapter \ref{chap:taskdist}, the critical part of the problem w
 \label{fig:obj_fun_vals}
 \end{figure}
 
-The objective function value during a typical run is illustrated by Figure \ref{fig:obj_fun_vals}. The SA accpet function is visible, mainly as a large dive in the objective function value. After about half of the iterations, the SA accepts some deteriorating solutions, but mostly small ones.
-
->>>>>>> 3acb8311f01de353b66cb667458c31e9680b4aa6
+The objective function value during a typical run is illustrated by Figure \ref{fig:obj_fun_vals}. The SA accept function is visible, mainly as a large dive in the objective function value. After about half of the iterations, the SA accepts some deteriorating solutions, but mostly small ones.
 
 \begin{figure}[!h]
 \centering
@@ -245,11 +242,11 @@ Write about these results. Correlation between objective function value and AMPL
 Text
 
 
-\subsection{Weekly scheduling approach}
-Table \ref{pros_cons_weekly_scheduling} lists pros and cons with the implemented weekly scheduling approach. Some pros and cons were considered before the heuristic was chosen. Mainly the con concerning the exponential growth was taken into consideration as an estimation of the upper limit of the problem size was done. Also, the pro regarding the same amount of week blocks was taken into consideration, as the heuristic was thought of having firstly a block construction phase and secondly an assignment phase. 
+\subsection{Week block scheduling approach}
+Table \ref{pros_cons_weekly_scheduling} lists pros and cons with the implemented week block scheduling approach. Some pros and cons were considered before the heuristic was chosen. Mainly the con concerning the exponential growth was taken into consideration as an estimation of the upper limit of the problem size was done. Also, the pro regarding the same amount of week blocks was taken into consideration, as the heuristic was thought of having firstly a block construction phase and secondly an assignment phase. 
 
 \begin{table}[!h]
-\caption{Pros and cons with the implemented weekly scheduling approach}
+\caption{Pros and cons with the implemented week block scheduling approach}
 \label{pros_cons_weekly_scheduling}
 \begin{tabularx}{\linewidth}{>{\parskip1ex}X@{\kern4\tabcolsep}>{\parskip1ex}X}
 \toprule

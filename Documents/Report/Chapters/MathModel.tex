@@ -244,7 +244,7 @@ As stated in Section \ref{section:obj}, two weeks with a five-week interval shou
 \begin{equation} \label{constr:obj_fcn_shifts}
 d_{iwds} = \abs{y_{iwds} - y_{i(w+5)ds}}, \; \forall i \in I, w \in W_5, d \in D_5, s \in S_3
 \end{equation}
-The decision variable $d_{iwds}$ in this equation states if there is a difference in assignment between two tasks at the same hour and day for two weeks, $w$ and $w+5$. Thus, a variable minimized in the objective function. The differences occur if, say, an Exp task is assigned on Monday week one at 08:00-10:00 and no task is assigned the same shift Monday week six.
+The decision variable $d_{iwds}$ in this equation states if there is a difference in assignment between two tasks at the same hour and day for two weeks, $w$ and $w+5$. The differences occur if, say, an Exp task is assigned on Monday week one at 08:00-10:00 and no task is assigned the same shift Monday week six. Thus, a variable minimized in the objective function.
 
 \subsection{Meeting constraints} \label{section:meeting_constraints}
 At the library there are both library meetings as well as department meetings, where both occur with a five-week interval. Library meetings are set to take place from 08:00-10:00 on Mondays, whereas department meetings are more freely distributed. A few workers are not assigned library meetings, since they are needed at the stations to keep the library running. The set $I_{big}$ in the equation below consists of all workers who are to be assigned library meetings. The constraints modeling library meetings are as follows:
@@ -255,9 +255,9 @@ At the library there are both library meetings as well as department meetings, w
 M_{(w+5)11} = M_{w11}, \; \forall w \in W_5
 \end{equation}
 \begin{equation} \label{constr:library_meetings3}
-\sum_{s=2}^{3} \sum_{j \in J_d \backslash \{L\}} x_{iw1sj} \leq 1-M_{w11}, \; \forall i \in I \backslash I_{big}, w \in W
+\sum_{s=1}^{3} \sum_{j \in J_1 \backslash \{L\}} x_{iw1sj} \leq 1-M_{w11}, \; \forall i \in I \backslash I_{big}, w \in W
 \end{equation}
-Equation \ref{constr:library_meetings} and \ref{constr:library_meetings2} assign two library meetings with a five-week interval during the ten-week scheduling period. Equation \ref{constr:library_meetings3} makes sure that the workers that do not attend library meetings are assigned any other task the day of the meeting.
+Equation \ref{constr:library_meetings} and \ref{constr:library_meetings2} assign two library meetings with a five-week interval during the ten-week scheduling period. Equation \ref{constr:library_meetings3} makes sure that the workers that do not attend library meetings are not assigned any other task the day of the meeting.
 
 The constraints added to model department meetings are somewhat similar to the library meeting constraints. Just as for library meetings they take place two times during the ten weeks with a five-week interval, which is described by Equation \ref{constr:dep_meetings} and \ref{constr:dep_meetings2}.
 \begin{equation} \label{constr:dep_meetings}
@@ -272,5 +272,5 @@ m_{wdsD} + x_{iwdsj} \leq 1, \; \forall D = 1, \ldots, 3, i \in I_D, w \in W, d 
 \begin{equation} \label{constr:dep_meetings4}
 m_{wdsD} \leq \sum_{v \in V} r_{iv}*qualavail_{i(mod_{10}(w-v+10)+1)dsE}, \; \forall D = 1, \ldots, 3, i \in I_D, w \in W, d \in D_5, s \in S_3
 \end{equation}
-Equation \ref{constr:dep_meetings3} prohibits a worker from multitasking, i.e. attend a meeting as well as work with a task. Lastly, Equation \ref{constr:dep_meetings4} enables department meetings only when everyone in that department is available for a task; the rotation is taken into the account.
+Equation \ref{constr:dep_meetings3} prohibits a worker from multitasking, i.e. attend a meeting as well as work with a task. Lastly, Equation \ref{constr:dep_meetings4} enables department meetings only when everyone in that department is available to be assigned a task; the rotation is taken into the account. "E" in Equation \ref{constr:dep_meetings4} stands for Exp and is used due to it is the only task type everyone is available for and \textit{qualavail} is dependent on the variable \textit{j}. 
 
