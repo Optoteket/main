@@ -1,5 +1,5 @@
 # Read values from text file. objfcn, feasible, standins and maxmin
-plot_data <- read.table("./target/Saved results/Plots for Report/1phase1iterRerun/feasible.txt", header=T) #Change this path!
+plot_data <- read.table("./target/Saved results/Plots for Report/1Phase1iterNoRerun/feasible.txt", header=T) #Change this path!
 
 #Compute max y-values
 max_y_feasible <- max(plot_data$feasible)
@@ -10,7 +10,7 @@ max_y_feasible <- max(plot_data$feasible)
 plot_colors <- c("blue")
 
 # Start PNG device driver to save output to figure.png
-png(filename="./target/Saved results/Plots for Report/1phase1iterRerun/Rfeasible.png", height=1000, width=1000, bg="white")
+png(filename="./target/Saved results/Plots for Report/1Phase1iterNoRerun/Rfeasible.png", height=1000, width=1000, bg="white")
 #jpeg('rplot.jpg')
 
 #plot each of the columns

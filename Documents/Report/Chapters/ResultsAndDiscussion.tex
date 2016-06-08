@@ -108,9 +108,16 @@ No stand-ins    & 351                      \\ \hline
 \end{tabular}
 \end{table}
 
+Figure \ref{fig:feasibleRerun} shows a plot of the objective function value after destroy and repair iterations. When the value on the y-axis reaches zero, a solution is found. Every time the value skyrockets a solution has been discarded and a new iteration starts. This is done until a solution is found. 
 
 %\includegraphics[scale = 0.3, width = 15cm]{Rplot}
 %\includegraphics[scale = 0.3, width = 15cm]{1Plot}
+\begin{figure}[!h]
+\centering
+\includegraphics[scale = 0.3]{Chapters/ImagesClaes/Rfeasible.png}
+\caption{Plot of the objective function value after every new destroy and repair iteration.}
+\label{fig:feasibleRerun}
+\end{figure}
 
 \subsection{Task distribution approach}\label{sec:task_dist_res}
 

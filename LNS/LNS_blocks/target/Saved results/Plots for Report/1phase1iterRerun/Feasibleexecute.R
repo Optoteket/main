@@ -14,7 +14,9 @@ png(filename="./target/Saved results/Plots for Report/1phase1iterRerun/Rfeasible
 #jpeg('rplot.jpg')
 
 #plot each of the columns
-plot(plot_data$feasible, col = plot_colors[1])
+plot(plot_data$feasible, col = plot_colors[1], axes=FALSE)
+axis(1,cex.axis=3)
+axis(2,cex.axis=2.5)
 #Make x-axis
 #axis(1, at=1:5, lab=c("Mon", "Tue", "Wed", "Thu", "Fri"))
 #Make y-axis
