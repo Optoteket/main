@@ -80,18 +80,18 @@ Optimization, Scheduling, Task distribution, LNS, Weekend Scheduling, Inhomogene
 
 \newcommand{\putmydate}[0]{\putthemonth \putshortdate}
 
-\newcommand{\putauthor}[0]{Claes Arvidson, Emelie Karlsson}
+\newcommand{\putauthor}[0]{Claes Arvidson and Emelie Karlsson}
 
 \newcommand{\putegotext}[0]{Arvidson, Karlsson, 2016.}
 
-\newcommand{\puttitle}[0]{Work Distribution of a Heterogeneous Library Staff - A Personnel Task Scheduling Problem}
+\newcommand{\puttitle}[0]{Work Distribution for a Heterogeneous Library Staff - \\  A Personnel Task Scheduling Problem}
 
 % some kind of administrator will give you this number
 \newcommand{\putregnumber}[0]{LiTH - MAT - EX - - 04 / 04 - - SE}
 
-\newcommand{\putexaminer}[0]{E. Rönnberg}
+\newcommand{\putexaminer}[0]{Elina Rönnberg}
 
-\newcommand{\putsupervisor}[0]{T. Larsson}
+\newcommand{\putsupervisor}[0]{Torbjörn Larsson}
 
 % for example Applied Mathematics
 \newcommand{\putdepartment}[0]{Optimeringslära}
@@ -282,20 +282,26 @@ Lastly, we would like to thank our families and loved ones, who have always supp
 % optional I guess
 \chapter*{Nomenclature\index{Nomenclature}}
 
-Most of the reoccurring definitions, symbols and abbreviations are described here.
+Most of the reoccurring terms and abbreviations are described here.
 
 %----------------NEW_SECTION--------------------------------------------------
-\section*{Definitions\index{Definitions}}
+\section*{Optimization terms\index{Optimization terms}}
 \begin{tabular}{lp{10cm}}
 
 Heuristic & An algorithm designed to find sufficiently good, but not necessarily optimal solutions. \\
+
+%Rostering & \\
+%Matheuristic & Text\\
+\end{tabular}
+
+\section*{Other terms\index{Other terms}}
+\begin{tabular}{lp{10cm}}
+
 Fetch list & The library task of collecting books from shelves that are to be delivered elsewhere. \\
 Library on wheels & The library task of driving the bus with books to remote areas of town. \\
 %Rostering & \\
 %Matheuristic & Text\\
 \end{tabular}
-
-\section*{Symbols\index{Symbols}}
 
 %\begin{tabular}{ll}
 %$Y_0$      & The amount of the variable $Y$ inserted into a system.\\
@@ -350,23 +356,23 @@ HB      & Hageby library \\
 \input{Chapters/MathModel}
 \inputencoding{\enc}
 
-\chapter{Differences in the implementations}\label{chap:impl}
+%\chapter{Two heuristics}\label{chap:heur}
+%
+%\inputencoding{\enc}
+%\input{Chapters/Implementation}
+%\inputencoding{\enc}
 
-\inputencoding{\enc}
-\input{Chapters/Implementation}
-\inputencoding{\enc}
-
-\chapter{Week block scheduling approach}\label{chap:weekly}
+\chapter{Two heuristics}\label{chap:weekly}
 
 \inputencoding{\enc}
 \input{Chapters/Heuristics}
 \inputencoding{\enc}
 
-\chapter{Task distribution approach}\label{chap:taskdist}
-
-\inputencoding{\enc}
-\input{Chapters/TaskDistributionApproach.tex}
-\inputencoding{\enc}
+%\chapter{Task distribution approach}\label{chap:taskdist}
+%
+%\inputencoding{\enc}
+%\input{Chapters/TaskDistributionApproach.tex}
+%\inputencoding{\enc}
 
 \chapter{Results and discussion}\label{chap:res}
 \inputencoding{\enc}
