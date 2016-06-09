@@ -166,8 +166,8 @@ int main(int argc, char** argv)
   min_lib.clear();
   library_costs.clear();
 
-  int max_loops = 100;
-  int num_tests = 7;
+  int max_loops = 1;
+  int num_tests = 1;
   double weights[3];
   int wend_iterations;
   int wday_iterations;
@@ -177,8 +177,8 @@ int main(int argc, char** argv)
 
     //1. Setting and normalizing weights for weekend objective function
     if(loop < max_loops){
-      wend_iterations = 10;
-      wday_iterations = 10;
+      wend_iterations = 1000;
+      wday_iterations = 20;
       weights[0]=0.1; //Min number of full time avail workers/day
       weights[1]=0.1; //Min number of avail workers per shift
       weights[2]=10; //Min number of avail workers a day
