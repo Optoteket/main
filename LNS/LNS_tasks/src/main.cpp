@@ -166,8 +166,8 @@ int main(int argc, char** argv)
   min_lib.clear();
   library_costs.clear();
 
-  int max_loops = 1;
-  int num_tests = 1;
+  int max_loops = 100;
+  int num_tests = 7;
   double weights[3];
   int wend_iterations;
   int wday_iterations;
@@ -177,8 +177,8 @@ int main(int argc, char** argv)
 
     //1. Setting and normalizing weights for weekend objective function
     if(loop < max_loops){
-      wend_iterations = 1000;
-      wday_iterations = 20;
+      wend_iterations = 200;
+      wday_iterations = 10;
       weights[0]=0.1; //Min number of full time avail workers/day
       weights[1]=0.1; //Min number of avail workers per shift
       weights[2]=10; //Min number of avail workers a day
@@ -190,7 +190,7 @@ int main(int argc, char** argv)
       weights[2]/=sum;
     }
     else if(loop < max_loops*2){
-      wend_iterations = 50;
+      wend_iterations = 2000;
       wday_iterations = 10;
       weights[0]=0.1; //Min number of full time avail workers/day
       weights[1]=0.1; //Min number of avail workers per shift
@@ -203,7 +203,7 @@ int main(int argc, char** argv)
       weights[2]/=sum;
     }
     else if(loop < max_loops*3){
-      wend_iterations = 100;
+      wend_iterations = 5000;
       wday_iterations = 10;
       weights[0]=0.1; //Min number of full time avail workers/day
       weights[1]=0.1; //Min number of avail workers per shift
@@ -217,7 +217,7 @@ int main(int argc, char** argv)
     }
     else if(loop < max_loops*4){
       wend_iterations = 500;
-      wday_iterations = 10;
+      wday_iterations = 30;
       weights[0]=0.1; //Min number of full time avail workers/day
       weights[1]=0.1; //Min number of avail workers per shift
       weights[2]=10; //Min number of avail workers a day
@@ -231,7 +231,7 @@ int main(int argc, char** argv)
     }
     else if(loop < max_loops*5){
       wend_iterations = 500;
-      wday_iterations = 5;
+      wday_iterations = 50;
       weights[0]=0.1; //Min number of full time avail workers/day
       weights[1]=0.1; //Min number of avail workers per shift
       weights[2]=10; //Min number of avail workers a day
@@ -244,7 +244,7 @@ int main(int argc, char** argv)
     }
     else if(loop < max_loops*6){
       wend_iterations = 500;
-      wday_iterations = 15;
+      wday_iterations = 100;
       weights[0]=0.1; //Min number of full time avail workers/day
       weights[1]=0.1; //Min number of avail workers per shift
       weights[2]=10; //Min number of avail workers a day
@@ -257,7 +257,7 @@ int main(int argc, char** argv)
     }
     else if(loop < max_loops*7){
       wend_iterations = 500;
-      wday_iterations = 20;
+      wday_iterations = 200;
       weights[0]=0.1; //Min number of full time avail workers/day
       weights[1]=0.1; //Min number of avail workers per shift
       weights[2]=10; //Min number of avail workers a day

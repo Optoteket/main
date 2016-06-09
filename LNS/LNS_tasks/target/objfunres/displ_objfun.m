@@ -27,22 +27,25 @@ close all
 figure
 plot(x,y)
 
-title('Weekend objective function value')
+title('Weekend objective function','FontSize',28)
 xlabel('Iterations')
 ylabel('Objective function value')
 legend('Objective function')
+set(gca,'fontsize', 20);
+
 
 figure
 plot(x,si_y,x,s_y,x,d_y)
 legend('Stand in min cost', 'Shift avail min cost', 'Day avail min cost')
 xlabel('Iterations')
 ylabel('Objective function component value')
-title('Weekend objective function cost components - min values')
-
+title('Weekend objective function cost components - min costs')
+set(gca,'fontsize', 20);
 
 figure
 plot(x,av_si_y,x,av_s_y,x,av_d_y)
 legend('Stand in aver cost', 'Shift avail aver cost', 'Day avail aver cost')
 xlabel('Iterations')
 ylabel('Objective function component value')
-title('Weekend objective function cost components - average values')
+title('Weekend objective function cost components - average costs')
+set(gca,'fontsize', 20);
