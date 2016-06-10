@@ -1,6 +1,6 @@
 % Introduction to Master Thesis
 
-At a library, there exist a number of tasks which are to be distributed over all staff members. Poor work distribution among staff can cause problems and result in a shortage of staff at certain critical shifts. If a worker becomes unavailable at such shifts, due to for example illness, a qualified stand-in is required to fill the vacancy. Therefore, it is of high priority to libraries and other similar institutions to create schedules with as many skilled stand-ins as possible in order to handle such unexpected disturbances. 
+At a library, there exist a number of tasks which are to be distributed over all staff members. Poor work distribution among staff can cause problems and result in a shortage of staff at certain critical shifts. If a staff member becomes unavailable at such shifts, due to for example illness, a qualified stand-in is required to fill the vacancy. Therefore, it is of high priority to libraries and other similar institutions to create schedules with as many skilled stand-ins as possible in order to handle such unexpected disturbances. 
 
 The problem addressed in this thesis work concerns the library staff at the Central Library of Norrköping, Sweden. This library currently has 39 employees and the renown building from the 1950's is a central gathering point in Norrköping. The library is open weekdays from 8 a.m. to 8 p.m. and from 11 a.m. to 16 p.m. during weekends. The generous opening times also creates a scheduling challenge for the library as it requires a large pool of well coordinated personnel to keep the library open. In addition, the library also provides its services to one other smaller library, which adds further complexity to the problem of task distribution among the staff.
 
@@ -15,7 +15,7 @@ The schedule should also be created so that the stand-ins are distributed evenly
 \subsection{Description of the daily tasks at the library} \label{section:library_tasks}
 The highest priority at a library, as with any service institution, is to provide good service to visitors. This includes book loan services as well as being able to give visitors helpful information about the resources at disposal at the library. This type of work is referred to as "outer tasks" in this thesis. In addition to these, "inner tasks" such as sorting books, ordering new books and answering emails also exist and are a part of the every day library tasks as well. The problem of allocating the outer tasks, while taking inner tasks into consideration, is studied in this thesis.
 
-Three main types of outer task can be identified at the library of Norrköping: working at the service counter (sv. expidetionsdisken), working at the information counter (sv. informationsdisken) and assembling books which are to be sent to other libraries according to the "fetch list" (sv. plocklista). The fetch list is a task for which the worker is scheduled during a whole day, while the other tasks are scheduled for only one shift. The outer tasks can be performed by either librarians or both librarians and assistants, as described in Table \ref{tab:Outer_Tasks}.
+Three main types of outer task can be identified at the library of Norrköping: working at the service counter (sv. expidetionsdisken), working at the information counter (sv. informationsdisken) and assembling books which are to be sent to other libraries according to the "fetch list" (sv. plocklista). The fetch list is a task for which the staff member is scheduled during a whole day, while the other tasks are scheduled for only one shift. The outer tasks can be performed by either librarians or both librarians and assistants, as described in Table \ref{tab:Outer_Tasks}.
 
 \begin{table}[h]
 \centering
@@ -129,17 +129,17 @@ Apart from the outer tasks described above, there are also inner tasks at the li
 
 \subsection{Personnel attributes}
 
-The two types of library workers that are to be assigned tasks are librarians and assistants. Librarians can perform all the tasks listed above, while assistants can perform a subset of these tasks.
+The two types of library staff members that are to be assigned tasks are librarians and assistants. Librarians can perform all the tasks listed above, while assistants can perform a subset of these tasks.
 
-The Central Library of Norrköping currently has 39 library staff members, 23 of which are librarians and 16 of which are assistants. These have different availabilities for performing tasks, depending on their working hours and the amount of inner work they have. In the standard case, each worker is assigned one evening per week and once per five weeks he or she is assigned to work during the weekend. This is normally compensated the week after with two extra free days, placed according to the wishes of the worker.
+The Central Library of Norrköping currently has 39 library staff members, 23 of which are librarians and 16 of which are assistants. These have different availabilities for performing tasks, depending on their working hours and the amount of inner work they have. In the standard case, each staff member is assigned one evening per week and once per five weeks he or she is assigned to work during the weekend. This is normally compensated the week after with two extra free days, placed according to the wishes of the staff member.
 
-Let us consider a sample staff member who is a librarian, works full time and is also assigned to evening work on Wednesdays. The worker is also assigned to work weekend on the fourth week and has chosen to take out its days off on Thursday and Friday during the week following the weekend. The availability for such a worker is illustrated in Table \ref{tab:Bob_avail}. The schedule repeats itself after five weeks and illustrates only the availability for outer tasks. It does not show whether the worker has been assigned any tasks or not.
+Let us consider a sample staff member who is a librarian, works full time and is also assigned to evening work on Wednesdays. The staff member is also assigned to work weekend on the fourth week and has chosen to take out its days off on Thursday and Friday during the week following the weekend. The availability for such a staff member is illustrated in Table \ref{tab:Bob_avail}. The schedule repeats itself after five weeks and illustrates only the availability for outer tasks, but does not show whether the staff member has been assigned any tasks during these weeks.
 
-All staff members have a five week schedule in the same manner as the sample worker. However, in order to meet the weekend demands, illustrated in Table \ref{tab:Outer_Task_Demand}, staff members have to be assigned for weekend work at different weekends. Thus, a staff memeber's schedule can be shifted in order to make sure that all weekend demands are fulfilled.
+All staff members have a five week schedule in the same manner as the sample staff member. However, in order to meet the weekend demands, illustrated in Table \ref{tab:Outer_Task_Demand}, staff members have to be assigned for weekend work at different weekends. Thus, a staff member's schedule can be shifted in order to make sure that all weekend demand is fulfilled.
 
 \begin{table}[!h]
 \centering
-\caption{Availability schedule for a sample worker. Yellow signifies that the worker is available. In parenthesis, the weekend shift.}
+\caption{Availability schedule for a sample staff member. Yellow signifies that the person is available. In parenthesis, the weekend shift.}
 \label{tab:Bob_avail}
 \begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
 \hline
@@ -259,14 +259,13 @@ All staff members have a five week schedule in the same manner as the sample wor
 \end{tabularx}
 \end{table} 
 
-Considering again the sample staff member's schedule in Table \ref{tab:Bob_avail}, where the person is available throughout all days, five basic constraints regulate how tasks can be placed. Firstly, workers are only allowed to take at a maximum one task per day. This guarantees that workers also have time for inner tasks. Secondly, workers are only allowed to perform a maximum of four tasks per week, in order for them to have a completely free day. Thirdly, workers can only be assigned to PL at a most once a week.
-Also, there is a maximum limit of PL tasks in total over all ten weeks which varies between different staff members, but which is at the most four. Lastly, a worker should not have the same shift more than twice a week. This guarantees that there is fairness in the schedule so that no worker has to work too many times at a shift which is considered to be "bad". An example of a feasible weekly schedule for the sample worker is provided in Table \ref{tab:Lib_feas_sched}.
+Considering again the sample staff member's schedule in Table \ref{tab:Bob_avail}, where the person is available throughout all days, five basic constraints regulate how tasks can be placed. Firstly, staff members are only allowed to take at a maximum one task per day. This guarantees that staff members also have time for inner tasks. Secondly, staff members are only allowed to perform a maximum of four tasks per week, in order for them to have a completely free day. Thirdly, staff members can only be assigned to PL at a most once a week. Also, there is a limit on how many PL tasks can be assigned to a staff member in total over all ten weeks which varies between different staff members, but which is at the most four. Lastly, a staff member should not have the same shift more than twice per week. This guarantees that there is fairness in the schedule so that no staff member has to work too many times at a shift which is considered to be "bad". An example of a feasible weekly schedule for the sample staff member is provided in Table \ref{tab:Lib_feas_sched}.
 
- The availability of all workers is provided by the library. Some workers work differently even and odd weeks while other never work evenings, only work weekends or never work weekends. This data was used in order to solve the scheduling problem.
+ The availability of all staff members is provided by the library. Some staff members work differently even and odd weeks while other never work evenings, only work weekends or never work weekends. This data was used in order to solve the scheduling problem.
 
 \begin{table}[!h]
 \centering
-\caption{Example of a feasible week for a worker.}
+\caption{Example of a feasible week for a staff member.}
 \label{tab:Lib_feas_sched}
 \begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
 \hline
@@ -298,7 +297,7 @@ Also, there is a maximum limit of PL tasks in total over all ten weeks which var
 
 When we were first presented with the scheduling problem, it was explained to us that the main challenge for the library is to find a good number of stand-ins for all days. When we studied their schedule, we observed that only one stand-in was present at the worst day. Thus, the main objective of this thesis work is to create a feasible schedule, according to the constraints explained in this section, with as many stand-ins as possible at the day with the least number of stand-ins.
 
-In this context, a stand-in is defined as a worker who is available for outer tasks during the first three shifts and who is not scheduled for any shift during that day. Both librarians and assistants can be stand-ins, but only librarians are qualified to be assigned to any task. Since the regular hour library activities are most crucial, there is no need for stand-ins during evenings and weekends. Similarly, there are no assigned stand-ins for the Library on Wheels or for Hageby.
+In this context, a stand-in is defined as a staff member who is available for outer tasks during the first three shifts and who is not scheduled for any shift during that day. Both librarians and assistants can be stand-ins, but only librarians are qualified to be assigned to any task. Since the regular hour library activities are most crucial, there is no need for stand-ins during evenings and weekends. Similarly, there are no assigned stand-ins for the Library on Wheels or for Hageby.
 
 Apart from maximizing the number of stand-ins for each day at the library, it is desirable for the sake of the personnel to create schedules that are repeated according to a five week pattern. Thus, the ten week schedule should ideally consist of two five week schedules.
 
@@ -318,7 +317,7 @@ The goal of this thesis is to investigate how the ten week scheduling problem fo
 \section{Method}
 The method used in the thesis work for solving the problem described above was to first formulate a mathematical model for the problem, which was then solved using two different methods. The first method involved modeling the problem in the AMPL programming language and solving it by the commercial optimization solver CPLEX. The second method involved creating an independent solver in C++ and solving it using a heuristic. Worker availability data was imported from Excel sheets to data files used to solve the problem through Visual Basic.
 
-Two different heuristics were tested in the second approach. The first heuristic distributes week blocks to workers. All blocks are pre-generated and feasible according to the constraints described in the previous section. In the second heuristic, individual tasks are distributed to the workers. In order to move through the solution space and find better solutions, both heuristics were based on a Large Neighbourhood Search (LNS) algorithm.
+Two different heuristics were tested in the second approach. The first heuristic distributes week blocks to staff members. All blocks are pre-generated and feasible according to the constraints described in the previous section. In the second heuristic, individual tasks are distributed to the staff members. In order to move through the solution space and find better solutions, both heuristics were based on a Large Neighbourhood Search (LNS) algorithm.
 
 \section{Outline}
 
@@ -326,7 +325,7 @@ The thesis is divided into six different chapters. The first chapter provides a 
 
 \section{Contributions of the authors}
 
-The authors of this thesis have worked both individually and together. The mathematical model was constructed and implemented by both authors, while the two heuristics were constructed and implemented separately. The week block scheduling heuristic was implemented by Claes while the task distribution heuristic was implemented by Emelie.
+The authors of this thesis have implemented some parts of the work individually and some together. In particular, the mathematical model was constructed and implemented by both authors, whereas the two heuristics were constructed and implemented separately. The week block scheduling heuristic was implemented by Claes while the task distribution heuristic was implemented by Emelie.
 
 In the report, Chapter \ref{chap:intro} was mainly written by Emelie. Chapter \ref{chap:lit} was divided so that Claes wrote \ref{PTSP} and \ref{SMTSP} Emelie wrote \ref{TSP} and \ref{MSC}. Other parts in the chapter were written together. The third chapter was written by Claes and in Chapter \ref{chap:heur} and \ref{chap:res}, the authors wrote the parts which concerned their own heuristic. Chapter \ref{chap:concl} was written by both authors.
  
