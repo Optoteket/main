@@ -67,9 +67,10 @@
 % author, date etc.
 %
 \newcommand{\putabstract}[0]{%
-The distribution of tasks to an inhomogeneous work force at libraries and other service institutions is time consuming. Such a problem, with five different task types, two types of workers and around 350 tasks to be scheduled in total weekly, is studied. Also weekends are to be scheduled and worker satisfaction is taken into account. The objective of the scheduling is to maximize the number of stand-in workers at the worst day in the schedule.
+The distribution of tasks to an inhomogeneous work force at libraries and other service institutions is time consuming for manual shcedulers, but well suited for optimization software. Such a problem is studied. The problem concerns five different task types, two types of workers and around 100 tasks to be scheduled in total weekly. Also weekends are to be scheduled and worker satisfaction is taken into account. The objective of the scheduling is to create a ten week rotating schedule in which the stand-in staff members are evenly distributed.
 
-A mathematical model is formulated for the problem, which is solved using the commercial CPLEX solver and by using two different LNS heuristic implementations. The first heuristic schedules week blocks to the workers, while the second distributes one task at a time. The latter heuristic works better than the former and achieves results comparable to those of the commercial solver. Our conclusion is that the second heuristics performs better mainly because it focuses on weekend scheduling, while the first heuristic does not.}
+A mathematical model is formulated for the problem, which is solved using the commercial CPLEX solver and by using two different LNS heuristic implementations. The first heuristic schedules week blocks to the workers, while the second distributes one task at a time. The latter heuristic works better than the former and achieves results comparable to those of the commercial solver. Our conclusion is that
+the second heuristic works better since it focuses on finding a good weekend distribution before creating the rest of the schedule.}
 
 \newcommand{\putkeywords}[0]{%
 Optimization, Scheduling, Task distribution, LNS, Weekend Scheduling, Inhomogeneous workforce}
@@ -269,13 +270,13 @@ http://urn.kb.se/resolve?urn=urn:nbn:se:liu:diva-77777
 
 \chapter*{Acknowledgements\index{Acknowledgements}}
 
-The authors of this thesis would like to express our deepest gratitude to our supervisor Torbjörn Larsson at Linköping University, who has helped us find our way in moments of confusion and despair. Thank you for the time and effort you have spent on our thesis. We would also like to thank Elina Rönnberg, who has provided encouraging words and valuable insights throughout the project.
+The authors of this thesis would like to express our deepest gratitude to our supervisor Torbjörn Larsson at Linköping University, who has helped us find our way in moments of uncertainty and who has been guiding us through the whole project. Thank you for the time and effort you have spent on our thesis. We would also like to thank Elina Rönnberg, who has provided encouraging words and valuable insights throughout the project.
 
-Furthermore, we would like to thank Elisabeth Cserhalmi and Ingrid Loeld  Rasch at Norrköpings Stadsbibliotek for providing us with an interesting thesis topic and for answering all our questions.
+Furthermore, we would like to thank Elisabeth Cserhalmi and Ingrid Loeld  Rasch at Norrköpings Stadsbibliotek for providing us with an interesting thesis topic and for answering all our questions many times.
 
 We thank our opponents, Akdas Hossain and Emma Miléus, for their comments and thoughts on this report.
 
-Lastly, we would like to thank our families and loved ones, who have always supported us. 
+Lastly, we would like to thank our families and loved ones, who have supported us until the end. 
 
 
 
@@ -288,17 +289,17 @@ Most of the reoccurring terms and abbreviations are described here.
 \section*{Optimization terms\index{Optimization terms}}
 \begin{tabular}{lp{10cm}}
 
-Heuristic & An algorithm designed to find sufficiently good, but not necessarily optimal solutions. \\
+Heuristic & An algorithm designed to find sufficiently good, but not necessarily feasible solutions. \\
 
 %Rostering & \\
 %Matheuristic & Text\\
 \end{tabular}
 
-\section*{Other terms\index{Other terms}}
+\section*{Library terms\index{Library terms}}
 \begin{tabular}{lp{10cm}}
 
-Fetch list & The library task of collecting books from shelves that are to be delivered elsewhere. \\
-Library on wheels & The library task of driving the bus with books to remote areas of town. \\
+Fetch list & The library task of collecting books from shelves, to be delivered elsewhere. \\
+Library on wheels & The task of driving a library bus with books to remote areas of town. \\
 %Rostering & \\
 %Matheuristic & Text\\
 \end{tabular}
@@ -316,7 +317,7 @@ Library on wheels & The library task of driving the bus with books to remote are
 \section*{Abbreviations\index{Abbreviations}}
 
 \begin{tabular}{ll}
-Exp		& Service counter(sv. expeditionsdisken) \\
+Exp		& Service counter (sv. expeditionsdisken) \\
 Info	& Information counter (sv. informationsdisken)\\
 PL		& Fetch list (sv. plocklistan)\\
 BokB    & Library on wheels (sv. bokbussen)\\

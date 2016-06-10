@@ -46,7 +46,7 @@ In the AMPL implementation, the model is identical to the one described in Chapt
 \end{center}
 \end{figure}
 
-Both heuristics are based on a Large Neighbourhood Search (LNS) framework. The method, which is classified as a metaheuristic, works by alternatively destroying and repairing a solution in order to move through the solution space. Typically, parts of the solution which are considered poor are destroyed. How big part of the solution which is destroyed is decided by the destroy degree. The repair function rebuilds the destroyed part of the solution using some greedy heuristic. The heuristic is described more in detail by \citet{pisinger_2010}.
+Both heuristic implementations are based on a Large Neighbourhood Search (LNS) framework. The method, which is classified as a metaheuristic, works by alternatively destroying and repairing a solution in order to move through the solution space. Typically, parts of the solution which are considered poor are destroyed. How much is destroyed is regulated by the destroy degree. The repair function rebuilds the destroyed part of the solution using some greedy heuristic. LNS is described more in detail by \citet{pisinger_2010}.
 
 \begin{table}[!h]
 \centering
@@ -554,7 +554,7 @@ The final phase destroys one random week for a random worker and immediately rep
 
 Due to well chosen cost parameter values the run will always eventually get relatively close and reach the final phase. If there are fewer stand-ins available a day where workers are lacking the solution will be discarded before entering the final phase. 
 
-\section{Task distribution approach}
+\section{Task distribution approach} \label{section:impl_task_dist}
 
 The second heuristic approach tested distributes individual tasks to workers and greatly resembles the process of manual scheduling. The implemented algorithm undergoes two phases. In the first phase, weekends, as well as some weekday tasks, are distributed and in the second phase the rest of the weekday tasks are distributed. 
 

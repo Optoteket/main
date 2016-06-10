@@ -1,9 +1,9 @@
-\section{Results}
-In the following sections results will be presented for the AMPL implementation and for both of the heuristics. The parameter values used in the runs will also be presented. 
+\section{Results} \label{section:results}
+In the following sections, results from testing the AMPL implementation and both heuristics will be presented. The parameter values used in the runs will also be given. 
 
 \subsection{AMPL implementation}\label{sec:ampl_res}
 
-Implementing the model in AMPL and running the model in CPLEX 12.5 gives the resulting values for the three objective function components displayed in Table \ref{tab:CPLEX_res}. The weights in equations \ref{objfcn} and \ref{constr:s_min} were set to $L = 2$, $A = 1$, $M =100$ and $N=1$, thus making librarians twice as valuable as assistants and stand ins 100 times more valuable than no shift changes. 
+Implementing the model in AMPL and running the model in CPLEX 12.5 gives the resulting values displayed in Table \ref{tab:CPLEX_res}. The weights in equations \ref{objfcn} and \ref{constr:s_min} were set to $L = 2$, $A = 1$, $M =100$ and $N=1$, thus making librarians twice as valuable as assistants and stand ins 100 times more valuable than no shift changes. 
 
 \begin{table}[!h]
 \centering
@@ -11,13 +11,13 @@ Implementing the model in AMPL and running the model in CPLEX 12.5 gives the res
 \label{tab:CPLEX_res}
 \begin{tabular}{|l|p{3cm}|p{3cm}|l|}
 \hline
-\rowcolor{Gray} & \textbf{Min num stand ins (lib, ass)} & \textbf{AMPL stand-in cost} & \textbf{Solution time} \\ \hline
+\rowcolor{Gray} & \textbf{Min num stand ins (lib, ass)} & \textbf{Stand-in cost} & \textbf{Solution time} \\ \hline
 \cellcolor{Gray} \textbf{Result} & \multicolumn{1}{c|}{(3,0)} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{19 min} \\
 \hline
 \end{tabular}
 \end{table}
 
-These results can be used as benchmark in the heuristics as CPLEX returns an optimal solution. 
+Only the stand-in part of the objective function is presented, since this value can be used as a benchmark in measuring the performance of the heuristics. The number of shift changes, which is the second part of the objective function in \ref{objfcn}, is zero.
 
 \subsection{Week block scheduling approach}
 As most of the costs are correlated with each other some parameter tuning has been required. The final result of the parameter tuning can be seen in Table \ref{tab:cost_parameters}. Their respective descriptions can be seen in Table \ref{tab:all_costs}. 
@@ -121,7 +121,7 @@ Figure \ref{fig:feasibleRerun} shows a plot of the objective function value afte
 
 \subsection{Task distribution approach}\label{sec:task_dist_res}
 
-In order to find a good value for the weights described in Section \ref{section:tasks_cost}, different tuning tests were performed. These tests resulted in the weights presented in Table \ref{tab:tasks_weight}. These weights are used in all test in this section unless stated otherwise. 
+In order to find a good value for the weights described in Section \ref{subsection:tasks_cost} in the previous chapter, different tuning tests were performed. These tests resulted in the weights presented in Table \ref{tab:tasks_weight}. These weights are used in all test in this section unless stated otherwise. 
 
 \begin{table}[!h]
 \centering
@@ -157,7 +157,7 @@ The first six weights, belonging to the weekend objective function, were most ex
 
 The individual worker cost and the worker objective function costs measuring the same aspect of the schedule have been given the same weights, as is illustrated in Table \ref{tab:tasks_weight}. This is due to the fact that the weights, relative to each other, decide what constraints are most strict. It is, for example more severe to break the rule of one task per day, than to break the rule of having too many shifts at the same time in a week, which is reflected in the weights. The stand-in weight $W_{w\_SI}$ is twice as high for librarians as for assistant.
 
-It was argued in Chapter \ref{chap:taskdist} that the critical part of the problem is the weekend placement, which is why a two-phase algorithm was implemented. Both phases are run a specified number of iterations, referred to as $It_{wend}$ and $It_{wday}$. These parameters were also trimmed and the results from different iteration values are displayed in Tables \ref{tab:taskdist_res_wendit} and \ref{tab:taskdist_res_wdayit}. The results for weight tuning are displayed in Table \ref{tab:taskdist_weights_res}.
+The two phases of the implementation are run a specified number of iterations, referred to as $It_{wend}$ and $It_{wday}$. These parameters were also trimmed and the results from different iteration values are displayed in Tables \ref{tab:taskdist_res_wendit} and \ref{tab:taskdist_res_wdayit}. The results for weight tuning are displayed in Table \ref{tab:taskdist_weights_res}.
 
 \begin{table}[!h]
 \centering
@@ -198,22 +198,22 @@ It was argued in Chapter \ref{chap:taskdist} that the critical part of the probl
 \begin{tabular}{|l|l|l|}
 \hline
 \rowcolor{Gray} \textbf{$W_{SI\_m}/W_{S\_m}/W_{D\_m}$} & \textbf{Heuristic cost} &  \textbf{AMPL cost} \\ \hline
-\cellcolor{Gray} 0/0/0 & \multicolumn{1}{c|}{2.85} & \multicolumn{1}{c|}{3.66}  \\
-\cellcolor{Gray} 1/1/1 & \multicolumn{1}{c|}{5.43} & \multicolumn{1}{c|}{5.54}  \\
-\cellcolor{Gray} 10/0.1/0.1 & \multicolumn{1}{c|}{5.11} & \multicolumn{1}{c|}{5.36}  \\
-\cellcolor{Gray} 0.1/10/0.1 & \multicolumn{1}{c|}{5.43} & \multicolumn{1}{c|}{5.60}  \\
-\cellcolor{Gray} 0.1/0.1/10 & \multicolumn{1}{c|}{5.57} & \multicolumn{1}{c|}{5.80} \\
+\cellcolor{Gray} \textbf{0/0/0 }& \multicolumn{1}{c|}{2.85} & \multicolumn{1}{c|}{3.66}  \\
+\cellcolor{Gray} \textbf{1/1/1} & \multicolumn{1}{c|}{5.43} & \multicolumn{1}{c|}{5.54}  \\
+\cellcolor{Gray} \textbf{10/0.1/0.1} & \multicolumn{1}{c|}{5.11} & \multicolumn{1}{c|}{5.36}  \\
+\cellcolor{Gray} \textbf{0.1/10/0.1} & \multicolumn{1}{c|}{5.43} & \multicolumn{1}{c|}{5.60}  \\
+\cellcolor{Gray} \textbf{0.1/0.1/10} & \multicolumn{1}{c|}{5.57} & \multicolumn{1}{c|}{5.80} \\
 \hline
 \end{tabular}
 \end{table}
 
-The tables display two costs for each test, the Heuristic cost and the AMPL cost. These are calculated as the average result of 100 runs. The heuristic cost is the actual result of the heuristic, measuring how good the heuristic solves the problem, while the AMPL cost is the result obtained when solving the problem to optimality in CPLEX, using the weekends found in the heuristic. Thus, this value measures how good the weekend phase works. Both figures should be compared to the optimal stand-in value for the problem, which is 6 (Table \ref{tab:CPLEX_res}).
+The tables display two costs for each test, the Heuristic cost and the AMPL cost. These are calculated as the average result of 100 runs. Each run takes between a few seconds and a few minutes to perform. The heuristic cost is the actual result of the heuristic, measuring how well the heuristic solves the problem. The AMPL cost is the result obtained when solving the problem to optimality in CPLEX, using the weekends found in the heuristic. Thus, this value measures how good the weekend phase works. Both figures should be compared to the optimal stand-in value for the problem, which is 6 (Table \ref{tab:CPLEX_res}).
 
-Studying Table \ref{tab:taskdist_res_wendit}, it can be seen that the AMPL cost increases with more weekend iterations. However, after 500 iterations, the cost stops to improve and it is actually deteriorating. This is probably indicating that the weekend objective function value can only give a measure of a good schedule, thus the result does not only depend on the number of iterations but also on chance. 
+Studying Table \ref{tab:taskdist_res_wendit}, it can be seen that the AMPL cost increases with more weekend iterations. However, after 500 iterations, the cost stops to improve and it is actually deteriorating slightly. This is probably indicating that the weekend objective function value can only give a rough measure of a good schedule, and thus the result does not only depend on the number of iterations but also on chance. 
 
-Similarly, in Table \ref{tab:taskdist_res_wdayit}, the Heuristic cost increases until a certain threshold, when the solutions are not improving any more. This might indicate that the second phase is not varied enough, so the same schedules are found many times. This might be solved through varying weights or introducing more randomness in task placement.
+Similarly, in Table \ref{tab:taskdist_res_wdayit}, the Heuristic cost increases until a certain threshold, when the solutions are not improving any more. This might indicate that the second phase is not stochastic enough, so the same schedules are found multiple times. This might be solved through implementing varying weights or introducing more randomness in task placement.
 
-Table \ref{tab:taskdist_weights_res} shows a few extreme weight combinations. It is is clear from the table that although the performance does not vary to any larger extent when shifting the focus in the weights, using a completely random search with no weights produces bad results. The last combination of weights seems to be performing slightly better than the others and thus, these weights were chosen as optimal weights.
+Table \ref{tab:taskdist_weights_res} shows a few extreme weight combinations. It is is clear from the table that, although the performance does not vary to any larger extent when shifting the focus in the weights, using a completely random search with no weights produces bad results. The last combination of weights seems to be performing slightly better than the others and thus, these weights were chosen in the implementation.
 
 The weekend objective function value during a typical run is shown in Figure \ref{fig:obj_fun_vals}. The effects of the SA accept function are visible in the plot as smaller or larger dives in the objective function value. In the measuring, the SA-parameters $T_0 = 0.4$ and $\alpha = 0.985$. $It_{wend} = 1000$ were used. The graph suggests that a high weekend objective function value is found already within the 200 first iterations, which is consistent with the results in Table \ref{tab:taskdist_res_wendit}.
 
@@ -240,12 +240,12 @@ The weekend objective function value during a typical run is shown in Figure \re
 \end{figure}
 
 
-In Figure \ref{fig:obj_fun_comp} and Figure \ref{fig:obj_fun_comp_aver}, the three different cost components from the weekend objective function for the same run are displayed. In the first plot, the minimum costs are displayed. These seem to fluctuate between a few discrete values, although a small improvement the iterations can be seen at least in the day avail cost component. The average values are almost constant throughout the iterations, as can be seen in the second plot. This is probably due to the fact that the total number of workers barely changes when shifting their weeks.
+In Figure \ref{fig:obj_fun_comp} and Figure \ref{fig:obj_fun_comp_aver}, the three different cost components from the weekend objective function for the same run are displayed. In the first plot, the minimum costs are displayed. These seem to move between a few discrete values, although a small improvement over the iterations can be seen at least in the day avail cost component. The average values are almost constant throughout the iterations, as can be seen in the second plot. This is probably due to the fact that the total number of available workers barely changes when shifting their weeks.
 
-Attempts were made to correlating the min components of the weekend objective function value. However, the results were fluctuating between different tests and no clear correlations could be identified. This suggests that they are measuring three independent aspects.
+Attempts were made to correlating the min components of the weekend objective function value. However, the results were fluctuating between different tests so no clear correlations could be identified. This suggests that they are measuring three independent aspects.
 
 \section{Discussion}
-In this Section, the different results from in the previous Section will be discussed. Pros and cons for both methods are also given so that they can be more easily compared.
+In this section, the different results presented in Section \ref{section:results} will be discussed. Pros and cons for both methods are given so that they can be more easily compared.
 
 
 \subsection{Week block scheduling approach}
@@ -283,9 +283,9 @@ A great deal of costs are needed (some correlated), where each of them affects t
  
 
 \subsection{Task distribution approach}
-The results from the previous Section point to the fact that placing a good weekend structure is essential in order to get a good final schedule. When $It_{wend}$ is increased the results improve, up to a limit around 500 iterations where the results are comparable to those of the AMPL implementation. This suggests that the weekend objective function used gives an indication of a good schedule. However, this is only an indication, not a guarantee for an optimal solution as the results converge to a value slightly lower than the AMPL result. 
+The results from the previous section point to the fact that finding a good weekend distribution is essential in order to get a good final schedule. When $It_{wend}$ is increased the results improve, up to a limit of around 500 iterations. The results are comparable to those of the AMPL implementation. This suggests that the weekend objective function used gives an indication of a good schedule. However, it only gives an indication, not an optimal solution, as the results seem to converge to a value slightly lower than the AMPL result. 
 
-Table \ref{tab:taskdist_weights_res} suggests that the weights used in the weekend objective function are important to how well the implementation works, but only to a certain degree. More testing could be done on the weights in order to see if the result can be further improved. However, since the objective function is an incomplete measure of a good schedule the results will never be completely optimal. This is listed as the main drawback in the cons column in Table \ref{tab:pros_cons_task_scheduling}. 
+Table \ref{tab:taskdist_weights_res} suggests that the weights used in the weekend objective function are important for how well the implementation works, but only to a certain degree. More testing could be done on the weights in order to see if the result can be further improved. However, since the objective function is an incomplete measure of a good schedule the results will never be completely optimal. This is listed as the main drawback in the cons column in Table \ref{tab:pros_cons_task_scheduling}. 
 
 \begin{table}[!ht]
 \caption{Pros and cons with the implemented task distribution approach}
