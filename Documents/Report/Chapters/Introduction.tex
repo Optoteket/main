@@ -1,11 +1,10 @@
 % Introduction to Master Thesis
 
-\section{Background}
-
-
 At a library, there exist a number of tasks which are to be distributed over all staff members. Poor work distribution among staff can cause problems and result in a shortage of staff at certain critical shifts. If a worker becomes unavailable at such shifts, due to for example illness, a qualified stand-in is required to fill the vacancy. Therefore, it is of high priority to libraries and other similar institutions to create schedules with as many skilled stand-ins as possible in order to handle such unexpected disturbances. 
 
 The problem addressed in this thesis work concerns the library staff at the Central Library of Norrköping, Sweden. This library currently has 39 employees and the renown building from the 1950's is a central gathering point in Norrköping. The library is open weekdays from 8 a.m. to 8 p.m. and from 11 a.m. to 16 p.m. during weekends. The generous opening times also creates a scheduling challenge for the library as it requires a large pool of well coordinated personnel to keep the library open. In addition, the library also provides its services to one other smaller library, which adds further complexity to the problem of task distribution among the staff.
+
+This chapter contains a problem description, where the scheduling problem at hand is described in detail, a section describing the goals and aims of the thesis work, a section about the methods used to solve the problem and an outline of this report.
 
 \section{Problem description}
 
@@ -134,9 +133,9 @@ The two types of library workers that are to be assigned tasks are librarians an
 
 The Central Library of Norrköping currently has 39 library staff members, 23 of which are librarians and 16 of which are assistants. These have different availabilities for performing tasks, depending on their working hours and the amount of inner work they have. In the standard case, each worker is assigned one evening per week and once per five weeks he or she is assigned to work during the weekend. This is normally compensated the week after with two extra free days, placed according to the wishes of the worker.
 
-Let us consider a sample worker who is a librarian, works full time and is also assigned to evening work on Wednesdays. The worker is also assigned to work weekend on the fourth week and has chosen to take out its days off on Thursday and Friday during the week following the weekend. The availability for such a worker is illustrated in Table \ref{tab:Bob_avail}. The schedule repeats itself after five weeks and illustrates only the availability for outer tasks. It does not show whether the worker has been assigned any tasks or not.
+Let us consider a sample staff member who is a librarian, works full time and is also assigned to evening work on Wednesdays. The worker is also assigned to work weekend on the fourth week and has chosen to take out its days off on Thursday and Friday during the week following the weekend. The availability for such a worker is illustrated in Table \ref{tab:Bob_avail}. The schedule repeats itself after five weeks and illustrates only the availability for outer tasks. It does not show whether the worker has been assigned any tasks or not.
 
-All workers have a five week schedule in the same manner as the sample worker. However, in order to meet the weekend demands, illustrated in Table \ref{tab:Outer_Task_Demand}, workers have to be assigned for weekend work at different weekends. Thus, a worker's schedule can be shifted in order to make sure that all weekend demands are fulfilled.
+All staff members have a five week schedule in the same manner as the sample worker. However, in order to meet the weekend demands, illustrated in Table \ref{tab:Outer_Task_Demand}, staff members have to be assigned for weekend work at different weekends. Thus, a staff memeber's schedule can be shifted in order to make sure that all weekend demands are fulfilled.
 
 \begin{table}[!h]
 \centering
@@ -260,9 +259,10 @@ All workers have a five week schedule in the same manner as the sample worker. H
 \end{tabularx}
 \end{table} 
 
-Considering again the sample worker's schedule in Table \ref{tab:Bob_avail}, the worker is available throughout all days. However, four basic constraints regulate how tasks can be placed during availability. Firstly, workers are only allowed to take at a maximum one task per day. This guarantees that workers also have time for inner tasks. Secondly, workers are only allowed to perform a maximum of four tasks per week, in order for them to have a completely free day. Thirdly, workers can only be assigned to PL at a most once a week. The restriction for ten weeks varies between different workers, but should never exceed four. Lastly, a worker should not have the same shift more than twice a week. This guarantees that there is fairness in the schedule so that no worker has to work too many times at a shift considered "bad". An example of a feasible weekly schedule for the sample worker is provided in Table \ref{tab:Lib_feas_sched}.
+Considering again the sample staff member's schedule in Table \ref{tab:Bob_avail}, where the person is available throughout all days, five basic constraints regulate how tasks can be placed. Firstly, workers are only allowed to take at a maximum one task per day. This guarantees that workers also have time for inner tasks. Secondly, workers are only allowed to perform a maximum of four tasks per week, in order for them to have a completely free day. Thirdly, workers can only be assigned to PL at a most once a week.
+Also, there is a maximum limit of PL tasks in total over all ten weeks which varies between different staff members, but which is at the most four. Lastly, a worker should not have the same shift more than twice a week. This guarantees that there is fairness in the schedule so that no worker has to work too many times at a shift which is considered to be "bad". An example of a feasible weekly schedule for the sample worker is provided in Table \ref{tab:Lib_feas_sched}.
 
- Availability for all workers is provided by the library. Some workers work differently even and odd weeks while other never work evenings, only work weekends or never work weekends. This data was used in order to solve the problem.
+ The availability of all workers is provided by the library. Some workers work differently even and odd weeks while other never work evenings, only work weekends or never work weekends. This data was used in order to solve the scheduling problem.
 
 \begin{table}[!h]
 \centering
@@ -296,79 +296,38 @@ Considering again the sample worker's schedule in Table \ref{tab:Bob_avail}, the
 
 \subsection{Scheduling objectives: stand-in maximization and schedule variation}
 
-When we first were presented with the scheduling task, it was explained to us that the main challenge for the library is to find a good number stand-ins for all days. When we studied their schedule, we observed that only one stand-in was present at the worst day. Thus, the main objective of this thesis work is to create a feasible schedule, according to the constraints explained in this section, with as many stand-ins as possible at the day with the least number of stand-ins.
+When we were first presented with the scheduling problem, it was explained to us that the main challenge for the library is to find a good number of stand-ins for all days. When we studied their schedule, we observed that only one stand-in was present at the worst day. Thus, the main objective of this thesis work is to create a feasible schedule, according to the constraints explained in this section, with as many stand-ins as possible at the day with the least number of stand-ins.
 
-In this context, a stand-in is defined as a worker who is available for outer tasks during the first three shifts and who is not scheduled for any shift that day. Both librarians and assistants can be considered as a stand-in, but only librarians are qualified to be assigned to any task. Since the regular hour library activities are most crucial, there is no need for stand-ins during evenings and weekends. Similarly, there are no assigned stand-ins for the Library on Wheels or for Hageby.
+In this context, a stand-in is defined as a worker who is available for outer tasks during the first three shifts and who is not scheduled for any shift during that day. Both librarians and assistants can be stand-ins, but only librarians are qualified to be assigned to any task. Since the regular hour library activities are most crucial, there is no need for stand-ins during evenings and weekends. Similarly, there are no assigned stand-ins for the Library on Wheels or for Hageby.
 
-Apart from maximizing the number of stand-ins for each day at the library, it is desirable for the sake of the personnel to create schedules in which are repeated according to a five week pattern. Thus, the ten week schedule should ideally consist of two five week schedules. 
+Apart from maximizing the number of stand-ins for each day at the library, it is desirable for the sake of the personnel to create schedules that are repeated according to a five week pattern. Thus, the ten week schedule should ideally consist of two five week schedules.
+
+\section{Aims and goals}
+
+The goal of this thesis is to investigate how the ten week scheduling problem for the library staff members at the Central Library of Norrköping can be solved using mathematical optimi zation methods. This goal includes:
+
+\begin{enumerate}
+\item To investigate what has previously been done in the area of task distribution.
+\item To find a mathematical model for the given problem.
+\item To implement the model in AMPL.
+\item To implement two heuristics for the problem using a large neighbourhood search framework, one using a week block scheduling approach and one using a task scheduling approach.
+\item To evaluate and compare the models used in the three implementations as well as their performance.
+\end{enumerate}
+
 
 \section{Method}
-The method used in the thesis work for solving the problem described above was to first formulate a mathematical model for the problem, which was then solved using two different methods. The first method involved modeling the problem in the AMPL programming language and solving it in the commercial optimization solver CPLEX. The second method involved creating an independent solver in C++ and solving it using a heuristic. Worker availability data was imported from Excel sheets to data files used to solve the problem through Visual Basic.
+The method used in the thesis work for solving the problem described above was to first formulate a mathematical model for the problem, which was then solved using two different methods. The first method involved modeling the problem in the AMPL programming language and solving it by the commercial optimization solver CPLEX. The second method involved creating an independent solver in C++ and solving it using a heuristic. Worker availability data was imported from Excel sheets to data files used to solve the problem through Visual Basic.
 
-Two different heuristics were tested in the second solution method. The first heuristic distributes week blocks to workers. All blocks are pre-generated and feasible according to the constraints described in the previous section. In the second heuristic, individual tasks are distributed to the workers. In order to find better solutions and move through the solution space, both heuristics were based on a Large Neighbourhood Search (LNS) algorithm.
+Two different heuristics were tested in the second approach. The first heuristic distributes week blocks to workers. All blocks are pre-generated and feasible according to the constraints described in the previous section. In the second heuristic, individual tasks are distributed to the workers. In order to move through the solution space and find better solutions, both heuristics were based on a Large Neighbourhood Search (LNS) algorithm.
 
-\section{Disposition of the report}
+\section{Outline}
 
-The report is divided into the following chapters:
+The thesis is divided into six different chapters. The first chapter provides a description of the problem studied as well as the context of the study. In Chapter \ref{chap:lit}, previous work in the area is presented. The mathematical model constructed for solving the problem is presented and explained in Chapter \ref{chap:mathmod}. In Chapter \ref{chap:heur}, the different implementations of the model are presented and the results for these implementations are given in Chapter \ref{chap:res}. Lastly, conclusions from the work and suggestions for further development are presented in Chapter \ref{chap:concl}.
 
-\begin{itemize}
-	\item Chapter \ref{chap:intro}: Background to the problem 
-	\item Chapter \ref{chap:lit}: Previous work in the area of scheduling
-	\item Chapter \ref{chap:mathmod}: Formulation of the problem as a mathematical model
-	\item Chapter \ref{chap:impl}: Presentation of different implementations of the problem
-	\item Chapter \ref{chap:weekly}: Implementation of the week block scheduling approach 
-	\item Chapter \ref{chap:taskdist}: Implementation of the task distribution approach 
-	\item Chapter \ref{chap:res}: Results and discussion of the implementations
-	\item Chapter \ref{chap:further}: Suggestions for further development
-	\item Chapter \ref{chap:concl}: Conclusions from results and discussion
-\end{itemize}
+\section{Contributions of the authors}
 
+The authors of this thesis have worked both individually and together. The mathematical model was constructed and implemented by both authors, while the two heuristics were constructed and implemented separately. The week block scheduling heuristic was implemented by Claes while the task distribution heuristic was implemented by Emelie.
 
+In the report, Chapter \ref{chap:intro} was mainly written by Emelie. Chapter \ref{chap:lit} was divided so that Claes wrote \ref{PTSP} and \ref{SMTSP} Emelie wrote \ref{TSP} and \ref{MSC}. Other parts in the chapter were written together. The third chapter was written by Claes and in Chapter \ref{chap:heur} and \ref{chap:res}, the authors wrote the parts which concerned their own heuristic. Chapter \ref{chap:concl} was written by both authors.
+ 
 
-
-\iffalse
-
-
-
-\begin{table}[h]
-\centering
-\caption{Overall schedule for week 1.}
-\label{tab:General_schedule}
-\begin{tabularx}{\textwidth}{|X|l|l|l|l|X|}
-\hline
-%-------------------------------------------------------------------
-\textbf{Schedule week 1} & & & & &  
-\\ \hline 
-%%------------------------------------------------------------------- 
-\textbf{Monday}& \colcell \textbf{Exp} & \colcell \textbf{Info} & \colcell \textbf{PL} & \colcell \textbf{LoW - odd} & \colcell \textbf{LoW- even} 
-\\ \hline 
-%%------------------------------------------------------------------- 
-
- 08:00 - 10:00 & \small W1, W2 & \small W1,W2 & \small W1 & \small W1 & \small W1
-\\ \hline 
-%%------------------------------------------------------------------- 
- 10:00 - 13:00 & \small W1, W2, W3 & \small W1, W2, W3 & \small W1 & - & -
-\\ \hline 
-%%------------------------------------------------------------------- 
- 13:00 - 16:00 & \small W1, W2, W3 & \small W1, W2, W3 & \small W1 & - & -
-\\ \hline 
-%%------------------------------------------------------------------- 
- 16:00 - 20:00 & \small W1, W2, W3 & \small W1, W2, W3 & \small W1 & - & -
-\\ \hline 
-%%------------------------------------------------------------------- 
-\textbf{Tuesday}& \colcell \textbf{Exp} & \colcell \textbf{Info} & \colcell \textbf{PL} & \colcell \textbf{LoW - odd } & \colcell \textbf{LoW- even} 
-\\ \hline 
-%%------------------------------------------------------------------- 
-\textbf{Wednesday}& \colcell \textbf{Exp} & \colcell \textbf{Info} & \colcell \textbf{PL} & \colcell \textbf{LoW - odd } & \colcell \textbf{LoW- even} 
-\\ \hline 
-%%-------------------------------------------------------------------
-\textbf{Thursday}& \colcell \textbf{Exp} & \colcell \textbf{Info} & \colcell \textbf{PL} & \colcell \textbf{LoW - odd } & \colcell \textbf{LoW- even} 
-\\ \hline 
-%%-------------------------------------------------------------------
-\textbf{Friday}& \colcell \textbf{Exp} & \colcell \textbf{Info} & \colcell \textbf{PL} & \colcell \textbf{LoW - odd } & \colcell \textbf{LoW- even} 
-\\ \hline 
-%%-------------------------------------------------------------------
-\end{tabularx}
-\end{table}
-
-\fi
