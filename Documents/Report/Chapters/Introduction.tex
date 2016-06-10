@@ -11,12 +11,12 @@ The problem addressed in this thesis work concerns the library staff at the Cent
 
 The main objective of the problem studied is to create a ten week schedule for all staff members and tasks at the library. Each staff member's ten week schedule should consist of two five-week schedules which should be as similar as possible, but not identical since some tasks are performed only even or odd weeks. The ten week schedule should be rotational.
 
-The schedule should also be created so that the stand-ins are distributed evenly over all days. In order to do this, the library provided information about when staff members are available for task assignment, what tasks should be assigned as well as the constraints for how these tasks should be assigned. These constraints are discussed in detail in this section.
+The schedule should also be created so that the stand-ins are distributed evenly over all days. In order to do this, the library provided information about when staff members are available for task assignment, what tasks should be assigned when as well as the constraints for how these tasks should be assigned. These constraints are discussed in detail in this section.
 
 \subsection{Description of the daily tasks at the library} \label{section:library_tasks}
 The highest priority at a library, as with any service institution, is to provide good service to visitors. This includes book loan services as well as being able to give visitors helpful information about the resources at disposal at the library. This type of work is referred to as "outer tasks" in this thesis. In addition to these, "inner tasks" such as sorting books, ordering new books and answering emails also exist and are a part of the every day library tasks as well. The problem of allocating the outer tasks, while taking inner tasks into consideration, is studied in this thesis.
 
-Three main outer task types can be identified at the library of Norrköping; working at the service counter (sv. expiditionsdisken), working at the information counter (sv. informationsdiken) and assembling books which are to be sent to other libraries according to the "fetch list" (sv. plocklista). The fetch list is a task type for which the worker is scheduled during a whole day, while the other types of tasks are scheduled for only one shift. The outer tasks can be performed by either librarians or both librarians and assistants, as described in Table \ref{tab:Outer_Tasks}.
+Three main types of outer task can be identified at the library of Norrköping: working at the service counter (sv. expidetionsdisken), working at the information counter (sv. informationsdisken) and assembling books which are to be sent to other libraries according to the "fetch list" (sv. plocklista). The fetch list is a task for which the worker is scheduled during a whole day, while the other tasks are scheduled for only one shift. The outer tasks can be performed by either librarians or both librarians and assistants, as described in Table \ref{tab:Outer_Tasks}.
 
 \begin{table}[h]
 \centering
@@ -48,7 +48,7 @@ Three main outer task types can be identified at the library of Norrköping; wor
 
 \begin{table}[ht]
 \centering
-\caption{Worker demand during a week. PL is marked as one shift, but is performed during the whole day.}
+\caption{Staff demand during a week. PL is marked as one shift, but it is performed during the whole day.}
 \label{tab:Outer_Task_Demand}
 \begin{tabular}{|C{1.2cm}
 |C{1cm}|C{1cm}|C{1cm}|C{1cm}|}
@@ -86,14 +86,14 @@ Three main outer task types can be identified at the library of Norrköping; wor
  \end{tabular}
 \end{table}
 
-As in the case with most libraries, the Central Library of Norrköping also has responsibilities that fall outside of its normal daily activities. One such responsibility is staffing a smaller library subsidiary in Hageby, situated in the suburban area of Norrköping during weekends. It is decided that only librarians are qualified for this task. While some librarians prefer to work only at HB, others prefer never to.
+As in the case with most libraries, the Central Library of Norrköping also has responsibilities that fall outside of its normal daily activities. One such responsibility is staffing a smaller library subsidiary in Hageby, situated in the suburban area of Norrköping, during weekends. It is decided that only librarians are qualified for this task. While some librarians prefer to work only at HB, others prefer never to.
 
-Working during a weekend implies working both Saturday and Sunday. When not working at HB, the Friday evening shift is also part of the weekend work. The weekend work is compensated with free days, often placed at the week following upon weekend work, in this thesis referred to as "weekrest week".
+Working during a weekend means working both Saturday and Sunday. When not working at HB, the Friday evening shift is also part of the weekend work. The weekend work is compensated with free days, often placed at the week following upon weekend work, in this thesis referred to as rest week.
 
 
-Since the number of visitors at the library varies throughout the day and also during different days of the week, so does the demand for personnel for the outer tasks tasks. This demand is illustrated in Table \ref{tab:Outer_Task_Demand}, which is constructed according to figures given by the library. 
+Since the number of visitors at the library varies throughout the day and also during different days of the week, so does the demand for personnel for the outer tasks. This demand is illustrated in Table \ref{tab:Outer_Task_Demand}, which is constructed according to figures given by the library. 
 
-Another library task is the "Library on Wheels" (sv. bokbussen), for which only a handful of librarians are qualified. The work involves driving a library bus, which provides citizens in remoter areas of the city with books as well as other library services. The Library on Wheels only operates a few times a week and the schedule differs between odd and even weeks in accordance with Table \ref{tab:LOW_Demand}.
+Another library task is the "Library on Wheels" (sv. bokbussen), for which only a handful of librarians are qualified. This work involves driving a library bus, which provides citizens in remoter areas of the city with books as well as other library services. The Library on Wheels only operates a few times a week and the schedule differs between odd and even weeks in accordance with Table \ref{tab:LOW_Demand}.
 
 \begin{table}[ht]
 \centering
@@ -126,17 +126,17 @@ Another library task is the "Library on Wheels" (sv. bokbussen), for which only 
 \end{tabularx}
 \end{table}
 
-Apart from the outer work described above, there is also inner work at the library which sometimes need to be scheduled. One such type of inner work is meetings, as it concerns a large number of staff. There exists both library meetings, scheduled for the whole work force, and department meetings, scheduled only a subset of workers. The library meetings are fixed in time and take place every fifth weeks on Monday mornings 8:15-10:00 while the department meetings are more flexible and take place every fifth week. For department meetings, all department members must be available. Only three departments have scheduled meetings: the child, adult and media department.
+Apart from the outer tasks described above, there are also inner tasks at the library which sometimes need to be scheduled. One such type of inner task is meetings, which concerns a large number of staff members. There exist both library meetings, scheduled for the whole work force, and group meetings, scheduled only for a subset of the staff members. The library meetings are fixed in time and take place every fifth weeks on Monday mornings from 8:15 a.m. to 10:00 a.m. Also group meetings take place every fifth week but are flexible in time. For group meetings, all group members must be available. Only three groups have scheduled meetings: the child, adult and media group.
 
 \subsection{Personnel attributes}
 
-The two types of library workers that are to be assigned tasks in this thesis are librarians and assistants. Librarians can perform all the tasks listed in the previous section, while assistants can perform a subset of these tasks.
+The two types of library workers that are to be assigned tasks are librarians and assistants. Librarians can perform all the tasks listed above, while assistants can perform a subset of these tasks.
 
-The Central Library of Norrköping currently has 39 library workers, 23 of which are librarians and 16 of which are assistants. Both worker types have different availabilities for performing tasks, depending on their working hours and the amount of inner work they have. In the standard case, each worker is assigned one evening per week and once per five weeks he or she is assigned to work during the weekend. The week after is normally compensated with two extra free days, placed accordingly to the wishes of the worker.
+The Central Library of Norrköping currently has 39 library staff members, 23 of which are librarians and 16 of which are assistants. These have different availabilities for performing tasks, depending on their working hours and the amount of inner work they have. In the standard case, each worker is assigned one evening per week and once per five weeks he or she is assigned to work during the weekend. This is normally compensated the week after with two extra free days, placed according to the wishes of the worker.
 
-Let us consider a sample worker who is a librarian, works full time and is also assigned to evening work on Wednesdays. The worker is also assigned to work weekend on the fourth week and has chosen to take out its days off on Thursdays and Fridays during the week following the weekend. The availability for such a worker is illustrated in Table \ref{tab:Bob_avail}. The schedule repeats itself after five weeks and illustrates only the availability for outer tasks. It does not show whether the worker has been assigned any tasks or not.
+Let us consider a sample worker who is a librarian, works full time and is also assigned to evening work on Wednesdays. The worker is also assigned to work weekend on the fourth week and has chosen to take out its days off on Thursday and Friday during the week following the weekend. The availability for such a worker is illustrated in Table \ref{tab:Bob_avail}. The schedule repeats itself after five weeks and illustrates only the availability for outer tasks. It does not show whether the worker has been assigned any tasks or not.
 
-All workers have a five week schedule in the same manner as the sample worker. However, in order to meet the weekend demands, illustrated by Table \ref{tab:Outer_Task_Demand}, for all ten weeks, workers have to be assigned for weekend work at different weekends. Thus, a worker's schedule can be shifted in order to make sure that all weekend demands are fulfilled.
+All workers have a five week schedule in the same manner as the sample worker. However, in order to meet the weekend demands, illustrated in Table \ref{tab:Outer_Task_Demand}, workers have to be assigned for weekend work at different weekends. Thus, a worker's schedule can be shifted in order to make sure that all weekend demands are fulfilled.
 
 \begin{table}[!h]
 \centering
