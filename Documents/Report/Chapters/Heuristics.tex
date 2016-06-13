@@ -1,6 +1,6 @@
 %The two heuristical approaches
 
-In the AMPL implementation, the model is identical to the one described in Chapter \ref{chap:mathmod}. However, in order to implement the heuristics, the model's constraints had to be relaxed. Figure \ref{fig:AMPL_vs_heur} illustrates this process as some constraints considered hard in the original model are softened in the heuristics. The alterations of the model for the two heuristics is described in Tables \ref{tab:weekly_task_constraints} and \ref{tab:task_constraints}. The reason for relaxing the model is so as to create a larger neighbourhood for the heuristic to search through. This allows it to move more freely between solutions and increases the chance of finding the optimal solution.
+In the AMPL implementation the model given in Appendix \ref{definitions} is used. However, in order to implement the heuristics, some of the model's constraints had to be relaxed and some had to be removed due to lack of time. Figure \ref{fig:AMPL_vs_heur} illustrates this process, as some constraints which are considered to be hard in the original model are softened when the heuristics are applied. The modifications of the model for the two heuristics are described in Tables \ref{tab:weekly_task_constraints} and \ref{tab:task_constraints}. The reason for relaxing the model is to create a larger neighbourhood for the heuristic to search through. This allows it to move more freely between solutions and increases the chances of finding an optimal solution.
 
 % Define block styles
 \tikzstyle{block} = [rectangle, draw=none, fill=white,
@@ -11,7 +11,7 @@ In the AMPL implementation, the model is identical to the one described in Chapt
 \newcommand*{\hh}{\hspace{24pt}}% double indentation
 
 \begin{figure}[!h]
-\caption{Illustration of the difference between the model used in AMPL and the model  for a heuristic}
+\caption{Illustration of the differences between the model used in AMPL and the heuristic model}
 \label{fig:AMPL_vs_heur}
 \begin{center}
 \begin{tikzpicture}[node distance = 2cm , auto, scale=0.7, every node/.style={scale=0.7}]
@@ -46,28 +46,32 @@ In the AMPL implementation, the model is identical to the one described in Chapt
 \end{center}
 \end{figure}
 
-Both heuristic implementations are based on a Large Neighbourhood Search (LNS) framework. The method, which is classified as a metaheuristic, works by alternatively destroying and repairing a solution in order to move through the solution space. Typically, parts of the solution which are considered poor are destroyed. How much is destroyed is regulated by the destroy degree. The repair function rebuilds the destroyed part of the solution using some greedy heuristic. LNS is described more in detail by \citet{pisinger_2010}.
+Both heuristic implementations are based on a Large Neighbourhood Search (LNS) framework. This method, which is classified as a metaheuristic, works by alternatingly destroying and repairing parts of solutions in order to move through the solution space. Typically, the parts of the solution that are considered poor are destroyed. How much that is destroyed is regulated by the destroy degree. The repair function rebuilds the destroyed part of the solution using some greedy heuristic. The LNS framework is described more in detail by \citet{pisinger_2010}.
 
 \begin{table}[!h]
 \centering
-\caption{Week block scheduling approach; soft and relaxed constraints}
+\caption{Week block scheduling approach; soft, relaxed and removed constraints.}
 \label{tab:weekly_task_constraints}
 \begin{tabular}{|p{4cm}|p{7cm}|}
 \hline
 % ---------------------------------------------------------
 \multicolumn{2}{|l|}{\cellcolor{gray!90} \textbf{Soft Constraints}} \\
 \hline 
-\rowcolor{Gray} Affecting constraints & Constraint description \\ \hline
+\rowcolor{Gray} Affected constraints & Constraint description \\ \hline
 \ref{eq:demand} & The amount of workers needed for every shift and task type in the library.  \\ \hline
-\ref{constr:three_PL} & Number of PL per ten weeks restriction. \\ \hline
+\ref{constr:three_PL} & Maximum number of PL per worker and week cycle. \\ \hline
 % ---------------------------------------------------------
 \multicolumn{2}{|l|}{\cellcolor{gray!90} \textbf{Relaxed Constraints}} \\
 \hline 
-\rowcolor{Gray} Affecting constraints & Constraint alteration \\ \hline
+\rowcolor{Gray} Affected constraints & Constraint relaxation \\ \hline
 Several. $W = W_5$ in all constraints. & Five week scheduling instead of ten week scheduling. \\ \hline
-\ref{constr:obj_fcn_shifts} & Any two weeks \textit{w} and \textit{w+5} shall be as similar as possible. \\ \hline
-BokB-constraints & BokB placed according to constraints, but the schedule is fixed. \\ \hline
+BokB-constraints & BokB manually assigned, due to low degree of freedom. \\ \hline
 Availability data & Even and odd week workers have availability at each shift according to the stricter of the two sets. \\ \hline
+% ---------------------------------------------------------
+\multicolumn{2}{|l|}{\cellcolor{gray!90} \textbf{Removed Constraints}} \\
+\hline 
+\rowcolor{Gray} Affected constraints & Constraint description \\ \hline
+\ref{constr:obj_fcn_shifts} & Any two weeks \textit{w} and \textit{w+5} shall be as similar as possible. \\ \hline
 \ref{constr:library_meetings} - \ref{constr:dep_meetings4} & Meetings are not implemented. \\ \hline
 \end{tabular}
 \end{table}
@@ -82,7 +86,7 @@ Availability data & Even and odd week workers have availability at each shift ac
 % ---------------------------------------------------------
 \multicolumn{2}{|l|}{\cellcolor{gray!90} \textbf{Soft Constraints}} \\
 \hline 
-\rowcolor{Gray} Affecting constraints & Constraint description \\ \hline
+\rowcolor{Gray} Affected constraints & Constraint description \\ \hline
 \ref{constr:one_task_constraint} & One task per day restriction.  \\ \hline
 \ref{constr:four_weekly_shifts_at_most} & Four tasks per week restriction. \\ \hline
 \ref{constr:one_PL} & One PL per week restriction. \\ \hline
@@ -91,7 +95,7 @@ Availability data & Even and odd week workers have availability at each shift ac
 % ---------------------------------------------------------
 \multicolumn{2}{|l|}{\cellcolor{gray!90} \textbf{Relaxed Constraints}} \\
 \hline 
-\rowcolor{Gray} Affecting constraints & Constraint alteration \\ \hline
+\rowcolor{Gray} Affected constraints & Constraint alteration \\ \hline
 Several. $W = W_5$ in all constraints. & Five week scheduling instead of ten week scheduling. \\ \hline
 \ref{constr:obj_fcn_shifts} & Any two weeks \textit{w} and \textit{w+5} shall be as similar as possible. \\ \hline
 BokB-constraints & BokB placed according to constraints, but the schedule is fixed. \\ \hline
@@ -102,7 +106,78 @@ Availability data & Even and odd week workers have availability at each shift ac
 
 \section{Week block scheduling approach}
 
-The implemented algorithm is based on Large Neighborhood Search (LNS) where small parts of the current solution is destroyed and repaired. In Appendix \ref{appendix:flow_charts}, Figure \ref{flow_chart}, is a flow chart of the implemented heuristic presented. 
+The implemented heuristic can be seen in Figure \ref{flow_chart}. The LNS framework is shown in the middle of the figure.
+
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, fill=red!30,
+    text width=3.5em, text badly centered, node distance=3cm, inner sep=0.1pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!30,
+    text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+    minimum height=2em]
+
+\begin{figure}[!h]
+  \caption{A flow chart of the implemented heuristic with week block scheduling}
+  \centering
+	\scalebox{0.7}{ \label{flow_chart}
+		\begin{tikzpicture}[node distance = 2cm, auto]
+		    % Place nodes
+			\node [block] (blocks) {Create all blocks};
+			\node [block,below of= blocks] (workers) {Create all workers};
+			\node [block,below of= workers] (sort) {Sort blocks to workers};
+			\node [block,below of= sort] (assign_rot) {Assign rotations};
+			\node [block,below of= assign_rot] (assign_low) {Assign BokB schedule};
+			\node [block,below of= assign_low] (init_sol) {Create initial solution};
+			\node [decision, right of = init_sol, node distance= 3.5cm] (feasible) {Is solution feasible?};
+			\node [block,above of= feasible, node distance = 3cm] (repair) {Repair workers};
+			\node [block,above of= repair, node distance = 2cm] (destroy) {Destroy workers};
+			
+			
+			\node [block,below of= feasible, node distance = 6cm] (print) {Print solution to file};
+			\node[decision,right of= feasible, node distance=3.5cm] (close) {Close enough?};
+			\node[decision,right of= close, node distance=3.5cm] (enough) {Enough stand-ins for feasibility?};
+			\node[block,above of= enough, node distance=7.5cm] (empty) {Assign empty blocks for all workers};
+			\node[block,below of= enough, node distance = 3cm] (final) {Enter final phase};
+			\node[decision, right of= final, node distance = 3.5cm] (solved) {Solved in given number of iterations?};
+			\node[block,above of= solved, node distance = 5cm] (failed) {Failed iteration, run again};
+			
+			
+			%Invisible node, useful later
+			\node[right of= sort, node distance=5cm,scale=0.01](invLNS){};
+			\node[above of= blocks, node distance=1.3cm,scale=0.01](inv){};
+			
+			\node[above of= invLNS, node distance = 0.7cm] (text) {LNS};
+			
+		    % Draw edges
+		    \path [line] (inv) -- (blocks);
+		    \path [line] (blocks) -- (workers);
+		    \path [line] (workers) -- (sort);
+		    \path [line] (sort) -- (assign_rot);
+		    \path [line] (assign_rot) -- (assign_low);
+		    \path [line] (assign_low) -- (init_sol);
+		    \path [line] (init_sol) |- (feasible);
+		    \path [line] (destroy) -- (repair);
+		    \path [line] (repair) -- (feasible);
+		    \path [line] (feasible) -- node[right]{yes}(print);
+		    \path [line] (feasible) -- node[above]{no}(close);
+		    \path [line] (close) |- node[right]{no}(destroy);
+		    \path [line] (close) -- node[above]{yes}(enough);
+		    \path [line] (enough) -- node[right]{no}(empty);
+		    \path [line] (enough) -- node[right]{yes}(final);
+		    \path [line] (final) -- (solved);
+		    \path [line] (empty) -| (destroy);
+		    \path [line] (solved) |- node[right]{yes}(print);
+		    \path [line] (solved) -- node[right]{no}(failed);
+		    \path [line] (failed) |- (blocks);
+%			\path[-,draw] (feasible) -| node[right]{no} (inv.north);
+%		    \path[line]{} (inv.north) |- node{} (destroy);
+			\draw [color=gray!70,thick](1.8,-3.5) rectangle(5.3,-12);
+		\end{tikzpicture}
+		}
+\end{figure}
+
+If the run does not find a feasible solution after a given number of iterations the run is discarded and a new iteration is executed. In case a run is close enough to enter the final phase a check is made whether there are enough stand-ins to be assigned the remaining tasks. If not, all staff members will be assigned empty week blocks so that a new try of finding a feasible solution can be made.
 
 Every workers' information such as availability and qualification is inserted into an Excel table. It is then written to a text file using Visual Basic code, which in turn is read and used by the heuristic.
 

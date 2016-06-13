@@ -363,7 +363,7 @@ HB      & Hageby library \\
 %\input{Chapters/Implementation}
 %\inputencoding{\enc}
 
-\chapter{Two heuristics}\label{chap:heur}
+\chapter{Two heuristic solution methods}\label{chap:heur}
 
 \inputencoding{\enc}
 \input{Chapters/Heuristics}
@@ -413,72 +413,9 @@ HB      & Hageby library \\
 % % %New chapter
 \chapter{Flow charts} \label{appendix:flow_charts}
 
-% Define block styles
-\tikzstyle{decision} = [diamond, draw, fill=red!30,
-    text width=3.5em, text badly centered, node distance=3cm, inner sep=0.1pt]
-\tikzstyle{block} = [rectangle, draw, fill=blue!30,
-    text width=5em, text centered, rounded corners, minimum height=4em]
-\tikzstyle{line} = [draw, -latex']
-\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
-    minimum height=2em]
-
 
 \section{Weekly scheduling approach}
 % % FLOW CHART
-\begin{figure}[!h]
-  \caption{A flow chart of the implemented heuristic with weekly scheduling}
-  \centering
-	\scalebox{0.7}{ \label{flow_chart}
-		\begin{tikzpicture}[node distance = 2cm, auto]
-		    % Place nodes
-			\node [block] (blocks) {Create all blocks};
-			\node [block,below of= blocks] (workers) {Create all workers};
-			\node [block,below of= workers] (sort) {Sort blocks to workers};
-			\node [block,below of= sort] (assign_rot) {Assign rotations};
-			\node [block,below of= assign_rot] (assign_low) {Assign LoW schedule};
-			\node [block,below of= assign_low] (init_sol) {Create initial solution};
-			\node [decision, right of = init_sol, node distance= 4cm] (feasible) {Is solution feasible?};
-			\node [block,above of= feasible, node distance = 3cm] (repair) {Repair workers};
-			\node [block,above of= repair, node distance = 2cm] (destroy) {Destroy workers};
-			
-			
-			\node [block,below of= feasible, node distance = 6cm] (print) {Print solution to file};
-			\node[decision,right of= feasible, node distance=3.5cm] (close) {Close enough?};
-			\node[block,below of= close, node distance = 3cm] (final) {Enter final phase};
-			\node[decision, right of= final, node distance = 4cm] (solved) {Solved in given number of iterations?};
-			\node[block,right of= assign_low, node distance = 11.5cm] (failed) {Failed iteration, run again};
-			
-			
-			%Invisible node, useful later
-			\node[right of= sort, node distance=5.5cm,scale=0.01](invLNS){};
-			\node[above of= blocks, node distance=1.3cm,scale=0.01](inv){};
-			
-			\node[above of= invLNS, node distance = 0.7cm] (text) {LNS};
-			
-		    % Draw edges
-		    \path [line] (inv) -- (blocks);
-		    \path [line] (blocks) -- (workers);
-		    \path [line] (workers) -- (sort);
-		    \path [line] (sort) -- (assign_rot);
-		    \path [line] (assign_rot) -- (assign_low);
-		    \path [line] (assign_low) -- (init_sol);
-		    \path [line] (init_sol) |- (feasible);
-		    \path [line] (destroy) -- (repair);
-		    \path [line] (repair) -- (feasible);
-		    \path [line] (feasible) -- node[right]{yes}(print);
-		    \path [line] (feasible) -- node[above]{no}(close);
-		    \path [line] (close) |- node[right]{no}(destroy);
-		    \path [line] (close) -- node[right]{yes}(final);
-		    \path [line] (final) -- (solved);
-		    \path [line] (solved) |- node[right]{yes}(print);
-		    \path [line] (solved) -- node[right]{no}(failed);
-		    \path [line] (failed) |- (blocks);
-%			\path[-,draw] (feasible) -| node[right]{no} (inv.north);
-%		    \path[line]{} (inv.north) |- node{} (destroy);
-			\draw [color=gray!70,thick](2.3,-3.5) rectangle(6,-12);
-		\end{tikzpicture}
-		}
-\end{figure}
 
 
 \section{Task distribution approach}
