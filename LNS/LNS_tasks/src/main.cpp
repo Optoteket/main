@@ -167,16 +167,18 @@ int main(int argc, char** argv)
   library_costs.clear();
 
   int max_loops = 100;
-  int num_tests = 5;
+  int num_tests = 7;
   double weights[3];
-  int wend_iterations = 1000;
-  int wday_iterations = 30;
+  int wend_iterations;
+  int wday_iterations;
 
   //AMPL loop
   for(int loop=0; loop < max_loops*num_tests; loop++){
 
     //1. Setting and normalizing weights for weekend objective function
     if(loop < max_loops){
+      wend_iterations = 200;
+      wday_iterations = 10;
       weights[0]=0.1; //Min number of full time avail workers/day
       weights[1]=0.1; //Min number of avail workers per shift
       weights[2]=10; //Min number of avail workers a day
@@ -188,10 +190,11 @@ int main(int argc, char** argv)
       weights[2]/=sum;
     }
     else if(loop < max_loops*2){
-      wday_iterations = 20;
-      weights[0]=1; //Min number of full time avail workers/day
-      weights[1]=1; //Min number of avail workers per shift
-      weights[2]=1; //Min number of avail workers a day
+      wend_iterations = 2000;
+      wday_iterations = 10;
+      weights[0]=0.1; //Min number of full time avail workers/day
+      weights[1]=0.1; //Min number of avail workers per shift
+      weights[2]=10; //Min number of avail workers a day
 
       //Normalizing
       double sum =  weights[0] +  weights[1] +  weights[2];
@@ -200,9 +203,11 @@ int main(int argc, char** argv)
       weights[2]/=sum;
     }
     else if(loop < max_loops*3){
-      weights[0]=10; //Min number of full time avail workers/day
+      wend_iterations = 5000;
+      wday_iterations = 10;
+      weights[0]=0.1; //Min number of full time avail workers/day
       weights[1]=0.1; //Min number of avail workers per shift
-      weights[2]=0.1; //Min number of avail workers a day
+      weights[2]=10; //Min number of avail workers a day
 
       //Normalizing
       double sum =  weights[0] +  weights[1] +  weights[2];
@@ -211,9 +216,12 @@ int main(int argc, char** argv)
       weights[2]/=sum;
     }
     else if(loop < max_loops*4){
+      wend_iterations = 500;
+      wday_iterations = 30;
       weights[0]=0.1; //Min number of full time avail workers/day
-      weights[1]=10; //Min number of avail workers per shift
-      weights[2]=0.1; //Min number of avail workers a day
+      weights[1]=0.1; //Min number of avail workers per shift
+      weights[2]=10; //Min number of avail workers a day
+ 
 
       //Normalizing
       double sum =  weights[0] +  weights[1] +  weights[2];
@@ -222,9 +230,11 @@ int main(int argc, char** argv)
       weights[2]/=sum;
     }
     else if(loop < max_loops*5){
-      weights[0]=0; //Min number of full time avail workers/day
-      weights[1]=0; //Min number of avail workers per shift
-      weights[2]=0; //Min number of avail workers a day
+      wend_iterations = 500;
+      wday_iterations = 50;
+      weights[0]=0.1; //Min number of full time avail workers/day
+      weights[1]=0.1; //Min number of avail workers per shift
+      weights[2]=10; //Min number of avail workers a day
 
       //Normalizing
       double sum =  weights[0] +  weights[1] +  weights[2] + 0.001;
@@ -233,10 +243,12 @@ int main(int argc, char** argv)
       weights[2]/=sum;
     }
     else if(loop < max_loops*6){
-      weights[0]=1; //Min number of full time avail workers/day
-      weights[1]=10; //Min number of avail workers per shift
-      weights[2]=1; //Min number of avail workers a day
-
+      wend_iterations = 500;
+      wday_iterations = 100;
+      weights[0]=0.1; //Min number of full time avail workers/day
+      weights[1]=0.1; //Min number of avail workers per shift
+      weights[2]=10; //Min number of avail workers a day
+ 
       //Normalizing
       double sum =  weights[0] +  weights[1] +  weights[2];
       weights[0]/=sum;
@@ -244,8 +256,10 @@ int main(int argc, char** argv)
       weights[2]/=sum;
     }
     else if(loop < max_loops*7){
-      weights[0]=1; //Min number of full time avail workers/day
-      weights[1]=1; //Min number of avail workers per shift
+      wend_iterations = 500;
+      wday_iterations = 200;
+      weights[0]=0.1; //Min number of full time avail workers/day
+      weights[1]=0.1; //Min number of avail workers per shift
       weights[2]=10; //Min number of avail workers a day
 
       //Normalizing
@@ -323,21 +337,22 @@ int main(int argc, char** argv)
       int divisor = (int) min_lib.size() - infeasible_count;
       wend_AMPL_file  << date.str().c_str() << endl;
       wend_AMPL_file  << "With weights: " <<  weights[0] << ", "<<  weights[1] << ", "<<  weights[2] << endl;
+      wend_AMPL_file << "With paramters it_wend/it_wday: " << wend_iterations << ", " << wday_iterations << endl;
       cout << "Number of infeasible solutions: " << infeasible_count << endl;
       wend_AMPL_file  << "Number of infeasible solutions:" << infeasible_count << endl;
       for(int i=0; i<(int) min_lib.size(); i++){
 	cout << "Min num lib/ass: (" << i << ") "<< min_lib[i] << ", " << min_ass[i] << " Cost: " << 2*min_lib[i] + min_ass[i];  
 	cout << "    ObjFun value: " << library_costs[6*i] << endl;
-	wend_AMPL_file << "WendObjFunval: " << library_costs[6*i]
-		       <<"  Heuristic(lib,ass): (" << library_costs[6*i+4] <<", " << library_costs[6*i+5] << ")  HeuristicCost: " << 2*library_costs[6*i+4] + library_costs[6*i+5];
-	wend_AMPL_file << "   AMPL(lib,ass): " << i << ") ("<< min_lib[i] << ", " << min_ass[i] << ")  AMPLCost: " << 2*min_lib[i] + min_ass[i]  << endl;
+	wend_AMPL_file << "" << library_costs[6*i]
+		       <<"," << library_costs[6*i+4] <<"," << library_costs[6*i+5] << "," << 2*library_costs[6*i+4] + library_costs[6*i+5];
+	wend_AMPL_file << "," << i << ","<< min_lib[i] << "," << min_ass[i] << "," << 2*min_lib[i] + min_ass[i]  << endl;
 	vector<Ax_struct>* ax_vec = &ax_vector_vector[i];
 	if((int) ax_vec->size()>0){
 	  wend_AMPL_file <<"Artificial workers placed at: " << endl;
 	  cout << "Artificial workers placed at: " << endl;
 	  for(int i=0; i<(int) ax_vec->size(); i++){
-	    wend_AMPL_file << (*ax_vec)[i].week << ", "<< (*ax_vec)[i].day << ", " << (*ax_vec)[i].shift << ", "<< (*ax_vec)[i].type << ". Number: "<< (*ax_vec)[i].number << endl;
-	    cout << (*ax_vec)[i].week << ", "<< (*ax_vec)[i].day << ", " << (*ax_vec)[i].shift << ", "<< (*ax_vec)[i].type << ". Number: "<< (*ax_vec)[i].number << endl;
+	    wend_AMPL_file << (*ax_vec)[i].week << ", "<< (*ax_vec)[i].day << "," << (*ax_vec)[i].shift << ", "<< (*ax_vec)[i].type << ". Number: "<< (*ax_vec)[i].number << endl;
+	    cout << (*ax_vec)[i].week << ", "<< (*ax_vec)[i].day << "," << (*ax_vec)[i].shift << ", "<< (*ax_vec)[i].type << ". Number: "<< (*ax_vec)[i].number << endl;
 	  }
 	}
 	else tot_cost += 2*min_lib[i] + min_ass[i];
