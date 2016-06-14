@@ -3,28 +3,28 @@ In the following sections, results from testing the AMPL implementation and both
 
 \subsection{AMPL implementation}\label{sec:ampl_res}
 
-Implementing the model in AMPL and running the model in CPLEX 12.5 gives the resulting values displayed in Table \ref{tab:CPLEX_res}. The weights in equations \ref{objfcn} and \ref{constr:s_min} were set to $L = 2$, $A = 1$, $M =100$ and $N=1$, thus making librarians twice as valuable as assistants and stand ins 100 times more valuable than no shift changes. 
+Implementing the model in AMPL and solving it with CPLEX 12.5 gives the values displayed in Table \ref{tab:CPLEX_res}. The weights in Equation \ref{objfcn} and \ref{constr:s_min} were set to $L = 2$, $A = 1$, $M =100$ and $N=1$, thus making librarians twice as valuable as assistants and stand ins 100 times more valuable than no shift changes. 
 
 \begin{table}[!h]
 \centering
-\caption{Results from running the Mathematical Model in CPLEX.}
+\caption{Results from solving the mathematical model with CPLEX solver.}
 \label{tab:CPLEX_res}
 \begin{tabular}{|l|p{3cm}|p{3cm}|l|}
 \hline
-\rowcolor{Gray} & \textbf{Min num stand ins (lib, ass)} & \textbf{Stand-in cost} & \textbf{Solution time} \\ \hline
+\rowcolor{Gray} & \textbf{Min num stand-ins (lib, ass)} & \textbf{Stand-in cost} & \textbf{Solution time} \\ \hline
 \cellcolor{Gray} \textbf{Result} & \multicolumn{1}{c|}{(3,0)} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{19 min} \\
 \hline
 \end{tabular}
 \end{table}
 
-Only the stand-in part of the objective function is presented, since this value can be used as a benchmark in measuring the performance of the heuristics. The number of shift changes, which is the second part of the objective function in \ref{objfcn}, is zero.
+Only the stand-in part of the objective function is presented, since this value can be used as a benchmark in measuring the performance of the heuristics. The number of shift changes, which is the second part of the objective function in Equation \ref{objfcn}, is zero.
 
 \subsection{Week block scheduling approach}
-As most of the costs are correlated with each other some parameter tuning has been required. The final result of the parameter tuning can be seen in Table \ref{tab:cost_parameters}. Their respective descriptions can be seen in Table \ref{tab:all_costs}. 
+As most of the costs are correlated with each other some parameter tuning was required. The final result of the parameter tuning can be seen in Table \ref{tab:cost_parameters}. Their respective descriptions can be seen in Table \ref{tab:all_costs}. 
 
 \begin{table}[!h]
 \centering
-\caption{List of all costs used in week block scheduling approach and their respective values.}
+\caption{List of all costs used in the week block scheduling approach and their respective values.}
 \label{tab:cost_parameters}
 \begin{tabular}{|c|c|}
 \hline
@@ -45,7 +45,7 @@ Demand\_PL\_good\_lib        & 800           \\ \hline
 Demand\_PL\_bad\_ass         & 1,200           \\ \hline
 Demand\_PL\_bad\_lib         & 1,600             \\ \hline
 \rowcolor[HTML]{FD6864} 
-\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{PL amount costs}} \\ \hline
+\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{PL costs}} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 Cost name                                      & Cost value       \\ \hline
 PL\_good\_amount                  & 1,000                   \\ \hline
@@ -64,12 +64,12 @@ Stand\_in\_cost                     & 5     \\ \hline
 \end{tabular}
 \end{table}
 
-Worth noting is that these values are most certainly not optimal as they have mostly been assigned using intuition. However, a few relations were determined by either running some tests or using reason. An example is either if $PL\_good\_cost > Demand\_PL\_good\_ass$ or $PL\_good\_cost > Demand\_PL\_good\_lib$. If so, all workers that can be assigned another PL will be, leaving the library overstaffed with PL workers. The reason is because the net of $-PL\_good\_cost + Demand\_PL\_good\_ass/lib$ will be negative meaning it is a preferable insertion even though the library will be overstaffed.
+Worth noting is that these values are most certainly not the best possible, as they have mostly been assigned using intuition. However, a few relations were determined by either running some tests or using reasoning. An example is if $PL\_good\_cost > Demand\_PL\_good\_ass$ or $PL\_good\_cost > Demand\_PL\_good\_lib$. If one of those holds, all staff members that is able to be assigned another PL will be, leaving the library overstaffed with staff members assigned to PL. This is because the net of $-PL\_good\_cost + Demand\_PL\_good\_ass/lib$ will then be negative, meaning it is preferable to assign yet another PL to a staff member regardless of how many there already are. This leads to an overstaffed library on some days, and lack of staff members on other days.
 
-Table \ref{successful_iter} shows the amount of successful iterations on a run. This run is using the same cost parameters shown in Table \ref{tab:cost_parameters}. 
+Table \ref{successful_iter} shows the success rate of finding a solution during a run. An iteration is considered to fail if no feasible solution is found during the final phase. This run is using the cost parameters shown in Table \ref{tab:cost_parameters}. 
 \begin{table}[!h]
 \centering
-\caption{Amount of successful iterations}
+\caption{Number of successful iterations}
 \label{successful_iter}
 \begin{tabular}{|c|c|}
 \hline
@@ -79,24 +79,10 @@ Iterations (total) & 638      \\ \hline
 \end{tabular}
 \end{table}
 
-Based on the same data as in Table \ref{successful_iter} the average stand-in value per iteration can be calculated. It is seen in Table \ref{tab:average_stand_ins}.
+Table \ref{tab:stand_in_spread} shows statistics of how many stand-ins were found after 420 successful iterations. 
 \begin{table}[!h]
 \centering
-\caption{Average stand-in value per iteration}
-\label{tab:average_stand_ins}
-\begin{tabular}{|c|c|}
-\hline
-Stand-in value & 105      \\ \hline
-Number of iterations         & 420      \\ \hline
-Average stand-in value      & 0.25 \\ \hline
-\end{tabular}
-\end{table}
-A librarian is multiplied by a factor two and an assistant is multiplied by a factor one.
-
-Having an average stand-in value of 0.25 means that most of the times no stand-ins are found. Table \ref{tab:stand_in_spread} shows statistics of how many stand-ins were found after 420 successful iterations. 
-\begin{table}[!h]
-\centering
-\caption{Amount of stand-ins found after 420 successful iterations.}
+\caption{Number of stand-ins found in 420 successful iterations.}
 \label{tab:stand_in_spread}
 \begin{tabular}{|c|c|}
 \hline
@@ -108,7 +94,7 @@ No stand-ins    & 351                      \\ \hline
 \end{tabular}
 \end{table}
 
-Figure \ref{fig:feasibleRerun} shows a plot of the objective function value after destroy and repair iterations. When the value on the y-axis reaches zero, a solution is found. Every time the value skyrockets a solution has been discarded and a new iteration starts. This is done until a solution is found. 
+Figure \ref{fig:feasibleRerun} shows a plot of the objective function value after destroy and repair iterations. When the value on the y-axis reaches zero, a feasible solution is found. Every time the value skyrockets a solution has been discarded in the final phase and a new iteration starts by assigning empty blocks to all staff members and entering the destroy and repair loop. New iterations start until a solution is likely to be found, that is, there are enough stand-ins available to take care of the demand violations. 
 
 %\includegraphics[scale = 0.3, width = 15cm]{Rplot}
 %\includegraphics[scale = 0.3, width = 15cm]{1Plot}
@@ -137,7 +123,7 @@ $W_{D\_m}$ & 10 \\ \hline
 $W_{SI\_a}$ & 0.01 \\ \hline
 $W_{S\_a}$ & 0.01 \\ \hline
 $W_{D\_a}$ & 1 \\ \hline
-\multicolumn{2}{|l|}{\cellcolor{Gray} \textbf{Worker/Worker Objective Function Weights}} \\ \hline
+\multicolumn{2}{|l|}{\cellcolor{Gray} \textbf{staff member/staff member Objective Function Weights}} \\ \hline
 $W_{w\_SI}$ & 
 \begin{tabular} [x]{@{}c@{}}
 	2 \text{if librarian} \\ 
@@ -155,7 +141,7 @@ $W_{SShift\_W}$ / $W_{w\_SShift\_W}$ & 4 \\ \hline
 
 The first six weights, belonging to the weekend objective function, were most experimented with and will be discussed further in this section. The first three, the min weights, are scaled relatively to each other, while the latter three are simple calculated as one tenth of their equivalent min weights. The weights in Equation \ref{eq:wend_cost_calc}, $W_{lib}$ and $W_{ass}$ were set to $2$ and $1$ respectively since it can be argued that one librarian can perform twice as many tasks as one assistant.
 
-The individual worker cost and the worker objective function costs measuring the same aspect of the schedule have been given the same weights, as is illustrated in Table \ref{tab:tasks_weight}. This is due to the fact that the weights, relative to each other, decide what constraints are most strict. It is, for example more severe to break the rule of one task per day, than to break the rule of having too many shifts at the same time in a week, which is reflected in the weights. The stand-in weight $W_{w\_SI}$ is twice as high for librarians as for assistant.
+The individual staff member cost and the staff member objective function costs measuring the same aspect of the schedule have been given the same weights, as is illustrated in Table \ref{tab:tasks_weight}. This is due to the fact that the weights, relative to each other, decide what constraints are most strict. It is, for example more severe to break the rule of one task per day, than to break the rule of having too many shifts at the same time in a week, which is reflected in the weights. The stand-in weight $W_{w\_SI}$ is twice as high for librarians as for assistant.
 
 The two phases of the implementation are run a specified number of iterations, referred to as $It_{wend}$ and $It_{wday}$. These parameters were also trimmed and the results from different iteration values are displayed in Tables \ref{tab:taskdist_res_wendit} and \ref{tab:taskdist_res_wdayit}. The results for weight tuning are displayed in Table \ref{tab:taskdist_weights_res}.
 
@@ -240,7 +226,7 @@ The weekend objective function value during a typical run is shown in Figure \re
 \end{figure}
 
 
-In Figure \ref{fig:obj_fun_comp} and Figure \ref{fig:obj_fun_comp_aver}, the three different cost components from the weekend objective function for the same run are displayed. In the first plot, the minimum costs are displayed. These seem to move between a few discrete values, although a small improvement over the iterations can be seen at least in the day avail cost component. The average values are almost constant throughout the iterations, as can be seen in the second plot. This is probably due to the fact that the total number of available workers barely changes when shifting their weeks.
+In Figure \ref{fig:obj_fun_comp} and Figure \ref{fig:obj_fun_comp_aver}, the three different cost components from the weekend objective function for the same run are displayed. In the first plot, the minimum costs are displayed. These seem to move between a few discrete values, although a small improvement over the iterations can be seen at least in the day avail cost component. The average values are almost constant throughout the iterations, as can be seen in the second plot. This is probably due to the fact that the total number of available staff members barely changes when shifting their weeks.
 
 Attempts were made to correlating the min components of the weekend objective function value. However, the results were fluctuating between different tests so no clear correlations could be identified. This suggests that they are measuring three independent aspects.
 
@@ -249,10 +235,11 @@ In this section, the different results presented in Section \ref{section:results
 
 
 \subsection{Week block scheduling approach}
-Table \ref{tab:pros_cons_weekly_scheduling} lists pros and cons with the implemented week block scheduling approach. Some pros and cons were considered before the heuristic was chosen. Mainly the con concerning the exponential growth was taken into consideration as an estimation of the upper limit of the problem size was done. Also, the pro regarding the same amount of week blocks was taken into consideration, as the heuristic was thought of having firstly a block construction phase and secondly an assignment phase. 
+Table \ref{tab:pros_cons_weekly_scheduling} lists pros and cons with the implemented week block scheduling approach. Some pros and cons were considered before the heuristic was chosen. Mainly the con concerning the exponential growth of week blocks was taken into consideration, and an estimate of the upper limit of the problem size was done.
 
+The pro regarding the same amount of week blocks was taken into consideration, as the heuristic was thought of having firstly, a block construction phase and secondly, an assignment phase. However, the most significant pro of this approach is that many of the constraints are already met, implicitly, when the blocks are created. Constraints like maximum of one task per day, one evening per week, one PL per week, two shifts at the same hour per week and more are already taken care of. 
 
- Weekends, solution time and costs are no major issues as they can be avoided by a few smarter implementations. For instance, weekends can be improved by assigning values when each worker is available on a day and from those numbers create an even distribution of possible stand-ins and therefore increase the lowest value of stand-ins through the days. This shall implicitly decrease the solution time as less iterations will be required. However, to always be able to create a pool of week appearances regardless of problem size can easily become a major issue. Just by adding meetings and the assignment of Library on Wheels tasks to the problem makes it grow considerably.
+Cons like rotations, solution time and costs are no major issues as they can be avoided by a few smarter implementations. For instance, rotations can be improved by assigning a value when a staff member is available as stand-in on a day, and from those numbers create an even distribution of possible stand-ins and therefore increase the lowest value of stand-ins through the days. This should implicitly decrease the solution time as less iterations would be required. However, to always be able to create a pool of possible week appearances regardless of problem size can easily become a major issue. Just by adding meetings and the assignment of the library on wheels tasks to the problem would make it grow considerably.
 
 \begin{table}[H]
 \caption{Pros and cons with the implemented week block scheduling approach}
@@ -265,16 +252,17 @@ Table \ref{tab:pros_cons_weekly_scheduling} lists pros and cons with the impleme
 \\\cmidrule(r{3\tabcolsep}){1-1}\cmidrule(l{-\tabcolsep}){2-2}
 
 %% PROS, seperated by empty line or \par
-The same amount of week block appearances will exist for five and ten weeks.\par
+Many constraints are already met, implicitly, when the blocks are created.
+The same number of week block appearances will exist for five and ten weeks.\par
 Quick iterations when destroying and repairing.\par
 
 &
 
 %% CONS, seperated by empty line or \par
-Weekends needs to be assigned in a more systematically way in order to achieve reasonable results regarding lowest amount of stand-ins through the days.\par
-The amount of unique block appearances grows exponentially in case more task types are added, such as meetings.\par
+Rotations need to be assigned in a systematic way in order to achieve reasonable results regarding lowest number of stand-ins through the days.\par
+The number of unique block appearances grows exponentially in case more task types are added, such as meetings.\par
 The solution time can vary considerably as several random generators have been used.\par
-A great deal of costs are needed (some correlated), where each of them affects the solution procedure.
+More cost parameters are needed in this approach (some correlated), where each of them affects the solution procedure.
 
 \\\bottomrule
 \end{tabularx}
