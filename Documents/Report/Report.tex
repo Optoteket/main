@@ -67,13 +67,14 @@
 % author, date etc.
 %
 \newcommand{\putabstract}[0]{%
-The distribution of tasks to an inhomogeneous work force at libraries and other service institutions is time consuming for manual shcedulers, but well suited for optimization software. Such a problem is studied. The problem concerns five different task types, two types of workers and around 100 tasks to be scheduled in total weekly. Also weekends are to be scheduled and worker satisfaction is taken into account. The objective of the scheduling is to create a ten week rotating schedule in which the stand-in staff members are evenly distributed.
+The distribution of tasks to a heterogeneous work force at libraries and other service institutions is time consuming for manual schedulers, but well suited for optimization softwares. The problem studied concerns five different types of tasks, two types of workers and around 100 tasks to be scheduled per week. Also, there is a demand for workers during weekends and worker satisfaction is taken into account.
 
-A mathematical model is formulated for the problem, which is solved using the commercial CPLEX solver and by using two different LNS heuristic implementations. The first heuristic schedules week blocks to the workers, while the second distributes one task at a time. The latter heuristic works better than the former and achieves results comparable to those of the commercial solver. Our conclusion is that
-the second heuristic works better since it focuses on finding a good weekend distribution before creating the rest of the schedule.}
+The main objective is to create a optimal ten week rotating schedule, in which the stand-in staff members are evenly distributed. That results in a robust schedule, as absence of workers is a common issue.
+
+A mathematical model is formulated for the problem, which is solved using the commercial solver, CPLEX and by using two different LNS heuristic implementations. The first heuristic assigns week blocks to the workers, while the second distributes one task at a time. The latter heuristic works better than the former and achieves results comparable to those of the commercial solver. Our conclusion is that the second heuristic works better, since it focuses on finding a good weekend distribution before creating the rest of the schedule.}
 
 \newcommand{\putkeywords}[0]{%
-Optimization, Scheduling, Task distribution, LNS, Weekend Scheduling, Inhomogeneous workforce}
+Optimization, Scheduling, Task distribution, LNS, Weekend Scheduling, Heterogeneous workforce}
 
 \newcommand{\putthemonth}[0]{June }
 
