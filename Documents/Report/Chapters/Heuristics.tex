@@ -638,15 +638,13 @@ Initially in the repair function the destroyed staff members are assigned new ro
 \subsection{Evaluation of solution}
 After each destroy and repair loop the new solution is evaluated. It is common for the new solution to be worse than the previous one. However, all new solutions are accepted regardless of this.
 
-All costs are regarded in the evaluation of the solution. If there are any demand violations in the library or in the number of PL assigned to a staff member these are given the respective costs. Furthermore, the number of stand-ins is evaluated here provided with a negative cost showing that these are desired.
-
-If there are no infeasibilities in the solution the evaluation function will return the value zero, unless there are stand-ins. In case there are stand-ins a negative value can be returned. 
+All costs are regarded in the evaluation of the solution. If there are any demand violations in the library or in the number of PL assigned to a staff member these are given the respective costs. Furthermore, in case there are stand-ins these are provided with a negative cost. 
 \subsection{Final phase}
-At the end of a run there are mostly a few infeasibilities left that do not get solved. To fix this, a final phase was implemented. Whenever a run is "relatively close" to a solution and it is "theoretically possible" to find a solution the final phase is initiated. "Relatively close" means in this case that the only infeasibility is the lack of staff members at a handful of weekday shifts. "Theoretically possible" means that there are more stand-ins available all days where the infeasibility occurs.
+At the end of a run there are mostly a few infeasibilities left that do not get solved. To fix this, a final phase was implemented. Whenever a run is "relatively close" and it is likely to be able to find a feasible solution the final phase is initiated. "Relatively close" means in this case that the only infeasibility left is the lack of staff members at a handful of weekday shifts. It is likely to be able to find a solution when there are more stand-ins available than demand violations for all days.
 
-The final phase destroys one random week for a random staff member and immediately repairs it, resulting in the same or better solution until it is feasible. % %In discussion: Sometimes it does not find a feasible solution due to the staff member had already four tasks assigned, i.e. the required block does not exist.
+The final phase destroys one random week for a random staff member and immediately repairs it, resulting in the same or better solution. This is repeated until a feasible solution is found. % %In discussion: Sometimes it does not find a feasible solution due to the staff member had already four tasks assigned, i.e. the required block does not exist.
 
-Due to well chosen cost parameter values the run will always eventually get relatively close and reach the final phase. If there are fewer stand-ins available a day where staff members are lacking the solution will be discarded before entering the final phase. 
+With well chosen cost parameter values the run will always eventually get relatively close to feasibility and reach the final phase. If there are fewer stand-ins available a day where infeasibility occurs, then the solution will be discarded in the final phase.
 
 \section{Task distribution approach} \label{section:impl_task_dist}
 
