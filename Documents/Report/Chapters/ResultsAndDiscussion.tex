@@ -101,14 +101,14 @@ Figure \ref{fig:feasibleRerun} shows a plot of the objective function value afte
 \begin{figure}[!h]
 \centering
 %\includegraphics[scale = 0.3]{Chapters/ImagesClaes/Rfeasible.png}
-\includegraphics[scale = 1]{Chapters/ImagesClaes/1phase1iterReRun.png}
+\includegraphics[scale = 0.8]{Chapters/ImagesClaes/1phase1iterReRun.png}
 \caption{Plot of the objective function value after every new destroy and repair iteration.}
 \label{fig:feasibleRerun}
 \end{figure}
 
 \subsection{Task distribution approach}\label{sec:task_dist_res}
 
-In order to find a good value for the weights described in Section \ref{subsection:tasks_cost} in the previous chapter, different tuning tests were performed. These tests resulted in the weights presented in Table \ref{tab:tasks_weight}. These weights are used in all test in this section unless stated otherwise. 
+In order to find a good value for the weights described in Section \ref{subsection:tasks_cost} in the previous chapter, different tuning tests were performed. These tests resulted in the weights presented in Table \ref{tab:tasks_weight}. These weights are used in all test in this section unless stated otherwise.
 
 \begin{table}[!h]
 \centering
@@ -238,11 +238,13 @@ In this section, the different results presented in Section \ref{section:results
 \subsection{Week block scheduling approach}
 Table \ref{tab:pros_cons_weekly_scheduling} lists pros and cons with the implemented week block scheduling approach. Some pros and cons were considered before the heuristic was chosen. Mainly the con concerning the exponential growth of week blocks was taken into consideration, and an estimate of the upper limit of the problem size was done.
 
-The pro regarding the same amount of week blocks was taken into consideration, as the heuristic was thought of having firstly, a block construction phase and secondly, an assignment phase. However, the most significant pro with this approach is that many of the constraints are already met, implicitly, when the blocks are created. Constraints like maximum of one task per day, one evening per week, one PL per week, two shifts at the same hour per week and more are already taken care of. 
+The pro regarding the same amount of week blocks was taken into consideration, as the heuristic was thought of having firstly, a block construction phase and secondly, an assignment phase. However, the most significant pro of this approach is that many of the constraints are already met, implicitly, when the blocks are created. Constraints like maximum of one task per day, one evening per week, one PL per week, two shifts at the same hour per week and more are already taken care of. 
 
-Cons like rotations, solution time and costs are no major issues as they can be avoided by a few smarter implementations. For instance, rotations can be improved by adding a chosen value whenever a staff member is available as stand-in on a day. By calculating the sum of those values an even distribution of possible stand-ins can be acquired by replacing the random generation of rotations. Instead, the aim would be to assign new rotations to staff members so that, for instance, the difference between the lowest and highest sum of possible stand-ins would be as small as possible. Thereby, the lowest number of stand-ins would increase through the days, as the rotation assignments are the main reason why the week block scheduling approach is ineffective.
+Cons like rotations, solution time and costs are no major issues as they can be avoided by a few smarter implementations. For instance, rotations can be improved by assigning a chosen value whenever a staff member is available as stand-in on a day. From the sum of those values an even distribution of possible stand-ins can be acquired by, for instance, always letting the difference between the lowest and the highest sum of stand-ins, through the days, be as small as possible. This improvement is done instead of randomly generating the new rotations in the destroy and repair iteration. 
 
-The mentioned method above should implicitly decrease the solution time as less iterations would be required. However, to always be able to create a pool of possible week block appearances, regardless of problem size, can easily become a major issue. Just by adding meetings and the assignment of the library on wheels tasks would make the number of week block appearances grow considerably.
+The improvement mentioned above should also implicitly decrease the solution time, as less iterations would be required to find a feasible solution.
+
+In contrast to the cons mentioned above, a major issue is to always be able to create a pool of possible week block appearances regardless of the problem size. Just by adding meetings and the assignment of the library on wheels tasks would make the number of possible week block appearances grow considerably.
 
 \begin{table}[H]
 \caption{Pros and cons with the implemented week block scheduling approach}
