@@ -343,6 +343,8 @@ void loop(ostream& outrunvalues, ostream& outstandinsperiter, ostream& outobjval
 // 						outFile << "Destroy and repair for one week/person" << endl;
 						lib.destroy_repair_one_week_at_the_time();
 						outdata << output_vector.at(0) << "\t" << output_vector.at(1) << "\t" << output_vector.at(2) << "\t" << output_vector.at(3) << endl; // "\t" << output_vector.at(4) << "\t" << output_vector.at(5) << "\t" << output_vector.at(6) << "\t" << output_vector.at(7) << "\t" << output_vector.at(8) << "\t" << output_vector.at(9) << "\t" << output_vector.at(10) << "\t" << output_vector.at(11) << endl;
+						outobjfcn << output_vector.at(0) << endl;
+						outfeasible << output_vector.at(1) << endl;
 						cout << "\nAfter Repair in final phase\n" << endl;
 						output_vector = lib.evaluate_solution(cout); //Evaluate and save
 						if(output_vector.at(1) < current_solution){

@@ -11,10 +11,16 @@ x = 1:d1;
 x = x'
 close all
 plot(x,y)
-title('Weekend objective function','FontSize',10)
+axis([0 d1+5 0 2.7e6]);
+
+% PLOT HORIZONTAL LINE AT FINAL PHASE
+hold on
+plot([1 d1],[10000 10000])
+
+title('Objective function values after new iterations','FontSize',10)
 xlabel('Iterations')
 ylabel('Objective function value')
-legend('Objective function')
+legend('Objective function','Final phase boundary')
 
 
 % si_y = csvread(filename,0,2,[0, 2, d1-1, 2]);

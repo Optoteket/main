@@ -1,2 +1,2 @@
 Worst number of stand-ins when solution found
-0
+0 (0/0)

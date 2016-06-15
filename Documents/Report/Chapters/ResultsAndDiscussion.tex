@@ -66,23 +66,23 @@ Stand\_in\_cost                     & 5     \\ \hline
 
 Worth noting is that these values are most certainly not the best possible, as they have mostly been assigned using intuition. However, a few relations were determined by either running some tests or using reasoning. An example is if $PL\_good\_cost > Demand\_PL\_good\_ass$ or $PL\_good\_cost > Demand\_PL\_good\_lib$. If one of those holds, all staff members that is able to be assigned another PL will be, leaving the library overstaffed with staff members assigned to PL. This is because the net of $-PL\_good\_cost + Demand\_PL\_good\_ass/lib$ will then be negative, meaning it is preferable to assign yet another PL to a staff member regardless of how many there already are. This leads to an overstaffed library on some days, and lack of staff members on other days.
 
-Table \ref{successful_iter} shows the success rate of finding a solution during a run. An iteration is considered to fail if no feasible solution is found during the final phase. This run is using the cost parameters shown in Table \ref{tab:cost_parameters}. 
+Table \ref{successful_iter} shows the success rate of finding a solution during a script execution. A run is considered to fail if no feasible solution is found during the final phase. This script execution is using the cost parameters shown in Table \ref{tab:cost_parameters}. 
 \begin{table}[!h]
 \centering
-\caption{Number of successful iterations}
+\caption{Number of successful runs}
 \label{successful_iter}
 \begin{tabular}{|c|c|}
 \hline
-Successful iterations         & 420      \\ \hline
-Iterations (total) & 638      \\ \hline
+Successful runs         & 420      \\ \hline
+Runs (total) & 638      \\ \hline
 \%                 & $\sim$66 \\ \hline
 \end{tabular}
 \end{table}
 
-Table \ref{tab:stand_in_spread} shows statistics of how many stand-ins were found after 420 successful iterations. 
+Table \ref{tab:stand_in_spread} shows statistics of how many stand-ins were found after 420 successful runs. 
 \begin{table}[!h]
 \centering
-\caption{Number of stand-ins found in 420 successful iterations.}
+\caption{Number of stand-ins found in 420 successful runs.}
 \label{tab:stand_in_spread}
 \begin{tabular}{|c|c|}
 \hline
@@ -94,17 +94,32 @@ No stand-ins    & 351                      \\ \hline
 \end{tabular}
 \end{table}
 
-Figure \ref{fig:feasibleRerun} shows a plot of the objective function value after destroy and repair iterations. When the value on the y-axis reaches zero, a feasible solution is found. Every time the value skyrockets a solution has been discarded in the final phase and a new iteration starts by assigning empty blocks to all staff members and entering the destroy and repair loop. New iterations start until a solution is likely to be found, that is, there are enough stand-ins available to take care of the demand violations. 
+Figure \ref{fig:feasibleRerun} shows a plot of the objective function value after destroy and repair iterations. When the value on the y-axis reaches zero, a feasible solution is found.
+
+Every time the value skyrockets, a solution has been discarded in the final phase, meaning empty blocks are assigned to all staff members and once again entering the destroy and repair loop. Destroy and repair iterations are being executed until a solution is likely to be found, that is, there are enough stand-ins available to take care of the demand violations. 
 
 %\includegraphics[scale = 0.3, width = 15cm]{Rplot}
 %\includegraphics[scale = 0.3, width = 15cm]{1Plot}
 \begin{figure}[!h]
 \centering
 %\includegraphics[scale = 0.3]{Chapters/ImagesClaes/Rfeasible.png}
-\includegraphics[scale = 0.8]{Chapters/ImagesClaes/1phase1iterReRun.png}
-\caption{Plot of the objective function value after every new destroy and repair iteration.}
+\includegraphics[scale = 0.8]{Chapters/ImagesClaes/1phase1iter1ReRun.png}
+\caption{Plot of the objective function value after destroy and repair iterations, one time without enough stand-ins when trying to enter the final phase.}
 \label{fig:feasibleRerun}
 \end{figure}
+
+As seen in Figure \ref{fig:feasibleRerun} there are not enough stand-ins one time during the run. What happens is that the objective function gets below the final phase boundary, but does not meet the stand-in criterion and, therefore, destroys every workers' schedule. 
+
+Figure \ref{fig:feasibleNoRerun} illustrates a run when there are enough stand-ins to enter the final phase. Whenever an iteration is below the final phase boundary, the entering criterion is checked. If the final phase is entered, the few demand violations will be taken care of, one by one, by assigning the stand-ins where the violations occur. 
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale = 0.8]{Chapters/ImagesClaes/1phase1iterNoReRun.png}
+	\caption{Plot of the objective function value after destroy and repair iterations with enough stand-ins when trying to enter the final phase.}
+	\label{fig:feasibleNoRerun}
+\end{figure}
+
+To illustrate why the solution gets worse after a destroy and repair iteration; consider the case when two librarians with the same rotation are being repaired, where one can only work at HB during weekends and the other one can work at either HB or the Desk task. If the more versatile librarian is repaired first and being assigned to HB due to the cost parameters, then it will be impossible for the second librarian to be assigned any weekend tasks. This results in a high cost contribution to the objective function.
 
 \subsection{Task distribution approach}\label{sec:task_dist_res}
 
