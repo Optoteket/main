@@ -809,7 +809,7 @@ After a certain number of iteration the weekend phase is finished and the weekda
 }
 \end{figure}
 
-The weekend phase is the first phase the algorithm enters and its flow is described in Figure \ref{fig:weekend_alg}. The LNS component is part of the "destroy and repair loop", while the simulated annealing step is marked as the decision to accept a solution which is worse than the current one.
+The weekend phase is the first phase the algorithm enters and its flow is described in Figure \ref{fig:weekend_alg}. The LNS component consists of the "destroy and repair loop", while the simulated annealing step is marked as the decision to accept a solution which is worse than the current one.
 
 The reason for implementing the weekend phase separately from the allocation of other tasks is that the number of stand-ins in the final schedule depends to a large extent on the weekend-staff member constellation. In particular, it is the week rest following upon weekend work which determines the number of stand-ins at a particular day.
 
@@ -871,17 +871,17 @@ The algorithms for allocating, destroying and repairing weekends is simply a ran
 \label{tab:num_avail_with_tasks}
 \begin{tabular}{|C{1.2cm}
 |C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|}
-\hline \rowcolor{gray!90}  & \multicolumn{7}{l|}{\cellcolor{gray!90} \textbf{Num available assistants}} \\ 
+\hline \rowcolor{gray!90}  & \multicolumn{7}{l|}{\cellcolor{gray!90} \textbf{Number of available assistants}} \\ 
 \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\
  \hline\colcell Shift 1: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \colcell Shift 2: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \colcell Shift 3: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!40}}6 & {\cellcolor{maroon!40}}6 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
-\hline \hline \rowcolor{gray!90} & \multicolumn{7}{l|}{\cellcolor{gray!90} \textbf{Num available librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\hline \hline \rowcolor{gray!90} & \multicolumn{7}{l|}{\cellcolor{gray!90} \textbf{Number of available librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \colcell Shift 2: & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \colcell Shift 3: & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
-\hline \rowcolor{gray!90} & \multicolumn{7}{l|}{\textbf{\cellcolor{gray!90} Num available BokB-librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\hline \rowcolor{gray!90} & \multicolumn{7}{l|}{\textbf{\cellcolor{gray!90} Number of available BokB-librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \colcell Shift 2: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \colcell Shift 3: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
 \colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
@@ -889,7 +889,7 @@ The algorithms for allocating, destroying and repairing weekends is simply a ran
 \end{table}
 
 
-In order to get a better measurement of the number of available staff members during this phase, evening tasks and BokB tasks are distributed after each weekend repair. The evening tasks are distributed using the same method as is described in Section \ref{wday_phase} while BokB tasks are placed according to a fixed schedule. The effect of this distribution is visible in Tables \ref{tab:num_avail_no_tasks} and \ref{tab:num_avail_with_tasks}. High intensity of red in a cell indicates a higher number of staff members. It can be seen that the first table is generally redder and thus there are fewer available staff members in the second table. This state reflects better the real number of available staff members for a certain weekend constellation. 
+In order to get a better estimate of the number of available staff members during the weekend phase, evening tasks and BokB tasks are distributed after each weekend repair. The evening tasks are distributed using the same method as is described in Section \ref{wday_phase}, while BokB tasks are placed according to a fixed schedule. The effect of this distribution is shown in Tables \ref{tab:num_avail_no_tasks} and \ref{tab:num_avail_with_tasks}. High intensity of red in a cell indicates a higher number of staff members. It can be seen that the first table is generally redder and thus there are fewer available staff members in the second table. This state reflects better the real number of available staff members during the week days for a certain weekend constellation. 
 
 \subsection{Weekday phase}\label{wday_phase}
 
@@ -969,12 +969,12 @@ In order to get a better measurement of the number of available staff members du
 \end{figure}
 
 
-When entering the weekday phase, all weekends, evenings and BokB tasks are already placed. In this phase, the rest of the tasks, referred to as "weekday" tasks are to be placed. The demand for a week at this point is illustrated in Table \ref{tab:current_demand} and is identical for all weeks.The algorithm for distributing weekday tasks is found in Appendix \ref{appendix:flow_charts}, Figure \ref{fig:weekday_alg}, and greatly resembles the algorithm for distributing weekends.
+When entering the weekday phase, all weekends, evenings and BokB tasks are already allocated. In the weekday phase, the remaining tasks, referred to as "weekday" tasks are to be allocated. The staffing demand for a week is illustrated in Table \ref{tab:current_demand} and it is identical for all weeks.The algorithm for distributing weekday tasks is found in Appendix \ref{appendix:flow_charts}, Figure \ref{fig:weekday_alg}, and greatly resembles the algorithm for distributing weekends.
 
 
 \begin{table}[!h]
 \centering
-\caption{Staff member demand during a week when entering weekday phase.}
+\caption{Staffing demand during a week when entering weekday phase.}
 \label{tab:current_demand}
 \begin{tabular}{|C{1.2cm}
 |C{1cm}|C{1cm}|C{1cm}|C{1cm}|C{1cm}|}
@@ -1012,14 +1012,14 @@ When entering the weekday phase, all weekends, evenings and BokB tasks are alrea
  \end{tabular}
 \end{table}
 
-The outer loop of the weekday phase, or the "weekday task distribution loop", is performed a specified number of iterations and calculates the weekday objective function for each iteration. Better solutions are saved, others are discarded. 
+The outer loop of the weekday phase, or the "weekday task distribution loop", is performed a specified number of iterations and calculates the weekday objective function for each iteration. The best solution found is saved, others are discarded. 
 
-The inner "destroy and repair loop" destroys and repairs the solution until the staff member objective function is zero, that is until all staff member schedules are feasible. If the loop cannot find such a schedule during a maximum number of iterations, the whole solution is discarded as infeasible, and the outer loop is entered.
+The inner "destroy and repair loop" destroys and repairs the solution until the staff member objective function is zero, that is, until all staff member schedules are feasible. If this loop cannot find such a schedule within a maximum number of iterations, the whole solution is discarded as infeasible, and the outer loop is reentered.
 
-When destroying and repairing tasks, the tasks are first sorted according to qualification requirement, meaning that librarian tasks are placed first and assistant tasks second. This guarantees that not all librarians will be used up for assistant tasks. Secondly, in each subgroup, the tasks are sorted according to the difference between the number of available staff members and the demand at each task. This makes sure that the most critical tasks are placed first.
+When destroying and repairing tasks, these are first sorted according to qualification requirement, meaning that librarian tasks are placed first and assistant tasks second. This guarantees that not all librarians will be used up for assistant tasks. Secondly, in each subgroup, the tasks are sorted according to the difference between the number of available staff members and the demand at each task. This makes sure that the tasks which are most critical in this respect are allocated first.
 
 The tasks are then staffed one at a time. The process starts with temporarily placing the task at all available staff members. This will generate a cost for each staff member according to Table \ref{tab:staff member_costs}. The cheapest staff members are then chosen and permanently placed on the task.
 
 
-The destroy function identifies the staff member with the highest cost. The worst week of this staff member is then identified and destroyed. Also, a few random staff members are chosen, their number depending on the destroy amount specified, for which the same week is destroyed. This makes it possible for the first staff member to get a better worst week by changing tasks with the other destroyed staff members in the repair function.
+The destroy function identifies the staff member with the highest cost. The worst week of this staff member is then identified and destroyed. Also, a few random staff members are chosen, their number depending on the destroy amount specified, and for these the same week is destroyed. This makes it possible for the first staff member to obtain a better worst week, by exchanging tasks with the other destroyed staff members in the repair function.
 
