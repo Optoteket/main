@@ -4,8 +4,11 @@
 \itab{I\_ass}	 \tab{Set of assistants (I\_ass $\subseteq$ I)}	\\
 \itab{W}                 \tab{Set of weeks}                                               \\
 \itab{$W_5$}	\tab{Set of first five weeks} \\
+\itab{$W_9$}	\tab{Set of first nine weeks} \\
 \itab{D}                 \tab{Set of days in a week}                                      \\
+\itab{$D_4$}	\tab{Set of first four weekdays} \\
 \itab{$D_5$}	\tab{Set of all five weekdays} \\
+\itab{$D_w$}	\tab {Set of weekend days, Saturday and Sunday} \\
 \itab{$S_d$}           \tab{Set of shifts day \textit{d}}                                        \\
 \itab{$S_3$}           \tab{Set of first three shifts on a weekday}     \\
 \itab{$J_d$}            \tab{Set of task types day \textit{d}}                                    \\
@@ -98,7 +101,8 @@
 	\\
 	l^{min}&= \text{lowest number of stand-in librarians found (integer)} \\
 	a^{min}&= \text{lowest number of stand-in assistants found (integer)} \\
-	s^{min}&= \text{weighted sum with number of stand-in librarians and assistants}.
+	s^{min}&= \text{weighted sum with number of stand-in librarians and assistants} \\
+	\delta&= \text{total number of shifts that differ for all staff members}
 \end{align}
 
 
@@ -125,27 +129,27 @@
 
 \section{Objective function and constraints} \label{app:constr}
 \begin{equation} \label{app:objfcn}
-maximize \hspace{0.3cm} M\cdot s^{min} - N \cdot \sum_{i \in I}\sum_{w \in 1..5}\sum_{d \in 1..5}\sum_{s \in 1..3} d_{iwds}
+\text{maximize} \hspace{0.3cm} M\cdot s^{min} - N \cdot \delta
 \end{equation}
 
 \begin{equation}
-\sum_{i \in I} x_{iwdsj} = (1-M_{wds})demand_{dsj}, \; \forall w\in W,d\in 1..5,s\in S_d,j\in J_d\backslash \{L\}
+\sum_{i \in I} x_{iwdsj} = (1-M_{wds})demand_{dsj}, \;   w\in W, d\in D_5, s\in S_d, j\in J_d\backslash \{L\}
 \end{equation}
 
 \begin{equation}
-\sum_{i \in I} x_{iwdsj} = demand_{dsj}, \; \forall w\in W,d\in 6..7,s\in S_d,j\in J_d
+\sum_{i \in I} x_{iwdsj} = demand_{dsj}, \;   w\in W,d\in D_w,s\in S_d,j\in J_d
 \end{equation}
 
 \begin{equation}
-\sum_{i \in I} x_{iwdsL} = LOW\_demand_{wds}, \; \forall w\in W,d\in 1..5,s\in S_d
+\sum_{i \in I} x_{iwdsL} = LOW\_demand_{wds}, \;   w\in W,d\in D_5,s\in S_d
 \end{equation}
 
 \begin{equation}
-\sum_{d \in 1..5}\sum_{s \in S_d}\sum_{j in J_d} x_{iwdsj} \leq 4, \; \forall i\in I\backslash\{36\},w\in W
+\sum_{d \in D_5}\sum_{s \in S_d}\sum_{j in J_d} x_{iwdsj} \leq 4, \;   i\in I\backslash\{36\},w\in W
 \end{equation}
 
 \begin{equation}
-\sum_{w \in 1..5} M_{w11} = 1
+\sum_{w \in W_5} M_{w11} = 1
 \end{equation}
 
 \begin{equation}
@@ -153,78 +157,209 @@ M_{(w+5)11} = M_{w11}
 \end{equation}
 
 \begin{equation}
-\sum_{w \in W}\sum_{d \in 1..5}\sum_{s \in S_d} M_{wds} = 2
+\sum_{w \in W}\sum_{d \in D_5}\sum_{s \in S_d} M_{wds} = 2
 \end{equation}
 
 \begin{equation}
-\sum_{s \in 2..3}\sum_{j \in J_d\backslash\{L\}} x_{iw1sj} \leq 1-M_{w11}, \; \forall i \in I\backslash I\_big, w \in W
+\sum_{s \in 2..3}\sum_{j \in J_d\backslash\{L\}} x_{iw1sj} \leq 1-M_{w11}, \;   i \in I\backslash I\_big, w \in W
 \end{equation}
 
 \begin{equation}
-\sum_{w \in 1..5}\sum_{d \in 1..5}\sum_{s \in 1..3} m_{wdsD} = 1, \; \forall D \in Dep
+\sum_{w \in W_5}\sum_{d \in D_5}\sum_{s \in S_3} m_{wdsD} = 1, \;   D \in Dep
 \end{equation}
 
 \begin{equation}
-m_{(w+5)dsD} = m_{wdsD}, \; \forall D \in Dep, w \in 1..5, d \in 1..5, s \in 1..3
+m_{(w+5)dsD} = m_{wdsD}, \;   D \in Dep, w \in W_5, d \in D_5, s \in S_3
 \end{equation}
 
 \begin{equation}
-m_{wdsD} + x_{iwdsj} \leq 1, \; \forall D \in Dep, i \in I\_dep\{Dep\}, w \in W, d \in 1..5, s \in 1..3, j \in J_d
+m_{wdsD} + x_{iwdsj} \leq 1, \;   D \in Dep, i \in I\_dep\{Dep\}, w \in W, d \in D_5, s \in S_3, j \in J_d
 \end{equation}
 
 \begin{equation}
-m_{wd2D} + m_{wd3D} + x_{iwd1P} \leq 1, \; \forall D \in Dep, i \in I\_dep\{Dep\}, w \in W, d \in 1..5, s \in 1..3
+m_{wd2D} + m_{wd3D} + x_{iwd1P} \leq 1, \;   D \in Dep, i \in I\_dep\{Dep\}, w \in W, d \in D_5, s \in S_3
 \end{equation}
 
 \begin{equation}
-m_{wdsD} \leq \sum_{v \in V}r_{iv}\cdot qualavail_{i(mod_{10}(w-v+10)+1)dsE}, \; \forall D \in Dep, i \in I\_dep\{Dep\} \backslash \{39\}, w \in W, d \in 1..5, s \in 1..3
+m_{wdsD} \leq \sum_{v \in V}r_{iv}\cdot qualavail_{i(mod_{10}(w-v+10)+1)dsE}, \;   D \in Dep, i \in I\_dep\{Dep\} \backslash \{39\}, w \in W, d \in D_5, s \in S_3
 \end{equation}
 
 \begin{equation}
-M_{w11} + \sum_{d \in 1..5}\sum_{s \in 1..3} m_{wdsD} \leq 1, \; \forall D \in Dep, i \in I\_big \cup I\_dep\{Dep\}, w \in W
+M_{w11} + \sum_{d \in D_5}\sum_{s \in S_3} m_{wdsD} \leq 1, \;   D \in Dep, i \in I\_big \cup I\_dep\{Dep\}, w \in W
 \end{equation}
 
 \begin{equation}
-\sum_{j \in J_d} x_{iwdsj} \leq 1, \; \forall i \in I, w \in W, d \in D, s \in S_d
+\sum_{j \in J_d} x_{iwdsj} \leq 1, \;   i \in I, w \in W, d \in D, s \in S_d
 \end{equation}
 
 \begin{equation}
-\sum_{s \in S_d}\sum_{j \in J_d\backslash \{L\}} x_{iwdsj} \leq 1 - x_{iwds_2L}, \; \forall i \in I, w \in W, d \in 1..4, s_2 \in S_d
+\sum_{s \in S_d}\sum_{j \in J_d\backslash \{L\}} x_{iwdsj} \leq 1 - x_{iwds_2L}, \;   i \in I, w \in W, d \in D_4, s_2 \in S_d
 \end{equation}
 
 \begin{equation}
-\sum_{s \in S_5}\sum_{j \in J_d\backslash \{L\}} x_{iw5sj} \leq 1, \; \forall i \in I, w \in W
+\sum_{s \in S_5}\sum_{j \in J_d\backslash \{L\}} x_{iw5sj} \leq 1, \;   i \in I, w \in W
 \end{equation}
 
 \begin{equation}
-\sum_{j \in J_d\backslash \{L\}} x_{iw5sj} \leq 1 - x_{iw51L}, \; \forall i \in I, w \in W, s \in 1..3
+\sum_{j \in J_d\backslash \{L\}} x_{iw5sj} \leq 1 - x_{iw51L}, \;   i \in I, w \in W, s \in S_3
 \end{equation}
 
 \begin{equation}
-\sum_{s \in S_d}\sum_{j \in J_d} x_{iwdsj} \leq 1, \; \forall i \in I, w \in W, d \in 6..7
+\sum_{s \in S_d}\sum_{j \in J_d} x_{iwdsj} \leq 1, \;   i \in I, w \in W, d \in D_w
 \end{equation}
 
 \begin{equation}
-\sum_{d \in 1..4}\sum_{j \in J_d} x_{iwd4j} \leq 1, \; \forall i \in I \backslash \{36\}, w \in W
+\sum_{d \in D_4}\sum_{j \in J_d} x_{iwd4j} \leq 1, \;   i \in I \backslash \{36\}, w \in W
 \end{equation}
 
-%#Allowing a worker i to only work with 'Plocklistan' once per week
-%subject to max_one_PL_per_week{i in I, w in W}:
-%	sum{d in 1..5} x[i,w,d,1,'PL'] <= 1;
-%
-%#Not working at PL
-%subject to no_work_on_PL{i in I_no_PL, w in W, d in 1..5, s in S[d]}:
-%	x[i,w,d,s,'PL'] = 0;
-%
-%	
-%#Working many times at PL, min 3
-%#subject to many_work_on_PL_min{i in I_many_PL}:
-%#	sum{w in W}(sum{d in 1..5} x[i,w,d,1,'PL']) >= 3;
-%
-%#Working many times at PL, max 4
-%subject to many_work_on_PL_max{i in I_many_PL}:
-%	sum{w in W}(sum{d in 1..5} x[i,w,d,1,'PL']) <= 4;
-%
-%#Working regular num times at PL, max 3
-%subject to regular_work_on_PL_max{i in I diff I_no_PL diff I_many_PL}:
-%	sum{w in W}(sum{d in 1..5}x[i,w,d,1,'PL']) <= 3;
+\begin{equation}
+\sum_{d \in D_5} x_{iwd1P} \leq 1, \; i \in I, w \in W
+\end{equation}
+
+\begin{equation}
+x_{iwdsP} = 0, \; i \in I_{noP}, w \in W, d \in D_5, s \in S_d
+\end{equation}
+
+\begin{equation}
+\sum_{w \in W} \sum_{d \in D_5} x_{iwd1P} \leq 4, \; i \in I_{manyP}
+\end{equation}
+
+\begin{equation}
+\sum_{w \in W} \sum_{d \in D_5} x_{iwd1P} \leq 3, \; i \in I_{noP} \backslash I_{manyP}
+\end{equation}	
+
+\begin{equation}
+\sum_{w \in W} r_{iw} = 1, \; i \in I
+\end{equation}
+
+\begin{equation}
+\sum_{w \in W} H_{iwh} \leq 1, \; i \in I_{weekendavail}, h \in \{1,2\}
+\end{equation}
+
+\begin{equation}
+r_{iw} \geq H_{iw1}, \; i \in I, w \in W
+\end{equation}
+
+\begin{equation}
+r_{i(2\cdot w)} = 0, \; i \in I_{OddEven}, w \in W_5
+\end{equation}
+
+\begin{equation}
+r_{i(mod_{10}(w+4)+1)} \geq H_{iw2}, \; i \in I, w \in W
+\end{equation}
+
+\begin{equation}
+\sum_{s \in S_6} \sum_{j \in J_6} x_{iw6sj} + \sum_{s \in S_7} \sum_{j \in J_7} x_{iw7sj} = 2\cdot \sum_{h \in \{1,2\}} H_{iwh}, \; i \in I_{weekendavail}, w \in W
+\end{equation}
+
+\begin{equation}
+\sum_{s \in S_6} x_{iw6sj} = \sum_{s \in S_7} x_{iw7sj}, \; i \in I_{weekendavail}, w \in W, j \in J_7
+\end{equation}
+
+\begin{equation}
+\sum_{j \in J_d \backslash \{L\}} x_{iw54j} = f_{iw}, \; i \in I_{weekendavail}, w \in W
+\end{equation}
+
+\begin{equation}
+b_{iw} = x_{iw61B}, \; i \in I_{weekendavail}, w \in W
+\end{equation}
+
+\begin{equation}
+f_{iw} \geq H_{iwh} + (1 - b_{iw}) - 1, \; i \in I_{weekendavail}, w \in W, h \in \{1,2\}
+\end{equation}
+
+\begin{equation}
+f_{iw} \leq \sum_{h \{1,2\}} H_{iwh}, \; i \in I_{weekendavail}, w \in W
+\end{equation}
+
+\begin{equation}
+f_{iw} \leq 1 - b_{iw}, \; i \in I_{weekendavail}, w \in W
+\end{equation}
+
+\begin{equation}
+\sum_{w \in W} \sum_{d \in \{6,7\}} x_{iwd1B} \leq 2, \; i \in I_{lib} \backslash \{23\}
+\end{equation}
+
+\begin{equation}
+\sum_{d \in \{6,7\}} \sum_{j \in \{E,I\}} x_{23wd1j} = 0, \; w \in W
+\end{equation}
+
+\begin{equation}
+s^{min} \leq N1l \cdot \sum_{i \in I_{lib}} l_{iwd} + N1a \cdot \sum_{i \in I_{ass}} a_{iwd}, \; w \in W, d \in D_5
+\end{equation}
+
+\begin{equation}
+W_{iwd} \geq \sum_{s \in S_3} \sum_{j \in J_d} x_{iwdsj}, \; i \in I, w \in W, d \in D_5
+\end{equation}
+
+\begin{equation}
+W_{iwd} \geq \sum_{j \in J_d} x_{iwd4j}, \; i \in I, w \in W, d \in D_5
+\end{equation}
+
+\begin{equation}
+l_{iwd} \geq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i(mod_{10}(w-v+10)+1)d}) + (1-W_{iwd}) - 1, \; i \in I_{lib}, w \in W, d \in D_5
+\end{equation}
+
+\begin{equation}
+l_{iwd} \leq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i(mod_{10}(w-v+10)+1)d}), \; i \in I_{lib}, w \in W, d \in D_5
+\end{equation}
+
+\begin{equation}
+l_{iwd} \leq 1-W_{iwd}, \; i \in I_{lib}, w \in W, d \in D_5
+\end{equation}
+
+\begin{equation}
+a_{iwd} \geq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i(mod_{10}(w-v+10)+1)d}) + (1-W_{iwd}) - 1, \; i \in I_{ass}, w \in W, d \in D_5
+\end{equation}
+
+\begin{equation}
+a_{iwd} \leq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i(mod_{10}(w-v+10)+1)d}), \; i \in I_{ass}, w \in W, d \in D_5
+\end{equation}
+
+\begin{equation}
+a_{iwd} \leq 1-W_{iwd}, \; i \in I_{ass}, w \in W, d \in D_5
+\end{equation}
+
+\begin{equation}
+d_{iwds} \geq (y_{iwds} - y_{i(w+5)ds}), \; i \in I, w \in W_5, d \in D_5, s \in S_3
+\end{equation}
+
+\begin{equation}
+d_{iwds} \geq -(y_{iwds} - y_{i(w+5)ds}), \; i \in I, w \in W_5, d \in D_5, s \in S_3
+\end{equation}
+
+\begin{equation} % LÄGG TILL I MATHMODEL!
+\delta = \sum_{i \in I} \sum_{w \in W_5} \sum_{d \in D_5} \sum_{s \in S_3} d_{iwds}
+\end{equation}
+
+\begin{equation}
+x_{iwdsj} \leq \sum_{v \in V} (r_{iv} \cdot qualavail_{i(mod_{10}(w-v+10)+1)dsj}), \; i \in I, w \in W, d \in D, s \in S_d, j \in J_d
+\end{equation}
+
+\begin{equation}
+y_{iwds} = \sum_{j \in J_d \backslash \{L\}} x_{iwdsj}, \; i \in I, w \in W, d \in D_5, s \in S_3
+\end{equation}
+
+\begin{equation}
+\sum_{d \in D_5} y_{iwds} \leq 2, \; i \in I, w \in W, s \in S_3
+\end{equation}
+
+\begin{equation}
+\sum_{w \in W} x_{25w44L} = 8
+\end{equation}
+
+\begin{equation}
+x_{36w14L} = 1 - x_{25w11L}, \; w \in W
+\end{equation}
+
+\begin{equation}
+\sum_{w \in W} x_{37w34L} = 5
+\end{equation}
+
+\begin{equation}
+x_{37w34L} = 1 - x_{37(w+1)34L}, \; w \in W_9
+\end{equation}
+
+\begin{equation}
+x_{36wd4j} = 0, \; w \in W, d \in D_4, j \in J_d \backslash \{L\}
+\end{equation}
