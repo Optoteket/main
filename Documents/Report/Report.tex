@@ -67,11 +67,13 @@
 % author, date etc.
 %
 \newcommand{\putabstract}[0]{%
-The distribution of tasks to a heterogeneous work force at libraries and other service institutions is time consuming for manual schedulers, but well suited for optimization softwares. The problem studied concerns five different types of tasks, two types of workers and around 100 tasks to be scheduled per week. Also, there is a demand for workers during weekends and worker satisfaction is taken into account.
+The distribution of tasks to a heterogeneous work force at libraries and other service institutions is time consuming for manual schedulers, but well suited for optimization softwares. The problem studied concerns five types of tasks, two types of worker qualifications and around 100 tasks per week.
 
-The main objective is to create a optimal ten week rotating schedule, in which the stand-in staff members are evenly distributed. That results in a robust schedule, as absence of workers is a common issue.
+During weekends there is a demand for staff members. Also, worker satisfaction is taken into account to avoid unfairness and fatigue.
 
-A mathematical model is formulated for the problem, which is solved using the commercial solver, CPLEX and by using two different LNS heuristic implementations. The first heuristic assigns week blocks to the workers, while the second distributes one task at a time. The latter heuristic works better than the former and achieves results comparable to those of the commercial solver. Our conclusion is that the second heuristic works better, since it focuses on finding a good weekend distribution before creating the rest of the schedule.}
+The main objective is to create a optimal ten week rotating schedule, in which the stand-in staff members are evenly distributed. That results in a robust schedule, as absence of staff members is a common issue.
+
+A mathematical model is formulated for the problem, which is solved using the commercial solver, CPLEX and by using two different large neighbourhood search heuristic implementations. The first heuristic assigns complete week blocks to the staff members, while the second distributes one task at a time. The latter heuristic works better than the former and achieves results comparable to those of the commercial solver. Our conclusion is that the second heuristic works better because it focuses on finding a good weekend distribution, before creating the rest of the schedule.}
 
 \newcommand{\putkeywords}[0]{%
 Optimization, Scheduling, Task distribution, LNS, Weekend Scheduling, Heterogeneous workforce}
@@ -271,9 +273,9 @@ http://urn.kb.se/resolve?urn=urn:nbn:se:liu:diva-77777
 
 \chapter*{Acknowledgements\index{Acknowledgements}}
 
-The authors of this thesis would like to express our deepest gratitude to our supervisor Torbjörn Larsson at Linköping University, who has helped us find our way in moments of uncertainty and who has been guiding us through the whole project. Thank you for the time and effort you have spent on our thesis. We would also like to thank Elina Rönnberg, who has provided encouraging words and valuable insights throughout the project.
+We would like to express our deepest gratitude to our supervisor Torbjörn Larsson at Linköping University, who has helped us find our way in moments of uncertainty and who has been guiding us through the whole project. Thank you for the time and effort you have spent on our thesis. We would also like to thank Elina Rönnberg, who has provided encouraging words and valuable insights throughout the project.
 
-Furthermore, we would like to thank Elisabeth Cserhalmi and Ingrid Loeld  Rasch at Norrköpings Stadsbibliotek for providing us with an interesting thesis topic and for answering all our questions many times.
+Furthermore, we would like to thank Elisabeth Cserhalmi and Ingrid Loeld  Rasch at Norrköpings Stadsbibliotek for providing us with an interesting thesis topic and for answering all our questions many times over.
 
 We thank our opponents, Akdas Hossain and Emma Miléus, for their comments and thoughts on this report.
 
