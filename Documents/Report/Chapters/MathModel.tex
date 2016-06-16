@@ -263,7 +263,7 @@ M_{(w+5)11} = M_{w11}, \;   w \in W_5
 \begin{equation} \label{constr:library_meetings3}
 \sum_{s=1}^{3} \sum_{j \in J_1 \backslash \{L\}} x_{iw1sj} \leq 1-M_{w11}, \;   i \in I \backslash I_{big}, w \in W
 \end{equation}
-Equation \ref{constr:library_meetings} and \ref{constr:library_meetings2} assign two library meetings with a five-week interval during the ten-week scheduling period. Equation \ref{constr:library_meetings3} makes sure that the staff members that do not attend library meetings are not assigned any other task the day of the meeting.
+Equation \ref{constr:library_meetings} and \ref{constr:library_meetings2} assign two library meetings with a five-week interval during the ten-week scheduling period. Equation \ref{constr:library_meetings3} makes sure that the staff members that do not attend library meetings are not assigned any other task during the day of the meeting. This implicitly force the staff members, that do not attend the library meetings, to meet the demand constraints during the meeting. 
 
 The constraints added to model the group meetings are somewhat similar to the library meeting constraints. Just as for library meetings they take place two times during the ten weeks with a five-week interval, which is described by Equations \ref{constr:dep_meetings} and \ref{constr:dep_meetings2}.
 \begin{equation} \label{constr:dep_meetings}
@@ -278,5 +278,7 @@ m_{wdsD} + x_{iwdsj} \leq 1, \;   D = 1, \ldots, 3, i \in I_D, w \in W, d \in D_
 \begin{equation} \label{constr:dep_meetings4}
 m_{wdsD} \leq \sum_{v \in V} r_{iv}*qualavail_{i(mod_{10}(w-v+10)+1)dsE}, \;   D = 1, \ldots, 3, i \in I_D, w \in W, d \in D_5, s \in S_3
 \end{equation}
-Equation \ref{constr:dep_meetings3} prohibits a staff member from multitasking, that is, to attend a meeting and work with a task simultaneously. Lastly, Equation \ref{constr:dep_meetings4} enables group meetings only when everyone in that group is available, The rotation is also taken into the account. "E" in Equation \ref{constr:dep_meetings4} stands for Exp and is used due to it is the only task type everyone is available for and \textit{qualavail} is dependent on the variable \textit{j}. 
+Equation \ref{constr:dep_meetings3} prohibits a staff member from multitasking, that is, to attend a meeting and work with a task simultaneously. Lastly, Equation \ref{constr:dep_meetings4} enables group meetings only when everyone in that group is available, The rotation is also taken into the account.
+
+The task type "E" in Equation \ref{constr:dep_meetings4} stands for Exp, and is used due to it is the only task type everyone is available for, as \textit{qualavail} is dependent on the variable \textit{j}. A better way to model this would be to create a new parameter, say $avail_{iwds}$, that is not dependent on staff member qualifications. 
 
