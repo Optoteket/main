@@ -124,7 +124,7 @@ subject to all_other_times_no_meeting:
 	sum{w in W}(sum{d in 1..5}(sum{s in S[d]} M_big[w,d,s])) = 2;
 
 subject to no_other_tasks_when_meeting_if_boss{i in I diff I_big_meeting, w in W}:
-	sum {s in 1..3} (sum{j in {'Exp','Info','PL'}} x[i,w,1,s,j]) <= (1-M_big[w,1,1]);
+	sum {s in 2..3} (sum{j in {'Exp','Info','PL'}} x[i,w,1,s,j]) <= (1-M_big[w,1,1]);
 
 ######################## Department meeting constraints #########################
 #Departments 1..3 have meetings once in 5 weeks
@@ -232,7 +232,7 @@ subject to friday_added_to_the_weekend{i in I_weekend_avail, w in W}:
 subject to assign_hb{i in I_weekend_avail, w in W}:
 	hb[i,w] = x[i,w,6,1,'HB'];
 
-#Help constraints. working_friday_evening = 1 if worker i works weekend w, but does not work in HB
+#Help constraints. friday_evening = 1 if worker i works weekend w, but does not work in HB
 subject to help_constraint_friday_weekend1{i in I_weekend_avail, w in W, h in 1..2}:
 	friday_evening[i,w] >= H[i,w,h] + (1 - hb[i,w]) - 1;
 
@@ -278,20 +278,20 @@ subject to help_constraint3_lib{i in I_lib, w in W, d in 1..5}:
 
 
 ### Stand-ins for assistants
-#Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded ONLY IN RUN-FILE TO FIND WORST DAY
+#Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
 subject to find_lowest_stand_in_amount_no_weekends_no_evenings_ass{w in W, d in 1..5}: #RHS: number of qualified workers at work that is available & not assigned to any task.
 	stand_in_ass_tot[w,d] = sum{i in I_ass} stand_in_ass[i,w,d]; 		#+ meeting[s,d,w]*M; 
 
 #A worker is a stand-in if he/she is available, qualified and is not already scheduled. Takes schedule rotation into account
-subject to find_avail_not_working_day_ass{i in I_ass, w in W, d in 1..5}:
-	stand_in_ass[i,w,d] >= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]) + (1-sum{s in 1..4}(sum{j in {'Exp', 'PL'}} x[i,w,d,s,j])) - 1; #Available and not working any shift day d.
+subject to find_avail_not_working_day_ass{i in I_ass, w in W, d in 1..5}: #CHANGE?
+	stand_in_ass[i,w,d] >= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]) + (1-working_a_shift[i,w,d]) - 1; #Available and not working any shift day d.
 
 ### Help constraints for qualavail and not scheduled ###
 subject to help_constraint2_ass{i in I_ass, w in W, d in 1..5}:
 	stand_in_ass[i,w,d] <= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]);
 
-subject to help_constraint3_ass{i in I_ass, w in W, d in 1..5}:
-	stand_in_ass[i,w,d] <= 1-sum{s in 1..4}(sum{j in {'Exp', 'PL'}} x[i,w,d,s,j]);
+subject to help_constraint3_ass{i in I_ass, w in W, d in 1..5}:  #CHANGE?
+	stand_in_ass[i,w,d] <= 1-working_a_shift[i,w,d];
 
 ############### Second objective function constraints: Similar weeks for workers #############
 

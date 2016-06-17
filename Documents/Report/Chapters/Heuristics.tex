@@ -1,19 +1,220 @@
+%The two heuristical approaches
+Three different approaches to the problem were studied. The first part of the thesis was to implement the problem in AMPL, according to the model described in Chapter \ref{chap:mathmod}, and the supplementary details given in Appendix \ref{appendix:mathmod}. Running this model in CPLEX gives an optimal solution to the problem.
 
+The other two approaches are classified as heuristics. These are implemented in order to solve the problem without using expensive software, such as CPLEX, although they do not guarantee that the optimal solution is found. 
 
-The implemented algorithm is based on Large Neighborhood Search (LNS) where small parts of the current solution is destroyed and repaired. In Appendix \ref{appendix:flow_charts}, Figure \ref{flow_chart}, is a flow chart of the implemented heuristic presented. 
+The first heuristic is a week block scheduling heuristic, which creates a solution from distributing complete week blocks to staff members. This heuristic first creates a large pool of unique week appearances. In this pool, there is one block for every possible combination of tasks for any of the staff members. After the pool is created, each staff member is assigned one block from this pool for each scheduled week.
 
-Every workers' information such as availability and qualification is inserted into an Excel table. It is then written to a text file using Visual Basic code, which in turn is read and used by the heuristic.
+In the second heuristic, weekends are first assigned to staff members, creating a weekend constellation that is aiming for an even distribution of stand-ins. After this, the algorithm enters a second phase, where weekday tasks are allocated according to a greedy heuristic.
 
-\section{Block creation} \label{block_creation}
-A big part of this heuristic is to create the big pool of unique week appearances. These are then filtered for each of the worker based on its availability. The workers availability are generalized into three categories: \textit{Weekend week}, \textit{weekrest week} and \textit{weekday week}, where weekday week occurs three times during a five week period, see Table \ref{tab:Bob_avail}. 
+In order to implement the heuristics, some of the mathematical model's constraints are softened. Softened constraints are constraints that are considered as hard in the original model, but are placed in the objective function in the new model. In the new model, violating a softened constraint gives a penalty cost. Having no penalty cost is equivalent to having a feasible solution. This process of constraint relaxation is illustrated in Figure \ref{fig:AMPL_vs_heur}. 
 
+% Define block styles
+\tikzstyle{block} = [rectangle, draw=none, fill=white,
+    text width=8em, text ragged, rounded corners, minimum height=0em, node distance =1.5cm]
+\tikzstyle{line} = [draw, -latex']
+    
+\newcommand*{\h}{\hspace{18pt}}% for indentation
+\newcommand*{\hh}{\hspace{24pt}}% double indentation
 
-One week block contains seven days and up to four shifts where each shift can contain up to three task types. Table \ref{Generalized weekblock} below is a representation of a general week block with all possible tasks for each day \textit{d} and shift \textit{s}. \textit{I} in the table represents "No task" is assigned that day, \textit{D} represents "Desk task" meaning either Exp or Info, \textit{PL} represents "Fetch list" and \textit{HB} represents "Hageby". 
+\begin{figure}[!h]
+\caption{Illustration of the differences between the model used in AMPL and the heuristic model}
+\label{fig:AMPL_vs_heur}
+\begin{center}
+\begin{tikzpicture}[node distance = 2cm , auto, scale=0.7, every node/.style={scale=0.7}]
+	%Row 1
+	\node[block, node distance= 6cm, text width=4em] (AMPL){\Large \textbf{AMPL}};
+	\node[block, right of=AMPL, node distance= 5cm] (Mid){};
+	\node[block, right of=Mid, node distance= 6cm] (Heur){\Large \textbf{HEURISTIC}};
+	%Row 2
+	\node[block, below of = AMPL, text width=15em, node distance =1.5cm](ObjfA) {\hh AMPL Objective Function};
+	\node[block, below of = Heur, text width=18em, node distance =1.5cm](ObjfH) { \h Objective Function of Heuristic};
+	%Row 3	
+	\node[block, below of = ObjfA, text width=10em](ConstA) {AMPL Constraints};
+	\node[block, below of = Mid, text width=10em, node distance=2.5cm](SConst) {\h Soft Constraints};
+	%Row 4
+	\node[block, below of = SConst, text width=10em, node distance=1cm](HConst) {\h Hard Constraints};
+	\node[block, right of = HConst, text width=18em, node distance=6cm](ConstH) {\h Constraints of Heuristic};
+	%Invisible node
+	\node[block, right of=SConst,scale=0.05, node distance=4cm](inv){};
+	%\node at (ObjfH)[block, left of=ObjfH,scale=0.05,node distance=2.7cm](inv2){};
+	\node at (8.1,-1.8)(inv2){};
+	\begin{scope}[every path/.style=line]
+		\path (ObjfA) -- (ObjfH);
+		\path (ConstA.east) -- (HConst.west);
+		\path (ConstA.east) -- (SConst.west);
+		\path (SConst.east) -- (inv2.west);
+		\path (HConst.east) -- (ConstH.west);
+%		\path [-,draw](SConst) -- (inv);
+%		\path (inv) |- (ObjfH);
+	\end{scope}
+	\draw [color=gray!70,thick](15,1) rectangle (-3,-5);
+\end{tikzpicture}
+\end{center}
+\end{figure}
+
+Due to a lack of time, the two heuristics were implemented using a simplified model, where some constraints from the original model have been relaxed or removed. How the heuristics differ from the original model is described in Tables \ref{tab:weekly_task_constraints} and \ref{tab:task_constraints}, together with the soft constraints. Although the problem is simplified in both heuristics, its most fundamental structure is preserved, since the most significant degree of freedom in the problem is given by the weekend allocation. The weekend allocation affects where the staff members have their week rest, which in turn affects the distribution of stand-ins in the schedule. Therefore, the main focus of both heuristics is the weekend allocation.
+
+Relaxed constraints are constraints which have been slightly altered from the original model. In both heuristic implementations, these are identical. The relaxed constraints concern the even and odd week availability issue. The model becomes independent of the even and odd week constraints by reducing the BokB schedule to a fixed schedule, and removing differences in the odd and even week availability for the staff members in question. In addition, solving a five week scheduling problem rather than a ten week problem simplifies the problem further.
+
+As implementation time was lacking, meetings were removed from the model in the heuristic implementations. This was a natural choice, as meetings are not currently in the library's schedule. It is rather an extra feature added to the mathematical model upon the library's request.
 
 \begin{table}[!h]
 \centering
-\caption{A generalized weekblock with all existing tasks}
-\label{Generalized weekblock}
+\caption{Showing changes in the model for the week block scheduling approach. The soft, relaxed and removed constraints are shown.}
+\label{tab:weekly_task_constraints}
+\begin{tabular}{|p{4cm}|p{7cm}|}
+\hline
+% ---------------------------------------------------------
+\multicolumn{2}{|l|}{\cellcolor{gray!90} \textbf{Soft Constraints}} \\
+\hline 
+\rowcolor{Gray} Affected constraints & Constraint description \\ \hline
+\ref{eq:demand} & The number of staff members needed for every shift and task type in the library.  \\ \hline
+\ref{constr:three_PL} & Maximum number of PL per staff member and week cycle. \\ \hline
+% ---------------------------------------------------------
+\multicolumn{2}{|l|}{\cellcolor{gray!90} \textbf{Relaxed Constraints}} \\
+\hline 
+\rowcolor{Gray} Affected constraints & Constraint relaxation \\ \hline
+Several. $W = W_5$ in all constraints. & Five week scheduling instead of ten week scheduling. \\ \hline
+BokB-constraints & BokB manually assigned, due to low degree of freedom. \\ \hline
+Availability data & Even and odd week staff members have availability at each shift according to the stricter of the two sets. \\ \hline
+% ---------------------------------------------------------
+\multicolumn{2}{|l|}{\cellcolor{gray!90} \textbf{Removed Constraints}} \\
+\hline 
+\rowcolor{Gray} Affected constraints & Constraint description \\ \hline
+\ref{constr:obj_fcn_shifts} & Any two weeks \textit{w} and \textit{w+5} shall be as similar as possible. \\ \hline
+\ref{constr:library_meetings} - \ref{constr:dep_meetings4} & Meetings are not implemented. \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+\begin{table}[!h]
+\centering
+\caption{Showing changes in the model for the task distribution approach. The soft, relaxed and removed constraints are shown.}
+\label{tab:task_constraints}
+\begin{tabular}{|p{4cm}|p{7cm}|}
+\hline
+% ---------------------------------------------------------
+\multicolumn{2}{|l|}{\cellcolor{gray!90} \textbf{Soft Constraints}} \\
+\hline 
+\rowcolor{Gray} Affected constraints & Constraint description \\ \hline
+\ref{constr:one_task_constraint} & At most one task per day.  \\ \hline
+\ref{constr:four_weekly_shifts_at_most} & At most four tasks per week. \\ \hline
+\ref{constr:one_PL} & At most one PL per week. \\ \hline
+\ref{constr:three_PL} & Maximal number of PL per ten weeks. \\ \hline
+\ref{constr:various_start_times} & Not more than two tasks at the same shift in a week restriction.  \\ \hline
+% ---------------------------------------------------------
+\multicolumn{2}{|l|}{\cellcolor{gray!90} \textbf{Relaxed Constraints}} \\
+\hline 
+\rowcolor{Gray} Affected constraints & Constraint relaxation \\ \hline
+Several. $W = W_5$ in all constraints. & Five week scheduling instead of ten week scheduling. \\ \hline
+BokB-constraints & BokB placed according to constraints, but the schedule is fixed. \\ \hline
+Availability data & Even and odd week staff members have availability at each shift according to the stricter of the two sets. \\ \hline
+% ---------------------------------------------------------
+\multicolumn{2}{|l|}{\cellcolor{gray!90} \textbf{Removed Constraints}} \\
+\hline 
+\rowcolor{Gray} Affected constraints & Constraint description \\ \hline
+\ref{constr:obj_fcn_shifts} & Any two weeks \textit{w} and \textit{w+5} shall be as similar as possible. \\ \hline
+\ref{constr:library_meetings} - \ref{constr:dep_meetings4} & Meetings are not implemented. \\ \hline
+\end{tabular}
+\end{table}
+
+Both heuristic implementations are based on a Large Neighbourhood Search (LNS) framework. This method, which is classified as a metaheuristic, works by alternatingly destroying and repairing parts of solutions, in order to move through the solution space. Typically, the parts of the solution that are considered poor are destroyed. How much that is destroyed is regulated by the destroy degree. The repair function rebuilds the destroyed part of the solution using some greedy heuristic. The LNS framework is described more in detail by \citet{pisinger_2010}. 
+
+The second heuristic also uses Simulated Anneahling (SA), which allows the algorithm to accept solutions which are poorer than the current one. This makes it possible for the search to move out of a local optima. A variable called a "temperature" is used in order to decide the probability of accepting a poorer solution. Usually, this temperature decreases over time, and thus the probability of accepting a poorer solution also decreases. The method is described more thoroughly by \citet{pisinger_2010}.
+
+\section{Week block scheduling approach}
+
+The first heuristic approach creates initially a large pool of week block appearances. These are then filtered for every staff member based in its qualities, such as availability and qualification. Then, a large neighbourhood search is applied by alternating between a destroy and repair on a given number of staff members. In this case three staff members are destroyed per iteration. A critical step during a destroy and repair phase is to be able to swap rotations between staff members. To swap rotation means that staff members are scheduled for weekend work another week.
+
+The implemented heuristic can be seen in Figure \ref{flow_chart}. The LNS framework is shown in the middle of the figure.
+
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, fill=red!30,
+    text width=3.5em, text badly centered, node distance=3cm, inner sep=0.1pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!30,
+    text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+    minimum height=2em]
+
+\begin{figure}[!h]
+  \caption{A flow chart of the implemented heuristic with week block scheduling}
+  \centering
+	\scalebox{0.7}{ \label{flow_chart}
+		\begin{tikzpicture}[node distance = 2cm, auto]
+		    % Place nodes
+			\node [block] (blocks) {Create all blocks};
+			\node [block,below of= blocks] (staff members) {Create all staff members};
+			\node [block,below of= staff members] (sort) {Sort blocks to staff members};
+			\node [block,below of= sort] (assign_rot) {Assign rotations};
+			\node [block,below of= assign_rot] (assign_low) {Assign BokB schedule};
+			\node [block,below of= assign_low] (init_sol) {Create initial solution};
+			\node [decision, right of = init_sol, node distance= 3.5cm] (feasible) {Is solution feasible?};
+			\node [block,above of= feasible, node distance = 3cm] (repair) {Repair staff members};
+			\node [block,above of= repair, node distance = 2cm] (destroy) {Destroy staff members};
+			
+			
+			\node [block,below of= feasible, node distance = 6cm] (print) {Print solution to file};
+			\node[decision,right of= feasible, node distance=3.5cm] (close) {Close enough?};
+			\node[decision,right of= close, node distance=3.5cm] (enough) {Enough stand-ins for feasibility?};
+			\node[block,above of= enough, node distance=7.5cm] (empty) {Assign empty blocks for all staff members};
+			\node[block,below of= enough, node distance = 3cm] (final) {Enter final phase};
+			\node[decision, right of= final, node distance = 3.5cm] (solved) {Solved in given number of iterations?};
+			\node[block,above of= solved, node distance = 5cm] (failed) {Failed iteration, run again};
+			
+			
+			%Invisible node, useful later
+			\node[right of= sort, node distance=5cm,scale=0.01](invLNS){};
+			\node[above of= blocks, node distance=1.3cm,scale=0.01](inv){};
+			
+			\node[above of= invLNS, node distance = 0.7cm] (text) {LNS};
+			
+		    % Draw edges
+		    \path [line] (inv) -- (blocks);
+		    \path [line] (blocks) -- (staff members);
+		    \path [line] (staff members) -- (sort);
+		    \path [line] (sort) -- (assign_rot);
+		    \path [line] (assign_rot) -- (assign_low);
+		    \path [line] (assign_low) -- (init_sol);
+		    \path [line] (init_sol) |- (feasible);
+		    \path [line] (destroy) -- (repair);
+		    \path [line] (repair) -- (feasible);
+		    \path [line] (feasible) -- node[right]{yes}(print);
+		    \path [line] (feasible) -- node[above]{no}(close);
+		    \path [line] (close) |- node[right]{no}(destroy);
+		    \path [line] (close) -- node[above]{yes}(enough);
+		    \path [line] (enough) -- node[right]{no}(empty);
+		    \path [line] (enough) -- node[right]{yes}(final);
+		    \path [line] (final) -- (solved);
+		    \path [line] (empty) -| (destroy);
+		    \path [line] (solved) |- node[right]{yes}(print);
+		    \path [line] (solved) -- node[right]{no}(failed);
+		    \path [line] (failed) |- (blocks);
+%			\path[-,draw] (feasible) -| node[right]{no} (inv.north);
+%		    \path[line]{} (inv.north) |- node{} (destroy);
+			\draw [color=gray!70,thick](1.8,-3.5) rectangle(5.3,-12);
+		\end{tikzpicture}
+		}
+\end{figure}
+
+In case a run does not find a feasible solution after a given number of iterations, the run is discarded and a new iteration is executed. This is shown on the right side of Figure \ref{flow_chart}. In case a run is close enough to enter the final phase, a check is made if there are enough stand-ins to be assigned the remaining tasks. If not, all staff members will be assigned empty week blocks, so that a new try of finding a feasible solution can be made.
+
+Every staff member's information such as availability and qualification is inserted into an Excel table. It is then written to a text file using a Visual Basic code, which in turn is read and used by the heuristic.
+
+In the following sections the implemented week block approach heuristic will be explained step by step.
+
+\subsection{Block creation} \label{block_creation}
+A major part of this heuristic is to create the large pool of possible week block appearances. These are then filtered for each staff member based on their availabilities. The staff members' availability are generalized into three categories: weekend, week rest and weekday week. Worth noting is that the weekday week occurs three times during a five week period, see Table \ref{tab:Bob_avail}. 
+
+
+One week block contains seven days and up to four shifts where each shift can contain at most three different tasks. Table \ref{Generalized week block} below is a representation of a general week block with all possible tasks for each day \textit{d} and shift \textit{s}. In the table, \textit{I} represents that "No task" is assigned that day, \textit{D} represents "Desk task" meaning either Exp or Info, \textit{PL} represents "Fetch list" and \textit{HB} represents "Hageby". 
+
+\begin{table}[!h]
+\centering
+\caption{A general week block with all possible tasks}
+\label{Generalized week block}
 \begin{tabular}{cccccccc}
                          & Mon                         & Tue                         & Wed                         & Thu                         & Fri                         & Sat                         & Sun                         \\ \cline{2-8} 
 \multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{I,D,PL} & \multicolumn{1}{c|}{I,D,PL} & \multicolumn{1}{c|}{I,D,PL} & \multicolumn{1}{c|}{I,D,PL} & \multicolumn{1}{c|}{I,D,PL} & \multicolumn{1}{c|}{I,D,HB} & \multicolumn{1}{c|}{I,D,HB} \\ \cline{2-8} 
@@ -23,20 +224,20 @@ One week block contains seven days and up to four shifts where each shift can co
 \end{tabular}
 \end{table}
 
-Every day must contain exactly \textit{one} task from either of the four shifts when creating a week block. The tasks \textit{I} and \textit{PL} are ranging more than one shift. The duration of a PL is three shift and I refers to the entire day. Hence, they are both placed in the first shift to simplify the complete task representation. When creating the combinations of block appearances there are additional conditions that have to be met. These are:
+Every day must contain exactly \textit{one} task from either of the four shifts when creating a week block. The tasks \textit{I} and \textit{PL} are ranging over more than one shift. The duration of a PL is three shift and I refers to the entire day. They are both placed in the first shift to simplify the complete task representation. When creating the combinations of block appearances there are additional conditions that have to be met. These are:
 \begin{enumerate}  
-\item At most two tasks can be assigned the same shift and week.\label{first_item}
-\item No more than two evenings are allowed each week, one of which is required to be a Friday. \label{second_item}
-\item At most one PL is allowed in a weekblock. \label{third_item}
-\item Saturday and Sunday shall always contain the same task type.\label{fourth_item}
+\item At most two tasks per week can be assigned the same shift.\label{first_item}
+\item At most one evening is allowed per week, if Friday evenings are excluded. \label{second_item}
+\item At most one PL is allowed in a week block. \label{third_item}
+\item Saturday and Sunday shall always contain the same type of task.\label{fourth_item}
 \item If Saturday and Sunday contain Desk tasks, then so shall Friday afternoon (fourth shift). \label{friday_as_weekend}
-\item No more than four tasks are allowed during the weekdays leaving at least one day without tasks. \label{fifth_item}
+\item No more than four tasks are allowed during the weekdays, leaving at least one day free from tasks. \label{fifth_item}
 \end{enumerate}
 
 %23,328 -> 9072 when item 4 applied
-Too see the growth of the problem when more tasks are added, consider the following example: If item \ref{first_item}, \ref{second_item}, \ref{third_item}, \ref{friday_as_weekend} and \ref{fifth_item} are disregarded there exists $6^5*3 = 23,328$ unique weekblocks. In contrast, if Exp and Info were to be considered separately, instead of the combination of the two, the possible combinations would be $10^5*4 = 400,000$.  By applying all conditions the total amount of unique block appearances for this implementation are 4,175. 
+To illustrate the growth of the number of block combinations when more tasks are added, consider the following example. If items \ref{first_item}, \ref{second_item}, \ref{third_item}, \ref{friday_as_weekend} and \ref{fifth_item} are disregarded there exists $6^5*3 = 23,328$ unique week blocks. In contrast, if Exp and Info were to be considered separately, instead of using the combination of the two, the possible combinations would be $10^5*4 = 400,000$.  By applying all conditions above the total number of unique block appearances for this implementation are only 4,175. 
 
-An illustration of one of the 4,175 existing block can be seen in Table \ref{block_example} below.
+An illustration of one of the 4,175 existing blocks can be seen in Table \ref{block_example} below.
 \begin{table}[!h]
 \centering
 \caption{Illustration of one of the unique block appearances}
@@ -50,17 +251,17 @@ An illustration of one of the 4,175 existing block can be seen in Table \ref{blo
 \end{tabular}
 \end{table}
 
-This block contains five tasks; two of them are weekend tasks and three are weekday tasks. Which week this block can be assigned to is dependent on the worker's rotation. Since Hageby is assigned to the weekblock one can conclude that only a librarian can have this block assigned to itself. Due to this fact, the Desk tasks can imply either Exp or Info desk work as librarians are qualified for both.
+This block contains five tasks; two of them are weekend tasks and three are weekday tasks. Which weeks that this block can be assigned to is dependent on the staff member's rotation. Since Hageby is assigned to the week block, one can conclude that only a librarian can have this block assigned to itself. Due to this fact, the Desk tasks can mean either Exp or Info, as librarians are qualified for both. In case it was an assistant, the Desk tasks can only refer to Exp.
 
 
-\section{Block percolation}
-After creating all existing week combinations they are percolated to each of the workers based on their availability in each of the three categories mentioned in Section \ref{block_creation}. Table \ref{blocks_available_per_worker} in Appendix \ref{appendix:weekblock} shows the results after this percolation has been made for all workers.
+\subsection{Block filtering}
+After creating all possible week block appearances, they are filtered for each of the staff members based on their availability in each of the three categories, mentioned in Section \ref{block_creation}. Table \ref{blocks_available_per_worker} in Appendix \ref{appendix:weekblock} shows the number of available week block appearances with respect to the number of possible week blocks, after the filtering has been made for all staff members.
 
 
-All of the values in the table are a subset of the total amount of 4,175 blocks. Knowing the structure of the problem, one can deduce that the amount of available weekrest blocks are always less than or equal to the available weekday blocks, as it should be. The only difference between the two mentioned block categories is when a worker is free from work due to its weekrest. Therefore, using this information one can interpret that they are equal when the worker is never working weekends.
+All of the values in the table are fractions of the total number of 4,175 blocks. Knowing the structure of the problem, one can deduce that the number of available week rest blocks shall always be less than or equal to the available weekday blocks. The reason is because the only difference between the two mentioned block categories, is when a staff member is free from work due to its week rest. Hence, they are equally many when a staff member is never working weekends.
 \begin{table}[!h]
 \centering
-\caption{Typical availability for a generalized worker. Yellow signifies that the worker is available. In parenthesis, the weekend shift hours.}
+\caption{Typical availability for a five-week period for a staff member. Yellow signifies that the staff member is available during the stated hours. In parenthesis, the weekend shift hours are stated.}
 \label{typical_availability}
 \begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
 \hline
@@ -88,7 +289,7 @@ All of the values in the table are a subset of the total amount of 4,175 blocks.
 \begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
 \hline
 %-------------------------------------------------------------------
-\textbf{Weekrest week}& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
+\textbf{Week rest week}& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
 \\ \hline 
 %%------------------------------------------------------------------- 
 %\rowcolor{Gray} 
@@ -179,7 +380,7 @@ All of the values in the table are a subset of the total amount of 4,175 blocks.
 \end{tabularx}
 \end{table} 
 
-Looking at a generalized worker's availability shown in Table \ref{typical_availability} one might think that there shall be more weekend blocks available than weekday blocks as the availability, almost in all cases, are higher for weekend blocks. This is not the case as all blocks without weekend tasks are removed in the percolation. This means that all combinations with "No task" on weekends are removed, as well as the case that is shown in Table \ref{Friday_percolation}. The case in Table \ref{Friday_percolation} occurs when a worker is assigned weekend Desk tasks and therefore can not be assigned any other task that Friday.
+Looking at a typical staff member's availability, shown in Table \ref{typical_availability}, one might think that there shall be more weekend blocks available than weekday blocks, as the availability, almost in all cases, is higher for weekend blocks. This is not the case, however, as all blocks without weekend tasks are filtered out from the weekend block category. This means that all combinations with "No task" on weekends are excluded in that category. Furthermore, the case shown in Table \ref{Friday_percolation} decreases the number of existing weekend blocks further. This case occurs when a staff member is assigned weekend Desk tasks and, therefore, can not be assigned any other task that Friday, as only one task is allowed per day.
 
 
 
@@ -198,18 +399,20 @@ Looking at a generalized worker's availability shown in Table \ref{typical_avail
 \end{tabular}
 \end{table}
 
- "X" in Table \ref{Friday_percolation} can represent any task and shifts colored in black means that no other task can be assigned that shift.
+ The notion "X" in Table \ref{Friday_percolation} can represent any task, and shifts colored in black mean that no other task can be assigned that shift.
 
-\section{Rotation assignment} \label{rotation}
-There are 35 weekend workers available of which 21 are librarians and 14 are assistants. The demand of weekend workers each week is seven, i.e. the demand for five weeks is exactly $7*5 = 35$ workers. Another requirement in excess to seven workers each weekend is that at least four of them have to be librarians due to three librarians are needed in Information desks and one in Hageby. Therefore, it deems reasonable to swap rotations between workers in the destroy so that it always remains feasible. 
+\subsection{Rotation assignment} \label{rotation}
+The rotation assignment is an early step in the destroy and repair process. Every staff member has a rotation assigned, stating which week the weekend work occurs. In the rotation assignment this rotation is assigned to a staff member based on a few constraints. In a destroy and repair iteration the three randomly chosen staff members can have their rotations swapped. The constraints and an illustration of a swap will be presented here.
 
-A random generator is used in the assignment of rotations that always makes sure that the two mentioned requirements are met. Furthermore, all of the LoW-workers have fixed weekends and hence are not given new rotations in the destroy/repair loop and is more thoroughly described in Section \ref{LoW_assignment} below. 
+There are 35 weekend staff members available, out of which 21 are librarians and 14 are assistants. The demand for weekend staff members each week is seven, that is, the demand for five weeks is exactly $7*5 = 35$ staff members. Another requirement is, in addition to the seven staff members each weekend, that at least four of them have to be librarians. The reason is because three librarians are needed in the Information desks and one in Hageby. Because of the exact balance between supply and demand, it deems reasonable to swap rotations between staff members in the destroy and repair loop, so that there always are enough qualified staff members every weekend.
 
-Table \ref{rotation_assignment} shows a destroy/repair iteration regarding rotation assignments. The amount of workers being destroyed in each iteration is three.
+The swaps are done using a random generator in the assignment of rotations, such that the above described weekend staffing requirements always are met. However, all of the BokB-staff members have fixed weekends; hence, they are not given new rotations in the destroy and repair loop. This is more thoroughly described in Section \ref{BokB_assignment} below. 
+
+Table \ref{rotation_assignment} shows a destroy and repair iteration regarding rotation assignments. What happens is that the three staff members will be able to be assigned a new weekend week, as long as the demand constraints mentioned above are met.
 
 \begin{table}[!h]
 \centering
-\caption{An iteration in the destroy/repair loop showing a swap of weekends when three workers are destroyed}
+\caption{An iteration in the destroy and repair iteration showing a swap of weekends when three staff members' week rotations are destroyed.}
 \label{rotation_assignment}
 Initial assignment:\\
 \begin{tabular}{l|llllll}
@@ -234,36 +437,35 @@ Assistants & 3 & 2 & \cellcolor[HTML]{9AFF99}3 & 3 & 3
 \end{tabular}
 \end{table}
 
-Yellow indicates that a worker, either librarian or assistant, has been destroyed that week and green indicates that a worker has been repaired. Comparing the "Initial assignment" with "After repair" a swap can be seen between week 2 and 3. Worth noting is that a swap can occur even if the amount of qualified workers remains the same after a repair. To understand this, imagine that two librarians with different rotations are destroyed, then two cases can occur: Either they are assigned the same rotation as before or they swap weekends. 
+Yellow indicates that a staff member, either librarian or assistant, has had its week rotation destroyed and green indicates that a staff member's week rotation has been repaired. Comparing the "Initial assignment" with "After repair", a swap can be seen between week 2 and 3. Worth noting is that a swap can occur, even if the number of qualified staff members remains the same after a repair. To understand this, consider the case when two librarians, with different rotations, have them destroyed. Then two cases can occur; either they are assigned the same rotation as before or they swap.
 
 
-\section{Assignment of Library on Wheels} \label{LoW_assignment}
-In order to avoid creating enormous amounts of block combinations, LoW tasks are assigned manually. To assign LoW manually also lead to a fix weekend rotation for the five LoW-workers. This slightly reduces the degrees of freedom of the problem as the LoW-workers' rotation will remain unchanged. However, as there are only a couple different set of feasible LoW assignments it shall not be the deciding factor for the quality of the solution.
+\subsection{Assignment of Library on Wheels} \label{BokB_assignment}
+In order to avoid creating enormous number of block combinations, BokB tasks are assigned manually. This leads to a fix week rotation for the five BokB-staff members, which slightly reduces the degrees of freedom of the problem, as the BokB-staff members' rotation will remain unchanged. However, as there only exist a couple of different sets of feasible BokB assignments, it should not be the deciding factor for the quality of the solution.
 
-Without a manual assignment of LoW the number of existing tasks in a weekblock would increase significantly. The number of tasks would increase from 36 to 43, as there are seven LoW tasks during a week, resulting in a lot more than 4,175 unique week appearances. % %ändra sista
+Without a manual assignment of BokB, the number of possible tasks in a week block would increase significantly. The number of tasks would increase from 36 to 43, as there are seven unique BokB tasks during a week, which would result in a lot more than 4,175 possible week appearances.
 
-\section{Initial solution} \label{initial_solution}
-The initial solution is created in a similar fashion as the repair function in this heuristic. Based on a greedy heuristic the best weekblock for a random worker and week is found and inserted. This is done until every worker have one weekend block, one weekrest block and three weekday blocks assigned to them.
+\subsection{Initial solution} \label{initial_solution}
+At first, when creating the initial solution, all staff members will have five empty week blocks assigned to them. Then, based on a greedy heuristic, the best week block for a random staff member and random week is found and inserted. This is done until every staff member has one weekend block, one week rest block and three weekday blocks assigned to them. The initial solution is created in a similar fashion to this heuristic's repair function, described in Section \ref{repair} below.
 
-To find the best weekblock several costs have been introduced to measure whether a block is good or bad to assign a worker. Say, if the library demands two librarians at the Information desk Monday at 08:00 and currently there are one assigned, then it would be good to assign another one. Such an assignment will, therefore, be rewarded using a cost. Good assignments will provide negative costs and bad assignments will provide positive costs to the objective function value.
+In order to find the best week block, several costs are introduced to measure week block insertions. Say, if the library demands two librarians at the Information desk on Monday at 8 a.m. and currently there is only one assigned, then it shall be profitable to assign another one. Such an assignment will, therefore, be rewarded using a cost contribution. Good assignments will provide negative costs and bad assignments will provide positive costs to the objective function value.
 
-Table \ref{block_to_evaluate} together with Figure \ref{flow_chart_cost} shows an increment where different cost parameters have to be considered when evaluating a block before assigning it to a worker. In order to calculate demand costs for the PL in the library, assume that this block which is being evaluated is to be inserted at week three.
+Table \ref{block_to_evaluate} together with Figure \ref{flow_chart_cost} show an example of week block evaluation using costs. Here, different cost contributions have to be considered before assigning it to a staff member. In order to calculate demand costs for the PL assume that the block, which is being evaluated, is to be inserted for week three.
 
 % Please add the following required packages to your document preamble:
 % \usepackage[table,xcdraw]{xcolor}
 % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
 \begin{table}[!h]
 \centering
-\caption{A block example to be evaluated using costs}
+\caption{A block example to be evaluated using costs. Only the PL task will be evaluated for simplicity reasons.}
 \label{block_to_evaluate}
 \begin{tabular}{cccccccc}
                                  & Mon                                             & Tue                    & Wed                                            & Thu                    & Fri                                            & Sat                    & Sun                    \\ \cline{2-8} 
 \multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}PL} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{I} \\ \cline{2-8} 
 \multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} &                        &                        \\ \cline{2-6}
 \multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          &                        &                        \\ \cline{2-6}
-\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}                           & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          &                        &                        \\ \cline{2-6}
-                                 &                                                 &                        &                                                &                        &                                                &                        &                        \\
-\multicolumn{3}{c}{Task to be evaluated}                                                                    &                                                &                        &                                                &                        &                        \\
+\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}                           & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  &         \\ \cline{2-6}&       &           &       &   &  &      &           \\
+\multicolumn{3}{c}{Task to be evaluated according to Figure 4.3}       &                                                &                        &                                                &                        &                        \\
                                  & Mon                                             &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
 \multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}PL} &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
 \multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
@@ -283,12 +485,12 @@ Table \ref{block_to_evaluate} together with Figure \ref{flow_chart_cost} shows a
 
 % % FLOW CHART of COSTS
 \begin{figure}[!h]
-  \caption{A flow chart of appearing costs when a PL is assigned a block on a Monday, third week relative to the library schedule.}
+  \caption{A flow chart of costs appearing when a PL is assigned a block on a Monday, third week relative to the library schedule.}
   \centering
 	\scalebox{0.85}{ \label{flow_chart_cost}
 		\begin{tikzpicture}[node distance = 2cm, auto]
 		    % Place nodes
-		    \node [decision] (demand) {Need for another PL-worker Monday week 3?};
+		    \node [decision] (demand) {Need for another PL-staff member Monday week 3?};
 		    %Invisible node
 		    \node[below of= demand, node distance=3.5cm,scale=0.01](inv){};
 		    
@@ -338,10 +540,10 @@ Table \ref{block_to_evaluate} together with Figure \ref{flow_chart_cost} shows a
     
 
 
-\section{Costs}
-In order to find a feasible solution many of the implemented costs must be carefully chosen. Presently, there are 16 existing costs where some of them are correlated with each other. The solution behaves differently depending on the relation between the costs changes.
+\subsection{Costs}
+In order to find a feasible solution the implemented costs must be carefully chosen. Presently, there are 16 different costs, where some of them are correlated with each other.
 
-Six of the costs are presented in Figure \ref{flow_chart_cost}. They have all been assigned unique values so that, for example, positive assistant demand cost differs from negative assistant demand cost in absolute value. To explain why, one can imagine a case where four workers are demanded of which two have to be librarians, see Table \ref{library_solutions}. The first case, where one assistant and three librarians have been assigned, is more desirable than the case with three assistants and one librarian. In the first case it is still a feasible solution as the qualification of assistants are a subset of the librarians. The second case is feasible, however, not optimal due to the exceeding use of librarians. The optimal solution is shown in green as Case 3.
+Six of the costs are presented in Figure \ref{flow_chart_cost}. They have all been assigned unique values so that, for example, the positive assistant demand cost differs from the negative assistant demand cost in absolute value. To explain why, consider a case where four staff members are demanded, out of which two have to be librarians, see Table \ref{library_solutions}. The first case, where three assistants and one librarian have been assigned, is infeasible, as there is a need of two librarians at the Information desks. The second case, where one assistant and three librarians have been assigned, is feasible. It is, however, not optimal due to the exceeding use of librarians. The optimal solution is, therefore, Case 3. Hence, the first case must be punished more than case 2 and 3, as having more assistants than necessary are redundant assignments.
 
 \begin{table}[!h]
 \centering
@@ -350,7 +552,7 @@ Six of the costs are presented in Figure \ref{flow_chart_cost}. They have all be
 \begin{tabular}{|l|l|l|}
 \hline
 \rowcolor[HTML]{C0C0C0} 
-Demand:                         & \multicolumn{2}{l|}{\cellcolor[HTML]{C0C0C0}4 workers ($\geq 2$ librarians)} \\ \hline
+Demand:                         & \multicolumn{2}{l|}{\cellcolor[HTML]{C0C0C0}4 staff members ($\geq 2$ librarians)} \\ \hline
 \rowcolor[HTML]{FD6864} 
 \cellcolor[HTML]{C0C0C0}Case 1: & 3 assistants, 1 librarian                  & (infeasible)                 \\ \hline
 \rowcolor[HTML]{FFFE65} 
@@ -360,7 +562,7 @@ Demand:                         & \multicolumn{2}{l|}{\cellcolor[HTML]{C0C0C0}4 
 \end{tabular}
 \end{table}
 
-The complete list of costs with description can be seen in Table \ref{tab:all_costs}. 
+The complete list of the 16 costs with descriptions can be seen in Table \ref{tab:all_costs}. 
 
 \begin{table}[!h]
 \centering
@@ -373,42 +575,42 @@ The complete list of costs with description can be seen in Table \ref{tab:all_co
 %\multicolumn{2}{|c|}{\cellcolor[HTML]{FD6864}Demand costs}    \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 Cost name                                      & Description       \\ \hline
-Demand\_few\_ass                        & In need of more assistants to fill quota.                  \\ \hline
-Demand\_few\_lib                        & In need of more librarians to fill quota.                 \\ \hline
-Demand\_many\_ass                       & More assistants assigned than needed (redundancy).           \\ \hline
-Demand\_many\_lib                       & More librarians assigned than reference value.                  \\ \hline
-Demand\_few\_total                             & Incorrect amount of workers assigned a task.                  \\ \hline
-Demand\_many\_total                            & Incorrect amount of workers assigned a task.                  \\ \hline
-Demand\_evening\_cost         & Incorrect amount of workers assigned an evening task (more crucial).\\ \hline
-Demand\_PL\_good\_ass        & Assigning a PL to an assistant when empty before assignment.            \\ \hline
-Demand\_PL\_good\_lib        & Assigning a PL to a librarian when empty before assignment.           \\ \hline
-Demand\_PL\_bad\_ass         & Assigning a PL to an assistant when already assigned by another.           \\ \hline
-Demand\_PL\_bad\_lib         & Assigning a PL to a librarian when already assigned by another.             \\ \hline
+Demand\_few\_ass                        & In need of more assistants to fill the demand.                  \\ \hline
+Demand\_few\_lib                        & In need of more librarians to fill the demand.                 \\ \hline
+Demand\_many\_ass                       & More assistants assigned than needed.           \\ \hline
+Demand\_many\_lib                       & More librarians assigned than optimal.                  \\ \hline
+Demand\_few\_total                             & Incorrect number of staff members assigned a task.                  \\ \hline
+Demand\_many\_total                            & Incorrect number of staff members assigned a task.                  \\ \hline
+Demand\_evening\_cost         & Incorrect number of staff members assigned an evening task.\\ \hline
+Demand\_PL\_good\_ass        & Assigning a PL to an assistant, when not already assigned to another.      \\ \hline
+Demand\_PL\_good\_lib        & Assigning a PL to a librarian, when not already assigned to another.       \\ \hline
+Demand\_PL\_bad\_ass         & Assigning a PL to an assistant, when already assigned to another.          \\ \hline
+Demand\_PL\_bad\_lib         & Assigning a PL to a librarian, when already assigned to another.          \\ \hline
 \rowcolor[HTML]{FD6864} 
-\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{PL amount costs}} \\ \hline
+\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{PL costs}} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 Cost name                                      & Description       \\ \hline
-PL\_good\_amount                  & Assigning PL when in need of more for feasibility.                  \\ \hline
-PL\_violate\_amount             & Assigning more PL than allowed to that worker.                  \\ \hline
+PL\_good\_amount                  & Assigning a PL to a staff member still in need of more for feasibility.\\ \hline
+PL\_violate\_amount             & Assigning more PL than allowed to that staff member.                  \\ \hline
 \rowcolor[HTML]{FD6864} 
 \multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Weekend costs}} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 Cost name                                      & Description       \\ \hline
-HB\_amount                       & No or more than one HB workers assigned the same weekend.   \\ \hline
+HB\_amount                       & Either no or more than one HB staff member assigned the same weekend.   \\ \hline
 No\_weekend                & No weekend blocks available for assignment.                  \\ \hline
 \rowcolor[HTML]{FD6864} 
 \multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Stand-in costs}} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 Cost name                                      & Description       \\ \hline
-Stand\_in\_cost                     & Occuring when a possible stand-in is ruined due to assignment.    \\ \hline
+Stand\_in\_cost                     & Occuring when a possible stand-in is ruined due to an assignment.    \\ \hline
 \end{tabular}
 \end{table}
 
-Whenever a new week block is to be inserted in a repair all available blocks for that worker has to be given a cost. This cost will be based on the current amount of workers assigned the tasks in the library. The block with the lowest cost will be the inserted block in the repair. An illustrative example can be seen in Table \ref{tab:block_costs}.
+Whenever a new week block is to be inserted in a repair all available blocks for that staff member have to be given costs. The cost will be based on the current number of staff members assigned to the tasks in the library. The block with the lowest total cost will be inserted in the repair. An illustrative example can be seen in Table \ref{tab:block_costs}. The signs of the cost contributions are made up, as we have no current demand in the library.
 
 \begin{table}[!h]
 \centering
-\caption{Cost evaluation of two blocks. The lower cost the more desired to insert in repair (the values do not coincide with the implemented ones).}
+\caption{Cost evaluation for two blocks. The lower the total cost is, the more desired it is to insert in the repair.}
 \label{tab:block_costs}
 \begin{tabular}{cccccccc}
                                  & Mon                                             & Tue                    & Wed                                            & Thu                    & Fri                                            & Sat                    & Sun                    \\ \cline{2-8} 
@@ -418,36 +620,407 @@ Whenever a new week block is to be inserted in a repair all available blocks for
 \multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} &         &         \\ \cline{2-6}
 \end{tabular}
 \newline
-$Total cost = -Demand\_PL\_good\_lib + PL\_violate\_amount + Demand\_many\_lib - Demand\_few\_lib = 5,050$
+$Total cost = -Demand\_PL\_good\_lib + PL\_violate\_amount + Demand\_many\_lib - Demand\_few\_lib = 400$
 
 \begin{tabular}{cccccccc}
                                  & Mon                                             & Tue                    & Wed                                            & Thu                    & Fri                                            & Sat                    & Sun                    \\ \cline{2-8} 
-\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{I} \\ \cline{2-8} 
+\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{I} \\ \cline{2-8} 
 \multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} &     &   \\ \cline{2-6}
 \multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}         &            &          \\ \cline{2-6}
-\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} &         &         \\ \cline{2-6}
+\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D}  & \multicolumn{1}{c|}{} &         &         \\ \cline{2-6}
 \end{tabular} 
 \newline
 $Total cost = -Demand\_few\_lib - Demand\_evening\_cost$
-$+ Demand\_many\_lib = -17,700$
+$+ Demand\_many\_lib = -20,260$
 
 \end{table}
 
 
 
-\section{Destroy}
-The destroy consists of two contiguous steps: Choosing three workers to destroy and then destroying their assigned blocks. The LoW tasks remain unchanged even if a worker assigned those tasks is destroyed. 
-\section{Repair}
-Initially in the repair function the destroyed workers are assigned new rotations, see Table \ref{rotation_assignment}, followed by five new week blocks. Which order the blocks are inserted in is randomly generated. For each iteration is one of the three workers randomly chosen followed by one block that has not been reassigned until all 15 destroyed weeks have been repaired. Which week block that is chosen is based on the costs listed in Table \ref{tab:all_costs} and shown as an illustrative example in Table \ref{tab:block_costs}.
-\section{Evaluation of solution}
-After each destroy/repair loop the new solution is evaluated. It is common for the new solution to be worse than the previous one. However, all new solutions are accepted regardless.
+\subsection{Destroy}
+The destroy consists of two contiguous steps: Choosing three staff members and then destroying their assigned blocks. The BokB tasks remain unchanged even if a staff member assigned to those tasks is destroyed. 
+\subsection{Repair} \label{repair}
+Initially in the repair function the destroyed staff members are assigned new rotations, see Table \ref{rotation_assignment}, followed by five new week blocks. Which order the blocks are inserted in is randomly generated. For each iteration, one of the three staff members is randomly chosen, followed by one block that has not already been reassigned, until all 15 destroyed weeks have been repaired. Which week block that is chosen is based on the costs listed in Table \ref{tab:all_costs}. An illustrative example is shown in Table \ref{tab:block_costs}.
+\subsection{Evaluation of solution}
+After each destroy and repair loop the new solution is evaluated. It is common for the new solution to be worse than the previous one. However, all new solutions are accepted regardless of this.
 
-All costs are regarded in the evaluation function. If there are any demand differences in the library or any differences in amount of PL assigned to a worker these are given the respective costs. Furthermore, the amount of stand-ins is evaluated here provided with a negative cost showing that these are desired.
+All costs are regarded in the evaluation of the solution. If there are any demand violations in the library or in the number of PL assigned to a staff member these are given the respective costs. Furthermore, in case there are stand-ins these are provided with a negative cost. 
+\subsection{Final phase}
+At the end of a run there are mostly a few infeasibilities left that do not get solved. To fix this, a final phase was implemented. Whenever a run is "relatively close" and it is likely to be able to find a feasible solution the final phase is initiated. "Relatively close" means in this case that the only infeasibility left is the lack of staff members at a handful of weekday shifts. It is likely to be able to find a solution when there are more stand-ins available than demand violations for all days.
 
-If there are no infeasibilities in the solution the evaluation function will return the value zero, unless there are stand-ins. In case there are stand-ins a negative value can be returned. 
-\section{Final phase}
-At the end of a run there are mostly a few infeasibilities left that do not get solved. To fix this, a final phase was implemented. Whenever a run is "relatively close" to a solution and it is "theoretically possible" to find a solution the final phase is initiated. "Relatively close" means in this case that the only infeasibility is the lack of workers at a handful of weekday shifts. "Theoretically possible" means that there are more stand-ins available all days where the infeasibility occurs.
+The final phase destroys one random week for a random staff member and immediately repairs it, resulting in the same or better solution. This is repeated until a feasible solution is found. % %In discussion: Sometimes it does not find a feasible solution due to the staff member had already four tasks assigned, i.e. the required block does not exist.
 
-The final phase destroys one random week for a random worker and immediately repairs it, resulting in the same or better solution until it is feasible. % %In discussion: Sometimes it does not find a feasible solution due to the worker had already four tasks assigned, i.e. the required block does not exist.
+With well chosen cost parameter values the run will always eventually get relatively close to feasibility and reach the final phase. If there are fewer stand-ins available a day where infeasibility occurs, then the solution will be discarded in the final phase.
 
-Due to well chosen cost parameter values the run will always eventually get relatively close and reach the final phase. If there are fewer stand-ins available a day where workers are lacking the solution will be discarded before entering the final phase. 
+\section{Task allocation approach} \label{section:impl_task_dist}
+
+The second heuristic approach tested distributes individual tasks to staff members and greatly resembles the process of manual scheduling. The implemented algorithm undergoes two phases. In the first phase, weekends, as well as some weekday tasks, are allocated and in the second phase the rest of the weekday tasks are allocated. 
+
+The primary heuristic method used in this approach is a large neighbourhood search in combination with a simulated annealing accept function. Destroying and repairing the solution, which is the main feature of LNS, leads the search towards better solutions in the local vicinity of the current solution. The SA function, on the other hand, leads the search out of the current neighbourhood by accepting poorer solutions.
+
+\subsection{Costs} \label{subsection:tasks_cost}
+The search algorithm is guided using penalty costs, both for staff member schedules and the whole library schedule. Each staff member has a number of cost contributions, as displayed in Table \ref{tab:staff member_costs}. Each of these costs is caused by a badly allocated task, resulting in an infeasible schedule or unused stand-in potential. The costs have different weights, as illustrated in the table. How the weights should be set is discussed in Chapter \ref{chap:res}. 
+
+For the library schedule, costs are weighed together in three different ways. These are referred to as the three library objective functions, as is illustrated in Table \ref{tab:lib_costs}. These costs partly overlap with the individual staff member costs.
+
+\begin{table}[!h]
+\centering
+\caption{Individual staff member costs and cost weights.}
+\label{tab:staff member_costs}
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\multicolumn{3}{|l|}{\cellcolor{gray!90} \textbf{Stand-in cost}} \\ \hline
+\rowcolor{Gray} Cost & Weight & Cost description \\ \hline
+$C_{SI}$ & $W_{s\_SI}$ & Cost from having a task on a day where the staff member instead can be a stand-in. \\ \hline
+\multicolumn{3}{|l|}{\cellcolor{gray!90} \textbf{Infeasibility costs}} \\ \hline
+\rowcolor{Gray} Cost & Weight & Cost description \\ \hline
+$C_{Task\_D}$ & $W_{s\_Task\_D}$ & Cost for allocating too many tasks in a day. \\ \hline
+$C_{Task\_W}$ & $W_{s\_Task\_W}$ & Cost for allocating too many tasks in a week.  \\ \hline
+$C_{PL\_D}$ & $W_{s\_PL\_W}$ & Cost for allocating to many PL tasks in a week. \\ \hline
+$C_{PL\_Tot}$ & $W_{s\_PL\_Tot}$ & Cost for allocating too many PL tasks in total. \\ \hline
+$C_{SShift\_W}$ & $W_{s\_SShift\_W}$ & Cost for allocating to many tasks at the same shift in a week. \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\caption{Library objective functions with their cost components and weights.}
+\label{tab:lib_costs}
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\multicolumn{3}{|l|}{\cellcolor{gray!90} \textbf{Weekend Objective Function}} \\
+\hline 
+\rowcolor{Gray} Cost & Weight & Cost description \\ \hline
+$C_{SI\_m}$ & $W_{SI\_m}$ & Cost of day with minimum number of stand-ins. \\ \hline
+$C_{S\_m}$ & $W_{S\_m}$ & Cost of shift with minimum number of staff members. \\ \hline
+$C_{D\_m}$ & $W_{D\_m}$ & Cost of day with minimum number of staff members. \\ \hline
+$C_{SI\_a}$ & $W_{SI\_a}$ & Cost of average number of stand-ins per day. \\ \hline
+$C_{S\_a}$ & $W_{S\_a}$ & Cost of average number of staff members at a shift. \\ \hline
+$C_{D\_a}$ & $W_{D\_a}$ & Cost of average number of staff members at a day. \\ \hline
+\hline
+\multicolumn{3}{|l|}{\cellcolor{gray!90} \textbf{Staff member Objective Function}} \\
+\hline
+\rowcolor{Gray} Cost & Weight & Cost description \\ \hline
+$C_{Task\_D}$ & $W_{Task\_D}$ & Cost for allocating too many tasks in a day for all staff members. \\ \hline
+$C_{Task\_W}$ & $W_{Task\_W}$ & Cost for allocating too many tasks in a week for all staff members. \\ \hline
+$C_{PL\_W}$ & $W_{PL\_W}$ & Cost for allocating to many PL tasks in a week for all staff members. \\ \hline
+$C_{PL\_Tot}$ & $W_{PL\_Tot}$ & Cost for allocating too many PL tasks in total for all staff members. \\ \hline
+$C_{SShift\_W}$ & $W_{SShift\_W}$ & Cost for allocating to many tasks at the same shift in a week for all staff members. \\ \hline
+\hline
+ \multicolumn{3}{|l|}{\cellcolor{gray!90} \textbf{Weekday Objective Function}} \\
+\hline
+\rowcolor{Gray} Cost & Weight & Cost description \\ \hline
+$C_{SI\_m}$ & (No weight) & Cost of day with minimum number of stand-ins. \\ \hline
+\end{tabular}
+\end{table}
+
+The weekend objective function, as referred to in the table, is associated with the weekend allocation phase of the problem. There are three types of costs in this objective function, each measuring a certain aspect of a weekend schedule. Since we want to increase the number of stand-ins at the most critical days, the worst shift or day with respect to these aspects is to be maximized. This is referred to as the min cost. Also, the average of each aspect is considered, in order to distinguish solutions for which the worst shift or day are identical. The cost of this objective function are calculated using the formula
+
+\begin{equation}
+\label{eq:wend_cost_calc}
+C_{type} = W_{lib}*num\_of\_lib + W_{ass}*num\_of\_ass.
+\end{equation}
+
+The weights $W_{lib}$ and $W_{ass}$ are constants used in all weekend objective function costs. Typically $W_{lib}$ is larger than $W_{ass}$ since librarians can perform more tasks. The weekend objective function becomes the sum of the weighted costs displayed in Table \ref{tab:lib_costs}. 
+
+After a certain number of iteration the weekend phase is finished and the weekday allocation phase is entered. Here, the staff member objective function is used to identify infeasibilities in the staff member schedules, and it is simply a sum of the staff member costs for all staff members. When this cost is zero, the schedule is feasible and the weekday objective function value is calculated. This objective function contains the minimum stand-in cost, which is calculated in the same way as in the weekend objective function. The weekday objective function corresponds to the objective function in the mathematical model in Chapter \ref{chap:mathmod} and is to be maximized.
+
+\subsection{Weekend phase}
+
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, fill=red!30,
+    text width=3.5em, text badly centered, node distance=3cm, inner sep=0.1pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!30,
+    text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+    minimum height=2em]
+
+\begin{figure}[h]
+\centering
+\caption{A flow chart over the weekend allocation phase.}
+\label{fig:weekend_alg}
+\scalebox{0.6}{
+\begin{tikzpicture}[node distance = 2cm, auto]
+    % Place nodes
+    %Right row
+    \node [scale=0.01,node distance=0cm] (invinit) {};
+    \node [block, below of=invinit] (distribute) {Distribute all weekends randomly};
+    \node [decision, below of=distribute, node distance=2.5cm] (evaluate) {Solution feasible?};
+    \node [block, left of=distribute, node distance=4cm] (redistribute) {Remove all weekends};
+     \node [block, below of=evaluate, node distance=3.5cm] (setobjf) {Set weekend obj fun value};
+     \node [block, below of=setobjf, node distance=3cm] (save) {Save temp solution};
+     \node [block, below of=save, node distance=3cm] (dr) {Destroy and repair solution};
+     \node [decision, below of=dr] (evaluate2) {Solution feasible?};
+     \node [block, right of=dr, node distance=3cm] (reload) {Reload temp solution};
+     
+     %Middle row
+     \node [block, left of=evaluate2, node distance=5cm] (setobjf2) {Set weekend obj fun value};
+     \node [decision, above of=setobjf2, node distance=2.5cm] (compare) {Better than saved?};
+     \node [decision, above of=compare, node distance=2.5cm] (SA) {Accept anyway?};
+     \node [decision, left of=SA, node distance=4cm] (best) {Best solution?};
+     \node  [block, above of=SA, node distance =2.5cm] (reloadsaved) {Reload saved solution}; 
+     \node [block, above of=best, minimum height=3em, node distance = 2cm] (savebest) {Save solution as best};
+     \node [decision, above of=reloadsaved, node distance=2cm] (done) {Iteration \textgreater max?};
+     \node[above of=savebest, left of=savebest, node distance=2.5cm, scale=0.1](inv){};
+     
+     %Bottom nodes
+     \node [decision, below of=best, node distance=10cm] (isbest) {Current better than best?};
+     \node [block, right of=isbest, minimum height=3em, node distance=3cm] (reload2) {Reload best};
+      \node [block, below of=reload2, minimum height=3em, node distance=2.5cm] (finished) {Search finished!};
+
+    % Draw edges
+    \path [line] (invinit) -- (distribute);
+    \path [line] (distribute) -- (evaluate);
+    \path [line] (evaluate) -| node {no} (redistribute);
+    \path [line] (redistribute) |- (distribute);
+    \path [line] (evaluate) -- node {yes}(setobjf);
+    \path [line] (setobjf) -- (save);
+    \path [line] (save) -- (dr);
+    \path [line] (dr) -- (evaluate2);
+    \path [line] (evaluate2) -| node {no} (reload);
+    \path [line] (reload) -- (dr);
+    \path [line] (evaluate2) -- node {yes} (setobjf2);
+    \path [line] (setobjf2) -- (compare);
+    \path [line] (compare) -| node {yes} (best);
+    \path [line] (compare) -- node {no} (SA);
+    \path [line] (SA) -- node {yes} (best);
+    \path [line] (SA) -- node {no} (reloadsaved);
+    \path [line] (reloadsaved) -- (done);
+    \path [line] (best) -- node {yes} (savebest);
+    \path [line] (best) -- node {no} (done);
+    \path [line] (savebest) -- (done);
+    \path [line] (done) -- node {no}(save);
+    \path [-,draw] (done) -- node {yes}(inv);
+    \path [line] (inv) |- (isbest);
+    \path [line] (isbest) -- node {no} (reload2);
+    \path [line] (isbest) -- node {yes} (finished);
+    \path [line] (reload2) -- (finished);
+   
+    %Feasiblity loop
+    \node at (-2,-19) [above=4mm, right=2mm] {\textsc{destroy and repair loop}};
+    \draw [color=gray!70,thick](-2,-19) rectangle (5,-12);
+    %Weekend loop
+    \node at (-10.5,-19.5) [above=4mm, right=2mm] {\textsc{weekend distribution loop}};
+    \draw [color=gray!70,thick](-10.5,-19.5) rectangle (5,-6);
+    %SA componenet
+    \node at (-7.5,-13.5) [above=4mm, right=2mm] {\textsc{SA}};
+    \draw [color=gray!70,thick](-7.5,-13.5) rectangle (-3,-10.5);
+\end{tikzpicture}
+}
+\end{figure}
+
+The weekend phase is the first phase the algorithm enters and its flow is described in Figure \ref{fig:weekend_alg}. The LNS component consists of the "destroy and repair loop", while the simulated annealing step is marked as the decision to accept a solution which is worse than the current one.
+
+The reason for implementing the weekend phase separately from the allocation of other tasks is that the number of stand-ins in the final schedule depends to a large extent on the weekend-staff member constellation. In particular, it is the week rest following upon weekend work which determines the number of stand-ins at a particular day.
+
+The outer loop in the flow chart is performed a specified number of iterations. This loop is guided by the weekend objective function described in the previous subsection. Better solutions are always accepted and the globally best found solution is saved. The SA component is implemented using exponential cooling, so that a solution which is worse than the current one is accepted with a probability P, given by
+
+\begin{equation}
+P = exp(-\Delta E/T)
+\label{eq0}
+\end{equation}
+
+\noindent
+where
+
+\begin{equation}
+\Delta E = Wend_t - Wend_{t-1}
+\label{eq1}
+\end{equation}
+
+\noindent
+and
+
+\begin{equation}
+T = T_0 \alpha^t.
+\label{eq2}
+\end{equation}
+
+Here, $T$ is the temperature of the SA accept function, which has an initial value of $T_0$ and which cools down with the iteration counter $t$ at a rate $\alpha$ ($0 < \alpha < 1$). The objective function value at iteration $t$ is written $Wend_t$.
+
+
+The inner loop of the algorithm destroys and repairs the solution. The loop checks if the current solution is infeasible, that is if the difference between the number of available staff members at each shift and the number of required staff members is negative. Such schedules are discarded and a destroy and repair is performed. The number of available staff members per shift is calculated as the sum of all staff members who are available at that shift and who do not have any tasks scheduled at that day.
+
+The algorithms for allocating, destroying and repairing weekends is simply a random function, since it is very hard to predict what is a good or bad placement of a specific weekend, without creating the whole schedule. Since the weekend objective function is only an estimate of the current number of stand-ins and available staff members, this number will be greatly reduced when placing the weekday tasks. 
+
+
+\begin{table}[!h]
+\caption{Staff member availability when only placing weekends. The intensity of red is proportional to the number of available staff members.}
+\centering
+\label{tab:num_avail_no_tasks}
+\begin{tabular}{|C{1.2cm}
+|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|}
+\hline \cellcolor{gray!90} & \multicolumn{7}{l|}{\cellcolor{gray!90} \textbf{Number of available assistants}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!40}}6 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!40}}6 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!35}}5 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!20}}2 & {\cellcolor{maroon!20}}2 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\hline \cellcolor{gray!90} & \multicolumn{7}{l|}{\cellcolor{gray!90} \textbf{Number of available librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!90}}16 & {\cellcolor{maroon!85}}15 & {\cellcolor{maroon!90}}16 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!90}}18 & {\cellcolor{maroon!85}}15 & {\cellcolor{maroon!95}}17 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!95}}17 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!90}}18 & {\cellcolor{maroon!90}}18 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!30}}4 & {\cellcolor{maroon!30}}4 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\hline \cellcolor{gray!90} & \multicolumn{7}{l|}{\cellcolor{gray!90} \textbf{Number of available BokB-librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!20}}2 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!20}}2 & {\cellcolor{maroon!20}}2 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\caption{Staff member availability after placing weekends as well as evening tasks and BokB for the same week. }
+\label{tab:num_avail_with_tasks}
+\begin{tabular}{|C{1.2cm}
+|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|}
+\hline \rowcolor{gray!90}  & \multicolumn{7}{l|}{\cellcolor{gray!90} \textbf{Number of available assistants}} \\ 
+\hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\
+ \hline\colcell Shift 1: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!60}}10 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!55}}9 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!45}}7 & {\cellcolor{maroon!50}}8 & {\cellcolor{maroon!40}}6 & {\cellcolor{maroon!40}}6 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\hline \hline \rowcolor{gray!90} & \multicolumn{7}{l|}{\cellcolor{gray!90} \textbf{Number of available librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!70}}12 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!65}}11 & {\cellcolor{maroon!80}}14 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!75}}13 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\hline \rowcolor{gray!90} & \multicolumn{7}{l|}{\textbf{\cellcolor{gray!90} Number of available BokB-librarians}} \\ \hline\rowcolor{Gray} & Mo & Tu & We & Th & Fr & Sa & Su \\ \hline\colcell Shift 1: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!15}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\end{tabular}
+\end{table}
+
+
+In order to get a better estimate of the number of available staff members during the weekend phase, evening tasks and BokB tasks are distributed after each weekend repair. The evening tasks are distributed using the same method as is described in Section \ref{wday_phase}, while BokB tasks are placed according to a fixed schedule. The effect of this distribution is shown in Tables \ref{tab:num_avail_no_tasks} and \ref{tab:num_avail_with_tasks}. High intensity of red in a cell indicates a higher number of staff members. It can be seen that the first table is generally redder and thus there are fewer available staff members in the second table. This state reflects better the real number of available staff members during the week days for a certain weekend constellation. 
+
+\subsection{Weekday phase}\label{wday_phase}
+
+\begin{figure}[!h]
+\centering
+\caption{A flow chart for the weekday task allocation phase.}
+\label{fig:weekday_alg}
+\begin{tikzpicture}[node distance = 2cm , auto, every node/.style={scale=0.8}]
+    %Right column
+    \node [scale=0.01,node distance=0cm] (invinit) {};
+    \node [block, below of=invinit] (distribute) {Try distribute all tasks};
+    \node [block, below of=distribute] (workercost) {Set worker obj fun};
+    \node [decision, below of=workercost, node distance=2.5cm] (evaluatewc) {Worker cost = 0?};
+    \node [decision, below of=evaluatewc, node distance=3cm] (evaluatetasks) {All tasks distributed?};
+    \node [decision, below of=evaluatetasks, node distance=3cm] (feasible) {Solution feasible?};
+    \node [block, below of=feasible, node distance=2.5cm] (destamount) {Set destroy amount};
+    \node [block, below of=destamount] (dr) {Destroy and repair solution};
+
+    %Middle column
+     \node [block, left of=evaluatetasks, node distance = 4cm] (taskcost) {Set weekday costs};
+    \node [decision, above of=taskcost, node distance=2cm] (best) {Best solution?};
+    \node [block, above of=best, minimum height=3em, node distance = 2cm] (savebest) {Save solution as best};
+    
+    %Left column
+    \node [decision, left of=savebest, node distance=4cm] (done) {Iteration \textgreater max?};
+    \node [block, above of=done, node distance=3.5cm] (remove) {Remove all tasks};
+    
+    %Get solution
+    \node [decision, below of=done, node distance=15cm] (isbest) {Current better than best?};
+    \node [block, right of=isbest, minimum height=3em, node distance=3cm] (reload2) {Reload best};
+    \node [block, below of=reload2, minimum height=3em, node distance=2.5cm] (finished) {Search finished!};
+    
+	%Invisible nodes
+    \node [right of=evaluatewc, scale=0.1,node distance=2cm] (inv) {};
+    \node [right of=dr, scale=0.1,node distance=4cm] (inv2) {};
+    \node [right of=workercost, scale=0.1,node distance=4cm] (inv3) {};
+    \node[left of=isbest, node distance=4cm, scale=0.1](inv4){};
+    
+ 
+	%Draw edges
+	\path [line] (invinit) -- (distribute);
+    \path [line] (distribute) -- (workercost);
+    \path [line] (workercost) -- (evaluatewc);
+    \path [line] (evaluatewc) -- node [anchor=east]{yes} (evaluatetasks);    
+    \path [-,draw] (evaluatewc) -- node [anchor=south]{no} (inv);    
+    \path [line] (evaluatetasks) -- node [anchor=south]{yes} (taskcost);
+    \path [line] (evaluatetasks) -- node [anchor=east]{no} (feasible);
+    \path [line] (destamount) -- (dr);
+    \path [-,draw] (dr) -- (inv2);
+    \path [-,draw] (inv2) -- (inv3);
+    \path [line] (inv3) -- (workercost);
+     %To middle row   
+	\path [line] (inv) |- (feasible);
+    \path [line] (feasible) -- node [anchor=east]{yes} (destamount);
+    \path [line] (feasible) -| node [anchor=east]{no} (done);
+    %Middle row
+    \path [line] (done) -- node [anchor=east]{no}(remove);    
+    \path [line] (best) -- node [anchor=east]{yes}(savebest);
+    \path [line] (savebest) -- (done);
+    \path [line] (best) -- node [anchor=east]{no}(done);
+    \path [line] (taskcost) -- (best);
+    \path [line] (remove) -- (distribute);
+    \path [-,draw] (done) -| node [anchor=east] {yes} (inv4);
+    \path [line] (inv4) -- (isbest);
+    \path [line] (isbest) -- node [anchor=south]{no} (reload2);
+    \path [line] (isbest) -- node [anchor=east]{yes} (finished);
+    \path [line] (reload2) -- (finished);
+
+    %Feasiblity loop
+    \node at (-2,-15) [above=4mm, right=2mm] {\textsc{destroy and repair loop}};
+    \draw [color=gray!70,thick](-2,-15) rectangle (4,-2.5);
+    %Weekend loop
+    \node at (-8,-15) [above=4mm, right=2mm] {\textsc{weeday task distribution loop}};
+    \draw [color=gray!70,thick](-8,-15) rectangle (4,-0.5);
+
+\end{tikzpicture}
+\end{figure}
+
+
+When entering the weekday phase, all weekends, evenings and BokB tasks are already allocated. In the weekday phase, the remaining tasks, referred to as "weekday" tasks are to be allocated. The staffing demand for a week is illustrated in Table \ref{tab:current_demand} and it is identical for all weeks.The algorithm for distributing weekday tasks is found in Appendix \ref{appendix:flow_charts}, Figure \ref{fig:weekday_alg}, and greatly resembles the algorithm for distributing weekends.
+
+
+\begin{table}[!h]
+\centering
+\caption{Staffing demand during a week when entering weekday phase.}
+\label{tab:current_demand}
+\begin{tabular}{|C{1.2cm}
+|C{1cm}|C{1cm}|C{1cm}|C{1cm}|C{1cm}|}
+\hline
+\rowcolor{Gray} & Exp & Info & PL & HB & BokB \\ \hline
+\multicolumn{6}{|l|}{\cellcolor{gray!90} Monday } \\ \hline
+\colcell Shift 1: & {\cellcolor{maroon!25}}2 & {\cellcolor{maroon!25}}2 & {\cellcolor{maroon!25}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\multicolumn{6}{|l|}{\cellcolor{gray!90} Tuesday } \\ \hline
+\colcell Shift 1: & {\cellcolor{maroon!25}}2 & {\cellcolor{maroon!25}}2 & {\cellcolor{maroon!25}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\multicolumn{6}{|l|}{\cellcolor{gray!90} Wednesday } \\ \hline
+\colcell Shift 1: & {\cellcolor{maroon!25}}2 & {\cellcolor{maroon!25}}2 & {\cellcolor{maroon!25}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\multicolumn{6}{|l|}{\cellcolor{gray!90} Thursday } \\ \hline
+\colcell Shift 1: & {\cellcolor{maroon!25}}2 & {\cellcolor{maroon!25}}2 & {\cellcolor{maroon!25}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\multicolumn{6}{|l|}{\cellcolor{gray!90} Friday } \\ \hline
+\colcell Shift 1: & {\cellcolor{maroon!25}}2 & {\cellcolor{maroon!25}}2 & {\cellcolor{maroon!25}}1 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 2: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 3: & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!25}}3 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\colcell Shift 4: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\multicolumn{6}{|l|}{\cellcolor{gray!90} Saturday } \\ \hline
+\colcell Shift 1: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+\multicolumn{6}{|l|}{\cellcolor{gray!90} Sunday } \\ \hline
+\colcell Shift 1: & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 & {\cellcolor{maroon!0}}0 \\ \hline
+ \end{tabular}
+\end{table}
+
+The outer loop of the weekday phase, or the "weekday task distribution loop", is performed a specified number of iterations and calculates the weekday objective function for each iteration. The best solution found is saved, others are discarded. 
+
+The inner "destroy and repair loop" destroys and repairs the solution until the staff member objective function is zero, that is, until all staff member schedules are feasible. If this loop cannot find such a schedule within a maximum number of iterations, the whole solution is discarded as infeasible, and the outer loop is reentered.
+
+When destroying and repairing tasks, these are first sorted according to qualification requirement, meaning that librarian tasks are placed first and assistant tasks second. This guarantees that not all librarians will be used up for assistant tasks. Secondly, in each subgroup, the tasks are sorted according to the difference between the number of available staff members and the demand at each task. This makes sure that the tasks which are most critical in this respect are allocated first.
+
+The tasks are then staffed one at a time. The process starts with temporarily placing the task at all available staff members. This will generate a cost for each staff member according to Table \ref{tab:staff member_costs}. The cheapest staff members are then chosen and permanently placed on the task.
+
+
+The destroy function identifies the staff member with the highest cost. The worst week of this staff member is then identified and destroyed. Also, a few random staff members are chosen, their number depending on the destroy amount specified, and for these the same week is destroyed. This makes it possible for the first staff member to obtain a better worst week, by exchanging tasks with the other destroyed staff members in the repair function.
+

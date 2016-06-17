@@ -34,7 +34,7 @@ set I_dep{Dep}; #Set of departments
 set I_lib; #Set of librarians
 set I_ass; #Set of assistants
 set V; #Set of possible week rotations (shift the week by 1..10 steps)
-set I_LOW; #Set of librarians available to work in library on wheels (Bokbussen)
+#set I_LOW; #Set of librarians available to work in library on wheels (Bokbussen)
 set I_free_day; #Set of workers that shall be assigned a free weekday per week
 set I_odd_even; #Set of all workers with odd or even weeks
 set I_weekend_avail; #Set of workers available for weekend work.
@@ -124,7 +124,7 @@ subject to all_other_times_no_meeting:
 	sum{w in W}(sum{d in 1..5}(sum{s in S[d]} M_big[w,d,s])) = 2;
 
 subject to no_other_tasks_when_meeting_if_boss{i in I diff I_big_meeting, w in W}:
-	sum {s in 1..3} (sum{j in {'Exp','Info','PL'}} x[i,w,1,s,j]) <= (1-M_big[w,1,1]);
+	sum {s in 2..3} (sum{j in {'Exp','Info','PL'}} x[i,w,1,s,j]) <= (1-M_big[w,1,1]);
 
 ######################## Department meeting constraints #########################
 #Departments 1..3 have meetings once in 5 weeks
@@ -217,8 +217,8 @@ subject to rotation_demand2{i in I, w in W}:
 	r[i,(w+4) mod 10 + 1] >= H[i,w,2];
 
 #Ensuring that if a worker i is working weekend w then they will work saturday and sunday in week w
-subject to two_days_weekends{i in I_weekend_avail, w in W}:
-	sum {s in S[6]}(sum {j in J[6]} x[i,w,6,s,j]) + sum {s in S[7]}(sum {j in J[7]} x[i,w,7,s,j]) = 2*(sum{h in 1..2} H[i,w,h]);	 # h1[i,w] + 2*h2[i,w];
+subject to two_days_weekends{i in I_weekend_avail, w in W, h in 1..2}:
+	sum {s in S[6]}(sum {j in J[6]} x[i,w,6,s,j]) + sum {s in S[7]}(sum {j in J[7]} x[i,w,7,s,j]) = 2*H[i,w,h];	 # h1[i,w] + 2*h2[i,w];
 
 subject to same_tasks_on_weekends{i in I_weekend_avail, w in W, j in J[7]} :
 	sum{s in S[6]} x[i,w,6,s,j] = sum{s in S[7]} x[i,w,7,s,j]; #s = 1 for weekends anyhow
@@ -232,7 +232,7 @@ subject to friday_added_to_the_weekend{i in I_weekend_avail, w in W}:
 subject to assign_hb{i in I_weekend_avail, w in W}:
 	hb[i,w] = x[i,w,6,1,'HB'];
 
-#Help constraints. working_friday_evening = 1 if worker i works weekend w, but does not work in HB
+#Help constraints. friday_evening = 1 if worker i works weekend w, but does not work in HB
 subject to help_constraint_friday_weekend1{i in I_weekend_avail, w in W, h in 1..2}:
 	friday_evening[i,w] >= H[i,w,h] + (1 - hb[i,w]) - 1;
 
@@ -255,7 +255,7 @@ subject to worker_not_assigned_exp_info{w in W}:
 subject to find_total_min_num_stand_ins{w in W, d in 1..5}:
 	stand_in_min_tot <= (N1l*(sum{i in I_lib} stand_in_lib[i,w,d]) + N1a*(sum{i in I_ass} stand_in_ass[i,w,d]));
 
-#Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded
+#Finding the lowest stand-in amount of all shifts and at a specific task type where weekends, big meetings and evening shifts are discarded ONLY IN RUN-FILE TO FIND WORST DAY
 subject to find_lowest_stand_in_amount_no_weekends_no_evenings_lib{w in W, d in 1..5}: #RHS: number of qualified workers at work that is available & not assigned to any task.
 	stand_in_lib_tot[w,d] = sum{i in I_lib} stand_in_lib[i,w,d]; 		#+ meeting[s,d,w]*M; 
 
@@ -283,15 +283,15 @@ subject to find_lowest_stand_in_amount_no_weekends_no_evenings_ass{w in W, d in 
 	stand_in_ass_tot[w,d] = sum{i in I_ass} stand_in_ass[i,w,d]; 		#+ meeting[s,d,w]*M; 
 
 #A worker is a stand-in if he/she is available, qualified and is not already scheduled. Takes schedule rotation into account
-subject to find_avail_not_working_day_ass{i in I_ass, w in W, d in 1..5}:
-	stand_in_ass[i,w,d] >= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]) + (1-sum{s in 1..4}(sum{j in {'Exp', 'PL'}} x[i,w,d,s,j])) - 1; #Available and not working any shift day d.
+subject to find_avail_not_working_day_ass{i in I_ass, w in W, d in 1..5}: #CHANGE?
+	stand_in_ass[i,w,d] >= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]) + (1-working_a_shift[i,w,d]) - 1; #Available and not working any shift day d.
 
 ### Help constraints for qualavail and not scheduled ###
 subject to help_constraint2_ass{i in I_ass, w in W, d in 1..5}:
 	stand_in_ass[i,w,d] <= sum {v in V} (r[i,v]*avail_day[i,(w-v+10) mod 10 +1,d]);
 
-subject to help_constraint3_ass{i in I_ass, w in W, d in 1..5}:
-	stand_in_ass[i,w,d] <= 1-sum{s in 1..4}(sum{j in {'Exp', 'PL'}} x[i,w,d,s,j]);
+subject to help_constraint3_ass{i in I_ass, w in W, d in 1..5}:  #CHANGE?
+	stand_in_ass[i,w,d] <= 1-working_a_shift[i,w,d];
 
 ############### Second objective function constraints: Similar weeks for workers #############
 

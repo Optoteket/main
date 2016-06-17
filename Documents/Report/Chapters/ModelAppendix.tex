@@ -1,0 +1,364 @@
+\section{Sets}
+\itab{$I$} \tab{Set of workers}\\
+\itab{$I\_lib$} \tab{Set of librarians (I\_lib $\subseteq$ I)} \\
+\itab{$I\_ass$}	 \tab{Set of assistants (I\_ass $\subseteq$ I)}	\\
+\itab{$W$}                 \tab{Set of weeks}                                               \\
+\itab{$W_5$}	\tab{Set of first five weeks} \\
+\itab{$W_9$}	\tab{Set of first nine weeks} \\
+\itab{$D$}                 \tab{Set of days in a week}                                      \\
+\itab{$D_4$}	\tab{Set of first four weekdays} \\
+\itab{$D_5$}	\tab{Set of all five weekdays} \\
+\itab{$D_w$}	\tab {Set of weekend days, Saturday and Sunday} \\
+\itab{$S_d$}           \tab{Set of shifts day \textit{d}}                                        \\
+\itab{$S_3$}           \tab{Set of first three shifts on a weekday}     \\
+\itab{$J_d$}            \tab{Set of task types day \textit{d}}                                    \\
+\itab{$I_{free}$}	 \tab{Set of workers that shall be assigned a free weekday per week}	\\
+\itab{$I_{oddEven}$}	 \tab{Set of all workers with odd or even weeks}	\\
+\itab{$I_{weekendavail}$}	 \tab{Set of workers available for weekend work}	\\
+\itab{$I_{big}$}	 \tab{Set of all workers that attend big meetings}	\\
+\itab{$I_{noP}$}	 \tab{Set of workers not working on PL}	\\
+\itab{$I_{manyP}$}	 \tab{Set of workers working 3-4 times with PL in 10 weeks}	\\
+\itab{$G$}	 \tab{Set of groups}	\\
+\itab{$I_{G}\{g\}$}	 \tab{Set of workers in group g}	\\
+\itab{$V$}	 \tab{Set of possible week rotations (shifts the week by 0-9 steps forwards)}	\\
+
+
+\section{Variables} \label{variabs}
+\begin{align}
+    x_{iwdsj}&=
+    \begin{cases}
+      1, & \text{if worker \textit{i} is assigned in week \textit{w}, day \textit{d}, shift \textit{s} to a task \textit{j}}\\
+      0, & \text{otherwise}
+    \end{cases}
+    \\
+    H_{iwh}&=
+    \begin{cases}
+      1, & \text{if worker \textit{i} works weekend \textit{h} (= 1, 2) in week \textit{w}}\\
+      0, & \text{otherwise}
+    \end{cases}
+	\\
+	r_{iw}&=
+	\begin{cases}
+		1, & \text{if worker \textit{i} has its schedule rotated \textit{w-1} steps}\\
+		0, & \text{otherwise}
+	\end{cases}
+	\\
+	l_{iwd}&=
+	\begin{cases}
+	  1, & \text{if librarian \textit{i} is a stand-in week \textit{w}, day \textit{d}} \\
+	  0, & \text{otherwise}
+	\end{cases}
+	\\
+	a_{iwd}&=
+	\begin{cases}
+ 		1, & \text{if assistant \textit{i} is a stand-in week \textit{w}, day \textit{d}} \\
+ 		0, & \text{otherwise}
+	\end{cases}
+	\\
+	y_{iwds}&=
+	\begin{cases}
+ 		1, & \text{if worker \textit{i} works week \textit{w}, day \textit{d}, shift \textit{s} at task type E, I or P} \\
+ 		0, & \text{otherwise}
+	\end{cases}
+	\\
+	W_{iwd}&=
+	\begin{cases}
+	 	1, & \text{if a worker \textit{i} is working a shift week \textit{w}, day \textit{d}} \\
+	 	0, & \text{otherwise}
+	\end{cases}
+	\\
+	b_{iw}&=
+	\begin{cases}
+ 		1, & \text{if worker \textit{i} works at HB week \textit{w}} \\
+ 		0, & \text{otherwise}
+	\end{cases}
+	\\
+	f_{iw}&=
+	\begin{cases}
+ 		1, & \text{if worker \textit{i} is assigned to work friday evening week \textit{w}} \\
+ 		0, & \text{otherwise}
+	\end{cases}	
+	\\
+	M_{wds}&=
+	\begin{cases}
+	 	1, & \text{if a big meeting is placed on week \textit{w}, day \textit{d}, shift \textit{s}} \\
+	 	0, & \text{otherwise}
+	\end{cases}
+	\\
+	m_{wdsg}&=
+	\begin{cases}
+	 	1, & \text{if a meeting is placed on week \textit{w}, day \textit{d}, shift \textit{s} for group \textit{g}} \\
+	 	0, & \text{otherwise}
+	\end{cases}
+	\\
+	d_{iwds}&=
+	\begin{cases}
+	 	1, & \text{if there is a difference in assignment of tasks at a shift}\\
+	 		& \text{ \textit{s}, for a worker \textit{i}, day \textit{d} between week \textit{w} and \textit{w+5}} \\
+	 	0, & \text{otherwise}
+	\end{cases}
+	\\
+	l^{min}&= \text{lowest number of stand-in librarians found (integer)} \\
+	a^{min}&= \text{lowest number of stand-in assistants found (integer)} \\
+	s^{min}&= \text{weighted sum with number of stand-in librarians and assistants} \\
+	\delta&= \text{total number of shifts that differ for all staff members (integer)}
+\end{align}
+
+
+
+\section{Parameters} \label{params}
+\begin{align}
+	N1l&= \text{a value to prioritize the amount of stand-in librarians}\\
+	N1a&= \text{a value to prioritize the amount of stand-in assistants}\\
+	N1&= \text{a value to prioritize total number of stand ins}\\
+	N2&= \text{a value to prioritize similar weeks}\\
+	avail\_day_{iwd}&=
+	\begin{cases}
+		1, & \text{if worker \textit{i} is available for work week \textit{w}, day \textit{d}} \\
+		0, & \text{otherwise}
+	\end{cases}\\
+	demand_{dsj}&= \text{number of workers required day \textit{d}, shift \textit{s} for task type \textit{j}}\\
+	qualavail_{iwdsj}&=
+	\begin{cases}
+		1, & \text{if worker \textit{i} is qualified and available week \textit{w}, day \textit{d}, shift \textit{s} for task type \textit{j}} \\
+		0, & \text{otherwise}
+	\end{cases}\\
+	LOW\_demand_{wds}&= \text{number of workers required day \textit{d}, shift \textit{s} at the library on wheels}
+\end{align}
+
+\section{Objective function and constraints} \label{app:constr}
+\begin{equation} \label{app:objfcn}
+\text{maximize} \hspace{0.3cm} M\cdot s^{min} - N \cdot \delta
+\end{equation}
+
+\begin{equation}
+\sum_{i \in I} x_{iwdsj} = (1-M_{wds})demand_{dsj}, \;   w\in W, d\in D_5, s\in S_d, j\in J_d\backslash \{L\}
+\end{equation}
+
+\begin{equation}
+\sum_{i \in I} x_{iwdsj} = demand_{dsj}, \;   w\in W,d\in D_w,s\in S_d,j\in J_d
+\end{equation}
+
+\begin{equation}
+\sum_{i \in I} x_{iwdsL} = LOW\_demand_{wds}, \;   w\in W,d\in D_5,s\in S_d
+\end{equation}
+
+\begin{equation}
+\sum_{d \in D_5}\sum_{s \in S_d}\sum_{j in J_d} x_{iwdsj} \leq 4, \;   i\in I\backslash\{36\},w\in W
+\end{equation}
+
+\begin{equation}
+\sum_{w \in W_5} M_{w11} = 1
+\end{equation}
+
+\begin{equation}
+M_{(w+5)11} = M_{w11}
+\end{equation}
+
+\begin{equation}
+\sum_{w \in W}\sum_{d \in D_5}\sum_{s \in S_d} M_{wds} = 2
+\end{equation}
+
+\begin{equation}
+\sum_{s \in 2..3}\sum_{j \in J_d\backslash\{L\}} x_{iw1sj} \leq 1-M_{w11}, \;   i \in I\backslash I_{big}, w \in W
+\end{equation}
+
+\begin{equation}
+\sum_{w \in W_5}\sum_{d \in D_5}\sum_{s \in S_3} m_{wdsg} = 1, \;   g \in G
+\end{equation}
+
+\begin{equation}
+m_{(w+5)dsg} = m_{wdsg}, \;   g \in G, w \in W_5, d \in D_5, s \in S_3
+\end{equation}
+
+\begin{equation}
+m_{wdsg} + x_{iwdsj} \leq 1, \;   g \in G, i \in I_G\{g\}, w \in W, d \in D_5, s \in S_3, j \in J_d
+\end{equation}
+
+\begin{equation}
+m_{wd2g} + m_{wd3g} + x_{iwd1P} \leq 1, \;   g \in G, i \in I_G\{g\}, w \in W, d \in D_5, s \in S_3
+\end{equation}
+
+\begin{equation}
+m_{wdsg} \leq \sum_{v \in V}r_{iv}\cdot qualavail_{i(mod_{10}(w-v+10)+1)dsE}, \;   g \in G, i \in I_G\{g\} \backslash \{39\}, w \in W, d \in D_5, s \in S_3
+\end{equation}
+
+\begin{equation}
+M_{w11} + \sum_{d \in D_5}\sum_{s \in S_3} m_{wdsg} \leq 1, \;   g \in G, i \in I\_big \cup I_G\{g\}, w \in W
+\end{equation}
+
+\begin{equation}
+\sum_{j \in J_d} x_{iwdsj} \leq 1, \;   i \in I, w \in W, d \in D, s \in S_d
+\end{equation}
+
+\begin{equation}
+\sum_{s \in S_d}\sum_{j \in J_d\backslash \{L\}} x_{iwdsj} \leq 1 - x_{iwds_2L}, \;   i \in I, w \in W, d \in D_4, s_2 \in S_d
+\end{equation}
+
+\begin{equation}
+\sum_{s \in S_5}\sum_{j \in J_d\backslash \{L\}} x_{iw5sj} \leq 1, \;   i \in I, w \in W
+\end{equation}
+
+\begin{equation}
+\sum_{j \in J_d\backslash \{L\}} x_{iw5sj} \leq 1 - x_{iw51L}, \;   i \in I, w \in W, s \in S_3
+\end{equation}
+
+\begin{equation}
+\sum_{s \in S_d}\sum_{j \in J_d} x_{iwdsj} \leq 1, \;   i \in I, w \in W, d \in D_w
+\end{equation}
+
+\begin{equation}
+\sum_{d \in D_4}\sum_{j \in J_d} x_{iwd4j} \leq 1, \;   i \in I \backslash \{36\}, w \in W
+\end{equation}
+
+\begin{equation}
+\sum_{d \in D_5} x_{iwd1P} \leq 1, \; i \in I, w \in W
+\end{equation}
+
+\begin{equation}
+x_{iwdsP} = 0, \; i \in I_{noP}, w \in W, d \in D_5, s \in S_d
+\end{equation}
+
+\begin{equation}
+\sum_{w \in W} \sum_{d \in D_5} x_{iwd1P} \leq 4, \; i \in I_{manyP}
+\end{equation}
+
+\begin{equation}
+\sum_{w \in W} \sum_{d \in D_5} x_{iwd1P} \leq 3, \; i \in I \backslash\{I_{noP} \cup I_{manyP}\}
+\end{equation}	
+
+\begin{equation}
+\sum_{w \in W} r_{iw} = 1, \; i \in I
+\end{equation}
+
+\begin{equation}
+\sum_{w \in W} H_{iwh} \leq 1, \; i \in I_{weekendavail}, h \in \{1,2\}
+\end{equation}
+
+\begin{equation}
+r_{iw} \geq H_{iw1}, \; i \in I, w \in W
+\end{equation}
+
+\begin{equation}
+r_{i(2\cdot w)} = 0, \; i \in I_{OddEven}, w \in W_5
+\end{equation}
+
+\begin{equation}
+r_{i(mod_{10}(w+4)+1)} \geq H_{iw2}, \; i \in I, w \in W
+\end{equation}
+
+\begin{equation}
+\sum_{s \in S_6} \sum_{j \in J_6} x_{iw6sj} + \sum_{s \in S_7} \sum_{j \in J_7} x_{iw7sj} = 2\cdot \sum_{h \in \{1,2\}} H_{iwh}, \; i \in I_{weekendavail}, w \in W
+\end{equation}
+
+\begin{equation}
+\sum_{s \in S_6} x_{iw6sj} = \sum_{s \in S_7} x_{iw7sj}, \; i \in I_{weekendavail}, w \in W, j \in J_7
+\end{equation}
+
+\begin{equation}
+\sum_{j \in J_d \backslash \{L\}} x_{iw54j} = f_{iw}, \; i \in I_{weekendavail}, w \in W
+\end{equation}
+
+\begin{equation}
+b_{iw} = x_{iw61B}, \; i \in I_{weekendavail}, w \in W
+\end{equation}
+
+\begin{equation}
+f_{iw} \geq H_{iwh} + (1 - b_{iw}) - 1, \; i \in I_{weekendavail}, w \in W, h \in \{1,2\}
+\end{equation}
+
+\begin{equation}
+f_{iw} \leq \sum_{h \{1,2\}} H_{iwh}, \; i \in I_{weekendavail}, w \in W
+\end{equation}
+
+\begin{equation}
+f_{iw} \leq 1 - b_{iw}, \; i \in I_{weekendavail}, w \in W
+\end{equation}
+
+\begin{equation}
+\sum_{w \in W} \sum_{d \in \{6,7\}} x_{iwd1B} \leq 2, \; i \in I_{lib} \backslash \{23\}
+\end{equation}
+
+\begin{equation}
+\sum_{d \in \{6,7\}} \sum_{j \in \{E,I\}} x_{23wd1j} = 0, \; w \in W
+\end{equation}
+
+\begin{equation}
+s^{min} \leq N1l \cdot \sum_{i \in I_{lib}} l_{iwd} + N1a \cdot \sum_{i \in I_{ass}} a_{iwd}, \; w \in W, d \in D_5
+\end{equation}
+
+\begin{equation}
+W_{iwd} \geq \sum_{s \in S_3} \sum_{j \in J_d} x_{iwdsj}, \; i \in I, w \in W, d \in D_5
+\end{equation}
+
+\begin{equation}
+W_{iwd} \geq \sum_{j \in J_d} x_{iwd4j}, \; i \in I, w \in W, d \in D_5
+\end{equation}
+
+\begin{equation}
+l_{iwd} \geq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i(mod_{10}(w-v+10)+1)d}) + (1-W_{iwd}) - 1, \; i \in I_{lib}, w \in W, d \in D_5
+\end{equation}
+
+\begin{equation}
+l_{iwd} \leq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i(mod_{10}(w-v+10)+1)d}), \; i \in I_{lib}, w \in W, d \in D_5
+\end{equation}
+
+\begin{equation}
+l_{iwd} \leq 1-W_{iwd}, \; i \in I_{lib}, w \in W, d \in D_5
+\end{equation}
+
+\begin{equation}
+a_{iwd} \geq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i(mod_{10}(w-v+10)+1)d}) + (1-W_{iwd}) - 1, \; i \in I_{ass}, w \in W, d \in D_5
+\end{equation}
+
+\begin{equation}
+a_{iwd} \leq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i(mod_{10}(w-v+10)+1)d}), \; i \in I_{ass}, w \in W, d \in D_5
+\end{equation}
+
+\begin{equation}
+a_{iwd} \leq 1-W_{iwd}, \; i \in I_{ass}, w \in W, d \in D_5
+\end{equation}
+
+\begin{equation}
+d_{iwds} \geq (y_{iwds} - y_{i(w+5)ds}), \; i \in I, w \in W_5, d \in D_5, s \in S_3
+\end{equation}
+
+\begin{equation}
+d_{iwds} \geq -(y_{iwds} - y_{i(w+5)ds}), \; i \in I, w \in W_5, d \in D_5, s \in S_3
+\end{equation}
+
+\begin{equation} % LÄGG TILL I MATHMODEL!
+\delta = \sum_{i \in I} \sum_{w \in W_5} \sum_{d \in D_5} \sum_{s \in S_3} d_{iwds}
+\end{equation}
+
+\begin{equation}
+x_{iwdsj} \leq \sum_{v \in V} (r_{iv} \cdot qualavail_{i(mod_{10}(w-v+10)+1)dsj}), \; i \in I, w \in W, d \in D, s \in S_d, j \in J_d
+\end{equation}
+
+\begin{equation}
+y_{iwds} = \sum_{j \in J_d \backslash \{L\}} x_{iwdsj}, \; i \in I, w \in W, d \in D_5, s \in S_3
+\end{equation}
+
+\begin{equation}
+\sum_{d \in D_5} y_{iwds} \leq 2, \; i \in I, w \in W, s \in S_3
+\end{equation}
+
+\begin{equation}
+\sum_{w \in W} x_{25w44L} = 8
+\end{equation}
+
+\begin{equation}
+x_{36w14L} = 1 - x_{25w11L}, \; w \in W
+\end{equation}
+
+\begin{equation}
+\sum_{w \in W} x_{37w34L} = 5
+\end{equation}
+
+\begin{equation}
+x_{37w34L} = 1 - x_{37(w+1)34L}, \; w \in W_9
+\end{equation}
+
+\begin{equation}
+x_{36wd4j} = 0, \; w \in W, d \in D_4, j \in J_d \backslash \{L\}
+\end{equation}
