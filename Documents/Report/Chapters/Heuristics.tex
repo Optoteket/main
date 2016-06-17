@@ -464,12 +464,14 @@ Table \ref{block_to_evaluate} together with Figure \ref{flow_chart_cost} show an
 \multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}PL} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{I} \\ \cline{2-8} 
 \multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} &                        &                        \\ \cline{2-6}
 \multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          &                        &                        \\ \cline{2-6}
-\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}                           & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  &         \\ \cline{2-6}&       &           &       &   &  &      &           \\
-\multicolumn{3}{c}{Task to be evaluated according to Figure 4.3}       &                                                &                        &                                                &                        &                        \\
-                                 & Mon                                             &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
-\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}PL} &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
-\multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
-\multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
+\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}                           & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          &                        &                        \\ \cline{2-6}&       &           &       &   &  &      &           \\
+\end{tabular}
+\text{Task to be evaluated according to Figure \ref{flow_chart_cost}}
+\begin{tabular}{cccccccc}
+   & Mon              &          &          &              &                        &                &              \\ \cline{2-2}
+   \multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}PL} &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
+   \multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
+   \multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
 \end{tabular}
 \end{table}
 
@@ -540,7 +542,7 @@ Table \ref{block_to_evaluate} together with Figure \ref{flow_chart_cost} show an
     
 
 
-\subsection{Costs}
+\subsection{Costs} \label{cost_section}
 In order to find a feasible solution the implemented costs must be carefully chosen. Presently, there are 16 different costs, where some of them are correlated with each other.
 
 Six of the costs are presented in Figure \ref{flow_chart_cost}. They have all been assigned unique values so that, for example, the positive assistant demand cost differs from the negative assistant demand cost in absolute value. To explain why, consider a case where four staff members are demanded, out of which two have to be librarians, see Table \ref{library_solutions}. The first case, where three assistants and one librarian have been assigned, is infeasible, as there is a need of two librarians at the Information desks. The second case, where one assistant and three librarians have been assigned, is feasible. It is, however, not optimal due to the exceeding use of librarians. The optimal solution is, therefore, Case 3. Hence, the first case must be punished more than case 2 and 3, as having more assistants than necessary are redundant assignments.
@@ -610,7 +612,7 @@ Whenever a new week block is to be inserted in a repair all available blocks for
 
 \begin{table}[!h]
 \centering
-\caption{Cost evaluation for two blocks. The lower the total cost is, the more desired it is to insert in the repair.}
+\caption{Cost evaluation for two blocks. Negative cost contributions indicate task assignments that are needed in the library. The lower the total cost is, the more desired it is to insert the block in the repair.}
 \label{tab:block_costs}
 \begin{tabular}{cccccccc}
                                  & Mon                                             & Tue                    & Wed                                            & Thu                    & Fri                                            & Sat                    & Sun                    \\ \cline{2-8} 
@@ -638,19 +640,20 @@ $+ Demand\_many\_lib = -20,260$
 
 
 \subsection{Destroy}
-The destroy consists of two contiguous steps: Choosing three staff members and then destroying their assigned blocks. The BokB tasks remain unchanged even if a staff member assigned to those tasks is destroyed. 
+The destroy consists of two contiguous steps: Randomly choosing three staff members and then destroying their assigned blocks. In case a staff member that works with BokB is chosen in the destroy, neither their BokB tasks nor their rotation are destroyed. 
+
 \subsection{Repair} \label{repair}
-Initially in the repair function the destroyed staff members are assigned new rotations, see Table \ref{rotation_assignment}, followed by five new week blocks. Which order the blocks are inserted in is randomly generated. For each iteration, one of the three staff members is randomly chosen, followed by one block that has not already been reassigned, until all 15 destroyed weeks have been repaired. Which week block that is chosen is based on the costs listed in Table \ref{tab:all_costs}. An illustrative example is shown in Table \ref{tab:block_costs}.
+Initially in the repair function, the destroyed staff members are assigned new rotations, see Table \ref{rotation_assignment}. Afterwards, five new week blocks are assigned. Which order the blocks are inserted in is randomly generated. For each repair iteration, one of the three staff members is randomly chosen, followed by a randomly chosen block that has not already been reassigned, until all 15 destroyed weeks have been repaired. Which week block that is chosen was discussed in Section \ref{cost_section}.
 \subsection{Evaluation of solution}
-After each destroy and repair loop the new solution is evaluated. It is common for the new solution to be worse than the previous one. However, all new solutions are accepted regardless of this.
+After each destroy and repair loop the new solution is evaluated. It is common for the new solution to be of worse quality than the previous one. However, all new solutions are accepted regardless of this.
 
-All costs are regarded in the evaluation of the solution. If there are any demand violations in the library or in the number of PL assigned to a staff member these are given the respective costs. Furthermore, in case there are stand-ins these are provided with a negative cost. 
+All costs are taken into account in the evaluation of the solution. If there are any demand violations in the library, or in the number of PL assigned to a staff member, these are given the respective costs. Furthermore, in case there are stand-ins, these are provided with a negative stand-in cost. 
 \subsection{Final phase}
-At the end of a run there are mostly a few infeasibilities left that do not get solved. To fix this, a final phase was implemented. Whenever a run is "relatively close" and it is likely to be able to find a feasible solution the final phase is initiated. "Relatively close" means in this case that the only infeasibility left is the lack of staff members at a handful of weekday shifts. It is likely to be able to find a solution when there are more stand-ins available than demand violations for all days.
+At the end of a script iteration, there are usually a few infeasibilities left that do not get solved. To fix this, a final phase was implemented. Whenever a run is "relatively close" and it is likely to be able to find a feasible solution, the final phase is initiated. "Relatively close" means in this case that the only infeasibility left is the lack of staff members at a handful of weekday shifts. It is likely to be able to find a solution when there are more stand-ins available than demand violations for all days. The reason is because the stand-ins are expendable and can be used to create a feasible solution.
 
-The final phase destroys one random week for a random staff member and immediately repairs it, resulting in the same or better solution. This is repeated until a feasible solution is found. % %In discussion: Sometimes it does not find a feasible solution due to the staff member had already four tasks assigned, i.e. the required block does not exist.
+The final phase destroys one random week for a random staff member and immediately repairs it, resulting in most likely the same or a better solution. This is repeated until a feasible solution is found. % %In discussion: Sometimes it does not find a feasible solution due to the staff member had already four tasks assigned, i.e. the required block does not exist.
 
-With well chosen cost parameter values the run will always eventually get relatively close to feasibility and reach the final phase. If there are fewer stand-ins available a day where infeasibility occurs, then the solution will be discarded in the final phase.
+With well chosen cost parameter values, the run will always get relatively close to feasibility and reach the final phase eventually. In case there are fewer stand-ins available any day where infeasibility occurs, when reaching the final phase, empty blocks will be assigned to all staff members and the solution enters the destroy and repair loop again, see Figure \ref{flow_chart}.
 
 \section{Task allocation approach} \label{section:impl_task_dist}
 
