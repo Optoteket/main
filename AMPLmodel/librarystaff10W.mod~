@@ -34,7 +34,7 @@ set I_dep{Dep}; #Set of departments
 set I_lib; #Set of librarians
 set I_ass; #Set of assistants
 set V; #Set of possible week rotations (shift the week by 1..10 steps)
-set I_LOW; #Set of librarians available to work in library on wheels (Bokbussen)
+#set I_LOW; #Set of librarians available to work in library on wheels (Bokbussen)
 set I_free_day; #Set of workers that shall be assigned a free weekday per week
 set I_odd_even; #Set of all workers with odd or even weeks
 set I_weekend_avail; #Set of workers available for weekend work.
@@ -217,8 +217,8 @@ subject to rotation_demand2{i in I, w in W}:
 	r[i,(w+4) mod 10 + 1] >= H[i,w,2];
 
 #Ensuring that if a worker i is working weekend w then they will work saturday and sunday in week w
-subject to two_days_weekends{i in I_weekend_avail, w in W}:
-	sum {s in S[6]}(sum {j in J[6]} x[i,w,6,s,j]) + sum {s in S[7]}(sum {j in J[7]} x[i,w,7,s,j]) = 2*(sum{h in 1..2} H[i,w,h]);	 # h1[i,w] + 2*h2[i,w];
+subject to two_days_weekends{i in I_weekend_avail, w in W, h in 1..2}:
+	sum {s in S[6]}(sum {j in J[6]} x[i,w,6,s,j]) + sum {s in S[7]}(sum {j in J[7]} x[i,w,7,s,j]) = 2*H[i,w,h];	 # h1[i,w] + 2*h2[i,w];
 
 subject to same_tasks_on_weekends{i in I_weekend_avail, w in W, j in J[7]} :
 	sum{s in S[6]} x[i,w,6,s,j] = sum{s in S[7]} x[i,w,7,s,j]; #s = 1 for weekends anyhow

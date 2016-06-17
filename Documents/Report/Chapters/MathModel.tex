@@ -216,6 +216,7 @@ A staff member is supposed to work with the same task both Saturday and Sunday w
 \begin{equation} \label{constr:same_tasks}
 x_{iw61j} = x_{iw71j}, \;   i\in I, w \in W, j \in J_d
 \end{equation}
+Equation \ref{constr:consecutive_days} ensures that the staff member will work Saturday and Sunday consecutively, whenever he or she is due for weekend work. To make sure it is the same task as well, Equation \ref{constr:same_tasks} is implemented.
 
 Friday evening is also included in an extension to working Saturday and Sunday, unless the staff member is assigned to HB. It is, however, not a necessity to perform the same task Friday evening as during the weekend, thus Fridays are not included in Equation \ref{constr:same_tasks}. Equation \ref{constr:friday_added} below adds Fridays to the weekend.
 \begin{equation} \label{constr:friday_added}
@@ -223,18 +224,18 @@ Friday evening is also included in an extension to working Saturday and Sunday, 
 \end{equation}
 Here, "L" refers to the task type Library on Wheels. The variable $f_{iw}$ is, as mentioned in the variable declaration, equal to one if and only if a staff member is working weekend as well as not being assigned to HB.
 
-It is of interest to implement a constraint to prevent staff members from being assigned to HB more than once every ten weeks in order to avoid unfairness. This constraint can be modelled as.
+It is of interest to implement a constraint to prevent staff members from being assigned to HB more than once every ten weeks in order to avoid unfairness. Why this is preferable is described in Section \ref{section:library_tasks}. This constraint can be modelled as.
 \begin{equation} \label{constr:max_one_hb}
-\sum_{w \in W}\sum_{d = 6}^{7}x_{iwd1B} \leq 2, \;   i \in I.
+\sum_{w \in W}\sum_{d = 6}^{7}x_{iwd1B} \leq 2, \;   i \in I
 \end{equation}
-Here, "B" refers to HB. Equation \ref{constr:same_tasks} together with Equation \ref{constr:max_one_hb} ensure that once a staff member is assigned to HB it will be for two consecutive weekend days, which is the amount of days the last mentioned equation allows every ten weeks. Why this is preferable is described in Section \ref{section:library_tasks}.
+Here, "B" refers to HB. Equation \ref{constr:same_tasks} and \ref{constr:max_one_hb} ensure both that a staff member only can be assigned to HB two days per ten weeks, and that those days are consecutive. The exception is in case a staff member only works in HB, which is disregarded in this simplfied model.
 
 \subsection{Definitional constraints} \label{section:obj_fcn_constraints}
-The variable $\delta$ in the objective function is defined by the following equation.
+The variable $\delta$ in the objective function, Equation \ref{objfcn}, is defined by the following equation.
 \begin{equation} \label{constr:delta}
-\delta = \sum_{i \in I} \sum_{w \in 1..5} \sum_{d \in 1..5} \sum_{s \in 1..3} d_{iwds}
+\delta = \sum_{i \in I} \sum_{w \in W_5} \sum_{d \in D_5} \sum_{s \in S_3} d_{iwds}
 \end{equation}
-This equation gives an integer value, representing the total number of shift differences that occur for all workers through all weekdays in the library. The variable $d_{iwds}$, defined in Equation \ref{constr:obj_fcn_shifts} below, compares the task assignment between two five-week separated weeks.
+This equation gives an integer value, which represents the total number of shift differences that occur for all workers, through all weekdays, in the library. The variable $d_{iwds}$, defined in Equation \ref{constr:obj_fcn_shifts} below, compares task assignments between two five-week separated weeks.
 
 To calculate the variable $s^{min}$ used in the objective function, \ref{objfcn}, the following equation is used.
 \begin{equation} \label{constr:s_min}
@@ -247,18 +248,18 @@ s^{min} \leq L\cdot \sum_{i \in I_{lib}} l_{iwd} + A\cdot \sum_{i \in I_{ass}} a
 %a^{min} \leq \sum_{i \in I_{ass}} a_{iwd}, \;   w \in W, d \in D_5
 %\end{equation}
 
-Here, $l_{iwd}$ and $a_{iwd}$ are binary variables stating whether a staff member is a stand-in or not on a specific day. Since $s^{min}$ is being maximized in the objective function, it will assume the lowest value of the sum of stand-in librarians and assistants for any day during the ten weeks. Just as for previous equations, auxiliary constraints have been left out for simplicity reasons. Here it is left out how $l_{iwd}$ and $a_{iwd}$ are determined.
+Here, $l_{iwd}$ and $a_{iwd}$ are binary variables stating whether a staff member is a stand-in on a day or not. Since $s^{min}$ is being maximized in the objective function, it will assume the lowest value of the sum of stand-in librarians and assistants for any day during the ten weeks. It will, therefore, represent the worst solution found regarding stand-ins. Just as for previous equations, auxiliary constraints have been left out for simplicity reasons. Here, it is left out how $l_{iwd}$ and $a_{iwd}$ are determined.
 
-If $L < A$ holds in the model, the solver would prioritize assistants over librarians as stand-ins. Librarians are, however, more desired as stand-ins due to their ability to perform all types of tasks. Therefore, it is desired to let $L \geq A$.
+If $L < A$ holds in the model, the solver would prioritize assistants over librarians as stand-ins. Librarians are, however, more desired as stand-ins, due to their ability to perform all types of tasks. Therefore, it is desired to let $L \geq A$.
 
-As stated in Section \ref{section:obj}, two weeks with a five-week interval should be as similar as possible. Equation \ref{constr:obj_fcn_shifts} together with Equation \ref{constr:delta} and the objective function equation, \ref{objfcn}, provides this preference.
+As stated in Section \ref{section:obj}, two weeks with a five-week interval should be as similar as possible. Equation \ref{constr:obj_fcn_shifts}, together with Equation \ref{constr:delta} and the objective function equation, \ref{objfcn}, provides this preference.
 \begin{equation} \label{constr:obj_fcn_shifts}
 d_{iwds} = \abs{y_{iwds} - y_{i(w+5)ds}}, \;   i \in I, w \in W_5, d \in D_5, s \in S_3
 \end{equation}
-The decision variable $d_{iwds}$ states if there is a difference in assignment between two tasks at the same hour and day for the two weeks, $w$ and $w+5$. The differences occur if, say, an Exp task is assigned on Monday week one at 08:00-10:00 and no task is assigned the same shift Monday week six. Thus, a variable that is minimized in the objective function.
+The decision variable $d_{iwds}$ states if there is a difference in assignment between two tasks at the same hour and day for the two weeks, $w$ and $w+5$. The differences occur if, say, an Exp task is assigned on Monday week one at 8 a.m. to 10 a.m. and no task is assigned the same shift Monday week six. Thus, a variable that is minimized in the objective function.
 
 \subsection{Meeting constraints} \label{section:meeting_constraints}
-At the library there are both library meetings and group meetings, which both occur with a five-week interval. Library meetings are set to take place from 08:00-10:00 on Mondays, whereas group meetings are more freely distributed. A few staff members are not assigned library meetings, since they are needed at the stations to keep the library running. The set $I_{big}$ in the equation below consists of all staff members who are to be assigned library meetings. The constraints modelling library meetings are as follows.
+At the library there are both library meetings and group meetings, which both occur with a five-week interval. Library meetings are set to take place from 8 a.m. to 10 a.m. on Mondays, whereas group meetings are more freely distributed. A few staff members are not assigned library meetings, as they are needed in the library to keep it running. The set $I_{big}$ in the equation below consists of all staff members who are to be assigned library meetings. The constraints modelling library meetings are as follows.
 \begin{equation} \label{constr:library_meetings}
 \sum_{w \in W_5} M_{w11} = 1
 \end{equation}
@@ -268,9 +269,9 @@ M_{(w+5)11} = M_{w11}, \;   w \in W_5
 \begin{equation} \label{constr:library_meetings3}
 \sum_{s=1}^{3} \sum_{j \in J_1 \backslash \{L\}} x_{iw1sj} \leq 1-M_{w11}, \;   i \in I \backslash I_{big}, w \in W
 \end{equation}
-Equation \ref{constr:library_meetings} and \ref{constr:library_meetings2} assign two library meetings with a five-week interval during the ten-week scheduling period. Equation \ref{constr:library_meetings3} makes sure that the staff members that do not attend library meetings are not assigned any other task during the day of the meeting. This implicitly force the staff members, that do not attend the library meetings, to meet the demand constraints during the meeting. 
+Equation \ref{constr:library_meetings} and \ref{constr:library_meetings2} assign two library meetings with a five-week interval during the ten-week scheduling period. Equation \ref{constr:library_meetings3} makes sure that the staff members, that do not attend library meetings, are not assigned any other task during the day of the meeting. This implicitly force the staff members, that do not attend the library meetings, to meet the library demand constraints during the meeting. 
 
-The constraints added to model the group meetings are somewhat similar to the library meeting constraints. Just as for library meetings they take place two times during the ten weeks with a five-week interval, which is described by Equations \ref{constr:dep_meetings} and \ref{constr:dep_meetings2}.
+The constraints added to model the group meetings are somewhat similar to the library meeting constraints. Just as for library meetings, they take place two times during the ten weeks with a five-week interval, which is described by Equations \ref{constr:dep_meetings} and \ref{constr:dep_meetings2}.
 \begin{equation} \label{constr:dep_meetings}
 \sum_{w \in W_5}\sum_{d \in D_5}\sum_{s \in S_3} m_{wdsg} = 1, \; g \in G
 \end{equation}
@@ -283,7 +284,7 @@ m_{wdsg} + x_{iwdsj} \leq 1, \;   g \in G, i \in I_{G}\{g\}, w \in W, d \in D_5,
 \begin{equation} \label{constr:dep_meetings4}
 m_{wdsg} \leq \sum_{v \in V} r_{iv}*qualavail_{i(mod_{10}(w-v+10)+1)dsE}, \;   g \in G, i \in I_{G}\{g\}, w \in W, d \in D_5, s \in S_3
 \end{equation}
-Equation \ref{constr:dep_meetings3} prohibits a staff member from multitasking, that is, to attend a meeting and work with a task simultaneously. Lastly, Equation \ref{constr:dep_meetings4} enables group meetings only when everyone in that group is available, The rotation is also taken into the account.
+Equation \ref{constr:dep_meetings3} prohibits a staff member from multitasking, that is, to attend a meeting and work with a task simultaneously. Equation \ref{constr:dep_meetings4} enables group meetings only when everyone in that group is available. The rotation is also taken into the account.
 
-The task type "E" in Equation \ref{constr:dep_meetings4} stands for Exp, and is used due to it is the only task type everyone is available for, as \textit{qualavail} is dependent on the variable \textit{j}. A better way to model this would be to create a new parameter, say $avail_{iwds}$, that is not dependent on staff member qualifications. 
+The task type "E" in Equation \ref{constr:dep_meetings4} stands for Exp, and is used due to it is the only task type everyone is available for, as \textit{qualavail} is dependent on the task variable \textit{j}. A better way to model this would be to create a new parameter, say $avail_{iwds}$, that is not dependent on staff member qualifications. As this way of modelling works, this was not implemented in order to to save us some time.
 

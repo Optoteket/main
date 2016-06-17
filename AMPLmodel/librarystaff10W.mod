@@ -34,7 +34,7 @@ set I_dep{Dep}; #Set of departments
 set I_lib; #Set of librarians
 set I_ass; #Set of assistants
 set V; #Set of possible week rotations (shift the week by 1..10 steps)
-#set I_LOW; #Set of librarians available to work in library on wheels (Bokbussen)
+set I_LOW; #Set of librarians available to work in library on wheels (Bokbussen)
 set I_free_day; #Set of workers that shall be assigned a free weekday per week
 set I_odd_even; #Set of all workers with odd or even weeks
 set I_weekend_avail; #Set of workers available for weekend work.
