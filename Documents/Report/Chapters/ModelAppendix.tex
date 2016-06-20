@@ -1,27 +1,26 @@
 \section{Sets}
-\itab{I} \tab{Set of workers}\\
-\itab{I\_lib} \tab{Set of librarians (I\_lib $\subseteq$ I)} \\
-\itab{I\_ass}	 \tab{Set of assistants (I\_ass $\subseteq$ I)}	\\
-\itab{W}                 \tab{Set of weeks}                                               \\
+\itab{$I$} \tab{Set of workers}\\
+\itab{$I\_lib$} \tab{Set of librarians (I\_lib $\subseteq$ I)} \\
+\itab{$I\_ass$}	 \tab{Set of assistants (I\_ass $\subseteq$ I)}	\\
+\itab{$W$}                 \tab{Set of weeks}                                               \\
 \itab{$W_5$}	\tab{Set of first five weeks} \\
 \itab{$W_9$}	\tab{Set of first nine weeks} \\
-\itab{D}                 \tab{Set of days in a week}                                      \\
+\itab{$D$}                 \tab{Set of days in a week}                                      \\
 \itab{$D_4$}	\tab{Set of first four weekdays} \\
 \itab{$D_5$}	\tab{Set of all five weekdays} \\
 \itab{$D_w$}	\tab {Set of weekend days, Saturday and Sunday} \\
 \itab{$S_d$}           \tab{Set of shifts day \textit{d}}                                        \\
 \itab{$S_3$}           \tab{Set of first three shifts on a weekday}     \\
 \itab{$J_d$}            \tab{Set of task types day \textit{d}}                                    \\
-\itab{I\_LOW}	 \tab{Set of librarians available to work in library on wheels}	\\
-\itab{I\_free\_day}	 \tab{Set of workers that shall be assigned a free weekday per week}	\\
-\itab{I\_odd\_even}	 \tab{Set of all workers with odd or even weeks}	\\
-\itab{I\_weekend\_avail}	 \tab{Set of workers available for weekend work}	\\
-\itab{I\_big\_meeting}	 \tab{Set of all workers that attend big meetings}	\\
-\itab{I\_no\_PL}	 \tab{Set of workers not working on PL}	\\
-\itab{I\_weekend\_avail}	 \tab{Set of workers working 3-4 times PL in 10 weeks}	\\
-\itab{Dep}	 \tab{Set of departments}	\\
-\itab{I\_dep\{Dep\}}	 \tab{Set of workers in departments}	\\
-\itab{V}	 \tab{Set of possible week rotations (shift the week by 1-10 steps)}	\\
+\itab{$I_{free}$}	 \tab{Set of workers that shall be assigned a free weekday per week}	\\
+\itab{$I_{oddEven}$}	 \tab{Set of all workers with odd or even weeks}	\\
+\itab{$I_{weekendavail}$}	 \tab{Set of workers available for weekend work}	\\
+\itab{$I_{big}$}	 \tab{Set of all workers that attend big meetings}	\\
+\itab{$I_{noP}$}	 \tab{Set of workers not working on PL}	\\
+\itab{$I_{manyP}$}	 \tab{Set of workers working 3-4 times with PL in 10 weeks}	\\
+\itab{$G$}	 \tab{Set of groups}	\\
+\itab{$I_{G}\{g\}$}	 \tab{Set of workers in group g}	\\
+\itab{$V$}	 \tab{Set of possible week rotations (shifts the week by 0-9 steps forwards)}	\\
 
 
 \section{Variables} \label{variabs}
@@ -86,9 +85,9 @@
 	 	0, & \text{otherwise}
 	\end{cases}
 	\\
-	m_{wdsD}&=
+	m_{wdsg}&=
 	\begin{cases}
-	 	1, & \text{if a meeting is placed on week \textit{w}, day \textit{d}, shift \textit{s} at department \textit{D}} \\
+	 	1, & \text{if a meeting is placed on week \textit{w}, day \textit{d}, shift \textit{s} for group \textit{g}} \\
 	 	0, & \text{otherwise}
 	\end{cases}
 	\\
@@ -102,7 +101,7 @@
 	l^{min}&= \text{lowest number of stand-in librarians found (integer)} \\
 	a^{min}&= \text{lowest number of stand-in assistants found (integer)} \\
 	s^{min}&= \text{weighted sum with number of stand-in librarians and assistants} \\
-	\delta&= \text{total number of shifts that differ for all staff members}
+	\delta&= \text{total number of shifts that differ for all staff members (integer)}
 \end{align}
 
 
@@ -161,31 +160,31 @@ M_{(w+5)11} = M_{w11}
 \end{equation}
 
 \begin{equation}
-\sum_{s \in 2..3}\sum_{j \in J_d\backslash\{L\}} x_{iw1sj} \leq 1-M_{w11}, \;   i \in I\backslash I\_big, w \in W
+\sum_{s \in 2..3}\sum_{j \in J_d\backslash\{L\}} x_{iw1sj} \leq 1-M_{w11}, \;   i \in I\backslash I_{big}, w \in W
 \end{equation}
 
 \begin{equation}
-\sum_{w \in W_5}\sum_{d \in D_5}\sum_{s \in S_3} m_{wdsD} = 1, \;   D \in Dep
+\sum_{w \in W_5}\sum_{d \in D_5}\sum_{s \in S_3} m_{wdsg} = 1, \;   g \in G
 \end{equation}
 
 \begin{equation}
-m_{(w+5)dsD} = m_{wdsD}, \;   D \in Dep, w \in W_5, d \in D_5, s \in S_3
+m_{(w+5)dsg} = m_{wdsg}, \;   g \in G, w \in W_5, d \in D_5, s \in S_3
 \end{equation}
 
 \begin{equation}
-m_{wdsD} + x_{iwdsj} \leq 1, \;   D \in Dep, i \in I\_dep\{Dep\}, w \in W, d \in D_5, s \in S_3, j \in J_d
+m_{wdsg} + x_{iwdsj} \leq 1, \;   g \in G, i \in I_G\{g\}, w \in W, d \in D_5, s \in S_3, j \in J_d
 \end{equation}
 
 \begin{equation}
-m_{wd2D} + m_{wd3D} + x_{iwd1P} \leq 1, \;   D \in Dep, i \in I\_dep\{Dep\}, w \in W, d \in D_5, s \in S_3
+m_{wd2g} + m_{wd3g} + x_{iwd1P} \leq 1, \;   g \in G, i \in I_G\{g\}, w \in W, d \in D_5, s \in S_3
 \end{equation}
 
 \begin{equation}
-m_{wdsD} \leq \sum_{v \in V}r_{iv}\cdot qualavail_{i(mod_{10}(w-v+10)+1)dsE}, \;   D \in Dep, i \in I\_dep\{Dep\} \backslash \{39\}, w \in W, d \in D_5, s \in S_3
+m_{wdsg} \leq \sum_{v \in V}r_{iv}\cdot qualavail_{i\omega(v,w)dsE}, \;   g \in G, i \in I_G\{g\} \backslash \{39\}, w \in W, d \in D_5, s \in S_3
 \end{equation}
 
 \begin{equation}
-M_{w11} + \sum_{d \in D_5}\sum_{s \in S_3} m_{wdsD} \leq 1, \;   D \in Dep, i \in I\_big \cup I\_dep\{Dep\}, w \in W
+M_{w11} + \sum_{d \in D_5}\sum_{s \in S_3} m_{wdsg} \leq 1, \;   g \in G, i \in I\_big \cup I_G\{g\}, w \in W
 \end{equation}
 
 \begin{equation}
@@ -225,7 +224,7 @@ x_{iwdsP} = 0, \; i \in I_{noP}, w \in W, d \in D_5, s \in S_d
 \end{equation}
 
 \begin{equation}
-\sum_{w \in W} \sum_{d \in D_5} x_{iwd1P} \leq 3, \; i \in I_{noP} \backslash I_{manyP}
+\sum_{w \in W} \sum_{d \in D_5} x_{iwd1P} \leq 3, \; i \in I \backslash\{I_{noP} \cup I_{manyP}\}
 \end{equation}	
 
 \begin{equation}
@@ -297,11 +296,11 @@ W_{iwd} \geq \sum_{j \in J_d} x_{iwd4j}, \; i \in I, w \in W, d \in D_5
 \end{equation}
 
 \begin{equation}
-l_{iwd} \geq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i(mod_{10}(w-v+10)+1)d}) + (1-W_{iwd}) - 1, \; i \in I_{lib}, w \in W, d \in D_5
+l_{iwd} \geq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i\omega(v,w)d}) + (1-W_{iwd}) - 1, \; i \in I_{lib}, w \in W, d \in D_5
 \end{equation}
 
 \begin{equation}
-l_{iwd} \leq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i(mod_{10}(w-v+10)+1)d}), \; i \in I_{lib}, w \in W, d \in D_5
+l_{iwd} \leq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i\omega(v,w)d}), \; i \in I_{lib}, w \in W, d \in D_5
 \end{equation}
 
 \begin{equation}
@@ -309,11 +308,11 @@ l_{iwd} \leq 1-W_{iwd}, \; i \in I_{lib}, w \in W, d \in D_5
 \end{equation}
 
 \begin{equation}
-a_{iwd} \geq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i(mod_{10}(w-v+10)+1)d}) + (1-W_{iwd}) - 1, \; i \in I_{ass}, w \in W, d \in D_5
+a_{iwd} \geq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i\omega(v,w)d}) + (1-W_{iwd}) - 1, \; i \in I_{ass}, w \in W, d \in D_5
 \end{equation}
 
 \begin{equation}
-a_{iwd} \leq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i(mod_{10}(w-v+10)+1)d}), \; i \in I_{ass}, w \in W, d \in D_5
+a_{iwd} \leq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i\omega(v,w)d}), \; i \in I_{ass}, w \in W, d \in D_5
 \end{equation}
 
 \begin{equation}
@@ -333,7 +332,7 @@ d_{iwds} \geq -(y_{iwds} - y_{i(w+5)ds}), \; i \in I, w \in W_5, d \in D_5, s \i
 \end{equation}
 
 \begin{equation}
-x_{iwdsj} \leq \sum_{v \in V} (r_{iv} \cdot qualavail_{i(mod_{10}(w-v+10)+1)dsj}), \; i \in I, w \in W, d \in D, s \in S_d, j \in J_d
+x_{iwdsj} \leq \sum_{v \in V} (r_{iv} \cdot qualavail_{i\omega(v,w)dsj}), \; i \in I, w \in W, d \in D, s \in S_d, j \in J_d
 \end{equation}
 
 \begin{equation}
