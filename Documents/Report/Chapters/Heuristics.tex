@@ -91,7 +91,7 @@ Availability data & Even and odd week staff members have availability at each sh
 
 \begin{table}[!h]
 \centering
-\caption{Showing changes in the model for the task distribution approach. The soft, relaxed and removed constraints are shown.}
+\caption{Showing changes in the model for the task allocation approach. The soft, relaxed and removed constraints are shown.}
 \label{tab:task_constraints}
 \begin{tabular}{|p{4cm}|p{7cm}|}
 \hline
@@ -657,7 +657,7 @@ With well chosen cost parameter values, the run will always get relatively close
 
 \section{Task allocation approach} \label{section:impl_task_dist}
 
-The second heuristic approach tested distributes individual tasks to staff members and greatly resembles the process of manual scheduling. The implemented algorithm undergoes two phases. In the first phase, weekends, as well as some weekday tasks, are allocated and in the second phase the rest of the weekday tasks are allocated. 
+The second heuristic approach tested allocates individual tasks to staff members and greatly resembles the process of manual scheduling. The implemented algorithm undergoes two phases. In the first phase, weekends, as well as some weekday tasks, are allocated and in the second phase the rest of the weekday tasks are allocated. 
 
 The primary heuristic method used in this approach is a large neighbourhood search in combination with a simulated annealing accept function. Destroying and repairing the solution, which is the main feature of LNS, leads the search towards better solutions in the local vicinity of the current solution. The SA function, on the other hand, leads the search out of the current neighbourhood by accepting poorer solutions.
 
@@ -701,7 +701,7 @@ $C_{SI\_a}$ & $W_{SI\_a}$ & Cost of average number of stand-ins per day. \\ \hli
 $C_{S\_a}$ & $W_{S\_a}$ & Cost of average number of staff members at a shift. \\ \hline
 $C_{D\_a}$ & $W_{D\_a}$ & Cost of average number of staff members at a day. \\ \hline
 \hline
-\multicolumn{3}{|l|}{\cellcolor{gray!90} \textbf{Staff member Objective Function}} \\
+\multicolumn{3}{|l|}{\cellcolor{gray!90} \textbf{Staff Member Objective Function}} \\
 \hline
 \rowcolor{Gray} Cost & Weight & Cost description \\ \hline
 $C_{Task\_D}$ & $W_{Task\_D}$ & Cost for allocating too many tasks in a day for all staff members. \\ \hline
@@ -748,7 +748,7 @@ After a certain number of iteration the weekend phase is finished and the weekda
     % Place nodes
     %Right row
     \node [scale=0.01,node distance=0cm] (invinit) {};
-    \node [block, below of=invinit] (distribute) {Distribute all weekends randomly};
+    \node [block, below of=invinit] (distribute) {Allocate all weekends randomly};
     \node [decision, below of=distribute, node distance=2.5cm] (evaluate) {Solution feasible?};
     \node [block, left of=distribute, node distance=4cm] (redistribute) {Remove all weekends};
      \node [block, below of=evaluate, node distance=3.5cm] (setobjf) {Set weekend obj fun value};
@@ -804,7 +804,7 @@ After a certain number of iteration the weekend phase is finished and the weekda
     \node at (-2,-19) [above=4mm, right=2mm] {\textsc{destroy and repair loop}};
     \draw [color=gray!70,thick](-2,-19) rectangle (5,-12);
     %Weekend loop
-    \node at (-10.5,-19.5) [above=4mm, right=2mm] {\textsc{weekend distribution loop}};
+    \node at (-10.5,-19.5) [above=4mm, right=2mm] {\textsc{weekend allocation loop}};
     \draw [color=gray!70,thick](-10.5,-19.5) rectangle (5,-6);
     %SA componenet
     \node at (-7.5,-13.5) [above=4mm, right=2mm] {\textsc{SA}};
@@ -893,7 +893,7 @@ The algorithms for allocating, destroying and repairing weekends is simply a ran
 \end{table}
 
 
-In order to get a better estimate of the number of available staff members during the weekend phase, evening tasks and BokB tasks are distributed after each weekend repair. The evening tasks are distributed using the same method as is described in Section \ref{wday_phase}, while BokB tasks are placed according to a fixed schedule. The effect of this distribution is shown in Tables \ref{tab:num_avail_no_tasks} and \ref{tab:num_avail_with_tasks}. High intensity of red in a cell indicates a higher number of staff members. It can be seen that the first table is generally redder and thus there are fewer available staff members in the second table. This state reflects better the real number of available staff members during the week days for a certain weekend constellation. 
+In order to get a better estimate of the number of available staff members during the weekend phase, evening tasks and BokB tasks are allocated after each weekend repair. The evening tasks are allocated using the same method as is described in Section \ref{wday_phase}, while BokB tasks are placed according to a fixed schedule. The effect of this allocation is shown in Tables \ref{tab:num_avail_no_tasks} and \ref{tab:num_avail_with_tasks}. High intensity of red in a cell indicates a higher number of staff members. It can be seen that the first table is generally redder and thus there are fewer available staff members in the second table. This state reflects better the real number of available staff members during the week days for a certain weekend constellation. 
 
 \subsection{Weekday phase}\label{wday_phase}
 
@@ -904,10 +904,10 @@ In order to get a better estimate of the number of available staff members durin
 \begin{tikzpicture}[node distance = 2cm , auto, every node/.style={scale=0.8}]
     %Right column
     \node [scale=0.01,node distance=0cm] (invinit) {};
-    \node [block, below of=invinit] (distribute) {Try distribute all tasks};
+    \node [block, below of=invinit] (distribute) {Try allocate all tasks};
     \node [block, below of=distribute] (workercost) {Set worker obj fun};
     \node [decision, below of=workercost, node distance=2.5cm] (evaluatewc) {Worker cost = 0?};
-    \node [decision, below of=evaluatewc, node distance=3cm] (evaluatetasks) {All tasks distributed?};
+    \node [decision, below of=evaluatewc, node distance=3cm] (evaluatetasks) {All tasks allocated?};
     \node [decision, below of=evaluatetasks, node distance=3cm] (feasible) {Solution feasible?};
     \node [block, below of=feasible, node distance=2.5cm] (destamount) {Set destroy amount};
     \node [block, below of=destamount] (dr) {Destroy and repair solution};
@@ -966,14 +966,14 @@ In order to get a better estimate of the number of available staff members durin
     \node at (-2,-15) [above=4mm, right=2mm] {\textsc{destroy and repair loop}};
     \draw [color=gray!70,thick](-2,-15) rectangle (4,-2.5);
     %Weekend loop
-    \node at (-8,-15) [above=4mm, right=2mm] {\textsc{weeday task distribution loop}};
+    \node at (-8,-15) [above=4mm, right=2mm] {\textsc{weeday task allocation loop}};
     \draw [color=gray!70,thick](-8,-15) rectangle (4,-0.5);
 
 \end{tikzpicture}
 \end{figure}
 
 
-When entering the weekday phase, all weekends, evenings and BokB tasks are already allocated. In the weekday phase, the remaining tasks, referred to as "weekday" tasks are to be allocated. The staffing demand for a week is illustrated in Table \ref{tab:current_demand} and it is identical for all weeks.The algorithm for distributing weekday tasks is found in Appendix \ref{appendix:flow_charts}, Figure \ref{fig:weekday_alg}, and greatly resembles the algorithm for distributing weekends.
+When entering the weekday phase, all weekends, evenings and BokB tasks are already allocated. In the weekday phase, the remaining tasks, referred to as "weekday" tasks are to be allocated. The staffing demand for a week is illustrated in Table \ref{tab:current_demand} and it is identical for all weeks.The algorithm for allocating weekday tasks is found in Appendix \ref{appendix:flow_charts}, Figure \ref{fig:weekday_alg}, and greatly resembles the algorithm for allocaing weekends.
 
 
 \begin{table}[!h]
@@ -1016,7 +1016,7 @@ When entering the weekday phase, all weekends, evenings and BokB tasks are alrea
  \end{tabular}
 \end{table}
 
-The outer loop of the weekday phase, or the "weekday task distribution loop", is performed a specified number of iterations and calculates the weekday objective function for each iteration. The best solution found is saved, others are discarded. 
+The outer loop of the weekday phase, or the "weekday task allocation loop", is performed a specified number of iterations and calculates the weekday objective function for each iteration. The best solution found is saved, others are discarded. 
 
 The inner "destroy and repair loop" destroys and repairs the solution until the staff member objective function is zero, that is, until all staff member schedules are feasible. If this loop cannot find such a schedule within a maximum number of iterations, the whole solution is discarded as infeasible, and the outer loop is reentered.
 
