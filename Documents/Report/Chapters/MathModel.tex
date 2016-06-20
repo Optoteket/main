@@ -158,12 +158,14 @@ Equation \ref{constr:four_weekly_shifts_at_most} allows a staff member at most f
 \subsection{Weekend and rotation constraints} \label{section:weekend_rot_constraints}
 Every staff member's schedule is able to rotate up to nine times, where the decision variable $r_{iv}$ decides the rotation. Therefore, the parameter $qualavail_{iwdsj}$ has to align with the rotation so that all staff members are assigned tasks only when available. This is provided in the following equation.
 \begin{equation} \label{constr:qualavail}
-x_{iwdsj} \leq \sum_{v \in V} r_{iv}*qualavail_{i(mod_{10}(w-v+10)+1)dsj}, \;   i \in I, w \in W, d \in D, s \in S_d, j \in J_d
+x_{iwdsj} \leq \sum_{v \in V} r_{iv}*qualavail_{i\omega(v,w)dsj}, \;   i \in I, w \in W, d \in D, s \in S_d, j \in J_d
 \end{equation}
-Table \ref{tab:mod} gives a better understanding of how the modulus function in the parameter $qualavail_{iwdsj}$ is used. Here, \textit{w} represents the current week in the initial schedule and \textit{v} represents \textit{v-1} rotations to the right from the initial schedule. With initial schedule, we refer to the schedule where all staff members' weekends occur in the first week. The resulting week, when rotations have been taken into the account, can be seen inside the cells. When scheduling, it is the resulting week that is of interest, when checking if a staff member is available for a task assignment. 
+The function $\omega(v,w)$ represents the modulus function $mod_{10}(w-v+10)+1$, which is a function that takes rotations into the account when calculating the week to look for in the availability matrix. Table \ref{tab:mod} gives a better understanding of how this modulus function is used.
+
+The variable \textit{w}, in Table \ref{tab:mod}, represents the current week in the initial schedule, and \textit{v} represents \textit{v-1} rotations to the right from the initial schedule. With initial schedule, we refer to the schedule, where all staff members' weekends occur in the first week. The resulting week, when rotations have been taken into the account, can be seen inside the cells. When scheduling, it is the resulting week $\omega$ that is of interest, when checking if a staff member is available for a task assignment. 
 \begin{table}[H]
 \centering
-\caption{Resulting table of the function $mod_{10}(w-v+10)+1$. Here, $w$ is the week in the initial schedule, $v$ is the rotation variable. Inside the cells, the resulting week is shown when rotations have been made.}
+\caption{Resulting table of the function $\omega(v,w) = mod_{10}(w-v+10)+1$. Here, $w$ is the week in the initial schedule, $v$ is the rotation variable. Inside the cells, the resulting week is shown when rotations have been made.}
 \label{tab:mod}
 \begin{tabular}{llllllllllll}
     &                         &                         &                         &                         &                         & \multicolumn{2}{l}{w =}                           &                         &                         &                         &                         \\
@@ -282,9 +284,9 @@ m_{(w+5)dsg} = m_{wdsg}, \;   g \in G, w \in W_5, d \in D_5, s \in S_3
 m_{wdsg} + x_{iwdsj} \leq 1, \;   g \in G, i \in I_{G}\{g\}, w \in W, d \in D_5, s \in S_3, j \in J_d
 \end{equation}
 \begin{equation} \label{constr:dep_meetings4}
-m_{wdsg} \leq \sum_{v \in V} r_{iv}*qualavail_{i(mod_{10}(w-v+10)+1)dsE}, \;   g \in G, i \in I_{G}\{g\}, w \in W, d \in D_5, s \in S_3
+m_{wdsg} \leq \sum_{v \in V} r_{iv}*qualavail_{i\omega(v,w)dsE}, \;   g \in G, i \in I_{G}\{g\}, w \in W, d \in D_5, s \in S_3
 \end{equation}
 Equation \ref{constr:dep_meetings3} prohibits a staff member from multitasking, that is, to attend a meeting and work with a task simultaneously. Equation \ref{constr:dep_meetings4} enables group meetings only when everyone in that group is available. The rotation is also taken into the account.
 
-The task type "E" in Equation \ref{constr:dep_meetings4} stands for Exp, and is used due to it is the only task type everyone is available for, as \textit{qualavail} is dependent on the task variable \textit{j}. A better way to model this would be to create a new parameter, say $avail_{iwds}$, that is not dependent on staff member qualifications. As this way of modelling works, this was not implemented in order to to save us some time.
+In Equation \ref{constr:dep_meetings4} $\omega$ is the week calculation when rotations are taken into the account, see Section \ref{section:weekend_rot_constraints}. The task type "E" stands for Exp, and is used due to it is the only task type everyone is available for, as \textit{qualavail} is dependent on the task variable \textit{j}. A better way to model this would be to create a new parameter, say $avail_{iwds}$, that is not dependent on staff member qualifications. As this way of modelling works, this was not implemented in order to to save us some time.
 

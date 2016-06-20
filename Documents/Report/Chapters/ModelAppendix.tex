@@ -180,7 +180,7 @@ m_{wd2g} + m_{wd3g} + x_{iwd1P} \leq 1, \;   g \in G, i \in I_G\{g\}, w \in W, d
 \end{equation}
 
 \begin{equation}
-m_{wdsg} \leq \sum_{v \in V}r_{iv}\cdot qualavail_{i(mod_{10}(w-v+10)+1)dsE}, \;   g \in G, i \in I_G\{g\} \backslash \{39\}, w \in W, d \in D_5, s \in S_3
+m_{wdsg} \leq \sum_{v \in V}r_{iv}\cdot qualavail_{i\omega(v,w)dsE}, \;   g \in G, i \in I_G\{g\} \backslash \{39\}, w \in W, d \in D_5, s \in S_3
 \end{equation}
 
 \begin{equation}
@@ -296,11 +296,11 @@ W_{iwd} \geq \sum_{j \in J_d} x_{iwd4j}, \; i \in I, w \in W, d \in D_5
 \end{equation}
 
 \begin{equation}
-l_{iwd} \geq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i(mod_{10}(w-v+10)+1)d}) + (1-W_{iwd}) - 1, \; i \in I_{lib}, w \in W, d \in D_5
+l_{iwd} \geq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i\omega(v,w)d}) + (1-W_{iwd}) - 1, \; i \in I_{lib}, w \in W, d \in D_5
 \end{equation}
 
 \begin{equation}
-l_{iwd} \leq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i(mod_{10}(w-v+10)+1)d}), \; i \in I_{lib}, w \in W, d \in D_5
+l_{iwd} \leq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i\omega(v,w)d}), \; i \in I_{lib}, w \in W, d \in D_5
 \end{equation}
 
 \begin{equation}
@@ -308,11 +308,11 @@ l_{iwd} \leq 1-W_{iwd}, \; i \in I_{lib}, w \in W, d \in D_5
 \end{equation}
 
 \begin{equation}
-a_{iwd} \geq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i(mod_{10}(w-v+10)+1)d}) + (1-W_{iwd}) - 1, \; i \in I_{ass}, w \in W, d \in D_5
+a_{iwd} \geq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i\omega(v,w)d}) + (1-W_{iwd}) - 1, \; i \in I_{ass}, w \in W, d \in D_5
 \end{equation}
 
 \begin{equation}
-a_{iwd} \leq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i(mod_{10}(w-v+10)+1)d}), \; i \in I_{ass}, w \in W, d \in D_5
+a_{iwd} \leq \sum_{v \in V} (r_{iv} \cdot avail\_day_{i\omega(v,w)d}), \; i \in I_{ass}, w \in W, d \in D_5
 \end{equation}
 
 \begin{equation}
@@ -332,7 +332,7 @@ d_{iwds} \geq -(y_{iwds} - y_{i(w+5)ds}), \; i \in I, w \in W_5, d \in D_5, s \i
 \end{equation}
 
 \begin{equation}
-x_{iwdsj} \leq \sum_{v \in V} (r_{iv} \cdot qualavail_{i(mod_{10}(w-v+10)+1)dsj}), \; i \in I, w \in W, d \in D, s \in S_d, j \in J_d
+x_{iwdsj} \leq \sum_{v \in V} (r_{iv} \cdot qualavail_{i\omega(v,w)dsj}), \; i \in I, w \in W, d \in D, s \in S_d, j \in J_d
 \end{equation}
 
 \begin{equation}

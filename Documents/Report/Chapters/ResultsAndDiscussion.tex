@@ -1,9 +1,9 @@
 \section{Results} \label{section:results}
-In the following sections, results from testing the AMPL implementation and both heuristics will be presented. The parameter values used in the runs will also be given. 
+In the following sections, results from running the AMPL implementation and both heuristics will be presented. The parameter values used in the runs will also be given. 
 
 \subsection{AMPL implementation}\label{sec:ampl_res}
 
-Implementing the model in AMPL and solving it with CPLEX 12.5 gives the values displayed in Table \ref{tab:CPLEX_res}. The weights in Equation \ref{objfcn} and \ref{constr:s_min} were set to $L = 2$, $A = 1$, $M =100$ and $N=1$, thus making librarians twice as valuable as assistants and stand ins 100 times more valuable than no shift changes. 
+By implementing the given mathematical model in AMPL and solving it with CPLEX 12.5, provides the values displayed in Table \ref{tab:CPLEX_res}. The weights in Equation \ref{objfcn} and \ref{constr:s_min} were set to $L = 2$, $A = 1$, $M =100$ and $N=1$, thus making librarians twice as valuable as assistants and stand-ins 100 times more valuable than no shift changes. 
 
 \begin{table}[!h]
 \centering
@@ -20,7 +20,7 @@ Implementing the model in AMPL and solving it with CPLEX 12.5 gives the values d
 Only the stand-in part of the objective function is presented, since this value can be used as a benchmark in measuring the performance of the heuristics. The number of shift changes, which is the second part of the objective function in Equation \ref{objfcn}, is zero.
 
 \subsection{Week block scheduling approach}
-As most of the costs are correlated with each other some parameter tuning was required. The final result of the parameter tuning can be seen in Table \ref{tab:cost_parameters}. Their respective descriptions can be seen in Table \ref{tab:all_costs}. 
+As most of the costs are correlated with each other, some parameter tuning was required. The final result of the parameter tuning are shown in Table \ref{tab:cost_parameters}. Their respective descriptions can be seen in Table \ref{tab:all_costs}. 
 
 \begin{table}[!h]
 \centering
@@ -64,12 +64,12 @@ Stand\_in\_cost                     & 5     \\ \hline
 \end{tabular}
 \end{table}
 
-Worth noting is that these values are most certainly not the best possible, as they have mostly been assigned using intuition. However, a few relations were determined by either running some tests or using reasoning. An example is if $PL\_good\_cost > Demand\_PL\_good\_ass$ or $PL\_good\_cost > Demand\_PL\_good\_lib$. If one of those holds, all staff members that is able to be assigned another PL will be, leaving the library overstaffed with staff members assigned to PL. This is because the net of $-PL\_good\_cost + Demand\_PL\_good\_ass/lib$ will then be negative, meaning it is preferable to assign yet another PL to a staff member regardless of how many there already are. This leads to an overstaffed library on some days, and lack of staff members on other days.
+Worth noting is that these values are most certainly not the best possible, as they have mostly been assigned using intuition. However, a few relations were determined by either running tests or using reasoning. An example is if $PL\_good\_cost > Demand\_PL\_good\_ass$ or $PL\_good\_cost > Demand\_PL\_good\_lib$. If one of those holds, all staff members that is able to be assigned another PL, without violating the individual PL assigment constraint, will be. Thereby, leaving the library overstaffed with staff members assigned to PL. The reason is because the net of $-PL\_good\_cost + Demand\_PL\_good\_ass/lib$ will be negative, meaning it is preferable to assign yet another PL to a staff member, regardless of how many there already are assigned. This leads to an overstaffed library on some days, and lack of staff members on other days.
 
-Table \ref{successful_iter} shows the success rate of finding a solution during a script execution. A run is considered to fail if no feasible solution is found during the final phase. This script execution is using the cost parameters shown in Table \ref{tab:cost_parameters}. 
+Table \ref{successful_iter} shows the success rate of finding a solution during a script execution. A run is considered to fail, if no feasible solution is found during the final phase. This script execution is using the cost parameters shown in Table \ref{tab:cost_parameters}. 
 \begin{table}[!h]
 \centering
-\caption{Number of successful runs}
+\caption{Number of successful runs. A failed run is when no feasible solution is found during the final phase.}
 \label{successful_iter}
 \begin{tabular}{|c|c|}
 \hline
@@ -79,7 +79,7 @@ Runs (total) & 638      \\ \hline
 \end{tabular}
 \end{table}
 
-Table \ref{tab:stand_in_spread} shows statistics of how many stand-ins were found after 420 successful runs. 
+Table \ref{tab:stand_in_spread} shows statistics of how many stand-ins were found after 420 successful runs. In case "No stand-ins" are found after a run, then a feasible solution is found, however, there are no stand-ins on the worst day (or days). The results "1 assistant" or "1 librarian" mean that one stand-in was found at best on the worst day (or days).
 \begin{table}[!h]
 \centering
 \caption{Number of stand-ins found in 420 successful runs.}
@@ -94,9 +94,9 @@ No stand-ins    & 351                      \\ \hline
 \end{tabular}
 \end{table}
 
-Figure \ref{fig:feasibleRerun} shows a plot of the objective function value after destroy and repair iterations. When the value on the y-axis reaches zero, a feasible solution is found.
+Figure \ref{fig:feasibleRerun} shows a plot of the objective function value after destroy and repair iterations. When the value on the y-axis reaches zero, a feasible solution is found. Whenever an iteration is below the final phase boundary, the entering criterion is checked. If the final phase is entered, the few existing demand violations will be taken care of, one by one, by assigning the stand-ins where the violations occur. The final phase boundary is set as $1\cdot10^4$.
 
-Every time the value skyrockets, a solution has been discarded in the final phase, meaning empty blocks are assigned to all staff members and once again entering the destroy and repair loop. Destroy and repair iterations are being executed until a solution is likely to be found, that is, there are enough stand-ins available to take care of the demand violations. 
+Every time the value skyrockets, a solution has been discarded in the final phase. Empty blocks are, thereafter, assigned to all staff members and the run is once again entering the destroy and repair loop. Destroy and repair iterations are being executed until a solution is likely to be found, that is, there are enough stand-ins available to take care of the demand violations. 
 
 %\includegraphics[scale = 0.3, width = 15cm]{Rplot}
 %\includegraphics[scale = 0.3, width = 15cm]{1Plot}
@@ -104,13 +104,13 @@ Every time the value skyrockets, a solution has been discarded in the final phas
 \centering
 %\includegraphics[scale = 0.3]{Chapters/ImagesClaes/Rfeasible.png}
 \includegraphics[scale = 0.8]{Chapters/ImagesClaes/1phase1iter1ReRun.png}
-\caption{Plot of the objective function value after destroy and repair iterations, one time without enough stand-ins when trying to enter the final phase.}
+\caption{Plot of the objective function value after destroy and repair iterations; one time without enough stand-ins, when trying to enter the final phase.}
 \label{fig:feasibleRerun}
 \end{figure}
 
 As seen in Figure \ref{fig:feasibleRerun} there are not enough stand-ins one time during the run. What happens is that the objective function gets below the final phase boundary, but does not meet the stand-in criterion and, therefore, destroys every workers' schedule. 
 
-Figure \ref{fig:feasibleNoRerun} illustrates a run when there are enough stand-ins to enter the final phase. Whenever an iteration is below the final phase boundary, the entering criterion is checked. If the final phase is entered, the few demand violations will be taken care of, one by one, by assigning the stand-ins where the violations occur. 
+Figure \ref{fig:feasibleNoRerun} illustrates a run when there are enough stand-ins to enter the final phase.
 
 \begin{figure}[!h]
 	\centering
@@ -119,7 +119,7 @@ Figure \ref{fig:feasibleNoRerun} illustrates a run when there are enough stand-i
 	\label{fig:feasibleNoRerun}
 \end{figure}
 
-To illustrate why the solution gets worse after a destroy and repair iteration; consider the case when two librarians with the same rotation are being repaired, where one can only work at HB during weekends and the other one can work at either HB or the Desk task. If the more versatile librarian is repaired first and being assigned to HB due to the cost parameters, then it will be impossible for the second librarian to be assigned any weekend tasks. This results in a high cost contribution to the objective function.
+To illustrate why the solution gets worse after a destroy and repair iteration; consider the case when two librarians with the same rotation are being repaired, where one only can work at HB during weekends and the other one can work at either HB or with Desk tasks. If the more versatile librarian is repaired first and being assigned to HB, due to the cost parameters, then it will be impossible for the second librarian to be assigned any weekend tasks. This results in a high cost contribution to the objective function value.
 
 \subsection{Task distribution approach}\label{sec:task_dist_res}
 
@@ -247,22 +247,22 @@ In Figure \ref{fig:obj_fun_comp} and Figure \ref{fig:obj_fun_comp_aver}, the thr
 Attempts were made to correlating the min components of the weekend objective function value. However, the results were fluctuating between different tests so no clear correlations could be identified. This suggests that they are measuring three independent aspects.
 
 \section{Discussion}
-In this section, the different results presented in Section \ref{section:results} will be discussed. Pros and cons for both methods are given so that they can be more easily compared.
+In this section, the heuristic results, presented in Section \ref{section:results}, will be discussed. Pros and cons for both methods are given, so that they can be more easily compared.
 
 
 \subsection{Week block scheduling approach}
-Table \ref{tab:pros_cons_weekly_scheduling} lists pros and cons with the implemented week block scheduling approach. Some pros and cons were considered before the heuristic was chosen. Mainly the con concerning the exponential growth of week blocks was taken into consideration, and an estimate of the upper limit of the problem size was done.
+Table \ref{tab:pros_cons_weekly_scheduling} lists pros and cons with the implemented week block scheduling approach. Some pros and cons were considered before this heuristic was chosen. Mainly, the con concerning the exponential growth of week blocks was taken into consideration, and an estimate of the upper limit of the problem size was done.
 
 The pro regarding the same amount of week blocks was taken into consideration, as the heuristic was thought of having firstly, a block construction phase and secondly, an assignment phase. However, the most significant pro of this approach is that many of the constraints are already met, implicitly, when the blocks are created. Constraints like maximum of one task per day, one evening per week, one PL per week, two shifts at the same hour per week and more are already taken care of. 
 
-Cons like rotations, solution time and costs are no major issues as they can be avoided by a few smarter implementations. For instance, rotations can be improved by assigning a chosen value whenever a staff member is available as stand-in on a day. From the sum of those values an even distribution of possible stand-ins can be acquired by, for instance, always letting the difference between the lowest and the highest sum of stand-ins, through the days, be as small as possible. This improvement is done instead of randomly generating the new rotations in the destroy and repair iteration. 
+Cons like rotations, solution time and costs are no major issues, as they can be avoided by a few smarter implementations. For instance, rotations can be improved by assigning a chosen value whenever a staff member is available as stand-in on a day. From the sum of those values an even distribution of possible stand-ins can be acquired by, for instance, always letting the difference between the lowest and the highest sum of stand-ins, through the days, be as small as possible. This improvement should be done instead of randomly generating the new rotations in the destroy and repair iteration. 
 
 The improvement mentioned above should also implicitly decrease the solution time, as less iterations would be required to find a feasible solution.
 
-In contrast to the cons mentioned above, a major issue is to always be able to create a pool of possible week block appearances regardless of the problem size. Just by adding meetings and the assignment of the library on wheels tasks would make the number of possible week block appearances grow considerably.
+In contrast to the cons mentioned above, a major issue is to always be able to create a pool of possible week block appearances, regardless of the problem size. Just by adding meetings and the assignment of the library on wheels tasks would make the number of possible week block appearances grow considerably.
 
 \begin{table}[H]
-\caption{Pros and cons with the implemented week block scheduling approach}
+\caption{Pros and cons with the implemented week block scheduling approach.}
 \label{tab:pros_cons_weekly_scheduling}
 \begin{tabularx}{\linewidth}{>{\parskip1ex}X@{\kern4\tabcolsep}>{\parskip1ex}X}
 \toprule
@@ -272,17 +272,17 @@ In contrast to the cons mentioned above, a major issue is to always be able to c
 \\\cmidrule(r{3\tabcolsep}){1-1}\cmidrule(l{-\tabcolsep}){2-2}
 
 %% PROS, seperated by empty line or \par
-Many constraints are already met, implicitly, when the blocks are created.
+Many constraints are already met, implicitly, when the blocks are created. \par
 The same number of week block appearances will exist for five and ten weeks.\par
 Quick iterations when destroying and repairing.\par
 
 &
 
 %% CONS, seperated by empty line or \par
-Rotations need to be assigned in a systematic way in order to achieve reasonable results regarding lowest number of stand-ins through the days.\par
-The number of unique block appearances grows exponentially in case more task types are added, such as meetings.\par
-The solution time can vary considerably as several random generators have been used.\par
-More cost parameters are needed in this approach (some correlated), where each of them affects the solution procedure.
+Rotations need to be assigned in a systematic way in order to achieve reasonable results, regarding lowest number of stand-ins through the days.\par
+The number of unique week block appearances grows exponentially in case more task types are added, such as meetings.\par
+The solution time can vary considerably, as several random number generators have been used.\par
+More cost parameters are needed for this heuristic, where every one of them affect the solution procedure.
 
 \\\bottomrule
 \end{tabularx}
