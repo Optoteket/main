@@ -273,7 +273,7 @@ http://urn.kb.se/resolve?urn=urn:nbn:se:liu:diva-77777
 
 \chapter*{Acknowledgements\index{Acknowledgements}}
 
-We would like to express our deepest gratitude to our supervisor Torbjörn Larsson at Linköping University, who has helped us find our way in moments of uncertainty and who has been guiding us through the whole project. Thank you for the time and effort you have spent on our thesis. We would also like to thank Elina Rönnberg, who has provided encouraging words and valuable insights throughout the project.
+We would like to express our deepest gratitude to our supervisor, Torbjörn Larsson, at Linköping University, who has helped us find our way in moments of uncertainty and who has been guiding us through the whole project. Thank you for the time and effort you have spent on our thesis. We would also like to thank our examiner, Elina Rönnberg, who has provided encouraging words and valuable insights throughout the project.
 
 Furthermore, we would like to thank Elisabeth Cserhalmi and Ingrid Loeld  Rasch at Norrköpings Stadsbibliotek for providing us with an interesting thesis topic and for answering all our questions many times over.
 
@@ -286,23 +286,27 @@ Lastly, we would like to thank our families and loved ones, who have supported u
 % optional I guess
 \chapter*{Nomenclature\index{Nomenclature}}
 
-Most of the reoccurring terms and abbreviations are described here.
+The most reoccurring terms and abbreviations are described here.
 
 %----------------NEW_SECTION--------------------------------------------------
 \section*{Optimization terms\index{Optimization terms}}
 \begin{tabular}{lp{10cm}}
 
 Heuristic & An algorithm designed to find feasible, but not necessarily optimal, solutions. \\
-
+Large neighbourhood search & Optimization method which alternately destroys and respairs the solution in order to move through the solution space. \\
+Simulated annealing & Optimization method which allows for the acceptance of deteriorating solutions with a certain probability. The probability decreases with time. \\
 %Rostering & \\
 %Matheuristic & Text\\
 \end{tabular}
 
-\section*{Library terms\index{Library terms}}
+\section*{Library related terms\index{Library terms}}
 \begin{tabular}{lp{10cm}}
 
 Fetch list & The library task of collecting books from shelves, to be delivered elsewhere. \\
 Library on wheels & The task of driving a library bus with books to remote areas of town. \\
+Outer task & The tasks which are directed towards the visitors for which there is a need for scheduling. \\
+Inner task & The tasks which are not outer tasks are inner tasks. These include less visible work such as answering emails. \\
+Week rest & The period of rest granted to a worker after weekend work. This normally includes one or two extra days off. \\
 %Rostering & \\
 %Matheuristic & Text\\
 \end{tabular}
@@ -320,6 +324,8 @@ Library on wheels & The task of driving a library bus with books to remote areas
 \section*{Abbreviations\index{Abbreviations}}
 
 \begin{tabular}{ll}
+LNS		& Large neighbourhood search \\
+SA		& Simulated annealing \\
 Exp		& Service counter (sv. expeditionsdisken) \\
 Info	& Information counter (sv. informationsdisken)\\
 PL		& Fetch list (sv. plocklistan)\\
