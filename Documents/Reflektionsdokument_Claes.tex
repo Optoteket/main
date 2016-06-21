@@ -1,0 +1,96 @@
+\documentclass{article}
+\pagestyle{headings}
+
+% some of the packages used are
+%\usepackage[utf8]{inputenc}
+\usepackage{latexsym}
+\usepackage{eepic}
+\usepackage{makeidx}
+\usepackage[dvips]{graphicx}
+\usepackage[utf8]{inputenc}  %för ä ö å ?
+\usepackage[english]{babel}
+%\usepackage{times}
+\usepackage{amssymb}
+\usepackage{fancybox} 
+\usepackage{textcomp}
+\usepackage{float}
+\usepackage{xcolor,colortbl}
+\usepackage{tabularx}
+\usepackage{enumitem}
+
+\newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
+\definecolor{Gray}{gray}{0.85}
+\definecolor{Orange}{rgb}{1,0.88,0}
+\definecolor{LightCyan}{rgb}{0.7,0.9,0.9}
+\definecolor{bluegray}{rgb}{0.4, 0.6, 0.8}
+\definecolor{buff}{rgb}{0.94, 0.86, 0.51}
+\definecolor{corn}{rgb}{0.98, 0.93, 0.36}
+\definecolor{coralred}{rgb}{1.0, 0.25, 0.25}
+\definecolor{coral}{rgb}{1.0, 0.5, 0.31}
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\newcolumntype{a}{>{\columncolor{Gray}}c}
+\newcolumntype{b}{>{\columncolor{white}}c}
+\newcolumntype{g}{>{\columncolor{corn}}c}
+\newcommand{\colcell}{\cellcolor{bluegray}}
+\newcommand{\colcelltwo}{\cellcolor{coralred}}
+\newcommand{\colcellthree}{\cellcolor{applegreen}}
+
+% the fancy header/footer
+% consult http://research.cmis.csiro.au/gjw/tex/docs/fancyhdr.pdf
+% or some other fancy header documenatation for more info
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+
+
+\usepackage{blindtext}
+\usepackage[utf8]{inputenc}
+ 
+\title{Reflektionsdokument}
+\author{Studerande: Claes Arvidson \\ Personnummmer: 921020-1316}
+\date{\today}
+\begin{document}
+ 
+\maketitle
+
+ 
+\section*{Reflektion över hur examensarbetet relaterar till de mål som finns för programmet}
+Detta exjobb, inom optimeringslära vid Matematiska institutionen på LiU, har bidragit till en ökad matematisk förståelse genom att både ge breda och djupa kunskaper inom såväl optimering som programmering. Problemlösning har ständigt varit ett moment som tränats då det krävts åtskilliga timmars tankeverksamhet för att nå de slutgiltiga resultaten. De problem som uppstått har varit av komplex natur och i vissa fall har handledare krävts för att bolla idéer med angående implementationen. Man har fått använda sunt förnuft och tidigare erfarenheter under denna period, då det handlat om ett sådant praktiskt problem som schemaläggning av personal.
+
+Examensarbeten i par kräver allt i från kommunikation, ledarskap och sunt förnuft för att kunna ta viktiga beslut i projektets alla skeden.
+
+Då detta varit ett examensarbete där mycket nära relaterande forskning inte existerar har det lett till utvecklande av (på något vis) ny teknik inom tekniska och affärsmässiga synvinklar. Forskning finns, men något program som schemalägger personal med dessa krav existerar inte. Därmed finns det en möjlighet för försäljning av programvara, dock inget som är av intresse av någon av parterna i detta skede. 
+
+
+
+ 
+
+\section*{Reflektion över eget arbete}
+Utöver tekniska kunskaper som krävts har även ens ledarroll utvecklats, då examensarbetet skett i par. Det ledde till att beslut ständigt har behövts tagits, angående vilken riktigt projektet ska gå i och i vilken ordning uppgifterna ska utföras i. Dessutom har sunt förnuft använts under projektets skede, då vi umgåtts med varandra under åtskilliga timmar. Vi har behövt hålla sams, även om det uppstått fall då vi varit oense om viktiga beslut.
+
+Rapporten skrevs på engelska, vilket fått mig att utvecklas, i största grad, på att skriva formell engelska.
+
+I och med ett väldigt nära samarbete fick jag ständigt träna min kommunikation när frågor uppstår. I de fallen har jag både uttryckt mig formellt som informellt då jag kommunicerat med parter såsom min samarbetspartner, handledare, examinator samt bibliotekspersonalen. Jag har därmed fått lägga kommunikationsnivån olika, då till exempel, bibliotekarierna inte är av samma tekniska natur som handledaren eller examinatorn är.
+
+Det har varit så otroligt lärorikt att få programmera i C++ som varit ett språk jag haft lite problem med i tidigare kurser. Trots att det kändes rätt jobbigt när vi inledde den programmeringen, så släppte det ett tag in då man kände att man fick ut så mycket av det. Mot slutet kändes det till och med roligt att få programmera. Det var nästan den största lärdomen från examensarbetet; att få känna att man lär sig nya saker som känts utmanande tidigare.
+
+Jag har alltid känt mig motiverad att bli klar med examensarbetet i tid, vilket gjort att jag tagit mig till skolan varje dag och fortsatt jobba vidare. Det har även hjälpt att vara två, då man kan pusha, peppa och stötta varandra att hålla motivationen och arbetsmoralen. 
+
+
+
+\subsection*{Planering}
+Planeringen har skett på många olika plan. Den har skett både individuellt och tillsammans. Examinatorn och handledaren har alltid funnits där för att ge tips på utförande och hur de tänkt sig att planeringen bör se ut. Dock har det mesta skett av min och min samarbetspartner. Examinatorn och handledaren har mer pekat oss i rätt riktning under projektets förfarande.
+
+Under ett visst skede var vi dock i stort behov av ledsagande då vi märkte att tiden skulle bli knapp. Det gjorde att vi förskjöt deadlinen av examensarbetet någon vecka, vilket har gjort att vi precis hunnit nå tillfredsställande resultat och kunnat skriva en välskriven rapport. 
+\subsection*{Genomförande och rapportskrivning}
+Genomförandet av rapporten har skett i stor blandning av individuellt och gemensamt arbete. Till en början implementerade vi en modell tillsammans. Därefter skulle vi, separat, komma på och utveckla en helt egen metod att lösa problemet på.
+
+Rapportskrivningen skedde likt genomförandet. Vissa delar tillsammans och vissa delar individuellt. Vi skrev det vi kunde tillsammans, men när det kom till de metoderna vi utvecklat individuellt skrev vi dessa separat. Dock har vi alltid kunnat korrekturläsa och korrigera små missar på varandras delar, vilket tyder på (enligt mig) ett bra samarbete.
+
+\section*{Reflektion över det ämnesinnehåll, kunskaper, färdigheter och förhållningssätt som var till mest nytta för examensarbetets genomförande}
+Väldigt många tekniska utmaningar har uppstått längs vägen. Man har fått tagit till sunt förnuft, gamla kunskaper och utvecklat nya dagligen. Programmeringserfarenheterna man lärt sig under åren har varit väldigt givande, samt optimeringskunskaperna har varit av största vikt.
+
+Problemlösningsförmågan, som ständigt utvecklats under de här fem åren som teknisk fysik-student, har även varit av stor vikt då helt egna modeller har utvecklats för att lösa schemaläggningsproblemet. I mindre grad har även tidigare arbetserfarenheter hjälp, då man kunnat relatera till hur man själv känt och vad man föredragit under sin tid som anställd. 
+\end{document}
+
