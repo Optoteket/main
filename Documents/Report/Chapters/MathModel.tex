@@ -117,11 +117,11 @@ To model the problem it is of relevance to divide many of the constraints into w
 \subsection{Demand and assignment constraints} \label{section:demand_ass_constraints}
 The most crucial constraint is to ensure that the demand of staff members is met each day. This can be modelled as
 \begin{equation} \label{eq:demand}
-\sum_{i \in I} x_{iwdsj} = demand_{wdsj}, \;   w\in W,d\in D,s\in S,j\in J_d.
+\sum_{i \in I} x_{iwdsj} = demand_{wdsj}, \;   w\in W,d\in D,s\in S,j\in J_d
 \end{equation}
 Here, $demand_{wdsj}$ is an integer representing the number of staff members required in week \textit{w}, day \textit{d}, shift \textit{s} for a task \textit{j}.
 
-The following constraint says whether or not a staff member is assigned a task during a weekday. Evening shifts and Library on Wheels tasks are excluded.
+The following constraint says whether or not a staff member is assigned a task during a weekday. Evening shifts and library on wheels tasks are excluded.
 \begin{equation} \label{constr:y_assign}
 y_{iwds} = \sum_{j \in J_d\backslash \{L\}} x_{iwdsj}, \;   i \in I, w \in W, d \in D_5, s \in S_3
 \end{equation}
@@ -131,7 +131,7 @@ To ensure that no staff members are assigned more than one task the following co
 \begin{equation} \label{constr:one_task_constraint}
 \sum_{s\in S}\sum_{j\in J_d} x_{iwdsj} \leq 1, \;   i\in I, w \in W, d\in D
 \end{equation}
-However, if we allow a person to have two shifts at the Library on Wheels on a day, Equation \ref{constr:one_task_constraint} has to be slightly modified. This is left out of this chapter, as it is allowed in the complete model.
+However, if we allow a person to have two shifts at the library on wheels on a day, Equation \ref{constr:one_task_constraint} has to be slightly modified. This is left out of this chapter, as it is allowed in the complete model.
 
 It is preferred to allow only one PL per week and a maximum of three PL per ten weeks. These are easily modelled with the following constraints.
 \begin{equation} \label{constr:one_PL}
@@ -146,7 +146,7 @@ Another preference is to have varying work hours when it comes to the assignment
 \begin{equation} \label{constr:various_start_times}
 \sum_{d \in D_5} y_{iwds} \leq 2, \;   i\in I, w \in W, s \in S_3
 \end{equation}
-Equation \ref{constr:various_start_times} allows a staff member to have at most two tasks starting at the same hour every week. Worth noting is that Library on Wheels is disregarded in this constraint as the variable $y_{iwds}$ is used; see Equation \ref{constr:y_assign} for the definition.
+Equation \ref{constr:various_start_times} allows a staff member to have at most two tasks starting at the same hour every week. Worth noting is that library on wheels is disregarded in this constraint as the variable $y_{iwds}$ is used; see Equation \ref{constr:y_assign} for the definition.
 
 It is desirable to avoid assigning too many tasks to a staff member. The reason for this is, as mentioned previously, to let the staff member have some time to allot for inner services during weekdays. The equation below models this preference.
 \begin{equation} \label{constr:four_weekly_shifts_at_most}
@@ -224,7 +224,7 @@ Friday evening is also included in an extension to working Saturday and Sunday, 
 \begin{equation} \label{constr:friday_added}
 \sum_{j \in J \backslash \{L\}}x_{iw54j} = f_{iw}, \;   i \in I, w \in W
 \end{equation}
-Here, "L" refers to the task type Library on Wheels. The variable $f_{iw}$ is, as mentioned in the variable declaration, equal to one if and only if a staff member is working weekend as well as not being assigned to HB.
+Here, "L" refers to the task type library on wheels. The variable $f_{iw}$ is, as mentioned in the variable declaration, equal to one if and only if a staff member is working weekend as well as not being assigned to HB.
 
 It is of interest to implement a constraint to prevent staff members from being assigned to HB more than once every ten weeks in order to avoid unfairness. Why this is preferable is described in Section \ref{section:library_tasks}. This constraint can be modelled as.
 \begin{equation} \label{constr:max_one_hb}
@@ -232,7 +232,7 @@ It is of interest to implement a constraint to prevent staff members from being 
 \end{equation}
 Here, "B" refers to HB. Equation \ref{constr:same_tasks} and \ref{constr:max_one_hb} ensure both that a staff member only can be assigned to HB two days per ten weeks, and that those days are consecutive. The exception is in case a staff member only works in HB, which is disregarded in this simplfied model.
 
-\subsection{Definitional constraints} \label{section:obj_fcn_constraints}
+\subsection{Objective function constraints} \label{section:obj_fcn_constraints}
 The variable $\delta$ in the objective function, Equation \ref{objfcn}, is defined by the following equation.
 \begin{equation} \label{constr:delta}
 \delta = \sum_{i \in I} \sum_{w \in W_5} \sum_{d \in D_5} \sum_{s \in S_3} d_{iwds}
