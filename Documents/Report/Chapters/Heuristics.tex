@@ -120,7 +120,7 @@ Availability data & Even and odd week staff members have availability at each sh
 \end{tabular}
 \end{table}
 
-Both heuristic implementations are based on a Large Neighbourhood Search (LNS) framework. This method, which is classified as a metaheuristic, works by alternatingly destroying and repairing parts of solutions, in order to move through the solution space. Typically, the parts of the solution that are considered poor are destroyed. How much that is destroyed is regulated by the destroy degree. The repair function rebuilds the destroyed part of the solution using some greedy heuristic. The LNS framework is described more in detail by \citet{pisinger_2010}. 
+Both heuristic implementations are based on a Large Neighbourhood Search (LNS) framework. This method, which is classified as a metaheuristic, works by alternately destroying and repairing parts of solutions, in order to move through the solution space. Typically, the parts of the solution that are considered poor are destroyed. How much that is destroyed is regulated by the destroy degree. The repair function rebuilds the destroyed part of the solution using some greedy heuristic. The LNS framework is described more in detail by \citet{pisinger_2010}. 
 
 The second heuristic also uses Simulated Anneahling (SA), which allows the algorithm to accept solutions which are poorer than the current one. This makes it possible for the search to move out of a local optima. A variable called a "temperature" is used in order to decide the probability of accepting a poorer solution. Usually, this temperature decreases over time, and thus the probability of accepting a poorer solution also decreases. The method is described more thoroughly by \citet{pisinger_2010}.
 
