@@ -1,13 +1,11 @@
 %The two heuristical approaches
-Three different approaches to the problem were studied. The first part of the thesis was to implement the problem in AMPL, according to the model described in Chapter \ref{chap:mathmod}, and the supplementary details given in Appendix \ref{appendix:mathmod}. Running this model in CPLEX gives an optimal solution to the problem.
-
-The other two approaches are classified as heuristics. These are implemented in order to solve the problem without using expensive software, such as CPLEX, although they do not guarantee that the optimal solution is found. 
+Three different approaches to the problem were studied. The first part of the thesis was to implement the problem in AMPL, according to the model described in Chapter \ref{chap:mathmod}, and the supplementary details given in Appendix \ref{appendix:mathmod}. Running this model in CPLEX gives an optimal solution to the problem. The other two approaches are classified as heuristics. These are implemented in order to solve the problem without using expensive software, such as CPLEX, although they do not guarantee that the optimal solution is found. 
 
 The first heuristic is a week block scheduling heuristic, which creates a solution from distributing complete week blocks to staff members. This heuristic first creates a large pool of unique week appearances. In this pool, there is one block for every possible combination of tasks for any of the staff members. After the pool is created, each staff member is assigned one block from this pool for each scheduled week.
 
 In the second heuristic, weekends are first assigned to staff members, creating a weekend constellation that is aiming for an even distribution of stand-ins. After this, the algorithm enters a second phase, where weekday tasks are allocated according to a greedy heuristic.
 
-In order to implement the heuristics, some of the mathematical model's constraints are softened. Softened constraints are constraints that are considered as hard in the original model, but are placed in the objective function in the new model. In the new model, violating a softened constraint gives a penalty cost. Having no penalty cost is equivalent to having a feasible solution. This process of constraint relaxation is illustrated in Figure \ref{fig:AMPL_vs_heur}. 
+In order to implement the heuristics, some of the mathematical model's constraints are softened. Softened constraints are constraints that are considered as hard in the original model, but are placed in the objective function in the new model. In the new model, violating a softened constraint gives a penalty cost and having no such penalty cost is equivalent to having a feasible solution. This process of constraint softening is illustrated in Figure \ref{fig:AMPL_vs_heur}. 
 
 % Define block styles
 \tikzstyle{block} = [rectangle, draw=none, fill=white,
@@ -55,9 +53,9 @@ In order to implement the heuristics, some of the mathematical model's constrain
 
 Due to a lack of time, the two heuristics were implemented using a simplified model, where some constraints from the original model have been relaxed or removed. How the heuristics differ from the original model is described in Tables \ref{tab:weekly_task_constraints} and \ref{tab:task_constraints}, together with the soft constraints. Although the problem is simplified in both heuristics, its most fundamental structure is preserved, since the most significant degree of freedom in the problem is given by the weekend allocation. The weekend allocation affects where the staff members have their week rest, which in turn affects the distribution of stand-ins in the schedule. Therefore, the main focus of both heuristics is the weekend allocation.
 
-Relaxed constraints are constraints which have been slightly altered from the original model. In both heuristic implementations, these are identical. The relaxed constraints concern the even and odd week availability issue. The model becomes independent of the even and odd week constraints by reducing the BokB schedule to a fixed schedule, and removing differences in the odd and even week availability for the staff members in question. In addition, solving a five week scheduling problem rather than a ten week problem simplifies the problem further.
+Relaxed constraints are constraints which have been slightly altered from the original model. In both heuristic implementations, these are identical. The relaxed constraints concern the even and odd week availability issue. In the heuristics, the model becomes independent of the even and odd week constraints by reducing the BokB schedule to a fixed schedule, and removing differences in the odd and even week availability for the staff members in question. In addition, solving a five week scheduling problem rather than a ten week problem simplifies the problem further.
 
-As implementation time was lacking, meetings were removed from the model in the heuristic implementations. This was a natural choice, as meetings are not currently in the library's schedule. It is rather an extra feature added to the mathematical model upon the library's request.
+As implementation time was lacking, meetings were removed from the model in the heuristic implementations. This was a natural choice, as meetings are not currently in the library's schedule and since an extra feature added to the mathematical model upon the library's request.
 
 \begin{table}[!h]
 \centering
@@ -120,7 +118,7 @@ Availability data & Even and odd week staff members have availability at each sh
 \end{tabular}
 \end{table}
 
-Both heuristic implementations are based on a Large Neighbourhood Search (LNS) framework. This method, which is classified as a metaheuristic, works by alternately destroying and repairing parts of solutions, in order to move through the solution space. Typically, the parts of the solution that are considered poor are destroyed. How much that is destroyed is regulated by the destroy degree. The repair function rebuilds the destroyed part of the solution using some greedy heuristic. The LNS framework is described more in detail by \citet{pisinger_2010}. 
+Both heuristic implementations are based on a Large Neighbourhood Search (LNS) framework. This method, which is classified as a metaheuristic, works by alternately destroying and repairing parts of solutions, in order to move through the solution space. Typically, the parts of the solution that are considered poor are destroyed. How much that is destroyed is regulated by the destroy degree. The repair function rebuilds the destroyed part of the solution using some type of greedy heuristic. The LNS method is described more in detail by \citet{pisinger_2010}. 
 
 The second heuristic also uses Simulated Anneahling (SA), which allows the algorithm to accept solutions which are poorer than the current one. This makes it possible for the search to move out of a local optima. A variable called a "temperature" is used in order to decide the probability of accepting a poorer solution. Usually, this temperature decreases over time, and thus the probability of accepting a poorer solution also decreases. The method is described more thoroughly by \citet{pisinger_2010}.
 
@@ -662,7 +660,7 @@ The second heuristic approach tested allocates individual tasks to staff members
 The primary heuristic method used in this approach is a large neighbourhood search in combination with a simulated annealing accept function. Destroying and repairing the solution, which is the main feature of LNS, leads the search towards better solutions in the local vicinity of the current solution. The SA function, on the other hand, leads the search out of the current neighbourhood by accepting poorer solutions.
 
 \subsection{Costs} \label{subsection:tasks_cost}
-The search algorithm is guided using penalty costs, both for staff member schedules and the whole library schedule. Each staff member has a number of cost contributions, as displayed in Table \ref{tab:staff member_costs}. Each of these costs is caused by a badly allocated task, resulting in an infeasible schedule or unused stand-in potential. The costs have different weights, as illustrated in the table. How the weights should be set is discussed in Chapter \ref{chap:res}. 
+The search algorithm is guided using penalty costs, both for staff member schedules and for the whole library schedule. Each staff member has a number of cost contributions, as displayed in Table \ref{tab:staff member_costs}. Each of these costs is caused by a badly allocated task, resulting in an infeasible schedule or unused stand-in potential. The costs have different weights, as illustrated in the table. How the weights should be set is discussed in Chapter \ref{chap:res}. 
 
 For the library schedule, costs are weighed together in three different ways. These are referred to as the three library objective functions, as is illustrated in Table \ref{tab:lib_costs}. These costs partly overlap with the individual staff member costs.
 
@@ -717,16 +715,16 @@ $C_{SI\_m}$ & (No weight) & Cost of day with minimum number of stand-ins. \\ \hl
 \end{tabular}
 \end{table}
 
-The weekend objective function, as referred to in the table, is associated with the weekend allocation phase of the problem. There are three types of costs in this objective function, each measuring a certain aspect of a weekend schedule. Since we want to increase the number of stand-ins at the most critical days, the worst shift or day with respect to these aspects is to be maximized. This is referred to as the min cost. Also, the average of each aspect is considered, in order to distinguish solutions for which the worst shift or day are identical. The cost of this objective function are calculated using the formula
+The weekend objective function, as referred to in the table, is associated with the weekend allocation phase of the problem. There are three types of costs in this objective function, each measuring a certain aspect of a weekend schedule. Since we want to increase the number of stand-ins at the most critical days, the worst shift or day with respect to these aspects is to be maximized. This is referred to as the min cost. Also, the average of each aspect is considered, in order to distinguish between solutions for which the worst shift or day are identical. These costs are calculated using the formula
 
 \begin{equation}
 \label{eq:wend_cost_calc}
 C_{type} = W_{lib}*num\_of\_lib + W_{ass}*num\_of\_ass.
 \end{equation}
 
-The weights $W_{lib}$ and $W_{ass}$ are constants used in all weekend objective function costs. Typically $W_{lib}$ is larger than $W_{ass}$ since librarians can perform more tasks. The weekend objective function becomes the sum of the weighted costs displayed in Table \ref{tab:lib_costs}. 
+The weights $W_{lib}$ and $W_{ass}$ are constants used in all weekend objective function costs. Typically $W_{lib}$ is larger than $W_{ass}$ since librarians can perform more tasks than assistants. The weekend objective function becomes the weighted sum of the costs displayed in Table \ref{tab:lib_costs}. 
 
-After a certain number of iteration the weekend phase is finished and the weekday allocation phase is entered. Here, the staff member objective function is used to identify infeasibilities in the staff member schedules, and it is simply a sum of the staff member costs for all staff members. When this cost is zero, the schedule is feasible and the weekday objective function value is calculated. This objective function contains the minimum stand-in cost, which is calculated in the same way as in the weekend objective function. The weekday objective function corresponds to the objective function in the mathematical model in Chapter \ref{chap:mathmod} and is to be maximized.
+After a certain number of iteration the weekend phase is finished and the weekday allocation phase is entered. Here, the staff member objective function is used to identify infeasibilities in the staff member schedules, and is simply a sum of the staff member costs for all staff members. When this cost is zero, the schedule is feasible and the weekday objective function value is calculated. This objective function contains the minimum stand-in cost, which is calculated in the same way as in the weekend objective function. The weekday objective function corresponds to the objective function in the mathematical model in Chapter \ref{chap:mathmod} and is to be maximized.
 
 \subsection{Weekend phase}
 
@@ -741,7 +739,7 @@ After a certain number of iteration the weekend phase is finished and the weekda
 
 \begin{figure}[h]
 \centering
-\caption{A flow chart over the weekend allocation phase.}
+\caption{A flow chart over the weekend phase.}
 \label{fig:weekend_alg}
 \scalebox{0.6}{
 \begin{tikzpicture}[node distance = 2cm, auto]
@@ -899,8 +897,9 @@ In order to get a better estimate of the number of available staff members durin
 
 \begin{figure}[!h]
 \centering
-\caption{A flow chart for the weekday task allocation phase.}
+\caption{A flow chart for the weekday phase.}
 \label{fig:weekday_alg}
+\scalebox{0.9}{
 \begin{tikzpicture}[node distance = 2cm , auto, every node/.style={scale=0.8}]
     %Right column
     \node [scale=0.01,node distance=0cm] (invinit) {};
@@ -969,11 +968,12 @@ In order to get a better estimate of the number of available staff members durin
     \node at (-8,-15) [above=4mm, right=2mm] {\textsc{weeday task allocation loop}};
     \draw [color=gray!70,thick](-8,-15) rectangle (4,-0.5);
 
-\end{tikzpicture}
+\end{tikzpicture} %
+}
 \end{figure}
 
 
-When entering the weekday phase, all weekends, evenings and BokB tasks are already allocated. In the weekday phase, the remaining tasks, referred to as "weekday" tasks are to be allocated. The staffing demand for a week is illustrated in Table \ref{tab:current_demand} and it is identical for all weeks.The algorithm for allocating weekday tasks is found in Appendix \ref{appendix:flow_charts}, Figure \ref{fig:weekday_alg}, and greatly resembles the algorithm for allocaing weekends.
+When entering the weekday phase, all weekends, evenings and BokB tasks are already allocated. In the weekday phase, the remaining tasks, referred to as "weekday" tasks are to be allocated. The staffing demand for a week is illustrated in Table \ref{tab:current_demand} and it is identical for all weeks.The algorithm for allocating weekday tasks is found in Figure \ref{fig:weekday_alg}, and greatly resembles the algorithm for allocaing weekends.
 
 
 \begin{table}[!h]
