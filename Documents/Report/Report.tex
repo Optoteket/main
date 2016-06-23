@@ -67,13 +67,11 @@
 % author, date etc.
 %
 \newcommand{\putabstract}[0]{%
-The distribution of tasks to a heterogeneous work force at libraries and other service institutions is time consuming for manual schedulers, but well suited for optimization softwares. The problem studied concerns five types of tasks, two types of worker qualifications and around 100 tasks per week.
+The distribution of tasks to a heterogeneous work force at libraries and other service institutions is time consuming for manual schedulers, but well suited for optimization softwares. The problem studied concerns five types of tasks, two types of worker qualifications and around 100 tasks per week to be scheduled. During weekends there is also a demand for staff members and worker satisfaction is taken into account in the scheudling process.
 
-During weekends there is a demand for staff members. Also, worker satisfaction is taken into account to avoid unfairness and fatigue.
+The main objective is to create a optimal ten week rotating schedule, in which the stand-in staff members are evenly distributed. This would create a robust schedule, since stand-in staff can replace the regular staff when ther is unforseen absence.
 
-The main objective is to create a optimal ten week rotating schedule, in which the stand-in staff members are evenly distributed. That results in a robust schedule, as absence of staff members is a common issue.
-
-A mathematical model is formulated for the problem, which is solved using the commercial solver, CPLEX and by using two different large neighbourhood search heuristic implementations. The first heuristic assigns complete week blocks to the staff members, while the second distributes one task at a time. The latter heuristic works better than the former and achieves results comparable to those of the commercial solver. Our conclusion is that the second heuristic works better because it focuses on finding a good weekend distribution, before creating the rest of the schedule.}
+A mathematical model is formulated for the problem, which is solved using the commercial solver, CPLEX and by using two different large neighbourhood search heuristic implementations. The first heuristic assigns complete week blocks to the staff members, while the second distributes one task at a time. The latter heuristic works better than the former and achieves results comparable to those of the commercial solver. Our conclusion is that the second heuristic works better because it focuses on finding a good weekend distribution, before creating the rest of the schedule. We also found that the weekend-worker constellation is the most significant degree of freedom in the problem.}
 
 \newcommand{\putkeywords}[0]{%
 Optimization, Scheduling, Task distribution, LNS, Weekend Scheduling, Heterogeneous workforce}
@@ -273,9 +271,9 @@ http://urn.kb.se/resolve?urn=urn:nbn:se:liu:diva-77777
 
 \chapter*{Acknowledgements\index{Acknowledgements}}
 
-We would like to express our deepest gratitude to our supervisor, Torbjörn Larsson, at Linköping University, who has helped us find our way in moments of uncertainty and who has been guiding us through the whole project. Thank you for the time and effort you have spent on our thesis. We would also like to thank our examiner, Elina Rönnberg, who has provided encouraging words and valuable insights throughout the project.
+We would like to express our deepest gratitude to our supervisor, Torbjörn Larsson, at Linköping University, who has helped us find our way in moments of confusion. Thank you for the time and effort you have spent on our thesis. We would also like to thank our examiner, Elina Rönnberg, who has provided encouraging words and valuable insights throughout the project.
 
-Furthermore, we would like to thank Elisabeth Cserhalmi and Ingrid Loeld  Rasch at Norrköpings Stadsbibliotek for providing us with an interesting thesis topic and for answering all our questions many times over.
+Furthermore, we would like to thank Elisabeth Cserhalmi and Ingrid Loeld  Rasch at Norrköpings Stadsbibliotek for providing us with an interesting topic and for answering all of our questions many times over.
 
 We thank our opponents, Akdas Hossain and Emma Miléus, for their comments and thoughts on this report.
 
@@ -294,7 +292,7 @@ The most reoccurring terms and abbreviations are described here.
 
 Heuristic & An algorithm designed to find feasible, but not necessarily optimal, solutions. \\
 Large neighbourhood search & Optimization method which alternately destroys and respairs the solution in order to move through the solution space. \\
-Simulated annealing & Optimization method which allows for the acceptance of deteriorating solutions with a certain probability. The probability decreases with time. \\
+Simulated annealing & Optimization method which allows for the acceptance of poorer solutions with a certain probability. The probability decreases with time. \\
 %Rostering & \\
 %Matheuristic & Text\\
 \end{tabular}
@@ -302,10 +300,10 @@ Simulated annealing & Optimization method which allows for the acceptance of det
 \section*{Library related terms\index{Library terms}}
 \begin{tabular}{lp{10cm}}
 
-Fetch list & The library task of collecting books from shelves, to be delivered elsewhere. \\
-Library on wheels & The task of driving a library bus with books to remote areas of town. \\
-Outer task & The tasks which are directed towards the visitors for which there is a need for scheduling. \\
-Inner task & The tasks which are not outer tasks are inner tasks. These include less visible work such as answering emails. \\
+Fetch list & The task of collecting reserved books from shelves. \\
+Library on wheels & The bus library providing books to remoter areas of town. \\
+Outer tasks & The scheduled tasks including Exp, Info, PL, HB and BokB. \\
+Inner tasks & The tasks which are not outer tasks are inner tasks. These include less visible work such as answering emails or department meetings. \\
 Week rest & The period of rest granted to a worker after weekend work. This normally includes one or two extra days off. \\
 %Rostering & \\
 %Matheuristic & Text\\
