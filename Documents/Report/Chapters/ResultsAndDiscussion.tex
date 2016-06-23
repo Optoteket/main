@@ -94,7 +94,7 @@ No stand-ins    & 351                      \\ \hline
 \end{tabular}
 \end{table}
 
-Figure \ref{fig:feasibleRerun} shows a plot of the objective function value after destroy and repair iterations. When the value on the y-axis reaches zero, a feasible solution is found. Whenever an iteration is below the final phase boundary, the entering criterion is checked. If the final phase is entered, the few existing demand violations will be taken care of, one by one, by assigning the stand-ins where the violations occur. The final phase boundary is set as $1\cdot10^4$.
+Figure \ref{fig:feasibleRerun} shows a plot of the objective function value after destroy and repair iterations. When the value on the y-axis reaches zero, a feasible solution is found. Whenever an iteration is below the final phase boundary, the entering criterion is checked. If the final phase is entered, the few existing demand violations will be taken care of, one by one, by assigning the stand-ins where the violations occur. A feasible solution is found whenever an objective function value of zero is reached. The final phase boundary is set as $1\cdot10^4$.
 
 Every time the value skyrockets, a solution has been discarded in the final phase. Empty blocks are, thereafter, assigned to all staff members and the run is once again entering the destroy and repair loop. Destroy and repair iterations are being executed until a solution is likely to be found, that is, there are enough stand-ins available to take care of the demand violations. 
 

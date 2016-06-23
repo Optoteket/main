@@ -105,14 +105,14 @@ As the problem contains multiple objective functions, it has been necessary to w
 \begin{equation} \label{objfcn}
 \text{maximize} \hspace{0.3cm} M\cdot s^{min} - N \cdot \delta
 \end{equation}
-The first part of the objective function represents the lowest amount of stand-in librarians and assistants found, while the second part is a preference from the library that two weeks with a five-week interval shall be as similar as possible (for example week 1 and 6 or 2 and 7). The parameter $N$ prioritizes the similarity of weeks compared to the number of stand-ins. Based on the information given by the library, it is a much higher priority to have many stand-ins. Hence, $M \gg N$ holds in our case.
+The first part of the objective function represents the lowest amount of stand-in librarians and assistants found, while the second part is a preference from the library that two weeks with a five-week interval shall be as similar as possible (for example week 1 and 6 or 2 and 7). The parameter $N$ prioritizes the similarity of weeks compared to the number of stand-ins. Based on the information given by the library, it is a much higher priority to have many stand-ins. Hence, $M \gg N$, where $N > 0$ holds in our case. The exact relation between $M$ and $N$ is not of high importance, as we have seen that multiple optimal solutions exist, regarding the stand-ins. In our case, we set $M$ to be a hundred times bigger than $N$.
 
 
 
 
 % % % % GO THROUGH THE REFERENCES TO CONSTRAINT SECTION IN THE DOCUMENT
 \section{Constraints} \label{constraints}
-To model the problem it is of relevance to divide many of the constraints into weekend and weekday constraints. Several auxiliary constraints and variables are also added to avoid multiplication of two variables, which would make the problem non-linear. These auxiliary constraints are left out of this chapter for simplicity reasons. Instead, these can be seen in Appendix \ref{appendix:mathmod}.
+To model the problem it is of relevance to divide many of the constraints into weekend and weekday constraints. Several auxiliary constraints and variables are also added to avoid multiplication of two variables, which would make the problem non-linear. These auxiliary constraints are needed as the solver CPLEX can not handle non-linear constraints, as it displays error messages in case they occur. The auxiliary constraints are left out of this chapter for simplicity reasons. Instead, they can be seen in Appendix \ref{appendix:mathmod}.
 
 \subsection{Demand and assignment constraints} \label{section:demand_ass_constraints}
 The most crucial constraint is to ensure that the demand of staff members is met each day. This can be modelled as
