@@ -217,11 +217,3 @@ class Library{
   void print_temp_current_demand();
 
 };
-
-
-//Unused code
-/* double T = pow(2.0, (double)i); */
-/* double cost_diff = abs(library_max_cost - library_cost)+0.1; */
-/* cout << "T:" << T << " Cost diff:" << cost_diff << " Exponential cooling:"  */
-/* 	 << (double) exp(-(cost_diff/1.0*T)) << endl; */
-/* //cerr << (((double)iterations-(double)i)/(double)iterations) << endl; */

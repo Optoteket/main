@@ -55,7 +55,7 @@ int find_position_req(int task_type){
 
 /************* Function collect AMPL statistics ***********/
 void collect_AMPL_statistics(int* infeas, vector<int>& min_l, vector<int>& min_a, vector<Ax_struct>& ax_vector){
-  string in_file_path = "../../../AMPLmodel/LNSweekendsAMPL/librarystaff10W_log.res";
+  string in_file_path = "../src/LNSweekendsAMPL/librarystaff10W_log.res";
   ifstream in_file(in_file_path.c_str());
   string input; 
   bool read_ax=false;

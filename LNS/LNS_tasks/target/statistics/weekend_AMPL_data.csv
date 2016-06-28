@@ -1,7 +1,8 @@
-2016_6_28 12:3:40
+2016_6_28 12:31:40
 With weights: 0.00980392, 0.00980392, 0.980392
 With paramters it_wend/it_wday: 100, 10
 Number of infeasible solutions:0
+4.94066e-324,9,5,23,0,1,2,4
 
-Average AMPL cost:-nan
+Average AMPL cost:4
 
