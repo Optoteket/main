@@ -133,45 +133,39 @@ class Library{
   //Constructor
   Library(ofstream*);
   Library(const Library &obj);
+
+  //Top level functions
   void create_initial_solution();
   void optimize_weekends(int,int, double[3]);
-  bool get_solution_feasibility();
+  void optimize_weekday_tasks(int,int);
 
-  //Stand in avail
+  //Weekend auxiliary functions
   void remove_weekday_tasks();
   void remove_weekday_tasks_not_BokB_or_evening();
+  void destroy_weekend(int);
+  void destroy_a_weekend(TaskWorker&);
+  void repair_weekend();
   bool set_evening_tasks();
-  void set_library_cost(string, double[3]);
-  void set_day_avail_cost();
-  void set_avail_contribution_cost(string);
-  void set_stand_in_cost(string);
-  void set_shift_avail_cost(string);
-  //void find_sum_stand_ins(string);
-  int find_min_stand_ins(int[NUM_POSITIONS][NUM_WEEKS][NUM_WEEKDAYS],int);
+  bool place_BokB();
 
-  //Weekend related
-  void find_all_weekend_tasks(); 
-  void set_all_weekend_tasks();
-  void destroy_weekend(int, string);
-  void destroy_a_weekend(TaskWorker&, string);
-  void repair_weekend(string);
-  void repair_temp_weekend();
-  //void use_temp_solution();
-  //void weekend_update_avail_demand(int, int, int); //Not working properly, not possible to keep updated
+  //Weekend costs
+  void set_wend_library_cost(double[3]);
+  void set_wend_day_avail_cost();
+  void set_wend_stand_in_cost();
+  void set_wend_shift_avail_cost();
 
-  //Weekday related
+  //Weekday auxiliary functions
+  bool get_solution_feasibility(); //TODO: check if all solutions infeasible
   bool unassigned_tasks_exist();
   void find_worst_worker();
-  void set_non_critical_worker_cost();
-  void set_critical_worker_cost();
-  void optimize_weekday_tasks(int);
-  void set_library_stand_in_cost();
-  void place_BokB();
   void destroy_tasks(int, string);
   void repair_tasks(string);
-  void find_tasks(int);
-  void set_tasks();
   void show_task_statistics();
+
+  //Weekday costs
+  void set_non_critical_worker_cost();
+  void set_critical_worker_cost();
+  void set_wday_stand_in_cost();
 
   //Init related
   void create_workers();
@@ -188,7 +182,7 @@ class Library{
   void find_num_avail_workers();
   //void find_temp_num_avail_workers();
   //void find_avail_demand_diff(string);
-  bool compare_avail_demand(string);
+  bool compare_avail_demand();
 
   //Get
   int get_demand(int, int, int, int);

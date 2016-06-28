@@ -2,8 +2,10 @@
 // Claes Arvidson and Emelie Karlsson
 // Applied Mathematics, Mathematical Institution, Linköpings Universitet 
 
-// Main project file
-// Created 2016-03-30 by Emelie Karlsson
+//**********************************************************//
+//***                Main project file                   ***//
+//***         Created 2016-03-30 by Emelie Karlsson      ***//
+//**********************************************************//
 
 #include <iostream>
 #include <string>
@@ -12,8 +14,6 @@
 #include <vector>
 #include <ctime>  
 #include <cstdlib>
-
-
 #include "stdio.h"
 #include "LibraryClass.h"
 #include "Constants.h"
@@ -30,7 +30,7 @@ string res_file_dir = "../target/results/";
 stringstream log_file_path;
 stringstream res_file_path;
 
-
+//Structure for saving artificial workers genereated from AMPL
 struct Ax_struct{
   int week;
   int day;
@@ -50,14 +50,11 @@ int find_position_req(int task_type){
     return Lib;
   else if (task_type == BokB)
     return BBlib;
-  //TODO: add bokbussen
   else return no_position;
 }
 
 /************* Function collect AMPL statistics ***********/
 void collect_AMPL_statistics(int* infeas, vector<int>& min_l, vector<int>& min_a, vector<Ax_struct>& ax_vector){
-  //string out_file_path = "../target/statistics/weekend_AMPL_data.csv";
-  //ofstream out_file(out_file_path.c_str());
   string in_file_path = "../../../AMPLmodel/LNSweekendsAMPL/librarystaff10W_log.res";
   ifstream in_file(in_file_path.c_str());
   string input; 
@@ -137,7 +134,6 @@ int main(int argc, char** argv)
   //Random seeding
   srand (unsigned (time(0)));
 
-
   //Create time and date stamp for files
   date << timedate->tm_year + 1900 << "_" 
        << timedate->tm_mon+1 << "_" << timedate->tm_mday << " " 
@@ -145,7 +141,7 @@ int main(int argc, char** argv)
        << timedate->tm_sec+1;
   log_file_path << log_file_dir << "logfile" << ".dat"; 
 
-  //Logfile header
+  //Logfile header - OBS: logfile unused
   ofstream log_file (log_file_path.str().c_str());
   if (log_file.is_open())
   {
@@ -161,13 +157,15 @@ int main(int argc, char** argv)
   //Create result file
   res_file_path << res_file_dir << "resfile" << ".dat"; 
   ofstream res_file (res_file_path.str().c_str());
-  
+ 
+  //Clear vectors
   min_ass.clear();
   min_lib.clear();
   library_costs.clear();
 
-  int max_loops = 100;
-  int num_tests = 7;
+  //Parameters for running
+  int max_loops = 1;
+  int num_tests = 1;
   double weights[3];
   int wend_iterations;
   int wday_iterations;
@@ -177,7 +175,7 @@ int main(int argc, char** argv)
 
     //1. Setting and normalizing weights for weekend objective function
     if(loop < max_loops){
-      wend_iterations = 200;
+      wend_iterations = 100;
       wday_iterations = 10;
       weights[0]=0.1; //Min number of full time avail workers/day
       weights[1]=0.1; //Min number of avail workers per shift
@@ -185,96 +183,6 @@ int main(int argc, char** argv)
 
       //Normalizing
       double sum =  weights[0] +  weights[1] +  weights[2];
-      weights[0]/=sum;
-      weights[1]/=sum;
-      weights[2]/=sum;
-    }
-    else if(loop < max_loops*2){
-      wend_iterations = 2000;
-      wday_iterations = 10;
-      weights[0]=0.1; //Min number of full time avail workers/day
-      weights[1]=0.1; //Min number of avail workers per shift
-      weights[2]=10; //Min number of avail workers a day
-
-      //Normalizing
-      double sum =  weights[0] +  weights[1] +  weights[2];
-      weights[0]/=sum;
-      weights[1]/=sum;
-      weights[2]/=sum;
-    }
-    else if(loop < max_loops*3){
-      wend_iterations = 5000;
-      wday_iterations = 10;
-      weights[0]=0.1; //Min number of full time avail workers/day
-      weights[1]=0.1; //Min number of avail workers per shift
-      weights[2]=10; //Min number of avail workers a day
-
-      //Normalizing
-      double sum =  weights[0] +  weights[1] +  weights[2];
-      weights[0]/=sum;
-      weights[1]/=sum;
-      weights[2]/=sum;
-    }
-    else if(loop < max_loops*4){
-      wend_iterations = 500;
-      wday_iterations = 30;
-      weights[0]=0.1; //Min number of full time avail workers/day
-      weights[1]=0.1; //Min number of avail workers per shift
-      weights[2]=10; //Min number of avail workers a day
- 
-
-      //Normalizing
-      double sum =  weights[0] +  weights[1] +  weights[2];
-      weights[0]/=sum;
-      weights[1]/=sum;
-      weights[2]/=sum;
-    }
-    else if(loop < max_loops*5){
-      wend_iterations = 500;
-      wday_iterations = 50;
-      weights[0]=0.1; //Min number of full time avail workers/day
-      weights[1]=0.1; //Min number of avail workers per shift
-      weights[2]=10; //Min number of avail workers a day
-
-      //Normalizing
-      double sum =  weights[0] +  weights[1] +  weights[2] + 0.001;
-      weights[0]/=sum;
-      weights[1]/=sum;
-      weights[2]/=sum;
-    }
-    else if(loop < max_loops*6){
-      wend_iterations = 500;
-      wday_iterations = 100;
-      weights[0]=0.1; //Min number of full time avail workers/day
-      weights[1]=0.1; //Min number of avail workers per shift
-      weights[2]=10; //Min number of avail workers a day
- 
-      //Normalizing
-      double sum =  weights[0] +  weights[1] +  weights[2];
-      weights[0]/=sum;
-      weights[1]/=sum;
-      weights[2]/=sum;
-    }
-    else if(loop < max_loops*7){
-      wend_iterations = 500;
-      wday_iterations = 200;
-      weights[0]=0.1; //Min number of full time avail workers/day
-      weights[1]=0.1; //Min number of avail workers per shift
-      weights[2]=10; //Min number of avail workers a day
-
-      //Normalizing
-      double sum =  weights[0] +  weights[1] +  weights[2];
-      weights[0]/=sum;
-      weights[1]/=sum;
-      weights[2]/=sum;
-    }
-    else if(loop < max_loops*8){
-      weights[0]=0; //Min number of full time avail workers/day
-      weights[1]=0; //Min number of avail workers per shift
-      weights[2]=0; //Min number of avail workers a day
-
-      //Normalizing
-      double sum =  weights[0] +  weights[1] +  weights[2]+0.001;
       weights[0]/=sum;
       weights[1]/=sum;
       weights[2]/=sum;
@@ -286,13 +194,13 @@ int main(int argc, char** argv)
     //3. Create initial solution
     library.create_initial_solution();
 
-    //4. Optimize weekends, input: num iterations, destroy percentage
+    //4. Optimize weekends, input: num iterations, num workers for which the weekend is destroyed, weights
     library.optimize_weekends(wend_iterations, 8, weights);
     
-    //6. Optimize weekdays
-    library.optimize_weekday_tasks(wday_iterations);
+    //5. Optimize weekdays, input: num iterations, num workers for which a week is destroyed
+    //library.optimize_weekday_tasks(wday_iterations, 4);
 
-    //5. Get objective function varibles
+    //6. Save objective function value
     double library_cost=0;
     //Only record feasible solutions
     if(library.get_library_cost() != -1){
@@ -313,15 +221,10 @@ int main(int argc, char** argv)
     double cost_stand_in_ass = library.get_stand_in_ass();
     library_costs.push_back(cost_stand_in_ass);
 
-   //7. Check if library cost is better than max
-    // if (library_cost > max_library_cost){
-    //   best_library = library;
-    // }
-
     //7. Write results to resfile
     library.write_results();
 
-    //8. Write weekends to AMPL format and run
+    //8. Write weekends to AMPL-format and run with heuristic weekends
     library.write_weekend_AMPL_data();
     log_file.close();
     system("../../../AMPLmodel/LNSweekendsAMPL/launchAMPL.sh");
@@ -330,8 +233,8 @@ int main(int argc, char** argv)
     ax_vector.clear();
     usleep(1000);
 
-    //9. Write AMPL statistics
-    if(loop == max_loops-1 || loop == 2*max_loops-1 || loop == 3*max_loops-1 || loop == 4*max_loops-1 || loop == 5*max_loops-1 || loop == 6*max_loops-1 || loop == 7*max_loops-1  || loop == 8*max_loops-1){
+    //9. Write AMPL statistics to file and terminal
+    if(loop == max_loops-1){
       //Print costs to file
       double tot_cost = 0.0;
       int divisor = (int) min_lib.size() - infeasible_count;
@@ -373,7 +276,7 @@ int main(int argc, char** argv)
   clock_t end = clock();
   double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
   cout << "Time of program: " << elapsed_secs << " s." << endl;
-  //res_file.close();
+  res_file.close();
   return 0;
 
 }
