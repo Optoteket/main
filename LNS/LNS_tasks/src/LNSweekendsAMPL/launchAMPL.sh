@@ -6,4 +6,4 @@ echo "Adding CPLEX module"
 . /sw/modules/init/bash.init
 module add cplex/12.5-fullampl
 echo "Module added"
-ampl < /edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W.run
+ampl < /edu/emeka813/MasterThesis/LNS/LNS_tasks/src/LNSweekendsAMPL/librarystaff10W.run

@@ -14,11 +14,11 @@ option omit_zero_rows 1;   # No zeros printed in rows
 option display_1col 10000; # Only one column printed
 option cplex_options "timing 1 mipdisplay 2 time = 237600"; # Time measurement and printing. NOTE: Time = x means the solve breaks after x seconds. 57600 secounds = 17->9. 237'600 = (fr) 15 -> (mon) 9.
 option display_precision 5;
-option log_file "/edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W_log.res";
-model /edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W.mod;   # Read model file 
-data /edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W.dat;    # Read data file 
+option log_file "/edu/emeka813/MasterThesis/LNS/LNS_tasks/src/LNSweekendsAMPL/librarystaff10W_log.res";
+model /edu/emeka813/MasterThesis/LNS/LNS_tasks/src/LNSweekendsAMPL/librarystaff10W.mod;   # Read model file 
+data /edu/emeka813/MasterThesis/LNS/LNS_tasks/src/LNSweekendsAMPL/librarystaff10W.dat;    # Read data file 
 
-#expand > /edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff.res; # Writes all results to file
+#expand > /edu/emeka813/MasterThesis/LNS/LNS_tasks/src/LNSweekendsAMPL/librarystaff.res; # Writes all results to file
 
 ############################## Add timer parameters #########################
 param time_elapsed;
@@ -78,7 +78,7 @@ for {w in W, d in 1..5}
 }
 printf "\nThe minimal num of ass and lib stand ins is: \n";
 #Write to log file
-option log_file "/edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W_log.res";
+option log_file "/edu/emeka813/MasterThesis/LNS/LNS_tasks/src/LNSweekendsAMPL/librarystaff10W_log.res";
 display min_lib, min_ass;
 printf "The same stand in objective function value occurs: %d times. \n\n", times_same_sol;
 display ax;
@@ -89,22 +89,22 @@ display M_big;
 
 
 ### display the variables ###
-display _varname, _var > /edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W.res;
+display _varname, _var > /edu/emeka813/MasterThesis/LNS/LNS_tasks/src/LNSweekendsAMPL/librarystaff10W.res;
 for {i in I}
 {
-	printf "Shift_list[%d] = %1g \n", i, Shift_list[i] > /edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W.res;
+	printf "Shift_list[%d] = %1g \n", i, Shift_list[i] > /edu/emeka813/MasterThesis/LNS/LNS_tasks/src/LNSweekendsAMPL/librarystaff10W.res;
 }
 for {i in I}
 {
-	printf "LOW_list[%d] = %1g \n", i, LOW_list[i] > /edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W.res;
+	printf "LOW_list[%d] = %1g \n", i, LOW_list[i] > /edu/emeka813/MasterThesis/LNS/LNS_tasks/src/LNSweekendsAMPL/librarystaff10W.res;
 }
 for {i in I}
 {
-	printf "PL_list[%d] = %1g \n", i, PL_list[i] > /edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W.res;
+	printf "PL_list[%d] = %1g \n", i, PL_list[i] > /edu/emeka813/MasterThesis/LNS/LNS_tasks/src/LNSweekendsAMPL/librarystaff10W.res;
 }
 
 ####################### Print statistics to file ###############################
 
 printf "Min_lib %d\n Min_ass %d\n" > /edu/emeka813/MasterThesis/LNS/LNS_tasks/target/statistics/AMPL_run.res;
 ###############################################################################
-close /edu/emeka813/MasterThesis/AMPLmodel/LNSweekendsAMPL/librarystaff10W.res;
+close /edu/emeka813/MasterThesis/LNS/LNS_tasks/src/LNSweekendsAMPL/librarystaff10W.res;

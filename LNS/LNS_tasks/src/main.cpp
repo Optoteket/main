@@ -227,7 +227,7 @@ int main(int argc, char** argv)
     //8. Write weekends to AMPL-format and run with heuristic weekends
     library.write_weekend_AMPL_data();
     log_file.close();
-    system("../../../AMPLmodel/LNSweekendsAMPL/launchAMPL.sh");
+    system("../src/LNSweekendsAMPL/launchAMPL.sh");
     collect_AMPL_statistics(&infeasible_count, min_lib, min_ass, ax_vector);
     ax_vector_vector.push_back(ax_vector);
     ax_vector.clear();

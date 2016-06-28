@@ -1784,7 +1784,7 @@ void Library::write_results(){
 /************* Library function: write weekend AMPL data ******************/
 
 void Library::write_weekend_AMPL_data(){
-  string wend_file_path  = "../../../AMPLmodel/LNSweekendsAMPL/weekendinfo.mod";
+  string wend_file_path  = "../src/LNSweekendsAMPL/weekendinfo.mod";
   ofstream wend_file(wend_file_path.c_str());
   //int count = 0;
   //Print statistics to stat_file
@@ -1806,8 +1806,8 @@ void Library::write_weekend_AMPL_data(){
   wend_file.close();
 
   //Concaternate files
-  string orig_file_path = "../../../AMPLmodel/LNSweekendsAMPL/librarystaff10W_orig_artificial_var.mod";
-  string resulting_file_path = "../../../AMPLmodel/LNSweekendsAMPL/librarystaff10W.mod";
+  string orig_file_path = "../src/LNSweekendsAMPL/librarystaff10W_orig_artificial_var.mod";
+  string resulting_file_path = "../src/LNSweekendsAMPL/librarystaff10W.mod";
   ifstream orig_ampl_mod_file(orig_file_path.c_str());
   ifstream same_wend_file(wend_file_path.c_str());
   ofstream res_file (resulting_file_path.c_str());
