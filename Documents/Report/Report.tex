@@ -67,13 +67,11 @@
 % author, date etc.
 %
 \newcommand{\putabstract}[0]{%
-The distribution of tasks to a heterogeneous work force at libraries and other service institutions is time consuming for manual schedulers, but well suited for optimization softwares. The problem studied concerns five types of tasks, two types of worker qualifications and around 100 tasks per week.
+The distribution of tasks to a heterogeneous work force at libraries and other service institutions is a time consuming task for manual schedulers. In this thesis, we study the possibility of making the assignment using operations research techniques. The problem studied concerns seven days per week, five types of tasks, two types of staff qualifications and around 100 tasks per week to be assigned to the staff. Staff member satisfaction is also taken into account in the scheduling process.
 
-During weekends there is a demand for staff members. Also, worker satisfaction is taken into account to avoid unfairness and fatigue.
+The main objective is to create an optimal ten week rotating schedule, in which the stand-in staff members are evenly distributed. Such a schedule is considered to be robust, since stand-in staff can replace the regular staff when there is unforseen absence.
 
-The main objective is to create a optimal ten week rotating schedule, in which the stand-in staff members are evenly distributed. That results in a robust schedule, as absence of staff members is a common issue.
-
-A mathematical model is formulated for the problem, which is solved using the commercial solver, CPLEX and by using two different large neighbourhood search heuristic implementations. The first heuristic assigns complete week blocks to the staff members, while the second distributes one task at a time. The latter heuristic works better than the former and achieves results comparable to those of the commercial solver. Our conclusion is that the second heuristic works better because it focuses on finding a good weekend distribution, before creating the rest of the schedule.}
+A mathematical model is formulated for the problem and is solved using the commercial solver CPLEX. We also present two different large neighbourhood search heuristic implementations for this problem. The first heuristic assigns complete week blocks to the staff members, while the second one distributes one task at a time. The latter heuristic works better than the former and achieves results comparable to those of the commercial solver. Our conclusion is that the second heuristic works better because it focuses on finding a good weekend distribution before creating the rest of the schedule. A conclusion from our work is that the weekend-worker constellation is the most significant degree of freedom in the problem.}
 
 \newcommand{\putkeywords}[0]{%
 Optimization, Scheduling, Task distribution, LNS, Weekend Scheduling, Heterogeneous workforce}
@@ -91,7 +89,7 @@ Optimization, Scheduling, Task distribution, LNS, Weekend Scheduling, Heterogene
 \newcommand{\puttitle}[0]{Work Distribution for a Heterogeneous Library Staff - \\  A Personnel Task Scheduling Problem}
 
 % some kind of administrator will give you this number
-\newcommand{\putregnumber}[0]{LiTH - MAT - EX - - 04 / 04 - - SE}
+\newcommand{\putregnumber}[0]{LiTH-MAT-EX--2016/05--SE}
 
 \newcommand{\putexaminer}[0]{Elina Rönnberg}
 
@@ -279,7 +277,7 @@ Furthermore, we would like to thank Elisabeth Cserhalmi and Ingrid Loeld  Rasch 
 
 We thank our opponents, Akdas Hossain and Emma Miléus, for their comments and thoughts on this report.
 
-Lastly, we would like to thank our families and loved ones, who have supported us until the end. 
+Lastly, we would like to thank our families and loved ones, who have continuously supported us throughout our studies. 
 
 
 
@@ -290,11 +288,10 @@ The most reoccurring terms and abbreviations are described here.
 
 %----------------NEW_SECTION--------------------------------------------------
 \section*{Optimization terms\index{Optimization terms}}
-\begin{tabular}{lp{10cm}}
-
-Heuristic & An algorithm designed to find feasible, but not necessarily optimal, solutions. \\
-Large neighbourhood search & Optimization method which alternately destroys and respairs the solution in order to move through the solution space. \\
-Simulated annealing & Optimization method which allows for the acceptance of poorer solutions with a certain probability. The probability decreases with time. \\
+\begin{tabular}{lp{10cm}} 
+Heuristic & An algorithm designed to find good, but not necessarily optimal, solutions. \\
+Large neighbourhood search & Heuristic search method which alternately destroys and respairs the solution in order to move through the solution space. \\
+Simulated annealing & Heuristic search method which allows for the acceptance of poorer solutions with a certain probability in order to diversify the search. The probability decreases with time. \\
 %Rostering & \\
 %Matheuristic & Text\\
 \end{tabular}
@@ -303,10 +300,10 @@ Simulated annealing & Optimization method which allows for the acceptance of poo
 \begin{tabular}{lp{10cm}}
 
 Fetch list & The task of collecting reserved books from shelves. \\
-Library on wheels & The bus library providing books to remoter areas of town. \\
+Library on wheels & The library bus providing books to remoter areas of town. \\
 Outer tasks & The scheduled tasks including Exp, Info, PL, HB and BokB. \\
-Inner tasks & The tasks which are not outer tasks are inner tasks. These include less visible work such as answering emails or department meetings. \\
-Week rest & The period of rest granted to a worker after weekend work. This normally includes one or two extra days off. \\
+Inner tasks & The tasks which are not outer tasks are inner tasks. These include less visible work such as answering emails or attending group meetings. \\
+Week rest & The period of rest granted a staff member after weekend work. This normally includes one or two extra days off. \\
 %Rostering & \\
 %Matheuristic & Text\\
 \end{tabular}
@@ -418,12 +415,12 @@ HB      & Hageby library \\
 \chapter{Week block table} \label{appendix:weekblock}
 \begin{table}[!h]
 \centering
-\caption{Number of assignable unique blocks for the workers based on their availability and qualification.}
+\caption{Number of assignable unique blocks for the staff members based on their availability and qualification.}
 \label{blocks_available_per_worker}
 \scalebox{0.75}{
 	\begin{tabular}{|c|ccc|}
 	\hline
-	Worker & Weekend & Weekrest & Weekday \\ \hline
+	Staff member & Weekend & Weekrest & Weekday \\ \hline
 	1      & 532     & 347      & 1580    \\ \hline
 	2      & 1580    & 1580     & 1580    \\ \hline
 	3      & 1063    & 347      & 1580    \\ \hline
