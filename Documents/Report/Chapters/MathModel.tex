@@ -1,17 +1,17 @@
 %A thorough description of the mathematical model in words and in math. More significant and general constraints in equations and less significant in words.
-In this chapter the mathematical model implemented to solve the ten week scheduling problem described in Section \ref{problem_description} will be presented. Prior to the objective function and constraints, the most significant sets and variables will be provided. Section \ref{section:obj} presents the objective function and gives a short description of what it represents. In Section \ref{constraints}, the essential constraints will be presented and explained. A complete model with all definitions and the full set of constraints can be found in Appendix \ref{appendix:mathmod}. %To get a full view of the mathematical problem the reader  A list of the defined parameters can be found in Appendix \ref{definitions}. 
+In this chapter the mathematical model implemented to solve the ten week scheduling problem described in Section \ref{problem_description} will be presented. Prior to the objective function and constraints, the most significant sets and variables will be provided. Section \ref{section:obj} presents the objective function and gives a short description of what it represents. In Section \ref{constraints}, the essential constraints will be presented and explained. A complete model with all definitions and the full set of constraints can be found in Appendix \ref{appendix:mathmod}. It should also be noted that the abbreviations for the different tasks in the mathematical model are: E for Exp, I for Info, P for PL, H for HB and B for BokB.%To get a full view of the mathematical problem the reader  A list of the defined parameters can be found in Appendix \ref{definitions}. 
 \section{Set and variable definitions} \label{variables}
-To solve the problem, many sets and variables have to be declared. As mentioned before, there are many unique and individual requirements given by the library that have to be met. An example is that some staff members want a day free from outer tasks to be able to attend meetings or to perform their inner tasks. Another example is that some staff members have two alternating schedules for odd and even weeks. These specific cases have to be modelled and result in a variety of sets and variable definitions. Below, we focus on the common and general cases in order to keep the presentation simple and easily accessible. A complete list of the definitions can be found in Appendix \ref{appendix:mathmod}. \\
+To solve the problem, many sets and variables have to be declared. As mentioned before, there are many unique and individual requirements given by the library that have to be met. An example is that some staff members have two alternating schedules for odd and even weeks. The specific cases have to be modelled and result in a variety of sets and variable definitions. Below, we focus on the common and general cases in order to keep the presentation simple and easily accessible. A complete list of the definitions can be found in Appendix \ref{appendix:mathmod}. The most important sets include: \\
 \itab{$I$} \tab{Set of staff members}\\
 \itab{$I_{lib}$} \tab{Set of librarians ($I_{lib} \subseteq I$)} \\
 \itab{$I_{ass}$}	 \tab{Set of assistants ($I_{ass} \subseteq I$)}	\\
 \itab{$I_{G}\{g\}$}	 \tab{Set of workers in the group g}	\\
 \itab{$W$}                 \tab{Set of all ten weeks} \\
-\itab{$W_5$}	\tab{Set of first five weeks} \\
+\itab{$W_5$}	\tab{Set of the first five weeks} \\
 \itab{$D$}                 \tab{Set of all days in a week}           \\
 \itab{$D_5$}	\tab{Set of all five weekdays} \\
 \itab{$S_d$}           \tab{Set of shifts available on day \textit{d}}         \\
-\itab{$S_3$}           \tab{Set of first three shifts on a weekday}     \\
+\itab{$S_3$}           \tab{Set of the first three shifts on a weekday}     \\
 \itab{$J_d$}            \tab{Set of task types available on day \textit{d}}   \\
 \itab{$G$}	 \tab{Set of groups}	\\
 \itab{$V$}	 \tab{Set of possible week rotations (shifts the week by 0-9 steps forwards)}	\\
@@ -50,7 +50,8 @@ In order to further define the problem we introduce the following variables.
 	\\
 	y_{iwds}&=
 	\begin{cases}
- 		1, & \text{if staff member \textit{i} works at task type E, I or P in week \textit{w}, day \textit{d}, shift \textit{s}} \\
+ 		1, & 
+ 		\parbox[t]{.7\textwidth}{if staff member \textit{i} works at task type E, I or P in week \textit{w}, day \textit{d}, shift \textit{s}} \\
  		0, & \text{otherwise}
 	\end{cases}
 	\\
@@ -86,26 +87,26 @@ In order to further define the problem we introduce the following variables.
 	\\
 	d_{iwds}&=
 	\begin{cases}
-	 	1, & \text{if there is a difference for a staff member \textit{i} in assignment of tasks at }\\
-	 		& \text{shift \textit{s}, day \textit{d} between weeks \textit{w} and \textit{w+5}} \\
+	 	1, & \text{if there is a difference for a staff member \textit{i} in assignment of}\\
+	 		& \text{ tasks at shift \textit{s}, day \textit{d} between weeks \textit{w} and \textit{w+5}} \\
 	 	0, & \text{otherwise}
 	\end{cases}
 	\\
-	l^{min}&= \text{lowest number of stand-in librarians found (integer)} \\
-	a^{min}&= \text{lowest number of stand-in assistants found (integer)} \\
+	l^{min}&= \text{lowest number of stand-in librarians found at a day (integer)} \\
+	a^{min}&= \text{lowest number of stand-in assistants found at a day(integer)} \\
 	s^{min}&= \text{weighted sum of numbers of stand-in librarians and assistants} \\
 	\delta&= \text{total number of shifts that differ for all staff members (integer)}
 \end{align}
 
-Based on the variables defined above it has been possible to solve our scheduling problem. The variables \textit{$l^{min}$} and \textit{$a^{min}$} are the ones of most significance, as they represent the number of stand-ins found after a run. 
+Based on the variables defined above it has been possible to model and solve our scheduling problem. The variables \textit{$l^{min}$} and \textit{$a^{min}$} are the ones of most significance, as they represent the number of stand-ins found at the worst day after a run. 
 
 \section{Objective function} \label{section:obj}
-As the problem contains multiple objective functions, it has been necessary to weigh them against each other using parameters. These are shown in Equation \ref{objfcn}, as $M$ and $N$.
+As the problem contains multiple objective functions, it has been necessary to weigh them against each other using parameters. These weights are shown in Equation \ref{objfcn} as $M$ and $N$.
 
 \begin{equation} \label{objfcn}
 \text{maximize} \hspace{0.3cm} M\cdot s^{min} - N \cdot \delta
 \end{equation}
-The first part of the objective function represents the lowest amount of stand-in librarians and assistants found, while the second part is a preference from the library that two weeks with a five-week interval shall be as similar as possible (for example week 1 and 6 or 2 and 7). The parameter $N$ prioritizes the similarity of weeks compared to the number of stand-ins. Based on the information given by the library, it is a much higher priority to have many stand-ins. Hence, $M \gg N$, where $N > 0$ holds in our case. The exact relation between $M$ and $N$ is not of high importance, as we have seen that multiple optimal solutions exist, regarding the stand-ins. In our case, we set $M$ to be a hundred times bigger than $N$.
+The first part of the objective function represents the lowest amount of stand-in librarians and assistants found at a day, while the second part minimizes the difference between the first and last five weeks. Thus week 1 and 6, 2 and 7 and so on should be as similar as possible. The parameter $N$ prioritizes the similarity of weeks compared to the number of stand-ins. Based on the information given by the library, there is a much higher priority to have many stand-ins. Hence, $M \gg N$, where $N > 0$ holds in our case. The exact relation between $M$ and $N$ is not of high importance, as we have seen that multiple optimal solutions exist, regarding the stand-ins. In our case, we set $M$ to be a hundred times bigger than $N$.
 
 
 
