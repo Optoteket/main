@@ -314,9 +314,9 @@ The goal of this thesis is to investigate how the ten week scheduling problem fo
 
 
 \section{Method}
-The method used for solving the problem, was to first formulate a mathematical model for the problem, which then was solved using two different approaches. The first approach involved modelling the problem in the AMPL programming language and solving it by using the commercial optimization solver CPLEX. The second approach involved creating an independent solver in C++ and solving the problem again using a heuristic. Worker availability data, used to solve the problem, was imported from Excel sheets to data files using Visual Basic.
+The method used for solving the problem, was to first formulate a mathematical model for the problem, which then was solved using three different approaches. The first approach involved modelling the problem in the AMPL programming language and solving it by using the commercial optimization solver CPLEX. The second and third approach involved creating independent solvers in C++ and solving the problem again using a heuristic. Worker availability data, used to solve the problem, was imported from Excel sheets to data files using Visual Basic.
 
-Two different heuristics were tested in the second approach. The first heuristic distributes week blocks to staff members. All blocks are pre-generated and feasible according to the constraints described in the previous section. In the second heuristic, individual tasks are distributed to the staff members. In order to move through the solution space and find better solutions, both heuristics were based on a large neighbourhood search algorithm.
+Two different heuristics were tested. The first heuristic distributes week blocks to staff members, where all blocks are pre-generated and feasible according to the constraints described in the previous section. In the second heuristic, individual tasks are distributed to the staff members. In order to move through the solution space and find better solutions, both heuristics were based on a large neighbourhood search algorithm.
 
 \section{Outline}
 
