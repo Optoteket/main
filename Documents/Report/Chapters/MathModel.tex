@@ -106,14 +106,14 @@ As the problem contains multiple objective functions, it has been necessary to w
 \begin{equation} \label{objfcn}
 \text{maximize} \hspace{0.3cm} M\cdot s^{min} - N \cdot \delta
 \end{equation}
-The first part of the objective function represents the lowest amount of stand-in librarians and assistants found at a day, while the second part minimizes the difference between the first and last five weeks. Thus week 1 and 6, 2 and 7 and so on should be as similar as possible. The parameter $N$ prioritizes the similarity of weeks compared to the number of stand-ins. Based on the information given by the library, there is a much higher priority to have many stand-ins. Hence, $M \gg N$, where $N > 0$ holds in our case. The exact relation between $M$ and $N$ is not of high importance, as we have seen that multiple optimal solutions exist, regarding the stand-ins. In our case, we set $M$ to be a hundred times bigger than $N$.
+The first part of the objective function represents the lowest amount of stand-in librarians and assistants found at a day, while the second part minimizes the difference between the first and last five weeks. This means that week 1 and 6, 2 and 7 and so on should be as similar as possible. The parameter $N$ prioritizes the similarity of weeks compared to the number of stand-ins. Based on the information given by the library, there is a much higher priority to have many stand-ins. Hence, $M \gg N$, where $N > 0$ holds in our case. The exact relation between $M$ and $N$ is not of high importance, as we have seen that multiple optimal solutions exist, regarding the stand-ins. In our case, we set $M$ to be a hundred times bigger than $N$.
 
 
 
 
 % % % % GO THROUGH THE REFERENCES TO CONSTRAINT SECTION IN THE DOCUMENT
 \section{Constraints} \label{constraints}
-To model the problem it is of relevance to divide many of the constraints into weekend and weekday constraints. Several auxiliary constraints and variables are also added to avoid multiplication of two variables, which would make the problem non-linear. These auxiliary constraints are needed as the solver CPLEX can not handle non-linear constraints, as it displays error messages in case they occur. The auxiliary constraints are left out of this chapter for simplicity reasons. Instead, they can be seen in Appendix \ref{appendix:mathmod}.
+In order to model the problem it is of relevance to divide many of the constraints into weekend and weekday constraints. Several auxiliary constraints and variables are also added to avoid multiplication of two variables, which would make the problem non-linear. These auxiliary constraints are needed as the solver CPLEX can not handle non-linear constraints, as it displays error messages in case they occur. The auxiliary constraints are left out of this chapter for simplicity reasons. Instead, they can be seen in Appendix \ref{appendix:mathmod}.
 
 \subsection{Demand and assignment constraints} \label{section:demand_ass_constraints}
 The most crucial constraint is to ensure that the demand of staff members is met each day. This can be modelled as
@@ -132,9 +132,9 @@ To ensure that no staff members are assigned more than one task the following co
 \begin{equation} \label{constr:one_task_constraint}
 \sum_{s\in S}\sum_{j\in J_d} x_{iwdsj} \leq 1, \;   i\in I, w \in W, d\in D
 \end{equation}
-However, if we allow a person to have two shifts at the library on wheels on a day, Equation \ref{constr:one_task_constraint} has to be slightly modified. This is left out of this chapter, as it is allowed in the complete model.
+However, if we allow a person to have two shifts at the library on wheels on a day, Equation \ref{constr:one_task_constraint} has to be slightly modified. This is left out of this chapter, but is allowed in the complete model.
 
-It is preferred to allow only one PL per week and a maximum of three PL per ten weeks. These are easily modelled with the following constraints.
+For most staff members, it is preferred to allow only one PL per week and a maximum of three PL per ten weeks. These are easily modelled with the following constraints.
 \begin{equation} \label{constr:one_PL}
 \sum_{s \in S_d}\sum_{d \in D} x_{iwdsP} \leq 1, \;   i\in I, w \in W
 \end{equation}
@@ -147,7 +147,7 @@ Another preference is to have varying work hours when it comes to the assignment
 \begin{equation} \label{constr:various_start_times}
 \sum_{d \in D_5} y_{iwds} \leq 2, \;   i\in I, w \in W, s \in S_3
 \end{equation}
-Equation \ref{constr:various_start_times} allows a staff member to have at most two tasks starting at the same hour every week. Worth noting is that library on wheels is disregarded in this constraint as the variable $y_{iwds}$ is used; see Equation \ref{constr:y_assign} for the definition.
+Equation \ref{constr:various_start_times} allows a staff member to have at most two tasks starting at the same hour every week. Worth noting is that library on wheels is disregarded in this constraint as the variable $y_{iwds}$ is used, see Equation \ref{constr:y_assign} for the definition.
 
 It is desirable to avoid assigning too many tasks to a staff member. The reason for this is, as mentioned previously, to let the staff member have some time to allot for inner services during weekdays. The equation below models this preference.
 \begin{equation} \label{constr:four_weekly_shifts_at_most}
@@ -157,13 +157,13 @@ Equation \ref{constr:four_weekly_shifts_at_most} allows a staff member at most f
 %Ändra till max 4 tasks per vecka diff {36}?
 
 \subsection{Weekend and rotation constraints} \label{section:weekend_rot_constraints}
-Every staff member's schedule is able to rotate up to nine times, where the decision variable $r_{iv}$ decides the rotation. Therefore, the parameter $qualavail_{iwdsj}$ has to align with the rotation so that all staff members are assigned tasks only when available. This is provided in the following equation.
+Every staff member's schedule can be rotated up to nine times, where the decision variable $r_{iv}$ decides the rotation. Therefore, the parameter $qualavail_{iwdsj}$ has to align with the rotation so that all staff members are assigned tasks only when available. This is provided in the following equation.
 \begin{equation} \label{constr:qualavail}
 x_{iwdsj} \leq \sum_{v \in V} r_{iv}*qualavail_{i\omega(v,w)dsj}, \;   i \in I, w \in W, d \in D, s \in S_d, j \in J_d
 \end{equation}
-The function $\omega(v,w)$ represents the modulus function $mod_{10}(w-v+10)+1$, which is a function that takes rotations into the account when calculating the week to look for in the availability matrix. Table \ref{tab:mod} gives a better understanding of how this modulus function is used.
+The function $\omega(v,w)$ represents the modulus function $mod_{10}(w-v+10)+1$ and is a function which takes rotations into account when calculating the week to look for in the availability matrix. Table \ref{tab:mod} gives a better understanding of how this modulus function is used. 
 
-The variable \textit{w}, in Table \ref{tab:mod}, represents the current week in the initial schedule, and \textit{v} represents \textit{v-1} rotations to the right from the initial schedule. With initial schedule, we refer to the schedule, where all staff members' weekends occur in the first week. The resulting week, when rotations have been taken into the account, can be seen inside the cells. When scheduling, it is the resulting week $\omega$ that is of interest, when checking if a staff member is available for a task assignment. 
+The variable \textit{w}, in Table \ref{tab:mod}, represents the current week in the initial schedule, and \textit{v} represents \textit{v-1} rotations to the right from the initial schedule. With initial schedule, we refer to the schedule, where all staff members' weekends occur in the first week. The resulting week, when rotations have been taken into account, can be seen inside the cells. When scheduling, it is the resulting week $\omega$ which is of interest when checking if a staff member is available for a task assignment. 
 \begin{table}[H]
 \centering
 \caption{Resulting table of the function $\omega(v,w) = mod_{10}(w-v+10)+1$. Here, $w$ is the week in the initial schedule, $v$ is the rotation variable. Inside the cells, the resulting week is shown when rotations have been made.}
@@ -183,7 +183,7 @@ v = & \multicolumn{1}{l|}{5}  & \multicolumn{1}{l|}{7}  & \multicolumn{1}{l|}{8}
     & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{2}  & \multicolumn{1}{l|}{3}  & \multicolumn{1}{l|}{4}  & \multicolumn{1}{l|}{5}  & \multicolumn{1}{l|}{6}  & \multicolumn{1}{l|}{7}  & \multicolumn{1}{l|}{8}  & \multicolumn{1}{l|}{9}  & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{1}  \\ \cline{3-12} 
 \end{tabular}
 \end{table}
-An example to better understand the function: imagine that we are looking at an unrotated initial schedule where everyone is assumed to work weekend the first week. Say that we look at a staff member's first week, $w=1$. If this schedule is rotated two times to the right ($v=3$), then the first week in the new rotated schedule represents the previous ninth week, that is $w=9$ from the initial schedule. The availability to look at, in the initial schedule is, therefore, week nine.
+An example to better understand the function: imagine that we are looking at an unrotated initial schedule where everyone is assumed to work weekend the first week. Say that we look at a staff member's first week, $w=1$. If this schedule is rotated two times to the right ($v=3$), then the first week in the new rotated schedule represents the previous ninth week, that is $w=9$ when no rotation exists. The availability to look at, in the initial schedule is, therefore, week nine.
 
 Initially, all staff members are assigned weekend work the first week. Then, a week rotation variable is introduced that rotates the staff members' availability matrices so that the demand constraints on evenings and weekends can be met. The most basic constraints, regarding which week a staff member's weekend work occurs and its week rotation, can be seen below.
 
