@@ -231,7 +231,7 @@ One week block contains seven days and up to four shifts where each shift can co
 Every day must contain exactly \textit{one} task from either of the four shifts when creating a week block. The tasks \textit{I} and \textit{PL} are ranging over more than one shift. The duration of a \textit{PL} is three shift and \textit{I} refers to the entire day. They are both placed in the first shift to simplify the complete task representation. When creating the combinations of block appearances there are additional conditions that have to be met. These are:
 \begin{enumerate}  
 \item At most two tasks per week can be assigned the same shift.\label{first_item}
-\item At most one evening is allowed per week, if Friday evenings are excluded. \label{second_item}
+\item At most one evening is allowed per week, if Friday evenings are excluded.\label{second_item}
 \item At most one PL is allowed in a week block. \label{third_item}
 \item Saturday and Sunday shall always contain the same type of task.\label{fourth_item}
 \item If Saturday and Sunday contain Desk tasks, then so shall Friday afternoon (fourth shift). \label{friday_as_weekend}
@@ -665,7 +665,7 @@ With well chosen cost parameter values, the run will always get relatively close
 
 The second heuristic approach tested allocates individual tasks to staff members and greatly resembles the process of manual scheduling. The implemented algorithm undergoes two phases. In the first phase, weekends, as well as some weekday tasks, are allocated and in the second phase the rest of the weekday tasks are allocated. 
 
-The primary heuristic method used in this approach is a large neighbourhood search in combination with a simulated annealing accept function. Destroying and repairing the solution, which is the main feature of LNS, leads the search towards better solutions in the local vicinity of the current solution. The SA function, on the other hand, leads the search out of the current neighbourhood by accepting poorer solutions.
+The primary heuristic method used in this approach is a large neighbourhood search in combination with a simulated annealing accept function. Destroying and repairing the solution, which is the main feature of LNS, leads the search towards better solutions in the local vicinity of the current solution. The SA function, on the other hand, leads the search out of the current neighbourhood by accepting poorer solutions. This diversifies the search.
 
 \subsection{Costs} \label{subsection:tasks_cost}
 The search algorithm is guided using penalty costs, both for staff member schedules and for the whole library schedule. Each staff member has a number of cost contributions, as displayed in Table \ref{tab:staff member_costs}. Each of these costs is caused by a badly allocated task, resulting in an infeasible schedule or unused stand-in potential. The costs have different weights, as illustrated in the table. How the weights should be set is discussed in Chapter \ref{chap:res}. 
@@ -680,59 +680,59 @@ For the library schedule, costs are weighed together in three different ways. Th
 \hline
 \multicolumn{3}{|l|}{\cellcolor{gray!90} \textbf{Stand-in cost}} \\ \hline
 \rowcolor{Gray} Cost & Weight & Cost description \\ \hline
-$C_{SI}$ & $W_{s\_SI}$ & Cost from having a task on a day where the staff member instead can be a stand-in. \\ \hline
+$C_{SI}$ & $W_{s\_SI}$ & Cost for having a task on a day where the staff member instead can be a stand-in. \\ \hline
 \multicolumn{3}{|l|}{\cellcolor{gray!90} \textbf{Infeasibility costs}} \\ \hline
 \rowcolor{Gray} Cost & Weight & Cost description \\ \hline
-$C_{Task\_D}$ & $W_{s\_Task\_D}$ & Cost for allocating too many tasks in a day. \\ \hline
-$C_{Task\_W}$ & $W_{s\_Task\_W}$ & Cost for allocating too many tasks in a week.  \\ \hline
-$C_{PL\_D}$ & $W_{s\_PL\_W}$ & Cost for allocating to many PL tasks in a week. \\ \hline
-$C_{PL\_Tot}$ & $W_{s\_PL\_Tot}$ & Cost for allocating too many PL tasks in total. \\ \hline
-$C_{SShift\_W}$ & $W_{s\_SShift\_W}$ & Cost for allocating to many tasks at the same shift in a week. \\ \hline
+$C_{Task\_D}$ & $W_{s\_Task\_D}$ & Cost for having too many tasks in a day. \\ \hline
+$C_{Task\_W}$ & $W_{s\_Task\_W}$ & Cost for having too many tasks in a week.  \\ \hline
+$C_{PL\_D}$ & $W_{s\_PL\_W}$ & Cost for having to many PL tasks in a week. \\ \hline
+$C_{PL\_Tot}$ & $W_{s\_PL\_Tot}$ & Cost for having too many PL tasks in total. \\ \hline
+$C_{SShift\_W}$ & $W_{s\_SShift\_W}$ & Cost for having to many tasks at the same shift in a week. \\ \hline
 \end{tabular}
 \end{table}
 
 \begin{table}[!h]
 \centering
-\caption{Library objective functions with their cost components and weights.}
+\caption{The three different library objective functions with their cost components and weights.}
 \label{tab:lib_costs}
 \begin{tabular}{|l|l|p{7cm}|}
 \hline
 \multicolumn{3}{|l|}{\cellcolor{gray!90} \textbf{Weekend Objective Function}} \\
 \hline 
 \rowcolor{Gray} Cost & Weight & Cost description \\ \hline
-$C_{SI\_m}$ & $W_{SI\_m}$ & Cost of day with minimum number of stand-ins. \\ \hline
-$C_{S\_m}$ & $W_{S\_m}$ & Cost of shift with minimum number of staff members. \\ \hline
-$C_{D\_m}$ & $W_{D\_m}$ & Cost of day with minimum number of staff members. \\ \hline
-$C_{SI\_a}$ & $W_{SI\_a}$ & Cost of average number of stand-ins per day. \\ \hline
-$C_{S\_a}$ & $W_{S\_a}$ & Cost of average number of staff members at a shift. \\ \hline
-$C_{D\_a}$ & $W_{D\_a}$ & Cost of average number of staff members at a day. \\ \hline
+$C_{SI\_m}$ & $W_{SI\_m}$ & Cost for day with minimum number of stand-ins. \\ \hline
+$C_{S\_m}$ & $W_{S\_m}$ & Cost for shift with minimum number of staff members. \\ \hline
+$C_{D\_m}$ & $W_{D\_m}$ & Cost for day with minimum number of staff members. \\ \hline
+$C_{SI\_a}$ & $W_{SI\_a}$ & Cost for average number of stand-ins per day. \\ \hline
+$C_{S\_a}$ & $W_{S\_a}$ & Cost for average number of staff members per shift. \\ \hline
+$C_{D\_a}$ & $W_{D\_a}$ & Cost for average number of staff members per day. \\ \hline
 \hline
 \multicolumn{3}{|l|}{\cellcolor{gray!90} \textbf{Staff Member Objective Function}} \\
 \hline
 \rowcolor{Gray} Cost & Weight & Cost description \\ \hline
-$C_{Task\_D}$ & $W_{Task\_D}$ & Cost for allocating too many tasks in a day for all staff members. \\ \hline
-$C_{Task\_W}$ & $W_{Task\_W}$ & Cost for allocating too many tasks in a week for all staff members. \\ \hline
-$C_{PL\_W}$ & $W_{PL\_W}$ & Cost for allocating to many PL tasks in a week for all staff members. \\ \hline
-$C_{PL\_Tot}$ & $W_{PL\_Tot}$ & Cost for allocating too many PL tasks in total for all staff members. \\ \hline
-$C_{SShift\_W}$ & $W_{SShift\_W}$ & Cost for allocating to many tasks at the same shift in a week for all staff members. \\ \hline
+$C_{Task\_D}$ & $W_{Task\_D}$ & Cost for allocating too many tasks in a day at any staff members. \\ \hline
+$C_{Task\_W}$ & $W_{Task\_W}$ & Cost for allocating too many tasks in a week at any staff member. \\ \hline
+$C_{PL\_W}$ & $W_{PL\_W}$ & Cost for allocating to many PL tasks in a week at any staff member. \\ \hline
+$C_{PL\_Tot}$ & $W_{PL\_Tot}$ & Cost for allocating too many PL tasks in total at any staff member. \\ \hline
+$C_{SShift\_W}$ & $W_{SShift\_W}$ & Cost for allocating to many tasks at the same shift in a week at any staff member. \\ \hline
 \hline
  \multicolumn{3}{|l|}{\cellcolor{gray!90} \textbf{Weekday Objective Function}} \\
 \hline
 \rowcolor{Gray} Cost & Weight & Cost description \\ \hline
-$C_{SI\_m}$ & (No weight) & Cost of day with minimum number of stand-ins. \\ \hline
+$C_{SI\_m}$ & (No weight) & Cost for day with minimum number of stand-ins. \\ \hline
 \end{tabular}
 \end{table}
 
-The weekend objective function, as referred to in the table, is associated with the weekend allocation phase of the problem. There are three types of costs in this objective function, each measuring a certain aspect of a weekend schedule. Since we want to increase the number of stand-ins at the most critical days, the worst shift or day with respect to these aspects is to be maximized. This is referred to as the min cost. Also, the average of each aspect is considered, in order to distinguish between solutions for which the worst shift or day are identical. These costs are calculated using the formula
+The weekend objective function, as referred to in the table, is associated with the weekend phase of the algorithm. There are three types of costs in this objective function, each measuring a certain aspect of a weekend schedule. Since we want to increase the number of stand-ins at the most critical days, the worst shift or day with respect to these aspects is to be maximized. This is referred to as the min cost. Also, the average of each aspect is considered, in order to distinguish between solutions for which the worst shift or day are identical. These six costs are all calculated using the formula
 
 \begin{equation}
 \label{eq:wend_cost_calc}
 C_{type} = W_{lib}*num\_of\_lib + W_{ass}*num\_of\_ass.
 \end{equation}
 
-The weights $W_{lib}$ and $W_{ass}$ are constants used in all weekend objective function costs. Typically $W_{lib}$ is larger than $W_{ass}$ since librarians can perform more tasks than assistants. The weekend objective function becomes the weighted sum of the costs displayed in Table \ref{tab:lib_costs}. 
+The weights $W_{lib}$ and $W_{ass}$ are constants used in all weekend objective function costs used to prioritize one staff member type over the other. Typically $W_{lib}$ is larger than $W_{ass}$ since librarians can perform more tasks than assistants, and thus they are more prioritized. The weekend objective function becomes the weighted sum of the costs displayed in Table \ref{tab:lib_costs}. 
 
-After a certain number of iteration the weekend phase is finished and the weekday allocation phase is entered. Here, the staff member objective function is used to identify infeasibilities in the staff member schedules, and is simply a sum of the staff member costs for all staff members. When this cost is zero, the schedule is feasible and the weekday objective function value is calculated. This objective function contains the minimum stand-in cost, which is calculated in the same way as in the weekend objective function. The weekday objective function corresponds to the objective function in the mathematical model in Chapter \ref{chap:mathmod} and is to be maximized.
+After a certain number of iteration the weekend phase is finished and the weekday allocation phase is entered. Here, the staff member objective function is used to identify infeasibilities in the staff member schedules, and is simply a sum of the individual staff member costs over all staff members. When this cost is zero, the schedule is feasible and the weekday objective function value is calculated. This objective function contains only the minimum stand-in cost, which is calculated in the same way as in the weekend objective function. The weekday objective function corresponds to the objective function in the mathematical model in Chapter \ref{chap:mathmod} and is to be maximized since we want to create as many stand-ins as possible in the schedule.
 
 \subsection{Weekend phase}
 
@@ -745,7 +745,7 @@ After a certain number of iteration the weekend phase is finished and the weekda
 \tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
     minimum height=2em]
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \caption{A flow chart over the weekend phase.}
 \label{fig:weekend_alg}
@@ -757,9 +757,9 @@ After a certain number of iteration the weekend phase is finished and the weekda
     \node [block, below of=invinit] (distribute) {Allocate all weekends randomly};
     \node [decision, below of=distribute, node distance=2.5cm] (evaluate) {Solution feasible?};
     \node [block, left of=distribute, node distance=4cm] (redistribute) {Remove all weekends};
-     \node [block, below of=evaluate, node distance=3.5cm] (setobjf) {Set weekend obj fun value};
-     \node [block, below of=setobjf, node distance=3cm] (save) {Save temp solution};
-     \node [block, below of=save, node distance=3cm] (dr) {Destroy and repair solution};
+     %\node [block, below of=evaluate, node distance=3.5cm] (setobjf) {Set weekend obj fun value};
+     \node [block, below of=distribute, node distance=8.2cm] (save) {Save temp solution};
+     \node [block, below of=save, node distance=3.5cm] (dr) {Destroy and repair solution};
      \node [decision, below of=dr] (evaluate2) {Solution feasible?};
      \node [block, right of=dr, node distance=3cm] (reload) {Reload temp solution};
      
@@ -783,11 +783,11 @@ After a certain number of iteration the weekend phase is finished and the weekda
     \path [line] (distribute) -- (evaluate);
     \path [line] (evaluate) -| node {no} (redistribute);
     \path [line] (redistribute) |- (distribute);
-    \path [line] (evaluate) -- node {yes}(setobjf);
-    \path [line] (setobjf) -- (save);
+    \path [line] (evaluate) -- node {yes}(save);
+	%\path [line] (setobjf) -- (save);
     \path [line] (save) -- (dr);
     \path [line] (dr) -- (evaluate2);
-    \path [line] (evaluate2) -| node {no} (reload);
+    \path [line] (evaluate2) -| node [anchor=north]{no} (reload);
     \path [line] (reload) -- (dr);
     \path [line] (evaluate2) -- node {yes} (setobjf2);
     \path [line] (setobjf2) -- (compare);
@@ -813,17 +813,17 @@ After a certain number of iteration the weekend phase is finished and the weekda
     \node at (-10.5,-19.5) [above=4mm, right=2mm] {\textsc{weekend allocation loop}};
     \draw [color=gray!70,thick](-10.5,-19.5) rectangle (5,-6);
     %SA componenet
-    \node at (-7.5,-13.5) [above=4mm, right=2mm] {\textsc{SA}};
-    \draw [color=gray!70,thick](-7.5,-13.5) rectangle (-3,-10.5);
+    \node at (-7.5,-13.3) [above=4mm, right=2mm] {\textsc{SA}};
+    \draw [color=gray!70,thick](-7.5,-13.3) rectangle (-3,-10.4);
 \end{tikzpicture}
 }
 \end{figure}
 
-The weekend phase is the first phase the algorithm enters and its flow is described in Figure \ref{fig:weekend_alg}. The LNS component consists of the "destroy and repair loop", while the simulated annealing step is marked as the decision to accept a solution which is worse than the current one.
+The weekend phase is the first phase the algorithm enters and its flow is described in Figure \ref{fig:weekend_alg}. The LNS component consists of the "destroy and repair loop", and is an inner loop which is part of the main loop labelled as the "weekend allocation loop". The simulated annealing step is marked as the decision to accept a solution which is worse than the current one in the figure.
 
-The reason for implementing the weekend phase separately from the allocation of other tasks is that the number of stand-ins in the final schedule depends to a large extent on the weekend-staff member constellation. In particular, it is the week rest following upon weekend work which determines the number of stand-ins at a particular day.
+The reason for implementing the weekend phase separately from the allocation of other tasks is that the number of stand-ins in the final schedule depends to a large extent on the weekend-staff member constellation. In particular, it is the week rest following upon weekend work which limits the number of stand-ins at a particular day.
 
-The outer loop in the flow chart is performed a specified number of iterations. This loop is guided by the weekend objective function described in the previous subsection. Better solutions are always accepted and the globally best found solution is saved. The SA component is implemented using exponential cooling, so that a solution which is worse than the current one is accepted with a probability P, given by
+The outer loop in the flow chart is performed a specified number of iterations. This loop is guided by the weekend objective function described in the previous subsection. Better solutions are always accepted and the globally best found solution is saved. The SA component is implemented using exponential cooling, so that a solution which is worse than the current one is accepted with a probability \textit{P}, given by
 
 \begin{equation}
 P = exp(-\Delta E/T)
@@ -849,7 +849,7 @@ T = T_0 \alpha^t.
 Here, $T$ is the temperature of the SA accept function, which has an initial value of $T_0$ and which cools down with the iteration counter $t$ at a rate $\alpha$ ($0 < \alpha < 1$). The objective function value at iteration $t$ is written $Wend_t$.
 
 
-The inner loop of the algorithm destroys and repairs the solution. The loop checks if the current solution is infeasible, that is if the difference between the number of available staff members at each shift and the number of required staff members is negative. Such schedules are discarded and a destroy and repair is performed. The number of available staff members per shift is calculated as the sum of all staff members who are available at that shift and who do not have any tasks scheduled at that day.
+The inner loop of the algorithm destroys and repairs the solution. The loop checks if the current solution is infeasible, that is, if the difference between the number of available staff members at each shift and the number of required staff members at the shift is negative. Such schedules are discarded and a new destroy and repair is performed. The number of available staff members per shift is calculated as the sum of all staff members who are available at that shift and who do not have any tasks scheduled at that day.
 
 The algorithms for allocating, destroying and repairing weekends is simply a random function, since it is very hard to predict what is a good or bad placement of a specific weekend, without creating the whole schedule. Since the weekend objective function is only an estimate of the current number of stand-ins and available staff members, this number will be greatly reduced when placing the weekday tasks. 
 
@@ -899,7 +899,7 @@ The algorithms for allocating, destroying and repairing weekends is simply a ran
 \end{table}
 
 
-In order to get a better estimate of the number of available staff members during the weekend phase, evening tasks and BokB tasks are allocated after each weekend repair. The evening tasks are allocated using the same method as is described in Section \ref{wday_phase}, while BokB tasks are placed according to a fixed schedule. The effect of this allocation is shown in Tables \ref{tab:num_avail_no_tasks} and \ref{tab:num_avail_with_tasks}. High intensity of red in a cell indicates a higher number of staff members. It can be seen that the first table is generally redder and thus there are fewer available staff members in the second table. This state reflects better the real number of available staff members during the week days for a certain weekend constellation. 
+In order to get a better estimate of the number of available staff members during the weekend phase, evening tasks and BokB tasks are allocated after each weekend repairation. The evening tasks are allocated using the same method as is described in Section \ref{wday_phase}, while BokB tasks are placed according to a fixed schedule. The effect of this allocation is shown in Tables \ref{tab:num_avail_no_tasks} and \ref{tab:num_avail_with_tasks}. High intensity of red in a cell indicates a higher number of staff members. It can be seen that the first table is generally redder and thus there are fewer available staff members in the second table. This second state reflects better the real number of available staff members during the week days for a certain weekend constellation. 
 
 \subsection{Weekday phase}\label{wday_phase}
 
@@ -981,7 +981,7 @@ In order to get a better estimate of the number of available staff members durin
 \end{figure}
 
 
-When entering the weekday phase, all weekends, evenings and BokB tasks are already allocated. In the weekday phase, the remaining tasks, referred to as "weekday" tasks are to be allocated. The staffing demand for a week is illustrated in Table \ref{tab:current_demand} and it is identical for all weeks.The algorithm for allocating weekday tasks is found in Figure \ref{fig:weekday_alg}, and greatly resembles the algorithm for allocaing weekends.
+When entering the weekday phase, all weekends, evenings and BokB tasks are already allocated. In the weekday phase, the remaining tasks, referred to as "weekday" tasks are to be allocated. The staffing demand for a week is illustrated in Table \ref{tab:current_demand} and it is identical for all weeks. The algorithm for allocating weekday tasks is found in Figure \ref{fig:weekday_alg}, and greatly resembles the algorithm for allocating weekends.
 
 
 \begin{table}[!h]
