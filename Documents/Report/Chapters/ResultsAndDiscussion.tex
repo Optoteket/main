@@ -1,9 +1,12 @@
+In the first section of this chapter, results from the three different implementations are presented. In Section \ref{section:discussion}, these results are discussed and the pros and cons of the two heuristics are given.
+
+
 \section{Results} \label{section:results}
-In the following sections, results from running the AMPL implementation and both heuristics will be presented. The parameter values used in the runs will also be given. 
+In the following sections, results from running the AMPL implementation and both heuristics are presented. The parameter values used in the runs are also given. 
 
 \subsection{AMPL implementation}\label{sec:ampl_res}
 
-By implementing the given mathematical model in AMPL and solving it with CPLEX 12.5, provides the values displayed in Table \ref{tab:CPLEX_res}. The weights in Equation \ref{objfcn} and \ref{constr:s_min} were set to $L = 2$, $A = 1$, $M =100$ and $N=1$, thus making librarians twice as valuable as assistants and stand-ins 100 times more valuable than no shift changes. 
+By implementing the given mathematical model in AMPL and solving it with CPLEX 12.5, the results displayed in Table \ref{tab:CPLEX_res} are obtained. The weights in Equation \ref{objfcn} and \ref{constr:s_min} were set to $L = 2$, $A = 1$, $M =100$ and $N=1$, thus making librarians twice as valuable as assistants and stand-ins 100 times more valuable than no shift changes. 
 
 \begin{table}[!h]
 \centering
@@ -20,7 +23,7 @@ By implementing the given mathematical model in AMPL and solving it with CPLEX 1
 Only the stand-in part of the objective function is presented, since this value can be used as a benchmark in measuring the performance of the heuristics. The number of shift changes, which is the second part of the objective function in Equation \ref{objfcn}, is zero.
 
 \subsection{Week block scheduling approach}
-As most of the costs are correlated with each other, some parameter tuning was required. The final result of the parameter tuning are shown in Table \ref{tab:cost_parameters}. Their respective descriptions can be seen in Table \ref{tab:all_costs}. 
+As most of the costs are correlated with each other, some parameter tuning was required. The final result of the parameter tuning is shown in Table \ref{tab:cost_parameters}. Their respective descriptions can be seen in Table \ref{tab:all_costs}. 
 
 \begin{table}[!h]
 \centering
@@ -64,7 +67,7 @@ Stand\_in\_cost                     & 5     \\ \hline
 \end{tabular}
 \end{table}
 
-Worth noting is that these values are most certainly not the best possible, as they have mostly been assigned using intuition. However, a few relations were determined by either running tests or using reasoning. An example is if $PL\_good\_cost > Demand\_PL\_good\_ass$ or $PL\_good\_cost > Demand\_PL\_good\_lib$. If one of those holds, all staff members that is able to be assigned another PL, without violating the individual PL assigment constraint, will be. Thereby, leaving the library overstaffed with staff members assigned to PL. The reason is because the net of $-PL\_good\_cost + Demand\_PL\_good\_ass/lib$ will be negative, meaning it is preferable to assign yet another PL to a staff member, regardless of how many there already are assigned. This leads to an overstaffed library on some days, and lack of staff members on other days.
+Worth noting is that these values are most certainly not the best possible, as they have mostly been assigned using intuition and empirical observations. However, a few relations were determined by either running tests or using reasoning. An example is if $PL\_good\_cost > Demand\_PL\_good\_ass$ or $PL\_good\_cost > Demand\_PL\_good\_lib$. If one of those holds, all staff members that is able to be assigned another PL, without violating the individual PL assignment constraint, will be. Thereby, leaving the library overstaffed with staff members assigned to PL. The reason is because the net of $-PL\_good\_cost + Demand\_PL\_good\_ass/lib$ will be negative, meaning it is preferable to assign yet another PL to a staff member, regardless of how many there already are assigned. This leads to an overstaffed library on some days, and lack of staff members on other days.
 
 Table \ref{successful_iter} shows the success rate of finding a solution during a script execution. A run is considered to fail, if no feasible solution is found during the final phase. This script execution is using the cost parameters shown in Table \ref{tab:cost_parameters}. 
 \begin{table}[!h]
@@ -155,13 +158,13 @@ $W_{SShift\_W}$ / $W_{s\_SShift\_W}$ & 4 \\ \hline
 
 
 
-The first six weights, belonging to the weekend objective function, were most experimented with and will be discussed further in this section. The first three, the min weights, are scaled relatively to each other and decide how much weight is placed on maximizing the number of stand-ins during the worst day, maximizing the number of staff members at the worst day and maximizing the number of staff members at the worst shift, respectively. Only maximizing the number of stand-ins at the worst day during the weekend phase would not give a complete estimation of the number of stand-ins in the final schedule, since this number also depends on how many workers are present in total during that day and during the shifts of the days. Thus, all three aspects were measured.
+The first six weights, belonging to the weekend objective function, were most experimented with and will be discussed further in this section. The first three, the min weights, are scaled relatively to each other and decide how much weight is placed on maximizing the number of stand-ins at the worst day, maximizing the number of staff members at the worst day and maximizing the number of staff members at the worst shift, respectively. Only maximizing the number of stand-ins at the worst day during the weekend phase would not give a complete estimation of the number of stand-ins in the final schedule, since this number also depends on how many workers are present in total during that day and during the shifts of the days. Thus, all three aspects were measured.
 
-The next three weights, refered to as the average weights, belong to the three costs which give the average of each of the three aspects described above. They are simply calculated as one tenth of their equivalent min weights. The weights in Equation \ref{eq:wend_cost_calc}, $W_{lib}$ and $W_{ass}$ were set to $2$ and $1$, respectively, since it can be argued that one librarian can perform twice as many tasks as one assistant.
+The next three weights, referred to as the average weights, belong to the three costs which give the average of each of the three aspects described above. They are simply calculated as one tenth of their equivalent min weights. The weights in Equation \ref{eq:wend_cost_calc}, $W_{lib}$ and $W_{ass}$ were set to $2$ and $1$, respectively, since it can be argued that one librarian can perform twice as many tasks as one assistant.
 
-The individual staff member cost and the staff member objective function costs, which measure the same aspects of the schedule, have been given the same weights, as is illustrated in Table \ref{tab:tasks_weight}. This is due to the fact that these weights, relative to each other, decide what constraints are most strict. It is, for example more severe to break the rule of one task per day, than to break the rule of having too many shifts at the same time in a week, which is reflected in the weights. The stand-in weight $W_{w\_SI}$ is twice as high for librarians as for assistant.
+The individual staff member costs and the staff member objective function costs, which measure the same aspects of the schedule, have been given the same weights, as is illustrated in Table \ref{tab:tasks_weight}. This is due to the fact that these weights, relative to each other, decide what constraints are most strict. It is, for example more severe to break the rule of one task per day, than to break the rule of having too many shifts at the same time in a week, which is reflected in the weights. The stand-in weight $W_{s\_SI}$ is twice as high for librarians as for assistant.
 
-The two phases of the implementation are run a specified number of iterations, referred to as $It_{wend}$ and $It_{wday}$. These parameters were also trimmed and the results from different iteration values are displayed in Tables \ref{tab:taskdist_res_wendit} and \ref{tab:taskdist_res_wdayit}. The results for weight tuning are displayed in Table \ref{tab:taskdist_weights_res}.
+The two phases of the implementation are run a specified number of iterations each, referred to as $It_{wend}$ and $It_{wday}$. These parameters were also trimmed and the results from different iteration values are displayed in Tables \ref{tab:taskdist_res_wendit} and \ref{tab:taskdist_res_wdayit}. The results for weight tuning are displayed in Table \ref{tab:taskdist_weights_res}.
 
 \begin{table}[!h]
 \centering
@@ -211,15 +214,15 @@ The two phases of the implementation are run a specified number of iterations, r
 \end{tabular}
 \end{table}
 
-The tables display two costs for each test, the heuristic cost and the AMPL cost. These are calculated as the average result of 100 runs. Each run takes between a few seconds and a few minutes to perform. The heuristic cost is the actual result of the heuristic, measuring how well the heuristic solves the problem. The AMPL cost is the result obtained when solving the problem to optimality in CPLEX, using the weekend work pattern found in the heuristic. Thus, this value measures how good the weekend phase works. Both figures should be compared to the optimal stand-in value for the problem, which is 6 (see Table \ref{tab:CPLEX_res}).
+The three tables display two costs for each test, the heuristic cost and the AMPL cost. These are calculated as the average result of 100 runs. Each run takes between a few seconds and a few minutes to perform. The heuristic cost is the actual result of the heuristic, measuring how well the heuristic solves the problem. The AMPL cost is the result obtained when solving the problem to optimality in CPLEX, using the weekend schedule found in the heuristic. Thus, this value measures how good the weekend phase works. Both figures should be compared to the optimal stand-in value for the problem, which is 6 (see Table \ref{tab:CPLEX_res}).
 
 Studying Table \ref{tab:taskdist_res_wendit}, it can be seen that the AMPL cost increases with more weekend iterations. However, after 500 iterations, the cost stops to improve and it is actually deteriorating slightly. This is probably indicating that the weekend objective function value can only give a rough measure of a good schedule, and the result does not only depend on the number of iterations but also on chance. 
 
-Similarly, in Table \ref{tab:taskdist_res_wdayit}, the heuristic cost increases until a certain threshold, when the solutions are not improving any more. This might indicate that the second phase is not random enough, so the same schedules are found multiple times. This might be solved through implementing varying weights or introducing more randomness in task placement.
+Similarly, in Table \ref{tab:taskdist_res_wdayit}, the heuristic cost increases until a certain threshold, after which the solution is not improving any more. Since a new schedule is found in each iteration in the second phase, the threshold value might indicate that the phase is not random enough, so the same schedule is found multiple times. This problem might be solved through implementing varying weights or introducing more randomness in task placement.
 
 Table \ref{tab:taskdist_weights_res} shows the results from using a few extreme weight combinations. It is is clear from the table that, although the performance does not vary to any larger extent when shifting the focus in the weights, using a completely random search with no weights produces poor results. The last combination of weights seems to be performing slightly better than the others, and thus these weights were chosen in the implementation.
 
-The weekend objective function value during a typical run is shown in Figure \ref{fig:obj_fun_vals}. The effects of the SA accept function are visible in the plot as smaller or larger dives in the objective function value. In the runs, the SA parameters $T_0 = 0.4$ and $\alpha = 0.985$. $It_{wend} = 1000$ were used. The graph suggests that a high weekend objective function value is found already within the 200 first iterations, which is consistent with the results in Table \ref{tab:taskdist_res_wendit}.
+The weekend objective function value during a typical run is shown in Figure \ref{fig:obj_fun_vals}. The effect of the SA accept function is visible in the plot as smaller or larger dives in the objective function value. In the runs, the SA parameters $T_0 = 0.4$ and $\alpha = 0.985$. $It_{wend} = 1000$ was used. The graph suggests that a high weekend objective function value is found already within the 200 first iterations, which is consistent with the results in Table \ref{tab:taskdist_res_wendit}.
 
 \begin{figure}[!htbp]
 \centering
@@ -248,14 +251,14 @@ In Figure \ref{fig:obj_fun_comp} and Figure \ref{fig:obj_fun_comp_aver}, the thr
 
 Attempts were made to correlate the min component values of the weekend objective function to each other. However, the results were fluctuating between different runs so no clear correlations could be identified. This suggests that they are measuring three independent aspects.
 
-\section{Discussion}
+\section{Discussion}\label{section:discussion}
 In this section, the heuristic results, presented in Section \ref{section:results}, will be discussed. Pros and cons for both methods are given, so that they can be more easily compared.
 
 
 \subsection{Week block scheduling approach}
 Table \ref{tab:pros_cons_weekly_scheduling} lists pros and cons with the implemented week block scheduling approach. Some pros and cons were considered before this heuristic was chosen. Mainly, the con concerning the exponential growth of week blocks was taken into consideration, and an estimate of the upper limit of the problem size was done.
 
-The pro regarding the same amount of week blocks was taken into consideration, as the heuristic was thought of having firstly, a block construction phase and secondly, an assignment phase. However, the most significant pro of this approach is that many of the constraints are already met, implicitly, when the blocks are created. Constraints like maximum of one task per day, one evening per week, one PL per week, two shifts at the same hour per week and more are already taken care of. 
+The pro regarding the same amount of week blocks was taken into consideration, as the heuristic was thought of having firstly, a block construction phase and secondly, an assignment phase. However, the most significant pro of this approach is that many of the constraints are already met, implicitly, when the blocks are created. Constraints like maximum of one task per day, one evening per week, one PL per week, two shifts at the same hour per week and more, are already taken care of. 
 
 Cons like rotations, solution time and costs are no major issues, as they can be avoided by a few smarter implementations. For instance, rotations can be improved by assigning a chosen value whenever a staff member is available as stand-in on a day. From the sum of those values an even distribution of possible stand-ins can be acquired by, for instance, always letting the difference between the lowest and the highest sum of stand-ins, through the days, be as small as possible. This improvement should be done instead of randomly generating the new rotations in the destroy and repair iteration. 
 
@@ -280,7 +283,7 @@ Quick iterations when destroying and repairing.\par
 
 &
 
-%% CONS, seperated by empty line or \par
+%% CONS, separated by empty line or \par
 Rotations need to be assigned in a systematic way in order to achieve reasonable results, regarding lowest number of stand-ins through the days.\par
 The number of unique week block appearances grows exponentially in case more task types are added, such as meetings.\par
 The solution time can vary considerably, as several random number generators have been used.\par
@@ -293,7 +296,7 @@ More cost parameters are needed for this heuristic, where every one of them affe
  
 
 \subsection{Task allocation approach}
-The results from the previous section point to the fact that finding a good weekend allocation is essential in order to produce a good final schedule. Thus, when $It_{wend}$ is increased, the results improve, up to a limit of around 500 iterations. The results are in general comparable to those of the AMPL implementation. This suggests that the weekend objective function used gives a weekend schedule which, with a high probability, can provide a good basis for creating the complete schedule. However, as the results seem to converge to a value slightly lower than the AMPL result the weekend objective function must be seen only as a fairly good an optimal weekend schedule. 
+The results from the previous section point to the fact that finding a good weekend allocation is essential in order to produce a good final schedule. Thus, when $It_{wend}$ is increased, the results improve, up to a limit of around 500 iterations. The results are in general comparable to those of the AMPL implementation. This suggests that the weekend objective function used gives a weekend schedule which, with a high probability, can provide a good basis for creating the complete schedule. However, as the results seem to converge to a value slightly lower than the AMPL result, the weekend objective function must be seen only as a fairly good measurement of an optimal weekend schedule. 
 
 Table \ref{tab:taskdist_weights_res} suggests that the weights used in the weekend objective function are important for how well the implementation works, but only to a certain degree. More testing could be done on the weights in order to see if the result can be further improved. However, since the objective function is an incomplete measure of a good schedule the results will never be completely optimal. This is listed as the main drawback in the cons column in Table \ref{tab:pros_cons_task_scheduling}. 
 
@@ -307,16 +310,16 @@ Table \ref{tab:taskdist_weights_res} suggests that the weights used in the weeke
 \hfil\bfseries Cons
 \\\cmidrule(r{3\tabcolsep}){1-1}\cmidrule(l{-\tabcolsep}){2-2}
 
-%% PROS, seperated by empty line or \par
+%% PROS, separated by empty line or \par
 In most cases, the method finds an optimal solution. \par
 The method is very fast compared to the CPLEX solver. Only a few iterations in each phase gives good results. \par
 The method can be used to find a good weekend schedule. The rest of the schedule can then be created using another method such as CPLEX, in a short time. \par
 
 &
 
-%% CONS, seperated by empty line or \par
+%% CONS, separated by empty line or \par
 The weekend objective function is not an exact measurement of a good weekend schedule. \par
-There are many weights and parameters to take into consideration in the implementaion. \par
+There are many weights and parameters to take into consideration in the implementation \par
 
 
 \\\bottomrule
