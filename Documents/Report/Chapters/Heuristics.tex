@@ -126,7 +126,7 @@ Availability data & Even and odd week staff members have availability at each sh
 
 Both heuristic implementations are based on a Large Neighbourhood Search (LNS) framework. This method, which is classified as a metaheuristic, works by alternately destroying and repairing parts of solutions, in order to move through the solution space. Typically, the parts of the solution that are considered poor are destroyed. How much is destroyed is regulated by the destroy degree. The repair function rebuilds the destroyed part of the solution using some type of greedy heuristic. The LNS method is described more in detail by \citet{pisinger_2010}. 
 
-The second heuristic also uses Simulated Annealing (SA), which allows the algorithm to accept solutions which are poorer than the current one. This makes it possible for the search to move out of a local optima. A variable called a "temperature" is used in order to decide the probability of accepting a poorer solution. Usually, this temperature decreases with time, and thus the probability of accepting a poorer solution also decreases. The method is described more thoroughly by \citet{pisinger_2010}.
+The second heuristic also uses Simulated Annealing (SA), which allows the algorithm to accept solutions which are poorer than the current one. This makes it possible for the search to move out of a local optima. A variable called a "temperature" is used in order to decide the probability of accepting a poorer solution. Usually, this temperature decreases with time, and thus the probability of accepting a poorer solution also decreases. The method is described more thoroughly by \citet{eglese_1990}.
 
 \section{Week block scheduling approach} \label{section:impl_week_dist}
 
@@ -577,7 +577,7 @@ The complete list of the 16 costs with descriptions can be seen in Table \ref{ta
 \begin{tabular}{|l|l|}
 \hline
 \rowcolor[HTML]{FD6864} 
-\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Demand costs}} \\ \hline
+\multicolumn{2}{|l|}{\cellcolor{gray!90} \textbf{Demand costs}} \\ \hline
 %\multicolumn{2}{|c|}{\cellcolor[HTML]{FD6864}Demand costs}    \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 Cost name                                      & Description       \\ \hline
@@ -593,19 +593,19 @@ Demand\_PL\_good\_lib        & Assigning a PL to a librarian, when not already a
 Demand\_PL\_bad\_ass         & Assigning a PL to an assistant, when already assigned to another.          \\ \hline
 Demand\_PL\_bad\_lib         & Assigning a PL to a librarian, when already assigned to another.          \\ \hline
 \rowcolor[HTML]{FD6864} 
-\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{PL costs}} \\ \hline
+\multicolumn{2}{|l|}{\cellcolor{gray!90} \textbf{PL costs}} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 Cost name                                      & Description       \\ \hline
 PL\_good\_amount                  & Assigning a PL to a staff member still in need of more for feasibility.\\ \hline
 PL\_violate\_amount             & Assigning more PL than allowed to that staff member.                  \\ \hline
 \rowcolor[HTML]{FD6864} 
-\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Weekend costs}} \\ \hline
+\multicolumn{2}{|l|}{\cellcolor{gray!90} \textbf{Weekend costs}} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 Cost name                                      & Description       \\ \hline
 HB\_amount                       & Either no or more than one HB staff member assigned the same weekend.   \\ \hline
 No\_weekend                & No weekend blocks available for assignment.                  \\ \hline
 \rowcolor[HTML]{FD6864} 
-\multicolumn{2}{|l|}{\cellcolor{corn} \textbf{Stand-in costs}} \\ \hline
+\multicolumn{2}{|l|}{\cellcolor{gray!90} \textbf{Stand-in costs}} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 Cost name                                      & Description       \\ \hline
 Stand\_in\_cost                     & Occurring when a possible stand-in is ruined due to an assignment.    \\ \hline
