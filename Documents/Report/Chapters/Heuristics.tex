@@ -454,7 +454,7 @@ At first, when creating the initial solution, all staff members will have five e
 
 In order to find the best week block, several costs are introduced to measure week block insertions. Say, if the library demands two librarians at the Information desk on Monday at 8 a.m. and currently there is only one assigned, then it shall be profitable to assign another one. Such an assignment will, therefore, be rewarded using a cost contribution. Good assignments will provide negative costs and bad assignments will provide positive costs to the objective function value.
 
-Table \ref{block_to_evaluate} together with Figure \ref{flow_chart_cost} show an example of week block evaluation using costs. Here, different cost contributions have to be considered before assigning it to a staff member. In order to calculate demand costs for the PL assume that the block, which is being evaluated, is to be inserted for week three.
+Table \ref{block_to_evaluate} together with Figure \ref{flow_chart_cost} show an example of week block evaluation using costs. Here, different cost contributions have to be considered before assigning it to a staff member. As the amount of already assigned staff members differ for all of the weeks, we have to consider a certain week in this example. Here we can assume we are trying to insert this block at week three when calculating the demand cost.
 
 % Please add the following required packages to your document preamble:
 % \usepackage[table,xcdraw]{xcolor}
@@ -655,12 +655,12 @@ After each destroy and repair loop the new solution is evaluated. It is common f
 
 All costs are taken into account in the evaluation of the solution. If there are any demand violations in the library, or in the number of PL assigned to a staff member, these are given the respective costs. Furthermore, in case there are stand-ins, these are provided with a negative stand-in cost. 
 \subsection{Final phase}
-At the end of a script iteration, there are usually a few infeasibilities left that do not get solved. To fix this, a final phase was implemented. Whenever a run is "relatively close" and it is likely to be able to find a feasible solution, the final phase is initiated. "Relatively close" means in this case that the only infeasibility left is the lack of staff members at a handful of weekday shifts. A handful would refer to an estimate of 3-8 tasks violations. It is likely it is possible to find a solution, when there are more stand-ins available than demand violations for all days. The reason is because the stand-ins are expendable and can be used to create a feasible solution.
+At the end of a script iteration, there are usually a few infeasibilities left that do not get solved. To fix this, a final phase was implemented. Whenever a run is "relatively close" and it is likely to be able to find a feasible solution, the final phase is initiated. "Relatively close" means in this case that the only infeasibility left is the lack of staff members at a handful of weekday shifts. A handful would refer to an estimate of 3-8 tasks violations. In addition to being "relatively close" it has to be likely to find a feasible solution. This occurs when there are more stand-ins available than the number of demand violations for all days. The reason is because the stand-ins are expendable and can be assigned tasks in order to create a feasible solution.
 
 The final phase destroys one random week for a random staff member and immediately repairs it, resulting in most likely the same or a better solution. This is repeated until a feasible solution is found. % %In discussion: Sometimes it does not find a feasible solution due to the staff member had already four tasks assigned, i.e. the required block does not exist.
 
-With well chosen cost parameter values, the run will always get relatively close to feasibility and reach the final phase eventually. In case there are fewer stand-ins available any day where infeasibility occurs, when reaching the final phase, empty blocks will be assigned to all staff members and the solution enters the destroy and repair loop again, see Figure \ref{flow_chart}.
-
+With well chosen cost parameter values, the run will always get relatively close to feasibility and reach the final phase eventually. In case there are not enough stand-ins to fill the task violations when reaching the final phase, empty blocks will be assigned to all staff members and the solution enters the destroy and repair loop again, see Figure \ref{flow_chart}.
+%
 \section{Task allocation approach} \label{section:impl_task_dist}
 
 The second heuristic approach tested allocates individual tasks to staff members and greatly resembles the process of manual scheduling. The implemented algorithm undergoes two phases. In the first phase, weekends, as well as some weekday tasks, are allocated and in the second phase the rest of the weekday tasks are allocated. 
