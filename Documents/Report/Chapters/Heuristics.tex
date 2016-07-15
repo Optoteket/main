@@ -137,7 +137,7 @@ The implemented heuristic can be seen in Figure \ref{flow_chart}. The LNS framew
 % Define block styles
 \tikzstyle{decision} = [diamond, draw, fill=red!30,
     text width=3.5em, text badly centered, node distance=3cm, inner sep=0.1pt]
-\tikzstyle{block} = [rectangle, draw, fill=blue!30,
+\tikzstyle{block} = [rectangle, draw, fill=blue!40,
     text width=5em, text centered, rounded corners, minimum height=4em]
 \tikzstyle{line} = [draw, -latex']
 \tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
@@ -248,10 +248,10 @@ An illustration of one of the 4,175 existing blocks can be seen in Table \ref{bl
 \label{block_example}
 \begin{tabular}{cccccccc}
                            & Mon                                            & Tue                                             & Wed                    & Thu                                            & Fri                    & Sat                                             & Sun                                             \\ \cline{2-8} 
-\multicolumn{1}{c|}{08:00-10:00}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}PL} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}HB} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}HB} \\ \cline{2-8} 
-\multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  &                                                 &                                                 \\ \cline{2-6}
-\multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{}  &                                                 &                                                 \\ \cline{2-6}
-\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{}                           & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  &                                                 &                                                 \\ \cline{2-6}
+\multicolumn{1}{c|}{08:00-10:00}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{\colcelltwo PL} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{\colcelltwo HB} & \multicolumn{1}{c|}{\colcelltwo HB} \\ \cline{2-8} 
+\multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{\colcelltwo}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  &                                                 &                                                 \\ \cline{2-6}
+\multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{\colcelltwo}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\colcelltwo D} & \multicolumn{1}{c|}{}  &                                                 &                                                 \\ \cline{2-6}
+\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{\colcelltwo D} & \multicolumn{1}{c|}{}                           & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  &                                                 &                                                 \\ \cline{2-6}
 \end{tabular}
 \end{table}
 
@@ -270,115 +270,115 @@ All of the values in the table are fractions of the total number of 4,175 blocks
 \begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
 \hline
 %-------------------------------------------------------------------
-\textbf{Weekend week}& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
+\rowcolor{gray!90} \textbf{Week 1}& \textbf{Mon} & \textbf{Tue} & \textbf{Wed} & \textbf{Thu} & \textbf{Fri} & \textbf{Sat} & \textbf{Sun}
 \\ \hline 
 %%------------------------------------------------------------------- 
 %\rowcolor{Gray} 
-\colcell 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo
+ 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo
 \\ \hline 
 %%-------------------------------------------------------------------
 %\rowcolor{Gray} 
-\colcell 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo &   & 
+ 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo &   & 
 \\ \hline 
 %%-------------------------------------------------------------------
 %\rowcolor{Gray} 
-\colcell 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & &
+ 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & &
 \\ \hline 
 %%-------------------------------------------------------------------
 %\rowcolor{Gray} 
-\colcell 16:00-20:00 & & & \colcelltwo & & \colcelltwo & &
+ 16:00-20:00 & & & \colcelltwo & & \colcelltwo & &
 \\ \hline 
 %%-------------------------------------------------------------------
 \end{tabularx}
 \begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
 \hline
 %-------------------------------------------------------------------
-\textbf{Week rest week}& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
-\\ \hline 
+\rowcolor{gray!90} \textbf{Week 1}& \textbf{Mon} & \textbf{Tue} & \textbf{Wed} & \textbf{Thu} & \textbf{Fri} & \textbf{Sat} & \textbf{Sun}
+\\ \hline  
 %%------------------------------------------------------------------- 
 %\rowcolor{Gray} 
-\colcell 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & & & & 
+ 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & & & & 
 \\ \hline 
 %%-------------------------------------------------------------------
 %\rowcolor{Gray} 
-\colcell 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & & & & 
+ 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & & & & 
 \\ \hline 
 %%-------------------------------------------------------------------
 %\rowcolor{Gray} 
-\colcell 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & & & &
+ 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & & & &
 \\ \hline 
 %%-------------------------------------------------------------------
 %\rowcolor{Gray} 
-\colcell 16:00-20:00 & & & \colcelltwo & & & &
+ 16:00-20:00 & & & \colcelltwo & & & &
 \\ \hline 
 %%-------------------------------------------------------------------
 \end{tabularx}
 \begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
 \hline
 %-------------------------------------------------------------------
-\textbf{Weekday week}& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
+\rowcolor{gray!90} \textbf{Week 1}& \textbf{Mon} & \textbf{Tue} & \textbf{Wed} & \textbf{Thu} & \textbf{Fri} & \textbf{Sat} & \textbf{Sun}
 \\ \hline 
 %%------------------------------------------------------------------- 
 %\rowcolor{Gray} 
-\colcell 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & & 
+ 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & & 
 \\ \hline 
 %%-------------------------------------------------------------------
 %\rowcolor{Gray} 
-\colcell 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo &   & 
+ 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo &   & 
 \\ \hline 
 %%-------------------------------------------------------------------
 %\rowcolor{Gray} 
-\colcell 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & &
+ 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & &
 \\ \hline 
 %%-------------------------------------------------------------------
 %\rowcolor{Gray} 
-\colcell 16:00-20:00 & & & \colcelltwo & & & &
+ 16:00-20:00 & & & \colcelltwo & & & &
 \\ \hline 
 %%-------------------------------------------------------------------
 \end{tabularx}
 \begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
 \hline
 %-------------------------------------------------------------------
-\textbf{Weekday week}& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
+\rowcolor{gray!90} \textbf{Week 1}& \textbf{Mon} & \textbf{Tue} & \textbf{Wed} & \textbf{Thu} & \textbf{Fri} & \textbf{Sat} & \textbf{Sun}
 \\ \hline 
 %%------------------------------------------------------------------- 
 %\rowcolor{Gray} 
-\colcell 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & & 
+ 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & & 
 \\ \hline 
 %%-------------------------------------------------------------------
 %\rowcolor{Gray} 
-\colcell 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo &   & 
+ 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo &   & 
 \\ \hline 
 %%-------------------------------------------------------------------
 %\rowcolor{Gray} 
-\colcell 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & &
+ 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & &
 \\ \hline 
 %%-------------------------------------------------------------------
 %\rowcolor{Gray} 
-\colcell 16:00-20:00 & & & \colcelltwo & & & &
+ 16:00-20:00 & & & \colcelltwo & & & &
 \\ \hline 
 %%-------------------------------------------------------------------
 \end{tabularx}
 \begin{tabularx}{\textwidth}{|X|l|l|l|l|l|l|l|X|}
 \hline
 %-------------------------------------------------------------------
-\textbf{Weekday week}& \colcell \textbf{Mon} & \colcell \textbf{Tue} & \colcell \textbf{Wed} & \colcell \textbf{Thu} & \colcell \textbf{Fri} & \colcell \textbf{Sat} & \colcell \textbf{Sun}
+\rowcolor{gray!90} \textbf{Week 1}& \textbf{Mon} & \textbf{Tue} & \textbf{Wed} & \textbf{Thu} & \textbf{Fri} & \textbf{Sat} & \textbf{Sun}
 \\ \hline 
 %%------------------------------------------------------------------- 
 %\rowcolor{Gray} 
-\colcell 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & & 
+ 08:00-10:00 (11:00-16:00) & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & & 
 \\ \hline 
 %%-------------------------------------------------------------------
 %\rowcolor{Gray} 
-\colcell 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo &   & 
+ 10:00-13:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo &   & 
 \\ \hline 
 %%-------------------------------------------------------------------
 %\rowcolor{Gray} 
-\colcell 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & &
+ 13:00-16:00 & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & \colcelltwo & &
 \\ \hline 
 %%-------------------------------------------------------------------
 %\rowcolor{Gray} 
-\colcell 16:00-20:00 & & & \colcelltwo & & & &
+ 16:00-20:00 & & & \colcelltwo & & & &
 \\ \hline 
 %%-------------------------------------------------------------------
 \end{tabularx}
@@ -396,10 +396,10 @@ Looking at a typical staff member's availability, shown in Table \ref{typical_av
 \label{Friday_percolation}
 \begin{tabular}{cccccccc}
                                  & Mon                    & Tue                    & Wed                    & Thu                    & Fri                                            & Sat                                            & Sun                                            \\ \cline{2-8} 
-\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{X} & \multicolumn{1}{c|}{X} & \multicolumn{1}{c|}{X} & \multicolumn{1}{c|}{X} & \multicolumn{1}{c|}{\cellcolor[HTML]{000000}}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} \\ \cline{2-8} 
+\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{X} & \multicolumn{1}{c|}{X} & \multicolumn{1}{c|}{X} & \multicolumn{1}{c|}{X} & \multicolumn{1}{c|}{\cellcolor[HTML]{000000}}  & \multicolumn{1}{c|}{\colcelltwo D} & \multicolumn{1}{c|}{\colcelltwo D} \\ \cline{2-8} 
 \multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{000000}}  &                                                &                                                \\ \cline{2-6}
 \multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{000000}}  &                                                &                                                \\ \cline{2-6}
-\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} &                                                &                                                \\ \cline{2-6}
+\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\colcelltwo D} &                                                &                                                \\ \cline{2-6}
 \end{tabular}
 \end{table}
 
@@ -429,8 +429,8 @@ After destroy:\\
 \begin{tabular}{l|llllll}
 \rowcolor[HTML]{C0C0C0}
 Week       & 1                         & 2                         & 3                         & 4                         & 5                          \\ \hline
-Librarians & \cellcolor[HTML]{FFFE65}3 & 4 & \cellcolor[HTML]{FFFE65}4 & 4 & 4  \\ \hline
-Assistants & 3 & \cellcolor[HTML]{FFFE65}2 & 2 & 3 & 3
+Librarians & \colcelltwo 3 & 4 & \colcelltwo 4 & 4 & 4  \\ \hline
+Assistants & 3 & \colcelltwo 2 & 2 & 3 & 3
 \end{tabular}\\
 After repair:\\
 \begin{tabular}{l|llllll}
@@ -465,25 +465,25 @@ Table \ref{block_to_evaluate} together with Figure \ref{flow_chart_cost} show an
 \label{block_to_evaluate}
 \begin{tabular}{cccccccc}
                                  & Mon                                             & Tue                    & Wed                                            & Thu                    & Fri                                            & Sat                    & Sun                    \\ \cline{2-8} 
-\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}PL} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{I} \\ \cline{2-8} 
-\multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} &                        &                        \\ \cline{2-6}
-\multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          &                        &                        \\ \cline{2-6}
+\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{\colcelltwo PL} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{I} \\ \cline{2-8} 
+\multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{\colcelltwo}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\colcelltwo D} &                        &                        \\ \cline{2-6}
+\multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{\colcelltwo}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\colcelltwo D} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          &                        &                        \\ \cline{2-6}
 \multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}                           & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}                          &                        &                        \\ \cline{2-6}&       &           &       &   &  &      &           \\
 \end{tabular}
 \text{Task to be evaluated according to Figure \ref{flow_chart_cost}}
 \begin{tabular}{cccccccc}
    & Mon              &          &          &              &                        &                &              \\ \cline{2-2}
-   \multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}PL} &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
-   \multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
-   \multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
+   \multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{\colcelltwo PL} &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
+   \multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{\colcelltwo}   &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
+   \multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{\colcelltwo}   &                        &                                                &                        &                                                &                        &                        \\ \cline{2-2}
 \end{tabular}
 \end{table}
 
 
 % Define block styles
-\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+\tikzstyle{decision} = [diamond, draw, fill=blue!30, 
     text width=4.5em, text badly centered, inner sep=0pt]
-\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+\tikzstyle{block} = [rectangle, draw, fill=blue!30, 
     text width=5em, text centered, rounded corners, minimum height=4em]
 \tikzstyle{line} = [draw, -latex']
 \tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
@@ -579,7 +579,8 @@ The complete list of the 16 costs with descriptions can be seen in Table \ref{ta
 \rowcolor[HTML]{FD6864} 
 \multicolumn{2}{|l|}{\cellcolor{gray!90} \textbf{Demand costs}} \\ \hline
 %\multicolumn{2}{|c|}{\cellcolor[HTML]{FD6864}Demand costs}    \\ \hline
-\rowcolor[HTML]{C0C0C0} 
+%\rowcolor[HTML]{C0C0C0} 
+\rowcolor{Gray}
 Cost name                                      & Description       \\ \hline
 Demand\_few\_ass                        & In need of more assistants to fill the demand.                  \\ \hline
 Demand\_few\_lib                        & In need of more librarians to fill the demand.                 \\ \hline
@@ -592,21 +593,25 @@ Demand\_PL\_good\_ass        & Assigning a PL to an assistant, when not already 
 Demand\_PL\_good\_lib        & Assigning a PL to a librarian, when not already assigned to another.       \\ \hline
 Demand\_PL\_bad\_ass         & Assigning a PL to an assistant, when already assigned to another.          \\ \hline
 Demand\_PL\_bad\_lib         & Assigning a PL to a librarian, when already assigned to another.          \\ \hline
-\rowcolor[HTML]{FD6864} 
+%\rowcolor[HTML]{FD6864} 
+\rowcolor{Gray}
 \multicolumn{2}{|l|}{\cellcolor{gray!90} \textbf{PL costs}} \\ \hline
-\rowcolor[HTML]{C0C0C0} 
+%\rowcolor[HTML]{C0C0C0} 
+\rowcolor{Gray}
 Cost name                                      & Description       \\ \hline
 PL\_good\_amount                  & Assigning a PL to a staff member still in need of more for feasibility.\\ \hline
 PL\_violate\_amount             & Assigning more PL than allowed to that staff member.                  \\ \hline
 \rowcolor[HTML]{FD6864} 
 \multicolumn{2}{|l|}{\cellcolor{gray!90} \textbf{Weekend costs}} \\ \hline
-\rowcolor[HTML]{C0C0C0} 
+%\rowcolor[HTML]{C0C0C0} 
+\rowcolor{Gray}
 Cost name                                      & Description       \\ \hline
 HB\_amount                       & Either no or more than one HB staff member assigned the same weekend.   \\ \hline
 No\_weekend                & No weekend blocks available for assignment.                  \\ \hline
 \rowcolor[HTML]{FD6864} 
 \multicolumn{2}{|l|}{\cellcolor{gray!90} \textbf{Stand-in costs}} \\ \hline
-\rowcolor[HTML]{C0C0C0} 
+%\rowcolor[HTML]{C0C0C0} 
+\rowcolor{Gray}
 Cost name                                      & Description       \\ \hline
 Stand\_in\_cost                     & Occurring when a possible stand-in is ruined due to an assignment.    \\ \hline
 \end{tabular}
@@ -620,9 +625,9 @@ Whenever a new week block is to be inserted in a repair all available blocks for
 \label{tab:block_costs}
 \begin{tabular}{cccccccc}
                                  & Mon                                             & Tue                    & Wed                                            & Thu                    & Fri                                            & Sat                    & Sun                    \\ \cline{2-8} 
-\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}PL} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{I} \\ \cline{2-8} 
-\multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} &     &   \\ \cline{2-6}
-\multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}         &            &          \\ \cline{2-6}
+\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{\colcelltwo PL} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{I} \\ \cline{2-8} 
+\multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{\colcelltwo}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\colcelltwo D} &     &   \\ \cline{2-6}
+\multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{\colcelltwo}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{\colcelltwo D} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}         &            &          \\ \cline{2-6}
 \multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} &         &         \\ \cline{2-6}
 \end{tabular}
 \newline
@@ -630,10 +635,10 @@ $Total cost = -Demand\_PL\_good\_lib + PL\_violate\_amount + Demand\_many\_lib -
 
 \begin{tabular}{cccccccc}
                                  & Mon                                             & Tue                    & Wed                                            & Thu                    & Fri                                            & Sat                    & Sun                    \\ \cline{2-8} 
-\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{I} \\ \cline{2-8} 
+\multicolumn{1}{c|}{08:00-10:00} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{\colcelltwo D} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\colcelltwo D} & \multicolumn{1}{c|}{I} & \multicolumn{1}{c|}{I} \\ \cline{2-8} 
 \multicolumn{1}{c|}{10:00-13:00} & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} &     &   \\ \cline{2-6}
 \multicolumn{1}{c|}{13:00-16:00} & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}         &            &          \\ \cline{2-6}
-\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\cellcolor[HTML]{FCFF2F}D}  & \multicolumn{1}{c|}{} &         &         \\ \cline{2-6}
+\multicolumn{1}{c|}{16:00-20:00} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\colcelltwo D}  & \multicolumn{1}{c|}{} &         &         \\ \cline{2-6}
 \end{tabular} 
 \newline
 $Total cost = -Demand\_few\_lib - Demand\_evening\_cost$
@@ -739,7 +744,7 @@ After a certain number of iteration the weekend phase is finished and the weekda
 % Define block styles
 \tikzstyle{decision} = [diamond, draw, fill=red!30,
     text width=3.5em, text badly centered, node distance=3cm, inner sep=0.1pt]
-\tikzstyle{block} = [rectangle, draw, fill=blue!30,
+\tikzstyle{block} = [rectangle, draw, fill=blue!40,
     text width=5em, text centered, rounded corners, minimum height=4em]
 \tikzstyle{line} = [draw, -latex']
 \tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
@@ -855,7 +860,7 @@ When choosing what weekends to destroy and how to repair them, a simple random f
 
 
 \begin{table}[!h]
-\caption{Staff member availability when only placing weekends. The intensity of red is proportional to the number of available staff members.}
+\caption{Staff member availability when only placing weekends. The darkness of the cell's colour is proportional to the number of available staff members.}
 \centering
 \label{tab:num_avail_no_tasks}
 \begin{tabular}{|C{1.2cm}
@@ -899,7 +904,7 @@ When choosing what weekends to destroy and how to repair them, a simple random f
 \end{table}
 
 
-In order to get a better estimate of the number of available staff members during the weekend phase, evening tasks and BokB tasks are allocated after each weekend reparation. The evening tasks are allocated using the same method as is described in Section \ref{wday_phase}, while BokB tasks are placed according to a fixed schedule. The effect of this allocation is shown in Tables \ref{tab:num_avail_no_tasks} and \ref{tab:num_avail_with_tasks}. High intensity of red in a cell indicates a higher number of staff members. In the tables, BokB-librarians is the subset of the librarians who are qualified for the BokB task.
+In order to get a better estimate of the number of available staff members during the weekend phase, evening tasks and BokB tasks are allocated after each weekend reparation. The evening tasks are allocated using the same method as is described in Section \ref{wday_phase}, while BokB tasks are placed according to a fixed schedule. The effect of this allocation is shown in Tables \ref{tab:num_avail_no_tasks} and \ref{tab:num_avail_with_tasks}. High intensity of colour in a cell indicates a higher number of staff members. In the tables, BokB-librarians is the subset of the librarians who are qualified for the BokB task.
 
  It can be seen in these tables that the first table is generally redder and thus there are fewer available staff members in the second table. This second state reflects better the real number of available staff members during the week days for a certain weekend constellation. Thus, the value of the weekend objective function will become more accurate if these tasks are allocated.
 
@@ -908,11 +913,10 @@ In order to get a better estimate of the number of available staff members durin
 % Define block styles
 \tikzstyle{decision} = [diamond, draw, fill=red!30,
 text width=5em, text badly centered, node distance=4cm, inner sep=0.1pt]
-\tikzstyle{block} = [rectangle, draw, fill=blue!30,
+\tikzstyle{block} = [rectangle, draw, fill=blue!40,
 text width=5em, text centered, rounded corners, minimum height=4em]
 \tikzstyle{line} = [draw, -latex']
-\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
-minimum height=2em]
+
 
 \begin{figure}[p]
 \centering
@@ -922,8 +926,8 @@ minimum height=2em]
 \begin{tikzpicture}[node distance = 2cm , auto, every node/.style={scale=0.8}]
     %Right column
     \node [scale=0.01,node distance=0cm] (invinit) {};
-    \node [block, below of=invinit] (distribute) {Try allocate all tasks};
-    \node [block, below of=distribute] (workercost) {Set staff member obj fun};
+    \node [block, below of=invinit, node distance =1.7cm] (distribute) {Try allocate all tasks};
+    \node [block, below of=distribute, node distance =2.5cm] (workercost) {Set staff member obj fun};
     \node [decision, below of=workercost, node distance=2.5cm, text width = 5em] (evaluatewc) {Staff schedules feasible?};
     \node [decision, below of=evaluatewc, node distance=3cm] (evaluatetasks) {All tasks allocated?};
     \node [decision, below of=evaluatetasks, node distance=3cm] (feasible) {Solution feasible?};
@@ -932,7 +936,7 @@ minimum height=2em]
 
     %Middle column
      \node [block, left of=evaluatetasks, node distance = 4cm] (taskcost) {Set weekday costs};
-    \node [decision, above of=taskcost, node distance=2cm] (best) {Best solution?};
+    \node [decision, above of=taskcost, node distance=2.5cm] (best) {Best solution?};
     \node [block, above of=best, minimum height=3em, node distance = 3cm] (savebest) {Save solution as best};
     
     %Left column
