@@ -1,5 +1,5 @@
 
-Three different approaches to solving the problem were studied. The first approach involves implementing the problem in the mathematical programming language AMPL, according to the model described in Chapter \ref{chap:mathmod}, and the supplementary details given in Appendix \ref{appendix:mathmod}. Running this model in CPLEX gives an optimal solution to the problem. The other two approaches are classified as heuristics and are implemented in C++. These are implemented in order to solve the problem without using expensive software, such as CPLEX, although they do not guarantee that the optimal solution is found. These implementations are described more in detail in this chapter.
+Three different approaches to solving the problem were studied. The first approach involves implementing the problem in the mathematical programming language AMPL, according to the model described in Chapter \ref{chap:mathmod}, and the supplementary details given in Appendix \ref{appendix:mathmod}. Running this model in CPLEX gives an optimal solution to the problem. The other two approaches are classified as heuristics and are implemented in C++. These are implemented in order to solve the problem without using expensive software, such as CPLEX, although they do not guarantee that the optimal solution is found. In this chapter, these two implementations are described more in detail.
 
 In the first section of this chapter, an outline for the differences between the models of three solution approaches is given. In Section \ref{section:impl_week_dist}, the implementation of the first heuristic method is described and in Section \ref{section:impl_task_dist}, the implementation of the second heuristic is described.
 
@@ -668,7 +668,7 @@ With well chosen cost parameter values, the run will always get relatively close
 %
 \section{Task allocation approach} \label{section:impl_task_dist}
 
-The second heuristic approach tested allocates individual tasks to staff members and greatly resembles the process of manual scheduling. The implemented algorithm undergoes two phases. In the first phase, weekends, as well as some weekday tasks, are allocated and in the second phase the rest of the weekday tasks are allocated. 
+The second heuristic approach tested allocates individual tasks to staff members and greatly resembles the process of manual scheduling. The implemented algorithm undergoes two phases; in the first phase, weekends, as well as some weekday tasks, are allocated and in the second phase the rest of the weekday tasks are allocated. 
 
 The primary heuristic method used in this approach is a large neighbourhood search in combination with a simulated annealing accept function. Destroying and repairing the solution, which is the main feature of LNS, leads the search towards better solutions in the local vicinity of the current solution. The SA function, on the other hand, leads the search out of the current neighbourhood by accepting poorer solutions. This diversifies the search.
 
